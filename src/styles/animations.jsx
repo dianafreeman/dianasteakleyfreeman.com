@@ -45,7 +45,7 @@ const upDownAnimation = css`
 `
 
 const upDownWideAnimation = css`
-  ${upDownWide} 18s ease-in-out infinite alternate;
+  ${upDownWide} 9s ease-in-out infinite alternate;
 `
 
 export const UpDown = styled.div`

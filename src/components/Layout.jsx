@@ -3,6 +3,8 @@ import GlobalStyle from '../styles/global'
 import SEO from './SEO'
 import 'typeface-cantata-one'
 import 'typeface-open-sans'
+import 'typeface-space-mono'
+import 'typeface-playball'
 
 const Layout = () => (
   <>

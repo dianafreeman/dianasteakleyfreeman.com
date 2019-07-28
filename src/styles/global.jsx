@@ -24,6 +24,13 @@ const GlobalStyle = createGlobalStyle`
     color: #e07628;
     text-decoration: none;
   }
+  .font-typed {
+    font-weight: 400;
+    font-family: 'Space Mono', monospace;
+  }
+  .font-creative {
+    font-family: 'Playball', cursive;
+  }
 `
 
 export default GlobalStyle

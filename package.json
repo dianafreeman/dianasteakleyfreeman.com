@@ -21,10 +21,12 @@
     "react-helmet": "^5.2.1",
     "react-spring": "^8.0.27",
     "styled-components": "^4.3.2",
-    "tailwind.macro": "^0.5.10",
     "tailwindcss": "^0.7.4",
+    "typed.js": "^2.0.10",
     "typeface-cantata-one": "^0.0.72",
-    "typeface-open-sans": "^0.0.75"
+    "typeface-open-sans": "^0.0.75",
+    "typeface-playball": "0.0.72",
+    "typeface-space-mono": "0.0.71"
   },
   "keywords": [
     "gatsby",
@@ -40,7 +42,9 @@
     "lint:ci": "yarn lint --format junit -o results/eslint/result.xml"
   },
   "devDependencies": {
+    "@babel/plugin-syntax-object-rest-spread": "^7.2.0",
     "babel-eslint": "^10.0.2",
+    "babel-plugin-macros": "^2.6.1",
     "eslint": "^6.1.0",
     "eslint-config-airbnb": "^17.1.1",
     "eslint-config-prettier": "^6.0.0",
@@ -48,14 +52,16 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.14.2",
-    "prettier": "^1.18.2"
+    "gatsby-plugin-postcss": "^2.1.2",
+    "prettier": "^1.18.2",
+    "tailwind.macro": "^0.5.10"
   },
   "repository": {
     "url": "git@github.com:dianafreeman/dianasteakleyfreeman.com.git",
     "type": "git"
   },
   "bugs": {
-    "url": "git@github.com:dianafreeman/dianasteakleyfreeman.com.git/issues"
+    "url": "github.com/dianafreeman/dianasteakleyfreeman.com.git/issues"
   },
   "homepage": "https://dianasteakleyfreeman.com"
 }

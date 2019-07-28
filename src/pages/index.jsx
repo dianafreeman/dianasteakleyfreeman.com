@@ -6,9 +6,11 @@ import { Parallax } from 'react-spring/renderprops-addons.cjs'
 // Components
 import Layout from '../components/Layout'
 import ProjectCard from '../components/ProjectCard'
+import TypedTitle from '../components/TypedTitle'
 
 // Elements
 import Inner from '../elements/Inner'
+import ComputerScreen from '../elements/ComputerScreen'
 import { Title, BigTitle, Subtitle } from '../elements/Titles'
 
 // Views
@@ -61,11 +63,17 @@ const Index = () => (
   <>
     <Layout />
     <Parallax pages={5}>
-      <Hero offset={0}>
-        <BigTitle>
-          Coder, Creator, Communicator<br /> I'm Diana.
-        </BigTitle>
-        <Subtitle>How can I help?</Subtitle>
+      <Hero
+        offset={0}
+        bg="https://dianasteakleyfreeman.com/wp-content/themes/diana-simple/assets/graphics/hero-original.jpg)"
+      >
+        <ComputerScreen>
+            <BigTitle>
+              <TypedTitle strings={['<span class="font-typed">Coder. </span>^500 <span class="font-creative">Creator. </span> ^500 Communicator.']} />
+            </BigTitle>
+            <Subtitle>I'm Diana</Subtitle>
+            <Subtitle>How can I help?</Subtitle>
+        </ComputerScreen>
       </Hero>
       <Projects offset={1}>
         <Title>Projects</Title>
