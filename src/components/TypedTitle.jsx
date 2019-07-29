@@ -1,20 +1,28 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Typed from 'typed.js'
+import styled from 'styled-components'
 import { useSpring, animated } from 'react-spring'
+import { Title, BigTitle, Subtitle } from '../elements/Titles'
 
-class TypedTitle extends React.Component {
+const Wrapper = styled.div``
+const TypedWrapper = styled.div``
+const TargetSpan = styled.span`
+  white-space: normal;
+`
+
+class TypedTitle extends Component {
   componentDidMount() {
     // If you want to pass more options as props, simply add
     // your desired props to this destructuring assignment.
     const { strings } = this.props
-    const onStringTyped = (index, el) => {
-      console.log(el)
+    // this.setState({ complete: false })
+
+    const onComplete = typed => {
+      typed.cursor.style.display = 'none'
+      Object.values(this.el.children).map(el => (el.classList.length > 0 ? el.classList.remove(el.classList) : false))
     }
 
-    const onComplete = () => {
-      console.log('done')
-    }
     // You can pass other options here, such as typing speed, back speed, etc.
     const options = {
       strings,
@@ -22,8 +30,7 @@ class TypedTitle extends React.Component {
       typeSpeed: 90,
       showCursor: true,
       autoInsertCss: true,
-      startDelay: 1800,
-      onStringTyped,
+      startDelay: 1000,
       onComplete,
     }
     // this.el refers to the <span> in the render() method
@@ -37,17 +44,21 @@ class TypedTitle extends React.Component {
   }
 
   render() {
+   
     return (
-      <div className="wrap">
-        <div className="type-wrap">
-          <span
-            style={{ whiteSpace: 'normal' }}
-            ref={el => {
-              this.el = el
-            }}
-          />
-        </div>
-      </div>
+      <>
+        <Wrapper>
+          <TypedWrapper className="type-wrap">
+            <TargetSpan
+              ref={el => {
+                this.el = el
+              }}
+            />
+          </TypedWrapper>
+        </Wrapper>
+        <Subtitle>I'm Diana</Subtitle>
+        <Subtitle>How can I help?</Subtitle>
+      </>
     )
   }
 }

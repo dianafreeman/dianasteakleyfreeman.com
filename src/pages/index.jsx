@@ -11,7 +11,7 @@ import TypedTitle from '../components/TypedTitle'
 // Elements
 import Inner from '../elements/Inner'
 import ComputerScreen from '../elements/ComputerScreen'
-import { Title, BigTitle, Subtitle } from '../elements/Titles'
+import { Title, BigTitle } from '../elements/Titles'
 
 // Views
 import Hero from '../views/Hero'
@@ -69,10 +69,9 @@ const Index = () => (
       >
         <ComputerScreen>
             <BigTitle>
-              <TypedTitle strings={['<span class="font-typed">Coder. </span>^500 <span class="font-creative">Creator. </span> ^500 Communicator.']} />
+              <TypedTitle strings={['<span class="font-typed">Coder. </span>^500 <span class="font-creative">Creator. </span> ^500 <span>Communicator.</span>']} />
             </BigTitle>
-            <Subtitle>I'm Diana</Subtitle>
-            <Subtitle>How can I help?</Subtitle>
+        
         </ComputerScreen>
       </Hero>
       <Projects offset={1}>
@@ -108,7 +107,9 @@ const Index = () => (
           </ProjectCard>
         </ProjectsWrapper>
       </Projects>
-      <About offset={3}>
+      <About offset={3}
+        bg="https://dianasteakleyfreeman.com/wp-content/themes/diana-simple/assets/graphics/about-img.jpg)"
+        >
         <Title>About</Title>
         <AboutHero>
           <Avatar src={avatar} alt="John Doe" />

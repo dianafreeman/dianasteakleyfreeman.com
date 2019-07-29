@@ -45,10 +45,8 @@ const defaultConfig = require('tailwindcss/defaultConfig')();
 
 const colors = {
   transparent: 'transparent',
-
   'blue-black': '#161719',
   'blue-grey': '#23262b',
-
   black: '#222b2f',
   'grey-darkest': '#273238',
   'grey-darker': '#364349',
