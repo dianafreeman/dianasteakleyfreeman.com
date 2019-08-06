@@ -26,7 +26,6 @@ const GlobalStyle = createGlobalStyle`
   }
   .font-typed {
     font-weight: 400;
-    font-family: 'Space Mono', monospace;
   }
   .font-creative {
     font-family: 'Playball', cursive;

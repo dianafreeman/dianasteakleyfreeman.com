@@ -1,29 +1,33 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Typed from 'typed.js'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { useSpring, animated } from 'react-spring'
 import { Title, BigTitle, Subtitle } from '../elements/Titles'
+import { fonts } from '../../tailwind'
 
 const Wrapper = styled.div``
-const TypedWrapper = styled.div``
+const TypedWrapper = styled.div`
+  position: absolute;
+  right: 1em;
+  text-align: right;
+  width: 60%;
+`
 const TargetSpan = styled.span`
   white-space: normal;
+`
+const Typefaces = [fonts.typed, fonts.creative, false]
+const HeroSub = styled(Subtitle)`
+  opacity: 0;
 `
 
 class TypedTitle extends Component {
   componentDidMount() {
-    // If you want to pass more options as props, simply add
-    // your desired props to this destructuring assignment.
     const { strings } = this.props
-    // this.setState({ complete: false })
-
-    const onComplete = typed => {
+    const hideCursor = typed => {
       typed.cursor.style.display = 'none'
-      Object.values(this.el.children).map(el => (el.classList.length > 0 ? el.classList.remove(el.classList) : false))
     }
-
-    // You can pass other options here, such as typing speed, back speed, etc.
+    // TypedJS Options
     const options = {
       strings,
       backspeed: 1000,
@@ -31,9 +35,9 @@ class TypedTitle extends Component {
       showCursor: true,
       autoInsertCss: true,
       startDelay: 1000,
-      onComplete,
+      onComplete: hideCursor,
     }
-    // this.el refers to the <span> in the render() method
+    // Set this this.el to refer to the <span> in the render() method
     this.typed = new Typed(this.el, options)
   }
 
@@ -44,7 +48,6 @@ class TypedTitle extends Component {
   }
 
   render() {
-   
     return (
       <>
         <Wrapper>
@@ -56,8 +59,6 @@ class TypedTitle extends Component {
             />
           </TypedWrapper>
         </Wrapper>
-        <Subtitle>I'm Diana</Subtitle>
-        <Subtitle>How can I help?</Subtitle>
       </>
     )
   }

@@ -24,19 +24,19 @@ const wave = keyframes`
 
 const upDown = keyframes`
   from {
-    transform: translateY(0);
+    transform: translateY(-15);
   }
   to {
-    transform: translateY(30px);
+    transform: translateY(15px);
   }
 `
 
 const upDownWide = keyframes`
   from {
-    transform: translateY(0);
+    transform: translateY(-100);
   }
   to {
-    transform: translateY(200px);
+    transform: translateY(100px);
   }
 `
 

@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import tw from 'tailwind.macro'
 import styled from 'styled-components'
-import { FabLinkedin } from 'react-icons/fa'
-import { Divider } from '../elements/Dividers'
+import { FaTwitter, FaLinkedin, FaGithub, FaDesktop, FaMedium } from 'react-icons/fa'
+import { Divider } from '../elements/Parallax'
 import Content from '../elements/Content'
 import { UpDown, UpDownWide, waveAnimation } from '../styles/animations'
 import { colors } from '../../tailwind'
@@ -30,6 +30,9 @@ const SocialButton = styled.a`
   border: 1px: solid white;
   color: white;
   border-radius: 100%;
+  padding: 1em;
+  margin: 1em;
+  
 `
 
 const Contact = ({ children, offset }) => (
@@ -55,11 +58,18 @@ const Contact = ({ children, offset }) => (
     </Content>
     <Divider speed={0.1} offset={offset}>
       <UpDown>
-        <SocialButton href="" fill={colors['grey-darkest']} target="_blank" rel="noreferrer noopener">
-          Facebook
+        <SocialButton href="" fill={colors['blue-lightest']} target="_blank" rel="noreferrer noopener">
+          <FaLinkedin />
         </SocialButton>
       </UpDown>
-      <UpDownWide>{/* <SVG icon="triangle" width={12} stroke={colors.white} left="95%" top="50%" /> */}</UpDownWide>
+      <UpDownWide>
+        <SocialButton href="" fill={colors['grey-darkest']} target="_blank" rel="noreferrer noopener">
+          <FaTwitter />
+        </SocialButton>
+        <SocialButton href="" fill={colors['grey-darkest']} target="_blank" rel="noreferrer noopener">
+          <FaGithub />
+        </SocialButton>
+      </UpDownWide>
     </Divider>
   </>
 )
