@@ -16,4 +16,5 @@ export const Section = styled(ParallaxLayer)`
   display: block;
   position: relative;
   background: ${props => props.bg};
+  clip-path: ${props => props.clipPath};
 `

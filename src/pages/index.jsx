@@ -6,7 +6,6 @@ import { Parallax } from 'react-spring/renderprops-addons.cjs'
 // Components
 import Layout from '../components/Layout'
 import TypedTitle from '../components/TypedTitle'
-import ProjectSlider from '../components/Slider'
 
 // Elements
 import Inner from '../elements/Inner'
@@ -48,7 +47,7 @@ const Index = () => (
       </Hero>
       <Projects offset={1}>
         <Title>Projects</Title>
-        <ProjectSlider />
+      
       </Projects>
       <About offset={2}>
         <Title>About</Title>

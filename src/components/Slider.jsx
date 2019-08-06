@@ -8,7 +8,7 @@ import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
 const ProjectsWrapper = styled(Slider)`
-  ${tw`flex flex-wrap justify-between mt-8`};
+  ${tw`justify-between mt-8 lg:w-2/3 align-right`};
   `
 
 const ProjectSlider = () => {

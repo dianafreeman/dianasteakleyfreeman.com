@@ -17,10 +17,10 @@ const About = ({ children, offset }) => (
     <Divider
       bg={`radial-gradient(circle at bottom left,${colors['grey-dark']},${colors['grey-darker']})`}
       clipPath="polygon(0 16%, 100% 4%, 100% 82%, 0 94%)"
-      speed={0.2}
+      speed={0.3}
       offset={offset}
     >
-      <Section speed={-0.1}>
+      <Section speed={-0.1} offset={offset}>
         <FloatingImage src={heroImage} floatDir="right" />
       </Section>
     </Divider>
