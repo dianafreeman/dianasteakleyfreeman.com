@@ -1,31 +1,32 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import PropTypes from 'prop-types'
 import Typed from 'typed.js'
 import styled, { css } from 'styled-components'
-import { useSpring, animated } from 'react-spring'
-import { Title, BigTitle, Subtitle } from '../elements/Titles'
-import { fonts } from '../../tailwind'
+import { BigTitle } from '../elements/Titles'
 
 const Wrapper = styled.div``
 const TypedWrapper = styled.div`
-  position: absolute;
-  right: 1em;
-  text-align: right;
-  width: 60%;
+  text-align: center;
 `
 const TargetSpan = styled.span`
   white-space: normal;
 `
-const Typefaces = [fonts.typed, fonts.creative, false]
-const HeroSub = styled(Subtitle)`
-  opacity: 0;
-`
 
 class TypedTitle extends Component {
+  constructor(props) {
+    super(props)
+    this.state = { complete: false }
+  }
+
   componentDidMount() {
     const { strings } = this.props
+
     const hideCursor = typed => {
       typed.cursor.style.display = 'none'
+    }
+    const onComplete = typed => {
+      hideCursor(typed)
+      this.setState({ complete: true })
     }
     // TypedJS Options
     const options = {
@@ -35,7 +36,7 @@ class TypedTitle extends Component {
       showCursor: true,
       autoInsertCss: true,
       startDelay: 1000,
-      onComplete: hideCursor,
+      onComplete,
     }
     // Set this this.el to refer to the <span> in the render() method
     this.typed = new Typed(this.el, options)
@@ -48,15 +49,18 @@ class TypedTitle extends Component {
   }
 
   render() {
+    const { complete } = this.state
     return (
       <>
         <Wrapper>
           <TypedWrapper className="type-wrap">
-            <TargetSpan
-              ref={el => {
-                this.el = el
-              }}
-            />
+            <BigTitle>
+              <TargetSpan
+                ref={el => {
+                  this.el = el
+                }}
+              />
+            </BigTitle>
           </TypedWrapper>
         </Wrapper>
       </>
