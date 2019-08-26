@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link, graphql } from 'gatsby'
@@ -40,12 +41,3 @@ PostList.propTypes = {
   title: PropTypes.string,
 }
 
-export const pageQuery = graphql`
-  fragment PostListFields on wordpress__POST {
-    id
-    title
-    excerpt
-    date(formatString: "MMMM DD, YYYY")
-    slug
-  }
-`

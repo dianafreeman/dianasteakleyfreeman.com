@@ -37,6 +37,7 @@ Contact
 
 Floating Social Media Icons
 
+*Heads Up*: The Blog category has the ID of 19, and the Testimonials have ID of 11 
 
 
 

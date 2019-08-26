@@ -14,28 +14,7 @@ const CardWrapper = styled.div`
   min-height: 200px;
   min-width: 200px;
   margin: 1em;
-  -ms-flex-preferred-size: 0;
-  flex-basis: 0;
-  -webkit-box-flex: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  overflow: hidden;
-  &:before {
-    ${tw`rounded-lg`};
-    content: " ";
-    position: absolute;
-    background-image: url(${props => props.img}); 
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;    
-    height: 100%;
-    width: 100%;
-    top: 0; 
-    left: 0;
-    z-index: -1;
-  }
 `
-
 
 const TextWrapper = styled.div`
   ${tw`font-sans text-small `};
@@ -53,19 +32,30 @@ const CardFooter = styled.div`
   bottom: 0;
 `
 
+const CardImage = styled(Img)`
+  ${tw`absolute pin-t`}
+  &:after{
+    content: ' ';
+    background-color: rgba(${props => props.overlay}, 0.9);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+`
 
 
-const Card = ({ title, bg, img , slug , type = "project" }) => {
-  
+const Card = ({ title, bg, media , slug, color, type}) => {
   return (
-    <CardWrapper bg={bg} img={img}>
-        <TextWrapper>
-        {(type == "blog" ? <Link to={`blog/${slug}`}>Go there</Link> : null )}
-        </TextWrapper>
+    <Link to={`/${type}/${slug}`}>
+    <CardWrapper bg={bg}>
+        <CardImage fluid={media.localFile.childImageSharp.fluid} overlay={color}/>
         <CardFooter>
         <CardTitle>{title}</CardTitle>
         </CardFooter>
     </CardWrapper>
+    </Link>
   );
 };
 export default Card;

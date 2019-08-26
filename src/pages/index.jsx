@@ -13,7 +13,7 @@ import Contact from '../sections/Contact'
 import Blog from '../sections/Blog'
 // Components
 import TypedTitle from '../components/TypedTitle'
-import { BigTitle } from '../elements/Titles'
+import wpConfig from '../../config/wordpress'
 
 const Index = ({ data }) => {
   const projects = data.allWordpressWpProjects.edges.map(el => el.node)
@@ -25,9 +25,7 @@ const Index = ({ data }) => {
         <Parallax pages={5}>
           <Navbar />
           <Hero offset={0}>
-            <BigTitle>
-              <TypedTitle strings={['Diana M. Steakley-Freeman']} smallTitle={['Coder', 'Creator', 'Communicator']} />
-            </BigTitle>
+            <TypedTitle strings={['Diana M. Steakley-Freeman']} smallTitle={['Coder', 'Creator', 'Communicator']} />
           </Hero>
           <Projects offset={1} projects={projects} />
           <About offset={2} />
@@ -41,9 +39,8 @@ const Index = ({ data }) => {
 
 export default Index
 
-
 export const query = graphql`
-  query IndexQuery {
+  query {
     allWordpressWpProjects {
       edges {
         node {
@@ -78,6 +75,7 @@ export const query = graphql`
           slug
           featured_media {
             localFile {
+              url
               childImageSharp {
                 fluid(maxWidth: 960) {
                   ...GatsbyImageSharpFluid

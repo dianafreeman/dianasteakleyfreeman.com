@@ -1,10 +1,11 @@
 const path = require('path')
+const wpConfig = require('./config/wordpress')
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
   const result = await graphql(`
     query {
-      allWordpressPost {
+      allWordpressPost(sort: { order: DESC, fields: date }, filter: { categories: { eq: 19 } }) {
         edges {
           node {
             slug
