@@ -11,44 +11,24 @@ import Layout from '../layouts/Layout';
 import { colors } from '../../tailwind';
 // Components
 import TypedTitle from '../components/TypedTitle';
-import Content from '../elements/Content';
-import Inner from '../elements/Inner';
 
-const PageTitleWrapper = styled(ParallaxLayer)`
-  ${tw`my-auto px-2`}
-  background-image: url('${props => props.bg}');
-  background-size: cover;
-  background-position: center;
+
+const PageTitleWrapper = styled.div`
+  ${tw`absolute pin-t`}
 `;
 
-const PostWrapper = styled.div`
-  ${tw`relative mt-4`}
-  width: 100%;
-  height: 100% !important;
-  background-color: rgba(0, 0, 0, 0.7);
-  &:before{
-    content: ' ';
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    z-index: -1;
-  }
-`;
-
-const PostContentLayer = styled(ParallaxLayer)`
- background-image: url('${props => props.bg}');
-  background-size: cover;
-  background-position: center;
-  
+const HeaderImage = styled(Img)`
+ ${tw`absolute h-screen`}
+ 
 `
-
-const PostContentWrapper = styled.div`
-  ${tw`px-2 py-3 mx-auto w-full mx-2`}
-  background: lightgray;
-  min-height: fit-content;
-
+const ArticleWrapper = styled.div`
+  ${tw`p-3 mx-auto rounded-lg w-5/6`}
+  background: rgba(225,225,225,0.9);
+  height: inherit;
+  overflow: hidden scroll;
+`
+const PageContent = styled.div`
+  ${tw` relative `}
 `
 
 const BlogPostTemplate = ({ data }) => {
@@ -56,16 +36,20 @@ const BlogPostTemplate = ({ data }) => {
   return (
     <Layout>
       <Helmet title={`${post.title} | Blog`} />
-      <Parallax pages={3} factor={1}>
-        <ParallaxLayer offset={0} speed={0.5}>
-          <Img fluid={post.featured_media.localFile.childImageSharp} />
-          <TypedTitle strings={[post.title]} />
+      <Parallax pages={2}>
+        <ParallaxLayer offset={0}>
+          <HeaderImage fluid={post.featured_media.localFile.childImageSharp.fluid} />
+          <PageTitleWrapper>
+            <TypedTitle strings={[post.title]} />
+          </PageTitleWrapper>
         </ParallaxLayer>
-        <PostContentLayer offset={0.5} speed={0.5} factor={3}>
-          <PostContentWrapper>
-            <article dangerouslySetInnerHTML={{ __html: post.content }} style={{display: 'block'}}/>
-          </PostContentWrapper>
-        </PostContentLayer>
+        <ParallaxLayer offset={0.25} factor={1.5}>
+          <ArticleWrapper>
+            <article>
+              <div dangerouslySetInnerHTML={{ __html: post.content }} style={{display: 'block'}}/> 
+            </article>
+          </ArticleWrapper>
+        </ParallaxLayer>
         <Link to="/">Back to Home</Link>
       </Parallax>
     </Layout>
