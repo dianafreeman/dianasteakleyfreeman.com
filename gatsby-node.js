@@ -13,6 +13,14 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      allWordpressWpProjects {
+        edges {
+          node {
+            slug
+            wordpress_id
+          }
+        }
+      }
     }
   `)
   if (result.errors) {
@@ -21,13 +29,25 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const postTemplate = path.resolve(`./src/templates/post.jsx`)
 
-  const allPosts = result.data.allWordpressPost.edges
+  const blogPosts = result.data.allWordpressPost.edges
+  const projects = result.data.appWordpressWpProjects.edges
 
   // Iterate over the array of posts
-  allPosts.forEach(post => {
+  blogPosts.forEach(post => {
     // Create the Gatsby page for this WordPress post
     createPage({
       path: `/blog/${post.node.slug}/`,
+      component: postTemplate,
+      context: {
+        id: post.node.wordpress_id,
+      },
+    })
+  })
+
+  projects.forEach(post => {
+    // Create the Gatsby page for this WordPress post
+    createPage({
+      path: `/projects/${post.node.slug}/`,
       component: postTemplate,
       context: {
         id: post.node.wordpress_id,
