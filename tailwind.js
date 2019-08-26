@@ -27,6 +27,8 @@ View the full documentation at https://tailwindcss.com.
 // eslint-disable-next-line
 const defaultConfig = require('tailwindcss/defaultConfig')();
 
+
+
 /*
 |-------------------------------------------------------------------------------
 | Colors                                    https://tailwindcss.com/docs/colors

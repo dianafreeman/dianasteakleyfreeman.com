@@ -40,6 +40,7 @@ const BlogPostTemplate = ({ data }) => {
         <ParallaxLayer offset={0}>
           <HeaderImage fluid={post.featured_media.localFile.childImageSharp.fluid} />
           <PageTitleWrapper>
+          <Link to="/">Back to Home</Link>
             <TypedTitle strings={[post.title]} />
           </PageTitleWrapper>
         </ParallaxLayer>
@@ -50,7 +51,7 @@ const BlogPostTemplate = ({ data }) => {
             </article>
           </ArticleWrapper>
         </ParallaxLayer>
-        <Link to="/">Back to Home</Link>
+      
       </Parallax>
     </Layout>
   );

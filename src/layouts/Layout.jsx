@@ -4,12 +4,11 @@ import SEOHelmet from './SEOHelmet'
 import 'typeface-cantata-one'
 import 'typeface-open-sans'
 
-const Layout = title => (
+const Layout = ({ title, children }) => (
   <>
     <SEOHelmet title={title} />
     <GlobalStyle />
-    <main style={{ display: 'block' }}>{children}</main>
-    <Navbar />
+    <main id="primary">{children}</main>
   </>
 )
 

@@ -2,11 +2,16 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import tw from 'tailwind.macro'
 import styled from 'styled-components'
-import { FaTwitter, FaLinkedin, FaGithub, FaDesktop, FaMedium } from 'react-icons/fa'
-import { Divider } from '../elements/Parallax'
+import { ParallaxBackground } from '../elements/Parallax'
 import Content from '../elements/Content'
+import Inner from '../elements/Inner'
+import { Title } from '../elements/Titles'
 import { UpDown, UpDownWide, waveAnimation } from '../styles/animations'
 import { colors } from '../../tailwind'
+
+const ContactText = styled.p`
+  ${tw`text-grey-light font-sans text-xl md:text-2xl lg:text-3xl`};
+`
 
 const WaveWrapper = styled.div`
   ${tw`absolute pin-b w-full`};
@@ -37,7 +42,7 @@ const SocialButton = styled.a`
 
 const Contact = ({ children, offset }) => (
   <>
-    <Divider fill="#23262b" speed={0.2} offset={offset}>
+    <ParallaxBackground fill="#23262b" speed={0.2} offset={offset}>
       <WaveWrapper>
         <InnerWave>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 338.05" preserveAspectRatio="none">
@@ -52,25 +57,19 @@ const Contact = ({ children, offset }) => (
           </svg>
         </InnerWave>
       </WaveWrapper>
-    </Divider>
+    </ParallaxBackground>
     <Content speed={0.4} offset={offset}>
-      {children}
+      <Inner>
+        <Title>Shall we connect?</Title>
+        <ContactText>
+          Say <a href="mailto:dev@dianasteakleyfreeman.com">Hi</a> or find me on other platforms.
+        </ContactText>
+      </Inner>
     </Content>
-    <Divider speed={0.1} offset={offset}>
-      <UpDown>
-        <SocialButton href="" fill={colors['blue-lightest']} target="_blank" rel="noreferrer noopener">
-          <FaLinkedin />
-        </SocialButton>
-      </UpDown>
-      <UpDownWide>
-        <SocialButton href="" fill={colors['grey-darkest']} target="_blank" rel="noreferrer noopener">
-          <FaTwitter />
-        </SocialButton>
-        <SocialButton href="" fill={colors['grey-darkest']} target="_blank" rel="noreferrer noopener">
-          <FaGithub />
-        </SocialButton>
-      </UpDownWide>
-    </Divider>
+    <ParallaxBackground speed={0.1} offset={offset}>
+      <UpDown>/ / /</UpDown>
+      <UpDownWide>/ / /</UpDownWide>
+    </ParallaxBackground>
   </>
 )
 

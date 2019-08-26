@@ -39,4 +39,10 @@ Floating Social Media Icons
 
 
 
-**
+
+## Credits
+
+- [React Spring](https://github.com/drcmda/react-spring) 
+- [TailwindCSS](https://tailwindcss.com/)
+- [Styled-Components](https://www.styled-components.com/) 
+- [Typefaces](https://github.com/KyleAMathews/typefaces)

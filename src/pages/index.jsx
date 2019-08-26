@@ -3,15 +3,15 @@ import React from 'react'
 import { Parallax } from 'react-spring/renderprops-addons.cjs'
 import { graphql } from 'gatsby'
 import PageLayout from '../layouts/Layout'
+import Navbar from '../components/Navbar'
 
 // Sections
 import Hero from '../sections/Hero'
 import Projects from '../sections/Projects'
 import About from '../sections/About'
 import Contact from '../sections/Contact'
+import Blog from '../sections/Blog'
 // Components
-import FloatingImage from '../elements/FloatingImage'
-import heroImage from '../images/computerFace.png'
 import TypedTitle from '../components/TypedTitle'
 import { BigTitle } from '../elements/Titles'
 
@@ -51,16 +51,42 @@ export const query = graphql`
         }
       }
     }
+    allWordpressPost(sort: { order: DESC, fields: date }) {
+      edges {
+        node {
+          id
+          title
+          content
+          date
+          slug
+          featured_media {
+            localFile {
+              childImageSharp {
+                resolutions(width: 600) {
+                  src
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 `
 
+   
 const Index = ({ data }) => {
   const technologies = data.allWordpressWpTechnologies.nodes
   const projects = data.allWordpressWpProjects.nodes
+  const posts = data.allWordpressPost.edges
+    .filter(edge => !edge.node.slug.match(/testimonial/) && !edge.node.title.match(/Testimonial/))
+    .map(el => el.node)
+  console.log(posts)
   return (
     <>
       <PageLayout>
-        <Parallax pages={4}>
+        <Parallax pages={5}>
+          <Navbar />
           <Hero offset={0}>
             <BigTitle>
               <TypedTitle strings={['Diana M. Steakley-Freeman']} smallTitle={['Coder', 'Creator', 'Communicator']} />
@@ -68,12 +94,12 @@ const Index = ({ data }) => {
           </Hero>
           <Projects offset={1} projects={projects} technologies={technologies} />
           <About offset={2} />
-          <Contact offset={3} />
+          <Blog offset={3} posts={posts} />
+          <Contact offset={4} />
         </Parallax>
       </PageLayout>
     </>
   )
-
 }
 
 export default Index

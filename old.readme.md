@@ -86,7 +86,7 @@ module.exports = {
 
 ### Typography
 
-Instead of relying on Google's CDN to host its fonts, this site self-hosts the fonts and therefore benefits from increased performance. The installed fonts can be found in `src/components/Layout.jsx`:
+Instead of relying on Google's CDN to host its fonts, this site self-hosts the fonts and therefore benefits from increased performance. The installed fonts can be found in `src/sections/Header.jsx`:
 
 ```JSX
 import 'typeface-cantata-one';

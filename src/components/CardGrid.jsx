@@ -6,9 +6,12 @@ import React from 'react'
 import Slider from 'react-slick'
 import styled from 'styled-components'
 import tw from 'tailwind.macro'
-import ProjectCard from './ProjectCard'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
+import Card from './Card'
+import GrowCard from './GrowCard'
+import { colors } from '../../tailwind'
+
+// import 'slick-carousel/slick/slick.css'
+// import 'slick-carousel/slick/slick-theme.css'
 
 const GridContainer = styled.div`
   width: 100%;
@@ -28,31 +31,28 @@ const GridRow = styled.div`
   margin-left: -15px;
 `
 
-class CardGrid extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      projects: this.props.projects,
-    }
-  }
-  // get the number of projects
-  // chooose three per row
+export const ProjectGrid = ({ projects }) => (
+  <GridContainer>
+    <GridRow>
+      {projects.map(project => (
+        <Card
+          title={project.title}
+          bg={project.acf.project_color}
+          key={`proj-card-${project.id}`}
+          img={project.featured_media.localFile.childImageSharp.resolutions.src}
+        />
+      ))}
+    </GridRow>
+  </GridContainer>
+)
 
-  render() {
-    return (
-      <GridContainer>
-        <GridRow>
-        {this.state.projects.map(project => (
-          <ProjectCard
-            title={project.title}
-            bg={project.acf.project_color}
-            key={`proj-card-${project.wordpress_id}`}
-            img={project.featured_media.localFile.childImageSharp.resolutions.src}
-          />
-        ))}
-        </GridRow>
-      </GridContainer>
-    )
-  }
-}
-export default CardGrid
+export const BlogGrid = ({ posts }) => (
+  <GridContainer>
+    <GridRow>
+      {posts.map(post => {
+        console.log(post)
+        return <GrowCard title={post.title} bg={colors.grey} key={post.id} slug={post.slug} type="blog" />
+      })}
+    </GridRow>
+  </GridContainer>
+)

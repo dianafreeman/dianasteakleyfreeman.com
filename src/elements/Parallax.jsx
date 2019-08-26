@@ -1,8 +1,9 @@
 import styled from 'styled-components'
 import { ParallaxLayer } from 'react-spring/renderprops-addons.cjs'
 import tw from 'tailwind.macro'
+import PropTypes from 'prop-types'
 
-export const Divider = styled(ParallaxLayer)`
+export const ParallaxBackground = styled(ParallaxLayer)`
   ${tw`absolute w-full h-full`};
   background: ${props => props.bg};
   svg {
@@ -12,9 +13,21 @@ export const Divider = styled(ParallaxLayer)`
 `
 
 export const Section = styled(ParallaxLayer)`
-  ${tw`w-full h-full`};
+  ${tw`w-full h-full pin-t pin-l`};
   display: block;
-  position: relative;
+  position: absolute;
   background: ${props => props.bg};
-  clip-path: ${props => props.clipPath};
 `
+export const PageHeader = styled.div`
+  height: 50vh;
+`
+
+ParallaxBackground.propTypes = {
+  fill: PropTypes.string,
+  clipPath: PropTypes.string,
+  bg: PropTypes.string,
+}
+
+Section.propTypes = {
+  bg: PropTypes.string,
+}

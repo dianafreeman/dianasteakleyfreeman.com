@@ -1,15 +1,24 @@
 import React, { Component, useState } from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
+import tw from 'tailwind.macro'
 import Typed from 'typed.js'
-import styled, { css } from 'styled-components'
 import { BigTitle } from '../elements/Titles'
 
 const Wrapper = styled.div``
 const TypedWrapper = styled.div`
   text-align: center;
+  padding: 2em;
 `
-const TargetSpan = styled.span`
+const TargetSpan = styled(BigTitle)`
+  display: inline;
   white-space: normal;
+
+  .typed-cursor {
+    color: white;
+    font-size: 100%;
+    font-family: 'Cantata One', serif;
+  }
 `
 
 class TypedTitle extends Component {
@@ -32,7 +41,7 @@ class TypedTitle extends Component {
     const options = {
       strings,
       backspeed: 1000,
-      typeSpeed: 90,
+      typeSpeed: 120,
       showCursor: true,
       autoInsertCss: true,
       startDelay: 1000,
@@ -54,13 +63,11 @@ class TypedTitle extends Component {
       <>
         <Wrapper>
           <TypedWrapper className="type-wrap">
-            <BigTitle>
-              <TargetSpan
-                ref={el => {
-                  this.el = el
-                }}
-              />
-            </BigTitle>
+            <TargetSpan
+              ref={el => {
+                this.el = el
+              }}
+            />
           </TypedWrapper>
         </Wrapper>
       </>
