@@ -40,7 +40,7 @@ const BlogPostTemplate = ({ data }) => {
         <ParallaxLayer offset={0}>
           <HeaderImage fluid={post.featured_media.localFile.childImageSharp.fluid} />
           <PageTitleWrapper>
-          <Link to="/">Back to Home</Link>
+            <Link to="/">Back to Home</Link>
             <TypedTitle strings={[post.title]} />
           </PageTitleWrapper>
         </ParallaxLayer>
@@ -71,18 +71,27 @@ export const query = graphql`
       content
       date
       slug
-      categories
-      wordpress_id
       featured_media {
         localFile {
           url
           childImageSharp {
             fluid(maxWidth: 960) {
-              ...GatsbyImageSharpFluid
-            }
+               ...GatsbyImageSharpFluid
+              }
           }
         }
       }
     }
   }
 `;
+
+// featured_media {
+//   localFile {
+//     url
+//     childImageSharp {
+//       fluid(maxWidth: 960) {
+//         ...GatsbyImageSharpFluid
+//       }
+//     }
+//   }
+// }

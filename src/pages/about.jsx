@@ -10,25 +10,13 @@ import PageLayout from '../layouts/Layout'
 const HeroHeader = styled(Section)`
   ${tw`text-white w-full h-full absolute`}
 `
-export const query = graphql`
-  query AboutPageQuery {
-    allWordpressWpTechnologies {
-      nodes {
-        name
-        slug
-        wordpress_id
-        acf {
-          logo_color
-          stack_link
-          stack_credit
-          stack_logo
-        }
-      }
-    }
-  }
-`
+// export const query = graphql`
+//   query AboutPageQuery {
+   
+//   }
+// `
 
-const AboutPage = ({ data }) => (
+const AboutPage = ({ }) => (
   <PageLayout>
     <Parallax pages={3}>
       <HeroHeader offset={0}>

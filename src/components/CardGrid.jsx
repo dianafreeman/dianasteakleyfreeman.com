@@ -39,7 +39,7 @@ export const ProjectGrid = ({ projects }) => (
           title={project.title}
           bg={project.acf.project_color}
           key={`proj-card-${project.id}`}
-          img={project.featured_media.localFile.childImageSharp.resolutions.src}
+          img={project.featured_media.localFile.childImageSharp}
         />
       ))}
     </GridRow>
@@ -49,10 +49,9 @@ export const ProjectGrid = ({ projects }) => (
 export const BlogGrid = ({ posts }) => (
   <GridContainer>
     <GridRow>
-      {posts.map(post => {
-        console.log(post)
-        return <GrowCard title={post.title} bg={colors.grey} key={post.id} slug={post.slug} type="blog" />
-      })}
+      {posts.map(post => (
+        <Card title={post.title} bg={colors.grey} key={post.id} slug={post.slug} type="blog" />
+      ))}
     </GridRow>
   </GridContainer>
 )
