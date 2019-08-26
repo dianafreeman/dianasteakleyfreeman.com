@@ -1,3 +1,3 @@
-import Helmet from './Helmet';
+import Helmet from './Helmet'
 
-export default Helmet;
+export default Helmet

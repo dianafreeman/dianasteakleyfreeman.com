@@ -59,6 +59,7 @@ public/
 # Bundle stats
 bundle-stats.json
 
-tailwind.custom.css
-
+# DIANA'S ADDITONS
 .DS_store
+.vscode/
+scripts/

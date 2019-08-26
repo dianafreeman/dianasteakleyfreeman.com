@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from '@emotion/styled'
 import { animated } from 'react-spring';
 import theme from '../../config/theme';
 

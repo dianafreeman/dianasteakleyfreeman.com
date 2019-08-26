@@ -1,11 +1,22 @@
 import React from 'react';
 import { Router } from '@reach/router';
-// import Blog from '../components/Pages/Blog';
-// import Home from '../components/Pages/Home';
+import Blog from '../components/Pages/Blog';
+import Home from '../components/Pages/Home';
 import NotFound from '../components/Pages/NotFound';
-import ComingSoon from '../components/Pages/ComingSoon';
+
+const LazyComponent = ({ PageComponent, ...props }) => (
+  <React.Suspense fallback={'<p>Loading...</p>'}>
+    <PageComponent {...props} />
+  </React.Suspense>
+);
 
 const Index = () => {
-  return <ComingSoon />;
+  return (
+    <Router>
+      <LazyComponent PageComponent={Home} path="/" />
+      <LazyComponent PageComponent={Blog} path="blog" />
+      <LazyComponent PageComponent={NotFound} default />
+    </Router>
+  );
 };
 export default Index;

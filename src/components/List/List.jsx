@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useTrail } from 'react-spring';
-import styled from '@emotion/styled';
+import styled from '@emotion/styled'
 import { default as DATA } from '@fixtures/blogData.graphql.json';
 import ListItem from '../ListItem';
 

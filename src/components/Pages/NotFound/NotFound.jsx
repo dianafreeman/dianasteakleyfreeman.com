@@ -3,7 +3,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { graphql, Link } from 'gatsby';
-import styled from '@emotion/styled';
+import styled from '@emotion/styled'
 import Layout from '../../Layout';
 
 const Row = styled.div`
