@@ -9,7 +9,7 @@ import { BlogGrid } from '../components/CardGrid'
 import { BigTitle } from '../elements/Titles'
 
 const Wrapper = styled.div`
-  ${tw`w-full xl:w-2/3`};
+  ${tw`w-full`};
 `
 const Blog = ({ offset, posts }) => {
   return (

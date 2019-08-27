@@ -28,9 +28,10 @@ exports.createPages = async ({ graphql, actions }) => {
   }
 
   const postTemplate = path.resolve(`./src/templates/post.jsx`)
+  const projectTemplate = path.resolve(`./src/templates/project.jsx`)
 
   const blogPosts = result.data.allWordpressPost.edges
-  const projects = result.data.appWordpressWpProjects.edges
+  const projects = result.data.allWordpressWpProjects.edges
 
   // Iterate over the array of posts
   blogPosts.forEach(post => {
@@ -48,7 +49,7 @@ exports.createPages = async ({ graphql, actions }) => {
     // Create the Gatsby page for this WordPress post
     createPage({
       path: `/projects/${post.node.slug}/`,
-      component: postTemplate,
+      component: projectTemplate,
       context: {
         id: post.node.wordpress_id,
       },

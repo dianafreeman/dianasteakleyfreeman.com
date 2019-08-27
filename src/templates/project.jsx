@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable prettier/prettier */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -32,22 +33,22 @@ const PageContent = styled.div`
 `
 
 const BlogPostTemplate = ({ data }) => {
-  const post = data.wordpressPost;
+  const project = data.wordpressWpProjects;
   return (
     <Layout>
-      <Helmet title={`${post.title} | Blog`} />
+      <Helmet title={`${project.title} | Blog`} />
       <Parallax pages={2}>
         <ParallaxLayer offset={0}>
-          <HeaderImage fluid={post.featured_media.localFile.childImageSharp.fluid} />
+          <HeaderImage fluid={project.featured_media.localFile.childImageSharp.fluid} />
           <PageTitleWrapper>
             <Link to="/">Back to Home</Link>
-            <TypedTitle strings={[post.title]} />
+            <TypedTitle strings={[project.title]} />
           </PageTitleWrapper>
         </ParallaxLayer>
         <ParallaxLayer offset={0.25} factor={1.5}>
           <ArticleWrapper>
             <article>
-              <div dangerouslySetInnerHTML={{ __html: post.content }} style={{display: 'block'}}/> 
+              <div dangerouslySetInnerHTML={{ __html: project.content }} style={{display: 'block'}}/> 
             </article>
           </ArticleWrapper>
         </ParallaxLayer>
@@ -82,6 +83,8 @@ export const query = graphql`
             id
           }
           content
+          title
+          slug
           technologies
           wordpress_id
     }

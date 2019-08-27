@@ -9,7 +9,7 @@ import { colors } from '../../tailwind';
 import { useSpring, animated } from 'react-spring';
 
 const CardWrapper = styled(Link)`
-  ${tw`shadow-lg px-1 py-1 no-underline rounded-lg text-white text-center relative w-full sm:w-1/2 md:w-1/3 lg:w-1/3`};
+  ${tw`shadow-lg px-1 py-1 no-underline rounded-lg text-white text-center relative w-full sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/4`};
   display: inline;
 `
 

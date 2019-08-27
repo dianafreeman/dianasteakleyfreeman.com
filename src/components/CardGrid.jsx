@@ -21,6 +21,30 @@ const GridRow = styled.div`
   flex-wrap: wrap;
 `
 
+const MasonryContainer = styled.div`
+  ${tw` w-full flex`}
+`
+const MasonryCol = styled.div`
+  ${tw`w-1/3 `}
+`
+export const MasonryGrid = ({ posts }) => {
+  const numPosts = posts
+  /* assign 1 2 3  */
+  return (
+    <MasonryContainer>
+      <MasonryCol>
+        <Card
+          title={post.title}
+          bg={post.acf.project_color}
+          key={`proj-card-${post.id}`}
+          slug={post.slug}
+          media={post.featured_media.localFile.childImageSharp}
+        />
+      </MasonryCol>
+    </MasonryContainer>
+  )
+}
+
 export const ProjectGrid = ({ projects }) => (
   <GridContainer>
     <GridRow>
