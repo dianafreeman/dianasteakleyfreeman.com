@@ -15,29 +15,6 @@ import Blog from '../sections/Blog'
 import TypedTitle from '../components/TypedTitle'
 import wpConfig from '../../config/wordpress'
 
-const Index = ({ data }) => {
-  const projects = data.allWordpressWpProjects.edges.map(el => el.node)
-  const posts = data.allWordpressPost.edges.map(el => el.node)
-  console.log(posts)
-  return (
-    <>
-      <PageLayout>
-        <Parallax pages={5}>
-          <Navbar />
-          <Hero offset={0}>
-            <TypedTitle strings={['Diana M. Steakley-Freeman']} smallTitle={['Coder', 'Creator', 'Communicator']} />
-          </Hero>
-          <Projects offset={1} projects={projects} />
-          <About offset={2} />
-          <Blog offset={3} posts={posts} />
-          <Contact offset={4} />
-        </Parallax>
-      </PageLayout>
-    </>
-  )
-}
-
-export default Index
 
 export const query = graphql`
   query {
@@ -49,6 +26,8 @@ export const query = graphql`
             project_link
           }
           id
+          title
+          slug
           content
           technologies
           wordpress_id
@@ -88,3 +67,28 @@ export const query = graphql`
     }
   }
 `
+
+
+const Index = ({ data }) => {
+  const projects = data.allWordpressWpProjects.edges.map(edge => edge.node)
+  const posts = data.allWordpressPost.edges.map(edge => edge.node)
+  console.log(posts)
+  return (
+    <>
+      <PageLayout>
+        <Parallax pages={5}>
+          <Navbar />
+          <Hero offset={0}>
+            <TypedTitle strings={['Diana M. Steakley-Freeman']} smallTitle={['Coder', 'Creator', 'Communicator']} />
+          </Hero>
+          <Projects offset={1} projects={projects} />
+          <About offset={2} />
+          <Blog offset={3} posts={posts} />
+          <Contact offset={4} />
+        </Parallax>
+      </PageLayout>
+    </>
+  )
+}
+
+export default Index

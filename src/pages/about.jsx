@@ -17,12 +17,6 @@ export const query = graphql`
         name
         slug
         wordpress_id
-        acf {
-          logo_color
-          stack_link
-          stack_credit
-          stack_logo
-        }
       }
     }
   }

@@ -8,13 +8,11 @@ import tw from "tailwind.macro";
 import { colors } from '../../tailwind';
 import { useSpring, animated } from 'react-spring';
 
-const CardWrapper = styled.div`
-  ${tw`shadow-lg no-underline rounded-lg text-white relative text-center`};
-  background: ${props => props.bg}98;
-  min-height: 200px;
-  min-width: 200px;
-  margin: 1em;
+const CardWrapper = styled(Link)`
+  ${tw`shadow-lg px-1 py-1 no-underline rounded-lg text-white text-center relative w-full sm:w-1/2 md:w-1/3 lg:w-1/3`};
+  display: inline;
 `
+
 
 const TextWrapper = styled.div`
   ${tw`font-sans text-small `};
@@ -33,7 +31,8 @@ const CardFooter = styled.div`
 `
 
 const CardImage = styled(Img)`
-  ${tw`absolute pin-t`}
+  ${tw`absolute pin-t h-full`}
+  z-index: -1;
   &:after{
     content: ' ';
     background-color: rgba(${props => props.overlay}, 0.9);
@@ -44,18 +43,22 @@ const CardImage = styled(Img)`
     bottom: 0;
   }
 `
+const CardContent = styled.div`
+  ${tw`relative h-full`}
+  background-color: ${props => props.bg}98;
 
+  `
 
 const Card = ({ title, bg, media , slug, color, type}) => {
   return (
-    <Link to={`/${type}/${slug}`}>
-    <CardWrapper bg={bg}>
-        <CardImage fluid={media.localFile.childImageSharp.fluid} overlay={color}/>
+    <CardWrapper to={`/${type}/${slug}`}>
+    <CardContent bg={bg}>
+        <CardImage fluid={media.fluid} overlay={color}/>
         <CardFooter>
         <CardTitle>{title}</CardTitle>
         </CardFooter>
+        </CardContent>
     </CardWrapper>
-    </Link>
   );
 };
 export default Card;

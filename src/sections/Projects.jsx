@@ -17,27 +17,22 @@ const IconWrapper = styled.a`
   top: ${props => props.top};
 `
 
-const Projects = ({ offset, technologies, projects }) => {
-  return (
-    <>
-      <ParallaxBackground speed={0.3} offset={offset}>
-        <UpDownWide>{/* some stuff */}</UpDownWide>
-        <UpDown>{/* Icons will Go Here */}</UpDown>
-      </ParallaxBackground>
-      <Section offset={offset} speed={0.1}>
-        <BigTitle>Projects</BigTitle>
-        <div>
-          <ProjectGrid projects={projects} />
-        </div>
-      </Section>
-    </>
-  )
-}
+const Projects = ({ offset, projects }) => (
+  <>
+    <ParallaxBackground speed={0.3} offset={offset}>
+      <UpDownWide>{/* some stuff */}</UpDownWide>
+      <UpDown>{/* Icons will Go Here */}</UpDown>
+    </ParallaxBackground>
+    <Section offset={offset} speed={0.1}>
+      <BigTitle>Projects</BigTitle>
+      <ProjectGrid projects={projects} />
+    </Section>
+  </>
+)
 
 export default Projects
 
 Projects.propTypes = {
   offset: PropTypes.number.isRequired,
-  technologies: PropTypes.array.isRequired,
-  projects: PropTypes.array.isRequired,
+  projects: PropTypes.arrayOf(PropTypes.element).isRequired,
 }

@@ -16,13 +16,9 @@ const GridContainer = styled.div`
 `
 
 const GridRow = styled.div`
-  display: -webkit-box;
-  display: -ms-flexbox;
+  ${tw`w-5/8`}
   display: flex;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  margin-right: -15px;
-  margin-left: -15px;
 `
 
 export const ProjectGrid = ({ projects }) => (
@@ -33,7 +29,9 @@ export const ProjectGrid = ({ projects }) => (
           title={project.title}
           bg={project.acf.project_color}
           key={`proj-card-${project.id}`}
-          img={project.featured_media.localFile.childImageSharp}
+          type="projects"
+          slug={project.slug}
+          media={project.featured_media.localFile.childImageSharp}
         />
       ))}
     </GridRow>
@@ -50,7 +48,7 @@ export const BlogGrid = ({ posts }) => (
           key={post.id}
           slug={post.slug}
           type="blog"
-          media={post.featured_media}
+          media={post.featured_media.localFile.childImageSharp}
         />
       ))}
     </GridRow>
