@@ -58,7 +58,7 @@ const Contact = ({ children, offset }) => (
         </InnerWave>
       </WaveWrapper>
     </ParallaxBackground>
-    <Content speed={0.4} offset={offset}>
+    <Content speed={0.4} offset={offset} id="connect">
       <Inner>
         <Title>Shall we connect?</Title>
         <ContactText>

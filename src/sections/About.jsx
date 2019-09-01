@@ -1,12 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { StaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
 import tw from 'tailwind.macro'
+import Img from 'gatsby-image'
 import { ParallaxBackground, Section } from '../elements/Parallax'
 import Content from '../elements/Content'
 import { colors } from '../../tailwind'
-// import FloatingImage from '../elements/FloatingImage'
+import FloatingImage from '../elements/FloatingImage'
 import { BigTitle } from '../elements/Titles'
+import { AboutImg } from '../images/aboutImg.png'
 
 const AboutSub = styled.span`
   ${tw`text-white pt-12 lg:pt-0 lg:pl-12 text-2xl lg:text-3xl xl:text-4xl font-sans`};
@@ -17,8 +20,33 @@ const AboutDesc = styled.p`
 `
 
 const Wrapper = styled.div`
-  ${tw`w-full xl:w-2/3`};
+  ${tw`w-full relative`};
 `
+
+const imgStyles = {
+  position: 'absolute',
+  bottom: 0,
+  right: 0,
+  width: 400,
+  height: 500,
+}
+const AboutImage = () => (
+  <StaticQuery
+    query={graphql`
+      query {
+        file(name: { eq: "aboutImg" }) {
+          childImageSharp {
+            fixed(width: 400) {
+              src
+            }
+          }
+        }
+      }
+    `}
+    render={data => <Img style={imgStyles} fixed={data.file.childImageSharp.fixed} />}
+  />
+)
+
 const About = ({ offset }) => (
   <>
     <ParallaxBackground
@@ -27,8 +55,8 @@ const About = ({ offset }) => (
       speed={0.3}
       offset={offset}
     >
-      <Section speed={-0.1} offset={offset}>
-        {/* <FloatingImage floatDir="right" /> */}
+      <Section speed={0.1} offset={offset} factor={0.1} id="about">
+        <AboutImage />
       </Section>
     </ParallaxBackground>
     <Content speed={0.1} offset={offset}>

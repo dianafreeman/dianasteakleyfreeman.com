@@ -18,13 +18,12 @@ const PageTitleWrapper = styled.div`
 `;
 
 const HeaderImage = styled(Img)`
- ${tw`absolute h-screen`}
+ ${tw` h-screen`}
  
 `
 const ArticleWrapper = styled.div`
   ${tw`p-3 mx-auto rounded-lg w-5/6`}
   background: rgba(225,225,225,0.9);
-  height: inherit;
   overflow: hidden scroll;
 `
 const PageContent = styled.div`
@@ -35,7 +34,6 @@ const BlogPostTemplate = ({ data }) => {
   const post = data.wordpressPost;
   return (
     <Layout>
-      <Helmet title={`${post.title} | Blog`} />
       <Parallax pages={2}>
         <ParallaxLayer offset={0}>
           <HeaderImage fluid={post.featured_media.localFile.childImageSharp.fluid} />
@@ -44,14 +42,11 @@ const BlogPostTemplate = ({ data }) => {
             <TypedTitle strings={[post.title]} />
           </PageTitleWrapper>
         </ParallaxLayer>
-        <ParallaxLayer offset={0.25} factor={1.5}>
           <ArticleWrapper>
             <article>
               <div dangerouslySetInnerHTML={{ __html: post.content }} style={{display: 'block'}}/> 
             </article>
           </ArticleWrapper>
-        </ParallaxLayer>
-      
       </Parallax>
     </Layout>
   );

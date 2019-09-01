@@ -14,7 +14,7 @@ const Wrapper = styled.div`
 const Blog = ({ offset, posts }) => {
   return (
     <>
-      <Section speed={-0.1} offset={offset}>
+      <Section speed={-0.1} offset={offset} id="blog">
         {/* <FloatingImage floatDir="right" /> */}
       </Section>
       <Content speed={0.1} offset={offset}>

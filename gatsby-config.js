@@ -1,5 +1,5 @@
 /* eslint-disable */
-const config = require('./config/website')
+const config = require('./config/website').config
 const pathPrefix = config.pathPrefix === '/' ? '' : config.pathPrefix
 
 module.exports = {

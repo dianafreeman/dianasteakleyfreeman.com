@@ -52,7 +52,6 @@ const SEOHelmet = ({ thisPageTitle }) => {
       name: config.author,
     },
     datePublished: '2019-01-17',
-    dateModified: data.site.buildTime,
     image: {
       '@type': 'ImageObject',
       url: image,

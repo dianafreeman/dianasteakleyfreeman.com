@@ -23,7 +23,7 @@ const Projects = ({ offset, projects }) => (
       <UpDownWide>{/* some stuff */}</UpDownWide>
       <UpDown>{/* Icons will Go Here */}</UpDown>
     </ParallaxBackground>
-    <Section offset={offset} speed={0.1}>
+    <Section offset={offset} speed={0.1} id="projects">
       <BigTitle>Projects</BigTitle>
       <ProjectGrid projects={projects} />
     </Section>
