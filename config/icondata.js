@@ -1,7 +1,7 @@
 /* eslint-disable react/display-name */
 import React from 'react'
 import tinycolor from 'tinycolor2'
-import { FaGrunt, FaAdobe, FaAccessibleIcon, FaTwitter, FaMediumM, FaGithubAlt, FaSass } from 'react-icons/fa'
+import { FaGrunt, FaAdobe, FaAccessibleIcon, FaTwitter, FaMediumM, FaGithubAlt, FaSass, FaJs } from 'react-icons/fa'
 import { colors } from '../tailwind'
 
 const getTextColor = color => (tinycolor(color).isLight() ? 'black' : 'white')
@@ -60,6 +60,14 @@ const iconData = [
     slug: 'sass',
     color: colors.brands.sass,
     icon: (() => <FaSass {...defaultIconProps} />)(),
+    textColor: (() => getTextColor(colors.brands))(),
+    link: 'https://sass-lang.com/',
+  },
+  {
+    label: 'JavaScript',
+    slug: 'javascript',
+    color: colors.brands.javascript,
+    icon: (() => <FaJs {...defaultIconProps} />)(),
     textColor: (() => getTextColor(colors.brands))(),
     link: 'https://sass-lang.com/',
   },

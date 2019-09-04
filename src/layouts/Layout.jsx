@@ -1,5 +1,5 @@
 /* eslint-disable no-return-assign */
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 import Helmet from 'react-helmet'
 import PropTypes from 'prop-types'
 import { Parallax } from 'react-spring/renderprops-addons.cjs'
@@ -12,8 +12,8 @@ import 'typeface-cantata-one'
 import 'typeface-open-sans'
 
 const PrimaryView = styled.main`
-  background-color: ${colors['grey-dark']} !important;
-  position: absolute;
+  background-color: ${props => (props.backgroundColor ? props.backgroundColor : colors['grey-dark'])} !important;
+  position: ${props => (props.parallax === true ? 'absolute' : 'relative')};
   height: 100%;
   width: 100%;
   top: 0;
@@ -22,11 +22,12 @@ const PrimaryView = styled.main`
 class Layout extends Component {
   constructor(props) {
     super(props)
-    this.state = props
+    this.parallax = createRef()
+    this.background = props.backgroundColor || colors['grey-dark']
   }
 
   render() {
-    const { thisPageTitle, children, parallax = false, numPages = 1 } = this.state
+    const { thisPageTitle, children, parallax = true, numPages = 1, backgroundColor } = this.props
     const title = thisPageTitle || config.siteTitle
     return (
       <>
@@ -37,7 +38,7 @@ class Layout extends Component {
           <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
           <meta name="diana-m-steakley-freeman" content="Diana M. Steakley-Freeman" />
           <link rel="shortcut icon" href="favicon.ico" />
-          <meta name="msapplication-TileColor" content={config.backgroundColor} />
+          <meta name="msapplication-TileColor" content={backgroundColor} />
           <meta name="msapplication-config" content="browserconfig.xml" />
           <meta name="description" content={config.description} />
           <meta name="image" content={config.image} />
@@ -57,19 +58,19 @@ class Layout extends Component {
           <script type="application/ld+json">{JSON.stringify(schemaOrgWebPage)}</script>
           <script type="application/ld+json">{JSON.stringify(breadcrumb)}</script>
         </Helmet>
-        <GlobalStyle />
-        <PrimaryView id="primary">
+        <GlobalStyle backgroundColor={backgroundColor} />
+        <nav>
+          <Navbar parallax={this.parallax} backgroundColor={backgroundColor} />
+        </nav>
+        <PrimaryView id="primary" parallax={parallax} backgroundColor={backgroundColor}>
           {parallax ? (
             <Parallax pages={numPages} ref={ref => (this.parallax = ref)}>
               {' '}
               {children}{' '}
             </Parallax>
           ) : (
-            { children }
+            children
           )}
-          <nav>
-            <Navbar parallax={this.parallax} />
-          </nav>
         </PrimaryView>
       </>
     )

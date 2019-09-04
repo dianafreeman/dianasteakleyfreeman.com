@@ -13,8 +13,6 @@ export const ParallaxBackground = styled(ParallaxLayer)`
   clip-path: ${props => props.clipPath};
 `
 
-const RelativeContainer = styled.div``
-
 export const ParallaxSection = ({ factor, speed, children }) => {
   const containerStyle = {
     display: 'flex',

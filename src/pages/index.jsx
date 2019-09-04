@@ -8,12 +8,6 @@ import tw from 'tailwind.macro'
 import styled from 'styled-components'
 import PageLayout from '../layouts/Layout'
 
-// Sections
-import Hero from '../sections/Hero'
-import Projects from '../sections/Projects'
-import About from '../sections/About'
-import Contact from '../sections/Contact'
-import Blog from '../sections/Blog'
 // Components
 import { ProjectGrid, BlogGrid } from '../components/CardGrid'
 import { BigTitle } from '../elements/Titles'
@@ -44,6 +38,21 @@ export const query = graphql`
                 fluid(maxWidth: 960) {
                   ...GatsbyImageSharpFluid
                 }
+              }
+            }
+          }
+        }
+      }
+    }
+    allWordpressWpMedia(filter: {acf: {include_in_portfolio: {eq: true}}}) {
+      edges {
+        node {
+          id
+          title
+          localFile {
+            childImageSharp {
+              fluid {
+                src
               }
             }
           }
@@ -89,7 +98,6 @@ class Index extends React.Component {
       projects: [],
       posts: [],
     }
-    this.parallax = React.createRef()
   }
 
   componentDidMount() {
@@ -104,7 +112,7 @@ class Index extends React.Component {
     const { projects } = this.state
     const { posts } = this.state
     return (
-      <PageLayout parallax numPages={5}>
+      <PageLayout numPages={5}>
         <ParallaxBackground
           offset={0}
           bg={`radial-gradient(circle at bottom left,${colors['grey-dark']},${colors['grey-darkest']})`}

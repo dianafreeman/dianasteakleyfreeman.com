@@ -9,6 +9,7 @@ const Wrapper = styled.div``
 const TypedWrapper = styled.div`
   text-align: center;
   padding: 2em;
+  background-color: transparent;
 `
 const TargetSpan = styled(BigTitle)`
   display: inline;
@@ -60,17 +61,15 @@ class TypedTitle extends Component {
   render() {
     const { complete } = this.state
     return (
-      <>
-        <Wrapper>
-          <TypedWrapper className="type-wrap">
-            <TargetSpan
-              ref={el => {
-                this.el = el
-              }}
-            />
-          </TypedWrapper>
-        </Wrapper>
-      </>
+      <Wrapper>
+        <TypedWrapper>
+          <TargetSpan
+            ref={el => {
+              this.el = el
+            }}
+          />
+        </TypedWrapper>
+      </Wrapper>
     )
   }
 }

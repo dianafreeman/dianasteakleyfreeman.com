@@ -6,52 +6,75 @@ import tw from 'tailwind.macro'
 import { useTransition, useSpring, useChain, config, animated } from 'react-spring'
 import { Link } from 'gatsby'
 import data from '../../config/menudata'
+import { colors } from '../../tailwind'
 
-const NavWrapper = styled.div`
-  ${tw`w-screen`}
-`
-const MenuContainer = styled(animated(Link))`
-  ${tw`w-8/9`}
+const MenuContainer = styled(animated.button)`
+  ${tw`w-8/9 text-sm`}
   position: fixed;
+  border-radius: 30px;
+  background: none;
   z-index: 999;
+  display: block;
   @media screen and (min-width: 768px) {
     display: flex;
     flex-wrap: row;
     justify-content: space-between;
   }
-  border-radius: 5px;
   cursor: pointer;
+  &:hover,
+  &:active,
+  &:focus {
+    border: 2px solid white;
+  }
 `
-
 const MenuItem = styled(animated(Link))`
-  background: transparent;
-  border-radius: 5px;
+  ${tw`border-transparent rounded mx-2 my-2 font-bold`}
+  background-color: rgba(225,225,225, 0.8);
   position: relative;
   padding: 1.5em;
-  border: 1px solid white;
+  display: block;
+  color: ${colors['grey-darkest']};
   @media screen and (min-width: 768px) {
     display: inline-block;
   }
-  left: -100px;
 `
-const MenuLabel = styled.p`
-  ${tw`text-center px-2`}
-  display: block;
+const MenuToggle = styled.div`
+  ${tw`text-left px-2 py-3 text-lg `}
+  display: flex;
+  width: inherit;
+  position: relative;
   color: white !important;
 `
-const Navbar = ({ parallax }) => {
-  const [open, set] = useState(false)
+
+const NavBox = styled.div`
+  float: left;
+  width: initial;
+  height: inherit;
+  @media screen and min-width(468px) {
+    display: flex;
+  }
+  display: block;
+`
+const Navbar = ({ parallax, parallaxRef, backgroundColor }) => {
+  const [isOpen, set] = useState(false)
 
   const springRef = useRef()
-  const { width, opacity, ...rest } = useSpring({
+  const { borderColor, borderRadius, width, ...rest } = useSpring({
     ref: springRef,
-    config: config.stiff,
-    from: { width: '20%' },
-    to: { width: open ? '100%' : '20%' },
+    from: {
+      backgroundColor: 'rgba(225,225,225, 0.3)',
+      width: 'initial',
+      height: 'inherit',
+    },
+    to: {
+      backgroundColor: isOpen ? 'rgba(225,225,225, 0.5)' : 'rgba(225,225,225, 0.3)',
+      width: isOpen ? 'inherit' : 'initial',
+      height: isOpen ? 'initial' : 'inherit',
+    },
   })
 
   const transRef = useRef()
-  const transitions = useTransition(open ? data : [], item => item.name, {
+  const transitions = useTransition(isOpen ? data : [], item => item.name, {
     ref: transRef,
     unique: true,
     trail: 400 / data.length,
@@ -61,23 +84,39 @@ const Navbar = ({ parallax }) => {
   })
 
   // This will orchestrate the two animations above, comment the last arg and it creates a sequence
-  useChain(open ? [springRef, transRef] : [transRef, springRef], [0, open ? 0.1 : 0.5])
-
-  console.log(parallax)
+  useChain(isOpen ? [springRef, transRef] : [transRef, springRef], [0, isOpen ? 0.3 : 0.5])
   return (
-    <NavWrapper>
-      <MenuContainer style={{ ...rest, width }} onClick={() => set(open => !open)}>
-        <MenuLabel>
-          <FaBars /> <br />
-          Menu
-        </MenuLabel>
-        {transitions.map(({ item, key, props }) => (
-          <MenuItem key={key} onClick={() => parallax.scrollTo(item.offset)} style={{ ...props, background: item.css }}>
-            {item.name}
-          </MenuItem>
-        ))}
+    <>
+      <MenuContainer
+        style={{ borderColor, borderRadius, width, ...rest }}
+        onClick={e => {
+          e.preventDefault()
+          set(isOpen => !isOpen)
+        }}
+      >
+        <NavBox>
+          <MenuToggle>
+            <FaBars />
+            <span
+              style={{
+                marginLeft: '0.5em',
+              }}
+            >
+              Menu
+            </span>
+          </MenuToggle>
+          {transitions.map(({ item, key, props }) => (
+            <MenuItem
+              key={key}
+              onClick={e => ( parallax ? parallax.scrollTo(item.offset) : e.preventDefault())}
+              style={{ ...props, background: item.css }}
+            >
+              {item.name}
+            </MenuItem>
+          ))}
+        </NavBox>
       </MenuContainer>
-    </NavWrapper>
+    </>
   )
 }
 export default Navbar

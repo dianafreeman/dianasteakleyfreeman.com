@@ -7,7 +7,7 @@ export const Title = styled.h1`
 `
 
 export const BigTitle = styled.h1`
-  ${tw`text-4xl lg:text-5xl xl:text-6xl text-white mb-6 tracking-wide`};
+  ${tw`text-4xl lg:text-5xl text-white mb-6 tracking-wide`};
   text-shadow: 0 5px 35px rgba(255, 255, 255, 0.15);
 `
 
