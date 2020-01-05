@@ -76,27 +76,26 @@ BlogPostTemplate.propTypes = {
 };
   
 export default BlogPostTemplate;
-  
-export const query = graphql`
-  query($id: Int!) {
-    wordpressPost(wordpress_id: { eq: $id }) {
-      id
-      title
-      content
-      date
-      slug
-      featured_media {
-        localFile {
-          url
-          childImageSharp {
-            fluid(maxWidth: 960) {
-              ...GatsbyImageSharpFluid
-              src
-            }
-          }
-        }
-      }
-    }
-  }
-  `;
-  
+
+// export const query = graphql`
+//   query($id: Int!) {
+//     wordpressPost(wordpress_id: { eq: $id }) {
+//       id
+//       title
+//       content
+//       date
+//       slug
+//       featured_media {
+//         localFile {
+//           url
+//           childImageSharp {
+//             fluid(maxWidth: 960) {
+//               ...GatsbyImageSharpFluid
+//               src
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+//   `;

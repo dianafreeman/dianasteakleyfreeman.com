@@ -10,17 +10,17 @@ import PageLayout from '../layouts/Layout'
 const HeroHeader = styled(Section)`
   ${tw`text-white w-full h-full absolute`}
 `
-export const query = graphql`
-  query {
-    allWordpressWpTechnologies {
-      nodes {
-        name
-        slug
-        wordpress_id
-      }
-    }
-  }
-`
+// export const query = graphql`
+//   query {
+//     allWordpressWpTechnologies {
+//       nodes {
+//         name
+//         slug
+//         wordpress_id
+//       }
+//     }
+//   }
+// `
 
 const AboutPage = () => (
   <PageLayout>

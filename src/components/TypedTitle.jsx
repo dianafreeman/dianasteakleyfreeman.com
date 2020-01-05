@@ -23,10 +23,6 @@ const TargetSpan = styled(BigTitle)`
 `
 
 class TypedTitle extends Component {
-  constructor(props) {
-    super(props)
-    this.state = { complete: false }
-  }
 
   componentDidMount() {
     const { strings } = this.props
@@ -36,7 +32,6 @@ class TypedTitle extends Component {
     }
     const onComplete = typed => {
       hideCursor(typed)
-      this.setState({ complete: true })
     }
     // TypedJS Options
     const options = {
@@ -45,7 +40,6 @@ class TypedTitle extends Component {
       typeSpeed: 120,
       showCursor: true,
       autoInsertCss: true,
-      startDelay: 1000,
       onComplete,
     }
     // Set this this.el to refer to the <span> in the render() method
@@ -59,7 +53,6 @@ class TypedTitle extends Component {
   }
 
   render() {
-    const { complete } = this.state
     return (
       <Wrapper>
         <TypedWrapper>

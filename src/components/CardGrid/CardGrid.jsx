@@ -4,8 +4,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import tw from 'tailwind.macro'
-import Card from './Card'
-import { colors } from '../../tailwind'
+import Card from '../Card/Card'
+import { colors } from '../../../tailwind'
 
 const GridContainer = styled.div`
   width: 100%;

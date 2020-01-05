@@ -28,9 +28,9 @@ const MenuContainer = styled(animated.button)`
   }
 `
 const MenuItem = styled(animated(Link))`
-  ${tw`border-transparent rounded mx-2 my-2 font-bold`}
-  background-color: rgba(225,225,225, 0.8);
+  ${tw` rounded-lg mx-2 my-2 font-bold text-white`}
   position: relative;
+  border: 1px solid white;
   padding: 1.5em;
   display: block;
   color: ${colors['grey-darkest']};
@@ -40,7 +40,6 @@ const MenuItem = styled(animated(Link))`
 `
 const MenuToggle = styled.div`
   ${tw`text-left px-2 py-3 text-lg `}
-  display: flex;
   width: inherit;
   position: relative;
   color: white !important;
@@ -50,10 +49,8 @@ const NavBox = styled.div`
   float: left;
   width: initial;
   height: inherit;
-  @media screen and min-width(468px) {
-    display: flex;
-  }
-  display: block;
+  display: flex;
+
 `
 const Navbar = ({ parallax, parallaxRef, backgroundColor }) => {
   const [isOpen, set] = useState(false)
@@ -62,12 +59,10 @@ const Navbar = ({ parallax, parallaxRef, backgroundColor }) => {
   const { borderColor, borderRadius, width, ...rest } = useSpring({
     ref: springRef,
     from: {
-      backgroundColor: 'rgba(225,225,225, 0.3)',
       width: 'initial',
       height: 'inherit',
     },
     to: {
-      backgroundColor: isOpen ? 'rgba(225,225,225, 0.5)' : 'rgba(225,225,225, 0.3)',
       width: isOpen ? 'inherit' : 'initial',
       height: isOpen ? 'initial' : 'inherit',
     },
@@ -86,7 +81,7 @@ const Navbar = ({ parallax, parallaxRef, backgroundColor }) => {
   // This will orchestrate the two animations above, comment the last arg and it creates a sequence
   useChain(isOpen ? [springRef, transRef] : [transRef, springRef], [0, isOpen ? 0.3 : 0.5])
   return (
-    <>
+    <nav>
       <MenuContainer
         style={{ borderColor, borderRadius, width, ...rest }}
         onClick={e => {
@@ -97,13 +92,6 @@ const Navbar = ({ parallax, parallaxRef, backgroundColor }) => {
         <NavBox>
           <MenuToggle>
             <FaBars />
-            <span
-              style={{
-                marginLeft: '0.5em',
-              }}
-            >
-              Menu
-            </span>
           </MenuToggle>
           {transitions.map(({ item, key, props }) => (
             <MenuItem
@@ -116,7 +104,7 @@ const Navbar = ({ parallax, parallaxRef, backgroundColor }) => {
           ))}
         </NavBox>
       </MenuContainer>
-    </>
+    </nav>
   )
 }
 export default Navbar

@@ -92,38 +92,38 @@ ProjectPageTemplate.propTypes = {
 
 export default ProjectPageTemplate
 
-export const query = graphql`
-  query($id: Int!) {
-    wordpressWpProjects(wordpress_id: { eq: $id }) {
-      acf {
-        project_color
-        project_link
-      }
-      featured_media {
-        localFile {
-          url
-          childImageSharp {
-            fluid(maxWidth: 960) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
-        id
-      }
-      content
-      title
-      slug
-      technologies
-      wordpress_id
-    }
-    allWordpressWpTechnologies {
-      edges {
-        node {
-          wordpress_id
-          name
-          slug
-        }
-      }
-    }
-  }
-`
+// export const query = graphql`
+//   query($id: Int!) {
+//     wordpressWpProjects(wordpress_id: { eq: $id }) {
+//       acf {
+//         project_color
+//         project_link
+//       }
+//       featured_media {
+//         localFile {
+//           url
+//           childImageSharp {
+//             fluid(maxWidth: 960) {
+//               ...GatsbyImageSharpFluid
+//             }
+//           }
+//         }
+//         id
+//       }
+//       content
+//       title
+//       slug
+//       technologies
+//       wordpress_id
+//     }
+//     allWordpressWpTechnologies {
+//       edges {
+//         node {
+//           wordpress_id
+//           name
+//           slug
+//         }
+//       }
+//     }
+//   }
+// `
