@@ -1,3 +1,3 @@
-import CardGrid from './CardGrid'
+import CardGrid from './CardGrid';
 
-export default CardGrid
+export default CardGrid;

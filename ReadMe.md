@@ -1,6 +1,9 @@
-# To Do: 
+# To Do:
 
-
+- [] Set up heroku deployment
+- [] Clean up all component files
+- [] Create a UI typography/color theme
+-
 
 ###Hero Section
 
@@ -37,7 +40,7 @@ Contact
 
 Floating Social Media Icons
 
-*Heads Up*: The Blog category has the ID of 19, and the Testimonials have ID of 11 
+*Heads Up*: The Blog category has the ID of 19, and the Testimonials have ID of 11
 
 
 

@@ -1,11 +1,10 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable no-return-assign */
 /* eslint-disable react/prop-types */
-import React from 'react'
-import styled from 'styled-components'
-import tw from 'tailwind.macro'
-import Card from '../Card/Card'
-import { colors } from '../../../tailwind'
+import React from 'react';
+import styled from 'styled-components';
+import tw from 'tailwind.macro';
+import Card from '../Card/Card';
 
 const GridContainer = styled.div`
   width: 100%;
@@ -13,14 +12,14 @@ const GridContainer = styled.div`
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
-`
+`;
 
 const GridRow = styled.div`
   ${tw`w-5/8`}
   display: flex;
   position: relative;
   flex-wrap: wrap;
-`
+`;
 
 // const MasonryContainer = styled.div`
 //   ${tw` w-full flex`}
@@ -61,7 +60,7 @@ export const ProjectGrid = ({ projects }) => (
       ))}
     </GridRow>
   </GridContainer>
-)
+);
 
 export const BlogGrid = ({ posts }) => (
   <GridContainer>
@@ -69,13 +68,12 @@ export const BlogGrid = ({ posts }) => (
       {posts.map(post => (
         <Card
           title={post.title}
-          bg={colors.grey}
           key={post.id}
           slug={post.slug}
           type="blog"
-          media={post.featured_media.localFile.childImageSharp}
+          image={post.featured_media.localFile.childImageSharp}
         />
       ))}
     </GridRow>
   </GridContainer>
-)
+);

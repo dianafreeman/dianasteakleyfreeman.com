@@ -1,16 +1,32 @@
 {
   "name": "diana-m-steakley-freeman",
-  "description": "Website for Diana M. Steakley-Freeman. Full Stack JS Dev",
+  "description": "Diana M. Steakley-Freeman. Full Stack JS Dev",
   "version": "2.0.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "http-server -p 8000 ",
+    "start:storybook": "start-storybook -p 6006",
+    "build:prod": "gatsby build",
+    "build:storybook": "build-storybook",
+    "dev": "gatsby develop -o",
+    "format": "npx prettier --write 'src/**/*.{js,jsx,json}'",
+    "gen:component": "npx create-component-app --config config/ccarc.json -t DianaBookES7",
+    "gen:coverage": "",
+    "test:unit": "jest ./src/*.spec.{js, jsx}",
+    "test:format": "npx prettier --check 'src/**/*.{js,jsx,json}'",
+    "test:smoke": "cypress run"
+  },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.22",
-    "@fortawesome/free-solid-svg-icons": "^5.10.2",
-    "@fortawesome/react-fontawesome": "^0.1.4",
+    "@babel/plugin-proposal-optional-chaining": "^7.7.5",
+    "@babel/plugin-transform-react-jsx": "^7.7.7",
+    "@storybook/addon-actions": "^5.2.8",
+    "@storybook/addon-docs": "^5.2.8",
+    "@storybook/addon-links": "^5.2.8",
+    "@storybook/react": "^5.2.8",
     "babel-plugin-styled-components": "^1.10.6",
-    "fast-average-color": "^5.2.0",
+    "babel-preset-gatsby": "^0.2.26",
     "gatsby": "^2.13.32",
     "gatsby-awesome-pagination": "^0.3.4",
-    "gatsby-cli": "^2.7.40",
     "gatsby-image": "^2.2.6",
     "gatsby-plugin-google-analytics": "^2.1.4",
     "gatsby-plugin-manifest": "^2.2.3",
@@ -22,7 +38,6 @@
     "gatsby-plugin-transition-link": "^1.12.4",
     "gatsby-source-filesystem": "^2.1.5",
     "gatsby-transformer-sharp": "^2.2.4",
-    "gsap": "^2.1.3",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -30,10 +45,8 @@
     "react-icons": "^3.7.0",
     "react-slick": "^0.24.0",
     "react-spring": "^8.0.27",
-    "resize-observer-polyfill": "^1.5.1",
     "styled-components": "^4.3.2",
     "tailwindcss": "^0.7.4",
-    "tinycolor2": "^1.4.1",
     "typed.js": "^2.0.10",
     "typeface-cantata-one": "^0.0.72",
     "typeface-cooper-hewitt": "0.0.44",
@@ -42,23 +55,11 @@
     "typeface-raleway": "0.0.75",
     "typeface-space-mono": "0.0.71"
   },
-  "keywords": [
-    "gatsby",
-    "starter",
-    "portfolio"
-  ],
-  "scripts": {
-    "dev": "gatsby develop -o",
-    "develop": "gatsby develop",
-    "build": "gatsby build",
-    "lint": "eslint . --ext .js,.jsx --ignore-path .gitignore",
-    "lint:fix": "eslint . --ext .js,.jsx --fix --ignore-path .gitignore",
-    "lint:ci": "yarn lint --format junit -o results/eslint/result.xml"
-  },
   "devDependencies": {
     "@babel/plugin-syntax-object-rest-spread": "^7.2.0",
     "babel-eslint": "^10.0.2",
     "babel-plugin-macros": "^2.6.1",
+    "cypress": "^3.8.1",
     "eslint": "^6.1.0",
     "eslint-config-airbnb": "^17.1.1",
     "eslint-config-prettier": "^6.0.0",
@@ -66,18 +67,17 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.14.2",
+    "gatsby-cli": "^2.7.40",
     "gatsby-plugin-postcss": "^2.1.2",
     "gatsby-source-wordpress": "^3.1.25",
     "prettier": "^1.18.2",
-    "slick-carousel": "^1.8.1",
+    "prettier-eslint": "^9.0.1",
+    "react-testing-library": "^8.0.1",
     "tailwind.macro": "^0.5.10"
   },
   "repository": {
     "url": "git@github.com:dianafreeman/dianasteakleyfreeman.com.git",
     "type": "git"
-  },
-  "bugs": {
-    "url": "github.com/dianafreeman/dianasteakleyfreeman.com.git/issues"
   },
   "homepage": "https://dianasteakleyfreeman.com"
 }
