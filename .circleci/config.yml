@@ -12,12 +12,9 @@ jobs:
     parallelism: 1
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - v2-deps-{{ .Branch }}-{{ checksum "package-lock.json" }}
-            - v2-deps-{{ .Branch }}-
-            - v2-deps-
-      - run: yarn ci
+      - run:
+          name: Installing dependencies
+          command: yarn install
       - save_cache:
           key: v2-deps-{{ .Branch }}-{{ checksum "package-lock.json" }}
           paths:
@@ -25,7 +22,7 @@ jobs:
             - ~/.cache
       - run:
           name: Running E2E tests with Cypress
-          command: yarn run --ci test:integration
+          command: yarn run test:integration:ci
       - store_artifacts:
           path: cypress/videos
       - store_artifacts:
