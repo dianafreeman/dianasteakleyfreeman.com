@@ -11,14 +11,14 @@ import Card from '../components/Card';
 // Components
 import Navbar from '../components/Navbar';
 import { ProjectGrid, BlogGrid } from '../components/CardGrid/CardGrid';
-import { BigTitle } from '../elements/Titles';
+import { BigTitle, Subtitle } from '../elements/Titles';
 import { colors } from '../config/tailwind';
 
 const Row = styled.div`
   display: flex;
   justify-content: center;
   width: 80%;
-  height: inherit;
+  height: 100%;
   margin: auto;
 `;
 
@@ -26,14 +26,13 @@ const Index = () => {
   return (
     <PageLayout>
       <Row>
-        <BigTitle>Diana M Steakley Freeman</BigTitle>
+        <BigTitle style={{paddingTop: '25vh'}}>Diana M Steakley Freeman</BigTitle>
       </Row>
-      <Navbar />
+
       <Row>
-        <Card></Card>
-        <Card></Card>
-        <Card></Card>
+        <Subtitle style={{color: 'white', margin: "auto", fontStyle: "italic", fontSize: '1.5em'}}>Hang tight -- a brand new site is coming soon!</Subtitle>
       </Row>
+
     </PageLayout>
   );
 };
