@@ -65,7 +65,7 @@ export const ProjectGrid = ({ projects }) => (
 export const BlogGrid = ({ posts }) => (
   <GridContainer>
     <GridRow>
-      {posts.map(post => (
+      {/* {posts.map(post => ( */}
         <Card
           title={post.title}
           key={post.id}
@@ -73,7 +73,7 @@ export const BlogGrid = ({ posts }) => (
           type="blog"
           image={post.featured_media.localFile.childImageSharp}
         />
-      ))}
+      {/*  ))} */}
     </GridRow>
   </GridContainer>
 );

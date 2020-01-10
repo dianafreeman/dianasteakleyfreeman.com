@@ -9,7 +9,7 @@ const PostList = ({ posts, title }) => (
       <div className="content">
         <h1 className="has-text-weight-bold is-size-2">{title}</h1>
       </div>
-      {posts.map(({ node: post }) => (
+      {/* {posts.map(({ node: post }) => ( */}
         <div
           className="content"
           style={{ border: '1px solid #eaecee', padding: '2em 4em' }}
@@ -36,7 +36,7 @@ const PostList = ({ posts, title }) => (
             </Link>
           </div>
         </div>
-      ))}
+      {/* ))} */}
     </div>
   </section>
 );
