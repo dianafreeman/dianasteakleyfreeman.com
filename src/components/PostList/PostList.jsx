@@ -2,6 +2,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, graphql } from 'gatsby';
+const post = {
+  id: "",
+  title: "a title",
+  date: "",
+  slug: "",
+  author: {
+    slug: "",
+    name: "",
+  }
+}
 
 const PostList = ({ posts, title }) => (
   <section className="section">
@@ -28,7 +38,7 @@ const PostList = ({ posts, title }) => (
           <div>
             <div
               dangerouslySetInnerHTML={{
-                __html: post.excerpt.replace(/<p class="link-more.*/, ''),
+                // __html: post.excerpt.replace(/<p class="link-more.*/, ''),
               }}
             />
             <Link className="button is-small" to={post.slug}>

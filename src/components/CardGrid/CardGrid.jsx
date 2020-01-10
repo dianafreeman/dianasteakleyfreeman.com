@@ -66,12 +66,12 @@ export const BlogGrid = ({ posts }) => (
   <GridContainer>
     <GridRow>
       {/* {posts.map(post => ( */}
-        <Card
-          title={post.title}
-          key={post.id}
-          slug={post.slug}
+         <Card
+          title={post.title || ""}
+          key={post.id || ""}
+          slug={post.slug || ""}
           type="blog"
-          image={post.featured_media.localFile.childImageSharp}
+          image={post.featured_media.localFile.childImageSharp || ""}
         />
       {/*  ))} */}
     </GridRow>

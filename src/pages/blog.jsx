@@ -5,9 +5,9 @@ import { Parallax } from 'react-spring/renderprops-addons.cjs';
 import PageLayout from '../layouts/Layout';
 import PostList from '../components/PostList';
 
-const BlogPage = posts => (
+const BlogPage = (posts) => (
   <PageLayout>
-    <PostList posts={posts} title="Latest posts" />
+    {/* <PostList posts={posts} title="Latest posts" /> */}
   </PageLayout>
 );
 

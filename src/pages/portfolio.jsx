@@ -7,7 +7,7 @@ import PostList from '../components/PostList';
 
 const BlogPage = posts => (
   <PageLayout>
-    <PostList posts={posts} title="Latest posts" />
+    {/* <PostList posts={posts} title="Latest posts" /> */}
   </PageLayout>
 );
 
