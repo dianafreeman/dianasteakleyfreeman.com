@@ -7153,10 +7153,58 @@ gatsby-awesome-pagination@^0.3.4:
   dependencies:
     lodash "^4.17.15"
 
-gatsby-cli@^2.7.40, gatsby-cli@^2.8.22:
+gatsby-cli@^2.8.22:
   version "2.8.22"
   resolved "https://registry.yarnpkg.com/gatsby-cli/-/gatsby-cli-2.8.22.tgz#3c3ccb228767f329ff29047935595a1a1414ef96"
   integrity sha512-uZix0CalIzZ6Wx5pbu5VoWA7KalWdWdfofm+thXRe4VlyJ9VnKmHAslBB03NOl707JoMsBLshHsGYynHwp0jdA==
+  dependencies:
+    "@babel/code-frame" "^7.5.5"
+    "@babel/runtime" "^7.7.6"
+    "@hapi/joi" "^15.1.1"
+    better-opn "^1.0.0"
+    bluebird "^3.7.2"
+    chalk "^2.4.2"
+    clipboardy "^2.1.0"
+    common-tags "^1.8.0"
+    configstore "^5.0.0"
+    convert-hrtime "^3.0.0"
+    core-js "^2.6.11"
+    envinfo "^7.5.0"
+    execa "^3.4.0"
+    fs-exists-cached "^1.0.0"
+    fs-extra "^8.1.0"
+    gatsby-core-utils "^1.0.25"
+    gatsby-telemetry "^1.1.46"
+    hosted-git-info "^3.0.2"
+    is-valid-path "^0.1.1"
+    lodash "^4.17.15"
+    meant "^1.0.1"
+    node-fetch "^2.6.0"
+    object.entries "^1.1.0"
+    opentracing "^0.14.4"
+    pretty-error "^2.1.1"
+    progress "^2.0.3"
+    prompts "^2.3.0"
+    react "^16.12.0"
+    redux "^4.0.4"
+    resolve-cwd "^2.0.0"
+    semver "^6.3.0"
+    signal-exit "^3.0.2"
+    source-map "0.7.3"
+    stack-trace "^0.0.10"
+    strip-ansi "^5.2.0"
+    update-notifier "^3.0.1"
+    uuid "3.3.3"
+    yargs "^12.0.5"
+    yurnalist "^1.1.1"
+  optionalDependencies:
+    ink "^2.6.0"
+    ink-spinner "^3.0.1"
+
+gatsby-cli@^2.8.23:
+  version "2.8.23"
+  resolved "https://registry.yarnpkg.com/gatsby-cli/-/gatsby-cli-2.8.23.tgz#e79761f19437619e6deabc31956a25fd194e60d6"
+  integrity sha512-e/ImmpW8dzZcmjeTqHaOhvr9gxNXPUE6MCLnl34yWlQwm2iMOWp86qhRvba5GfG6NJ2AX070JPYnkbO6RP5i5A==
   dependencies:
     "@babel/code-frame" "^7.5.5"
     "@babel/runtime" "^7.7.6"
@@ -15185,11 +15233,6 @@ typeface-cooper-hewitt@0.0.44:
   resolved "https://registry.yarnpkg.com/typeface-cooper-hewitt/-/typeface-cooper-hewitt-0.0.44.tgz#def4915d143bebb8a9a1ca4ea6b81946271a2a57"
   integrity sha512-5TEnSbhWCnCQ25dGaFrSqCphJQoAaVeCuqmMMAXLK7uOiOn3YrMBdpq2nh4R6SEM+Z7FGYXZY7/Vdz/cDl06Ww==
 
-typeface-crimson-text@^0.0.72:
-  version "0.0.72"
-  resolved "https://registry.yarnpkg.com/typeface-crimson-text/-/typeface-crimson-text-0.0.72.tgz#af492f355f1474ec185bebebf4b2aaaae6eec24d"
-  integrity sha512-CLDNCOJ05k1BIbgQ1eAPPaK4eVHls8Y+n5NTIwvlFmhCSLzCXWII4vQ2oV6Iyi3BOVogj/LsWq25IdQINrh5+Q==
-
 typeface-open-sans@0.0.75:
   version "0.0.75"
   resolved "https://registry.yarnpkg.com/typeface-open-sans/-/typeface-open-sans-0.0.75.tgz#20d0c330f14c0c40463c334adbedd6005389abe4"
@@ -15209,11 +15252,6 @@ typeface-space-mono@0.0.71:
   version "0.0.71"
   resolved "https://registry.yarnpkg.com/typeface-space-mono/-/typeface-space-mono-0.0.71.tgz#19cf08b118a3e0042d6eb399f8fc72a3138c73da"
   integrity sha512-v5vMp/kIMPfnHjui3OxdchAdseXydcpZ3eh01xnU+JNA4tqKH/KK/7e+LWC/pscS96+pqgMgyIOrdXWzDjT8MA==
-
-typeface-unica-one@^0.0.72:
-  version "0.0.72"
-  resolved "https://registry.yarnpkg.com/typeface-unica-one/-/typeface-unica-one-0.0.72.tgz#af89ee464166d2a27e22053df42579975a39ef41"
-  integrity sha512-/Km9gIQZAB+QnGP7fN/+16fOmWt6JIZcXXVcH31fn3P22FwW4Zb0WGUP6k6dA9pVzfGu13xsiF4U/n+m8NFn3Q==
 
 typescript@^3.2.1:
   version "3.7.4"

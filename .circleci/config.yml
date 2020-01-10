@@ -13,15 +13,22 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Installing dependencies
-          command: yarn install
+          name: Installing dependencies...
+          command: yarn install --loglevel=error
       - save_cache:
           key: v2-deps-{{ .Branch }}-{{ checksum "package-lock.json" }}
           paths:
             - ~/.npm
             - ~/.cache
+
       - run:
-          name: Running E2E tests with Cypress
+          name: Build Static Site
+          command: yarn run build
+      - run:
+          name: Serve static site
+          command: yarn start
+      - run:
+          name: Running E2E tests with Cypress...
           command: yarn run test:integration:ci
       - store_artifacts:
           path: cypress/videos
