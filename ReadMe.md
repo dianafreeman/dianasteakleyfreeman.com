@@ -1,48 +1,70 @@
-# To Do:
-
-- [] Set up heroku deployment
-- [] Clean up all component files
-- [] Create a UI typography/color theme
--
-
-###Hero Section
-
-- [x] Change Fonts on Typed Headers
-- [ ] Add OnComplete method
-- [ ] Create cutout background photo
-- [ ] Create gray gradient background
 
 
+# dianasteakleyfreeman.com
 
-Portfolio
+[![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme) [![Netlify Status](https://api.netlify.com/api/v1/badges/7b5f4c1a-c979-4652-aacf-05076bfa2989/deploy-status)](https://app.netlify.com/sites/loving-sammet-d1bb4f/deploys)
 
-- [ ] Add "Slick Slider"
+This guide assumes you are using `yarn` for dependency management.
 
-- tag: graphics
+## Install
 
-- tag: branding
+```
+yarn install
+```
 
-- tag: web development
 
-- tag: consulting
 
-- On Project click, make card into Modal
+## Usage
+
+### Develop
+
+Run the following command to open the Gatsby/React/Node development environment. 
+
+```bash
+$	 yarn run dev
+```
+
+### Build
+
+Run the following command to build the static site 
+
+```bash
+$	 yarn run build
+```
+
+### Test
+
+Run the formatting, unit, and e2e test.
+
+```bash
+$  yarn run test
+```
+
+### Deploy
+
+```bash
+$	 yarn run deploy
+```
+
+
+
+## Platform & Tooling
+
+- GatsbyJS  - Static Site Generator
+- React Storybook - UI Component Dev Env
+- Cypress.io - Testing
+- TailwindCSS - Theming
+- Styled Components - CSS in JS 
+
+- ESLint - Linting
+
+- Prettier - Formatting
+
+- CircleCI - CI/CD 
+
+- Netlfiy - Static Site Deployment 
 
   
-
-About
-
-About Image as background;
-
-​	
-
-Contact
-
-Floating Social Media Icons
-
-*Heads Up*: The Blog category has the ID of 19, and the Testimonials have ID of 11
-
-
 
 ## Credits
 
@@ -50,3 +72,5 @@ Floating Social Media Icons
 - [TailwindCSS](https://tailwindcss.com/)
 - [Styled-Components](https://www.styled-components.com/) 
 - [Typefaces](https://github.com/KyleAMathews/typefaces)
+- Inspiration: [LekoArts](https://www.lekoarts.de)
+

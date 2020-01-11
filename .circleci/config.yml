@@ -1,36 +1,69 @@
 version: 2
-
 jobs:
-  build:
+  build-client:
     docker:
-      # the Docker image with Cypress dependencies
+      - image: circleci/node
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-deps-{{ .Branch }}-{{ checksum "package.json" }}
+            - v1-cypress-{{ .Branch }}
+            - v1-deps
+      - run:
+          name: Install Dependencies
+          command: yarn install --frozen-lockfile
+      - save_cache:
+          key: v1-deps-{{ .Branch }}-{{ checksum "package.json" }} ## label cache yarn cache
+          paths:
+            - ~/node_modules ## cache node mods
+      - run:
+          name: Build static site
+          command: yarn run build
+      - save_cache:
+          key: v1-build-{{ .Branch }} ## cache gatsby build
+          paths:
+            - ~/public ## cache public folder
+  test-client:
+    docker:
+      - image: circleci/node
+    steps:
+       - run:
+          name: Run Unit Tests
+          command: yarn run test:unit
+       - run:
+          name: Run Formatting Tests Tests
+          command: yarn run test:format
+  test-e2e:
+    docker:
       - image: cypress/base:8
         environment:
           ## this enables colors in the output
           TERM: xterm
-    working_directory: ~/app
-    parallelism: 1
     steps:
-      - checkout
-      - run:
-          name: Installing dependencies...
-          command: yarn install --loglevel=error
       - save_cache:
-          key: v2-deps-{{ .Branch }}-{{ checksum "package-lock.json" }}
+          key: v1-cypress-{{ .Branch }}
           paths:
-            - ~/.npm
-            - ~/.cache
+            - ~/.cache ## cache Cypress
+      - run:
+          name: Run End To End test
+          command: $(yarn bin)/cypress run --record --key <record_key>
 
-      - run:
-          name: Build Static Site
-          command: yarn run build
-      - run:
-          name: Serve static site
-          command: yarn start
-      - run:
-          name: Running E2E tests with Cypress...
-          command: yarn run test:integration:ci
-      - store_artifacts:
-          path: cypress/videos
-      - store_artifacts:
-          path: cypress/screenshots
+workflows:
+  version: 2
+  build-and-test:
+    jobs:
+      - build-client
+      - test-client:
+          requires:
+            - build-client
+      - test-e2e:
+          requires:
+            - test-client
+      - build-prod
+      - deploy:
+          requires:
+            - build-prod
+          filters:
+            branches:
+              only: master
