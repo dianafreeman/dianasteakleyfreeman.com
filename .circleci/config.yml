@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build:
+  test:
     docker:
       - image: circleci/node
     steps:
@@ -8,8 +8,6 @@ jobs:
       - restore_cache:
           keys:
             - deps-{{ .Branch }}-{{ checksum "package.json" }}
-            - cypress-{{ .Branch }}
-            - v1-deps
       - run:
           name: Install Dependencies
           command: yarn install --frozen-lockfile
@@ -18,21 +16,11 @@ jobs:
           paths:
             - ~/node_modules ## cache node mods
       - run:
-          name: Build static site
-          command: yarn run build
-
-  test-client:
-    docker:
-      - image: circleci/node
-    steps:
-       - checkout
-       - run:
           name: Run Unit Tests
           command: yarn run test:unit
-       - run:
+      - run:
           name: Run Formatting Tests Tests
           command: yarn run test:format
-
   test-e2e:
     docker:
       - image: cypress/base:8
@@ -41,17 +29,22 @@ jobs:
           TERM: xterm
     steps:
       - checkout
+      - run:
+          name: Install Dependencies
+          command: yarn install --frozen-lockfile
       - save_cache:
-          key: cypress-{{ .Branch }}
+          key: e2e-{{ .Branch }}
           paths:
             - ~/.cache ## cache Cypress
+      - run:
+          name: Build static site
+          command: yarn run build
       - run:
           name: Serve Static Site
           command: yarn start
       - run:
           name: Run End To End test
           command: $(yarn bin)/cypress run --record --key <record_key>
-
 
   deploy:
     docker:
@@ -61,18 +54,16 @@ jobs:
       NETLIFY_ACCESS_TOKEN: a6061c1d46a3356fb1307d13a7b49e84716936ea891f1e0398638991c2d6cd53
     working_directory: ~/repo
     steps:
-      - gatsby-build
+      - checkout
       - run:
           name: Netlify Deploy
-          command: ./node_modules/.bin/netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --prod --dir=public
-
+          command: $(yarn bin)/netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --prod --dir=public
 
 workflows:
   version: 2
-  build-client:
+  build-and-test:
     jobs:
-      - build
-      - test-client
+      - test
       - test-e2e
       - deploy:
           filters:
