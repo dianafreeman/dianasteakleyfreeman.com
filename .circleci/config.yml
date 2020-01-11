@@ -1,0 +1,68 @@
+version: 2
+jobs:
+  test:
+    docker:
+      - image: circleci/node
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - deps-{{ .Branch }}-{{ checksum "package.json" }}
+      - run:
+          name: Install Dependencies
+          command: yarn install --frozen-lockfile
+      - save_cache:
+          key: deps-{{ .Branch }}-{{ checksum "package.json" }} ## label cache yarn cache
+          paths:
+            - ~/node_modules ## cache node mods
+      - run:
+          name: Run Unit Tests
+          command: yarn run test:unit
+      - run:
+          name: Run Formatting Tests Tests
+          command: yarn run test:format
+  test-e2e:
+    docker:
+      - image: cypress/base:8
+        environment:
+          ## this enables colors in the output
+          TERM: xterm
+    steps:
+      - checkout
+      - run:
+          name: Install Dependencies
+          command: yarn install --frozen-lockfile
+      - save_cache:
+          key: deps-e2e-{{ .Branch }}
+          paths:
+            - ~/.cache ## cache Cypress
+      - run:
+          name: Build static site
+          command: yarn run build
+      - run:
+          name: Run End To End test
+          command: test:e2e:ci
+
+  deploy:
+    docker:
+      - image: circleci/node
+    environment:
+      NETLIFY_SITE_ID: 7b5f4c1a-c979-4652-aacf-05076bfa2989
+      NETLIFY_ACCESS_TOKEN: a6061c1d46a3356fb1307d13a7b49e84716936ea891f1e0398638991c2d6cd53
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run:
+          name: Netlify Deploy
+          command: $(yarn bin)/netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --prod --dir=public
+
+workflows:
+  version: 2
+  build-and-test:
+    jobs:
+      - test
+      - test-e2e
+      - deploy:
+          filters:
+            branches:
+              only: master

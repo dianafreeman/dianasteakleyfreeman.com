@@ -1,16 +1,16 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import styled from 'styled-components'
-import tw from 'tailwind.macro'
-import { ParallaxBackground, Section } from '../elements/Parallax'
-import Content from '../elements/Content'
-import { colors } from '../../tailwind'
-import { BlogGrid } from '../components/CardGrid'
-import { BigTitle } from '../elements/Titles'
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import tw from 'tailwind.macro';
+import { ParallaxBackground, Section } from '../elements/Parallax';
+import Content from '../elements/Content';
+import { colors } from '../config/tailwind';
+import { BlogGrid } from '../components/CardGrid';
+import { BigTitle } from '../elements/Titles';
 
 const Wrapper = styled.div`
   ${tw`w-full`};
-`
+`;
 const Blog = ({ offset, posts }) => {
   return (
     <>
@@ -24,12 +24,12 @@ const Blog = ({ offset, posts }) => {
         </Wrapper>
       </Content>
     </>
-  )
-}
+  );
+};
 
-export default Blog
+export default Blog;
 
 Blog.propTypes = {
   offset: PropTypes.number.isRequired,
   posts: PropTypes.array.isRequired,
-}
+};
