@@ -6,15 +6,16 @@
   "scripts": {
     "start": "gatsby serve",
     "build": "gatsby build",
+    "cy:run": "cypress run",
     "dev": "gatsby develop -o",
     "storybook:dev": "start-storybook -p 6006",
     "storybook:build": "build-storybook",
     "format": "npx prettier --write 'src/**/*.{js,jsx,json}'",
     "gen-component": "npx create-component-app --config config/ccarc.json -t DianaBookES7",
-    "test": "run-p test:unit test:format test:e2e:ci",
+    "test": "run-p test:unit test:format",
     "test:unit": "jest ./src/*.spec.{js, jsx} --collectCoverage",
     "test:format": "npx prettier --check 'src/**/*.{js,jsx,json}'",
-    "test:e2e:ci": "cypress run",
+    "test:e2e:ci": "start-server-and-test start http://localhost:9000 cy:run",
     "test:e2e:dev": "cypress open"
   },
   "dependencies": {

@@ -17,7 +17,7 @@ jobs:
             - ~/node_modules ## cache node mods
       - run:
           name: Run Unit Tests
-          command: yarn run test:unit
+          command: yarn run test
       - run:
           name: Run Formatting Tests Tests
           command: yarn run test:format
@@ -40,11 +40,8 @@ jobs:
           name: Build static site
           command: yarn run build
       - run:
-          name: Serve Static Site
-          command: yarn start
-      - run:
           name: Run End To End test
-          command: $(yarn bin)/cypress run --record --key <record_key>
+          command: test:e2e:ci
 
   deploy:
     docker:
