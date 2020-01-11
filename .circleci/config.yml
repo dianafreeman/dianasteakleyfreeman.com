@@ -31,6 +31,7 @@ jobs:
        - run:
           name: Run Formatting Tests Tests
           command: yarn run test:format
+
   test-e2e:
     docker:
       - image: cypress/base:8
@@ -42,6 +43,9 @@ jobs:
           key: cypress-{{ .Branch }}
           paths:
             - ~/.cache ## cache Cypress
+      - run:
+          name: Serve Static Site
+          command: $(yarn bin)/cypress run --record --key <record_key>
       - run:
           name: Run End To End test
           command: $(yarn bin)/cypress run --record --key <record_key>
