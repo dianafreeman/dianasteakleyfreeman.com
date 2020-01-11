@@ -25,6 +25,7 @@ jobs:
     docker:
       - image: circleci/node
     steps:
+       - checkout
        - run:
           name: Run Unit Tests
           command: yarn run test:unit
@@ -39,6 +40,7 @@ jobs:
           ## this enables colors in the output
           TERM: xterm
     steps:
+      - checkout
       - save_cache:
           key: cypress-{{ .Branch }}
           paths:
