@@ -1,8 +1,8 @@
-import React from 'react';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
-import { Link } from 'gatsby';
-import tw from 'tailwind.macro';
+import React from 'react'
+import styled from 'styled-components'
+import PropTypes from 'prop-types'
+import { Link } from 'gatsby'
+import tw from 'tailwind.macro'
 
 const IconWrapper = styled(Link)`
   ${tw`text-black border border-white height-auto`}
@@ -30,27 +30,21 @@ const IconWrapper = styled(Link)`
       transition-timing-function: ease-in-out;
     }
   }
-`;
+`
 
 const IconButton = ({ color, children, textOnHover, fadeLength, link }) => (
-  <IconWrapper
-    target="_blank"
-    href={link}
-    fadeLength={fadeLength}
-    color={color}
-    textOnHover={textOnHover}
-  >
+  <IconWrapper target="_blank" href={link} fadeLength={fadeLength} color={color} textOnHover={textOnHover}>
     {children}
   </IconWrapper>
-);
+)
 
-export default IconButton;
+export default IconButton
 
 IconButton.defaultProps = {
   fadeLength: '0.15s',
   color: 'black',
   textOnHover: 'white',
-};
+}
 
 IconButton.propTypes = {
   color: PropTypes.string,
@@ -58,4 +52,4 @@ IconButton.propTypes = {
   textOnHover: PropTypes.string,
   fadeLength: PropTypes.string,
   link: PropTypes.string.isRequired,
-};
+}
