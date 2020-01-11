@@ -17,7 +17,7 @@ jobs:
             - ~/node_modules ## cache node mods
       - run:
           name: Run Unit Tests
-          command: yarn run test
+          command: yarn run test:unit
       - run:
           name: Run Formatting Tests Tests
           command: yarn run test:format
@@ -33,7 +33,7 @@ jobs:
           name: Install Dependencies
           command: yarn install --frozen-lockfile
       - save_cache:
-          key: e2e-{{ .Branch }}
+          key: deps-e2e-{{ .Branch }}
           paths:
             - ~/.cache ## cache Cypress
       - run:
