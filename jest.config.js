@@ -16,4 +16,6 @@ module.exports = {
   testRegex:`.*spec.js?x`,
   testURL: `http://localhost`,
   setupFilesAfterEnv: [`<rootDir>/src/config/test-setup.config.js`],
+  coverageReporters: ['json', 'text', 'lcovonly', 'clover']
 }
+

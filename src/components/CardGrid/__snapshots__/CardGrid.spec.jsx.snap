@@ -1,0 +1,121 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CardGrid should match snapshot 1`] = `
+.c0 {
+  position: relative;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  min-height: 100px;
+  margin: 10px;
+}
+
+.c1 {
+  width: 50%;
+  position: relative;
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+  background-color: #B7B7B7;
+  min-width: 33vw;
+}
+
+.c2 {
+  color: #ffffff;
+  width: 100%;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 0.25rem;
+}
+
+<div
+  style={
+    Object {
+      "display": "flex",
+      "flexFlow": "row wrap",
+      "margin": "auto",
+    }
+  }
+>
+  <div
+    className="c0"
+  >
+    <div
+      className="c1"
+    >
+      <h3
+        className="c2"
+      >
+        a
+      </h3>
+    </div>
+  </div>
+  <div
+    className="c0"
+  >
+    <div
+      className="c1"
+    >
+      <h3
+        className="c2"
+      >
+        b
+      </h3>
+    </div>
+  </div>
+  <div
+    className="c0"
+  >
+    <div
+      className="c1"
+    >
+      <h3
+        className="c2"
+      >
+        c
+      </h3>
+    </div>
+  </div>
+  <div
+    className="c0"
+  >
+    <div
+      className="c1"
+    >
+      <h3
+        className="c2"
+      >
+        d
+      </h3>
+    </div>
+  </div>
+  <div
+    className="c0"
+  >
+    <div
+      className="c1"
+    >
+      <h3
+        className="c2"
+      >
+        e
+      </h3>
+    </div>
+  </div>
+  <div
+    className="c0"
+  >
+    <div
+      className="c1"
+    >
+      <h3
+        className="c2"
+      >
+        f
+      </h3>
+    </div>
+  </div>
+</div>
+`;

@@ -85,6 +85,7 @@
     "gatsby-plugin-postcss": "^2.1.2",
     "gatsby-plugin-sass": "^2.1.27",
     "gatsby-source-wordpress": "^3.1.25",
+    "handlebars": "^4.7.2",
     "jest": "^24.9.0",
     "jest-styled-components": "^6.3.4",
     "netlify-cli": "^2.29.0",

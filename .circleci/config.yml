@@ -5,9 +5,12 @@ jobs:
       - image: circleci/node:10.16.3
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - deps-{{ .Branch }}-{{ checksum "yarn.lock" }}
       - run:
           name: Install Dependencies
-          command: yarn install
+          command: yarn install --frozen-lockfile
       - save_cache:
           key: deps-{{ .Branch }}-{{ checksum "yarn.lock" }} ## label cache yarn cache
           paths:
@@ -31,7 +34,7 @@ jobs:
             - deps-{{ .Branch }}-{{ checksum "yarn.lock" }}
       - run:
           name: Install Dependencies
-          command: yarn install 
+          command: yarn install  --frozen-lockfile
       - save_cache:
           key: deps-e2e-{{ .Branch }}
           paths:
