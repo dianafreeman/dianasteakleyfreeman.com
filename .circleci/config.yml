@@ -5,14 +5,11 @@ jobs:
       - image: circleci/node:10.16.3
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - deps-{{ .Branch }}-{{ checksum "package.json" }}
       - run:
           name: Install Dependencies
           command: yarn install
       - save_cache:
-          key: deps-{{ .Branch }}-{{ checksum "package.json" }} ## label cache yarn cache
+          key: deps-{{ .Branch }}-{{ checksum "yarn.lock" }} ## label cache yarn cache
           paths:
             - ~/node_modules ## cache node mods
       - run:
@@ -29,6 +26,9 @@ jobs:
           TERM: xterm
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - deps-{{ .Branch }}-{{ checksum "yarn.lock" }}
       - run:
           name: Install Dependencies
           command: yarn install 
