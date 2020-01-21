@@ -78,10 +78,7 @@ const ProjectPageTemplate = ({ data }) => {
           style={{ width: '300px', marginRight: '1em', float: 'left' }}
         />
         <article>
-          <div
-            dangerouslySetInnerHTML={{ __html: project.content }}
-            style={{ display: 'block' }}
-          />
+          <div dangerouslySetInnerHTML={{ __html: project.content }} style={{ display: 'block' }} />
         </article>
         <aside>
           <p>

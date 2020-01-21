@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import tw from 'tailwind.macro'
-import styled from 'styled-components'
-import { animated, useSpring } from 'react-spring'
-import PageLayout from '../components/Layouts/PageLayout'
-import Card from '../components/Card'
-import { BigTitle } from '../components/Titles'
+import React, { useEffect, useState } from 'react';
+import tw from 'tailwind.macro';
+import styled from 'styled-components';
+import { animated, useSpring } from 'react-spring';
+import PageLayout from '../components/Layouts/PageLayout';
+import Card from '../components/Card';
+import { BigTitle } from '../components/Titles';
 
 // export const query = graphql`
 // query TestQuery {
@@ -28,14 +28,21 @@ const CardWrap = styled.div`
   transition: box-shadow 0.5s;
   will-change: transform;
   border: 15px solid white;
-`
+`;
 
 const AnimatedCard = () => {
-  const calc = (x, y) => [-(y - window.innerHeight / 2) / 20, (x - window.innerWidth / 2) / 20, 1.1]
-  const trans = (x, y, s) => `perspective(600px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`
+  const calc = (x, y) => [
+    -(y - window.innerHeight / 2) / 20,
+    (x - window.innerWidth / 2) / 20,
+    1.1,
+  ];
+  const trans = (x, y, s) => `perspective(600px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`;
 
-  const [props, set] = useSpring(() => ({ xys: [0, 0, 1], config: { mass: 5, tension: 350, friction: 40 } }))
-  const AniWrap = animated(CardWrap)
+  const [props, set] = useSpring(() => ({
+    xys: [0, 0, 1],
+    config: { mass: 5, tension: 350, friction: 40 },
+  }));
+  const AniWrap = animated(CardWrap);
 
   return (
     <AniWrap
@@ -43,8 +50,8 @@ const AnimatedCard = () => {
       onMouseLeave={() => set({ xys: [0, 0, 1] })}
       style={{ transform: props.xys.interpolate(trans) }}
     />
-  )
-}
+  );
+};
 
 const Index = () => (
   <PageLayout>
@@ -53,6 +60,6 @@ const Index = () => (
     <AnimatedCard />
     {/* </div> */}
   </PageLayout>
-)
+);
 
-export default Index
+export default Index;

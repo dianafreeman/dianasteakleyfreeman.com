@@ -40,7 +40,7 @@ const colors = {
   // Defaults
   background: '#393939',
   card: '#B7B7B7',
-  white: '#ffffff'
+  white: '#ffffff',
 };
 
 module.exports = {
@@ -133,14 +133,7 @@ module.exports = {
       'serif',
       'Prata',
     ],
-    mono: [
-      'Menlo',
-      'Monaco',
-      'Consolas',
-      'Liberation Mono',
-      'Courier New',
-      'monospace',
-    ],
+    mono: ['Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
   },
 
   /*
@@ -871,5 +864,4 @@ const brands = {
   gatsby: '#b300c9',
   sass: '#E35BE5',
   medium: '#00ab6c',
-}
-
+};

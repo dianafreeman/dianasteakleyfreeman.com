@@ -9,7 +9,15 @@ export const byDefault = () => (
 );
 
 export const inAGrid = () => (
-  <div style={{ width: '80%', display: 'flex', flexDirection: "row", flexWrap: 'wrap', justifyContent: 'space-evenly' }}>
+  <div
+    style={{
+      width: '80%',
+      display: 'flex',
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      justifyContent: 'space-evenly',
+    }}
+  >
     <Card title={`A Card 1`} />
     <Card title={`A Card 2`} />
     <Card title={`A Card 3`} />
@@ -18,7 +26,15 @@ export const inAGrid = () => (
 );
 
 export const withABody = () => (
-  <div style={{ width: '80%', display: 'flex', flexDirection: "row", flexWrap: 'wrap', justifyContent: 'space-evenly' }}>
+  <div
+    style={{
+      width: '80%',
+      display: 'flex',
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      justifyContent: 'space-evenly',
+    }}
+  >
     <Card title={`A Card`}>some body stuff</Card>
   </div>
 );

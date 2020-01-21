@@ -6,9 +6,7 @@ import PageLayout from '../components/Layouts/PageLayout';
 import CardGrid from '../components/CardGrid';
 
 const BlogPage = posts => (
-  <PageLayout>
-    {/* <CardGrid posts={posts} title="Latest posts" /> */}
-  </PageLayout>
+  <PageLayout>{/* <CardGrid posts={posts} title="Latest posts" /> */}</PageLayout>
 );
 
 export default BlogPage;

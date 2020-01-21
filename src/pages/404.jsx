@@ -17,8 +17,8 @@ const Row = styled.div`
 `;
 
 const Text = styled.p`
-    ${tw`text-xl text-white`}
-`
+  ${tw`text-xl text-white`}
+`;
 
 const ErrorPage = () => {
   return (
@@ -27,7 +27,9 @@ const ErrorPage = () => {
         <BigTitle>Well this is awkward.</BigTitle>
       </Row>
       <Row>
-       <Text>Something went wrong. Might I direct you back to the <Link to="/">home page</Link>?</Text>
+        <Text>
+          Something went wrong. Might I direct you back to the <Link to="/">home page</Link>?
+        </Text>
       </Row>
     </PageLayout>
   );

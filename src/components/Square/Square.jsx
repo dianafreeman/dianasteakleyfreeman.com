@@ -6,7 +6,7 @@ const Square = ({ props }) => {
   useEffect(() => {
     heightRef.current && setHeight(heightRef.current.clientWidth);
   });
-  return <div ref={heightRef} style={{minHeight: wrapperHeight}} {...props}/>
-}
+  return <div ref={heightRef} style={{ minHeight: wrapperHeight }} {...props} />;
+};
 
 export default Square;

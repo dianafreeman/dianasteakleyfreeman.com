@@ -7,7 +7,7 @@ import Card from '../Card';
 const CardGrid = ({ props }) => {
   const items = ['a', 'b', 'c', 'd', 'e', 'f'];
   return (
-    <div style={{flexFlow: 'row wrap', display: 'flex', margin: 'auto'}}>
+    <div style={{ flexFlow: 'row wrap', display: 'flex', margin: 'auto' }}>
       {items.map(i => (
         <Card key={`card-key-${i}`} title={i} />
       ))}

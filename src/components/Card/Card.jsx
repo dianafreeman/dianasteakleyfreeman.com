@@ -7,23 +7,21 @@ import { useSpring, animated } from 'react-spring';
 
 const CardWrapper = styled.div`
   ${tw`relative center inline-flex`};
-  min-height: ${props => props.minHeight || '100' }px;
+  min-height: ${props => props.minHeight || '100'}px;
   margin: 10px;
-  `;
+`;
 
 const CardBody = styled.div`
   ${tw`w-1/2 relative mx-1 bg-card`}
   min-width: 33vw;
-  `;
+`;
 
 const CardContent = styled.div`
   ${tw`px-2 m-auto`}
-
 `;
 const CardTitle = styled.h3`
   ${tw`text-white w-full px-2 absolute pin-b mb-1`}
-`
-
+`;
 
 const Card = ({ title, onClick, children, ...restProps }) => {
   return (

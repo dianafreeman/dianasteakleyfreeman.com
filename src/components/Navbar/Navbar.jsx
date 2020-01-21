@@ -3,13 +3,7 @@ import React, { useState, useRef } from 'react';
 import { FaBars, FaLink } from 'react-icons/fa';
 import styled from 'styled-components';
 import tw from 'tailwind.macro';
-import {
-  useTransition,
-  useSpring,
-  useChain,
-  config,
-  animated,
-} from 'react-spring';
+import { useTransition, useSpring, useChain, config, animated } from 'react-spring';
 import { Link } from 'gatsby';
 import data from '../../config/web/routes';
 

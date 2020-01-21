@@ -44,9 +44,7 @@ class BlogPostTemplate extends React.Component {
 
   componentDidMount() {
     const fac = new FastAverageColor();
-    const color = fac.getColor(
-      document.querySelector('.gatsby-image-wrapper img')
-    );
+    const color = fac.getColor(document.querySelector('.gatsby-image-wrapper img'));
     this.setState({ backgroundColor: color.rgba });
     console.log(color);
   }
@@ -66,10 +64,7 @@ class BlogPostTemplate extends React.Component {
             style={{ width: '300px', marginRight: '1em', float: 'left' }}
           />
           <article>
-            <div
-              dangerouslySetInnerHTML={{ __html: post.content }}
-              style={{ display: 'block' }}
-            />
+            <div dangerouslySetInnerHTML={{ __html: post.content }} style={{ display: 'block' }} />
           </article>
         </ArticleWrapper>
       </PageLayout>

@@ -1,17 +1,15 @@
 /* eslint-disable no-return-assign */
-import React from 'react'
-import Helmet from 'react-helmet'
-import PropTypes from 'prop-types'
-import styled from 'styled-components'
-import GlobalStyle from '../../styles/global'
-import { config, schemaOrgWebPage, breadcrumb } from '../../config/web/site'
+import React from 'react';
+import Helmet from 'react-helmet';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import GlobalStyle from '../../styles/global';
+import { config, schemaOrgWebPage, breadcrumb } from '../../config/web/site';
 
-const PrimaryView = styled.main`
-
-`
+const PrimaryView = styled.main``;
 const PageLayout = props => {
-  const { pageTitle, children, backgroundColor = "red", contentDescription } = props
-  const title = pageTitle || config.siteTitle
+  const { pageTitle, children, backgroundColor = 'red', contentDescription } = props;
+  const title = pageTitle || config.siteTitle;
 
   return (
     <>
@@ -47,11 +45,11 @@ const PageLayout = props => {
         {children}
       </PrimaryView>
     </>
-  )
-}
-export default PageLayout
+  );
+};
+export default PageLayout;
 
 PageLayout.propTypes = {
   pageTitle: PropTypes.string.isRequired,
   children: PropTypes.arrayOf(PropTypes.node),
-}
+};
