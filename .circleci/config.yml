@@ -58,11 +58,12 @@ jobs:
 
 workflows:
   version: 2
-  build-and-test:
+  build-test-deploy:
     jobs:
       - test
-      - test-e2e
+      - test-e2e:
+          requires:
+            - test
       - deploy:
-          filters:
-            branches:
-              only: master
+          requires:
+            - test-e2e

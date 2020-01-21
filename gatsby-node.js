@@ -1,5 +1,4 @@
 // const path = require('path')
-// const wpConfig = require('./config/wordpress')
 
 // exports.createPages = async ({ graphql, actions }) => {
 //   const { createPage } = actions

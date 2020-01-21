@@ -1,4 +1,4 @@
-const tailwind = require('./tailwind');
+// const tailwind = require('./tailwind');
 
 const config = {
   pathPrefix: '/', // Prefix for all links. If you deploy your site to example.com/portfolio your pathPrefix should be "/portfolio"
@@ -6,10 +6,9 @@ const config = {
   siteTitleAlt: 'Diana', // Alternative Site title for SEO
   siteTitleShort: 'Diana', // short_name for manifest
   siteHeadline: 'Coder. Creator. Communicator. | Full Stack Web Developer', // Headline for schema.org JSONLD
-  siteUrl: 'https://dianasteakleyfreeman.com', // Domain of your site. No trailing slash!
+  siteUrl: 'http://dianasteakleyfreeman.com', // Domain of your site. No trailing slash!
   siteLanguage: 'en', // Language Tag on <html> element
   siteLogo: '/logo.png', // Used for SEO and manifest
-  siteDescription: 'Playful & Colorful One-Page website with Parallax effect',
   author: 'Diana M. Steakley-Freeman', // Author for schema.org JSONLD
 
   // siteFBAppID: '123456789', // Facebook App ID - Optional
@@ -19,8 +18,8 @@ const config = {
   googleAnalyticsID: 'UA-47519312-5',
 
   // Manifest and Progress color
-  themeColor: tailwind.colors.orange,
-  backgroundColor: tailwind.colors.blue,
+  // themeColor: tailwind.colors.orange,
+  // backgroundColor: tailwind.colors.blue,
 };
 
 const realPrefix = config.pathPrefix === '/' ? '' : config.pathPrefix;

@@ -12,8 +12,6 @@ This guide assumes you are using `yarn` for dependency management.
 yarn install
 ```
 
-
-
 ## Usage
 
 ### Develop
@@ -21,7 +19,7 @@ yarn install
 Run the following command to open the Gatsby/React/Node development environment. 
 
 ```bash
-$	 yarn run dev
+$   yarn run dev
 ```
 
 ### Build
@@ -29,7 +27,7 @@ $	 yarn run dev
 Run the following command to build the static site 
 
 ```bash
-$	 yarn run build
+$   yarn run build
 ```
 
 ### Test
@@ -37,16 +35,14 @@ $	 yarn run build
 Run the formatting, unit, and e2e test.
 
 ```bash
-$  yarn run test
+$   yarn run test
 ```
 
 ### Deploy
 
 ```bash
-$	 yarn run deploy
+$   yarn run deploy
 ```
-
-
 
 ## Platform & Tooling
 
@@ -57,12 +53,9 @@ $	 yarn run deploy
 - Styled Components - CSS in JS 
 
 - ESLint - Linting
-
 - Prettier - Formatting
-
-- CircleCI - CI/CD 
-
-- Netlfiy - Static Site Deployment 
+- CircleCI - CI/CD
+- Netlfiy - Static Site Deployment
 
   
 

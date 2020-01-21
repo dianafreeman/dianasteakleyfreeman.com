@@ -1,6 +1,6 @@
 module.exports = {
     tailwind: {
-      config: './src/config/tailwind.js',
+      config: './src/config/theme/tailwind.js',
       format: 'auto'
     }
   }

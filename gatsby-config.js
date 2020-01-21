@@ -1,5 +1,5 @@
 /* eslint-disable */
-const config = require('./src/config/website').config
+const config = require('./src/config/web/site').config
 const pathPrefix = config.pathPrefix === '/' ? '' : config.pathPrefix
 
 module.exports = {
@@ -12,6 +12,7 @@ module.exports = {
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-styled-components',
     'gatsby-plugin-postcss',
+    'gatsby-plugin-sass',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -19,12 +20,27 @@ module.exports = {
         name: 'images',
       },
     },
+      {
+        resolve: `gatsby-source-filesystem`,
+        options: {
+          path: `${__dirname}/src/content/blog`,
+          name: `blog-posts`,
+        },
+      },
+      {
+        resolve: `gatsby-source-filesystem`,
+        options: {
+          path: `${__dirname}/src/content/projects`,
+          name: `project-posts`,
+        },
+      },
     {
       resolve: 'gatsby-plugin-google-analytics',
       options: {
         trackingId: config.googleAnalyticsID,
       },
     },
+    `gatsby-transformer-remark`,
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
     {
@@ -51,7 +67,6 @@ module.exports = {
         ],
       },
     },
-
     /* Must be placed at the end */
     'gatsby-plugin-offline',
     'gatsby-plugin-netlify',
