@@ -1,18 +1,18 @@
 import React from 'react';
-import { Link } from 'gatsby'
+import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Wrapper = styled.div``;
 
 const post = {
-  id: "",
-  title: "",
-  date: "",
-  author: "",
-  excerpt: "",
-  slug: "",
-}
+  id: '',
+  title: '',
+  date: '',
+  author: '',
+  excerpt: '',
+  slug: '',
+};
 
 const Article = ({ title = 'A Title', ...restProps }) => {
   return (
@@ -55,6 +55,5 @@ const Article = ({ title = 'A Title', ...restProps }) => {
     </Wrapper>
   );
 };
-
 
 export default Article;
