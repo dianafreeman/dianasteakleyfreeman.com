@@ -14,9 +14,9 @@
     "start": "gatsby serve",
     "start:storybook": "start-storybook --quiet -p 6006",
     "test": "run-p test:unit test:format",
-    "test:dev": "jest --config=src/config/jest.config.js --watchAll",
+    "test:dev": "jest --config=jest.config.js --watchAll",
     "test:storybook": "start-storybook --smoke-test ",
-    "test:unit": "jest ./src/*.spec.{js, jsx} --collectCoverage",
+    "test:unit": "jest --config=jest.config.js --collectCoverage",
     "test:format": "npx prettier --check 'src/**/*.{js,jsx,json}'",
     "test:e2e:ci": "start-server-and-test start http://localhost:9000 cy:run",
     "test:e2e:dev": "cypress open"
