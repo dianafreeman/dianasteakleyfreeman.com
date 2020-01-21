@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import tw from 'tailwind.macro';
 import FastAverageColor from 'fast-average-color';
 import { ParallaxLayer, Parallax } from 'react-spring/renderprops-addons.cjs';
-import Layout from '../layouts/Layout';
+import Layout from '../components/Layouts/PageLayout';
 import TypedTitle from '../components/TypedTitle';
 import icondata from '../config/icondata';
 

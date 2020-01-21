@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CardGrid should match snapshot 1`] = `
+<section
+  className="section"
+>
+  <div
+    className="container"
+  >
+    <div
+      className="content"
+    >
+      <h1
+        className="has-text-weight-bold is-size-2"
+      />
+    </div>
+    <div
+      className="content"
+      style={
+        Object {
+          "border": "1px solid #eaecee",
+          "padding": "2em 4em",
+        }
+      }
+    >
+      <p>
+        <a
+          className="has-text-primary"
+          href=""
+        >
+          a title
+        </a>
+        <span>
+           • 
+        </span>
+        <small>
+          
+           - posted by
+           
+          <a
+            href="/author/"
+          >
+            
+          </a>
+        </small>
+      </p>
+      <div>
+        <div
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": undefined,
+            }
+          }
+        />
+        <a
+          className="button is-small"
+          href=""
+        >
+          Keep Reading →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+`;

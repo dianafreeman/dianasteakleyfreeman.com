@@ -1,42 +1,37 @@
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import Img from 'gatsby-image';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
 import tw from 'tailwind.macro';
 import { useSpring, animated } from 'react-spring';
 
-const CardWrapper = styled(Link)`
-  ${tw`shadow-lg px-1 py-1 no-underline rounded-lg text-white text-center relative w-full md:w-1/3 lg:w-1/3 xl:w-1/4`};
-  min-height: 250px;
-`;
+const CardWrapper = styled.div`
+  ${tw`relative center inline-flex`};
+  min-height: ${props => props.minHeight || '100' }px;
+  margin: 10px;
+  `;
 
-const CardTitle = styled.h3`
-  ${tw`font-serif`}
-  font-weight: 700;
-`;
+const CardBody = styled.div`
+  ${tw`w-1/2 relative mx-1 bg-card`}
+  min-width: 33vw;
+  `;
 
 const CardContent = styled.div`
-  ${tw`relative h-full`}
-  background-color: ${props => props.backgroundColor};
-  `;
-const FeaturedImage = styled(Img)`
-  ${tw`absolute w-full h-full z-0`}
+  ${tw`px-2 m-auto`}
+
 `;
-const Card = ({
-  title,
-  backgroundColor = 'white',
-  onClick,
-  image,
-  children,
-}) => {
+const CardTitle = styled.h3`
+  ${tw`text-white w-full px-2 absolute pin-b mb-1`}
+`
+
+
+const Card = ({ title, onClick, children, ...restProps }) => {
   return (
-    <CardWrapper onClick={onClick}>
-      {image && <FeaturedImage src={image} />}
-      <CardContent backgroundColor={backgroundColor}>
-        {title && <CardTitle>{title}</CardTitle>}
-        {children}
-      </CardContent>
+    <CardWrapper {...restProps} {...restProps}>
+      <CardBody>
+        {children && <CardContent>{children}</CardContent>}
+        <CardTitle>{title}</CardTitle>
+      </CardBody>
     </CardWrapper>
   );
 };
@@ -44,7 +39,5 @@ export default Card;
 
 Card.propTypes = {
   title: PropTypes.string,
-  backgroundColor: PropTypes.string,
   onClick: PropTypes.func,
-  children: PropTypes.oneOfType([PropTypes.node, PropTypes.element]),
 };

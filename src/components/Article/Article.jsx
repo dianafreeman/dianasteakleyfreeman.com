@@ -1,20 +1,13 @@
-/* eslint-disable react/require-default-props */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link, graphql } from 'gatsby';
-const post = {
-  id: "",
-  title: "a title",
-  date: "",
-  slug: "",
-  author: {
-    slug: "",
-    name: "",
-  }
-}
+import styled from 'styled-components';
 
-const PostList = ({ posts, title }) => (
-  <section className="section">
+const Wrapper = styled.div``;
+
+const Article = ({ title = "A Title",  ...restProps }) => {
+  return (
+  <Wrapper {...restProps}>
+      <section className="section">
     <div className="container">
       <div className="content">
         <h1 className="has-text-weight-bold is-size-2">{title}</h1>
@@ -38,7 +31,7 @@ const PostList = ({ posts, title }) => (
           <div>
             <div
               dangerouslySetInnerHTML={{
-                // __html: post.excerpt.replace(/<p class="link-more.*/, ''),
+                __html: post.excerpt,
               }}
             />
             <Link className="button is-small" to={post.slug}>
@@ -49,11 +42,15 @@ const PostList = ({ posts, title }) => (
       {/* ))} */}
     </div>
   </section>
-);
-
-PostList.propTypes = {
-  posts: PropTypes.arrayOf(PropTypes.object),
-  title: PropTypes.string,
+  </Wrapper>)
+  ;
 };
 
-export default PostList;
+Article.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
+};
+
+export default Article;

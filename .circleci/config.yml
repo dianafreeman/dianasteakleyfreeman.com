@@ -2,7 +2,7 @@ version: 2
 jobs:
   test:
     docker:
-      - image: circleci/node
+      - image: circleci/node:10.16.3
     steps:
       - checkout
       - restore_cache:
@@ -10,7 +10,7 @@ jobs:
             - deps-{{ .Branch }}-{{ checksum "package.json" }}
       - run:
           name: Install Dependencies
-          command: yarn install --frozen-lockfile
+          command: yarn install
       - save_cache:
           key: deps-{{ .Branch }}-{{ checksum "package.json" }} ## label cache yarn cache
           paths:
@@ -31,7 +31,7 @@ jobs:
       - checkout
       - run:
           name: Install Dependencies
-          command: yarn install --frozen-lockfile
+          command: yarn install 
       - save_cache:
           key: deps-e2e-{{ .Branch }}
           paths:

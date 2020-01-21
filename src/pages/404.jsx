@@ -5,8 +5,8 @@ import React from 'react';
 import { graphql, Link } from 'gatsby';
 import tw from 'tailwind.macro';
 import styled from 'styled-components';
-import PageLayout from '../layouts/Layout';
-import { BigTitle } from '../elements/Titles';
+import PageLayout from '../components/Layouts/PageLayout';
+import { BigTitle } from '../components/Titles';
 
 const Row = styled.div`
   display: flex;

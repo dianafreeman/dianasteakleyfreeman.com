@@ -11,7 +11,7 @@ import {
   animated,
 } from 'react-spring';
 import { Link } from 'gatsby';
-import data from '../../config/menudata';
+import data from '../../config/web/routes';
 
 const MenuContainer = styled.nav`
   ${tw`w-8/9`}

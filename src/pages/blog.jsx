@@ -1,14 +1,30 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { graphql } from 'gatsby';
-import { Parallax } from 'react-spring/renderprops-addons.cjs';
-import PageLayout from '../layouts/Layout';
-import PostList from '../components/PostList';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { graphql } from 'gatsby'
+import { Parallax } from 'react-spring/renderprops-addons.cjs'
+import PageLayout from '../components/Layouts/PageLayout'
+import CardGrid from '../components/CardGrid'
 
-const BlogPage = (posts) => (
-  <PageLayout>
-    {/* <PostList posts={posts} title="Latest posts" /> */}
-  </PageLayout>
-);
+export const query = graphql`
+  query BlogQuery {
+    allMarkdownRemark {
+      edges {
+        node {
+          timeToRead
+          html
+          frontmatter {
+            title
+            path
+          }
+        }
+      }
+    }
+  }
+`
 
-export default BlogPage;
+const BlogPage = ({data}) => {
+  console.log(data)
+return <PageLayout>{/* <CardGrid posts={posts} title="Latest posts" /> */}</PageLayout>
+}
+
+export default BlogPage

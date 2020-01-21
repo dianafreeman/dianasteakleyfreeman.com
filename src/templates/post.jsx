@@ -6,9 +6,7 @@ import { graphql } from 'gatsby';
 import styled from 'styled-components';
 import tw from 'tailwind.macro';
 import FastAverageColor from 'fast-average-color';
-import { ParallaxLayer, Parallax } from 'react-spring/renderprops-addons.cjs';
-import Layout from '../layouts/Layout';
-import { colors } from '../config/tailwind';
+import PageLayout from '../components/Layouts/PageLayout';
 import TypedTitle from '../components/TypedTitle';
 
 const PageHeader = styled.div`
@@ -56,7 +54,7 @@ class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.wordpressPost;
     return (
-      <Layout parallax={false} backgroundColor={this.state.backgroundColor}>
+      <PageLayout parallax={false} backgroundColor={this.state.backgroundColor}>
         <PageHeader>
           <TitleWrapper>
             <TypedTitle strings={[post.title]} />
@@ -74,7 +72,7 @@ class BlogPostTemplate extends React.Component {
             />
           </article>
         </ArticleWrapper>
-      </Layout>
+      </PageLayout>
     );
   }
 }
