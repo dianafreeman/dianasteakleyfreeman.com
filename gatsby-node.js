@@ -1,57 +1,63 @@
-// const path = require('path')
+const { createFilePath } = require(`gatsby-source-filesystem`);
+const path = require('path');
 
-// exports.createPages = async ({ graphql, actions }) => {
-//   const { createPage } = actions
-//   const result = await graphql(`
-//     query {
-//       allWordpressPost(sort: { order: DESC, fields: date }, filter: { categories: { eq: 19 } }) {
-//         edges {
-//           node {
-//             slug
-//             wordpress_id
-//           }
-//         }
-//       }
-//       allWordpressWpProjects {
-//         edges {
-//           node {
-//             slug
-//             wordpress_id
-//           }
-//         }
-//       }
-//     }
-//   `)
-//   if (result.errors) {
-//     throw result.errors
+// exports.onCreateNode = ({ node, getNode, actions }) => {
+//   if (node.internal.type === `MarkdownRemark`) {
+//     const { createNodeField } = actions;
+//     const slug = createFilePath({ node, getNode, basePath: `blog/` });
+//     console.log('slug');
+//     console.log(slug);
+//     createNodeField({
+//       node,
+//       name: `slug`,
+//       value: `${slug}`,
+//     });
 //   }
+// };
 
-//   const postTemplate = path.resolve(`./src/templates/post.jsx`)
-//   const projectTemplate = path.resolve(`./src/templates/project.jsx`)
+exports.createPages = async ({ graphql, actions }) => {
+  const { createPage } = actions;
+  const result = await graphql(`
+    query BlogQuery {
+      allMarkdownRemark {
+        edges {
+          node {
+            id
+            frontmatter {
+              path
+              slug
+            }
+          }
+        }
+      }
+    }
+  `);
+  if (result.errors) {
+    throw result.errors;
+  }
 
-//   const blogPosts = result.data.allWordpressPost.edges
-//   const projects = result.data.allWordpressWpProjects.edges
+  const postTemplate = path.resolve(`./src/templates/post.jsx`);
+  const blogPosts = result.data.allMarkdownRemark.edges.map(e => e.node);
 
-//   // Iterate over the array of posts
-//   blogPosts.forEach(post => {
-//     // Create the Gatsby page for this WordPress post
-//     createPage({
-//       path: `/blog/${post.node.slug}/`,
-//       component: postTemplate,
-//       context: {
-//         id: post.node.wordpress_id,
-//       },
-//     })
-//   })
+  blogPosts.forEach(post => {
+    console.log(post);
+    // Create the Gatsby page for this post
+    createPage({
+      path: post.frontmatter.path,
+      component: postTemplate,
+      context: {
+        slug: post.frontmatter.slug,
+        timeToRead: post.timeToRead,
+        timeToRead: post.timeToRead,
+      },
+    });
+  });
+};
 
-//   projects.forEach(post => {
-//     // Create the Gatsby page for this WordPress post
-//     createPage({
-//       path: `/projects/${post.node.slug}/`,
-//       component: projectTemplate,
-//       context: {
-//         id: post.node.wordpress_id,
-//       },
-//     })
-//   })
-// }
+exports.onCreatePage = ({ page, actions }) => {
+  const { createPage } = actions;
+  if (page.path === `/`) {
+    page.matchPath = `/*`;
+    createPage(page);
+  }
+};

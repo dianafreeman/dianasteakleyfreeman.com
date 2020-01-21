@@ -1,56 +1,71 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import React, { useContext } from 'react';
+import { useTrail } from 'react-spring';
+import styled from '@emotion/styled';
+import { css, jsx } from '@emotion/core';
+import { ThemeContext } from '../../context/ThemeContext';
+import POST from './post.json';
+import MetaBox from './MetaBox';
 
-const Wrapper = styled.div``;
+export const Image = styled.img`
+  width: 100%;
+  margin: auto;
+  @media screen and (min-width: ${theme.screen.md}) {
+    float: right;
+    width: 45%;
+    margin: 0 1em;
+  }
+`;
 
-const Article = ({ title = "A Title",  ...restProps }) => {
+// export const ArticleWrap = styled.article`
+
+// `;
+// export const Content = styled.div`
+//   color: white;
+// `;
+// export const Body = styled.div`
+//   padding-top: 10px;
+// `;
+
+// export const Icon = styled.span`
+//   padding-right: 0.5em;
+// `;
+/** @jsx jsx */
+const Article = ({ post = POST, store, ...restProps }) => {
+  // const items = { timeToRead: post.timeToRead, tags: post.tags, date: post.frontmatter.date };
+  const [theme, setTheme] = useContext(ThemeContext);
+
   return (
-  <Wrapper {...restProps}>
-      <section className="section">
-    <div className="container">
-      <div className="content">
-        <h1 className="has-text-weight-bold is-size-2">{title}</h1>
+    <article
+      {...restProps}
+      css={css`
+        padding: 1em;
+        width: inherit;
+        background-color: ${theme.color.dark};
+      `}
+    >
+      <div
+        css={css`
+          color: white;
+        `}
+      >
+        <MetaBox
+          items={[
+            {
+              label: `⏱ Time to read`,
+              value: `${post.timeToRead} minutes`,
+            },
+            {
+              label: `Published On`,
+              value: `${post.frontmatter.date}`,
+            },
+          ]}
+        />
+
+        <Image src="https://via.placeholder.com/500x300" alt="" />
+        <div dangerouslySetInnerHTML={{ __html: post.html }} style={{ display: 'block' }} />
       </div>
-      {/* {posts.map(({ node: post }) => ( */}
-        <div
-          className="content"
-          style={{ border: '1px solid #eaecee', padding: '2em 4em' }}
-          key={post.id}
-        >
-          <p>
-            <Link className="has-text-primary" to={post.slug}>
-              {post.title}
-            </Link>
-            <span> &bull; </span>
-            <small>
-              {post.date} - posted by{' '}
-              <Link to={`/author/${post.author.slug}`}>{post.author.name}</Link>
-            </small>
-          </p>
-          <div>
-            <div
-              dangerouslySetInnerHTML={{
-                __html: post.excerpt,
-              }}
-            />
-            <Link className="button is-small" to={post.slug}>
-              Keep Reading →
-            </Link>
-          </div>
-        </div>
-      {/* ))} */}
-    </div>
-  </section>
-  </Wrapper>)
-  ;
+    </article>
+  );
 };
 
-Article.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]).isRequired,
-};
-
-export default Article;
+export default inject('store')(observer(Article));

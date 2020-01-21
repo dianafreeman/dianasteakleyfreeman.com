@@ -1,6 +1,8 @@
 import React from 'react';
+import { inject, observer } from 'mobx-react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled from '@emotion/styled'
+
 
 const Wrapper = styled.div``;
 
@@ -15,4 +17,4 @@ COMPONENT_NAME.propTypes = {
   ]).isRequired,
 };
 
-export default COMPONENT_NAME;
+export default inject('store')(observer(COMPONENT_NAME));

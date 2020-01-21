@@ -37,10 +37,10 @@ const colors = {
   'grey-light': '#dae1e7',
   'grey-lighter': '#f1f5f8',
   'grey-lightest': '#ECF0F1',
-  // Defaults
+
   background: '#393939',
   card: '#B7B7B7',
-  white: '#ffffff'
+  white: '#ffffff',
 };
 
 module.exports = {
@@ -118,7 +118,6 @@ module.exports = {
       'Droid Sans',
       'Helvetica Neue',
       'sans-serif',
-      'Open Sans',
     ],
     serif: [
       'Constantia',
@@ -131,16 +130,8 @@ module.exports = {
       'Liberation Serif',
       'Georgia',
       'serif',
-      'Prata',
     ],
-    mono: [
-      'Menlo',
-      'Monaco',
-      'Consolas',
-      'Liberation Mono',
-      'Courier New',
-      'monospace',
-    ],
+    mono: ['Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
   },
 
   /*
@@ -871,5 +862,4 @@ const brands = {
   gatsby: '#b300c9',
   sass: '#E35BE5',
   medium: '#00ab6c',
-}
-
+};

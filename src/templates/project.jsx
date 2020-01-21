@@ -3,11 +3,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Img from 'gatsby-image';
 import { graphql, StaticQuery } from 'gatsby';
-import styled from 'styled-components';
-import tw from 'tailwind.macro';
+import styled from '@emotion/styled'
 import FastAverageColor from 'fast-average-color';
 import { ParallaxLayer, Parallax } from 'react-spring/renderprops-addons.cjs';
-import Layout from '../components/Layouts/PageLayout';
+import Layout from '../components/Layouts/Layout';
 import TypedTitle from '../components/TypedTitle';
 import icondata from '../config/icondata';
 
@@ -36,11 +35,13 @@ import icondata from '../config/icondata';
 // );
 
 const PageHeader = styled.div`
-  ${tw`relative w-full`}
+  position: relative;
+  width: 100%;
 `;
 
 const ArticleWrapper = styled.div`
-  ${tw`py-3 px-3 mx-auto rounded-sm my-3 relative`}
+  margin: 0 auto;
+  position: relative;
   @media screen and (min-width: 568px) {
     width: 95vw;
   }
@@ -48,7 +49,8 @@ const ArticleWrapper = styled.div`
   display: block;
 `;
 const TitleWrapper = styled.div`
-  ${tw`text-left rounded-md w-full`}
+  text-align: left;
+  width: 100%;
   padding-top: 90px;
   background-color: rgba(0, 0, 0, 0.5);
   right: 0;
@@ -78,10 +80,7 @@ const ProjectPageTemplate = ({ data }) => {
           style={{ width: '300px', marginRight: '1em', float: 'left' }}
         />
         <article>
-          <div
-            dangerouslySetInnerHTML={{ __html: project.content }}
-            style={{ display: 'block' }}
-          />
+          <div dangerouslySetInnerHTML={{ __html: project.content }} style={{ display: 'block' }} />
         </article>
         <aside>
           <p>

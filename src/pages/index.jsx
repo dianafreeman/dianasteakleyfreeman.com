@@ -1,29 +1,29 @@
-import React, { useRef, useState } from 'react'
-import { graphql } from 'gatsby'
-import styled, { withTheme } from 'styled-components'
-import PageLayout from '../components/Layouts/PageLayout'
-import Card from '../components/Card'
-import routes from '../config/web/routes'
-import { BigTitle } from '../components/Titles'
+import React from 'react';
+import { graphql } from 'gatsby';
+import { Provider } from 'mobx-react';
 
-export const query = graphql`
-  query IndexQuery {
-    allSitePage {
-      edges {
-        node {
-          id
-          path
-        }
-      }
-    }
-  }
-`
-const Index = ({ data }) => (
-  <PageLayout>
-      <BigTitle>Diana M Steakley Freeman</BigTitle>
-      {routes.map((r, idx) => (
-        <Card dest={r.destination} title={r.name} index={idx} key={`card-${idx}`} />
-      ))}
-  </PageLayout>
-)
-export default Index
+import { Router } from '@reach/router';
+import Layout from '../components/Layout/Layout';
+import routes from '../config/web/routes';
+import Store from '../stores';
+import Blog from '../components/Pages/Blog';
+import Home from '../components/Pages/Home';
+import NotFound from '../components/Pages/NotFound';
+
+const LazyComponent = ({ store, PageComponent, ...props }) => (
+  <React.Suspense fallback={'<p>Loading...</p>'}>
+    <PageComponent {...props} />
+  </React.Suspense>
+);
+const Index = () => {
+  return (
+    <Provider store={Store}>
+      <Router>
+        <LazyComponent PageComponent={Home} path="/" />
+        <LazyComponent PageComponent={Blog} path="blog" />
+        <LazyComponent PageComponent={NotFound} default />
+      </Router>
+    </Provider>
+  );
+};
+export default Index;
