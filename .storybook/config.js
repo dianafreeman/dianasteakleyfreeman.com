@@ -9,7 +9,7 @@ configure(require.context("../src", true, /\.stories\.js$/), module)
 
 /* DECORATORS */
 const Theme = story => (
-    <div style={{ width: "95vw", height: '95vh', backgroundColor: colors.background }}>
+    <div style={{ width: "95vw", height: '95vh', margin: "auto", justifyContent: 'space-evenly', backgroundColor: colors.background , textAlign: "center"}}>
       {story()}
     </div>
   );
