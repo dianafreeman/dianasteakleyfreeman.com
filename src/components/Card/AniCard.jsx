@@ -1,7 +1,10 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { animated } from 'react-spring';
+import Card from './Card'
 
-const AniCard = ({ children, styles, ...restProps }) => {
-  const Wrapper = animated(Card);
-  return <Wrapper {...restProps} style={styles} />;
-};
+const AniCard = ({styles, ...restProps }) => {
+    const Wrapper = animated(Card);
+    return <Wrapper  style={styles} {...restProps} />;
+  };
+
+export default AniCard

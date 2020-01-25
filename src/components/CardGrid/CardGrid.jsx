@@ -2,12 +2,13 @@
 
 import React, { useState } from 'react';
 import { useTrail, animated } from 'react-spring';
-import Card from '../Card';
+import AniCard from '../Card/AniCard';
 
-const items = ['item a', 'item b', 'item c', 'item d', 'item e', 'item f'];
 
-const CardGrid = ({ props }) => {
+const CardGrid = () => {
   const [show, set] = useState(false);
+  const items = ['item a', 'item b', 'item c', 'item d', 'item e', 'item f'];
+
   const config = { mass: 5, tension: 2000, friction: 200 };
   const trail = useTrail(items.length, {
     config,
@@ -16,23 +17,20 @@ const CardGrid = ({ props }) => {
     from: { x: 0, h: 0, o: 1 },
   });
 
-  const AniCard = animated(Card);
-
   return (
-    <div onClick={() => set(state => !state)}>
+    <div onClick={() => set(!show)}>
       {trail.map(({ s_xyz, o, ...rest }, index) => (
-        <AniCard
-          key={items[index]}
-          styles={{
-            opacity: o,
-            transform: s_xyz.interpolate(
-              (x, y, z) => `perspective(95vw) scale3d(${x},${y},${z}) translateZ(-100px)`
-            ),
-            ...rest,
-          }}
-          title={items[index]}
-        />
-      ))}
+      <AniCard
+        key={`${items[index]}-d`}
+        styles={{
+          opacity: o,
+          transform: s_xyz.interpolate(
+            (x, y, z) => `perspective(95vw) scale3d(${x},${y},${z}) translateZ(-100px)`
+          ),
+          ...rest,
+        }}
+        title={items[index]}
+      />))}
     </div>
   );
 };
