@@ -6,36 +6,31 @@ import tw from 'tailwind.macro';
 import { useSpring, animated } from 'react-spring';
 
 const CardWrapper = styled.div`
-  ${tw`relative center inline-flex`};
-  min-height: ${props => props.minHeight || '100'}px;
-  margin: 10px;
-`;
+  ${tw`relative center inline-flex bg-card`};
+  min-height: 150px;
+  min-width: 50%;
+  @media screen and (min-width: ${props => props.theme.screens.md}){
+    min-width: 25%;
+  }
 
-const CardBody = styled.div`
-  ${tw`w-1/2 relative mx-1 bg-card`}
-  min-width: 33vw;
 `;
 
 const CardContent = styled.div`
   ${tw`px-2 m-auto`}
 `;
 const CardTitle = styled.h3`
-  ${tw`text-white w-full px-2 absolute pin-b mb-1`}
+  ${tw`text-white w-full px-2 absolute pin-b `}
 `;
+
 
 const Card = ({ title, onClick, children, ...restProps }) => {
   return (
-    <CardWrapper {...restProps} {...restProps}>
-      <CardBody>
+    <CardWrapper {...restProps}>
         {children && <CardContent>{children}</CardContent>}
         <CardTitle>{title}</CardTitle>
-      </CardBody>
     </CardWrapper>
   );
 };
-export default Card;
 
-Card.propTypes = {
-  title: PropTypes.string,
-  onClick: PropTypes.func,
-};
+
+export default Card;

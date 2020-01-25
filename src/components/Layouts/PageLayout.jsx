@@ -2,17 +2,17 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import GlobalStyle from '../../styles/global';
+import styled, { ThemeProvider } from 'styled-components';
+import GlobalStyle from './GlobalStyle';
 import { config, schemaOrgWebPage, breadcrumb } from '../../config/web/site';
+import theme from '../../config/theme'
 
 const PrimaryView = styled.main``;
 const PageLayout = props => {
   const { pageTitle, children, backgroundColor = 'red', contentDescription } = props;
   const title = pageTitle || config.siteTitle;
-
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <Helmet>
         <title>{title}</title>
         <link rel="apple-touch-icon" href="/favicons/apple-touch-icon.png" />
@@ -40,11 +40,11 @@ const PageLayout = props => {
         <script type="application/ld+json">{JSON.stringify(schemaOrgWebPage)}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumb)}</script>
       </Helmet>
-      <GlobalStyle />
-      <PrimaryView id="primary" backgroundColor={backgroundColor}>
+      <GlobalStyle theme={theme}/>
+      <PrimaryView id="primary" theme={theme}>
         {children}
       </PrimaryView>
-    </>
+    </ThemeProvider>
   );
 };
 export default PageLayout;
@@ -52,4 +52,5 @@ export default PageLayout;
 PageLayout.propTypes = {
   pageTitle: PropTypes.string.isRequired,
   children: PropTypes.arrayOf(PropTypes.node),
+  theme: PropTypes.object.isRequired
 };
