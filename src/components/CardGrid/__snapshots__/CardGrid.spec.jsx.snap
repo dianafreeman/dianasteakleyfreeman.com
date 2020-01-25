@@ -31,13 +31,7 @@ exports[`CardGrid should match snapshot 1`] = `
 }
 
 <div
-  style={
-    Object {
-      "display": "flex",
-      "flexFlow": "row wrap",
-      "margin": "auto",
-    }
-  }
+  onClick={[Function]}
 >
   <div
     className="c0"
@@ -48,7 +42,7 @@ exports[`CardGrid should match snapshot 1`] = `
       <h3
         className="c2"
       >
-        a
+        item a
       </h3>
     </div>
   </div>
@@ -61,7 +55,7 @@ exports[`CardGrid should match snapshot 1`] = `
       <h3
         className="c2"
       >
-        b
+        item b
       </h3>
     </div>
   </div>
@@ -74,7 +68,7 @@ exports[`CardGrid should match snapshot 1`] = `
       <h3
         className="c2"
       >
-        c
+        item c
       </h3>
     </div>
   </div>
@@ -87,7 +81,7 @@ exports[`CardGrid should match snapshot 1`] = `
       <h3
         className="c2"
       >
-        d
+        item d
       </h3>
     </div>
   </div>
@@ -100,7 +94,7 @@ exports[`CardGrid should match snapshot 1`] = `
       <h3
         className="c2"
       >
-        e
+        item e
       </h3>
     </div>
   </div>
@@ -113,7 +107,7 @@ exports[`CardGrid should match snapshot 1`] = `
       <h3
         className="c2"
       >
-        f
+        item f
       </h3>
     </div>
   </div>

@@ -18,6 +18,7 @@ export const query = graphql`
     }
   }
 `;
+
 const Index = ({ data }) => (
   <PageLayout>
     <BigTitle>Diana M Steakley Freeman</BigTitle>

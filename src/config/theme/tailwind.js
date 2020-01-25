@@ -37,7 +37,7 @@ const colors = {
   'grey-light': '#dae1e7',
   'grey-lighter': '#f1f5f8',
   'grey-lightest': '#ECF0F1',
-  // Defaults
+
   background: '#393939',
   card: '#B7B7B7',
   white: '#ffffff',
