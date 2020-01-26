@@ -4,16 +4,15 @@ import React, { useState } from 'react';
 import { useTrail, animated } from 'react-spring';
 import AniCard from '../Card/AniCard';
 
+const __ITEMS__ = ['item a', 'item b', 'item c', 'item d', 'item e', 'item f'];
 
-const CardGrid = () => {
+const CardGrid = ({ items = __ITEMS__}) => {
   const [show, set] = useState(false);
-  const items = ['item a', 'item b', 'item c', 'item d', 'item e', 'item f'];
-
   const config = { mass: 5, tension: 2000, friction: 200 };
   const trail = useTrail(items.length, {
     config,
     o: show ? 1 : 0,
-    s_xyz: show ? [1, 1, 0.5] : [1, 1, -1],
+    s_xyz: show ? [1, 1, 1] : [0, 0, 0],
     from: { x: 0, h: 0, o: 1 },
   });
 

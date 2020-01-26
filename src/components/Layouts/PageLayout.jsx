@@ -2,9 +2,10 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
-import styled, { withTheme } from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import GlobalStyle from '../../styles/global';
 import { config, schemaOrgWebPage, breadcrumb } from '../../config/web/site';
+import theme from '../../config/theme'
 
 const PrimaryView = styled.main`
   background-color: ${props => props.theme.main};
@@ -12,9 +13,8 @@ const PrimaryView = styled.main`
 const PageLayout = props => {
   const { pageTitle, children, backgroundColor = 'red', contentDescription } = props;
   const title = pageTitle || config.siteTitle;
-
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <Helmet>
         <title>{title}</title>
         <link rel="apple-touch-icon" href="/favicons/apple-touch-icon.png" />
@@ -46,10 +46,10 @@ const PageLayout = props => {
       <PrimaryView id="primary" backgroundColor={backgroundColor}>
         {children}
       </PrimaryView>
-    </>
+    </ThemeProvider>
   );
 };
-export default withTheme(PageLayout);
+export default PageLayout;
 
 PageLayout.propTypes = {
   pageTitle: PropTypes.string.isRequired,

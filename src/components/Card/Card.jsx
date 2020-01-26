@@ -7,16 +7,16 @@ import { useSpring, animated } from 'react-spring';
 
 const CardWrapper = styled.div`
   ${tw`relative center inline-flex bg-card`};
-  min-height: ${props => props.minHeight || '100'}px;
-  min-width: 100px;
-  margin: 10px;
+  min-height: 150px;
+  width: 30%;
+
 `;
 
 const CardContent = styled.div`
   ${tw`px-2 m-auto`}
 `;
 const CardTitle = styled.h3`
-  ${tw`text-white w-full px-2 absolute pin-b mb-1`}
+  ${tw`text-white w-full px-2 absolute pin-b `}
 `;
 
 

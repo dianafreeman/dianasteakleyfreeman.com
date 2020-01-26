@@ -15,6 +15,12 @@ html {
   min-height: 100vh;
 
 }
+#root{
+  height: 100%;
+  width:100%;
+}
+
+
 body {
   width: 100%;
   height: inherit;
