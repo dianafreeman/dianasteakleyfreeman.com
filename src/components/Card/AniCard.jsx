@@ -4,7 +4,7 @@ import Card from './Card'
 
 const AniCard = ({styles, ...restProps }) => {
     const Wrapper = animated(Card);
-    return <Wrapper  style={styles} {...restProps} />;
+    return <Wrapper style={styles} {...restProps} />;
   };
 
 export default AniCard

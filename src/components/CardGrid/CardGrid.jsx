@@ -6,10 +6,11 @@ import AniCard from '../Card/AniCard';
 
 const __ITEMS__ = ['item a', 'item b', 'item c', 'item d', 'item e', 'item f'];
 
-const CardGrid = ({ items = __ITEMS__}) => {
+const CardGrid = ({ items }) => {
+  const cards = items || __ITEMS__
   const [show, set] = useState(false);
   const config = { mass: 5, tension: 2000, friction: 200 };
-  const trail = useTrail(items.length, {
+  const trail = useTrail(cards.length, {
     config,
     o: show ? 1 : 0,
     s_xyz: show ? [1, 1, 1] : [0, 0, 0],
@@ -20,7 +21,7 @@ const CardGrid = ({ items = __ITEMS__}) => {
     <div onClick={() => set(!show)}>
       {trail.map(({ s_xyz, o, ...rest }, index) => (
       <AniCard
-        key={`${items[index]}-d`}
+        key={`${cards[index]}-d`}
         styles={{
           opacity: o,
           transform: s_xyz.interpolate(
@@ -28,7 +29,7 @@ const CardGrid = ({ items = __ITEMS__}) => {
           ),
           ...rest,
         }}
-        title={items[index]}
+        title={cards[index].name}
       />))}
     </div>
   );

@@ -1,13 +1,12 @@
 version: 2
 jobs:
-  test:
+  build:
     docker:
-      - image: circleci/node:10.16.3
+      - image: node:10
+    working_directory: ~/webbuild_hnm
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - deps-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      - run: apk update && apk add git
       - run:
           name: Install Dependencies
           command: yarn install --frozen-lockfile
@@ -15,6 +14,20 @@ jobs:
           key: deps-{{ .Branch }}-{{ checksum "yarn.lock" }} ## label cache yarn cache
           paths:
             - ~/node_modules ## cache node mods
+      - run:
+          name: Build Static
+          command: yarn run build
+      - save_cache:
+          key: build-{{ .Branch }}-public
+          paths:
+            - ~/public ## cache public
+            - ~/.cache ## cache tje cacje
+  test:
+    docker:
+      - image: node:10
+    working_directory: ~/webtest
+    steps:
+      - checkout
       - run:
           name: Run Unit Tests
           command: yarn run test:unit
@@ -29,19 +42,10 @@ jobs:
           TERM: xterm
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - deps-{{ .Branch }}-{{ checksum "yarn.lock" }}
-      - run:
-          name: Install Dependencies
-          command: yarn install  --frozen-lockfile
       - save_cache:
           key: deps-e2e-{{ .Branch }}
           paths:
             - ~/.cache ## cache Cypress
-      - run:
-          name: Build static site
-          command: yarn run build
       - run:
           name: Run End To End test
           command: test:e2e:ci
