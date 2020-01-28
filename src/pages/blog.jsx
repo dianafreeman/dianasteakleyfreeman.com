@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import { Parallax } from 'react-spring/renderprops-addons.cjs';
-import PageLayout from '../components/Layouts/PageLayout';
+import Layout from '../components/Layout/Layout';
 import CardGrid from '../components/CardGrid';
 
 export const query = graphql`
@@ -11,10 +11,11 @@ export const query = graphql`
       edges {
         node {
           timeToRead
-          html
           frontmatter {
             title
             path
+            slug
+            date
           }
         }
       }
@@ -23,8 +24,12 @@ export const query = graphql`
 `;
 
 const BlogPage = ({ data }) => {
-  console.log(data);
-  return <PageLayout>{/* <CardGrid posts={posts} title="Latest posts" /> */}</PageLayout>;
+  const posts = data.allMarkdownRemark.edges.map( p => p.node)
+  return (
+    <Layout>
+      <CardGrid items={posts} />
+    </Layout>
+  );
 };
 
 export default BlogPage;

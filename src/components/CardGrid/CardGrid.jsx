@@ -1,37 +1,45 @@
 /* eslint-disable react/require-default-props */
 
-import React, { useState } from 'react';
-import { useTrail, animated } from 'react-spring';
-import AniCard from '../Card/AniCard';
+import React, { useState, useEffect } from 'react';
+import { useTrail, useTransition, animated } from 'react-spring';
+import styled from 'styled-components';
+import Card from '../Card';
+import { default as DATA } from '../../config/__fixtures__/cardGridData';
 
-const __ITEMS__ = ['item a', 'item b', 'item c', 'item d', 'item e', 'item f'];
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+`;
 
-const CardGrid = ({ items }) => {
-  const cards = items || __ITEMS__
-  const [show, set] = useState(false);
+const CardGrid = ({ items = DATA }) => {
   const config = { mass: 5, tension: 2000, friction: 200 };
-  const trail = useTrail(cards.length, {
+  const trail = useTrail(items.length, {
     config,
-    o: show ? 1 : 0,
-    s_xyz: show ? [1, 1, 1] : [0, 0, 0],
-    from: { x: 0, h: 0, o: 1 },
+    to: { transform: 'scale3d(1, 1, 1)', opacity: 1 },
+    from: { transform: 'scale3d(0.80, 0.80, 0.80)', opacity: 0 },
   });
 
   return (
-    <div onClick={() => set(!show)}>
-      {trail.map(({ s_xyz, o, ...rest }, index) => (
-      <AniCard
-        key={`${cards[index]}-d`}
-        styles={{
-          opacity: o,
-          transform: s_xyz.interpolate(
-            (x, y, z) => `perspective(95vw) scale3d(${x},${y},${z}) translateZ(-100px)`
-          ),
-          ...rest,
-        }}
-        title={cards[index].name}
-      />))}
-    </div>
+    <Wrapper>
+      {trail.map((props, idx) => {
+        return (
+          <Card
+            destination={items[idx].path || items[idx].destination}
+            key={`${items[idx].id}-d`}
+            springProps={props}
+            // anyIsHovered={anyIsHovered}
+            // onMouseOver={() => setanyIsHovered(true)}
+            // onMouseLeave={() => setanyIsHovered(false)}
+            item={items[idx].frontmatter ? items[idx].frontmatter : items[idx]}
+            title={items[idx].frontmatter ? items[idx].frontmatter.title : items[idx].name}
+            destination={
+              items[idx].frontmatter ? items[idx].frontmatter.path : items[idx].destination
+            }
+          />
+        );
+      })}
+    </Wrapper>
   );
 };
 

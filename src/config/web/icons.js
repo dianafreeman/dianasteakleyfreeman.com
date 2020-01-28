@@ -11,7 +11,7 @@ import {
   FaSass,
   FaJs,
 } from 'react-icons/fa';
-import { theme } from '../theme
+import { theme } from '../theme';
 
 const getTextColor = color => (tinycolor(color).isLight() ? 'black' : 'white');
 const defaultIconProps = { size: '35px' };

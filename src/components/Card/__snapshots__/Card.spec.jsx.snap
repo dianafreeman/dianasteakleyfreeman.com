@@ -3,37 +3,25 @@
 exports[`Card should match snapshot 1`] = `
 .c0 {
   position: relative;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  min-height: 100px;
+  background-color: #B7B7B7;
+  min-height: 200px;
+  min-width: calc(50% - 4vw);
   margin: 10px;
 }
 
 .c1 {
-  width: 50%;
-  position: relative;
-  margin-left: 0.25rem;
-  margin-right: 0.25rem;
-  background-color: #B7B7B7;
-  min-width: 33vw;
-}
-
-.c2 {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   margin: auto;
 }
 
-.c3 {
+.c2 {
   color: #ffffff;
   width: 100%;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   position: absolute;
   bottom: 0;
-  margin-bottom: 0.25rem;
 }
 
 <div
@@ -42,14 +30,10 @@ exports[`Card should match snapshot 1`] = `
   <div
     className="c1"
   >
-    <div
-      className="c2"
-    >
-      blog
-    </div>
-    <h3
-      className="c3"
-    />
+    blog
   </div>
+  <h3
+    className="c2"
+  />
 </div>
 `;

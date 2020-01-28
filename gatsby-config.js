@@ -1,7 +1,6 @@
 /* eslint-disable */
-const config = require('./src/config/web/site').config
+const config = require('./src/config/web/data').data
 const pathPrefix = config.pathPrefix === '/' ? '' : config.pathPrefix
-
 module.exports = {
   /* General Information */
   siteMetadata: {
@@ -13,13 +12,7 @@ module.exports = {
     'gatsby-plugin-styled-components',
     'gatsby-plugin-postcss',
     'gatsby-plugin-sass',
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        path: `${__dirname}/src/images/`,
-        name: 'images',
-      },
-    },
+
       {
         resolve: `gatsby-source-filesystem`,
         options: {

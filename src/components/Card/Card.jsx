@@ -4,33 +4,80 @@ import { Link } from 'gatsby';
 import styled from 'styled-components';
 import tw from 'tailwind.macro';
 import { useSpring, animated } from 'react-spring';
+import colors from '../../config/theme/color'
 
-const CardWrapper = styled.div`
-  ${tw`relative center inline-flex bg-card`};
-  min-height: 150px;
-  min-width: 50%;
-  @media screen and (min-width: ${props => props.theme.screens.md}){
-    min-width: 25%;
+const CardWrapper = animated(styled.div`
+  min-height: 200px;
+  min-width: 200px;
+  display: flex;
+  position: relative;
+  flex-basis: 100%;
+  text-align: left;
+  @media screen and (min-width: ${props => props.theme.screen.sm}) {
+    flex-basis: 50%;
   }
+`);
 
+const CardContent = animated(styled.div`
+  width: 100%;
+  background-color: white;
+  margin: 0.5em;
+  z-index: 2;
+`);
+
+const ShadowWrapDiv = styled(CardContent)`
+  position: absolute;
+  width: calc(100% - 1em);
+  height: calc(100% - 1em);
+  background-color: ${props => props.color};
+  z-index: 0;
 `;
 
-const CardContent = styled.div`
-  ${tw`px-2 m-auto`}
-`;
-const CardTitle = styled.h3`
-  ${tw`text-white w-full px-2 absolute pin-b `}
+const CardTitle = styled.h1`
+  color: ${props => props.theme.color.black};
+  width: 100%;
+  margin-left: 0.5em;
+  position: absolute;
+  bottom: 0px;
+  font-family: ${props => props.theme.font.heading};
 `;
 
-
-const Card = ({ title, onClick, children, ...restProps }) => {
+const ShadowWrap = ({ isHovered, shadowIdx, color }) => {
+  const DEGREES = ['0', '-3', '-6'];
+  const { transform } = useSpring({
+    transform: `rotate(${isHovered ? [DEGREES[shadowIdx]] : 0}deg)`,
+  });
+  return <ShadowWrapDiv style={{ transform }} color={color} />;
+};
+const Card = ({ item, destination, onClick, onMouseOver, onMouseLeave, children}) => {
+  const [isHovered, setHover] = useState(false);
+  const { transform } = useSpring({
+    transform: `rotate(${isHovered ? 3 : 0}deg)`,
+  });
   return (
-    <CardWrapper {...restProps}>
-        {children && <CardContent>{children}</CardContent>}
-        <CardTitle>{title}</CardTitle>
+    <CardWrapper
+      onMouseOver={() => {
+        onMouseOver && onMouseOver();
+        setHover(true);
+      }}
+      onMouseLeave={() => {
+        onMouseOver && onMouseLeave();
+        setHover(false);
+      }}
+    >
+      <CardContent style={{ transform }}>
+        {children}
+        <CardTitle>{item.title || item.name}</CardTitle>
+      </CardContent>
+      <ShadowWrap shadowIdx={2} isHovered={isHovered} color={colors.lightblue} />
+      <ShadowWrap shadowIdx={1} isHovered={isHovered} color={colors.magenta} />
+      <ShadowWrap shadowIdx={0} isHovered={isHovered} color={colors.orange} />
     </CardWrapper>
   );
 };
 
-
 export default Card;
+
+Card.PropTypes = {
+  item: PropTypes.object.isRequired,
+};

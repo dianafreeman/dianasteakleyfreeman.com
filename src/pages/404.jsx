@@ -5,8 +5,8 @@ import React from 'react';
 import { graphql, Link } from 'gatsby';
 import tw from 'tailwind.macro';
 import styled from 'styled-components';
-import PageLayout from '../components/Layouts/PageLayout';
-import { BigTitle } from '../components/Titles';
+import Layout from '../components/Layout/Layout';
+import { BigTitle } from '../components/Type/Titles';
 
 const Row = styled.div`
   display: flex;
@@ -17,12 +17,13 @@ const Row = styled.div`
 `;
 
 const Text = styled.p`
-  ${tw`text-xl text-white`}
+  font-size: 1.5em;
+  color: white;
 `;
 
 const ErrorPage = () => {
   return (
-    <PageLayout>
+    <Layout>
       <Row>
         <BigTitle>Well this is awkward.</BigTitle>
       </Row>
@@ -31,7 +32,7 @@ const ErrorPage = () => {
           Something went wrong. Might I direct you back to the <Link to="/">home page</Link>?
         </Text>
       </Row>
-    </PageLayout>
+    </Layout>
   );
 };
 

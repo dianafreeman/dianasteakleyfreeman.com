@@ -3,44 +3,73 @@ jobs:
   build:
     docker:
       - image: node:10
-    working_directory: ~/webbuild_hnm
+    working_directory: ~/web/build
     steps:
       - checkout
-      - run: apk update && apk add git
+      - restore_cache:
+          keys:
+            - node-deps-{{ checksum "yarn.lock" }}
+            - node-deps-
       - run:
           name: Install Dependencies
-          command: yarn install --frozen-lockfile
+          command: yarn install --loglevel=error
+      - save_cache:
+          key: node-deps-{{ checksum yarn.lock }}
+          paths:
+            - ./node_modules
       - run:
           name: Build Static
           command: yarn run build
 
   test:
+    parallelism: 2
     docker:
       - image: node:10
-    working_directory: ~/webtest
+    working_directory: ~/web/test
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - node-deps-{{ checksum "yarn.lock" }}
+            - node-deps-
+      - run:
+          name: Install Dependencies
+          command: yarn install --loglevel=error
       - run:
           name: Run Unit Tests
           command: yarn run test:unit
       - run:
           name: Run Formatting Tests Tests
           command: yarn run test:format
-  test-e2e:
+  test-e2e: #assumes build has already happened. for now...
+    parallelism: 2
     docker:
-      - image: cypress/base:8
-        environment:
+      - image: cypress/base:10
+    working_directory: ~/web/build
+    environment:
           ## this enables colors in the output
           TERM: xterm
+          CIRCLE_WORKING_DIRECTORY: ~/web
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - public-dir-{{ .Branch }}
+            - public-dir-
+      - run:
+          name: Install Dependencies
+          command: yarn install --loglevel=error
+      - save_cache:
+          key: public-dir-{{ .Branch }}
+          paths:
+            - ./public
       - run:
           name: Run End To End test
           command: test:e2e:ci
 
   deploy:
     docker:
-      - image: circleci/node
+      - image: circleci/node:10
     environment:
       NETLIFY_SITE_ID: 7b5f4c1a-c979-4652-aacf-05076bfa2989
       NETLIFY_ACCESS_TOKEN: a6061c1d46a3356fb1307d13a7b49e84716936ea891f1e0398638991c2d6cd53
@@ -56,9 +85,8 @@ workflows:
   build-test-deploy:
     jobs:
       - test
-      - test-e2e:
-          requires:
-            - test
+      - test-e2e
       - deploy:
           requires:
+            - test
             - test-e2e
