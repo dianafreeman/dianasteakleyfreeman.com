@@ -1,8 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PageLayout should match snapshot 1`] = `
+.c0 {
+  padding: 0px 5vw;
+  width: 100%;
+  height: 100%;
+}
+
 <main
-  className=""
+  className="c0"
   id="primary"
 />
 `;
