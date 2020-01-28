@@ -55,11 +55,6 @@
     "styled-components": "^4.3.2",
     "tailwindcss": "^0.7.4",
     "typed.js": "^2.0.10",
-    "typeface-cantata-one": "^0.0.72",
-    "typeface-cooper-hewitt": "0.0.44",
-    "typeface-open-sans": "0.0.75",
-    "typeface-oswald": "0.0.75",
-    "typeface-raleway": "0.0.75",
     "typeface-space-mono": "0.0.71"
   },
   "devDependencies": {
