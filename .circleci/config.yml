@@ -3,23 +3,30 @@ jobs:
   build:
     docker:
       - image: node:10
-    working_directory: ~/webbuild_hnm
+    working_directory: ~/web/build
     steps:
       - checkout
-      - run: apk update && apk add git
       - run:
           name: Install Dependencies
-          command: yarn install --frozen-lockfile
+          command: yarn install --log-level=error
+      - save_cache:
+          key: node-deps-{{ checksum yarn.lock }}
+          paths:
+            - ./node_modules
       - run:
           name: Build Static
           command: yarn run build
 
   test:
+    parallelism: 2
     docker:
       - image: node:10
-    working_directory: ~/webtest
+    working_directory: ~/web/test
     steps:
       - checkout
+      - run:
+          name: Install Dependencies
+          command: yarn install --log-level=error
       - run:
           name: Run Unit Tests
           command: yarn run test:unit
@@ -55,10 +62,12 @@ workflows:
   version: 2
   build-test-deploy:
     jobs:
+      - build
       - test
       - test-e2e:
           requires:
-            - test
+            - build
       - deploy:
           requires:
+            - build
             - test-e2e

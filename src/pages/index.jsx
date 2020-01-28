@@ -13,7 +13,6 @@ export const query = graphql`
       edges {
         node {
           path
-
         }
       }
     }
@@ -26,7 +25,7 @@ const Index = ({ data }) => (
     {/* {routes.map((r, idx) => (
       <Card dest={r.destination} title={r.name} index={idx} key={`card-${idx}`} />
     ))} */}
-    <CardGrid items={routes}/>
+    <CardGrid items={routes} />
   </PageLayout>
 );
 export default Index;
