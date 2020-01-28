@@ -6,12 +6,10 @@ import tw from 'tailwind.macro';
 import { useSpring, animated } from 'react-spring';
 
 const CardWrapper = styled.div`
-  ${tw`relative center inline-flex bg-card`};
-  min-height: 150px;
-  min-width: 50%;
-  @media screen and (min-width: ${props => props.theme.screens.md}) {
-    min-width: 25%;
-  }
+  ${tw`relative center bg-card`};
+  min-height: 200px;
+  min-width: calc(50% - 4vw);
+  margin: 10px;
 `;
 
 const CardContent = styled.div`

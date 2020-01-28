@@ -6,6 +6,7 @@ import Card from '../components/Card';
 import routes from '../config/web/routes';
 import { BigTitle } from '../components/Titles';
 import CardGrid from '../components/CardGrid/CardGrid';
+import { useEffect } from 'react';
 
 export const query = graphql`
   query IndexQuery {
@@ -19,13 +20,14 @@ export const query = graphql`
   }
 `;
 
-const Index = ({ data }) => (
-  <PageLayout>
-    <BigTitle>Diana M Steakley Freeman</BigTitle>
-    {/* {routes.map((r, idx) => (
-      <Card dest={r.destination} title={r.name} index={idx} key={`card-${idx}`} />
-    ))} */}
-    <CardGrid items={routes} />
-  </PageLayout>
-);
+const Index = ({ data }) => {
+  return (
+    <PageLayout>
+      <div style={{ paddingTop: '2vh' }}>
+        <BigTitle>Hi! 👋 I'm Diana.</BigTitle>
+        <CardGrid items={routes} />
+      </div>
+    </PageLayout>
+  );
+};
 export default Index;

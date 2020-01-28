@@ -7,7 +7,11 @@ import GlobalStyle from './GlobalStyle';
 import { config, schemaOrgWebPage, breadcrumb } from '../../config/web/site';
 import theme from '../../config/theme';
 
-const PrimaryView = styled.main``;
+const PrimaryView = styled.main`
+  padding: 0px 5vw;
+  width: 100%;
+  height: 100%;
+`;
 const PageLayout = props => {
   const { pageTitle, children, backgroundColor = 'red', contentDescription } = props;
   const title = pageTitle || config.siteTitle;

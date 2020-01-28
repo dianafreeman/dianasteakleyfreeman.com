@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-// import 'typeface-open-sans';
 
 const GlobalStyle = createGlobalStyle`*, *:before, *:after {
   box-sizing: border-box;
@@ -27,11 +26,14 @@ body {
   background-color: unset;
   font-size: 22px;
 }
-h1, h2, h3, h4, h5, h6{
-  font-weight: 400;
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Open Sans', sans-serif;
 }
 
-p, span, a {
+
+#root p, #root span, #root a {
+  font-family: 'Open Sans Condensed', sans-serif;
   text-decoration: none;
   font-size: 5vw;
 }`;

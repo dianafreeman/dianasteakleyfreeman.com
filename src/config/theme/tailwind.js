@@ -118,7 +118,6 @@ module.exports = {
       'Droid Sans',
       'Helvetica Neue',
       'sans-serif',
-      'Open Sans',
     ],
     serif: [
       'Constantia',
@@ -131,7 +130,6 @@ module.exports = {
       'Liberation Serif',
       'Georgia',
       'serif',
-      'Prata',
     ],
     mono: ['Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
   },
