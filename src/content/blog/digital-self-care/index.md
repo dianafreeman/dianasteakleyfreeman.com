@@ -4,6 +4,7 @@ date: "2019-03-31"
 title: "Digital Self-Care in the era of #InsertCrisisHere"
 slug: digital-self-care
 ---
+
 *Note: this piece was originally published on the PsyberGuide Medium. You can read it* [*here*](https://medium.com/psyberguide/digital-self-care-in-the-era-of-insertcrisishere-a49d661b9d11)*.*
 
 We have become accustomed to reading the latest headlines from a newsfeed.

@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import Img from 'gatsby-image';
 import { graphql, StaticQuery } from 'gatsby';
 import styled from 'styled-components';
-import tw from 'tailwind.macro';
 import FastAverageColor from 'fast-average-color';
 import { ParallaxLayer, Parallax } from 'react-spring/renderprops-addons.cjs';
 import Layout from '../components/Layouts/Layout';
