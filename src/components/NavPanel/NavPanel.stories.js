@@ -1,11 +1,13 @@
-import React from 'react';
-// import { action } from '@storybook/addon-actions';
+import React, { useContext } from 'react';
 import NavPanel from '.';
-// import theme from '../../config/theme'
+import { StoreContext } from '../../stores';
+import Layout from '../Layout/Layout';
 
-export const whenOpen = () => (
-   <NavPanel isOpen={true} />
-);
+export const whenOpen = () => {
+  const store = useContext(StoreContext);
+  store.navIsOpen = true
+  return <Layout store={store}><NavPanel store={store} /></Layout>;
+};
 
 export default {
   title: 'NavPanel',

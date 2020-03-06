@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import tw from 'tailwind.macro';
 
 export const Title = styled.h1`
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);

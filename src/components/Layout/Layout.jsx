@@ -1,57 +1,48 @@
 /* eslint-disable no-return-assign */
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { animated, useSpring } from 'react-spring';
 import GlobalStyle from '../GlobalStyle/GlobalStyle';
+import theme from '../../config/theme';
+import Masthead from '../Masthead';
 import NavPanel from '../NavPanel';
-import NavToggler from '../NavToggler';
-import { data as config } from '../../config/web/data';
-import Provider from '../Context';
+import StoreContext from '../../stores'
 
 const AniViewWrap = animated(styled.div`
   width: 100vw;
   min-height: 100vh;
   background-color: ${props => props.theme.color.black};
   color: ${props => props.theme.color.white};
-  padding: 2em;
+  padding: 1em;
+  padding-top: 0;
   display: block;
   position: relative;
   z-index: 0;
 `);
 
-const ViewAnimator = ({ navIsOpen, children }) => {
-  const { x, rks } = useSpring({
-    x: navIsOpen ? 25 : 0,
-    rks: navIsOpen ? [45, 10, 1.1] : [0, 0, 1],
-  });
-  return (
-    <animated.div style={{ transform: x.interpolate(x => `translate3d(-${x}vw,0,0)`) }}>
-      {/* <animated.div
-        style={{
-          transform: rks.interpolate((r,k,s) => `rotateY(-${r}deg) skew(0, -${k}deg) scale3d(${s}, 1, 1)`),
-          transformOrigin: '0 -1em'
-        }}
-      > */}
-      {children}
-      {/* </animated.div> */}
-    </animated.div>
-  );
-};
+const Layout = ({children, store = useContext(StoreContext), ...rest}) => {
 
-const Layout = props => {
-  const { pageTitle, children, backgroundColor = 'red', contentDescription } = props;
-  const [navOpen, set] = useState(false);
+  const { w } = useSpring({
+    w: store.navIsOpen ? 30 : 0,
+  });
+
+  const MaybeThemeProvider = ({ children, theme }) =>
+    process.env.NODE_ENV === 'storybook' ? (
+      <>{children}</>
+    ) : (
+      <ThemeProvider theme={theme}>{children}</ThemeProvider>
+    );
   return (
-    <Provider value="theme">
-      <GlobalStyle theme={props.theme} />
-      <NavToggler onClick={() => set(!navOpen)} isOpen={navOpen} />
-      <NavPanel isOpen={navOpen} />
-      <AniViewWrap id="primary">
-        <ViewAnimator navIsOpen={navOpen}>{children}</ViewAnimator>
+    <MaybeThemeProvider theme={theme}>
+      <GlobalStyle />
+      <AniViewWrap id="primary" style={{ transform: w.interpolate(width => `translateX(-${width}vw)`) }}>
+        <Masthead isOpen={store.navIsOpen} onNavClick={store.toggleNavOpen} />
+        {children}
       </AniViewWrap>
-    </Provider>
+      <NavPanel isOpen={store.navIsOpen} wrapperWidth={w.interpolate(width => `${width}vw`) }/>
+    </MaybeThemeProvider>
   );
 };
 export default Layout;

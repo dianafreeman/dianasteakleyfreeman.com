@@ -1,6 +1,6 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import { smallItem } from '../../../.storybook/decorate'
+import { smallItem } from '../../../.storybook/decorate';
 import Card from '.';
 
 const ITEM = {
@@ -9,11 +9,13 @@ const ITEM = {
   destination: '/.bio',
 };
 
-export const byDefault = () => (
-    <Card item={ITEM} onClick={action('You clicked')}/>
-);
+export const byDefault = () => {
+  return (
+      <Card item={ITEM} onClick={action('You clicked')} />
+  );
+};
 export default {
   title: 'Card',
   component: Card,
-  decorators: [smallItem]
+  decorators: [smallItem],
 };

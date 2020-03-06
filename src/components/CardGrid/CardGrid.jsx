@@ -1,10 +1,10 @@
 /* eslint-disable react/require-default-props */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { useTrail, useTransition, animated } from 'react-spring';
 import styled from 'styled-components';
 import Card from '../Card';
-import { default as DATA } from '../../config/__fixtures__/cardGridData';
+import { default as DATA } from './data.json'
 
 const Wrapper = styled.div`
   display: flex;
@@ -12,7 +12,7 @@ const Wrapper = styled.div`
   flex-flow: row wrap;
 `;
 
-const CardGrid = ({ items = DATA }) => {
+const CardGrid = ({ items = DATA}) => {
   const config = { mass: 5, tension: 2000, friction: 200 };
   const trail = useTrail(items.length, {
     config,
@@ -25,17 +25,11 @@ const CardGrid = ({ items = DATA }) => {
       {trail.map((props, idx) => {
         return (
           <Card
-            destination={items[idx].path || items[idx].destination}
+            listIsEven={items.length % 2 == 0}
+            destination={items[idx].path}
             key={`${items[idx].id}-d`}
             springProps={props}
-            // anyIsHovered={anyIsHovered}
-            // onMouseOver={() => setanyIsHovered(true)}
-            // onMouseLeave={() => setanyIsHovered(false)}
-            item={items[idx].frontmatter ? items[idx].frontmatter : items[idx]}
-            title={items[idx].frontmatter ? items[idx].frontmatter.title : items[idx].name}
-            destination={
-              items[idx].frontmatter ? items[idx].frontmatter.path : items[idx].destination
-            }
+            item={items[idx]}
           />
         );
       })}

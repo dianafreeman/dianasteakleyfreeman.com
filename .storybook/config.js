@@ -25,6 +25,6 @@ addParameters({
     }
 })
 
-addDecorator((storyFn, context) => withConsole()(storyFn)(context));
+// addDecorator((storyFn, context) => withConsole()(storyFn)(context));
 addDecorator(Theme)
 addDecorator(withA11y)

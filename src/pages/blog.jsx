@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import { Parallax } from 'react-spring/renderprops-addons.cjs';
-import Layout from '../components/Layout/Layout';
+import Layout from '../components/Layout';
+import { MainTitle, ContentWrap, ContentCol } from '../components/Layout/elements';
 import CardGrid from '../components/CardGrid';
 
 export const query = graphql`
@@ -24,10 +25,15 @@ export const query = graphql`
 `;
 
 const BlogPage = ({ data }) => {
-  const posts = data.allMarkdownRemark.edges.map( p => p.node)
+  const posts = data.allMarkdownRemark.edges.map(p => p.node);
   return (
     <Layout>
-      <CardGrid items={posts} />
+      <ContentWrap>
+        <ContentCol>
+          <MainTitle>Blog</MainTitle>
+        </ContentCol>
+        <CardGrid items={posts} />
+      </ContentWrap>
     </Layout>
   );
 };

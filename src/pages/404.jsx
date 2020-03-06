@@ -3,7 +3,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { graphql, Link } from 'gatsby';
-import tw from 'tailwind.macro';
 import styled from 'styled-components';
 import Layout from '../components/Layout/Layout';
 import { BigTitle } from '../components/Type/Titles';

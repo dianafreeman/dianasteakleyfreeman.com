@@ -1,42 +1,76 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { useSpring, animated } from 'react-spring';
-import NavItemOrList from '../NavItemOrList'
+import NavItemOrList from '../NavItemOrList';
+import { StoreContext } from '../../stores';
 
-const Wrapper = styled.div`
+const Wrapper = animated(styled.div`
   position: absolute;
-  height: 100vh;
-  top: 0;
   right: 0;
-  text-align: right;
-  color: white;
-  z-index: ${props => props.isOpen ? '3' : '-1'};
-  ${props => !props.isOpen && `width: 0px;`}
-`;
-
-const Content = animated(styled.div`
-  padding: 2em;
-  height: 100%;
-  font-weight: 600;
-  font-family: Open Sans, sans-serif;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #d5d5d5;
 `);
 
-const NavPanel = ({ children, isOpen, onToggleClick }) => {
-  const { opacity, width } = useSpring({
-    opacity: isOpen ? 1 : 0,
+const Content = animated(styled.div`
+  text-align: right;
+  position: absolute;
+  padding: 0 0.5em;
+  margin: 0.5em;
+  top: 0;
+  right: 0;
+  color: #393939;
+  font-weight: 600;
+  font-family: Open Sans, sans-serif;
+  display: flex;
+  flex-flow: column;
+`);
+
+const NavPanel = ({ wrapperWidth, store = useContext(StoreContext) }) => {
+  const { opacity } = useSpring({
+    opacity: store.navIsOpen ? 1 : 0,
   });
+
+
+  const headings = [
+    {
+      title: 'Projects',
+      dest: '/#heading-projects',
+    },
+    {
+      title: 'Bio',
+      dest: '/#heading-bio',
+    },
+    {
+      title: 'Writing',
+      dest: '/#heading-writing',
+    },
+    {
+      title: 'Science',
+      dest: '/#heading-science',
+    },
+  ];
   return (
-    <Wrapper isOpen={isOpen}>
-      <Content style={{ opacity }} >
-        <NavItemOrList name="What's on this page?" >
-            <NavItemOrList name={'Projects'} />
-            <NavItemOrList name={'Bio'} />
-            <NavItemOrList name={'Blog'} />
-            <NavItemOrList name={'Contact'} />
-          </NavItemOrList>
-        <NavItemOrList name="name 2"/>
-        <NavItemOrList name="name 3"/>
+    <Wrapper isOpen={store.navIsOpen} style={{ width: wrapperWidth }}>
+      <Content
+        style={{
+          opacity,
+          width: store.navIsOpen ? '100%' : '0px',
+          zIndex: store.navIsOpen ? '99' : '-99',
+          overflow: 'hidden',
+        }}
+      >
+         <NavItemOrList style={{ fontWeight: 900 }} name="What's on this page?">
+          {headings.map((h, idx) => (
+            <NavItemOrList key={`on-this-page-${idx}`} name={h.title} />
+          ))}
+        </NavItemOrList>
+        <NavItemOrList style={{ fontWeight: 900 }} name="Recent Posts" />
+        <NavItemOrList style={{ fontWeight: 900 }} name="Customize">
+          <button>thing</button>
+        </NavItemOrList>
       </Content>
     </Wrapper>
   );

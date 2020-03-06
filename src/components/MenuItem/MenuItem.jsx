@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
-import tw from 'tailwind.macro';
 import { useSpring, useChain, config, animated, useTrail } from 'react-spring';
 import { useMeasure, usePrevious } from '../../utils';
 

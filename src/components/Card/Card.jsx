@@ -1,12 +1,12 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { observer } from 'mobx-react';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
-import tw from 'tailwind.macro';
 import { useSpring, animated } from 'react-spring';
-import colors from '../../config/theme/color'
+import { StoreContext } from '../../stores';
 
-const CardWrapper = animated(styled.div`
+const CardWrapper = animated(styled(Link)`
   min-height: 200px;
   min-width: 200px;
   display: flex;
@@ -14,7 +14,7 @@ const CardWrapper = animated(styled.div`
   flex-basis: 100%;
   text-align: left;
   @media screen and (min-width: ${props => props.theme.screen.sm}) {
-    flex-basis: 50%;
+    flex-basis: ${props => (props.listIsEven ? '50%' : '100%')};
   }
 `);
 
@@ -34,28 +34,30 @@ const ShadowWrapDiv = styled(CardContent)`
 `;
 
 const CardTitle = styled.h1`
-  color: ${props => props.theme.color.black};
+  color: ${props => props.color};
   width: 100%;
   margin-left: 0.5em;
   position: absolute;
   bottom: 0px;
-  font-family: ${props => props.theme.font.heading};
+  white-space: wrap;
 `;
 
-const ShadowWrap = ({ isHovered, shadowIdx, color }) => {
+const ShadowWrap = ({ isHovered, shadowIdx, color}) => {
   const DEGREES = ['0', '-3', '-6'];
   const { transform } = useSpring({
     transform: `rotate(${isHovered ? [DEGREES[shadowIdx]] : 0}deg)`,
   });
   return <ShadowWrapDiv style={{ transform }} color={color} />;
 };
-const Card = ({ item, destination, onClick, onMouseOver, onMouseLeave, children}) => {
+
+const Card = ({ item, onMouseOver, onMouseLeave, children,  store = useContext(StoreContext), ...restProps }) => {
   const [isHovered, setHover] = useState(false);
   const { transform } = useSpring({
     transform: `rotate(${isHovered ? 3 : 0}deg)`,
   });
   return (
     <CardWrapper
+      to={item.destination}
       onMouseOver={() => {
         onMouseOver && onMouseOver();
         setHover(true);
@@ -69,14 +71,14 @@ const Card = ({ item, destination, onClick, onMouseOver, onMouseLeave, children}
         {children}
         <CardTitle>{item.title || item.name}</CardTitle>
       </CardContent>
-      <ShadowWrap shadowIdx={2} isHovered={isHovered} color={colors.lightblue} />
-      <ShadowWrap shadowIdx={1} isHovered={isHovered} color={colors.magenta} />
-      <ShadowWrap shadowIdx={0} isHovered={isHovered} color={colors.orange} />
+      <ShadowWrap shadowIdx={2} isHovered={isHovered} color={store.theme.color.lightblue} />
+      <ShadowWrap shadowIdx={1} isHovered={isHovered} color={store.theme.color.magenta} />
+      <ShadowWrap shadowIdx={0} isHovered={isHovered} color={store.theme.color.orange} />
     </CardWrapper>
   );
 };
 
-export default Card;
+export default observer(Card);
 
 Card.PropTypes = {
   item: PropTypes.object.isRequired,

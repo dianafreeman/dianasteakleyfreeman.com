@@ -3,15 +3,14 @@ import brand from './_brand'
 import fontSize from './_fontSize'
 import screen from './_screen'
 import icon from './_icon'
-import font from './_font'
+import fontFamily from './_fontFamily'
 
 export default {
   color,
-  brand,
-  fontSize,
   screen,
   icon,
-  font,
+  fontSize,
+  fontFamily,
   shadow: {
     default: '0 2px 4px 0 rgba(0,0,0,0.10)',
     md: '0 4px 8px 0 rgba(0,0,0,0.12), 0 2px 4px 0 rgba(0,0,0,0.08)',
