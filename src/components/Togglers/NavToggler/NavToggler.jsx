@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { useSpring, animated } from 'react-spring';
 
 const Line = animated(styled.line`
-  stroke: ${props => props.theme.color.white};
+  stroke: ${props => props.theme.color.light};
   stroke-width: 3;
 `);
 

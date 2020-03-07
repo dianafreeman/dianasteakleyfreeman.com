@@ -14,7 +14,7 @@ const Title = styled.a`
 const Content = animated(styled.div`
   will-change: transform, opacity, height;
   margin-left: 6px;
-  color: ${props => props.theme.color.black};
+  color: ${props => props.theme.color.dark};
   overflow: hidden;
 `);
 
@@ -32,7 +32,7 @@ const Item = animated(styled.div`
 
 const IconBtn = styled.i`
   padding: 0.5em;
-  color: ${props => props.theme.color.white} !important;
+  color: ${props => props.theme.color.light} !important;
 `;
 
 const MenuItem = ({ children, style, name, defaultOpen }) => {

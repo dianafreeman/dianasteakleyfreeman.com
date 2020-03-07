@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { useSpring, animated } from 'react-spring';
 
 const Line = animated(styled.line`
-  stroke: ${props => props.theme.color.black};
+  stroke: ${props => props.theme.color.dark};
   stroke-width: 3;
 `);
 
@@ -15,15 +15,15 @@ const TogglerButton = styled.div`
   font-family: inherit;
   width: 30px;
   margin: 5px;
-  height: 30px;
   z-index: 999;
+  display: inline-flex;
 `;
 
-const TogglerLine = ({ index, isOpen }) => {
+const TogglerLine = ({ index, isExpanded }) => {
   const x1s = [50, 0]; // [xOfFirstLine, xOfSecondLine]
-  const y1s = isOpen ? [50, 50] : [0, 50]; // [yOfFirstLine, yOfSecondLine]
+  const y1s = isExpanded ? [50, 50] : [0, 50]; // [yOfFirstLine, yOfSecondLine]
   const x2s = [50, 100]; // etc
-  const y2s = isOpen ? [50, 50] : [100, 50]; // [yOfFirstLine, yOfSecondLine]
+  const y2s = isExpanded ? [50, 50] : [100, 50]; // [yOfFirstLine, yOfSecondLine]
 
   const { x1, y1, x2, y2 } = useSpring({
     x1: x1s[index],
@@ -34,12 +34,12 @@ const TogglerLine = ({ index, isOpen }) => {
   return <Line x1={x1} y1={y1} x2={x2} y2={y2} index={index} />;
 };
 
-const ExpandToggler = ({ isOpen, setOpen , ...rest}) => {
+const ExpandToggler = ({ isExpanded, onClick , ...rest}) => {
   return (
-    <TogglerButton onClick={setOpen} {...rest}>
+    <TogglerButton onClick={onClick} {...rest}>
       <svg viewBox="0 0 100 100">
-        <TogglerLine index={0} isOpen={isOpen} />
-        <TogglerLine index={1} isOpen={isOpen} />
+        <TogglerLine index={0} isExpanded={isExpanded} />
+        <TogglerLine index={1} isExpanded={isExpanded} />
       </svg>
     </TogglerButton>
   );

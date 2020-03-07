@@ -5,6 +5,7 @@ import routes from '../config/web/routes';
 import CardGrid from '../components/CardGrid/CardGrid';
 import { MainTitle, ContentWrap, ContentCol } from '../components/Layout/elements';
 import Masthead from '../components/Masthead';
+import { StoreProvider } from '../stores';
 
 export const query = graphql`
   query IndexQuery {
@@ -20,16 +21,18 @@ export const query = graphql`
 
 const Index = ({ data }) => {
   return (
-    <Layout>
-      <ContentWrap>
-        <ContentCol>
-          <MainTitle>
-            Hi! 👋 <br /> I'm Diana.
-          </MainTitle>
-        </ContentCol>
-        <CardGrid items={routes} />
-      </ContentWrap>
-    </Layout>
+    <StoreProvider>
+      <Layout>
+        <ContentWrap>
+          <ContentCol>
+            <MainTitle>
+              Hi! 👋 <br /> I'm Diana.
+            </MainTitle>
+          </ContentCol>
+          <CardGrid items={routes} />
+        </ContentWrap>
+      </Layout>
+    </StoreProvider>
   );
 };
 export default Index;

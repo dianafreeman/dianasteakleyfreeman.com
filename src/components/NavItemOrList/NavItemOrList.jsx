@@ -1,28 +1,19 @@
 /* eslint-disable react/prop-types */
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
+import { inject, observer } from 'mobx-react';
 import styled from 'styled-components';
 import { useSpring, animated } from 'react-spring';
 import { Link } from 'gatsby';
 import { useMeasure, usePrevious } from '../../utils';
-import { ExpandToggler } from '../Buttons/index';
-import theme from '../../config/theme'
-import { StoreContext } from '../../stores';
+import { ExpandToggler } from '../Togglers/index';
+import theme from '../../config/theme';
 
-const Wrapper = styled.div`
-  ${props => `
-  margin: 0.4em 0;
+const WrapperWithAfter = styled.div`
   position: relative;
-  &::after{
-    content: '';
-    position: absolute;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(to right, ${props.theme.color.lightblue} 0%, ${props.theme.color.lightblue} 33%, ${props.theme.color.magenta} 33%, ${props.theme.color.magenta} 66%, ${props.theme.color.orange} 66%, ${props.theme.color.orange} 100%);
-  `}
-`;
+  display: flex;
+  justify-content: ${props => (props.haschildren ? 'space-between' : 'end')};
+  text-align: right;
+}`;
 /*
 orange
 magenta
@@ -30,7 +21,7 @@ lightblue
 */
 
 const Title = styled(Link)`
-  font-size: 1.5em;
+  font-size: 20px;
   font-family: ${props => props.font};
   text-decoration: none;
   font-weight: ${props => (props.haschildren ? '800' : '400')};
@@ -39,10 +30,28 @@ const Title = styled(Link)`
   span {
     padding-left: ${props => (props.haschildren ? '0px' : '1.5ch')};
   }
+  ${props =>
+    props.haschildren &&
+    `&::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(to right,
+      ${theme.color.lightblue} 0%,
+      ${theme.color.lightblue} 33%,
+      ${theme.color.magenta} 33%,
+      ${theme.color.magenta} 66%,
+      ${theme.color.orange} 66%,
+      ${theme.color.orange} 100%);
+      `}
 `;
 
 const Content = animated(styled.div`
-  color: ${props => props.theme.color.black};
+  color: ${props => props.theme.color.dark};
   overflow: hidden;
 `);
 
@@ -58,63 +67,57 @@ const Item = animated(styled.div`
   }
 `);
 
-const Toggler = styled(ExpandToggler)`
-  float: left;
-`;
-
 const NavItemOrList = ({
   style,
   children,
   name,
   destination,
   defaultOpen = false,
-  ...props
+  store,
+  ...restProps
 }) => {
-
+  const [isExpanded, setExpanded] = useState(true);
   const [isHovered, setHovered] = useState(true);
-  const store = useContext(StoreContext)
 
-  const { background } = useSpring({
-    background: isHovered
-      ? `linear-gradient(to right,
-       ${theme.color.lightblue} 0%,
-       ${theme.color.lightblue} 33%,
-       ${theme.color.magenta} 33%,
-       ${theme.color.magenta} 66%,
-       ${theme.color.orange} 66%,
-       ${theme.color.orange} 100%)`
-      : 'none',
+  const { afterBgColor, afterHeight } = useSpring({
+    afterBgColor: isHovered ? `` : 'gray',
+    afterHeight: isHovered ? '1px' : '0px',
   });
 
-  const previous = usePrevious(store.navIsOpen);
+  const previous = usePrevious(isExpanded);
   const [bind, { height: viewHeight }] = useMeasure();
   const { height, opacity, transform } = useSpring({
     from: { height: 0, opacity: 0, transform: 'translate3d(20px,0,0)' },
     to: {
-      height: store.navIsOpen ? viewHeight + 30 : 0,
-      opacity: store.navIsOpen ? 1 : 0,
-      transform: `translate3d(${store.navIsOpen ? 0 : 20}px,0,0)`,
+      height: isExpanded ? viewHeight + 30 : 0,
+      opacity: isExpanded ? 1 : 0,
+      transform: `translate3d(${isExpanded ? 0 : 20}px,0,0)`,
     },
   });
   return (
     <>
-      <Wrapper haschildren={!!children} style={{ background }}>
-        <Title font={theme.fontFamily.heading} to={destination || '/'} style={style} haschildren={!!children}>
-          {children && (
-            <Toggler
-              isOpen={store.navIsOpen}
-              setOpen={() => store.toggleNavOpen()}
-              style={{ opacity: children ? 1 : 0.3 }}
-            />
-          )}
+      <WrapperWithAfter haschildren={!!children} afterBgColor={afterBgColor}>
+        {children && (
+          <ExpandToggler
+            isExpanded={isExpanded}
+            onClick={() => setExpanded(!isExpanded)}
+            style={{ opacity: children ? 1 : 0.3 }}
+          />
+        )}
+        <Title
+          font={theme.fontFamily.heading}
+          to={destination || '#'}
+          style={style}
+          haschildren={!!children}
+        >
           {name}
         </Title>
-      </Wrapper>
-      <Content style={{ opacity, height: store.navIsOpen && previous === store.navIsOpen ? 'auto' : height }}>
+      </WrapperWithAfter>
+      <Content style={{ opacity, height: isExpanded && previous === isExpanded ? 'auto' : height }}>
         <Item style={{ transform }} {...bind} children={children} />
       </Content>
     </>
   );
 };
 
-export default NavItemOrList;
+export default inject('store')(observer(NavItemOrList));

@@ -87,12 +87,12 @@ decorate(Store, {
   fontSizeType: computed,
   fontSize: computed,
 
-  setAnimatable: action,
-  toggleOpenDyslexic: action,
-  makeFontBigger: action,
-  makeFontSmaller: action,
-  resetFontSize: action,
-  toggleNavOpen: action,
+  setAnimatable: action.bound,
+  toggleOpenDyslexic: action.bound,
+  makeFontBigger: action.bound,
+  makeFontSmaller: action.bound,
+  resetFontSize: action.bound,
+  toggleNavOpen: action.bound,
 });
 
 export default Store;

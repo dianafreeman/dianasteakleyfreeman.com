@@ -1,9 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { inject, observer } from 'mobx-react';
 import { useSpring, animated } from 'react-spring';
 import NavItemOrList from '../NavItemOrList';
-import { StoreContext } from '../../stores';
+import ButtonGroup from '../ButtonGroup'
 
 const Wrapper = animated(styled.div`
   position: absolute;
@@ -28,28 +29,41 @@ const Content = animated(styled.div`
   flex-flow: column;
 `);
 
-const NavPanel = ({ wrapperWidth, store = useContext(StoreContext) }) => {
+const CustomizePanel = () => {
+
+  const fontOptions = ["Default", "OpenDyslexic" ];
+  const sizeOptions = ['+', ':', '-'];
+  const sizeCustomFlex = [2, 0, 2];
+
+  return (
+    <>
+    <ButtonGroup options={fontOptions} />
+    <ButtonGroup options={sizeOptions} customFlex={sizeCustomFlex} />
+    </>
+    );
+
+};
+const NavPanel = ({ wrapperWidth, store }) => {
   const { opacity } = useSpring({
     opacity: store.navIsOpen ? 1 : 0,
   });
 
-
   const headings = [
     {
       title: 'Projects',
-      dest: '/#heading-projects',
+      scrollTarget: '/#heading-projects',
     },
     {
       title: 'Bio',
-      dest: '/#heading-bio',
+      scrollTarget: '/#heading-bio',
     },
     {
       title: 'Writing',
-      dest: '/#heading-writing',
+      scrollTarget: '/#heading-writing',
     },
     {
       title: 'Science',
-      dest: '/#heading-science',
+      scrollTarget: '/#heading-science',
     },
   ];
   return (
@@ -62,18 +76,18 @@ const NavPanel = ({ wrapperWidth, store = useContext(StoreContext) }) => {
           overflow: 'hidden',
         }}
       >
-         <NavItemOrList style={{ fontWeight: 900 }} name="What's on this page?">
+        <NavItemOrList style={{ fontWeight: 900 }} name="What's on this page?">
           {headings.map((h, idx) => (
             <NavItemOrList key={`on-this-page-${idx}`} name={h.title} />
           ))}
         </NavItemOrList>
         <NavItemOrList style={{ fontWeight: 900 }} name="Recent Posts" />
         <NavItemOrList style={{ fontWeight: 900 }} name="Customize">
-          <button>thing</button>
+          <CustomizePanel />
         </NavItemOrList>
       </Content>
     </Wrapper>
   );
 };
 
-export default NavPanel;
+export default inject('store')(observer(NavPanel));

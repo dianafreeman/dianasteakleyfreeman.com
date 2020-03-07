@@ -1,10 +1,9 @@
-import React, { useState, useContext } from 'react';
-import { observer } from 'mobx-react';
+import React, { useState } from 'react';
+import { inject, observer } from 'mobx-react';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
 import { useSpring, animated } from 'react-spring';
-import { StoreContext } from '../../stores';
 
 const CardWrapper = animated(styled(Link)`
   min-height: 200px;
@@ -50,7 +49,7 @@ const ShadowWrap = ({ isHovered, shadowIdx, color}) => {
   return <ShadowWrapDiv style={{ transform }} color={color} />;
 };
 
-const Card = ({ item, onMouseOver, onMouseLeave, children,  store = useContext(StoreContext), ...restProps }) => {
+const Card = ({ item, onMouseOver, onMouseLeave, children, store , ...restProps }) => {
   const [isHovered, setHover] = useState(false);
   const { transform } = useSpring({
     transform: `rotate(${isHovered ? 3 : 0}deg)`,
@@ -78,7 +77,7 @@ const Card = ({ item, onMouseOver, onMouseLeave, children,  store = useContext(S
   );
 };
 
-export default observer(Card);
+export default inject('store')(observer(Card));
 
 Card.PropTypes = {
   item: PropTypes.object.isRequired,

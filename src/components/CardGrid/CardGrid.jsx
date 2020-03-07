@@ -1,6 +1,6 @@
 /* eslint-disable react/require-default-props */
 
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { useTrail, useTransition, animated } from 'react-spring';
 import styled from 'styled-components';
 import Card from '../Card';
