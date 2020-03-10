@@ -1,8 +1,8 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
-import theme from '../../src/config/theme';
 import GlobalStyle from '../../src/components/GlobalStyle/GlobalStyle';
-import { StoreProvider } from '../../src/stores'
+import { StoreProvider } from '../../src/stores';
+import theme from '../../src/config/theme';
 
 export const smallItem = story => (
   <div style={{ width: '50%', margin: '0 auto', paddingTop: '20vh', textAlign: 'center' }}>
@@ -12,14 +12,16 @@ export const smallItem = story => (
 
 export const withTheme = story => (
   <ThemeProvider theme={theme}>
-    <GlobalStyle />
+    <GlobalStyle fontFamily={theme.fontFamily} />
     {story()}
   </ThemeProvider>
 );
 
-export const withStore = story => (
-  <StoreProvider>
+export const withLightTheme = story => (
+  <ThemeProvider theme={theme}>
+    <GlobalStyle lightTheme fontFamily={theme.fontFamily} />
     {story()}
-  </StoreProvider>
-)
+  </ThemeProvider>
+);
 
+export const withStore = story => <StoreProvider>{story()}</StoreProvider>;

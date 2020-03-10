@@ -1,13 +1,13 @@
-import React from 'react'
-import { observable, decorate, computed, action} from 'mobx';
+import React from 'react';
+import { observable, decorate, computed, action } from 'mobx';
 import { default as THEME } from '../config/theme';
 
 class Store {
   // Observables
   // ---------------------------------------------------------------------------
-  theme = { ...THEME };
+  navIsOpen = false;
 
-  navIsOpen = true;
+  theme = THEME;
 
   openDyslexicOn = false;
 
@@ -15,23 +15,17 @@ class Store {
 
   fontSizeTypeString = 'base';
 
-  fontSizes = { ...this.theme.fontSize };
-
-  screens = { ...this.theme.screen };
-
   // Computed
   // ---------------------------------------------------------------------------
 
-  get fontFamily() {
-    return this.openDyslexicOn ? 'OpenDyslexic' : this.theme.fontFamily;
+  get activeFontFamily() {
+    return process.env.NODE_ENV === 'storybook' ? THEME.fontFamily : this.theme.fontFamily;
   }
 
-  get fontSize() {
-    return this.theme.fontSize[this.fontSizeType];
-  }
-
-  get fontSizeType() {
-    return this.fontSizeTypeString;
+  get activeFontSize() {
+    return process.env.NODE_ENV === 'storybook'
+      ? THEME.fontSize[this.fontSizeTypeString]
+      : this.theme.fontSize[this.fontSizeTypeString];
   }
 
   // Actions
@@ -83,9 +77,8 @@ decorate(Store, {
   fontSizeTypeString: observable,
   fontSizes: observable,
 
-  fontFamily: computed,
-  fontSizeType: computed,
-  fontSize: computed,
+  activeFontFamily: computed,
+  activeFontSize: computed,
 
   setAnimatable: action.bound,
   toggleOpenDyslexic: action.bound,
@@ -95,4 +88,4 @@ decorate(Store, {
   toggleNavOpen: action.bound,
 });
 
-export default Store;
+export default new Store();

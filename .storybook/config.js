@@ -1,8 +1,7 @@
 import { configure, addDecorator, addParameters } from '@storybook/react';
 import { withA11y } from "@storybook/addon-a11y";
 import { action } from "@storybook/addon-actions"
-import { withConsole } from '@storybook/addon-console';
-import { withTheme, withStore } from './decorate'
+import { withStore, withTheme } from './decorate'
 
 /* all files ending in *.stories.js */
 configure(require.context("../src", true, /\.stories\.js$/), module)
@@ -25,7 +24,6 @@ addParameters({
     }
 })
 
-// addDecorator((storyFn, context) => withConsole()(storyFn)(context));
-addDecorator(withTheme)
 addDecorator(withA11y)
+addDecorator(withTheme)
 addDecorator(withStore)

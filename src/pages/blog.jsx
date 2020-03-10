@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import { Parallax } from 'react-spring/renderprops-addons.cjs';
 import Layout from '../components/Layout';
-import { MainTitle, ContentWrap, ContentCol } from '../components/Layout/elements';
+import { MainTitle, ContentWrap, ContentCol } from '../components/Layout/styled';
 import CardGrid from '../components/CardGrid';
 
 export const query = graphql`

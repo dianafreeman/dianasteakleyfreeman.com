@@ -1,9 +1,9 @@
-import color from './_color'
-import brand from './_brand'
-import fontSize from './_fontSize'
-import screen from './_screen'
-import icon from './_icon'
-import fontFamily from './_fontFamily'
+import color from './_color';
+import brand from './_brand';
+import fontSize from './_fontSize';
+import screen from './_screen';
+import icon from './_icon';
+import fontFamily from './_fontFamily';
 
 export default {
   color,

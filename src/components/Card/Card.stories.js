@@ -1,6 +1,6 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import { smallItem } from '../../../.storybook/decorate';
+import { smallItem, withTheme } from '../../../.storybook/decorate';
 import Card from '.';
 
 const ITEM = {
@@ -17,5 +17,5 @@ export const byDefault = () => {
 export default {
   title: 'Card',
   component: Card,
-  decorators: [smallItem],
+  decorators: [smallItem, withTheme],
 };

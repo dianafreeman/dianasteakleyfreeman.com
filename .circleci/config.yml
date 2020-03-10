@@ -1,9 +1,18 @@
 version: 2
+commands:
+  static-build:
+    description: "Build Static Site"
+    steps:
+      - run:
+          name: Do Static Build
+          command: yarn build
+
+
 jobs:
   build:
     docker:
       - image: node:10
-    working_directory: ~/web/build
+    working_directory: ~/web
     steps:
       - checkout
       - restore_cache:
@@ -14,18 +23,18 @@ jobs:
           name: Install Dependencies
           command: yarn install --loglevel=error
       - save_cache:
-          key: node-deps-{{ checksum yarn.lock }}
+          key: node-deps-{{ checksum "yarn.lock" }}
           paths:
             - ./node_modules
       - run:
           name: Build Static
-          command: yarn run build
+          command: yarn build
 
   test:
     parallelism: 2
     docker:
       - image: node:10
-    working_directory: ~/web/test
+    working_directory: ~/test
     steps:
       - checkout
       - restore_cache:
@@ -36,16 +45,14 @@ jobs:
           name: Install Dependencies
           command: yarn install --loglevel=error
       - run:
-          name: Run Unit Tests
-          command: yarn run test:unit
-      - run:
-          name: Run Formatting Tests Tests
-          command: yarn run test:format
-  test-e2e: #assumes build has already happened. for now...
+          name: Run Tests
+          command: yarn test
+
+  test-e2e:
     parallelism: 2
     docker:
       - image: cypress/base:10
-    working_directory: ~/web/build
+    working_directory: ~/web/builds
     environment:
           ## this enables colors in the output
           TERM: xterm

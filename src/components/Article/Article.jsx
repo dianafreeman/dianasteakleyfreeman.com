@@ -1,59 +1,18 @@
 import React from 'react';
-import { Link } from 'gatsby';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import POST from './post.json'
+import { inject, observer } from 'mobx-react';
+import POST from './post.json';
+import { Image,
+  ArticleWrap,
+  Content,
+  Body,
+  MetaBox,
+  MetaContent,
+  MetaLabel,
+  Icon } from './styled'
 
-
-const Image = styled.img`
-  width: 100%;
-  margin: auto;
-  @media screen and (min-width: ${props => props.theme.screen.md}) {
-    float: right;
-    width: 45%;
-    margin: 0 1em;
-  }
-`;
-
-const ArticleWrap = styled.article`
-  padding: 1em;
-  width: inherit;
-  font-family: 'Open Sans', sans-serif;
-`;
-const Content = styled.div`
-  color: white;
-`;
-const Body = styled.div`
-  padding-top: 10px;
-`;
-
-const MetaBox = styled.div`
-border: 2px dashed white;
-padding: 0.5em;
-line-height: 1.5em;
-width: 100%;
-margin-bottom: 1em;
-@media screen and (min-width: ${props => props.theme.screen.md}){
-  width: 50%;
-  float: left;
-}
-`;
-
-const MetaContent = styled.small`
-  font-style: italic;
-`;
-
-const MetaLabel = styled.small`
-  font-weight: 600;
-  font-style: italic;
-`;
-const Icon = styled.span`
-  padding-right: 0.5em;
-`;
-
-const Article = ({ post = POST, title = 'A Title', ...restProps }) => {
+const Article = ({ post = POST, title = 'A Title',  store, ...restProps }) => {
   return (
-    <ArticleWrap >
+    <ArticleWrap {...restProps}>
       <Content>
         <Body>
           <MetaBox>
@@ -77,4 +36,4 @@ const Article = ({ post = POST, title = 'A Title', ...restProps }) => {
   );
 };
 
-export default Article;
+export default inject('store')(observer(Article));

@@ -1,7 +1,7 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 import ButtonGroup from '.';
-import { smallItem } from '../../../.storybook/decorate'
+import { smallItem, withLightTheme } from '../../../.storybook/decorate'
 
 
 export const fontToggle = () =>  {
@@ -12,7 +12,7 @@ export const fontToggle = () =>  {
 
 export const sizeToggle = () =>  {
   const options = ["+",":", "-"];
-  const customFlex = [2, 0, 2]
+  const customFlex = [2, 1, 2]
   return <ButtonGroup options={options} customFlex={customFlex} type={'fontSize'}/>
 }
 
@@ -20,5 +20,5 @@ export const sizeToggle = () =>  {
 export default {
   title: 'ButtonGroup',
   component: ButtonGroup,
-  decorators: [smallItem]
+  decorators: [smallItem, withLightTheme]
 };

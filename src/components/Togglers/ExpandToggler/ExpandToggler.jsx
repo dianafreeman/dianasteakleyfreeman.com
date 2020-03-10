@@ -1,23 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { useSpring, animated } from 'react-spring';
-
-const Line = animated(styled.line`
-  stroke: ${props => props.theme.color.dark};
-  stroke-width: 3;
-`);
-
-const TogglerButton = styled.div`
-  text-align: right;
-  background: none;
-  padding: unset;
-  font-family: inherit;
-  width: 30px;
-  margin: 5px;
-  z-index: 999;
-  display: inline-flex;
-`;
+import { useSpring } from 'react-spring';
+import { Line, TogglerButton } from './styled'
 
 const TogglerLine = ({ index, isExpanded }) => {
   const x1s = [50, 0]; // [xOfFirstLine, xOfSecondLine]

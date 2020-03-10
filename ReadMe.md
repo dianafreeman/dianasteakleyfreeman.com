@@ -1,5 +1,3 @@
-
-
 # dianasteakleyfreeman.com
 
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme) [![Netlify Status](https://api.netlify.com/api/v1/badges/7b5f4c1a-c979-4652-aacf-05076bfa2989/deploy-status)](https://app.netlify.com/sites/loving-sammet-d1bb4f/deploys)
@@ -16,7 +14,7 @@ yarn install
 
 ### Develop
 
-Run the following command to open the Gatsby/React/Node development environment. 
+Run the following command to open the Gatsby/React/Node development environment.
 
 ```bash
 $   yarn run dev
@@ -24,7 +22,7 @@ $   yarn run dev
 
 ### Build
 
-Run the following command to build the static site 
+Run the following command to build the static site
 
 ```bash
 $   yarn run build
@@ -46,24 +44,25 @@ $   yarn run deploy
 
 ## Platform & Tooling
 
-- GatsbyJS  - Static Site Generator
+- GatsbyJS - Static Site Generator
 - React Storybook - UI Component Dev Env
 - Cypress.io - Testing
 - TailwindCSS - Theming
-- Styled Components - CSS in JS 
+- Styled Components - CSS in JS
 
 - ESLint - Linting
 - Prettier - Formatting
 - CircleCI - CI/CD
 - Netlfiy - Static Site Deployment
 
-  
-
 ## Credits
 
-- [React Spring](https://github.com/drcmda/react-spring) 
+- [React Spring](https://github.com/drcmda/react-spring)
 - [TailwindCSS](https://tailwindcss.com/)
-- [Styled-Components](https://www.styled-components.com/) 
+- [Styled-Components](https://www.styled-components.com/)
 - [Typefaces](https://github.com/KyleAMathews/typefaces)
 - Inspiration: [LekoArts](https://www.lekoarts.de)
 
+## Notes
+
+- files in the static folder will not be processed by webpack -- they will be copied to the public folder untouched

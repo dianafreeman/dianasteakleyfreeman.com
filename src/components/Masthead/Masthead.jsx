@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   justify-content: end;
   border-bottom: 2px solid white;
 `;
-
+//isOpen={defaultNavOpen || store.navIsOpen} onNavClick={store.toggleNavOpen}
 const Masthead = ({ children, onNavClick, title, isOpen, ...rest }) => {
   return (
     <Wrapper {...rest}>

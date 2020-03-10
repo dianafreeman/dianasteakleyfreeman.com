@@ -1,13 +1,13 @@
 import React from 'react';
 import NavPanel from '.';
-import { StoreContext } from '../../stores';
-import Layout from '../Layout/Layout';
+import { withTheme, withStore } from '../../../.storybook/decorate';
 
 export const whenOpen = () => {
-  return <Layout><NavPanel /></Layout>;
+  return <NavPanel  isOpen={true}/>;
 };
 
 export default {
   title: 'NavPanel',
   component: NavPanel,
+  decorators: [withTheme, withStore]
 };

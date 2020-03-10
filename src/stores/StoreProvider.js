@@ -3,9 +3,7 @@ import { Provider } from 'mobx-react';
 import Store from './Store';
 
 const StoreProvider = ({ children }) => {
-  const store = new Store();
-
-  return <Provider store={store}>{children}</Provider>;
+  return <Provider store={Store}>{children}</Provider>;
 };
 
 export default StoreProvider;

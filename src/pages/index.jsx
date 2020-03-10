@@ -3,8 +3,7 @@ import { graphql } from 'gatsby';
 import Layout from '../components/Layout/Layout';
 import routes from '../config/web/routes';
 import CardGrid from '../components/CardGrid/CardGrid';
-import { MainTitle, ContentWrap, ContentCol } from '../components/Layout/elements';
-import Masthead from '../components/Masthead';
+import { MainTitle, ContentWrap } from '../components/Layout/styled';
 import { StoreProvider } from '../stores';
 
 export const query = graphql`
@@ -19,17 +18,19 @@ export const query = graphql`
   }
 `;
 
-const Index = ({ data }) => {
+const Index = () => {
   return (
     <StoreProvider>
       <Layout>
         <ContentWrap>
-          <ContentCol>
+          <div style={{ display: 'flex', flex: 1 }}>
             <MainTitle>
               Hi! 👋 <br /> I'm Diana.
             </MainTitle>
-          </ContentCol>
-          <CardGrid items={routes} />
+          </div>
+          <div style={{ display: 'flex', flex: 2 }}>
+            <CardGrid items={routes} />
+          </div>
         </ContentWrap>
       </Layout>
     </StoreProvider>

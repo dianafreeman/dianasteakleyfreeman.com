@@ -1,16 +1,16 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { render } from '@testing-library/react'
-import COMPONENT_NAME from '.';
+import HoverBorder from '.';
 
-describe('COMPONENT_NAME', () => {
+describe('HoverBorder', () => {
 
   it('should render without exploding', () => {
-    expect(render(<COMPONENT_NAME />)).not.to.throw
+    expect(render(<HoverBorder />)).not.to.throw
   })
 
   it('should match snapshot', () => {
-    const tree = renderer.create(<COMPONENT_NAME />).toJSON()
+    const tree = renderer.create(<HoverBorder />).toJSON()
     jestExpect(tree).toMatchSnapshot();
   });
 });
