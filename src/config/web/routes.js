@@ -1,22 +1,22 @@
 export default [
   {
     id: 1,
-    name: 'Projects',
+    title: 'Projects',
     destination: '/projects',
   },
   {
     id: 2,
-    name: 'Bio',
+    title: 'Bio',
     destination: '/.bio',
   },
   {
     id: 3,
-    name: 'Blog',
+    title: 'Blog',
     destination: '/blog',
   },
   {
     id: 4,
-    name: 'Connect',
+    title: 'Connect',
     destination: '/connect',
   },
 ];
