@@ -4,11 +4,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default function HTML(props) {
-  const { htmlAttributes,headComponents,
+  const {
+    htmlAttributes,
+    headComponents,
     bodyAttributes,
     preBodyComponents,
     body,
-    postBodyComponents } = props
+    postBodyComponents,
+  } = props;
   return (
     <html lang="en" {...htmlAttributes}>
       <head>
