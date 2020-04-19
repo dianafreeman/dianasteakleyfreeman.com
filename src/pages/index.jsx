@@ -1,30 +1,39 @@
 import React from 'react';
+import { graphql } from 'gatsby';
+import Layout from '../components/Layout/Layout';
 import routes from '../config/web/routes';
+import CardGrid from '../components/CardGrid/CardGrid';
+import { MainTitle, ContentWrap } from '../components/Layout/styled';
+import { StoreProvider } from '../stores';
+
+export const query = graphql`
+  query IndexQuery {
+    allSitePage {
+      edges {
+        node {
+          path
+        }
+      }
+    }
+  }
+`;
 
 const Index = () => {
   return (
-    <div>
-      <h1>
-        Hi!{' '}
-        <span aria-label="wave" role="img">
-          👋
-        </span>{' '}
-        <br /> I'm Diana.
-      </h1>
-      <p>
-        Dolore est in aute non irure in elit et dolor ad in enim exercitation. Voluptate elit
-        voluptate amet Lorem laboris do veniam esse est. Ea labore minim consectetur aliquip
-        excepteur laborum voluptate adipisicing cillum quis ea mollit magna. Consectetur aliqua
-        velit incididunt ex qui est minim duis anim esse est proident. Nisi magna eiusmod cillum
-        velit qui ut eu elit ipsum do exercitation. Sunt voluptate ut qui amet nisi aute do sit ea.
-        Quis amet nisi dolor cupidatat labore voluptate minim sit ut nisi.
-      </p>
-      <ul>
-        {routes.map(r => (
-          <li>{r.title}</li>
-        ))}
-      </ul>
-    </div>
+    <StoreProvider>
+      <Layout>
+        <ContentWrap>
+          <div style={{ display: 'flex', flex: 1 }}>
+            <MainTitle>
+              Hi! 👋 <br /> I'm Diana.
+            </MainTitle>
+          </div>
+          <div style={{ display: 'flex', flex: 2 }}>
+            <CardGrid items={routes} />
+          </div>
+        </ContentWrap>
+      </Layout>
+    </StoreProvider>
   );
 };
 export default Index;

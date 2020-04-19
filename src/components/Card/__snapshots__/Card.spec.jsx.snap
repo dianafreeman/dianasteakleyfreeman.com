@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card should match snapshot 1`] = `
+.c0 {
+  position: relative;
+  background-color: #B7B7B7;
+  min-height: 200px;
+  min-width: calc(50% - 4vw);
+  margin: 10px;
+}
+
+.c1 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  margin: auto;
+}
+
+.c2 {
+  color: #ffffff;
+  width: 100%;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  position: absolute;
+  bottom: 0;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    blog
+  </div>
+  <h3
+    className="c2"
+  />
+</div>
+`;

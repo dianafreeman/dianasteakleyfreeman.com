@@ -16,10 +16,10 @@
     "test": "run-p test:unit test:format",
     "test:dev": "jest --config=jest.config.js --watchAll",
     "test:storybook": "start-storybook --smoke-test ",
-    "test:unit": "jest --config=jest.config.js --collectCoverage --passWithNoTests",
+    "test:unit": "jest --config=jest.config.js --collectCoverage",
     "test:format": "npx prettier --check 'src/**/*.{js,jsx,json}'",
     "test:e2e:ci": "start-server-and-test start http://localhost:9000 cy:run",
-    "test:e2e:dev": "start-server-and-test dev http://localhost:8000 cy:open"
+    "test:e2e:dev": "cypress open"
   },
   "dependencies": {
     "@babel/core": "^7.7.7",
@@ -34,7 +34,6 @@
     "@storybook/addon-console": "^1.2.1",
     "@storybook/addon-docs": "^5.3.0",
     "@storybook/addon-links": "^5.2.8",
-    "@storybook/addon-notes": "^5.3.17",
     "@storybook/addon-viewport": "^5.3.14",
     "@storybook/react": "^5.2.8",
     "@testing-library/cypress": "^5.0.2",
@@ -90,7 +89,6 @@
     "react-use-gesture": "^7.0.3",
     "rehype-react": "^4.0.1",
     "resize-observer-polyfill": "^1.5.1",
-    "start-server-and-test": "^1.10.11",
     "styled-components": "^4.3.2"
   },
   "repository": {

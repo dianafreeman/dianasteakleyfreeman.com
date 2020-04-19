@@ -1,7 +1,6 @@
 /* eslint-disable */
-const config = require('./src/config/web/site').config
-const pathPrefix = config.pathPrefix === '/' ? '' : config.pathPrefix
-
+const config = require('./src/config/web/data').data;
+const pathPrefix = config.pathPrefix === '/' ? '' : config.pathPrefix;
 module.exports = {
   /* General Information */
   siteMetadata: {
@@ -14,26 +13,21 @@ module.exports = {
     'gatsby-plugin-postcss',
     'gatsby-plugin-sass',
     {
-      resolve: 'gatsby-source-filesystem',
+      resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/src/images/`,
-        name: 'images',
+        path: `${process.env.NODE_ENV === 'development' ? `${__dirname}` : `web`}/src/content/blog`,
+        name: `blog-posts`,
       },
     },
-      {
-        resolve: `gatsby-source-filesystem`,
-        options: {
-          path: `${__dirname}/src/content/blog`,
-          name: `blog-posts`,
-        },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${
+          process.env.NODE_ENV === 'development' ? `${__dirname}` : `web`
+        }/src/content/projects`,
+        name: `project-posts`,
       },
-      {
-        resolve: `gatsby-source-filesystem`,
-        options: {
-          path: `${__dirname}/src/content/projects`,
-          name: `project-posts`,
-        },
-      },
+    },
     {
       resolve: 'gatsby-plugin-google-analytics',
       options: {
@@ -71,5 +65,4 @@ module.exports = {
     'gatsby-plugin-offline',
     'gatsby-plugin-netlify',
   ],
-}
-
+};

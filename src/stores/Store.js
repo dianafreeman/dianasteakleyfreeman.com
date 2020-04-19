@@ -1,11 +1,13 @@
 import React from 'react';
 import { observable, decorate, computed, action } from 'mobx';
-import { default as theme } from '../config/theme';
+import { default as THEME } from '../config/theme';
 
 class Store {
   // Observables
   // ---------------------------------------------------------------------------
   navIsOpen = false;
+
+  theme = THEME;
 
   openDyslexicOn = false;
 
@@ -17,13 +19,13 @@ class Store {
   // ---------------------------------------------------------------------------
 
   get activeFontFamily() {
-    return false
-      ? { heading: 'OpenDyslexic', body: 'OpenDyslexic', nav: 'OpenDyslexic' }
-      : theme.fontFamily;
+    return process.env.NODE_ENV === 'storybook' ? THEME.fontFamily : this.theme.fontFamily;
   }
 
   get activeFontSize() {
-    return theme.fontSize[this.fontSizeType];
+    return process.env.NODE_ENV === 'storybook'
+      ? THEME.fontSize[this.fontSizeTypeString]
+      : this.theme.fontSize[this.fontSizeTypeString];
   }
 
   // Actions

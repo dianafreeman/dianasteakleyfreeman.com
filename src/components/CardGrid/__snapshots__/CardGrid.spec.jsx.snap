@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CardGrid should match snapshot 1`] = `
+.c0 {
+  position: relative;
+  background-color: #B7B7B7;
+  min-height: 200px;
+  min-width: calc(50% - 4vw);
+  margin: 10px;
+}
+
+.c1 {
+  color: #ffffff;
+  width: 100%;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  position: absolute;
+  bottom: 0;
+}
+
+<div
+  style={
+    Object {
+      "display": "flex",
+      "flexFlow": "row wrap",
+      "justifyContent": "space-evenly",
+    }
+  }
+>
+  <div
+    className="c0"
+    style={
+      Object {
+        "flex": 2,
+        "opacity": 0,
+        "transform": "scale3d(0,0,0) translateZ(-100px)",
+      }
+    }
+  >
+    <h3
+      className="c1"
+    />
+  </div>
+</div>
+`;
