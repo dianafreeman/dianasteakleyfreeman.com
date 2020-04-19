@@ -22,6 +22,12 @@ Run the following command to open the Gatsby/React/Node development environment.
 yarn dev
 # or
 npm run dev
+
+$	 yarn run dev
+
+yarn dev
+# or
+npm run dev
 ```
 
 ### Build
@@ -29,6 +35,12 @@ npm run dev
 Run the following command to build the static site
 
 ```bash
+yarn build
+# or
+npm run build
+
+$	 yarn run build
+
 yarn build
 # or
 npm run build
@@ -42,6 +54,12 @@ Run the following to run formatting, unit, and e2e tests.
 yarn test
 # or
 npm run test
+
+$  yarn run test
+
+yarn test
+# or
+npm run test
 ```
 
 ### Deploy
@@ -49,6 +67,36 @@ npm run test
 Run the following command to deploy to netlify.
 
 ```bash
+yarn deploy
+
+$	 yarn run deploy
+```
+
+## Platforms & Tooling
+
+- GatsbyJS
+- [React Spring](https://github.com/drcmda/react-spring)
+- [Styled-Components](https://www.styled-components.com/)
+- React Storybook
+- React Spring
+- GraphQL
+- Cypress.io
+- CircleCI - CI/CD
+- Netlfiy
+- Reach Router
+
+## Project Structure
+
+### Configuration Targets
+
+- Development
+
+  - Storybook
+  - Code Coverage
+  - Babel & Babel Plugins
+  - Post CSS
+
+```
 yarn deploy
 ```
 
