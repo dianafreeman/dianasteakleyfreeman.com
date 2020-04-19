@@ -7,7 +7,6 @@ commands:
           name: Do Static Build
           command: yarn build
 
-
 jobs:
   build:
     docker:
@@ -54,9 +53,9 @@ jobs:
       - image: cypress/base:10
     working_directory: ~/web/builds
     environment:
-          ## this enables colors in the output
-          TERM: xterm
-          CIRCLE_WORKING_DIRECTORY: ~/web
+      ## this enables colors in the output
+      TERM: xterm
+      CIRCLE_WORKING_DIRECTORY: ~/web
     steps:
       - checkout
       - restore_cache:
@@ -92,8 +91,6 @@ workflows:
   build-test-deploy:
     jobs:
       - test
-      - test-e2e
       - deploy:
           requires:
             - test
-            - test-e2e
