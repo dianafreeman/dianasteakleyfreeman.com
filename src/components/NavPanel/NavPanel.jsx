@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
@@ -46,6 +47,16 @@ const NavWrapper = animated(styled.nav`
   padding: 1em;
   overflow: hidden;
 `);
+=======
+import React, {useState} from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import { inject, observer } from 'mobx-react';
+import { useSpring, animated } from 'react-spring';
+import NavItemOrList from '../NavItemOrList';
+import ButtonGroup from '../ButtonGroup';
+import { Wrapper, Content } from './styled';
+>>>>>>> restart basic ui, refactor pages for SPA
 
 const CustomizePanel = () => {
   const fontOptions = ['Default', 'OpenDyslexic'];
@@ -66,6 +77,7 @@ const CustomizePanel = () => {
   );
 };
 
+<<<<<<< HEAD
 const NavPanel = ({ isOpen, setOpen }) => {
   const { opacity, w } = useSpring({
     opacity: isOpen ? 1 : 0,
@@ -82,6 +94,48 @@ const NavPanel = ({ isOpen, setOpen }) => {
         <NavWrapper isOpen={isOpen} style={{ width: w.interpolate(width => `${width}vw`) }}>
           <NavItemOrList navDepth={0} name="What's on this page?">
             {WHATS_ON_THIS_PAGE.map((h, idx) => (
+=======
+const NavPanel = ({ isOpen }) => {
+  const { opacity, w } = useSpring({
+    opacity: isOpen ? 1 : 0,
+    w: isOpen ? 30 : 0, // TODO: put this '30' value in STORE
+  });
+
+  const [idxOfExpanded, setExpanded] = useState(2); // set to customize panel by default
+
+  const headings = [
+    {
+      title: 'Projects',
+      scrollTarget: '/#heading-projects',
+    },
+    {
+      title: 'Bio',
+      scrollTarget: '/#heading-bio',
+    },
+    {
+      title: 'Writing',
+      scrollTarget: '/#heading-writing',
+    },
+    {
+      title: 'Science',
+      scrollTarget: '/#heading-science',
+    },
+  ];
+
+  return (
+    <Wrapper isOpen={isOpen} style={{ width: w.interpolate(width => `${width}vw`) }}>
+      <nav>
+        <Content
+          style={{
+            opacity,
+            width: isOpen ? '100%' : '0px',
+            zIndex: isOpen ? '99' : '-99',
+            overflow: 'hidden',
+          }}
+        >
+          <NavItemOrList navDepth={0} name="What's on this page?">
+            {headings.map((h, idx) => (
+>>>>>>> restart basic ui, refactor pages for SPA
               <NavItemOrList key={`on-this-page-${idx}`} name={h.title} />
             ))}
           </NavItemOrList>
@@ -93,9 +147,15 @@ const NavPanel = ({ isOpen, setOpen }) => {
           <NavItemOrList navDepth={0} name="Customize">
             <CustomizePanel />
           </NavItemOrList>
+<<<<<<< HEAD
         </NavWrapper>
       </FixedContainer>
     </>
+=======
+        </Content>
+      </nav>
+    </Wrapper>
+>>>>>>> restart basic ui, refactor pages for SPA
   );
 };
 

@@ -3,8 +3,15 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { graphql, Link } from 'gatsby';
-import styled from '@emotion/styled'
+import tw from 'tailwind.macro';
+import styled from 'styled-components';
+<<<<<<< HEAD:src/pages/404.jsx
+import PageLayout from '../layouts/Layout';
+import { BigTitle } from '../elements/Titles';
+=======
 import Layout from '../../Layout';
+import { BigTitle } from '../../Type/Titles';
+>>>>>>> 2263a54... restart basic ui, refactor pages for SPA:src/components/Pages/NotFound/NotFound.jsx
 
 const Row = styled.div`
   display: flex;
@@ -15,22 +22,19 @@ const Row = styled.div`
 `;
 
 const Text = styled.p`
-  font-size: 1.5em;
-  color: white;
-`;
+    ${tw`text-xl text-white`}
+`
 
 const NotFound = () => {
   return (
-    <Layout>
+    <PageLayout>
       <Row>
-        <h1>Well this is awkward.</h1>
+        <BigTitle>Well this is awkward.</BigTitle>
       </Row>
       <Row>
-        <Text>
-          Something went wrong. Might I direct you back to the <Link to="/">home page</Link>?
-        </Text>
+       <Text>Something went wrong. Might I direct you back to the <Link to="/">home page</Link>?</Text>
       </Row>
-    </Layout>
+    </PageLayout>
   );
 };
 

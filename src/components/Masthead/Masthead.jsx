@@ -1,6 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+<<<<<<< HEAD
 import styled from '@emotion/styled';
+=======
+import styled from 'styled-components';
+>>>>>>> restart basic ui, refactor pages for SPA
 
 const Wrapper = styled.div`
   padding: 1em;
@@ -10,9 +14,19 @@ const Wrapper = styled.div`
   justify-content: end;
   border-bottom: 2px solid white;
 `;
+<<<<<<< HEAD
 // isOpen={defaultNavOpen || store.navIsOpen} onNavClick={store.toggleNavOpen}
 const Masthead = ({ children, onNavClick, title, isOpen, ...rest }) => {
   return <Wrapper {...rest}>{children}</Wrapper>;
+=======
+//isOpen={defaultNavOpen || store.navIsOpen} onNavClick={store.toggleNavOpen}
+const Masthead = ({ children, onNavClick, title, isOpen, ...rest }) => {
+  return (
+    <Wrapper {...rest}>
+      {children}
+    </Wrapper>
+  );
+>>>>>>> restart basic ui, refactor pages for SPA
 };
 
 Masthead.propTypes = {

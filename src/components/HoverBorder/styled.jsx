@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 import styled from '@emotion/styled';
 import { animated } from 'react-spring';
 import theme from '../../context/ThemeContext/theme';
+=======
+import styled from 'styled-components';
+import { animated } from 'react-spring';
+import theme from '../../config/theme';
+>>>>>>> restart basic ui, refactor pages for SPA
 
 const hardGradientBorder = `
 linear-gradient(to right\,

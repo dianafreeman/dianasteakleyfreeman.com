@@ -8,6 +8,19 @@ const TitleWrapper = styled.div`
   text-align: left;
   width: 100%;
 `;
+<<<<<<< HEAD
+=======
+
+<<<<<<< HEAD
+class BlogPostTemplate extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      backgroundColor: '',
+    };
+=======
+>>>>>>> restart basic ui, refactor pages for SPA
 export const query = graphql`
   query($slug: String) {
     markdownRemark(frontmatter: { slug: { eq: $slug } }) {
@@ -20,6 +33,10 @@ export const query = graphql`
       }
       timeToRead
     }
+<<<<<<< HEAD
+=======
+>>>>>>> 2263a54... restart basic ui, refactor pages for SPA
+>>>>>>> restart basic ui, refactor pages for SPA
   }
 `;
 const PostTemplate = ({ data }) => {

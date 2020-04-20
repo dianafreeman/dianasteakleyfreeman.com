@@ -1,4 +1,5 @@
 import React from 'react';
+<<<<<<< HEAD
 import { StaticQuery, graphql } from 'gatsby';
 import { inject, observer } from 'mobx-react';
 import List from '../../List';
@@ -45,5 +46,22 @@ const Blog = () => (
     }}
   />
 );
+=======
+import Layout from '../../Layout';
+import { MainTitle, ContentWrap } from '../../Layout/styled';
+import { StoreProvider } from '../../../stores';
+
+const Blog = ({ store }) => {
+  return (
+    <>
+      <Layout>
+        <ContentWrap>
+          <MainTitle>Blog</MainTitle>
+        </ContentWrap>
+      </Layout>
+    </>
+  );
+};
+>>>>>>> restart basic ui, refactor pages for SPA
 
 export default Blog;

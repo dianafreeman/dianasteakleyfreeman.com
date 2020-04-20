@@ -1,4 +1,5 @@
 /* eslint-disable no-return-assign */
+<<<<<<< HEAD
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Global, css } from '@emotion/core';
@@ -87,6 +88,33 @@ const Layout = ({ children, style, ...rest }) => {
 };
 // export default inject('store')(observer(Layout));
 export default Layout;
+=======
+import React from 'react';
+import { inject, observer } from 'mobx-react';
+import PropTypes from 'prop-types';
+import { useSpring } from 'react-spring';
+import Masthead from '../Masthead';
+import NavPanel from '../NavPanel';
+import { AniViewWrap } from './styled';
+import Helmet from './Helmet';
+import GlobalStyle from '../GlobalStyle';
+import NavToggler from '../Togglers/NavToggler';
+
+const Layout = ({ children, store, ...rest }) => {
+  return (
+    <>
+      <Helmet />
+      {process.env.NODE_ENV !== 'storybook' && <GlobalStyle fontFamily={store.activeFontFamily} />}
+        <Masthead />
+        <NavToggler onClick={() => store.toggleNavOpen()} isOpen={store.navIsOpen} />
+
+        {children}
+      <NavPanel isOpen={store.navIsOpen} />
+    </>
+  );
+};
+export default inject('store')(observer(Layout));
+>>>>>>> restart basic ui, refactor pages for SPA
 
 Layout.propTypes = {
   pageTitle: PropTypes.string.isRequired,
