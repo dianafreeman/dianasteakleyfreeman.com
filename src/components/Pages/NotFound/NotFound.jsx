@@ -4,8 +4,8 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
 import styled from 'styled-components';
-import Layout from '../components/Layout/Layout';
-import { BigTitle } from '../components/Type/Titles';
+import Layout from '../../Layout';
+import { BigTitle } from '../../Type/Titles';
 
 const Row = styled.div`
   display: flex;
@@ -20,7 +20,7 @@ const Text = styled.p`
   color: white;
 `;
 
-const ErrorPage = () => {
+const NotFound = () => {
   return (
     <Layout>
       <Row>
@@ -35,4 +35,4 @@ const ErrorPage = () => {
   );
 };
 
-export default ErrorPage;
+export default NotFound;

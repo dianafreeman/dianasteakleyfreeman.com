@@ -18,15 +18,3 @@ export const MainTitle = styled(BigTitle)`
   bottom: 1em;
   text-align: left;
 `;
-
-export const AniViewWrap = animated(styled.div`
-  width: 100vw;
-  min-height: 100vh;
-  background-color: ${theme.color.dark};
-  color: ${theme.color.light};
-  padding: 1em;
-  padding-top: 0;
-  display: block;
-  position: relative;
-  z-index: 0;
-`);

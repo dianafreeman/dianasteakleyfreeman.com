@@ -1,16 +1,9 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 import POST from './post.json';
-import { Image,
-  ArticleWrap,
-  Content,
-  Body,
-  MetaBox,
-  MetaContent,
-  MetaLabel,
-  Icon } from './styled'
+import { Image, ArticleWrap, Content, Body, MetaBox, MetaContent, MetaLabel, Icon } from './styled';
 
-const Article = ({ post = POST, title = 'A Title',  store, ...restProps }) => {
+const Article = ({ post = POST, title = 'A Title', store, ...restProps }) => {
   return (
     <ArticleWrap {...restProps}>
       <Content>

@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { Link } from 'gatsby';
-import theme from '../../config/theme'
+import theme from '../../config/theme';
 
 export const Image = styled.img`
   width: 100%;
@@ -47,4 +47,3 @@ export const MetaLabel = styled.small`
 export const Icon = styled.span`
   padding-right: 0.5em;
 `;
-

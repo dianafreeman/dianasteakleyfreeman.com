@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import NavToggler from '../Togglers/NavToggler';
 
 const Wrapper = styled.div`
   padding: 1em;
@@ -15,7 +14,6 @@ const Wrapper = styled.div`
 const Masthead = ({ children, onNavClick, title, isOpen, ...rest }) => {
   return (
     <Wrapper {...rest}>
-      <NavToggler onClick={onNavClick} isOpen={isOpen} />
       {children}
     </Wrapper>
   );

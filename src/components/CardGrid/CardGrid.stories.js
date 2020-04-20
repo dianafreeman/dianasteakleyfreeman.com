@@ -9,5 +9,5 @@ export const byDefault = () => <CardGrid items={items} />;
 export default {
   title: 'CardGrid',
   component: CardGrid,
-  decorators: [withTheme, (story) => <div style={{margin: '4em'}}>{story()}</div>],
+  decorators: [withTheme, story => <div style={{ margin: '4em' }}>{story()}</div>],
 };

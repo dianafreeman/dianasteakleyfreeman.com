@@ -10,9 +10,7 @@ const ITEM = {
 };
 
 export const byDefault = () => {
-  return (
-      <Card item={ITEM} onClick={action('You clicked')} />
-  );
+  return <Card item={ITEM} onClick={action('You clicked')} />;
 };
 export default {
   title: 'Card',

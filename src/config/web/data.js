@@ -1,4 +1,3 @@
-
 const data = {
   pathPrefix: '/',
   siteTitle: 'Diana M Steakley-Freeman',
@@ -15,7 +14,6 @@ const data = {
   ogSiteName: 'dsfdevelopment', // Facebook Site Name
   ogLanguage: 'en_US', // Facebook Language
   googleAnalyticsID: 'UA-47519312-5',
-
 };
 
 const realPrefix = data.pathPrefix === '/' ? '' : data.pathPrefix;

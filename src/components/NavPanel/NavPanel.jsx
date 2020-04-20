@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { inject, observer } from 'mobx-react';
@@ -29,10 +29,10 @@ const CustomizePanel = () => {
 const NavPanel = ({ isOpen }) => {
   const { opacity, w } = useSpring({
     opacity: isOpen ? 1 : 0,
-    w: isOpen ? 50 : 0, // TODO: put this '30' value in STORE
+    w: isOpen ? 30 : 0, // TODO: put this '30' value in STORE
   });
 
-  const [idxOfExpanded, setExpanded] = useSpring(null);
+  const [idxOfExpanded, setExpanded] = useState(2); // set to customize panel by default
 
   const headings = [
     {

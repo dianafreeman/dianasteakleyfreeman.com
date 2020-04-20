@@ -8,24 +8,18 @@ import NavPanel from '../NavPanel';
 import { AniViewWrap } from './styled';
 import Helmet from './Helmet';
 import GlobalStyle from '../GlobalStyle';
+import NavToggler from '../Togglers/NavToggler';
 
 const Layout = ({ children, store, ...rest }) => {
-  const { w } = useSpring({
-    w: store.navIsOpen ? 30 : 0, // TODO: put this '30' value in STORE
-  });
   return (
     <>
       <Helmet />
       {process.env.NODE_ENV !== 'storybook' && <GlobalStyle fontFamily={store.activeFontFamily} />}
-
-      <AniViewWrap
-        id="primary"
-        style={{ transform: w.interpolate(width => `translateX(-${width}vw)`) }}
-      >
         <Masthead />
+        <NavToggler onClick={() => store.toggleNavOpen()} isOpen={store.navIsOpen} />
+
         {children}
-      </AniViewWrap>
-      <NavPanel />
+      <NavPanel isOpen={store.navIsOpen} />
     </>
   );
 };

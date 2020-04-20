@@ -1,10 +1,12 @@
 import React from 'react';
 import { graphql } from 'gatsby';
+import { Router, Link } from '@reach/router';
 import Layout from '../components/Layout/Layout';
 import routes from '../config/web/routes';
-import CardGrid from '../components/CardGrid/CardGrid';
-import { MainTitle, ContentWrap } from '../components/Layout/styled';
 import { StoreProvider } from '../stores';
+import Blog from '../components/Pages/Blog';
+import Home from '../components/Pages/Home';
+import NotFound from '../components/Pages/NotFound';
 
 export const query = graphql`
   query IndexQuery {
@@ -18,21 +20,19 @@ export const query = graphql`
   }
 `;
 
+const LazyComponent = ({ Component, ...props }) => (
+  <React.Suspense fallback={'<p>Loading...</p>'}>
+    <Component {...props} />
+  </React.Suspense>
+);
 const Index = () => {
   return (
     <StoreProvider>
-      <Layout>
-        <ContentWrap>
-          <div style={{ display: 'flex', flex: 1 }}>
-            <MainTitle>
-              Hi! 👋 <br /> I'm Diana.
-            </MainTitle>
-          </div>
-          <div style={{ display: 'flex', flex: 2 }}>
-            <CardGrid items={routes} />
-          </div>
-        </ContentWrap>
-      </Layout>
+      <Router>
+        <LazyComponent Component={Home} path="/" />
+        <LazyComponent Component={Blog} path="blog" />
+        <LazyComponent Component={NotFound} default />
+      </Router>
     </StoreProvider>
   );
 };

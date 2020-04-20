@@ -1,3 +1,3 @@
-import NavItemOrList from './NavItemOrList'
+import NavItemOrList from './NavItemOrList';
 
-export default NavItemOrList
+export default NavItemOrList;

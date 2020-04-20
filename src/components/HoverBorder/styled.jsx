@@ -13,10 +13,12 @@ linear-gradient(to right\,
 `;
 
 export const Wrapper = animated(styled.div`
-position: relative;
+  position: relative;
 `);
 export const LinkBorder = animated(styled.div`
- ${props => props.double &&  `&::before {
+  ${props =>
+    props.double &&
+    `&::before {
     position: absolute;
     content: '';
     top: 0;
@@ -25,7 +27,7 @@ export const LinkBorder = animated(styled.div`
     height: 1px;
     background: ${hardGradientBorder};
    }`}
-  &::after{
+  &::after {
     position: absolute;
     content: '';
     bottom: 0;
@@ -33,5 +35,5 @@ export const LinkBorder = animated(styled.div`
     left: 0;
     height: 1px;
     background: ${hardGradientBorder};
-   }
+  }
 `);

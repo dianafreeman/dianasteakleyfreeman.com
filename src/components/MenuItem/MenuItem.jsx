@@ -51,11 +51,7 @@ const MenuItem = ({ children, style, name, defaultOpen }) => {
     },
   });
 
-  return (
-    <>
-
-    </>
-  );
+  return <></>;
 };
 
 export default MenuItem;

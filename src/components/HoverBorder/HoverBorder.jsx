@@ -12,7 +12,9 @@ const HoverBorder = ({ children, double = false }) => {
   return (
     <Wrapper onMouseOver={() => set(true)} onMouseLeave={() => set(false)}>
       {children}
-      <LinkBorder style={{ opacity }} double={double}> </LinkBorder>
+      <LinkBorder style={{ opacity }} double={double}>
+        {' '}
+      </LinkBorder>
     </Wrapper>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useSpring } from 'react-spring';
-import { Line, TogglerButton } from './styled'
+import { Line, TogglerButton } from './styled';
 
 const TogglerLine = ({ index, isExpanded }) => {
   const x1s = [50, 0]; // [xOfFirstLine, xOfSecondLine]
@@ -18,7 +18,7 @@ const TogglerLine = ({ index, isExpanded }) => {
   return <Line x1={x1} y1={y1} x2={x2} y2={y2} index={index} />;
 };
 
-const ExpandToggler = ({ isExpanded, onClick , ...rest}) => {
+const ExpandToggler = ({ isExpanded, onClick, ...rest }) => {
   return (
     <TogglerButton onClick={onClick} {...rest}>
       <svg viewBox="0 0 100 100">
