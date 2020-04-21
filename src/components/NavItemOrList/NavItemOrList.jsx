@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { inject, observer } from 'mobx-react';
 import styled from 'styled-components';
 import { useSpring, animated } from 'react-spring';
-import { useMeasure, usePrevious } from '../../utils';
+import { useMeasure, usePrevious } from '../../hooks';
 import { ExpandToggler } from '../Togglers/index';
 import { Wrapper, Title, Content, Item, LinkBorder } from './styled';
 import HoverBorder from '../HoverBorder';
