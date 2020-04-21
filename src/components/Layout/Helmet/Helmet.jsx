@@ -1,7 +1,7 @@
 import React from 'react';
 import { default as ReactHelmet } from 'react-helmet';
 import PropTypes from 'prop-types';
-import config from '../../config/web/data';
+import config from '@site-config/web/metadata';
 
 const Helmet = ({ thisPageTitle }) => {
   const title = config.siteTitle;

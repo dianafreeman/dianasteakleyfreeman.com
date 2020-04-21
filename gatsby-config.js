@@ -1,5 +1,5 @@
 /* eslint-disable */
-const config = require('./src/config/web/data').data;
+const config = require('./src/config/web/metadata').data;
 const pathPrefix = config.pathPrefix === '/' ? '' : config.pathPrefix;
 module.exports = {
   /* General Information */

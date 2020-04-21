@@ -9,11 +9,11 @@ export default function HTML(props) {
         <meta httpEquiv="x-ua-compatible" content="ie=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         {props.headComponents}
+
         <link
           href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300i,700|Open+Sans:400,600,700,800&display=swap"
           rel="stylesheet"
         />
-
         <link
           rel="stylesheet"
           href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
