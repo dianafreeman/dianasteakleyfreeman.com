@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import 'open-dyslexic';
+import './Style.scss';
 
 const GlobalStyle = createGlobalStyle`
 *, *:before, *:after {
@@ -19,7 +20,13 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: ${props => props.fontFamily.heading};
+  font-weight: 700;
+  color: white;
 }
+h1 {   font-size: 4.5em !important; }
+h2 {   font-size: 3em !important; }
+h3 {   font-size: 2.5em !important; }
+
 nav,  button {
   font-family: ${props => props.fontFamily.nav};
 }

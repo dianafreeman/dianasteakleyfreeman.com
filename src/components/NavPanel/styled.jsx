@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { animated } from 'react-spring';
 import theme from '../../config/theme';
 
-export const Wrapper = animated(styled.div`
+export const Wrapper = animated(styled.nav`
   position: absolute;
   right: 0;
   top: 0;

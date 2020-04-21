@@ -1,11 +1,51 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import { inject, observer } from 'mobx-react';
 import { useSpring, animated } from 'react-spring';
+import styled from 'styled-components';
+import { useMeasure } from '@hooks';
+
 import NavItemOrList from '../NavItemOrList';
+import NavToggler from '../Togglers/NavToggler';
 import ButtonGroup from '../ButtonGroup';
-import { Wrapper, Content } from './styled';
+
+const WHATS_ON_THIS_PAGE = [
+  {
+    title: 'Projects',
+    scrollTarget: '/#heading-projects',
+  },
+  {
+    title: 'Bio',
+    scrollTarget: '/#heading-bio',
+  },
+  {
+    title: 'Writing',
+    scrollTarget: '/#heading-writing',
+  },
+  {
+    title: 'Science',
+    scrollTarget: '/#heading-science',
+  },
+];
+
+const ToggleContainer = animated(styled.div`
+  position: relative;
+  right: 300px;
+`);
+
+const FixedContainer = animated(styled.div`
+  position: absolute;
+  z-index: 99;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  background-color: #d5d5d5;
+`);
+
+const NavWrapper = animated(styled.nav`
+  padding: 1em;
+  overflow: hidden;
+`);
 
 const CustomizePanel = () => {
   const fontOptions = ['Default', 'OpenDyslexic'];
@@ -26,46 +66,22 @@ const CustomizePanel = () => {
   );
 };
 
-const NavPanel = ({ isOpen }) => {
+const NavPanel = ({ isOpen, store }) => {
   const { opacity, w } = useSpring({
     opacity: isOpen ? 1 : 0,
-    w: isOpen ? 30 : 0, // TODO: put this '30' value in STORE
+    w: isOpen ? 30 : 0,
   });
-
-  const [idxOfExpanded, setExpanded] = useState(2); // set to customize panel by default
-
-  const headings = [
-    {
-      title: 'Projects',
-      scrollTarget: '/#heading-projects',
-    },
-    {
-      title: 'Bio',
-      scrollTarget: '/#heading-bio',
-    },
-    {
-      title: 'Writing',
-      scrollTarget: '/#heading-writing',
-    },
-    {
-      title: 'Science',
-      scrollTarget: '/#heading-science',
-    },
-  ];
+  // const [idxOfExpanded, setExpanded] = useState(2); // set to customize panel by default
 
   return (
-    <Wrapper isOpen={isOpen} style={{ width: w.interpolate(width => `${width}vw`) }}>
-      <nav>
-        <Content
-          style={{
-            opacity,
-            width: isOpen ? '100%' : '0px',
-            zIndex: isOpen ? '99' : '-99',
-            overflow: 'hidden',
-          }}
-        >
+    <>
+      <ToggleContainer style={{ right: w.interpolate(width => `${width}vw`) }}>
+        <NavToggler onClick={() => store.toggleNavOpen()} isOpen={store.navIsOpen} />
+      </ToggleContainer>
+      <FixedContainer style={{ opacity }}>
+        <NavWrapper isOpen={isOpen} style={{ width: w.interpolate(width => `${width}vw`) }}>
           <NavItemOrList navDepth={0} name="What's on this page?">
-            {headings.map((h, idx) => (
+            {WHATS_ON_THIS_PAGE.map((h, idx) => (
               <NavItemOrList key={`on-this-page-${idx}`} name={h.title} />
             ))}
           </NavItemOrList>
@@ -77,10 +93,10 @@ const NavPanel = ({ isOpen }) => {
           <NavItemOrList navDepth={0} name="Customize">
             <CustomizePanel />
           </NavItemOrList>
-        </Content>
-      </nav>
-    </Wrapper>
+        </NavWrapper>
+      </FixedContainer>
+    </>
   );
 };
 
-export default NavPanel;
+export default inject('store')(observer(NavPanel));
