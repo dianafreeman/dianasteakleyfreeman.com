@@ -6,7 +6,7 @@
   "scripts": {
     "build": "NODE_ENV=production gatsby build",
     "build:component": "npx create-component-app --config ./scripts/ccarc.config.js -t DianaBookES7",
-    "build:storybook": "build-storybook",
+    "build:storybook": "NODE_ENV=storybook build-storybook",
     "cy:run": "NODE_ENV=testing cypress --config-file=./tests/cypress.json run",
     "cy:open": "NODE_ENV=testing cypress --config-file=./tests/cypress.json open",
     "dev": "NODE_ENV=development gatsby develop -o",
@@ -14,9 +14,9 @@
     "start": "gatsby serve",
     "storybook": "NODE_ENV=storybook start-storybook --quiet -p 6006",
     "test": "run-p test:unit test:format",
-    "test:dev": "NODE_ENV=testing jest --config=./tests/jest.config.js --watchAll",
+    "test:dev": "NODE_ENV=testing jest --config ./tests/jest.config.js --watchAll",
     "test:storybook": "NODE_ENV=testing start-storybook --smoke-test ",
-    "test:unit": "NODE_ENV=testing jest --config=jest.config.js --collectCoverage",
+    "test:unit": "NODE_ENV=testing jest --config ./tests/jest.config.js--collectCoverage",
     "test:format": "NODE_ENV=testing npx prettier --check 'src/**/*.{js,jsx,json}'",
     "test:e2e:ci": "NODE_ENV=testing start-server-and-test start http://localhost:9000 cy:run",
     "test:e2e:dev": "NODE_ENV=testing cypress open"
@@ -95,5 +95,8 @@
     "url": "git@github.com:dianafreeman/dianasteakleyfreeman.com.git",
     "type": "git"
   },
-  "homepage": "https://dianasteakleyfreeman.com"
+  "homepage": "https://dianasteakleyfreeman.com",
+  "devDependencies": {
+    "babel-plugin-module-resolver": "^4.0.0"
+  }
 }

@@ -15,16 +15,14 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${process.env.NODE_ENV === 'development' ? `${__dirname}` : `web`}/src/content/blog`,
+        path: `${process.env.NODE_ENV !== 'testing' ? `${__dirname}` : `web`}/src/content/blog`,
         name: `blog-posts`,
       },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${
-          process.env.NODE_ENV === 'development' ? `${__dirname}` : `web`
-        }/src/content/projects`,
+        path: `${process.env.NODE_ENV !== 'testing' ? `${__dirname}` : `web`}/src/content/projects`,
         name: `project-posts`,
       },
     },
