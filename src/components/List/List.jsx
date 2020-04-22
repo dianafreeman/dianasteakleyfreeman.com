@@ -14,7 +14,7 @@ const Wrapper = styled.div`
   margin: auto;
 `;
 
-const List = ({ items = DATA }) => {
+const List = ({ type, items = DATA }) => {
   const config = { mass: 5, tension: 2000, friction: 200 };
   const trail = useTrail(items.length, {
     config,
@@ -25,7 +25,7 @@ const List = ({ items = DATA }) => {
   return (
     <Wrapper>
       {trail.map((props, idx) => {
-        return <ListItem style={props} item={items[idx]} />;
+        return <ListItem style={props} type={type} item={items[idx]} />;
       })}
     </Wrapper>
   );

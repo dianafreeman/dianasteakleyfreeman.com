@@ -4,7 +4,7 @@ import theme from '../../config/theme';
 
 export const Line = animated(styled.line`
   stroke: ${theme.color.light};
-  stroke-width: 3;
+  stroke-width: 5;
 `);
 
 export const TogglerButton = styled.div`

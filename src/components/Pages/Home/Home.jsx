@@ -4,7 +4,6 @@ import { Router, Link } from '@reach/router';
 import routes from '@site-config/web/routes';
 import Layout from '../../Layout/Layout';
 import List from '../../List';
-import { MainTitle } from '../../Layout/styled';
 
 const Home = ({ store }) => {
   return (

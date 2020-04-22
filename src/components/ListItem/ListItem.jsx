@@ -18,13 +18,13 @@ const Wrapper = animated(styled.div`
   }
 `);
 
-const ListItem = ({ children, item, ...rest }) => {
+const ListItem = ({ type, item, ...rest }) => {
+  console.log(item);
   return (
     <Wrapper {...rest}>
-      <Link className="link-wrapper" to={item.destination}>
-        <h3>{item.name}</h3>
+      <Link to={type === 'MARKDOWN' ? item.frontmatter.slug : item.destination}>
+        <h3>{type === 'MARKDOWN' ? item.frontmatter.title : item.name}</h3>
       </Link>
-      {children}
     </Wrapper>
   );
 };

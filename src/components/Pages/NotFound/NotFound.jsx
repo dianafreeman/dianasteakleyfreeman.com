@@ -5,7 +5,6 @@ import React from 'react';
 import { graphql, Link } from 'gatsby';
 import styled from 'styled-components';
 import Layout from '../../Layout';
-import { BigTitle } from '../../Type/Titles';
 
 const Row = styled.div`
   display: flex;
@@ -24,7 +23,7 @@ const NotFound = () => {
   return (
     <Layout>
       <Row>
-        <BigTitle>Well this is awkward.</BigTitle>
+        <h1>Well this is awkward.</h1>
       </Row>
       <Row>
         <Text>

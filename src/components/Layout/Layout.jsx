@@ -7,24 +7,27 @@ import Masthead from '../Masthead';
 import NavPanel from '../NavPanel';
 import Helmet from './Helmet';
 import GlobalStyle from '../GlobalStyle';
+import { StoreProvider } from '../../stores';
 
 const Layout = ({ children, store, style, ...rest }) => {
   const springProps = useSpring({
     opacity: store.navIsOpen ? 0.15 : 1,
   });
   return (
-    <div style={{ ...style, backgroundColor: '#393939', height: '100vh' }} {...rest}>
-      <Helmet />
-      <GlobalStyle fontFamily={store.activeFontFamily} />
-      <Masthead>
-        <NavPanel isOpen={store.navIsOpen} />
-      </Masthead>
-      <animated.div className="container-fluid" style={{ ...springProps, height: '90vh' }}>
-        <div className="row" style={{ height: 'inherit' }}>
-          {children}
-        </div>
-      </animated.div>
-    </div>
+    <StoreProvider>
+      <div style={{ ...style, backgroundColor: '#393939', height: '100vh' }} {...rest}>
+        <Helmet />
+        <GlobalStyle fontFamily={store.activeFontFamily} />
+        <Masthead>
+          <NavPanel isOpen={store.navIsOpen} />
+        </Masthead>
+        <animated.div className="container-fluid" style={{ ...springProps, height: '90vh' }}>
+          <div className="row" style={{ height: 'inherit' }}>
+            {children}
+          </div>
+        </animated.div>
+      </div>
+    </StoreProvider>
   );
 };
 export default inject('store')(observer(Layout));
