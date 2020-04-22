@@ -22,7 +22,7 @@ const ListItem = ({ type, item, ...rest }) => {
   console.log(item);
   return (
     <Wrapper {...rest}>
-      <Link to={type === 'MARKDOWN' ? item.frontmatter.slug : item.destination}>
+      <Link to={type === 'MARKDOWN' ? item.frontmatter.path : item.destination}>
         <h3>{type === 'MARKDOWN' ? item.frontmatter.title : item.name}</h3>
       </Link>
     </Wrapper>
