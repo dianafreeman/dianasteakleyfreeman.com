@@ -1,39 +1,29 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import { Router, Link } from '@reach/router';
+import { Provider } from 'mobx-react';
+
+import { Router } from '@reach/router';
 import Layout from '../components/Layout/Layout';
 import routes from '../config/web/routes';
-import { StoreProvider } from '../stores';
+import Store from '../stores';
 import Blog from '../components/Pages/Blog';
 import Home from '../components/Pages/Home';
 import NotFound from '../components/Pages/NotFound';
 
-export const query = graphql`
-  query IndexQuery {
-    allSitePage {
-      edges {
-        node {
-          path
-        }
-      }
-    }
-  }
-`;
-
-const LazyComponent = ({ Component, ...props }) => (
+const LazyComponent = ({ store, PageComponent, ...props }) => (
   <React.Suspense fallback={'<p>Loading...</p>'}>
-    <Component {...props} />
+    <PageComponent {...props} />
   </React.Suspense>
 );
 const Index = () => {
   return (
-    <StoreProvider>
+    <Provider store={Store}>
       <Router>
-        <LazyComponent Component={Home} path="/" />
-        <LazyComponent Component={Blog} path="blog" />
-        <LazyComponent Component={NotFound} default />
+        <LazyComponent PageComponent={Home} path="/" />
+        <LazyComponent PageComponent={Blog} path="blog" />
+        <LazyComponent PageComponent={NotFound} default />
       </Router>
-    </StoreProvider>
+    </Provider>
   );
 };
 export default Index;

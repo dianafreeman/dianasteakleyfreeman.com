@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
 import { useSpring, animated } from 'react-spring';
-import styled from 'styled-components';
+import styled from '@emotion/styled'
 import { useMeasure } from '@hooks';
 
 import NavItemOrList from '../NavItemOrList';

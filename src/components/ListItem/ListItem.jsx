@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link } from 'gatsby';
+import { Link } from '@reach/router';
 import PropTypes from 'prop-types';
 import { animated } from 'react-spring';
 
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 
 const Wrapper = animated(styled.div`
   width: 100%;
@@ -19,7 +19,6 @@ const Wrapper = animated(styled.div`
 `);
 
 const ListItem = ({ type, item, ...rest }) => {
-  console.log(item);
   return (
     <Wrapper {...rest}>
       <Link to={type === 'MARKDOWN' ? item.frontmatter.path : item.destination}>

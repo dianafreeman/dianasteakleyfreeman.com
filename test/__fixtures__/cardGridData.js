@@ -2,21 +2,21 @@ export default [
   {
     id: 1,
     title: 'Projects',
-    destination: '/projects',
+    slug: '/projects',
   },
   {
     id: 2,
     title: 'Bio',
-    destination: '/bio',
+    slug: '/bio',
   },
   {
     id: 3,
     title: 'Blog',
-    destination: '/blog',
+    slug: '/blog',
   },
   {
     id: 4,
     title: 'Connect',
-    destination: '/connect',
+    slug: '/connect',
   },
 ];

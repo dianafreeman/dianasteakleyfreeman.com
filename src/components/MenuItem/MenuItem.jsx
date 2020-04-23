@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
-import { Link } from 'gatsby';
+import styled from '@emotion/styled';
+import { Link } from '@reach-router';
 import { useSpring, useChain, config, animated, useTrail } from 'react-spring';
 import { useMeasure, usePrevious } from '../../utils';
 

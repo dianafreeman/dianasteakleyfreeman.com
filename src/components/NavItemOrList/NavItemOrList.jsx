@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { inject, observer } from 'mobx-react';
-import styled from 'styled-components';
+import styled from '@emotion/styled'
 import { useSpring, animated } from 'react-spring';
 import { useMeasure, usePrevious } from '../../hooks';
 import { ExpandToggler } from '../Togglers/index';

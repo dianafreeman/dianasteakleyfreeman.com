@@ -1,11 +1,12 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
+import { StaticQuery, graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import Img from 'gatsby-image';
-import { graphql } from 'gatsby';
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 import Article from '../components/Article';
 import Layout from '../components/Layout/Layout';
+import { StoreProvider } from '../stores';
 
 const PageHeader = styled.div`
   position: relative;
@@ -17,37 +18,40 @@ const TitleWrapper = styled.div`
   width: 100%;
 `;
 
-export const query = graphql`
-  query($slug: String!) {
-    markdownRemark(frontmatter: { slug: { eq: $slug } }) {
-      html
-      frontmatter {
-        date(formatString: "MMMM DD, YYYY")
-        path
-        slug
-        title
-      }
-      timeToRead
-    }
-  }
-`;
-
-const BlogPostTemplate = ({ data }) => {
-  const post = data.markdownRemark;
+const BlogPostTemplate = props => {
+  console.log('props');
+  console.log(props);
   return (
-    <Layout>
-      <PageHeader>
-        <TitleWrapper>
-          <h1>{post.frontmatter.title}</h1>
-        </TitleWrapper>
-      </PageHeader>
-      <Article post={post} />
-    </Layout>
+    <StaticQuery
+      query={graphql`
+        query($slug: String) {
+          markdownRemark(frontmatter: { slug: { eq: $slug } }) {
+            html
+            frontmatter {
+              date(formatString: "MMMM DD, YYYY")
+              path
+              slug
+              title
+            }
+            timeToRead
+          }
+        }
+      `}
+      render={data => {
+        const post = data.markdownRemark;
+        console.log('post');
+        console.log(post);
+        return (
+          <>
+            <TitleWrapper>
+              <h1>{post.frontmatter.title}</h1>
+            </TitleWrapper>
+            <Article post={post} />
+          </>
+        );
+      }}
+    />
   );
-};
-
-BlogPostTemplate.propTypes = {
-  // data: PropTypes.objectOf('element').isRequired,
 };
 
 export default BlogPostTemplate;

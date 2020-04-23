@@ -1,5 +1,5 @@
 import React from 'react';
-import { ThemeProvider } from 'styled-components';
+import { ThemeProvider } from '@emotion/styled';
 import GlobalStyle from '../../src/components/GlobalStyle/GlobalStyle';
 import { StoreProvider } from '../../src/stores';
 import theme from '../../src/config/theme';

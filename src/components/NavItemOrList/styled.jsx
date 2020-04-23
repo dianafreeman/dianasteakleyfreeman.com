@@ -1,6 +1,6 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from '@emotion/styled';
 import { animated, usepring } from 'react-spring';
-import { Link } from 'gatsby';
+import { Link } from '@reach/router';
 import theme from '../../config/theme';
 
 /*

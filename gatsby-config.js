@@ -9,23 +9,16 @@ module.exports = {
   /* Plugins */
   plugins: [
     'gatsby-plugin-react-helmet',
-    'gatsby-plugin-styled-components',
     'gatsby-plugin-postcss',
     'gatsby-plugin-sass',
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${process.env.NODE_ENV !== 'testing' ? `${__dirname}` : `web`}/src/content/blog`,
+        path: `src/content/blog`,
         name: `blog-posts`,
       },
     },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${process.env.NODE_ENV !== 'testing' ? `${__dirname}` : `web`}/src/content/projects`,
-        name: `project-posts`,
-      },
-    },
+
     {
       resolve: 'gatsby-plugin-google-analytics',
       options: {

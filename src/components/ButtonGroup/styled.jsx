@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from '@emotion/styled';
 import theme from '../../config/theme';
 
 export const Wrapper = styled.form`
