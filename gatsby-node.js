@@ -47,6 +47,8 @@ exports.createPages = async ({ graphql, actions }) => {
       component: postTemplate,
       context: {
         slug: post.frontmatter.slug,
+        timeToRead: post.timeToRead,
+        timeToRead: post.timeToRead,
       },
     });
   });
