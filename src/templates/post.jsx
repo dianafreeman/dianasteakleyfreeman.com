@@ -18,7 +18,7 @@ const TitleWrapper = styled.div`
 `;
 
 export const query = graphql`
-  query($slug: String) {
+  query($slug: String!) {
     markdownRemark(frontmatter: { slug: { eq: $slug } }) {
       html
       frontmatter {
