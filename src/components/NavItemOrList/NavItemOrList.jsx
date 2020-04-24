@@ -1,19 +1,28 @@
 import React, { useState, useContext } from 'react';
 import { inject, observer } from 'mobx-react';
-import styled from '@emotion/styled'
+import styled from '@emotion/styled';
+import { css, jsx } from '@emotion/core';
 import { useSpring, animated } from 'react-spring';
+import { Link } from '@reach/router';
 import { useMeasure, usePrevious } from '../../hooks';
 import { ExpandToggler } from '../Togglers/index';
-import { Wrapper, Title, Content, Item, LinkBorder } from './styled';
 import HoverBorder from '../HoverBorder';
+import theme from '../../context/ThemeContext/theme';
 
+const Wrapper = styled.div`
+  position: relative;
+  display: flex;
+  justify-div: ${props => (props.isTopLevel ? 'space-between' : 'end')};
+  text-align: right;
+`;
+
+/** @jsx jsx */
 const NavItemOrList = ({
   children,
   name,
   destination,
   defaultOpen = false,
   navDepth = false,
-  store,
   ...restProps
 }) => {
   const [isExpanded, setExpanded] = useState(false);
@@ -30,6 +39,7 @@ const NavItemOrList = ({
     },
   });
 
+  console.log(theme.fontFamily);
   return (
     <>
       <HoverBorder>
@@ -46,25 +56,49 @@ const NavItemOrList = ({
             />
           )}
 
-          <Title
-            isTopLevel={navDepth === 0}
+          <Link
+            css={css`
+              text-decoration: none;
+              vertical-align: middle;
+              color: ${theme.color.dark};
+              font-family: ${theme.fontFamily.nav} !important;
+              font-weight: 600;
+              span {
+                padding-left: ${props => (props.haschildren ? '0px' : '1.5ch')};
+              }
+            `}
             to={destination || '#'}
             onClick={() => !!children && setExpanded(!isExpanded)}
           >
             {name}
-          </Title>
+          </Link>
         </Wrapper>
       </HoverBorder>
-      <Content
+      <animated.div
         style={{
           opacity,
           height: isExpanded && previous === isExpanded ? 'auto' : height,
         }}
       >
-        <Item style={{ transform }} {...bind} children={children} />
-      </Content>
+        <animated.div
+          css={css`
+            position: relative;
+            margin: 1em;
+            display: block;
+            text-decoration: none;
+            color: ${theme.dark};
+            text-align: right;
+            &:hover {
+              color: ${theme.dark};
+            }
+          `}
+          style={{ transform }}
+          {...bind}
+          children={children}
+        />
+      </animated.div>
     </>
   );
 };
 
-export default inject('store')(observer(NavItemOrList));
+export default NavItemOrList;

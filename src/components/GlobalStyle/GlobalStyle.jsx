@@ -1,8 +1,5 @@
-import { createGlobalStyle } from '@emotion/styled';
 import { Global, css } from '@emotion/core';
 
-
-// const GlobalStyle = createGlobalStyle`
 
 class GlobalStyle {
   render() {

@@ -1,22 +1,24 @@
 /* eslint-disable no-return-assign */
-import React from 'react';
-import { inject, observer } from 'mobx-react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Global, css } from '@emotion/core';
 import { useSpring, animated } from 'react-spring';
 import Masthead from '../Masthead';
 import NavPanel from '../NavPanel';
+import { NavContext } from '../../context/NavContext';
+import theme from '../../context/ThemeContext/theme';
 import Helmet from './Helmet';
 import 'open-dyslexic';
-
 import './Style.scss';
 
-const Layout = ({ children, store, style, ...rest }) => {
+const Layout = ({ children, style, ...rest }) => {
+  const [isOpen, setOpen] = useContext(NavContext);
   const springProps = useSpring({
-    opacity: store.navIsOpen ? 0.15 : 1,
+    opacity: isOpen ? 0.15 : 1,
   });
+
   return (
-    <div style={{ ...style, backgroundColor: store.theme.color.dark, height: '100vh' }} x {...rest}>
+    <div style={{ ...style, backgroundColor: theme.color.dark, minHeight: '100vh' }} x {...rest}>
       <Global
         styles={css`
           *,
@@ -41,7 +43,7 @@ const Layout = ({ children, store, style, ...rest }) => {
           h4,
           h5,
           h6 {
-            font-family: ${store.activeFontFamily.heading};
+            font-family: ${theme.fontFamily.heading};
             font-weight: 700;
             color: white;
           }
@@ -57,7 +59,7 @@ const Layout = ({ children, store, style, ...rest }) => {
 
           nav,
           button {
-            font-family: ${store.activeFontFamily.nav};
+            font-family: ${theme.fontFamily.nav};
           }
 
           body,
@@ -66,16 +68,16 @@ const Layout = ({ children, store, style, ...rest }) => {
           a,
           li,
           ul {
-            font-family: ${store.activeFontFamily.body};
+            font-family: ${theme.fontFamily.body};
             font-weight: 300;
           }
         `}
       />
       <Helmet />
       <Masthead>
-        <NavPanel isOpen={store.navIsOpen} />
+        <NavPanel setOpen={() => setOpen(!isOpen)} isOpen={isOpen} />
       </Masthead>
-      <animated.div className="container-fluid" style={{ ...springProps, height: '90vh' }}>
+      <animated.div className="container-fluid" style={{ ...springProps, minHeight: '90vh' }}>
         <div className="row" style={{ height: 'inherit' }}>
           {children}
         </div>
@@ -83,8 +85,8 @@ const Layout = ({ children, store, style, ...rest }) => {
     </div>
   );
 };
-export default inject('store')(observer(Layout));
-// export default Layout;
+// export default inject('store')(observer(Layout));
+export default Layout;
 
 Layout.propTypes = {
   pageTitle: PropTypes.string.isRequired,

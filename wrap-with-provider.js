@@ -1,6 +1,6 @@
-const React = require('react');
-const { Provider } = require('mobx-react');
-const Store = require('./src/stores/Store');
+import React from 'react';
+import { NavProvider, NavContext } from './src/context/NavContext';
 
-// eslint-disable-next-line react/display-name,react/prop-types
-module.exports = ({ element }) => <Provider store={Store}>{element}</Provider>;
+const wrapWithProvider = ({ element }) => <NavProvider>{element}</NavProvider>;
+
+export default wrapWithProvider;
