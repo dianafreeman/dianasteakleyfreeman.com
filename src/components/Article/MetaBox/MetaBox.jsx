@@ -1,5 +1,4 @@
 import React from 'react';
-import { inject, observer } from 'mobx-react';
 import PropTypes from 'prop-types';
 import { useTrail, animated } from 'react-spring';
 import styled from '@emotion/styled';
@@ -31,4 +30,4 @@ MetaBox.propTypes = {
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
 };
 
-export default inject('store')(observer(MetaBox));
+export default MetaBox;

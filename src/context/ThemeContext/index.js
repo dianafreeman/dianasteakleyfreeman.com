@@ -11,7 +11,7 @@ export const ThemeContext = createContext();
 
 export const ThemeProvider = props => {
   const [theme, setTheme] = useState({
-    color: { ...color, ...brands },
+    color,
     screen,
     icon,
     fontSize,

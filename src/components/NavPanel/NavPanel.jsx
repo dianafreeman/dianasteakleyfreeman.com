@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
 import { useSpring, animated } from 'react-spring';
-import styled from '@emotion/styled'
+import styled from '@emotion/styled';
 import { useMeasure } from '@hooks';
 
 import NavItemOrList from '../NavItemOrList';
@@ -66,7 +66,7 @@ const CustomizePanel = () => {
   );
 };
 
-const NavPanel = ({ isOpen, store }) => {
+const NavPanel = ({ isOpen, setOpen }) => {
   const { opacity, w } = useSpring({
     opacity: isOpen ? 1 : 0,
     w: isOpen ? 30 : 0,
@@ -76,9 +76,9 @@ const NavPanel = ({ isOpen, store }) => {
   return (
     <>
       <ToggleContainer style={{ right: w.interpolate(width => `${width}vw`) }}>
-        <NavToggler onClick={() => store.toggleNavOpen()} isOpen={store.navIsOpen} />
+        <NavToggler onClick={() => setOpen()} isOpen={isOpen} />
       </ToggleContainer>
-      <FixedContainer style={{ opacity }}>
+      <FixedContainer style={{ opacity }} className="col-sm-10 col-md-5 col-lg-3">
         <NavWrapper isOpen={isOpen} style={{ width: w.interpolate(width => `${width}vw`) }}>
           <NavItemOrList navDepth={0} name="What's on this page?">
             {WHATS_ON_THIS_PAGE.map((h, idx) => (
@@ -99,4 +99,4 @@ const NavPanel = ({ isOpen, store }) => {
   );
 };
 
-export default inject('store')(observer(NavPanel));
+export default NavPanel;
