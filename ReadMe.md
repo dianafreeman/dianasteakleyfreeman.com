@@ -52,40 +52,39 @@ Run the following command to deploy to netlify.
 yarn deploy
 ```
 
-## Platforms & Tooling
+## Infrastructure & Tooling
 
-- GatsbyJS
-- [React Spring](https://github.com/drcmda/react-spring)
-- [Styled-Components](https://www.styled-components.com/)
-- React Storybook
-- React Spring
+### Development Toolset
+
 - GraphQL
+- [Styled-Components](https://www.styled-components.com/)
+- React Spring
+- Prettier
+
+### Build Blow
+
+- Babel
+- GatsbyJS
+
+### Testing Flow
+
+- React Storybook
 - Cypress.io
+
+### Deployment Flow
+
+- Netlify
 - CircleCI - CI/CD
-- Netlfiy
-- Reach Router
 
 ## Project Structure
 
-### Configuration Targets
+### Configuration Files
 
-- Development
-
-  - Storybook
-  - Code Coverage
-  - Babel & Babel Plugins
-  - Post CSS
-
-- Testing
-
-  - Jest Config: `./jest.config.js`
-  - Code Coverage
-  - Cypress
-
-- Build: `src/pages/index.jsx`
-  - `./gatsby-config.js`
-  - page configurations for production build:
-    `./gatsby-node.js`
+- React Storybook : [`./.storybook/config.js`](./.storybook/config.js)
+- Jest Unit Testing : [`./test/jest.config.js`](./test/jest.config.js)
+- Cypress E2E testing : [`test/cypress/cypress.json`](test/cypress/cypress.json)
+- Gatsby webpack : [`./gatsby-config.js`](./gatsby-config.js)
+- Gatsby build : [`./gatsby-node.js`](./gatsby-node.js)
 
 ## Notes
 
