@@ -31,7 +31,7 @@ Run the following command to build the static site
 ```bash
 yarn build
 # or
-npm run build
+npm build
 ```
 
 ### Test
@@ -41,7 +41,7 @@ Run the following to run formatting, unit, and e2e tests.
 ```bash
 yarn test
 # or
-npm run test
+npm test
 ```
 
 ### Deploy
@@ -50,18 +50,20 @@ Run the following command to deploy to netlify.
 
 ```bash
 yarn deploy
+# or
+npm deploy
 ```
 
 ## Infrastructure & Tooling
 
 ### Development Toolset
 
-- GraphQL
 - [Styled-Components](https://www.styled-components.com/)
 - React Spring
 - Prettier
+- GraphQL
 
-### Build Blow
+### Build Flow
 
 - Babel
 - GatsbyJS
@@ -78,14 +80,44 @@ yarn deploy
 
 ## Project Structure
 
+### Context & Context Providers
+
+I wanted to explore the use of `React.Context` for managing configurable state. The following Contexts are used to hanldle site UI configuration.
+
+- NavContext
+- ThemeContext
+- AbilityContext
+
+### Convenience Scripts
+
+#### `yarn build:component`
+
+This will run the [create-component-app](https://github.com/CVarisco/create-component-app) library to generate component files using the templates stored in the DianaBookES7 directory.
+
+**TODO: This should be a stand alone package in the `dianabook`.**
+
+[^1] Configuration details in
+
 ### Configuration Files
 
 - React Storybook : [`./.storybook/config.js`](./.storybook/config.js)
 - Jest Unit Testing : [`./test/jest.config.js`](./test/jest.config.js)
-- Cypress E2E testing : [`test/cypress/cypress.json`](test/cypress/cypress.json)
+- Cypress E2E testing : [`./test/cypress.json`](test/cypress.json)
 - Gatsby webpack : [`./gatsby-config.js`](./gatsby-config.js)
 - Gatsby build : [`./gatsby-node.js`](./gatsby-node.js)
 
-## Notes
+## ToDo List
 
-- files in the static folder will not be processed by webpack -- they will be copied to the public folder untouched
+Thigns to do **now**
+
+- [ ] Set up Github actions
+- [ ] Replace React.Suspense with Reach Routes
+- [ ] Contact the media
+
+Things to do **next**
+
+- [ ] Dockerize this whole thing
+
+Things to do **eventually**
+
+- [x] move the component generator at yarn `build:component` out of this project and into its own
