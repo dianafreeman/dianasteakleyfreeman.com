@@ -3,20 +3,33 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:12.16.1
+      - image: circleci/node:10
     steps:
       - checkout
+      - restore_cache:
+          name: Restore Yarn Package Cache
+          key: yarn-deps-{{ checksum "yarn.lock" }}
+      - run: yarn install
+      - save_cache:
+          name: Save Yarn Package Cache
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
       - run: yarn build
   test:
     docker:
-      - image: circleci/node:12.16.1
+      - image: circleci/node:10
     steps:
       - checkout
-      - run: yarn test
+      - run:
+          name: Restore Yarn Package Cache
+          command: yarn test
 
 workflows:
   version: 2
   build_and_test:
     jobs:
       - build
-      - test
+      - test:
+          requires:
+            - build
