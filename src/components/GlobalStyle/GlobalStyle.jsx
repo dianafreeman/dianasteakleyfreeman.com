@@ -1,6 +1,5 @@
 import { Global, css } from '@emotion/core';
 
-
 class GlobalStyle {
   render() {
     return (
@@ -62,4 +61,4 @@ class GlobalStyle {
   }
 }
 
-export default new GlobalStyle;
+export default new GlobalStyle();
