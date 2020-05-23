@@ -7,8 +7,8 @@
     "build": "NODE_ENV=production gatsby build",
     "build:component": "npx create-component-app --config ./scripts/ccarc.config.js -t DianaBookES7",
     "build:storybook": "NODE_ENV=storybook build-storybook",
-    "cy:run": "NODE_ENV=testing cypress --config-file=./tests/cypress.json run",
-    "cy:open": "NODE_ENV=testing cypress --config-file=./tests/cypress.json open",
+    "cy:run": "NODE_ENV=testing cypress run --config-file=./test/cypress.json",
+    "cy:open": "NODE_ENV=testing cypress open --config-file=./test/cypress.json",
     "dev": "yarn clean && NODE_ENV=development gatsby develop -o",
     "clean": "gatsby clean",
     "format": "npx prettier --write 'src/**/*.{js,jsx,json}'",
@@ -16,10 +16,9 @@
     "storybook": "NODE_ENV=storybook start-storybook --quiet -p 6006",
     "test": "run-p test:unit test:format",
     "test:dev": "NODE_ENV=testing jest --config ./tests/jest.config.js --watchAll",
-    "test:storybook": "NODE_ENV=testing start-storybook --smoke-test ",
     "test:unit": "NODE_ENV=testing jest --config ./tests/jest.config.js--collectCoverage",
     "test:format": "NODE_ENV=testing npx prettier --check 'src/**/*.{js,jsx,json}'",
-    "test:e2e:ci": "NODE_ENV=testing start-server-and-test start http://localhost:9000 cy:run",
+    "ci": "NODE_ENV=testing run-p start cy:run",
     "test:e2e:dev": "NODE_ENV=testing cypress open"
   },
   "dependencies": {
