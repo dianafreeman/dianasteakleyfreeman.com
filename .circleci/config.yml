@@ -26,6 +26,9 @@ jobs:
       - image: circleci/node:10
     steps:
       - checkout
+      - restore_cache:
+          name: Restore dependency cache
+          key: yarn-deps-{{ checksum "yarn.lock" }}
       - run:
           name: Run tests
           command: yarn test
