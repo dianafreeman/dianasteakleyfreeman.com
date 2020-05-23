@@ -7,8 +7,9 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          name: Restore dependency cache
-          key: yarn-deps-{{ checksum "yarn.lock" }}
+          keys:
+            - yarn-deps-{{ checksum "package-lock.json" }}
+            - yarn-deps-
       - run:
           name: Install dependencies
           command: yarn install
@@ -17,6 +18,7 @@ jobs:
           key: yarn-deps-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
+            - ~/node_modules
       - run:
           name: Build static site
           command: yarn build
@@ -27,8 +29,12 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          name: Restore dependency cache
-          key: yarn-deps-{{ checksum "yarn.lock" }}
+          keys:
+            - yarn-deps-{{ checksum "package-lock.json" }}
+            - yarn-deps-
+      - run:
+          name: Install dependencies
+          command: yarn install
       - run:
           name: Run tests
           command: yarn test
