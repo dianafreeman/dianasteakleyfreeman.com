@@ -29,22 +29,28 @@ const WHATS_ON_THIS_PAGE = [
 ];
 
 const ToggleContainer = animated(styled.div`
+  z-index: 999;
   position: relative;
-  right: 300px;
+  left: 10em;
 `);
 
 const FixedContainer = animated(styled.div`
-  position: absolute;
-  z-index: 99;
+  position: fixed;
   top: 0;
   right: 0;
-  height: 100vh;
-  background-color: #d5d5d5;
+  z-index: 99;
+  padding-right: unset;
 `);
 
-const NavWrapper = animated(styled.nav`
+const NavWrapper = animated(styled.div`
   padding: 1em;
+  padding-right: unset;
   overflow: hidden;
+  background-color: #d5d5d5;
+  height: 100vh;
+  position: relative;
+  top: 0;
+  right: 0;
 `);
 
 const CustomizePanel = () => {
@@ -66,33 +72,44 @@ const CustomizePanel = () => {
   );
 };
 
-const NavPanel = ({ isOpen, setOpen }) => {
+const NavPanel = ({ isOpen = false, setOpen = () => false, ...rest }) => {
   const { opacity, w } = useSpring({
     opacity: isOpen ? 1 : 0,
     w: isOpen ? 30 : 0,
   });
+  console.log(rest);
+
   // const [idxOfExpanded, setExpanded] = useState(2); // set to customize panel by default
 
   return (
     <>
-      <ToggleContainer style={{ right: w.interpolate(width => `${width}vw`) }}>
-        <NavToggler onClick={() => setOpen()} isOpen={isOpen} />
-      </ToggleContainer>
-      <FixedContainer style={{ opacity }} className="col-sm-10 col-md-5 col-lg-3">
-        <NavWrapper isOpen={isOpen} style={{ width: w.interpolate(width => `${width}vw`) }}>
-          <NavItemOrList navDepth={0} name="What's on this page?">
-            {WHATS_ON_THIS_PAGE.map((h, idx) => (
-              <NavItemOrList key={`on-this-page-${idx}`} name={h.title} />
-            ))}
-          </NavItemOrList>
-          <NavItemOrList navDepth={0} name="Recent Posts">
-            <NavItemOrList name="a post 1" style={{ background: 'red' }} />
-            <NavItemOrList name="a post 2" />
-            <NavItemOrList name="a post 3" />
-          </NavItemOrList>
-          <NavItemOrList navDepth={0} name="Customize">
-            <CustomizePanel />
-          </NavItemOrList>
+      <FixedContainer className="col-sm-10 col-md-5 col-lg-3">
+        <ToggleContainer
+          style={{ position: 'absolute', right: w.interpolate(width => `${width}vw`) }}
+        >
+          <NavToggler onClick={() => setOpen()} isOpen={isOpen} />
+        </ToggleContainer>
+        <NavWrapper
+          isOpen={isOpen}
+          style={() => {
+            opacity, w.interpolate(width => `${width}vw`);
+          }}
+        >
+          <nav>
+            <NavItemOrList navDepth={0} name="What's on this page?">
+              {WHATS_ON_THIS_PAGE.map((h, idx) => (
+                <NavItemOrList key={`on-this-page-${idx}`} name={h.title} />
+              ))}
+            </NavItemOrList>
+            <NavItemOrList navDepth={0} name="Recent Posts">
+              <NavItemOrList name="a post 1" style={{ background: 'red' }} />
+              <NavItemOrList name="a post 2" />
+              <NavItemOrList name="a post 3" />
+            </NavItemOrList>
+            <NavItemOrList navDepth={0} name="Customize">
+              <CustomizePanel />
+            </NavItemOrList>
+          </nav>
         </NavWrapper>
       </FixedContainer>
     </>

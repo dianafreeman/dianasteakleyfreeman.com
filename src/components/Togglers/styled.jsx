@@ -3,7 +3,7 @@ import { animated } from 'react-spring';
 import theme from '../../context/ThemeContext/theme';
 
 export const Line = animated(styled.line`
-  stroke: ${theme.color.light};
+  stroke: ${props => theme.color.light};
   stroke-width: 5;
 `);
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from '@reach/router';
+import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import { animated } from 'react-spring';
 
@@ -21,15 +21,13 @@ const Wrapper = animated(styled.div`
 const ListItem = ({ type, item, ...rest }) => {
   return (
     <Wrapper {...rest}>
-      <Link to={type === 'MARKDOWN' ? item.frontmatter.path : item.destination}>
-        <h3>{type === 'MARKDOWN' ? item.frontmatter.title : item.name}</h3>
+      <Link to={type === 'MARKDOWN' ? item.frontmatter.path : item.path}>
+        <h3>{type === 'MARKDOWN' ? item.frontmatter.title : item.title}</h3>
       </Link>
     </Wrapper>
   );
 };
 
-ListItem.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
-};
+ListItem.propTypes = {};
 
 export default ListItem;

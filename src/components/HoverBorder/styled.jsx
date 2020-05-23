@@ -4,12 +4,12 @@ import theme from '../../context/ThemeContext/theme';
 
 const hardGradientBorder = `
 linear-gradient(to right\,
-  ${theme.color.lightblue} 0%\,
-  ${theme.color.lightblue} 33%\,
-  ${theme.color.magenta} 33%\,
-  ${theme.color.magenta} 66%\,
-  ${theme.color.orange} 66%\,
-  ${theme.color.orange} 100%)
+  ${() => theme.color.lightblue} 0%\,
+  ${() => theme.color.lightblue} 33%\,
+  ${() => theme.color.magenta} 33%\,
+  ${() => theme.color.magenta} 66%\,
+  ${() => theme.color.orange} 66%\,
+  ${() => theme.color.orange} 100%)
 `;
 
 export const Wrapper = animated(styled.div`

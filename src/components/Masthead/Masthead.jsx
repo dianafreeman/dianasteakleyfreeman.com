@@ -9,14 +9,13 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: end;
   border-bottom: 2px solid white;
+  min-height: 50px;
 `;
 // isOpen={defaultNavOpen || store.navIsOpen} onNavClick={store.toggleNavOpen}
 const Masthead = ({ children, onNavClick, title, isOpen, ...rest }) => {
   return <Wrapper {...rest}>{children}</Wrapper>;
 };
 
-Masthead.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
-};
+Masthead.propTypes = {};
 
 export default Masthead;
