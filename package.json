@@ -15,11 +15,11 @@
     "start": "gatsby serve",
     "storybook": "NODE_ENV=storybook start-storybook --quiet -p 6006",
     "test": "run-p test:unit test:format",
-    "test:dev": "NODE_ENV=testing jest --config ./test/jest.config.js --watchAll",
-    "test:unit": "NODE_ENV=testing jest --config ./test/jest.config.js --collectCoverage",
-    "test:format": "NODE_ENV=testing npx prettier --check 'src/**/*.{js,jsx,json}'",
-    "ci": "NODE_ENV=testing run-p start cy:run",
-    "test:e2e:dev": "NODE_ENV=testing cypress open"
+    "test:dev": "NODE_ENV=test jest --config ./test/jest.config.js --watchAll",
+    "test:unit": "NODE_ENV=test jest --config ./test/jest.config.js --collectCoverage",
+    "test:format": "NODE_ENV=test npx prettier --check 'src/**/*.{js,jsx,json}'",
+    "ci": "NODE_ENV=test run-p start cy:run",
+    "test:e2e:dev": "NODE_ENV=test cypress open"
   },
   "dependencies": {
     "@babel/core": "^7.7.7",
