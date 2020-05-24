@@ -11,7 +11,7 @@ import Helmet from './Helmet';
 import 'open-dyslexic';
 import './Style.scss';
 
-const Layout = ({ children, style, ...rest }) => {
+const Layout = ({ children, style, comingSoon, ...rest }) => {
   const [isOpen, setOpen] = useContext(NavContext);
   const springProps = useSpring({
     opacity: isOpen ? 0.15 : 1,
@@ -74,9 +74,11 @@ const Layout = ({ children, style, ...rest }) => {
         `}
       />
       <Helmet />
-      <Masthead>
-        <NavPanel setOpen={() => setOpen(!isOpen)} isOpen={isOpen} />
-      </Masthead>
+      {!comingSoon && (
+        <Masthead>
+          <NavPanel setOpen={() => setOpen(!isOpen)} isOpen={isOpen} />
+        </Masthead>
+      )}
       <animated.div className="container-fluid" style={{ ...springProps, minHeight: '90vh' }}>
         <div className="row" style={{ height: 'inherit' }}>
           {children}
