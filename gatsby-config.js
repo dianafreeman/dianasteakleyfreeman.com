@@ -1,7 +1,6 @@
 /* eslint-disable */
-const config = require('./src/config/website').config
-const pathPrefix = config.pathPrefix === '/' ? '' : config.pathPrefix
-
+const config = require('./src/config/web/metadata').data;
+const pathPrefix = config.pathPrefix === '/' ? '' : config.pathPrefix;
 module.exports = {
   /* General Information */
   siteMetadata: {
@@ -10,21 +9,23 @@ module.exports = {
   /* Plugins */
   plugins: [
     'gatsby-plugin-react-helmet',
-    'gatsby-plugin-styled-components',
     'gatsby-plugin-postcss',
+    'gatsby-plugin-sass',
     {
-      resolve: 'gatsby-source-filesystem',
+      resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/src/images/`,
-        name: 'images',
+        path: `src/content/blog`,
+        name: `blog-posts`,
       },
     },
+
     {
       resolve: 'gatsby-plugin-google-analytics',
       options: {
         trackingId: config.googleAnalyticsID,
       },
     },
+    `gatsby-transformer-remark`,
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
     {
@@ -51,10 +52,8 @@ module.exports = {
         ],
       },
     },
-
     /* Must be placed at the end */
     'gatsby-plugin-offline',
     'gatsby-plugin-netlify',
   ],
-}
-
+};

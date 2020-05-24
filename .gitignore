@@ -61,5 +61,4 @@ bundle-stats.json
 
 tailwind.custom.css
 
-.DS_Store
-static/.DS_Store
+.DS_store
