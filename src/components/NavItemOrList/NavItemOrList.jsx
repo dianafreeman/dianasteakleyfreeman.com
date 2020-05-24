@@ -39,7 +39,6 @@ const NavItemOrList = ({
     },
   });
 
-  console.log(theme.fontFamily);
   return (
     <>
       <HoverBorder>

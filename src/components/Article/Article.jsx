@@ -10,8 +10,7 @@ import MetaBox from './MetaBox';
 /** @jsx jsx */
 const Article = ({ post = POST, ...restProps }) => {
   // const [theme] = useContext(ThemeContext);
-  // console.log('theme');
-  // console.log(theme);
+
   const Image = styled.img`
     width: 100%;
     margin: auto;

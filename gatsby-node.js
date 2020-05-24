@@ -40,7 +40,6 @@ exports.createPages = async ({ graphql, actions }) => {
   const blogPosts = result.data.allMarkdownRemark.edges.map(e => e.node);
 
   blogPosts.forEach(post => {
-    console.log(post);
     // Create the Gatsby page for this post
     createPage({
       path: post.frontmatter.path,
