@@ -1,7 +1,8 @@
 module.exports = {
+  rootDir: '../',
   verbose: true,
-  transform: {
-    '^.+\\.jsx?$': `<rootDir>/../scripts/jest-preprocess.js`,
+    transform: {
+    "^.+\\.jsx?$": `<rootDir>/scripts/jest-preprocess.js`,
   },
   moduleNameMapper: {
     '.+\\.(css|styl|less|sass|scss)$': `identity-obj-proxy`,
@@ -13,13 +14,13 @@ module.exports = {
     `<rootDir>.*/public`,
     `__templates__`,
     `__snapshots__`,
+    `cypress`,
   ],
   transformIgnorePatterns: [`node_modules/(?!(gatsby)/)`],
   globals: {
     __PATH_PREFIX__: ``,
   },
-  testRegex: `.*spec.js?x`,
   testURL: `http://localhost`,
-  setupFilesAfterEnv: [`<rootDir>/../src/config/test-setup.config.js`],
+  setupFilesAfterEnv: [`./test/test-setup.config.js`],
   coverageReporters: ['json', 'text', 'lcovonly', 'clover'],
 };
