@@ -7,9 +7,9 @@ import icon from '../../config/theme/_icon';
 import fontSize from '../../config/theme/_fontSize';
 import fontFamily from '../../config/theme/_fontFamily';
 
-export const ThemeContext = createContext();
+// export const ThemeContext = createContext();
 
-export const ThemeProvider = props => {
+export const useTheme = props => {
   const [theme, setTheme] = useState({
     color,
     screen,
@@ -25,5 +25,5 @@ export const ThemeProvider = props => {
       none: 'none',
     },
   });
-  return <ThemeContext.Provider value={[theme, setTheme]}>{props.children}</ThemeContext.Provider>;
+  return [theme, setTheme];
 };
