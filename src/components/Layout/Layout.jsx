@@ -12,7 +12,6 @@ import './Style.scss';
 
 const Layout = ({ children, style, ...rest }) => {
   const [isOpen, setOpen] = useState(false);
-  console.log(isOpen);
   const springProps = useSpring({
     opacity: isOpen ? 0.15 : 1,
   });

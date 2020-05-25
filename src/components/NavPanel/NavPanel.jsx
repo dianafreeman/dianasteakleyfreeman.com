@@ -68,22 +68,26 @@ const CustomizePanel = () => {
 };
 
 const NavPanel = ({ isOpen, setOpen }) => {
-  const { opacity, w, padding } = useSpring({
+  const { opacity, w, p } = useSpring({
     opacity: isOpen ? 1 : 0,
     w: isOpen ? 30 : 0,
-    padding: isOpen ? 0 : '1em',
+    p: isOpen ? 0 : 1,
   });
   // const [idxOfExpanded, setExpanded] = useState(2); // set to customize panel by default
 
   return (
     <>
       <ToggleContainer style={{ right: w.interpolate(width => `${width}vw`) }}>
-        <NavToggler onClick={() => setOpen()} isOpen={isOpen} />
+        <NavToggler onClick={setOpen} isOpen={isOpen} />
       </ToggleContainer>
       <FixedContainer style={{ width: w.interpolate(width => `${width}vw`) }}>
         <NavWrapper
           isOpen={isOpen}
-          style={{ padding, opacity, width: w.interpolate(width => `${width}vw`) }}
+          style={{
+            padding: p.interpolate(pad => `${pad}em`),
+            opacity,
+            width: w.interpolate(width => `${width}vw`),
+          }}
         >
           <NavItemOrList navDepth={0} name="What's on this page?">
             {WHATS_ON_THIS_PAGE.map((h, idx) => (

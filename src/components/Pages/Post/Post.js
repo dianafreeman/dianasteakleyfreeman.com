@@ -8,7 +8,7 @@ const TitleWrapper = styled.div`
   text-align: left;
   width: 100%;
 `;
-const PostTemplate = () => {
+const Post = () => {
   const data = useStaticQuery(graphql`
     query($slug: String) {
       markdownRemark(frontmatter: { slug: { eq: $slug } }) {
@@ -34,6 +34,6 @@ const PostTemplate = () => {
   );
 };
 
-// export default PostTemplate;
+// export default Post;
 
-export default PostTemplate;
+export default Post;

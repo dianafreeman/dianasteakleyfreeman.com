@@ -8,7 +8,7 @@ const Index = () => {
   return (
     <Router>
       <Home path="/" />
-      <Blog path="blog" />
+      <Blog path="/blog" />
       <NotFound default />
     </Router>
   );
