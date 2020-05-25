@@ -2,8 +2,8 @@ import React, { useContext } from 'react';
 import { useTrail } from 'react-spring';
 import styled from '@emotion/styled';
 import { css, jsx } from '@emotion/core';
-import { ThemeContext, ThemeProvider } from '../../context/ThemeContext';
-import theme from '../../context/ThemeContext/theme';
+import { ThemeContext, ThemeProvider } from '../../hooks/useTheme';
+import theme from '../../config/theme';
 import POST from './post.json';
 import MetaBox from './MetaBox';
 

@@ -39,12 +39,13 @@ const FixedContainer = animated(styled.div`
   top: 0;
   right: 0;
   height: 100vh;
-  background-color: #d5d5d5;
 `);
 
 const NavWrapper = animated(styled.nav`
   padding: 1em;
   overflow: hidden;
+  height: inherit;
+  background-color: #d5d5d5;
 `);
 
 const CustomizePanel = () => {
@@ -67,9 +68,10 @@ const CustomizePanel = () => {
 };
 
 const NavPanel = ({ isOpen, setOpen }) => {
-  const { opacity, w } = useSpring({
+  const { opacity, w, padding } = useSpring({
     opacity: isOpen ? 1 : 0,
     w: isOpen ? 30 : 0,
+    padding: isOpen ? 0 : '1em',
   });
   // const [idxOfExpanded, setExpanded] = useState(2); // set to customize panel by default
 
@@ -78,8 +80,11 @@ const NavPanel = ({ isOpen, setOpen }) => {
       <ToggleContainer style={{ right: w.interpolate(width => `${width}vw`) }}>
         <NavToggler onClick={() => setOpen()} isOpen={isOpen} />
       </ToggleContainer>
-      <FixedContainer style={{ opacity }} className="col-sm-10 col-md-5 col-lg-3">
-        <NavWrapper isOpen={isOpen} style={{ width: w.interpolate(width => `${width}vw`) }}>
+      <FixedContainer style={{ width: w.interpolate(width => `${width}vw`) }}>
+        <NavWrapper
+          isOpen={isOpen}
+          style={{ padding, opacity, width: w.interpolate(width => `${width}vw`) }}
+        >
           <NavItemOrList navDepth={0} name="What's on this page?">
             {WHATS_ON_THIS_PAGE.map((h, idx) => (
               <NavItemOrList key={`on-this-page-${idx}`} name={h.title} />

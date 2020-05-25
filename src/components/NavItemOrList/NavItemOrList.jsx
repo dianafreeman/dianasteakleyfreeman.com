@@ -7,7 +7,7 @@ import { Link } from '@reach/router';
 import { useMeasure, usePrevious } from '../../hooks';
 import { ExpandToggler } from '../Togglers/index';
 import HoverBorder from '../HoverBorder';
-import theme from '../../context/ThemeContext/theme';
+import theme from '../../config/theme';
 
 const Wrapper = styled.div`
   position: relative;

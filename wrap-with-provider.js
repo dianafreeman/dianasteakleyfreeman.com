@@ -1,6 +1,6 @@
-import React from 'react';
-import { NavProvider, NavContext } from './src/context/NavContext';
+// import React from 'react';
+// import NavContext from './src/context/NavContext';
 
-const wrapWithProvider = ({ element }) => <NavProvider>{element}</NavProvider>;
+// const wrapWithProvider = ({ element }) => <NavContext.Provider>{element}</NavContext.Provider>;
 
-export default wrapWithProvider;
+// export default wrapWithProvider;

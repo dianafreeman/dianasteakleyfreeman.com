@@ -1,24 +1,24 @@
 /* eslint-disable no-return-assign */
-import React, { useContext } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Global, css } from '@emotion/core';
 import { useSpring, animated } from 'react-spring';
 import Masthead from '../Masthead';
 import NavPanel from '../NavPanel';
-import { NavContext } from '../../context/NavContext';
-import theme from '../../context/ThemeContext/theme';
+import theme from '../../config/theme';
 import Helmet from './Helmet';
 import 'open-dyslexic';
 import './Style.scss';
 
 const Layout = ({ children, style, ...rest }) => {
-  const [isOpen, setOpen] = useContext(NavContext);
+  const [isOpen, setOpen] = useState(false);
+  console.log(isOpen);
   const springProps = useSpring({
     opacity: isOpen ? 0.15 : 1,
   });
 
   return (
-    <div style={{ ...style, backgroundColor: theme.color.dark, minHeight: '100vh' }} x {...rest}>
+    <div style={{ ...style, backgroundColor: theme.color.dark, minHeight: '100vh' }} {...rest}>
       <Global
         styles={css`
           *,
@@ -43,7 +43,7 @@ const Layout = ({ children, style, ...rest }) => {
           h4,
           h5,
           h6 {
-            font-family: ${theme.fontFamily.heading};
+            font-family: ${() => theme.fontFamily.heading};
             font-weight: 700;
             color: white;
           }
@@ -59,7 +59,7 @@ const Layout = ({ children, style, ...rest }) => {
 
           nav,
           button {
-            font-family: ${theme.fontFamily.nav};
+            font-family: ${() => theme.fontFamily.nav};
           }
 
           body,
@@ -68,7 +68,7 @@ const Layout = ({ children, style, ...rest }) => {
           a,
           li,
           ul {
-            font-family: ${theme.fontFamily.body};
+            font-family: ${() => theme.fontFamily.body};
             font-weight: 300;
           }
         `}

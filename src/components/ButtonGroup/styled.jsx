@@ -1,5 +1,5 @@
 import styled, { css } from '@emotion/styled';
-import theme from '../../context/ThemeContext/theme';
+import theme from '../../config/theme';
 
 export const Wrapper = styled.form`
   font-family: inherit;

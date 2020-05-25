@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { animated } from 'react-spring';
-import theme from '../../context/ThemeContext/theme';
+import theme from '../../config/theme';
 
 const hardGradientBorder = `
 linear-gradient(to right\,

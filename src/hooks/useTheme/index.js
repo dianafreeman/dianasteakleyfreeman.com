@@ -1,11 +1,11 @@
 import React, { useState, createContext } from 'react';
 
-import brands from './theme/_brands';
-import color from './theme/_brands';
-import screen from './theme/_screen';
-import icon from './theme/_icon';
-import fontSize from './theme/_fontSize';
-import fontFamily from './theme/_fontFamily';
+import brands from '../../config/theme/_brands';
+import color from '../../config/theme/_brands';
+import screen from '../../config/theme/_screen';
+import icon from '../../config/theme/_icon';
+import fontSize from '../../config/theme/_fontSize';
+import fontFamily from '../../config/theme/_fontFamily';
 
 export const ThemeContext = createContext();
 

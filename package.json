@@ -9,7 +9,7 @@
     "build:storybook": "NODE_ENV=storybook build-storybook",
     "cy:run": "NODE_ENV=test cypress run --config-file=./test/cypress.json",
     "cy:open": "NODE_ENV=test cypress open --config-file=./test/cypress.json",
-    "dev": "yarn clean && NODE_ENV=development gatsby develop -o",
+    "dev": "NODE_ENV=development gatsby develop -o",
     "clean": "gatsby clean",
     "format": "npx prettier --write 'src/**/*.{js,jsx,json}'",
     "start": "gatsby serve",
