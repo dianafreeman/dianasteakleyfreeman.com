@@ -22,6 +22,13 @@ exports.createPages = async ({ graphql, actions }) => {
     throw result.errors;
   }
 
+  // Projects
+  createPage({
+    path: '/projects',
+    component: path.resolve(`./src/components/Pages/Projects/Projects.jsx`),
+    context: {},
+  });
+
   // Blog
   createPage({
     path: '/blog',
@@ -29,7 +36,7 @@ exports.createPages = async ({ graphql, actions }) => {
     context: {},
   });
 
-  const postTemplate = path.resolve(`./src/templates/post.jsx`);
+  const postTemplate = path.resolve(`./src/components/Pages/Post/Post.jsx`);
   const blogPosts = result.data.allMarkdownRemark.edges.map(e => e.node);
 
   blogPosts.forEach(post => {
@@ -42,13 +49,4 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     });
   });
-};
-
-exports.onCreatePage = ({ page, actions }) => {
-  //  let Gatsby know that we want all the route to end up in index.html
-  const { createPage } = actions;
-  if (page.path === `/`) {
-    page.matchPath = `/*`;
-    createPage(page);
-  }
 };

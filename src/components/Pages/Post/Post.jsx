@@ -1,8 +1,8 @@
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import styled from '@emotion/styled';
-import Layout from '../components/Layout';
-import Article from '../components/Article';
+import Layout from '../../Layout';
+import Article from '../../Article';
 
 const TitleWrapper = styled.div`
   text-align: left;
@@ -26,9 +26,7 @@ const Post = () => {
   const post = data.markdownRemark;
   return (
     <Layout>
-      <TitleWrapper>
-        <h1>{post.frontmatter.title}</h1>
-      </TitleWrapper>
+      <TitleWrapper />
       <Article post={post} />
     </Layout>
   );

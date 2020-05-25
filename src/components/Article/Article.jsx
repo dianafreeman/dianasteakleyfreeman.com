@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import { useTrail } from 'react-spring';
+
 import styled from '@emotion/styled';
 import { css, jsx } from '@emotion/core';
-import { ThemeContext, ThemeProvider } from '../../hooks/useTheme';
+// import { ThemeContext, ThemeProvider } from '../../hooks/useTheme';
 import theme from '../../config/theme';
 import POST from './post.json';
 import MetaBox from './MetaBox';
@@ -11,6 +11,10 @@ import MetaBox from './MetaBox';
 const Article = ({ post = POST, ...restProps }) => {
   // const [theme] = useContext(ThemeContext);
 
+  const TitleWrapper = styled.div`
+    text-align: left;
+    width: 70%;
+  `;
   const Image = styled.img`
     width: 100%;
     margin: auto;
@@ -22,38 +26,44 @@ const Article = ({ post = POST, ...restProps }) => {
   `;
 
   return (
-    <ThemeProvider>
-      <article
-        {...restProps}
+    <article
+      {...restProps}
+      css={css`
+        padding: 1em;
+        width: inherit;
+      `}
+    >
+      <div
+        css={css`
+          display: flex;
+        `}
+      >
+        <TitleWrapper>
+          <h1>{post.frontmatter.title}</h1>
+        </TitleWrapper>
+        <MetaBox
+          items={[
+            {
+              label: `⏱ Time to read`,
+              value: `${post.timeToRead} minutes`,
+            },
+            {
+              label: `Published On`,
+              value: `${post.frontmatter.date}`,
+            },
+          ]}
+        />
+      </div>
+      <div
         css={css`
           padding: 1em;
           width: inherit;
         `}
       >
-        <div
-          css={css`
-            padding: 1em;
-            width: inherit;
-          `}
-        >
-          <MetaBox
-            items={[
-              {
-                label: `⏱ Time to read`,
-                value: `${post.timeToRead} minutes`,
-              },
-              {
-                label: `Published On`,
-                value: `${post.frontmatter.date}`,
-              },
-            ]}
-          />
-
-          <Image src="https://via.placeholder.com/500x300" alt="" />
-          <div dangerouslySetInnerHTML={{ __html: post.html }} style={{ display: 'block' }} />
-        </div>
-      </article>
-    </ThemeProvider>
+        <Image src="https://via.placeholder.com/500x300" alt="" />
+        <div dangerouslySetInnerHTML={{ __html: post.html }} style={{ display: 'block' }} />
+      </div>
+    </article>
   );
 };
 
