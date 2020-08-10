@@ -19,7 +19,9 @@ const MetaBox = ({ items, children, ...rest }) => {
       {items.map(t => (
         <MetaLabel>
           {t.label}
-          <MetaContent>{t.value}</MetaContent>
+          <MetaContent>
+            {`: `} {t.value}
+          </MetaContent>
         </MetaLabel>
       ))}
     </animated.div>

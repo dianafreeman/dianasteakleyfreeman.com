@@ -39,9 +39,10 @@ const Article = ({ post = POST, ...restProps }) => {
         `}
       >
         <TitleWrapper>
-          <h1>{post.frontmatter.title}</h1>
+          <h1 style={{ fontWeight: '900' }}>{post.frontmatter.title}</h1>
         </TitleWrapper>
         <MetaBox
+          style={{ color: 'white' }}
           items={[
             {
               label: `⏱ Time to read`,
@@ -58,6 +59,7 @@ const Article = ({ post = POST, ...restProps }) => {
         css={css`
           padding: 1em;
           width: inherit;
+          color: white;
         `}
       >
         <Image src="https://via.placeholder.com/500x300" alt="" />

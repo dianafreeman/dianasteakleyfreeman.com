@@ -36,7 +36,7 @@ exports.createPages = async ({ graphql, actions }) => {
     context: {},
   });
 
-  const postTemplate = path.resolve(`./src/components/Pages/Post/Post.jsx`);
+  const postTemplate = path.resolve(`./src/components/Pages/PostTemplate/PostTemplate.jsx`);
   const blogPosts = result.data.allMarkdownRemark.edges.map(e => e.node);
 
   blogPosts.forEach(post => {
