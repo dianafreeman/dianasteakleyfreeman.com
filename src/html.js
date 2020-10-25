@@ -11,13 +11,18 @@ export default function HTML(props) {
         {props.headComponents}
 
         <link
-          href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300i,700|Open+Sans:400,600,700,800&display=swap"
+          href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,700|Roboto:400,600,700,800&display=swap"
           rel="stylesheet"
         />
         <link
           rel="stylesheet"
           href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
           integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           crossOrigin="anonymous"
         />
       </head>
