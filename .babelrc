@@ -6,7 +6,6 @@
       {
         "root": ["./"],
         "alias": {
-          "@story-decorators": "./.storybook/decorate",
           "@site-config": "./src/config",
           "@hooks": "./src/hooks",
           "@fixtures": "./test/__fixtures__"
