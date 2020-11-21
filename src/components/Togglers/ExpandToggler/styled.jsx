@@ -1,9 +1,8 @@
-import styled from '@emotion/styled'
+import styled from '@emotion/styled';
 import { animated } from 'react-spring';
-import theme from '../../../context/ThemeContext/theme';
 
 export const Line = animated(styled.line`
-  stroke: ${theme.color.dark};
+  stroke: black;
   stroke-width: 3;
 `);
 

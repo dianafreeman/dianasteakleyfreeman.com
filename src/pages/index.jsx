@@ -5,8 +5,8 @@ const Home = () => {
   return (
     <Layout>
       <div>
-        <h1>Hi. I'm Diana. 👋</h1>
-        <p style={{ color: 'white' }}>
+        <h1>Diana M. Steakley-Freeman</h1>
+        <p>
           Cillum esse aliquip occaecat eu sunt fugiat sunt nisi. Elit sit aliqua tempor aliquip id
           nisi non veniam. Ullamco quis dolor irure dolore non laborum. Eu sunt ullamco magna nisi
           est laborum. Non pariatur amet aliquip laboris excepteur sit reprehenderit reprehenderit

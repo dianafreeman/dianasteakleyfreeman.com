@@ -20,11 +20,11 @@ export default function HTML(props) {
           integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
           crossOrigin="anonymous"
         />
-        <link
+        {/* <link
           rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           crossOrigin="anonymous"
-        />
+        /> */}
       </head>
       <body {...props.bodyAttributes}>
         {props.preBodyComponents}
