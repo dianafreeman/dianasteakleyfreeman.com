@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-import React from 'react';
-import Home from '../components/Pages/Home';
-
-const Index = () => <Home />;
-export default Index;
-=======
 import React from 'react';
 import Layout from '../components/Layout';
 
@@ -25,4 +18,3 @@ const Home = () => {
 };
 
 export default Home;
->>>>>>> cleanup structure

@@ -1,10 +1,4 @@
 import React, { useRef, useState, useEffect } from 'react';
-<<<<<<< HEAD
-import { inject, observer } from 'mobx-react';
-import PropTypes from 'prop-types';
-import styled from '@emotion/styled';
-=======
->>>>>>> cleanup structure
 import { useSpring, animated } from 'react-spring';
 import { Line, TogglerButton } from '../styled';
 

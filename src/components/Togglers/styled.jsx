@@ -1,9 +1,5 @@
 import styled from '@emotion/styled';
 import { animated } from 'react-spring';
-<<<<<<< HEAD
-import theme from '../../config/theme';
-=======
->>>>>>> cleanup structure
 
 export const Line = animated(styled.line`
   stroke: lightgray;

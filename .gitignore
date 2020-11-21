@@ -63,3 +63,4 @@ bundle-stats.json
 .DS_store
 .vscode/
 scripts/
+/tmp
