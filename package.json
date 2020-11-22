@@ -3,7 +3,9 @@
   "description": "Diana M. Steakley-Freeman. Full Stack JS Dev",
   "version": "2.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "start": "echo \"This is not the DIR you're looking for\""
+  },
   "dependencies": {},
   "repository": {
     "url": "git@github.com:dianafreeman/dianasteakleyfreeman.com.git",
