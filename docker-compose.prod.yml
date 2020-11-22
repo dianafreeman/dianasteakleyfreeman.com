@@ -1,0 +1,32 @@
+
+services:
+  client:
+    build:
+      context: ./client
+    command: yarn start
+    ports:
+      - 3000:3000
+    environment:
+      PORT: 3000
+    volumes:
+      - ./client:/usr/src/app
+      - /usr/src/app/node_modules
+
+  server:
+    build:
+      context: ./server
+    command: yarn start
+    ports:
+      - 4000:4000
+    environment:
+      PORT: 4000
+    depends_on:
+      - mongo
+    volumes:
+      - ./server:/usr/src/app
+      - /usr/src/app/node_modules
+
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
