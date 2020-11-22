@@ -65,3 +65,6 @@ bundle-stats.json
 scripts/
 /tmp
 .editorconfig
+
+.env
+
