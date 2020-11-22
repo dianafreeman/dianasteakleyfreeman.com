@@ -9,8 +9,20 @@ services:
     environment:
       PORT: 3000
     volumes:
-      - ./client:/client
-      - /client/node_modules
+      - ./client:/usr/src/app
+      - /usr/src/app/node_modules
+
+  storybook:
+    build:
+      context: ./client
+    command: yarn storybook
+    ports:
+      - 6006:6006
+    environment:
+      PORT: 6006
+    volumes:
+      - ./client:/usr/src/app
+      - /usr/src/app/node_modules
 
   server:
     build:
@@ -23,10 +35,12 @@ services:
     depends_on:
       - mongo
     volumes:
-      - ./server:/server
-      - /server/node_modules
+      - ./server:/usr/src/app
+      - /usr/src/app/node_modules
 
   mongo:
     image: mongo
     ports:
       - "27017:27017"
+    volumes:
+      - ./tmp/db:/db/data
