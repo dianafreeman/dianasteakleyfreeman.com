@@ -1,20 +1,29 @@
 
 services:
-  db:
-    image: postgres:11.5-alpine
-    ports:
-      - 35432:5432
-    volumes:
-      - ./tmp/db:/var/lib/postgresql/data
+  # client:
+  #   build:
+  #     context: ./client
+  #     dockerfile: Dockerfile.dev
+  #   command: yarn start
+  #   ports:
+  #     - 33000:33000
+  #   volumes:
+  #     - ./client:/client
+  #     - /client/node_modules
 
-  client:
-    image: node:12.5-alpine
+  server:
+    build:
+      context: ./server
     command: yarn start
     ports:
-      - 33000:33000
+      - 44000:44000
+    environment:
+      PORT: 44000
+    depends_on:
+      - mongo
     volumes:
-      - ./client:/client
-      - /client/node_modules
+      - ./server:/server
+      - /server/node_modules
 
   e2e:
     image: cypress/included:4.12.1
@@ -25,3 +34,8 @@ services:
     volumes:
       - ./e2e:/e2e
     working_dir: /e2e
+
+  mongo:
+    image: mongo
+    ports:
+        - "27017:27017"
