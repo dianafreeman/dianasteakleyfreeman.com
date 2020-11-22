@@ -1,39 +1,30 @@
 
 services:
-  # client:
-  #   build:
-  #     context: ./client
-  #     dockerfile: Dockerfile.dev
-  #   command: yarn start
-  #   ports:
-  #     - 33000:33000
-  #   volumes:
-  #     - ./client:/client
-  #     - /client/node_modules
+  client:
+    build:
+      context: ./client
+    command: yarn start
+    ports:
+      - 3000:3000
+    environment:
+      PORT: 3000
+    volumes:
+      - ./client:/client
+      - /client/node_modules
 
   server:
     build:
       context: ./server
     command: yarn start
     ports:
-      - 44000:44000
+      - 4000:4000
     environment:
-      PORT: 44000
+      PORT: 4000
     depends_on:
       - mongo
     volumes:
       - ./server:/server
       - /server/node_modules
-
-  e2e:
-    image: cypress/included:4.12.1
-    command: echo 'Not run in dev'
-    entrypoint: ""
-    environment:
-      CYPRESS_BASE_URL: http://client:33000
-    volumes:
-      - ./e2e:/e2e
-    working_dir: /e2e
 
   mongo:
     image: mongo
