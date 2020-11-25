@@ -10,24 +10,13 @@ services:
       PORT: 3000
     volumes:
       - ./client:/usr/src/app
-      - /usr/src/app/node_modules
-
-  storybook:
-    build:
-      context: ./client
-    command: yarn storybook
-    ports:
-      - 6006:6006
-    environment:
-      PORT: 6006
-    volumes:
-      - ./client:/usr/src/app
+      - ./build:/usr/src/app/build
       - /usr/src/app/node_modules
 
   server:
     build:
       context: ./server
-    command: yarn start
+    command: yarn dev
     ports:
       - 4000:4000
     environment:
@@ -43,4 +32,4 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - ./tmp/db:/db/data
+      - ./tmp/db:/data/db
