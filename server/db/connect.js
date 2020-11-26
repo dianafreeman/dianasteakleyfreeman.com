@@ -1,12 +1,11 @@
 
-// connection.js
 const mongoose = require("mongoose");
-const User = require("../models/User.model");
+const dotenv = require("dotenv");
+dotenv.config()
 
-const connection = "mongodb://mongo:27017/mongo-test";
-const connectDb = () => {
- return mongoose.connect(connection);
-};
+const MONGO_URI = process.env.MONGO_URI || "";
 
-module.exports = connectDb;
+module.exports = () => {
+  return mongoose.connect(MONGO_URI, { useNewUrlParser: true } );
+};;
 
