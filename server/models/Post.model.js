@@ -2,16 +2,23 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const postSchema = new Schema({
-  name: {
+  title: {
     type: String,
     required: true,
   },
-  description: {
+  createdAt: {
+    type: String,
+    default: new Date(),
+  },
+  excerpt: {
     type: String,
   },
   content: {
     type: String,
-  }
+  },
+  featuredImage: {
+    type: String,
+  },
 });
 
 const Post = mongoose.model('Post', postSchema);
