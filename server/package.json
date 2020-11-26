@@ -4,17 +4,22 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": " DEBUG=express:* nodemon ./bin/www"
+    "dev": "nodemon ./bin/www",
+    "seed": "node ./db/seed/generate/posts",
+    "dev-debug": " DEBUG=express:* nodemon ./bin/www"
   },
   "dependencies": {
-    "cookie-parser": "~1.4.4",
+    "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
-    "dotenv": "^8.2.0",
+    "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
-    "http-status-codes": "^1.4.0",
+    "dotenv": "^8.2.0",
     "express": "~4.16.1",
+    "express-session": "^1.17.1",
+    "http-status-codes": "^1.4.0",
     "mongoose": "^5.10.15",
-    "morgan": "~1.9.1"
+    "morgan": "~1.9.1",
+    "passport": "^0.4.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.5",
@@ -23,6 +28,7 @@
     "@babel/preset-env": "^7.11.0",
     "@babel/register": "^7.10.5",
     "chai": "^4.2.0",
+    "faker": "^5.1.0",
     "mocha": "^8.1.1",
     "nodemon": "^2.0.4",
     "prettier": "^1.18.2",

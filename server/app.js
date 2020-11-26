@@ -1,21 +1,24 @@
 const express = require('express');
 const dotenv = require('dotenv');
-const debugDb = require('debug')('server:database');
-
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const connectDb = require("./db/connect")
+const mongoose = require('mongoose');
+
+const connect = require('./db/connection');
+
+const connection = mongoose.connection;
+
+connect().then(function () {
+  console.log(`MongoDB database connection established successfully at ${process.env.MONGO_URI}`);
+  connection.startSession();
+});
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const postsRouter = require('./routes/posts');
 
-dotenv.config()
-
+dotenv.config();
 const app = express();
-connectDb().then(() => {
- debugDb("MongoDb connected");
-});
 
 app.use(logger('dev'));
 app.use(express.json());
