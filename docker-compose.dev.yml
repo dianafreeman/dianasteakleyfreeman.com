@@ -1,5 +1,32 @@
 
 services:
+  server:
+    build:
+      context: ./server
+    command: yarn dev
+    ports:
+      - 4000:4000
+    environment:
+      PORT: 4000
+      MONGO_URI: mongodb://mongo:27017
+      MONGO_USER: root
+      MONGO_PASS: example
+    depends_on:
+      - mongo
+    volumes:
+      - ./server:/usr/src/app
+      - /usr/src/app/node_modules
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+
+
+
   client:
     build:
       context: ./client
@@ -12,24 +39,3 @@ services:
       - ./client:/usr/src/app
       - ./build:/usr/src/app/build
       - /usr/src/app/node_modules
-
-  server:
-    build:
-      context: ./server
-    command: yarn dev
-    ports:
-      - 4000:4000
-    environment:
-      PORT: 4000
-    depends_on:
-      - mongo
-    volumes:
-      - ./server:/usr/src/app
-      - /usr/src/app/node_modules
-
-  mongo:
-    image: mongo
-    ports:
-      - "27017:27017"
-    volumes:
-      - ./tmp/db:/data/db
