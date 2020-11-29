@@ -25,8 +25,6 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
 
-
-
   client:
     build:
       context: ./client
@@ -37,5 +35,4 @@ services:
       PORT: 3000
     volumes:
       - ./client:/usr/src/app
-      - ./build:/usr/src/app/build
       - /usr/src/app/node_modules
