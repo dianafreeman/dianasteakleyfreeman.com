@@ -3,15 +3,21 @@ const logger = require('morgan');
 const Post = require('../models/Post.model');
 const debug = require('debug')('server:posts');
 const router = express.Router();
-const mongoose = require('mongoose');
 
-const connection = mongoose.connection;
-/* GET posts listing. */
+/* GET all posts listing. */
 router.get('/', async function (req, res, next) {
-  const session = await connection.startSession();
   try {
-    const posts = await Post.find({}, null, session);
+    const posts = await Post.find({}, null);
     res.json({ posts });
+  } catch (err) {
+    return res.json({ error: err });
+  }
+});
+/* GET single post. */
+router.get('/:postId', async function (req, res, next) {
+  try {
+    const post = await Post.find({ _id: req.params.post }, null);
+    res.json({ post });
   } catch (err) {
     return res.json({ error: err });
   }
@@ -20,14 +26,12 @@ router.get('/', async function (req, res, next) {
 /* POST post listing. */
 router.post('/', async function (req, res, next) {
   const post = await Post.create({ name: 'Post Name' });
-  // post.save();
   res.json({ post });
 });
 
 /* UPDATE post listing. */
-router.patch('/', async function (req, res, next) {
+router.patch('/:id', async function (req, res, next) {
   const post = await Post.findOneAndUpdate({ name: 'Post Name' });
-  // post.save();
   res.json({ post });
 });
 

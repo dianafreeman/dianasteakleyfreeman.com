@@ -8,9 +8,11 @@ const user = process.env.MONGO_USER || 'root';
 const pass = process.env.MONGO_PASS || 'example';
 
 function connection() {
-  return mongoose.connect(`${user}:${pass}@${uri}/${db}`, {
+  return mongoose.connect(`${uri}/${db}?authSource=admin`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    user: user,
+    pass: pass,
   });
 }
 

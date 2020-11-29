@@ -1,6 +1,6 @@
 const faker = require('faker');
 
-function generate() {
+function fake() {
   return {
     title: faker.random.words(3),
     createdAt: new Date(),
@@ -10,16 +10,16 @@ function generate() {
   };
 }
 
-const generateMany = (total = 10) => {
+const fakeMany = (total = 10) => {
   const posts = [];
   for (i = 0; i < total; i++) {
-    const template = generate();
+    const template = fake();
     posts.push(template);
   }
   return posts;
 };
 
 module.exports = {
-  generate,
-  generateMany,
+  fake,
+  fakeMany,
 };
