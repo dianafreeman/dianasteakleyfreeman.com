@@ -5,12 +5,15 @@ const logger = require('morgan');
 const mongoose = require('mongoose');
 
 const connect = require('./db/connection');
+const init = require('./db/init');
 
 const connection = mongoose.connection;
 
 connect().then(function () {
   console.log(`MongoDB database connection established successfully at ${process.env.MONGO_URI}`);
   connection.startSession();
+  console.log(`---------------Started DB Session | ${new Date().toISOString()}------------------`);
+  init();
 });
 
 const indexRouter = require('./routes/index');
