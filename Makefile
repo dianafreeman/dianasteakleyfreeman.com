@@ -8,14 +8,40 @@ help: ## This help command. Anything prepended with a double hash will be displa
 ##----------------------------------------------------------------------------------------------------------------------
 ##@ Installation Actions
 
-dev: ## make develoment enviornment
-  docker-compose -f docker-compose.dev.yml up --build
+build-dev:  ## build all dev
+	@docker-compose  -f docker-compose.dev.yml build
 
-storybook: ## run storybook
-  @docker-compose -f docker-compose.dev.yml run --rm  yarn storybook
+build-client:  ## build dev client
+	@docker-compose  -f docker-compose.dev.yml build client
 
-build: ## make develoment enviornment
-  @docker-compose -f docker-compose.prod.yml run --rm client            yarn
+build-server:  ## build dev server
+	@docker-compose  -f docker-compose.dev.yml build server
 
-lockfiles:
-  @docker-compose -f docker-compose.dev.yml run --rm client            yarn
+down-dev:  ## build all dev
+	@docker-compose  -f docker-compose.dev.yml down
+
+dev: ## launch develoment enviornment
+	@docker-compose  -f docker-compose.dev.yml up --build
+
+dev-server: ## run server (only) in development
+	@docker-compose -f docker-compose.dev.yml up --build server
+
+test-server: build-server ## run server (only) in development
+	@docker-compose -f docker-compose.dev.yml run --rm server 				yarn test
+
+dev-client: build-dev ## run client (only) in development
+	@docker-compose -f docker-compose.dev.yml up client
+
+storybook: ## run storybook in development
+	@docker-compose -f docker-compose.dev.yml run --rm  yarn storybook
+
+bash-client: build-client ## create a bash terminal in the client service
+	@docker-compose -f docker-compose.dev.yml run --rm client bash
+
+bash-server: build-server ## create a bash terminal in the server service
+	@docker-compose -f docker-compose.dev.yml run --rm server bash
+
+prod: ## down the dev environment and build a prod version
+	@docker-compose -f docker-compose.dev.yml down
+	@docker-compose -f docker-compose.prod.yml up -- build
+
