@@ -1,11 +1,10 @@
-import ComingSoon from '../ComingSoon'
-import './App.css'
-
+import ComingSoon from '../ComingSoon';
+import './App.css';
 
 function App() {
   return (
     <div className="App">
-     <ComingSoon />
+      <ComingSoon />
     </div>
   );
 }
