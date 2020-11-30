@@ -15,8 +15,13 @@ const useStyles = makeStyles((theme) => ({
     width: '50px',
   },
   main: {
-    height: '100vh',
-    padding: theme.spacing(3),
+    height: '100%',
+    padding: theme.spacing(4),
+  },
+  content: {
+    paddingTop: theme.spacing(4),
+    paddingBottom: theme.spacing(4),
+    borderBottom: '3px solid black',
   },
 }));
 
@@ -59,10 +64,12 @@ const NavToggler = ({ onClick, isOpen = true }) => {
 const Main = ({ children }) => {
   const classes = useStyles();
   return (
-    <Container fixed className={classes.main}>
+    <Container className={classes.main}>
       <NavToggler isOpen={false} />
-      {children}
-      <span>down</span>
+      <Box className={classes.content}>{children}</Box>
+      <Box p={2} m={1}>
+        down
+      </Box>
     </Container>
   );
 };

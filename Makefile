@@ -35,10 +35,10 @@ dev-client: build-dev ## run client (only) in development
 storybook: ## run storybook in development
 	@docker-compose -f docker-compose.dev.yml run --rm  yarn storybook
 
-bash-client: build-client ## create a bash terminal in the client service
+bash-client: ## create a bash terminal in the client service
 	@docker-compose -f docker-compose.dev.yml run --rm client bash
 
-bash-server: build-server ## create a bash terminal in the server service
+bash-server: ## create a bash terminal in the server service
 	@docker-compose -f docker-compose.dev.yml run --rm server bash
 
 prod: ## down the dev environment and build a prod version
