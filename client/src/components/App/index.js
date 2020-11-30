@@ -1,11 +1,26 @@
 import ComingSoon from '../ComingSoon';
-import './App.css';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { ThemeProvider } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import theme from '../../theme';
+import Home from '../Pages/Home';
+import Blog from '../Pages/Blog';
 
 function App() {
   return (
-    <div className="App">
-      <ComingSoon />
-    </div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/blog">
+            <Blog />
+          </Route>
+        </Switch>
+      </Router>
+    </ThemeProvider>
   );
 }
 
