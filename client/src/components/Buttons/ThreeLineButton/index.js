@@ -15,7 +15,6 @@ const useStyles = makeStyles((theme) => ({
     width: '50px',
   },
   main: {
-    height: '100vh',
     padding: theme.spacing(3),
   },
 }));
@@ -36,7 +35,7 @@ const TogglerLine = ({ isArrow, index, isOpen }) => {
   return <animated.line x1={x1} y1={y1} x2={x2} y2={y2} className={classes.line} />;
 };
 
-const NavToggler = ({ onClick, isOpen = true }) => {
+const ThreeLineToggle = ({ onClick, isOpen = true }) => {
   const [isArrow, setIsArrow] = useState(false);
   const classes = useStyles();
 
@@ -56,15 +55,4 @@ const NavToggler = ({ onClick, isOpen = true }) => {
   );
 };
 
-const Main = ({ children }) => {
-  const classes = useStyles();
-  return (
-    <Container fixed className={classes.main}>
-      <NavToggler isOpen={false} />
-      {children}
-      <span>down</span>
-    </Container>
-  );
-};
-
-export default Main;
+export default ThreeLineToggle;
