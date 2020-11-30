@@ -9,6 +9,7 @@ function Helmet() {
       <meta charSet="utf-8" />
       <title>{location.pathname}</title>
       <link rel="canonical" href="http://mysite.com/example" />
+      <style>{'#root{height:100vh;}'}</style>
       {/* TODO: SEO content */}
     </ReactHelmet>
   );
