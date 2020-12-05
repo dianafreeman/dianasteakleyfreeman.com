@@ -29,12 +29,16 @@ const useStyles = makeStyles((theme) => ({
   grid: {
     minHeight: '80%',
   },
+  image: {
+    margin: 'auto',
+  },
 }));
 
 function Home() {
   const DEFAULT = 'communicator';
   const [activeTerm, setActiveTerm] = useState(DEFAULT);
   const classes = useStyles();
+
   const handleHover = (e) => {
     if (e.currentTarget.value) setActiveTerm(e.currentTarget.value);
   };
@@ -52,7 +56,7 @@ function Home() {
   return (
     <Layout>
       <Grid container spacing={2} className={classes.grid}>
-        <Grid item xs={6} lg={8}>
+        <Grid item xs={12} sm={6} md={8}>
           <Typography component="h1" variant="h2">
             Diana M. Steakley-Freeman
           </Typography>
@@ -60,8 +64,8 @@ function Home() {
             <TermButton term={t} />
           ))}
         </Grid>
-        <Grid item xs={6} lg={4}>
-          <DynamicImage width="100%" height="auto" term={activeTerm} />
+        <Grid item xs={8} sm={6} md={4}>
+          <DynamicImage className={classes.image} term={activeTerm} />
         </Grid>
       </Grid>
     </Layout>
