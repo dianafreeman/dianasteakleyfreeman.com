@@ -16,7 +16,7 @@ const MetaBox = ({ items, children, ...rest }) => {
 
   return (
     <animated.div {...rest}>
-      {items.map(t => (
+      {items.map((t) => (
         <MetaLabel>
           {t.label}
           <MetaContent>

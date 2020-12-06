@@ -2,6 +2,6 @@
 
 describe('The App', () => {
   it('successfully loads', () => {
-    cy.visit('/')
-  })
-})
+    cy.visit('/');
+  });
+});

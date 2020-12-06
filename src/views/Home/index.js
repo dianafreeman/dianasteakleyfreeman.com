@@ -5,10 +5,10 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 
-import Layout from '../../Layout';
-import { ReactComponent as DevImage } from '../../../assets/svg/WireframeMe.svg';
-import { ReactComponent as LineImage } from '../../../assets/svg/LineDrawing.svg';
-import { ReactComponent as ColorImage } from '../../../assets/svg/ColorDrawing.svg';
+import Layout from '../../components/Layout';
+import { ReactComponent as DevImage } from '../../assets/svg/WireframeMe.svg';
+import { ReactComponent as LineImage } from '../../assets/svg/LineDrawing.svg';
+import { ReactComponent as ColorImage } from '../../assets/svg/ColorDrawing.svg';
 
 const TERM_MAP = ['coder', 'creator', 'communicator'];
 

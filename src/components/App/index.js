@@ -1,10 +1,11 @@
-import ComingSoon from '../Pages/ComingSoon';
+import ComingSoon from '../../views/ComingSoon';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../../theme';
-import Home from '../Pages/Home';
-import Blog from '../Pages/Blog';
+import Home from '../../views/Home';
+import Blog from '../../views/Blog';
+import Admin from '../../../public/admin';
 
 function App() {
   return (
@@ -17,6 +18,9 @@ function App() {
           </Route>
           <Route path="/blog">
             <Blog />
+          </Route>
+          <Route path="/admin">
+            <Admin />
           </Route>
         </Switch>
       </Router>

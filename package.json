@@ -8,6 +8,7 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.0",
+    "netlify-cms-app": "^2.14.3",
     "react": "^17.0.1",
     "react-app-rewired": "^2.1.6",
     "react-dom": "^17.0.1",
@@ -21,7 +22,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "format": "prettier --write src",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public"
   },
@@ -51,6 +52,9 @@
     "@storybook/node-logger": "^6.1.2",
     "@storybook/preset-create-react-app": "^3.1.5",
     "@storybook/react": "^6.1.2",
-    "babel-loader": "8.1.0"
+    "babel-loader": "8.1.0",
+    "eslint-config-prettier": "^7.0.0",
+    "eslint-plugin-prettier": "^3.2.0",
+    "prettier": "^2.2.1"
   }
 }
