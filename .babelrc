@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "plugins": [
     ["@babel/plugin-proposal-optional-chaining"],
     [
@@ -23,5 +24,12 @@
         }
       }
     ]
+=======
+  "presets": ["@babel/preset-react", "@babel/preset-env"],
+  "plugins": [
+    "@babel/plugin-proposal-class-properties",
+    "babel-plugin-remove-graphql-queries",
+    "@babel/plugin-proposal-optional-chaining"
+>>>>>>> Simplify and refactor client (#5)
   ]
 }

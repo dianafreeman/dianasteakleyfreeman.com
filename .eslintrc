@@ -1,8 +1,12 @@
 {
-  "extends": ["airbnb", "prettier", "prettier/react"],
+  "extends": ["prettier", "prettier/react"],
   "parser": "babel-eslint",
   "parserOptions": {
+<<<<<<< HEAD
     "ecmaVersion": 2017,
+=======
+    "ecmaVersion": 2017
+>>>>>>> Simplify and refactor client (#5)
   },
   "rules": {
     "no-unused-expressions": "off",

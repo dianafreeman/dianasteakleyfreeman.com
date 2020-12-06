@@ -1,17 +1,13 @@
-# dianasteakleyfreeman.com
+# DianaSteakleyFreeman.com
 
-[![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme) [![Netlify Status](https://api.netlify.com/api/v1/badges/7b5f4c1a-c979-4652-aacf-05076bfa2989/deploy-status)](https://app.netlify.com/sites/loving-sammet-d1bb4f/deploys)
+https://github.com/dianafreeman/dianasteakleyfreeman.com/workflows/Node.js+CI/badge.svg
 
-## Background
+[![Netlify Status](https://api.netlify.com/api/v1/badges/7b5f4c1a-c979-4652-aacf-05076bfa2989/deploy-status)](https://app.netlify.com/sites/loving-sammet-d1bb4f/deploys)
 
-## Install
 
-```bash
-yarn install
-# or
-npm install
-```
+## Available Scripts
 
+<<<<<<< HEAD
 ## Usage
 
 ### Develop
@@ -138,3 +134,6 @@ yarn deploy
 ## Notes
 
 - files in the static folder will not be processed by webpack -- they will be copied to the public folder untouched
+=======
+Run `yarn run` to see available commands
+>>>>>>> Simplify and refactor client (#5)

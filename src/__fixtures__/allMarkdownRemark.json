@@ -1,0 +1,165 @@
+{
+  "data": {
+    "allMarkdownRemark": {
+      "edges": [
+        {
+          "node": {
+            "fields": {
+              "slug": "/bold-mage"
+            },
+            "frontmatter": {
+              "title": "Bold Mage",
+              "tags": ["programming", "stuff", "other"],
+              "category": "tech",
+              "date": "2017-01-01"
+            }
+          }
+        },
+        {
+          "node": {
+            "fields": {
+              "slug": "/angels-of-mist"
+            },
+            "frontmatter": {
+              "title": "Angels of Mist",
+              "tags": ["cheese", "other"],
+              "category": "test3",
+              "date": "2017-03-01"
+            }
+          }
+        },
+        {
+          "node": {
+            "fields": {
+              "slug": "/birch-in-the-roses"
+            },
+            "frontmatter": {
+              "title": "Birch in the Roses",
+              "tags": ["tag"],
+              "category": "tech",
+              "date": "2017-03-01"
+            }
+          }
+        },
+        {
+          "node": {
+            "fields": {
+              "slug": "/big-sample-test"
+            },
+            "frontmatter": {
+              "title": "Big Test",
+              "tags": ["test", "huge"],
+              "category": "moar",
+              "date": "2018-03-01"
+            }
+          }
+        },
+        {
+          "node": {
+            "fields": {
+              "slug": "/"
+            },
+            "frontmatter": {
+              "title": "",
+              "tags": null,
+              "category": null,
+              "date": null
+            }
+          }
+        },
+        {
+          "node": {
+            "fields": {
+              "slug": "/digital-self-care"
+            },
+            "frontmatter": {
+              "title": "Digital Self-Care in the era of #InsertCrisisHere",
+              "tags": null,
+              "category": null,
+              "date": "2019-03-31"
+            }
+          }
+        },
+        {
+          "node": {
+            "fields": {
+              "slug": "/the-fallen-time"
+            },
+            "frontmatter": {
+              "title": "The Fallen Time",
+              "tags": ["test", "something", "tagging"],
+              "category": "another one",
+              "date": "2017-02-01"
+            }
+          }
+        },
+        {
+          "node": {
+            "fields": {
+              "slug": "/the-fairys-witches"
+            },
+            "frontmatter": {
+              "title": "The Fairy's Witches",
+              "tags": null,
+              "category": "something",
+              "date": "2017-04-02"
+            }
+          }
+        },
+        {
+          "node": {
+            "fields": {
+              "slug": "/eliza-therapeutic-ai"
+            },
+            "frontmatter": {
+              "title": "What ELIZA can teach us about therapeutic AI",
+              "tags": null,
+              "category": null,
+              "date": "2019-04-03"
+            }
+          }
+        },
+        {
+          "node": {
+            "fields": {
+              "slug": "/user-misdirection"
+            },
+            "frontmatter": {
+              "title": "The Art of [User] Misdirection",
+              "tags": null,
+              "category": null,
+              "date": "2019-04-05"
+            }
+          }
+        },
+        {
+          "node": {
+            "fields": {
+              "slug": "/random-project-4-with-super-long-title-phase-one"
+            },
+            "frontmatter": {
+              "title": "Random project 4 With Super Long Title Phase One",
+              "tags": ["say hi"],
+              "category": "random",
+              "date": "2017-03-02"
+            }
+          }
+        },
+        {
+          "node": {
+            "fields": {
+              "slug": "/the-butterfly-of-the-edge"
+            },
+            "frontmatter": {
+              "title": "The Butterfly of the Edge",
+              "tags": ["programming", "more tags", "testing", "another one", "stuff", "other"],
+              "category": "tech",
+              "date": "2017-03-17"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "extensions": {}
+}
