@@ -1,0 +1,39 @@
+{
+  "allMarkdownRemark": {
+    "edges": [
+      {
+        "node": {
+          "timeToRead": 3,
+          "frontmatter": {
+            "path": "/blog/user-misdirection",
+            "date": "2019-04-05",
+            "slug": "user-misdirection",
+            "title": "The Art of [User] Misdirection"
+          }
+        }
+      },
+      {
+        "node": {
+          "timeToRead": 3,
+          "frontmatter": {
+            "path": "/blog/eliza-theraupeutic-ai",
+            "date": "2019-04-03",
+            "slug": "eliza-theraupeutic-ai",
+            "title": "What ELIZA can teach us about therapeutic AI"
+          }
+        }
+      },
+      {
+        "node": {
+          "timeToRead": 4,
+          "frontmatter": {
+            "path": "/blog/digital-self-care",
+            "date": "2019-03-31",
+            "slug": "digital-self-care",
+            "title": "Digital Self-Care in the era of #InsertCrisisHere"
+          }
+        }
+      }
+    ]
+  }
+}
