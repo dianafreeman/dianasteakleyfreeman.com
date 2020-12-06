@@ -5,7 +5,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../../theme';
 import Home from '../../views/Home';
 import Blog from '../../views/Blog';
-import Admin from '../../../public/admin';
 
 function App() {
   return (
@@ -18,9 +17,6 @@ function App() {
           </Route>
           <Route path="/blog">
             <Blog />
-          </Route>
-          <Route path="/admin">
-            <Admin />
           </Route>
         </Switch>
       </Router>
