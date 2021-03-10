@@ -3,4 +3,3 @@ export const TERMS_MAP = {
   CREATOR: 'creator',
   COMMUNICATOR: 'communicator',
 };
-

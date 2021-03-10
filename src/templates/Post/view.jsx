@@ -1,7 +1,5 @@
 import React from 'react';
-import AuthorInfo from '../../components/AuthorInfo';
-import PostTags from '../../components/PostTags';
-import ShareToLinks from '../../components/ShareToLinks';
+// import AuthorInfo from '../../components/AuthorInfo';
 import Footer from '../../components/Layout/Footer';
 import config from '@config/siteConfig';
 
@@ -22,11 +20,8 @@ export default function PostView({ post, pageContext }) {
       <h1>{post.title}</h1>
       {/* eslint-disable-next-line react/no-danger */}
       <div dangerouslySetInnerHTML={{ __html: post.html }} />
-      <div className="post-meta">
-        <PostTags tags={post.tags} />
-        <ShareToLinks postPath={slug} postNode={post} />
-      </div>
-      <AuthorInfo config={config} />
+      <div className="post-meta"></div>
+
       <Footer config={config} />
     </div>
   );

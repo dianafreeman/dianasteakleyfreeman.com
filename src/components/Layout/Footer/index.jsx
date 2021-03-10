@@ -6,8 +6,6 @@ import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-import AuthorLinks from '../../AuthorLinks';
-
 function Footer({ config }) {
   const url = config.siteRss;
   const { copyright } = config;
@@ -16,7 +14,6 @@ function Footer({ config }) {
   }
   return (
     <Container className="footer">
-      <AuthorLinks config={config} labeled />
       <Box className="notice-container">
         <Typography variant="h4" component="h4">
           {copyright}
