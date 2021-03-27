@@ -1,8 +1,8 @@
 ---
-path: '/blog/eliza-therapeutic-ai'
+title: 'What ELIZA can teach us about therapeutic AI'
 slug: eliza-therapeutic-ai
 date: '2019-04-03'
-title: 'What ELIZA can teach us about therapeutic AI'
+category: blog
 tags:
   - technology
   - social media

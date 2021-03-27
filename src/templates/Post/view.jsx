@@ -2,6 +2,8 @@ import React from 'react';
 // import AuthorInfo from '../../components/AuthorInfo';
 import Footer from '../../components/Layout/Footer';
 import config from '@config/siteConfig';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
 /*
 
@@ -16,13 +18,15 @@ export default function PostView({ post, pageContext }) {
   const { slug } = pageContext;
 
   return (
-    <div>
-      <h1>{post.title}</h1>
+    <Box mx={4}>
+      <h1>{post.frontmatter.title}</h1>
       {/* eslint-disable-next-line react/no-danger */}
-      <div dangerouslySetInnerHTML={{ __html: post.html }} />
-      <div className="post-meta"></div>
+      <div className="post-meta">
+        <pre>{JSON.stringify(post.frontmatter, null, 2)}</pre>
+      </div>
+      <Typography dangerouslySetInnerHTML={{ __html: post.html }} />
 
       <Footer config={config} />
-    </div>
+    </Box>
   );
 }

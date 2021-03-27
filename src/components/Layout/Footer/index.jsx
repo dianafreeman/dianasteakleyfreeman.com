@@ -13,7 +13,7 @@ function Footer({ config }) {
     return null;
   }
   return (
-    <Container className="footer">
+    <Container>
       <Box className="notice-container">
         <Typography variant="h4" component="h4">
           {copyright}

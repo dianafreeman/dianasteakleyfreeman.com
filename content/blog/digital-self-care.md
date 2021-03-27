@@ -1,9 +1,8 @@
 ---
-path: '/blog/digital-self-care'
 slug: digital-self-care
 date: '2019-03-31'
 title: 'Digital Self-Care in the era of #InsertCrisisHere'
-category: Blog
+category: blog
 tags:
   - technology
   - social media

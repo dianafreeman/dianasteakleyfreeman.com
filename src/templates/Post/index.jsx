@@ -5,6 +5,7 @@ import { graphql } from 'gatsby';
 import SEO from '../../components/Layout/SEO';
 
 import View from './view';
+import config from '@config/siteConfig';
 
 export default function PostTemplate({ data, pageContext }) {
   const { slug } = pageContext;
@@ -19,7 +20,7 @@ export default function PostTemplate({ data, pageContext }) {
       <Helmet>
         <title>{`${post.title} | ${config.siteTitle}`}</title>
       </Helmet>
-      <SEO postPath={slug} postNode={post} postSEO /> */
+      {/* <SEO postPath={slug} postNode={post} postSEO />  */}
       <View post={postNode} pageContext={pageContext} />
     </>
   );

@@ -1,7 +1,7 @@
 ---
-path: '/blog/user-misdirection'
-slug: 'user-misdirection'
+category: blog
 date: '2019-04-05'
+slug: 'user-misdirection'
 title: 'The Art of [User] Misdirection'
 tags:
   - technology

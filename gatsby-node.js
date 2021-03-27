@@ -94,11 +94,8 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   if (node.internal.type === 'MarkdownRemark') {
     const fileNode = getNode(node.parent);
     const parsedFilePath = path.parse(fileNode.relativePath);
-    if (
-      Object.prototype.hasOwnProperty.call(node, 'frontmatter') &&
-      Object.prototype.hasOwnProperty.call(node.frontmatter, 'title')
-    ) {
-      slug = `/${_.kebabCase(node.frontmatter.title)}`;
+    if (node.frontmatter?.title) {
+      slug = `/${parsedFilePath.dir}/${_.kebabCase(node.frontmatter.title)}`;
     } else if (parsedFilePath.name !== 'index' && parsedFilePath.dir !== '') {
       slug = `/${parsedFilePath.dir}/${parsedFilePath.name}/`;
     } else if (parsedFilePath.dir === '') {
@@ -127,7 +124,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const tagPage = path.resolve('src/templates/Tag/index.jsx');
   const categoryPage = path.resolve('src/templates/Category/index.jsx');
   const listingPage = path.resolve('./src/templates/Listing/index.jsx');
-  const landingPage = path.resolve('./src/templates/Landing/index.jsx');
+  // const landingPage = path.resolve('./src/templates/Landing/index.jsx');
 
   // Get a full list of markdown posts
   const markdownQueryResult = await graphql(`
@@ -160,7 +157,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const postsEdges = markdownQueryResult.data.allMarkdownRemark.edges;
 
-  // Sort posts
+  // Sort posts by date
   postsEdges.sort((postA, postB) => {
     const dateA = moment(postA.node.frontmatter.date, siteConfig.dateFromFormat);
 
@@ -190,7 +187,7 @@ exports.createPages = async ({ graphql, actions }) => {
       });
     });
   } else {
-    // Load the landing page instead
+    // Load the landing page if there are no paging settings
     createPage({
       path: `/`,
       component: landingPage,

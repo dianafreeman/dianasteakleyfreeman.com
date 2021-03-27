@@ -6,9 +6,15 @@ import '@fontsource/caveat';
 /*
  *  Default Material Theme: https://material-ui.com/customization/default-theme/
  */
-const { typography, spacing } = createMuiTheme();
+const { typography, spacing, palette } = createMuiTheme();
 
 const theme = createMuiTheme({
+  palette: {
+    type: 'dark',
+    background: {
+      default: '#020202',
+    },
+  },
   overrides: {
     MuiDivider: {
       light: {
@@ -40,5 +46,5 @@ const theme = createMuiTheme({
   },
 });
 
-export default theme;
-// export default responsiveFontSizes(theme);
+// export default theme;
+export default responsiveFontSizes(theme);
