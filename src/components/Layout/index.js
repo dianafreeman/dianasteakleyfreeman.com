@@ -4,6 +4,7 @@ import { ThemeProvider } from '@material-ui/styles';
 import Container from '@material-ui/core/Container';
 import theme from '../../theme';
 import './layout.css';
+import ThreeCanvas from '../ThreeCanvas';
 
 function Layout({ children, ...rest }) {
   return (
@@ -12,6 +13,7 @@ function Layout({ children, ...rest }) {
         <CssBaseline />
         <Container disableGutters style={{ height: '100vh' }}>
           {children}
+          {/* <ThreeCanvas /> */}
         </Container>
       </ThemeProvider>
     </>
