@@ -73,7 +73,7 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `svgs`,
-        path: `${__dirname}/src/assets/svg`,
+        path: `${__dirname}/src/assets/images/svg`,
       },
     },
     {

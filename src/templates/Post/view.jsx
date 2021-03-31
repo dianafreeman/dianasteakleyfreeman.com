@@ -20,7 +20,6 @@ export default function PostView({ post, pageContext }) {
   return (
     <Box mx={4}>
       <h1>{post.frontmatter.title}</h1>
-      {/* eslint-disable-next-line react/no-danger */}
       <div className="post-meta">
         <pre>{JSON.stringify(post.frontmatter, null, 2)}</pre>
       </div>

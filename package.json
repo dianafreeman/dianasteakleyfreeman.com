@@ -12,14 +12,15 @@
     "start": "gatsby develop",
     "serve": "gatsby serve",
     "build": "gatsby build",
+    "format": "yarn lint:js && yarn format:js",
+    "preprocess": "yarn write-good && yarn lint:md",
     "clean": "rm -rf public && rm -rf .cache",
-    "lint:js": "eslint --ext .js,.jsx .",
+    "lint:js": "eslint --ext .js,.jsx ./src",
     "lint:md": "remark content/",
-    "write-good": "write-good $(glob 'content/posts/**/*.md')",
+    "write-good": "write-good $(glob 'content/**/*.md')",
     "format:js": "prettier '**/*.{js,jsx}' --write",
-    "format:styles": "prettier '**/*.{css,scss}' --write",
     "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s publicBook"
   },
   "eslintConfig": {
     "extends": [
@@ -85,6 +86,7 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "babel-eslint": "^10.1.0",
     "babel-plugin-module-resolver": "^4.1.0",
     "babel-plugin-remove-graphql-queries": "^2.14.0",
     "cli-glob": "^0.1.0",

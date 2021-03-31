@@ -6,27 +6,27 @@ import { CameraHelper, MathUtils } from 'three';
 
 import { useControl } from 'react-three-gui';
 
-const Panel = ({ label, index, position, width, height, depth, color, ...rest }) => {
-  const ctrlColor = useControl(`${label || `#${index}`} Color`, {
+const Panel = ({ label, index, position, width, height, depth, color, transparent, ...rest }) => {
+  const ctrlColor = useControl(`${label} Panel Color`, {
     group: label,
     type: 'color',
     value: color,
   });
-  const ctrlHeight = useControl(`${label || `#${index}`} Height`, {
+  const ctrlHeight = useControl(`${label} Panel Height`, {
     group: label,
     type: 'number',
     value: height,
     min: 0,
     max: 100,
   });
-  const ctrlWidth = useControl(`${label || `#${index}`} Width`, {
+  const ctrlWidth = useControl(`${label} Panel Width`, {
     group: label,
     type: 'number',
     value: width,
     min: 0,
     max: 100,
   });
-  const ctrlThickness = useControl(`${label || `#${index}`} Thickness`, {
+  const ctrlThickness = useControl(`${label} Panel Thickness`, {
     group: label,
     type: 'number',
     value: depth,
@@ -34,21 +34,21 @@ const Panel = ({ label, index, position, width, height, depth, color, ...rest })
     max: 100,
   });
 
-  const ctrlX = useControl(`${label || `#${index}`} X Position`, {
+  const ctrlX = useControl(`${label} Panel X Position`, {
     group: label,
     type: 'number',
     value: position.x,
     min: -100,
     max: 100,
   });
-  const ctrlY = useControl(`${label || `#${index}`} Y Position`, {
+  const ctrlY = useControl(`${label} Panel Y Position`, {
     group: label,
     type: 'number',
-    value: position.y || height / 2,
+    value: position.y,
     min: -100,
     max: 100,
   });
-  const ctrlZ = useControl(`${label || `#${index}`} Z Position`, {
+  const ctrlZ = useControl(`${label} Panel Z Position`, {
     group: label,
     type: 'number',
     value: position.z,
@@ -57,9 +57,9 @@ const Panel = ({ label, index, position, width, height, depth, color, ...rest })
   });
 
   return (
-    <mesh receiveShadow position={[ctrlX, ctrlY, ctrlZ]} {...rest}>
+    <mesh castShadow position={[ctrlX, ctrlY, ctrlZ]} {...rest}>
       <boxBufferGeometry args={[ctrlWidth, ctrlHeight, ctrlThickness]} />
-      <meshStandardMaterial roughness={0} metalness={1} opacity={0.1} />
+      <meshStandardMaterial roughness={1} metalness={0} color={ctrlColor} />
     </mesh>
   );
 };
