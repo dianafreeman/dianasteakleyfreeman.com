@@ -1,139 +1,79 @@
-# DianaSteakleyFreeman.com
+<h1 align="center">Welcome to dianasteakleyfreeman.com 👋</h1>
+<p>
+  <img alt="Version" src="https://img.shields.io/badge/version-2.1.0-blue.svg?cacheSeconds=2592000" />
+  <a href="https://github.com/dianasfreeman/dianasteakelyfreeman.com#readme" target="_blank">
+    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
+  </a>
+  <a href="https://github.com/dianasfreeman/dianasteakelyfreeman.com/graphs/commit-activity" target="_blank">
+    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
+  </a>
+  <a href="https://github.com/dianasfreeman/dianasteakelyfreeman.com/blob/master/LICENSE" target="_blank">
+    <img alt="License: MIT" src="https://img.shields.io/github/license/dianasfreeman/dianasteakleyfreeman.com" />
+  </a>
+  <a href="https://api.netlify.com/api/v1/badges/7b5f4c1a-c979-4652-aacf-05076bfa2989/deploy-status" target="_blank">
+    <img alt="Netlify Status" src="https://api.netlify.com/api/v1/badges/7b5f4c1a-c979-4652-aacf-05076bfa2989/deploy-status" />
+  </a>
+  <a href="https://github.com/dianafreeman/dianasteakleyfreeman.com/workflows/Node.js+CI/badge.svg" target="_blank">
+    <img alt="Github Workflow Status" src="https://github.com/dianafreeman/dianasteakleyfreeman.com/workflows/Node.js+CI/badge.svg" />
+  </a>
 
-https://github.com/dianafreeman/dianasteakleyfreeman.com/workflows/Node.js+CI/badge.svg
+</p>
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/7b5f4c1a-c979-4652-aacf-05076bfa2989/deploy-status)](https://app.netlify.com/sites/loving-sammet-d1bb4f/deploys)
+> Portfolio for Diana M Steakley-Freeman. Coder, Creator, Communicator.
 
+### 🏠 [Homepage](https://dianasteakleyfreeman.com)
 
-## Available Scripts
+## Install Dependencies
 
-<<<<<<< HEAD
-## Usage
-
-### Develop
-
-Run the following command to open the Gatsby/React/Node development environment.
-
-```bash
-yarn dev
-# or
-npm run dev
-
-$	 yarn run dev
-
-yarn dev
-# or
-npm run dev
+```sh
+yarn install
 ```
 
-### Build
+## Local Development
 
-Run the following command to build the static site
+### In Standard Mode
 
-```bash
-yarn build
-# or
-npm run build
+Runs the app using gatsby development mode, no extra tooling for ThreeJS debugging.
 
-$	 yarn run build
-
-yarn build
-# or
-npm run build
+```sh
+yarn start
 ```
 
-### Test
+### In Developer Mode
 
-Run the following to run formatting, unit, and e2e tests.
+runs the application with debugging logs, browser rendering stats, and controllable ThreeJS properties.
 
-```bash
+```sh
+yarn run dev
+```
+
+## Run Unit & Formatting Tests
+
+```sh
 yarn test
-# or
-npm run test
-
-$  yarn run test
-
-yarn test
-# or
-npm run test
 ```
 
-### Deploy
+# Build & Deploy
 
-Run the following command to deploy to netlify.
+This project is hosted as a static site via Netlify. Netlify auto-deploys the master AND the staging branch.
 
-```bash
-yarn deploy
+## Author
 
-$	 yarn run deploy
-```
+👤 **Diana M Steakley-Freeman**
 
-## Platforms & Tooling
+- Twitter: [@dianasfreeman](https://twitter.com/dianasfreeman)
+- Github: [@dianasfreeman](https://github.com/dianasfreeman)
+- LinkedIn: [@dianasteakleyfreeman](https://linkedin.com/in/dianasteakleyfreeman)
 
-- GatsbyJS
-- [React Spring](https://github.com/drcmda/react-spring)
-- [Styled-Components](https://www.styled-components.com/)
-- React Storybook
-- React Spring
-- GraphQL
-- Cypress.io
-- CircleCI - CI/CD
-- Netlfiy
-- Reach Router
+## Show your support
 
-## Project Structure
+Give a ⭐️ if this project helped you!
 
-### Configuration Targets
+## 📝 License
 
-- Development
+Copyright © 2021 [Diana M Steakley-Freeman](https://github.com/dianasfreeman).<br />
+This project is [MIT](https://github.com/dianasfreeman/dianasteakelyfreeman.com/blob/master/LICENSE) licensed.
 
-  - Storybook
-  - Code Coverage
-  - Babel & Babel Plugins
-  - Post CSS
+---
 
-```
-yarn deploy
-```
-
-## Platforms & Tooling
-
-- GatsbyJS
-- [React Spring](https://github.com/drcmda/react-spring)
-- [Styled-Components](https://www.styled-components.com/)
-- React Storybook
-- React Spring
-- GraphQL
-- Cypress.io
-- CircleCI - CI/CD
-- Netlfiy
-- Reach Router
-
-## Project Structure
-
-### Configuration Targets
-
-- Development
-
-  - Storybook
-  - Code Coverage
-  - Babel & Babel Plugins
-  - Post CSS
-
-- Testing
-
-  - Jest Config: `./jest.config.js`
-  - Code Coverage
-  - Cypress
-
-- Build: `src/pages/index.jsx`
-  - `./gatsby-config.js`
-  - page configurations for production build:
-    `./gatsby-node.js`
-
-## Notes
-
-- files in the static folder will not be processed by webpack -- they will be copied to the public folder untouched
-=======
-Run `yarn run` to see available commands
->>>>>>> Simplify and refactor client (#5)
+_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
