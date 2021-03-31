@@ -8,7 +8,7 @@ const Floor = ({
   isOn,
   label,
   color,
-  position,
+  positionMap,
   height,
   width,
   depth,
@@ -30,14 +30,18 @@ const Floor = ({
     <>
       <Panel
         {...shared}
-        color={'#fff'}
+        color={'#fff'} //override panel color
         height={floorPanelHeight}
         label="floor"
         height={floorPanelHeight}
-        position={{ ...position, y: depth, z: floorPanelHeight / 2 }}
+        materialProps={{ roughness: 1, metalness: 0, color: color }}
+        positionMap={{ ...positionMap, y: depth, z: floorPanelHeight / 2 }}
         rotation-x={MathUtils.degToRad(90)}
       />
-      <FloorText floorText={floorText} position={[position.x, depth * 2.5, floorPanelHeight / 2]} />
+      <FloorText
+        floorText={floorText}
+        positionMap={[positionMap.x, depth * 2.5, floorPanelHeight / 2]}
+      />
       <Glow
         {...shared}
         isOn={isOn}
@@ -45,7 +49,7 @@ const Floor = ({
         rotateX={90}
         rotateY={180}
         height={floorPanelHeight}
-        position={{ ...position, y: lightY, z: floorPanelHeight / 2 }}
+        positionMap={{ ...positionMap, y: lightY, z: floorPanelHeight / 2 }}
         intensity={intensity}
       />
     </>

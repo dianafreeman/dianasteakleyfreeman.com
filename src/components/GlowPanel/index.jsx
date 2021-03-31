@@ -9,7 +9,7 @@ import Panel from './Panel';
 // import DosisLight from '../ThreeText/fonts/DosisLight_Regular.json';
 import RobotoMono from '../ThreeText/fonts/RobotoMono_Medium_Regular.json';
 
-function GlowPanel({ color, position, height, width, label, depth, ...rest }) {
+function GlowPanel({ color, positionMap, height, width, label, depth, ...rest }) {
   const [hovered, setHovered] = useState(false);
 
   const intensity = 1;
@@ -37,20 +37,20 @@ function GlowPanel({ color, position, height, width, label, depth, ...rest }) {
         {...shared}
         isOn={hovered}
         rotateY={0}
-        position={{ ...position, z: position.z + depth }}
+        positionMap={{ ...positionMap, z: positionMap.z + depth }}
         label={label + 'Glow 1'}
         intensity={intensity}
       />
-      <Panel position={position} label={label} {...shared} />
+      <Panel positionMap={positionMap} label={label} {...shared} />
       <Glow
         {...shared}
         isOn={hovered}
         label={label + 'Glow 2'}
         rotateY={180}
-        position={{ ...position, z: -(position.z + depth) }}
+        positionMap={{ ...positionMap, z: -(positionMap.z + depth) }}
         intensity={intensity}
       />
-      <Floor isOn={hovered} {...shared} label={label + ' Floor'} position={position} />
+      <Floor isOn={hovered} {...shared} label={label + ' Floor'} positionMap={positionMap} />
     </group>
   );
 }
@@ -102,7 +102,7 @@ const Floor = ({
   isOn,
   label,
   color,
-  position,
+  positionMap,
   height,
   width,
   depth,
@@ -126,12 +126,16 @@ const Floor = ({
         {...shared}
         color={'#fff'}
         height={floorPanelHeight}
-        label="floor"
+        label="Floor"
         height={floorPanelHeight}
-        position={{ ...position, y: depth, z: floorPanelHeight / 2 }}
+        materialProps={{ roughness: 1, metalness: 0, color: color }}
+        positionMap={{ ...positionMap, y: depth, z: floorPanelHeight / 2 }}
         rotation-x={MathUtils.degToRad(90)}
       />
-      <FloorText floorText={floorText} position={[position.x, depth * 2.5, floorPanelHeight / 2]} />
+      <FloorText
+        floorText={floorText}
+        position={[positionMap.x, depth * 2.5, floorPanelHeight / 2]}
+      />
       <Glow
         {...shared}
         isOn={isOn}
@@ -139,7 +143,7 @@ const Floor = ({
         rotateX={90}
         rotateY={180}
         height={floorPanelHeight}
-        position={{ ...position, y: lightY, z: floorPanelHeight / 2 }}
+        positionMap={{ ...positionMap, y: lightY, z: floorPanelHeight / 2 }}
         intensity={intensity}
       />
     </>
@@ -148,7 +152,7 @@ const Floor = ({
 
 GlowPanel.propTypes = {
   color: PropTypes.string.isRequired,
-  position: PropTypes.shape({
+  positionMap: PropTypes.shape({
     x: PropTypes.number,
     y: PropTypes.number,
     z: PropTypes.number,
@@ -158,7 +162,7 @@ GlowPanel.propTypes = {
   depth: PropTypes.number,
 };
 GlowPanel.defaultProps = {
-  position: [0, 0, 0],
+  positionMap: { x: 0, y: 0, z: 0 },
   height: 25,
   width: 10,
   depth: 0.1,

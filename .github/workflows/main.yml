@@ -16,8 +16,6 @@ jobs:
     strategy:
       matrix:
         node-version: [8.x, 10.x, 12.x]
-
-
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
@@ -25,8 +23,11 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: Install dependencies
-      run: yarn
+      run: yarn install
+
+    - name: Check Formattingd
+      run: yarn run test:format
 
     - name: Run Unit Tests
-      run: yarn test
+      run: yarn run test
 

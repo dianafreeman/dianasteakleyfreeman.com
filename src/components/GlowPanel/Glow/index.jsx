@@ -7,21 +7,8 @@ import { RectAreaLightUniformsLib } from 'three/examples/jsm/lights/RectAreaLigh
 
 RectAreaLightUniformsLib.init();
 
-const Glow = ({
-  isOn,
-  label,
-  position,
-  rotateX,
-  rotateY,
-  rotateZ,
-  intensity,
-  color,
-  height,
-  width,
-  depth = 0,
-}) => {
-  const lightRef = useRef();
-
+const useGlowControls = (props) => {
+  const { label, positionMap, rotateX, rotateY, rotateZ, intensity, color, height, width } = props;
   const controlledIntensity = useControl(`${label} Light Intensity`, {
     group: label,
     type: 'number',
@@ -52,21 +39,21 @@ const Glow = ({
   const ctrlX = useControl(`${label} Light X Position`, {
     group: label,
     type: 'number',
-    value: position.x,
+    value: positionMap.x,
     min: -100,
     max: 100,
   });
   const ctrlY = useControl(`${label} Light Y Position`, {
     group: label,
     type: 'number',
-    value: position.y || height / 2,
+    value: positionMap.y || height / 2,
     min: -100,
     max: 100,
   });
   const ctrlZ = useControl(`${label} Light Z Position`, {
     group: label,
     type: 'number',
-    value: position.z,
+    value: positionMap.z,
     min: -100,
     max: 100,
   });
@@ -91,7 +78,33 @@ const Glow = ({
     min: -360,
     max: 360,
   });
-
+  return {
+    controlledIntensity,
+    controlledColor,
+    ctrlHeight,
+    ctrlWidth,
+    ctrlX,
+    ctrlY,
+    ctrlZ,
+    rotateYDeg,
+    rotateXDeg,
+    rotateZDeg,
+  };
+};
+const Glow = ({ isOn, depth = 0, ...restProps }) => {
+  const lightRef = useRef();
+  const {
+    controlledIntensity,
+    controlledColor,
+    ctrlHeight,
+    ctrlWidth,
+    ctrlX,
+    ctrlY,
+    ctrlZ,
+    rotateYDeg,
+    rotateXDeg,
+    rotateZDeg,
+  } = useGlowControls(restProps);
   return (
     <rectAreaLight
       ref={lightRef}

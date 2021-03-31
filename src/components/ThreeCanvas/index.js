@@ -44,7 +44,7 @@ const Scene = () => {
         height={panelHeight}
         width={panelWidth}
         depth={panelDepth}
-        position={{ x: viewOffset + panelWidth + panelMargin, y: panelHeight / 2, z: 0.05 }}
+        positionMap={{ x: viewOffset + panelWidth + panelMargin, y: panelHeight / 2, z: 0.05 }}
       />
       <GlowPanel
         floorText="Creator"
@@ -53,7 +53,7 @@ const Scene = () => {
         height={panelHeight}
         width={panelWidth}
         depth={panelDepth}
-        position={{ x: viewOffset, y: panelHeight / 2, z: 0.05 }}
+        positionMap={{ x: viewOffset, y: panelHeight / 2, z: 0.05 }}
       />
 
       <GlowPanel
@@ -63,7 +63,7 @@ const Scene = () => {
         height={panelHeight}
         width={panelWidth}
         depth={panelDepth}
-        position={{ x: viewOffset - panelWidth - panelMargin, y: panelHeight / 2, z: 0.05 }}
+        positionMap={{ x: viewOffset - panelWidth - panelMargin, y: panelHeight / 2, z: 0.05 }}
       />
 
       <MainText />
@@ -71,7 +71,24 @@ const Scene = () => {
     </>
   );
 };
-
+const COLLAPSE_CONTROLS = [
+  'Camera',
+  'Floor',
+  'FloorText',
+  'Stage',
+  'Blue',
+  'BlueGlow 1',
+  'BlueGlow 2',
+  'Blue Floor 2',
+  'Red',
+  'RedGlow 1',
+  'RedGlow 2',
+  'Red Floor 2',
+  'Orange',
+  'OrangeGlow 1',
+  'OrangeGlow 2',
+  'Orange Floor 2',
+];
 function ThreeCanvas() {
   const ControllableCanvas = withControls(Canvas);
   return (
@@ -81,7 +98,7 @@ function ThreeCanvas() {
           <Scene />
         </Suspense>
       </ControllableCanvas>
-      <Controls style={{ color: 'black' }} collapsed />
+      <Controls style={{ color: 'black' }} defaultClosedGroups={COLLAPSE_CONTROLS} />
     </Controls.Provider>
   );
 }

@@ -6,61 +6,73 @@ import { CameraHelper, MathUtils } from 'three';
 
 import { useControl } from 'react-three-gui';
 
-const Panel = ({ label, index, position, width, height, depth, color, transparent, ...rest }) => {
-  const ctrlColor = useControl(`${label} Panel Color`, {
+const usePanelPositionControls = (props) => {
+  const { label, positionMap } = props;
+  const X = useControl(`${label} Panel X Position`, {
+    group: label,
+    type: 'number',
+    value: positionMap?.x || 0,
+    min: -100,
+    max: 100,
+  });
+  const Y = useControl(`${label} Panel Y Position`, {
+    group: label,
+    type: 'number',
+    value: positionMap?.y || 0,
+    min: -100,
+    max: 100,
+  });
+  const Z = useControl(`${label} Panel Z Position`, {
+    group: label,
+    type: 'number',
+    value: positionMap?.z || 0,
+    min: -100,
+    max: 100,
+  });
+  return { X, Y, Z };
+};
+
+const usePanelAttributeControls = (props) => {
+  const { color: colorVal, width: widthVal, height: heightVal, depth: depthVal, label } = props;
+  const color = useControl(`${label} Panel Color`, {
     group: label,
     type: 'color',
-    value: color,
+    value: colorVal,
   });
-  const ctrlHeight = useControl(`${label} Panel Height`, {
+  const height = useControl(`${label} Panel Height`, {
     group: label,
     type: 'number',
-    value: height,
+    value: heightVal,
     min: 0,
     max: 100,
   });
-  const ctrlWidth = useControl(`${label} Panel Width`, {
+  const width = useControl(`${label} Panel Width`, {
     group: label,
     type: 'number',
-    value: width,
+    value: widthVal,
     min: 0,
     max: 100,
   });
-  const ctrlThickness = useControl(`${label} Panel Thickness`, {
+  const depth = useControl(`${label} Panel Thickness`, {
     group: label,
     type: 'number',
-    value: depth,
+    value: depthVal,
     min: 0,
     max: 100,
   });
 
-  const ctrlX = useControl(`${label} Panel X Position`, {
-    group: label,
-    type: 'number',
-    value: position.x,
-    min: -100,
-    max: 100,
-  });
-  const ctrlY = useControl(`${label} Panel Y Position`, {
-    group: label,
-    type: 'number',
-    value: position.y,
-    min: -100,
-    max: 100,
-  });
-  const ctrlZ = useControl(`${label} Panel Z Position`, {
-    group: label,
-    type: 'number',
-    value: position.z,
-    min: -100,
-    max: 100,
-  });
-
+  return { color, height, width, depth };
+};
+const Panel = ({ materialProps, geometryProps, ...props }) => {
+  const pos = usePanelPositionControls(props);
+  const { color, height, width, depth } = usePanelAttributeControls(props);
   return (
-    <mesh castShadow position={[ctrlX, ctrlY, ctrlZ]} {...rest}>
-      <boxBufferGeometry args={[ctrlWidth, ctrlHeight, ctrlThickness]} />
-      <meshStandardMaterial roughness={1} metalness={0} color={ctrlColor} />
-    </mesh>
+    <>
+      <mesh castShadow {...props} position={[pos.X, pos.Y, pos.Z]}>
+        <boxBufferGeometry {...geometryProps} args={[width, height, depth]} />
+        <meshStandardMaterial {...materialProps} color={color} />
+      </mesh>
+    </>
   );
 };
 
