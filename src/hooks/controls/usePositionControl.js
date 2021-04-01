@@ -1,5 +1,5 @@
 // TODO
-export default function usePositionControl(props) {
+export default function usePositionControlMap(props) {
   const { label, position } = props;
   const X = useControl(`${label} Panel X Position`, {
     group: label,

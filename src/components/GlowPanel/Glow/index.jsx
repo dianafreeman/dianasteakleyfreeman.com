@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { useHelper } from '@react-three/drei';
+import { animated } from 'react-spring';
 import { RectAreaLight, MathUtils } from 'three';
 import { useControl } from 'react-three-gui';
 import { RectAreaLightUniformsLib } from 'three/examples/jsm/lights/RectAreaLightUniformsLib';

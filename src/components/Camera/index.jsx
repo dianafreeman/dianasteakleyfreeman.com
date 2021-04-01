@@ -1,18 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
+
 import { Canvas, useFrame, useThree } from 'react-three-fiber';
 import { PerspectiveCamera, useHelper, OrbitControls } from '@react-three/drei';
 import { CameraHelper, RectAreaLightHelper, MathUtils } from 'three';
 import { Controls, useControl, withControls } from 'react-three-gui';
 
-const Camera = () => {
-  const cameraRef = useRef();
-  const calc = (1 / 3) * (window.innerWidth / 3);
-  const calcY = (1 / 3) * (window.innerWidth / 4);
-
-  const [xPos, yPos, zPos] = [calc, calcY, calc];
-  const [cameraZoom, setCamZoom] = useState(2);
-  // useHelper(cameraRef, CameraHelper, 1, 'hotpink');
+const Camera = ({ xOffset }) => {
+  // const [xPos, yPos, zPos] = [calc, calcY, calc];
+  // const [cameraZoom, setCamZoom] = useState(2);
+  // // useHelper(cameraRef, CameraHelper, 1, 'hotpink');
 
   const cameraControls = {
     group: 'Camera',
@@ -22,29 +19,41 @@ const Camera = () => {
     max: 150,
   };
   // Position
-  const camX = useControl('CameraX', { ...cameraControls, value: xPos });
-  const camY = useControl('CameraY', { ...cameraControls, value: yPos });
-  const camZ = useControl('CameraZ', { ...cameraControls, value: zPos });
+  // const camX = useControl('CameraX', { ...cameraControls, value: xPos });
+  // const camY = useControl('CameraY', { ...cameraControls, value: yPos });
+  // const camZ = useControl('CameraZ', { ...cameraControls, value: zPos });
 
-  // Zoom
-  const camZoom = useControl('CameraZoom', {
-    group: 'Camera',
-    value: cameraZoom,
-    state: [cameraZoom, setCamZoom],
-    min: 1,
-    max: 100,
-  });
-  // useEffect(() => {
-  //   console.log(cameraRef.current.position);
-  // }, [cameraRef.current]);
+  // // Zoom
+  // const camZoom = useControl('CameraZoom', {
+  //   group: 'Camera',
+  //   value: cameraZoom,
+  //   state: [cameraZoom, setCamZoom],
+  //   min: -100,
+  //   max: 100,
+  // });
+
+  const { camera } = useThree();
+
+  useEffect(() => {
+    camera.position.set(70, 60, 100);
+    camera.lookAt(0, 0, 0);
+    camera.updateProjectionMatrix();
+  }, [camera]);
+
+  const fov = 45;
+  const near = 1;
+  const far = 800;
+
+  //   PerspectiveCamera( fov : Number, aspect : Number, near : Number, far : Number )
+  // fov — Camera frustum vertical field of view.
+  // aspect — Camera frustum aspect ratio.
+  // near — Camera frustum near plane.
+  // far — Camera frustum far plane.
   return (
     <>
       <PerspectiveCamera
         makeDefault
-        ref={cameraRef}
-        zoom={camZoom}
-        position={[camX, camY, camZ]}
-        args={[45, window.innerWidth / window.innerHeight, 1, 1000]} // perspective
+        args={[fov, window.innerWidth / window.innerHeight, near, far]} // perspective
       />
     </>
   );

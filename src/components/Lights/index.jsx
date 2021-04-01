@@ -55,22 +55,14 @@ const Lights = () => {
   });
   return (
     <>
-      <spotLight
+      <directionalLight
         castShadow
         intensity={0.25}
-        // position={[0, 60, 15]}
-        position={[positionX, positionY, positionZ]}
-        rotation-y={MathUtils.degToRad(90)}
-        lookAt={[-40, 0, 10]}
+        position={[0, 10, 50]}
+        // position={[positionX, positionY, positionZ]}
+        lookAt={[0, 0, 0]}
       />
-      <spotLight
-        castShadow
-        intensity={0.25}
-        // position={[0, 60, 15]}
-        position={[positionX2, positionY2, positionZ2]}
-        rotation-y={MathUtils.degToRad(90)}
-        lookAt={[-40, 0, 10]}
-      />
+      <ambientLight intensity={0.05} position={[positionX, positionY, positionZ]} />
       {/* <directionalLight castShadow intensity={0.09} position={[10, 15, 0]} lookAt={[-20, 0, 20]} /> */}
     </>
   );

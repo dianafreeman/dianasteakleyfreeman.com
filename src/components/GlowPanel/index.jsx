@@ -1,13 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Canvas, useFrame, useThree } from 'react-three-fiber';
-import { PerspectiveCamera, useHelper, OrbitControls, Text } from '@react-three/drei';
+import {
+  PerspectiveCamera,
+  useHelper,
+  OrbitControls,
+  Text,
+  QuadraticBezierLine,
+  Extrude,
+} from '@react-three/drei';
 import { Controls, useControl, withControls } from 'react-three-gui';
 import { FontLoader, MathUtils } from 'three';
 import Glow from './Glow';
 import Panel from './Panel';
 // import DosisLight from '../ThreeText/fonts/DosisLight_Regular.json';
 import RobotoMono from '../ThreeText/fonts/RobotoMono_Medium_Regular.json';
+import { useSpring, animated } from 'react-spring';
 
 function GlowPanel({ color, positionMap, height, width, label, depth, ...rest }) {
   const [hovered, setHovered] = useState(false);
@@ -55,49 +63,6 @@ function GlowPanel({ color, positionMap, height, width, label, depth, ...rest })
   );
 }
 
-const FloorText = ({ floorText, position }) => {
-  const font = new FontLoader().parse(RobotoMono);
-  const textOptions = {
-    font,
-    size: 5,
-    height: 0,
-  };
-
-  const rotateX = useControl(`Rotate X`, {
-    group: 'Floor Text',
-    type: 'number',
-    value: -90,
-    min: -360,
-    max: 360,
-  });
-  const rotateY = useControl(`Rotate Y`, {
-    group: 'Floor Text',
-    type: 'number',
-    value: 0,
-    min: -360,
-    max: 360,
-  });
-  const rotateZ = useControl(`Rotate Z`, {
-    group: 'Floor Text',
-    type: 'number',
-    value: 90,
-    min: -360,
-    max: 360,
-  });
-
-  return (
-    <mesh
-      position={position}
-      rotation-z={MathUtils.degToRad(rotateZ)}
-      rotation-y={MathUtils.degToRad(rotateY)}
-      rotation-x={MathUtils.degToRad(rotateX)}
-    >
-      <textGeometry attach="geometry" args={[floorText.toUpperCase(), textOptions]} />
-      <meshLambertMaterial color="#00000" />
-    </mesh>
-  );
-};
-
 const Floor = ({
   isOn,
   label,
@@ -110,7 +75,7 @@ const Floor = ({
   floorText,
   ...rest
 }) => {
-  const floorPanelHeight = height * 3 || 100;
+  const floorPanelHeight = 3;
 
   const lightY = depth + depth;
   const shared = {
@@ -124,7 +89,6 @@ const Floor = ({
     <>
       <Panel
         {...shared}
-        color={'#fff'}
         height={floorPanelHeight}
         label="Floor"
         height={floorPanelHeight}
@@ -132,16 +96,15 @@ const Floor = ({
         positionMap={{ ...positionMap, y: depth, z: floorPanelHeight / 2 }}
         rotation-x={MathUtils.degToRad(90)}
       />
-      <FloorText
-        floorText={floorText}
-        position={[positionMap.x, depth * 2.5, floorPanelHeight / 2]}
-      />
+      {/* <FloorText floorText={floorText} position={[positionMap.x, depth * 2.5, floorPanelHeight]} /> */}
+
       <Glow
         {...shared}
         isOn={isOn}
         label={label + ' 2'}
         rotateX={90}
         rotateY={180}
+        sla
         height={floorPanelHeight}
         positionMap={{ ...positionMap, y: lightY, z: floorPanelHeight / 2 }}
         intensity={intensity}

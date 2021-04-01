@@ -16,7 +16,7 @@ const Floor = ({
   floorText,
   ...rest
 }) => {
-  const floorPanelHeight = height * 3 || 100;
+  const floorPanelHeight = height * 8 || 100;
 
   const lightY = depth + depth;
   const shared = {
