@@ -1,5 +1,5 @@
 {
-  "extends": ["prettier", "prettier/react"],
+  "extends": ["prettier", "prettier/react", "airbnb"],
   "parser": "babel-eslint",
   "parserOptions": {
 <<<<<<< HEAD

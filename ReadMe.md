@@ -23,6 +23,12 @@
 
 ### 🏠 [Homepage](https://dianasteakleyfreeman.com)
 
+## Description
+
+This is a a helluva project, and it should probably be split out into multiple services. But alas, here we are.
+
+At its core, this is a static site generator that creates a React App that renders a 3D scene in a WebGL canvas.
+
 ## Install Dependencies
 
 ```sh

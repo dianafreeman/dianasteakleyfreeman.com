@@ -1,8 +1,8 @@
 import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
 import grey from '@material-ui/core/colors/grey';
 import blue from '@material-ui/core/colors/blue';
-import '@fontsource/teko';
-import '@fontsource/caveat';
+// import '@fontsource/teko';
+// import '@fontsource/caveat';
 /*
  *  Default Material Theme: https://material-ui.com/customization/default-theme/
  */

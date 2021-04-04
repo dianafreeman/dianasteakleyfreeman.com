@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import Box from '@material-ui/core/Box';
-import ThreeCanvas from '../components/ThreeCanvas';
+import Scene from '../components/Scene';
 
 function Home() {
   return (
     <Box width="100%" height="100%">
-      <ThreeCanvas />
+      <Scene />
     </Box>
   );
 }

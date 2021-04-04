@@ -35,7 +35,7 @@ const Camera = ({ xOffset }) => {
   const { camera } = useThree();
 
   useEffect(() => {
-    camera.position.set(70, 60, 100);
+    camera.position.set(0, 40, 100);
     camera.lookAt(0, 0, 0);
     camera.updateProjectionMatrix();
   }, [camera]);
