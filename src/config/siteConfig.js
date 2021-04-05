@@ -10,8 +10,8 @@ const config = {
     "Coder, Creator, Communicator | Digital Policy Buff, User Rights Enthusiast | Former Scientist, Forever Experimenting.  I'm Diana, and this is my corner of the internet.", // Website description used for RSS feeds/meta description tag.
   siteRss: '/rss.xml', // Path to the RSS file.
   siteRssTitle: 'Diana Steakley-Freeman | RSS feed', // Title of the RSS feed
-  siteFBAppID: '1825356251115265', // FB Application ID for using app insights
-  googleAnalyticsID: 'UA-47311644-5', // GA tracking ID.
+  // siteFBAppID: '1825356251115265', // FB Application ID for using app insights
+  googleAnalyticsID: 'UA-134220362-1', // GA tracking ID.
   dateFromFormat: 'YYYY-MM-DD', // Date format used in the frontmatter.
   dateFormat: 'DD/MM/YYYY', // Date format for display.
   postsPerPage: 5, // Amount of posts displayed per listing page.

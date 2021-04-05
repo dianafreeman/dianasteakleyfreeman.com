@@ -19,10 +19,25 @@ module.exports = {
     'gatsby-plugin-postcss',
     'gatsby-plugin-sass',
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-transformer-remark',
       options: {
-        path: `src/content/blog`,
-        name: `blog-posts`,
+        plugins: [
+          {
+            resolve: `gatsby-remark-relative-images`,
+          },
+          {
+            resolve: 'gatsby-remark-images',
+            options: {
+              maxWidth: 690,
+            },
+          },
+          {
+            resolve: 'gatsby-remark-responsive-iframe',
+          },
+          'gatsby-remark-copy-linked-files',
+          'gatsby-remark-autolink-headers',
+          'gatsby-remark-prismjs',
+        ],
       },
     },
 

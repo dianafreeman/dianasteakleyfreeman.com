@@ -6,9 +6,11 @@ import theme from '../../theme';
 import './layout.css';
 
 function Layout({ children, ...rest }) {
+  debugger;
   return (
     <>
       <ThemeProvider theme={theme}>
+        <SEO />
         <CssBaseline />
         <Container disableGutters style={{ height: '100vh' }}>
           {children}
