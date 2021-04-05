@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 import { useResource } from 'react-three-fiber';
 import { PerspectiveCamera } from '@react-three/drei';
 
-const Camera = ({ xOffset }) => {
+const Camera = () => {
   const mainCamera = useResource();
 
   useEffect(() => {
     // Regular Camera
-    mainCamera.current.position.set(45, 30, 100);
+    mainCamera.current.position.set(50, 75, 100);
     mainCamera.current.lookAt(0, 0, 0);
     mainCamera.current.updateProjectionMatrix();
   }, [mainCamera]);

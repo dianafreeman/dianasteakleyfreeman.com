@@ -3,7 +3,7 @@ const config = {
   siteTitleShort: 'DSF.com', // Short site title for homescreen (PWA). Preferably should be under 12 characters to prevent truncation.
   siteTitleAlt:
     'Digital Policy Buff, User Rights Enthusiast. Former Scientist, Forever Experimenting', // Alternative site title for SEO.
-  siteLogo: '/logos/logo-512.png', // Logo used for SEO and manifest.
+  siteLogo: '/logos/screenshot.jpg', // Logo used for SEO and manifest.
   siteUrl: 'https://dianasteakleyfreeman.com', // Domain of your website without pathPrefix.
   pathPrefix: '/', // Prefixes all links. For cases when deployed to example.github.io/gatsby-advanced-starter/.
   siteDescription:

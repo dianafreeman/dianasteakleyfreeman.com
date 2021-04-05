@@ -83,8 +83,20 @@ const Main = () => {
         materialProps={{ roughness: 0.5, metalness: 1 }}
         castShadow
       />
-
+      <group rotation={[THREE.MathUtils.degToRad(-90), 0, 0]} position={[0, 0.1, 15]}>
+        <Text
+          color={'black'}
+          fontSize={6}
+          maxWidth={200}
+          lineHeight={1}
+          letterSpacing={0.02}
+          textAlign={'center'}
+        >
+          {/* A brand new site is coming soon. */}
+        </Text>
+      </group>
       <cubeCamera ref={cubeCamera} args={[0.1, 1000, renderTarget]} />
+
       <Plane receiveShadow rotation={[deg(270), deg(0), deg(0)]} args={[1000, 1000]}>
         <meshStandardMaterial
           attach="material"
