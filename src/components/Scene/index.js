@@ -1,19 +1,24 @@
-import React, { useState, useEffect, useRef, Suspense } from 'react';
+import React, { useState, useEffect, useRef, Suspense, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { Canvas, extend, useThree, useFrame, useResource } from 'react-three-fiber';
 import * as THREE from 'three';
-import { CubeCamera, OrbitControls } from '@react-three/drei';
+import { Text, Plane, OrbitControls, useTexture, CubeCamera, Html } from '@react-three/drei';
 import { Controls, useControl, withControls } from 'react-three-gui';
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
 import { MaskPass, ClearMaskPass } from 'three/examples/jsm/postprocessing/MaskPass.js';
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
 
-import Camera from '../Camera';
-import Lights from '../Lights';
-import Floor from '../Floor';
-import GlowingBlockText from '../BlockText/GlowingBlockText';
+import Container from '@material-ui/core/Container';
+import ColorMapImage from '../../assets/textures/stageFloor/ColorMap.jpg';
+import NormalMapImage from '../../assets/textures/stageFloor/NormalMap.jpg';
 
+import Camera from '../Camera';
+import SwirlingLights from '../Lights/SwirlingLights';
+import Lights from '../Lights';
+import BlockText from '../BlockText';
+
+const deg = (val) => THREE.MathUtils.degToRad(val);
 extend({ EffectComposer, RenderPass, UnrealBloomPass, MaskPass, ClearMaskPass });
 
 function Effects({ children }) {
@@ -30,7 +35,7 @@ function Effects({ children }) {
         ref={bloomPass}
         attachArray="passes"
         threshold={0}
-        strength={0.3}
+        strength={0.5}
         args={[undefined, 1.6, 1, 0.9]}
       />
     </effectComposer>
@@ -38,13 +43,58 @@ function Effects({ children }) {
 }
 
 const Main = () => {
+  const [colorMap, normalMap] = useTexture([ColorMapImage, NormalMapImage]);
+
+  useEffect(() => {
+    function setRepeating(textureMaps) {
+      textureMaps.forEach((map) => {
+        map.wrapS = THREE.MirroredRepeatWrapping;
+        map.wrapT = THREE.MirroredRepeatWrapping;
+        map.repeat.set(10, 1);
+      });
+    }
+    setRepeating([colorMap, normalMap]);
+  }, [colorMap, normalMap]);
+
+  const cubeCamera = useResource();
+  const [renderTarget] = useState(
+    new THREE.WebGLCubeRenderTarget(128, {
+      format: THREE.RGBAFormat,
+      generateMipmaps: true,
+      minFilter: THREE.LinearMipmapLinearFilter,
+    })
+  );
+
+  useFrame(({ gl, scene, camera }) => {
+    cubeCamera.current.position.copy(camera.position);
+    cubeCamera.current.update(gl, scene);
+  });
+
   return (
     <>
       <OrbitControls />
       <Camera />
       <Lights />
-      <GlowingBlockText word="Hi! I'm Diana." color="#4a4eff" position={[0, 10, 0]} />
-      <Floor depth={1} width={100} height={100} />
+      <SwirlingLights />
+      <BlockText
+        word="Hi! I'm Diana."
+        color="#fff"
+        position={[0, 0, 0]}
+        materialProps={{ roughness: 0.5, metalness: 1 }}
+        castShadow
+      />
+
+      <cubeCamera ref={cubeCamera} args={[0.1, 1000, renderTarget]} />
+      <Plane receiveShadow rotation={[deg(270), deg(0), deg(0)]} args={[1000, 1000]}>
+        <meshStandardMaterial
+          attach="material"
+          normalMap={normalMap}
+          color="#d8d9d4"
+          roughness={0}
+          reflectivity={0.7}
+          envMap={renderTarget.texture}
+        />
+      </Plane>
       <Effects />
     </>
   );
@@ -59,7 +109,6 @@ function Scene() {
           <Main />
         </Suspense>
       </ControllableCanvas>
-      <Controls style={{ color: 'black' }} />
     </Controls.Provider>
   );
 }

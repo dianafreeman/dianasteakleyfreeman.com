@@ -1,62 +1,29 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
-import { Canvas, useFrame, useThree } from 'react-three-fiber';
-import { PerspectiveCamera, useHelper, OrbitControls } from '@react-three/drei';
-import { CameraHelper, RectAreaLightHelper, MathUtils } from 'three';
-import { Controls, useControl, withControls } from 'react-three-gui';
+import { useResource } from 'react-three-fiber';
+import { PerspectiveCamera } from '@react-three/drei';
 
 const Camera = ({ xOffset }) => {
-  // const [xPos, yPos, zPos] = [calc, calcY, calc];
-  // const [cameraZoom, setCamZoom] = useState(2);
-  // // useHelper(cameraRef, CameraHelper, 1, 'hotpink');
-
-  const cameraControls = {
-    group: 'Camera',
-    type: 'number',
-    value: 20,
-    min: -150,
-    max: 150,
-  };
-  // Position
-  // const camX = useControl('CameraX', { ...cameraControls, value: xPos });
-  // const camY = useControl('CameraY', { ...cameraControls, value: yPos });
-  // const camZ = useControl('CameraZ', { ...cameraControls, value: zPos });
-
-  // // Zoom
-  // const camZoom = useControl('CameraZoom', {
-  //   group: 'Camera',
-  //   value: cameraZoom,
-  //   state: [cameraZoom, setCamZoom],
-  //   min: -100,
-  //   max: 100,
-  // });
-
-  const { camera } = useThree();
+  const mainCamera = useResource();
 
   useEffect(() => {
-    camera.position.set(0, 40, 100);
-    camera.lookAt(0, 0, 0);
-    camera.updateProjectionMatrix();
-  }, [camera]);
+    // Regular Camera
+    mainCamera.current.position.set(45, 30, 100);
+    mainCamera.current.lookAt(0, 0, 0);
+    mainCamera.current.updateProjectionMatrix();
+  }, [mainCamera]);
 
-  const fov = 45;
-  const near = 1;
-  const far = 800;
-
-  //   PerspectiveCamera( fov : Number, aspect : Number, near : Number, far : Number )
   // fov — Camera frustum vertical field of view.
+  const fov = 45;
   // aspect — Camera frustum aspect ratio.
+  const aspect = window.innerWidth / window.innerHeight;
   // near — Camera frustum near plane.
+  const near = 1;
   // far — Camera frustum far plane.
-  return (
-    <>
-      <PerspectiveCamera
-        makeDefault
-        args={[fov, window.innerWidth / window.innerHeight, near, far]} // perspective
-      />
-    </>
-  );
+  const far = 1000;
+
+  return <PerspectiveCamera ref={mainCamera} makeDefault args={[fov, aspect, near, far]} />;
 };
 Camera.propTypes = {};
 
