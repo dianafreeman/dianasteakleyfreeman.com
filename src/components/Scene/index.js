@@ -92,7 +92,7 @@ const Main = () => {
           letterSpacing={0.02}
           textAlign={'center'}
         >
-          {/* A brand new site is coming soon. */}
+          A brand new site is coming soon.
         </Text>
       </group>
       <cubeCamera ref={cubeCamera} args={[0.1, 1000, renderTarget]} />
