@@ -120,7 +120,14 @@
       "excerpt": "Hanc indeploratum seram Amphitryoniadae tremulis pauperque manum Cognoscenti audeat ulterius sublimia terga potiorque saxo Lorem markdownum…",
       "frontmatter": {
         "title": "The Butterfly of the Edge",
-        "tags": ["programming", "more tags", "testing", "another one", "stuff", "other"],
+        "tags": [
+          "programming",
+          "more tags",
+          "testing",
+          "another one",
+          "stuff",
+          "other"
+        ],
         "cover": "2.jpg",
         "category": "tech",
         "date": "2017-03-17"

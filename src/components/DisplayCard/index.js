@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'gatsby-link';
 import { makeStyles } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';

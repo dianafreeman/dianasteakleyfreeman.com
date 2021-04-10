@@ -1,6 +1,6 @@
 import React from 'react';
 import PostListing from '.';
-import data from '../../__fixtures__/allMarkdownRemark.json';
+import data from './index.stub.json';
 
 export const Main = (args) => <PostListing {...args} />;
 

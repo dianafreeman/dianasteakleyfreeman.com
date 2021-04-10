@@ -109,7 +109,8 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
         slug = `/${_.kebabCase(node.frontmatter.slug)}`;
       if (Object.prototype.hasOwnProperty.call(node.frontmatter, 'date')) {
         const date = moment(node.frontmatter.date, siteConfig.dateFromFormat);
-        if (!date.isValid) console.warn(`WARNING: Invalid date.`, node.frontmatter);
+        if (!date.isValid)
+          console.warn(`WARNING: Invalid date.`, node.frontmatter);
 
         createNodeField({ node, name: 'date', value: date.toISOString() });
       }
@@ -124,7 +125,6 @@ exports.createPages = async ({ graphql, actions }) => {
   const tagPage = path.resolve('src/templates/Tag/index.jsx');
   const categoryPage = path.resolve('src/templates/Category/index.jsx');
   const listingPage = path.resolve('./src/templates/Listing/index.jsx');
-  // const landingPage = path.resolve('./src/templates/Landing/index.jsx');
 
   // Get a full list of markdown posts
   const markdownQueryResult = await graphql(`
@@ -159,9 +159,15 @@ exports.createPages = async ({ graphql, actions }) => {
 
   // Sort posts by date
   postsEdges.sort((postA, postB) => {
-    const dateA = moment(postA.node.frontmatter.date, siteConfig.dateFromFormat);
+    const dateA = moment(
+      postA.node.frontmatter.date,
+      siteConfig.dateFromFormat,
+    );
 
-    const dateB = moment(postB.node.frontmatter.date, siteConfig.dateFromFormat);
+    const dateB = moment(
+      postB.node.frontmatter.date,
+      siteConfig.dateFromFormat,
+    );
 
     if (dateA.isBefore(dateB)) return 1;
     if (dateB.isBefore(dateA)) return -1;

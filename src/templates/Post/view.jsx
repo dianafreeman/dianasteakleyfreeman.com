@@ -1,9 +1,10 @@
 import React from 'react';
-// import AuthorInfo from '../../components/AuthorInfo';
-import Footer from '../../components/Layout/Footer';
-import config from '@config/siteConfig';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import config from '@config/siteConfig';
+import Footer from '../../components/Layout/Footer';
+
+// eslint-disable-next-line import/no-unresolved
 
 /*
 

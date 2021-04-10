@@ -1,35 +1,8 @@
 {
-<<<<<<< HEAD
-  "plugins": [
-    ["@babel/plugin-proposal-optional-chaining"],
-    [
-      "module-resolver",
-      {
-        "root": ["./"],
-        "alias": {
-          "@story-decorators": "./.storybook/decorate",
-          "@site-config": "./src/config",
-          "@hooks": "./src/hooks",
-          "@fixtures": "./test/__fixtures__"
-        }
-      }
-    ]
-  ],
-  "presets": [
-    [
-      "babel-preset-gatsby",
-      {
-        "targets": {
-          "browsers": [">0.25%", "not dead"]
-        }
-      }
-    ]
-=======
   "presets": ["@babel/preset-react", "@babel/preset-env"],
   "plugins": [
     "@babel/plugin-proposal-class-properties",
     "babel-plugin-remove-graphql-queries",
     "@babel/plugin-proposal-optional-chaining"
->>>>>>> Simplify and refactor client (#5)
   ]
 }

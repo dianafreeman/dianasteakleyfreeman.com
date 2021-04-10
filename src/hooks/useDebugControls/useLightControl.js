@@ -1,7 +1,17 @@
-// TODO
+import { useControl } from 'react-three-gui';
 
 const useGlowControls = (props) => {
-  const { label, positionMap, rotateX, rotateY, rotateZ, intensity, color, height, width } = props;
+  const {
+    label,
+    positionMap,
+    rotateX,
+    rotateY,
+    rotateZ,
+    intensity,
+    color,
+    height,
+    width,
+  } = props;
   const controlledIntensity = useControl(`${label} Light Intensity`, {
     group: label,
     type: 'number',

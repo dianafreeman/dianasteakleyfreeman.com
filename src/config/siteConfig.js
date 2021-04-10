@@ -22,7 +22,6 @@ const config = {
   userAvatar: 'https://api.adorable.io/avatars/150/test.png', // User avatar to display in the author segment.
   userDescription:
     'Diana is a user rights advocate, a digital policy buff, a social scientist, and a software engineer (in that order)', // User description to display in the author segment.
-  // Links to social profiles/projects you want to display in the author segment/navigation bar.
   userLinks: [
     {
       label: 'GitHub',
@@ -56,9 +55,11 @@ if (config.pathPrefix === '/') {
 }
 
 // Make sure siteUrl doesn't have an ending forward slash
-if (config.siteUrl.substr(-1) === '/') config.siteUrl = config.siteUrl.slice(0, -1);
+if (config.siteUrl.substr(-1) === '/')
+  config.siteUrl = config.siteUrl.slice(0, -1);
 
 // Make sure siteRss has a starting forward slash
-if (config.siteRss && config.siteRss[0] !== '/') config.siteRss = `/${config.siteRss}`;
+if (config.siteRss && config.siteRss[0] !== '/')
+  config.siteRss = `/${config.siteRss}`;
 
 module.exports = config;

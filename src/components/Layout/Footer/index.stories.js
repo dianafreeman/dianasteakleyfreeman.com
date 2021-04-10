@@ -1,6 +1,8 @@
 import React from 'react';
-import Footer from '.';
+
+// eslint-disable-next-line import/no-unresolved
 import config from '@config/siteConfig';
+import Footer from '.';
 
 export const main = (args) => {
   return <Footer {...args} />;

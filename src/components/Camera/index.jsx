@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect } from 'react';
+// import PropTypes from 'prop-types';
 
 import { useResource } from 'react-three-fiber';
 import { PerspectiveCamera } from '@react-three/drei';
@@ -23,7 +23,13 @@ const Camera = () => {
   // far — Camera frustum far plane.
   const far = 1000;
 
-  return <PerspectiveCamera ref={mainCamera} makeDefault args={[fov, aspect, near, far]} />;
+  return (
+    <PerspectiveCamera
+      ref={mainCamera}
+      makeDefault
+      args={[fov, aspect, near, far]}
+    />
+  );
 };
 Camera.propTypes = {};
 

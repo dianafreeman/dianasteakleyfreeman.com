@@ -2,16 +2,18 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import urljoin from 'url-join';
 import moment from 'moment';
+// eslint-disable-next-line import/no-unresolved
 import config from '@config/siteConfig';
 
 /**
+ * AHH I hate this.
+ *
  * TODO
  *
- * Remove `moment`
- * Remove `urlJoin`
- *
- * refactor each of these methods
- * Create tests for each of these methods
+ * - Remove `moment`
+ * - Remove `urlJoin`
+ * - refactor each of these methods
+ * - Create tests for each of these methods
  *
  */
 
@@ -23,10 +25,10 @@ function SEO({ postNode, postPath, postSEO }) {
 
   if (postSEO) {
     const postMeta = postNode.frontmatter;
-    ({ title } = postMeta);
+    title = postMeta?.title || config.siteTitle;
     description = postMeta?.description || postNode.excerpt;
     image = postMeta.cover;
-    postURL = urljoin(config.siteUrl, config.pathPrefix, postPath);
+    postURL = `${config.siteUrl}${config.pathPrefix}${postPath}`;
   } else {
     title = config.siteTitle;
     description = config.siteDescription;
@@ -34,7 +36,11 @@ function SEO({ postNode, postPath, postSEO }) {
   }
 
   const getImagePath = (imageURI) => {
-    if (!imageURI?.match(`(https?|ftp|file)://[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]`))
+    if (
+      !imageURI?.match(
+        `(https?|ftp|file)://[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]`,
+      )
+    )
       return urljoin(config.siteUrl, config.pathPrefix, imageURI);
     return imageURI;
   };
@@ -102,7 +108,7 @@ function SEO({ postNode, postPath, postSEO }) {
         },
         datePublished,
         description,
-      }
+      },
     );
   }
   return (
@@ -112,7 +118,9 @@ function SEO({ postNode, postPath, postSEO }) {
       <meta name="image" content={image} />
 
       {/* Schema.org tags */}
-      <script type="application/ld+json">{JSON.stringify(schemaOrgJSONLD)}</script>
+      <script type="application/ld+json">
+        {JSON.stringify(schemaOrgJSONLD)}
+      </script>
 
       {/* OpenGraph tags */}
       <meta property="og:url" content={postSEO ? postURL : blogURL} />
@@ -120,11 +128,17 @@ function SEO({ postNode, postPath, postSEO }) {
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={image} />
-      <meta property="fb:app_id" content={config.siteFBAppID ? config.siteFBAppID : ''} />
+      <meta
+        property="fb:app_id"
+        content={config.siteFBAppID ? config.siteFBAppID : ''}
+      />
 
       {/* Twitter Card tags */}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:creator" content={config.userTwitter ? config.userTwitter : ''} />
+      <meta
+        name="twitter:creator"
+        content={config.userTwitter ? config.userTwitter : ''}
+      />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />

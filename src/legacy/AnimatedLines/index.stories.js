@@ -1,6 +1,12 @@
 import React from 'react';
 import AnimatedLines, { Line } from '.';
-import { closeMenuIcon, rightArrow, downArrow, leftArrow, menuIcon } from './shapes';
+import {
+  closeMenuIcon,
+  rightArrow,
+  downArrow,
+  leftArrow,
+  menuIcon,
+} from './shapes';
 
 export const Main = (args) => <AnimatedLines {...args} />;
 

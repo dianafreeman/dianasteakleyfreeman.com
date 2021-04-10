@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import PropTypes from 'prop-types';
-import { useControl } from 'react-three-gui';
+import React, { useState, useEffect } from 'react';
+// import PropTypes from 'prop-types';
 import { MathUtils } from 'three';
 import { useFrame, useResource } from 'react-three-fiber';
 
@@ -13,13 +12,15 @@ const Lights = ({ showHelpers = false }) => {
 
   const groupRef = useResource();
 
-  useFrame((state, delta) => {
+  useFrame((_state, delta) => {
     // groupRef.current.rotation.x += Math.sin(delta) + 0.01;
     groupRef.current.rotation.y += Math.sin(delta * 0.8);
   });
 
   const LIGHTS = [lightRef1, lightRef2, lightRef3, lightRef4];
-  useEffect(() => void setLights(LIGHTS.map((l) => l.current)), LIGHTS);
+  useEffect(() => {
+    setLights(LIGHTS.map((l) => l.current));
+  }, LIGHTS);
 
   return (
     <group ref={groupRef} position-y={10} rotation-y={MathUtils.degToRad(45)}>

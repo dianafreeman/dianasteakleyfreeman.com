@@ -1,9 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import { Link } from 'gatsby';
-import Box from '@material-ui/core/Box';
-import { useTransition, animated } from 'react-spring';
-import useMeasure from '../../hooks/useMeasure';
-import useMedia from '../../hooks/useMedia';
+import React from 'react';
 
 import DisplayCard from '../DisplayCard';
 import POSTS_STUB from './index.stub.json';

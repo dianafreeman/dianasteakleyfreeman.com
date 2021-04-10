@@ -32,8 +32,10 @@ function ImageSlider({ images, startingIndex, size }) {
   const [springDirection, setSpringDirection] = useState(NEXT);
 
   const maxIndex = images.length - 1;
-  const nextSlideIndex = (currentIdx) => (currentIdx === maxIndex ? 0 : currentIdx + 1);
-  const prevSlideIndex = (currentIdx) => (currentIdx === 0 ? maxIndex : currentIdx - 1);
+  const nextSlideIndex = (currentIdx) =>
+    currentIdx === maxIndex ? 0 : currentIdx + 1;
+  const prevSlideIndex = (currentIdx) =>
+    currentIdx === 0 ? maxIndex : currentIdx - 1;
 
   const goToNextSlide = async () => {
     await setSpringDirection(NEXT);
@@ -89,7 +91,9 @@ function ImageSlider({ images, startingIndex, size }) {
       >
         {transitions.map(({ item, key, props }) => {
           return (
-            <ImageWrapper style={{ ...props, position: 'absolute', height: '100%' }}>
+            <ImageWrapper
+              style={{ ...props, position: 'absolute', height: '100%' }}
+            >
               <img src={images[item]} style={{ height: 'inherit' }} alt="" />
             </ImageWrapper>
           );

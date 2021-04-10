@@ -1,6 +1,11 @@
 import { useControl } from 'react-three-gui';
 
-export default function usePositionControls({ label, min = -100, max = 100, xyz = [0, 0, 0] }) {
+export default function usePositionControls({
+  label,
+  min = -100,
+  max = 100,
+  xyz = [0, 0, 0],
+}) {
   const [x, y, z] = xyz;
   const X = useControl(`${label} X Position`, {
     group: label,
@@ -23,5 +28,5 @@ export default function usePositionControls({ label, min = -100, max = 100, xyz 
     min,
     max,
   });
-  return { position: [X, Y, Z] }; //{ X, Y, Z };
+  return { position: [X, Y, Z] }; // { X, Y, Z };
 }

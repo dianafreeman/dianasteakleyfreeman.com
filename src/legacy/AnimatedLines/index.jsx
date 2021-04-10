@@ -21,8 +21,9 @@ export const Line = ({ points }) => {
 
 Line.propTypes = {
   index: PropTypes.number.isRequired,
-  points: PropTypes.arrayOf(PropTypes.shape({ x: PropTypes.number, y: PropTypes.number }))
-    .isRequired,
+  points: PropTypes.arrayOf(
+    PropTypes.shape({ x: PropTypes.number, y: PropTypes.number }),
+  ).isRequired,
 };
 
 const AnimatedLines = ({ size, shape, ...rest }) => {
@@ -36,7 +37,8 @@ const AnimatedLines = ({ size, shape, ...rest }) => {
 };
 
 AnimatedLines.propTypes = {
-  shape: PropTypes.oneOf(rightArrow, leftArrow, menuIcon, closeMenuIcon).isRequired,
+  shape: PropTypes.oneOf(rightArrow, leftArrow, menuIcon, closeMenuIcon)
+    .isRequired,
   size: PropTypes.number,
 };
 

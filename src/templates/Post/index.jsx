@@ -1,11 +1,12 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby';
-
 import SEO from '../../components/Layout/SEO';
 
-import View from './view';
+// eslint-disable-next-line import/no-unresolved
 import config from '@config/siteConfig';
+
+import View from './view';
 
 export default function PostTemplate({ data, pageContext }) {
   const { slug } = pageContext;
@@ -20,7 +21,7 @@ export default function PostTemplate({ data, pageContext }) {
       <Helmet>
         <title>{`${post.title} | ${config.siteTitle}`}</title>
       </Helmet>
-      {/* <SEO postPath={slug} postNode={post} postSEO />  */}
+      <SEO postPath={slug} postNode={post} postSEO />
       <View post={postNode} pageContext={pageContext} />
     </>
   );

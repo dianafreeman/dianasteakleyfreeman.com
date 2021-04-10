@@ -1,15 +1,24 @@
+// eslint-disable no-param-reassign
 import React, { useState, useEffect, useRef, Suspense, useMemo } from 'react';
-import PropTypes from 'prop-types';
-import { Canvas, extend, useThree, useFrame, useResource } from 'react-three-fiber';
+// import PropTypes from 'prop-types';
+import {
+  Canvas,
+  extend,
+  useThree,
+  useFrame,
+  useResource,
+} from 'react-three-fiber';
 import * as THREE from 'three';
-import { Text, Plane, OrbitControls, useTexture, CubeCamera, Html } from '@react-three/drei';
-import { Controls, useControl, withControls } from 'react-three-gui';
+import { Text, Plane, OrbitControls, useTexture } from '@react-three/drei';
+import { Controls, withControls } from 'react-three-gui';
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
-import { MaskPass, ClearMaskPass } from 'three/examples/jsm/postprocessing/MaskPass.js';
+import {
+  MaskPass,
+  ClearMaskPass,
+} from 'three/examples/jsm/postprocessing/MaskPass.js';
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
 
-import Container from '@material-ui/core/Container';
 import ColorMapImage from '../../assets/textures/stageFloor/ColorMap.jpg';
 import NormalMapImage from '../../assets/textures/stageFloor/NormalMap.jpg';
 
@@ -19,13 +28,21 @@ import Lights from '../Lights';
 import BlockText from '../BlockText';
 
 const deg = (val) => THREE.MathUtils.degToRad(val);
-extend({ EffectComposer, RenderPass, UnrealBloomPass, MaskPass, ClearMaskPass });
+extend({
+  EffectComposer,
+  RenderPass,
+  UnrealBloomPass,
+  MaskPass,
+  ClearMaskPass,
+});
 
 function Effects({ children }) {
   const bloomPass = useRef();
   const composer = useRef();
   const { scene, gl, size, camera } = useThree();
-  useEffect(() => void composer.current.setSize(size.width, size.height), [size]);
+  useEffect(() => {
+    composer.current.setSize(size.width, size.height);
+  }, [size]);
   useFrame(() => composer.current.render(), 1);
 
   return (
@@ -38,6 +55,7 @@ function Effects({ children }) {
         strength={0.5}
         args={[undefined, 1.6, 1, 0.9]}
       />
+      {children}
     </effectComposer>
   );
 }
@@ -62,7 +80,7 @@ const Main = () => {
       format: THREE.RGBAFormat,
       generateMipmaps: true,
       minFilter: THREE.LinearMipmapLinearFilter,
-    })
+    }),
   );
 
   useFrame(({ gl, scene, camera }) => {
@@ -83,21 +101,28 @@ const Main = () => {
         materialProps={{ roughness: 0.5, metalness: 1 }}
         castShadow
       />
-      <group rotation={[THREE.MathUtils.degToRad(-90), 0, 0]} position={[0, 0.1, 15]}>
+      <group
+        rotation={[THREE.MathUtils.degToRad(-90), 0, 0]}
+        position={[0, 0.1, 15]}
+      >
         <Text
-          color={'black'}
+          color="black"
           fontSize={6}
           maxWidth={200}
           lineHeight={1}
           letterSpacing={0.02}
-          textAlign={'center'}
+          textAlign="center"
         >
           A brand new site is coming soon.
         </Text>
       </group>
       <cubeCamera ref={cubeCamera} args={[0.1, 1000, renderTarget]} />
 
-      <Plane receiveShadow rotation={[deg(270), deg(0), deg(0)]} args={[1000, 1000]}>
+      <Plane
+        receiveShadow
+        rotation={[deg(270), deg(0), deg(0)]}
+        args={[1000, 1000]}
+      >
         <meshStandardMaterial
           attach="material"
           normalMap={normalMap}

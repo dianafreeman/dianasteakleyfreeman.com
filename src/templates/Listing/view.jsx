@@ -3,6 +3,8 @@ import { Link } from 'gatsby';
 import { Helmet } from 'react-helmet';
 import PostListing from '../../components/PostListing';
 import SEO from '../../components/Layout/SEO';
+
+// eslint-disable-next-line import/no-unresolved
 import config from '@config/siteConfig';
 
 const Paging = ({ context }) => {
@@ -15,10 +17,15 @@ const Paging = ({ context }) => {
   return (
     <div className="paging-container">
       {!isFirstPage && <Link to={prevPage}>Previous</Link>}
+      {/* eslint-disable react/jsx-props-no-spreading */}
       {[...Array(pageCount)].map((_val, index) => {
+        /* eslint-enable react/jsx-props-no-spreading */
         const pageNum = index + 1;
         return (
-          <Link key={`listing-page-${pageNum}`} to={pageNum === 1 ? '/' : `/${pageNum}/`}>
+          <Link
+            key={`listing-page-${pageNum}`}
+            to={pageNum === 1 ? '/' : `/${pageNum}/`}
+          >
             {pageNum}
           </Link>
         );

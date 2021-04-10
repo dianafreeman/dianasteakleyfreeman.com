@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Divider from '@material-ui/core/Divider';
@@ -7,8 +7,6 @@ import Typography from '@material-ui/core/Typography';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Link from '@material-ui/core/Link';
 
-import DeveloperModeTwoToneIcon from '@material-ui/icons/DeveloperModeTwoTone';
-import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import GitHubIcon from '@material-ui/icons/GitHub';
@@ -20,13 +18,21 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 
 export const main = () => {
+  const handleClick = () => console.log('clicked');
   return (
     <Box>
-      <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb">
+      <Breadcrumbs
+        separator={<NavigateNextIcon fontSize="small" />}
+        aria-label="breadcrumb"
+      >
         <Link color="inherit" href="/" onClick={handleClick}>
           Material-UI
         </Link>
-        <Link color="inherit" href="/getting-started/installation/" onClick={handleClick}>
+        <Link
+          color="inherit"
+          href="/getting-started/installation/"
+          onClick={handleClick}
+        >
           Core
         </Link>
         <Typography color="textPrimary">Breadcrumb</Typography>
@@ -78,25 +84,29 @@ export const typography = () => (
     <Typography variant="h1">Title</Typography>
     <Typography variant="subtitle1">Subtitle</Typography>
     <Typography variant="body1">
-      Proident sunt occaecat elit cupidatat tempor duis. Veniam sint magna occaecat consectetur
-      cillum reprehenderit non cillum non magna. Velit nisi incididunt reprehenderit tempor est
-      proident in minim pariatur laborum Lorem amet. Do ea et amet consectetur pariatur sit culpa
-      do. Id id sunt mollit non. Excepteur duis cillum aliqua labore amet id eiusmod aliqua. Irure
-      pariatur et sint nisi.
+      Proident sunt occaecat elit cupidatat tempor duis. Veniam sint magna
+      occaecat consectetur cillum reprehenderit non cillum non magna. Velit nisi
+      incididunt reprehenderit tempor est proident in minim pariatur laborum
+      Lorem amet. Do ea et amet consectetur pariatur sit culpa do. Id id sunt
+      mollit non. Excepteur duis cillum aliqua labore amet id eiusmod aliqua.
+      Irure pariatur et sint nisi.
       <br />
-      Enim labore veniam reprehenderit proident magna ad. Eu reprehenderit sit fugiat irure aute
-      adipisicing do officia cillum occaecat qui. Ea excepteur tempor in adipisicing aliquip
-      proident occaecat eu aliqua consequat et ullamco enim adipisicing. Est exercitation officia
-      laboris laborum adipisicing dolore Lorem Lorem nisi fugiat ipsum minim. Nisi proident dolor
-      ullamco eu cillum laboris et ad ipsum ipsum in.
+      Enim labore veniam reprehenderit proident magna ad. Eu reprehenderit sit
+      fugiat irure aute adipisicing do officia cillum occaecat qui. Ea excepteur
+      tempor in adipisicing aliquip proident occaecat eu aliqua consequat et
+      ullamco enim adipisicing. Est exercitation officia laboris laborum
+      adipisicing dolore Lorem Lorem nisi fugiat ipsum minim. Nisi proident
+      dolor ullamco eu cillum laboris et ad ipsum ipsum in.
       <br />
-      Voluptate duis tempor Lorem eiusmod sit adipisicing proident culpa eiusmod officia incididunt
-      est. Duis dolore cupidatat adipisicing voluptate dolore exercitation cupidatat excepteur do
-      minim laboris est. Cillum occaecat fugiat minim excepteur.
+      Voluptate duis tempor Lorem eiusmod sit adipisicing proident culpa eiusmod
+      officia incididunt est. Duis dolore cupidatat adipisicing voluptate dolore
+      exercitation cupidatat excepteur do minim laboris est. Cillum occaecat
+      fugiat minim excepteur.
       <br />
-      Nisi voluptate anim sunt dolor occaecat et velit. Occaecat aute in proident duis cupidatat
-      aute duis esse officia ad ex. Eu eu esse excepteur elit nisi reprehenderit dolor. Esse eu
-      cupidatat non consectetur ea consequat.
+      Nisi voluptate anim sunt dolor occaecat et velit. Occaecat aute in
+      proident duis cupidatat aute duis esse officia ad ex. Eu eu esse excepteur
+      elit nisi reprehenderit dolor. Esse eu cupidatat non consectetur ea
+      consequat.
     </Typography>
   </>
 );
