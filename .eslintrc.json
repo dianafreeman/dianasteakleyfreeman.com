@@ -11,21 +11,15 @@
     "node": true
   },
   "settings": {
-    "import/no-unresolved": 2,
     "import/resolver": {
       "node": {
-        "moduleDirectory": ["node_modules", "src"]
-      },
-      "babel-module": {
-        "root": ["./src"],
-        "alias": {
-          "@hooks": "./hooks/",
-          "@config/siteConfig": "./config/"
-        }
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
     }
   },
   "rules": {
+    "no-param-reassign": ["off"],
+    "import/no-unresolved": ["off"],
     "no-void": ["off"], // FOR NOW
     "react/prop-types": ["off"], // FOR NOW
     "react/jsx-props-no-spreading": ["off"],

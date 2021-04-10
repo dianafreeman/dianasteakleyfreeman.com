@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 // import PropTypes from 'prop-types';
 import * as THREE from 'three';
-// eslint-disable-next-line import/no-unresolved
+
 import Teko from '@assets/fonts/Teko_Bold.json';
 
 const BlockText = ({ word, color, materialProps, ...rest }) => {
@@ -26,7 +26,6 @@ const BlockText = ({ word, color, materialProps, ...rest }) => {
       <meshStandardMaterial
         attach="material"
         color={color}
-        attach="material"
         {...materialProps}
       />
     </mesh>

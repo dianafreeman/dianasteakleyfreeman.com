@@ -1,5 +1,4 @@
-// eslint-disable no-param-reassign
-import React, { useState, useEffect, useRef, Suspense, useMemo } from 'react';
+import React, { useState, useEffect, useRef, Suspense } from 'react';
 // import PropTypes from 'prop-types';
 import {
   Canvas,
@@ -15,7 +14,7 @@ import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
 import {
   MaskPass,
   ClearMaskPass,
-} from 'three/examples/jsm/postprocessing/MaskPass.js';
+} from 'three/examples/jsm/postprocessing/MaskPass';
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
 

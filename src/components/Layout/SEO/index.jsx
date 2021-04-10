@@ -2,7 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import urljoin from 'url-join';
 import moment from 'moment';
-// eslint-disable-next-line import/no-unresolved
+
 import config from '@config/siteConfig';
 
 /**

@@ -1,11 +1,9 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import { Helmet } from 'react-helmet';
+import config from '@config/siteConfig';
 import PostListing from '../../components/PostListing';
 import SEO from '../../components/Layout/SEO';
-
-// eslint-disable-next-line import/no-unresolved
-import config from '@config/siteConfig';
 
 const Paging = ({ context }) => {
   const { currentPageNum, pageCount } = context;
@@ -43,7 +41,7 @@ export default function ListingView({ pageContext, postEdges, ...rest }) {
     <>
       <Helmet {...helmetProps} />
       <SEO />
-      <PostListing postEdges={postEdges} />
+      <PostListing postEdges={postEdges} {...rest} />
       <Paging context={pageContext} />
     </>
   );

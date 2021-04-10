@@ -18,6 +18,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 
 export const main = () => {
+  // eslint-disable-next-line no-console
   const handleClick = () => console.log('clicked');
   return (
     <Box>

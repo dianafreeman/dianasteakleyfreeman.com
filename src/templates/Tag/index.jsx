@@ -1,10 +1,8 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby';
-import PostListing from '../../components/PostListing';
-
-// eslint-disable-next-line import/no-unresolved
 import config from '@config/siteConfig';
+import PostListing from '../../components/PostListing';
 
 export default function TagTemplate({ pageContext, data }) {
   const { tag } = pageContext;

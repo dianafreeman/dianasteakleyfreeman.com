@@ -1,4 +1,6 @@
-export default function debounce(func, wait = 5, immediate = true, ...rest) {
+/* eslint func-names: ["off"] */
+
+function debounce(func, wait = 5, immediate = true, ...rest) {
   let timeout;
   return function () {
     const context = this;
@@ -13,3 +15,5 @@ export default function debounce(func, wait = 5, immediate = true, ...rest) {
     if (callNow) func.apply(context, args);
   };
 }
+
+export default debounce;

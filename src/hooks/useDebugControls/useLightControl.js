@@ -94,3 +94,5 @@ const useGlowControls = (props) => {
     rotateZDeg,
   };
 };
+
+export default useGlowControls;

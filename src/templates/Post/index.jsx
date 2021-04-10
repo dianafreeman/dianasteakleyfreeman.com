@@ -1,10 +1,8 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby';
-import SEO from '../../components/Layout/SEO';
-
-// eslint-disable-next-line import/no-unresolved
 import config from '@config/siteConfig';
+import SEO from '../../components/Layout/SEO';
 
 import View from './view';
 

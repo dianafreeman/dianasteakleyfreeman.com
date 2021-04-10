@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
+// import PropTypes from 'prop-types';
 import Box from '@material-ui/core/Box';
 import Scene from '../components/Scene';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-// eslint-disable-next-line import/no-unresolved
+
 import * as CONFIG from '@config/siteConfig';
 import SEO from '.';
 

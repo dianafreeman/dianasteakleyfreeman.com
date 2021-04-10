@@ -2,7 +2,12 @@
   "presets": ["@babel/preset-react", "@babel/preset-env"],
   "plugins": [
     "@babel/plugin-proposal-class-properties",
-    "babel-plugin-remove-graphql-queries",
-    "@babel/plugin-proposal-optional-chaining"
+    "@babel/plugin-proposal-optional-chaining",
+    [
+      "module-resolver",
+      {
+        "root": ["./src/**/"]
+      }
+    ]
   ]
 }
