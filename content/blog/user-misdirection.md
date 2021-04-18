@@ -1,12 +1,8 @@
 ---
-category: blog
-date: '2019-04-05'
+path: '/blog/user-misdirection'
 slug: 'user-misdirection'
+date: '2019-04-05'
 title: 'The Art of [User] Misdirection'
-tags:
-  - technology
-  - social media
-  - other
 ---
 
 French Philosopher Paul Vilirio wrote “The invention of the ship was the invention of the shipwreck”; this, likely, will be the allegory of our time. The Dot-Com boom of the 1990’s delivered unprecedented access to a global network of information, and with it, an unprecedented blow to the Silicon Valley start-ups that had become profitable by monetizing web-based technologies.
