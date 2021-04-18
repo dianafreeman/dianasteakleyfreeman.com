@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-// import PropTypes from 'prop-types';
 import * as THREE from 'three';
 
 import Teko from '@assets/fonts/Teko_Bold.json';

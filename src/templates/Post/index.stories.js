@@ -1,6 +1,6 @@
 import React from 'react';
 
-import PostView from './view';
+import PostView from '.';
 import stub from './stub.json';
 
 export const mainView = (args) => {

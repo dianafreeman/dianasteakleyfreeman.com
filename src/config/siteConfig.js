@@ -25,22 +25,22 @@ const config = {
   userLinks: [
     {
       label: 'GitHub',
-      url: 'https://github.com/Vagr9K/gatsby-advanced-starter',
+      url: 'https://github.com/dianafreeman',
       iconClassName: 'fa fa-github',
     },
     {
       label: 'Twitter',
-      url: 'https://twitter.com/Vagr9K',
+      url: 'https://twitter.com/dianasfreeman',
       iconClassName: 'fa fa-twitter',
     },
     {
       label: 'Email',
-      url: 'mailto:vagr9k@gmail.com',
+      url: 'mailto:diana@dianasteakleyfreeman.com',
       iconClassName: 'fa fa-envelope',
     },
   ],
   copyright: 'Copyright © 2020. Diana M Steakley-Freeman', // Copyright string for the footer of the website and RSS feed.
-  themeColor: '#c62828', // Used for setting manifest and progress theme colors.
+  themeColor: '#8ab2fb', // Used for setting manifest and progress theme colors.
   backgroundColor: '#e0e0e0', // Used for setting manifest background color.
 };
 

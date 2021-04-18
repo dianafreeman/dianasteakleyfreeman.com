@@ -3,7 +3,7 @@ import { Link } from 'gatsby';
 import { Helmet } from 'react-helmet';
 import config from '@config/siteConfig';
 import PostListing from '../../components/PostListing';
-import SEO from '../../components/Layout/SEO';
+import SEO from '../../components/SEO';
 
 const Paging = ({ context }) => {
   const { currentPageNum, pageCount } = context;

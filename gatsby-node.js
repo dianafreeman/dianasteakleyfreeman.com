@@ -88,14 +88,17 @@ const _ = require('lodash');
 const moment = require('moment');
 const siteConfig = require('./src/config/siteConfig');
 
-exports.onCreateNode = ({ node, actions, getNode }) => {
+exports.onCreateNode = ({ node, actions, getNode, ...rest }) => {
   const { createNodeField } = actions;
   let slug;
   if (node.internal.type === 'MarkdownRemark') {
     const fileNode = getNode(node.parent);
     const parsedFilePath = path.parse(fileNode.relativePath);
-    if (node.frontmatter?.title) {
-      slug = `/${parsedFilePath.dir}/${_.kebabCase(node.frontmatter.title)}`;
+    if (
+      Object.prototype.hasOwnProperty.call(node, 'frontmatter') &&
+      Object.prototype.hasOwnProperty.call(node.frontmatter, 'title')
+    ) {
+      slug = `/${_.kebabCase(node.frontmatter.title)}`;
     } else if (parsedFilePath.name !== 'index' && parsedFilePath.dir !== '') {
       slug = `/${parsedFilePath.dir}/${parsedFilePath.name}/`;
     } else if (parsedFilePath.dir === '') {
@@ -157,7 +160,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const postsEdges = markdownQueryResult.data.allMarkdownRemark.edges;
 
-  // Sort posts by date
+  // Sort posts
   postsEdges.sort((postA, postB) => {
     const dateA = moment(
       postA.node.frontmatter.date,
@@ -193,7 +196,7 @@ exports.createPages = async ({ graphql, actions }) => {
       });
     });
   } else {
-    // Load the landing page if there are no paging settings
+    // Load the landing page instead
     createPage({
       path: `/`,
       component: landingPage,

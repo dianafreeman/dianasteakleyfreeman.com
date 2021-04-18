@@ -63,6 +63,13 @@ yarn test
 
 This project is hosted as a static site via Netlify. Netlify auto-deploys the master AND the staging branch.
 
+# TODO
+
+- [] linting with prettier and eslint
+- [] under construction page deployed with proper headers
+
+# Tests
+
 ## Author
 
 👤 **Diana M Steakley-Freeman**

@@ -1,22 +1,30 @@
+<<<<<<< HEAD
 /* eslint-disable */
 const config = require('./src/config/web/metadata').data;
 const pathPrefix = config.pathPrefix === '/' ? '' : config.pathPrefix;
+=======
+const urljoin = require('url-join');
+>>>>>>> remove all unused, fix build
 const path = require('path');
 const config = require('./src/config/siteConfig');
 
 // Make sure that pathPrefix is not empty
 const validatedPathPrefix = config.pathPrefix === '' ? '/' : config.pathPrefix;
+<<<<<<< HEAD
 const validSiteUrl = `${config.siteUrl}${validatedPathPrefix}`;
+=======
+>>>>>>> remove all unused, fix build
 
 module.exports = {
   pathPrefix: validatedPathPrefix,
   siteMetadata: {
-    siteUrl: validSiteUrl,
+    siteUrl: urljoin(config.siteUrl, config.pathPrefix),
     rssMetadata: {
-      site_url: validSiteUrl,
-      feed_url: `${validSiteUrl}${config.siteRss}`,
+      site_url: urljoin(config.siteUrl, config.pathPrefix),
+      feed_url: urljoin(config.siteUrl, config.pathPrefix, config.siteRss),
       title: config.siteTitle,
       description: config.siteDescription,
+<<<<<<< HEAD
 
       image_url: `${urljoin(
         config.siteUrl,
@@ -28,10 +36,22 @@ module.exports = {
         config.pathPrefix,
       )}/logos/logo-512.png`,
       image_url: `${validSiteUrl}/logos/logo-512.png`,
+=======
+      image_url: `${urljoin(
+        config.siteUrl,
+        config.pathPrefix,
+      )}/logos/logo-512.png`,
+      image_url: `${validSiteUrl}/logos/logo-512.png`,
+      image_url: `${urljoin(
+        config.siteUrl,
+        config.pathPrefix,
+      )}/logos/logo-512.png`,
+>>>>>>> remove all unused, fix build
       copyright: config.copyright,
     },
   },
   plugins: [
+    'gatsby-transformer-remark',
     'gatsby-plugin-react-helmet',
 
     'gatsby-plugin-postcss',
@@ -42,12 +62,12 @@ module.exports = {
         component: require.resolve(`./src/components/Layout/index`),
       },
     },
+
     {
-      resolve: 'gatsby-plugin-react-svg',
+      resolve: 'gatsby-source-filesystem',
       options: {
-        rule: {
-          include: /\.svg$/,
-        },
+        name: 'assets',
+        path: `${__dirname}/static/`,
       },
     },
     {
@@ -71,6 +91,7 @@ module.exports = {
     },
 
     {
+<<<<<<< HEAD
       resolve: 'gatsby-transformer-remark',
       options: {
         plugins: [
@@ -131,15 +152,18 @@ module.exports = {
       },
     },
     {
+=======
+>>>>>>> remove all unused, fix build
       resolve: 'gatsby-plugin-netlify-cms',
       options: {
-        modulePath: path.resolve('src/cms/index.js'), // default: undefined
+        modulePath: path.resolve('src/netlifycms/index.js'), // default: undefined
         enableIdentityWidget: true,
         publicPath: 'admin',
         htmlTitle: 'Content Manager',
         includeRobots: false,
       },
     },
+<<<<<<< HEAD
 
     /* Must be placed at the end */
     'gatsby-plugin-offline',
@@ -218,5 +242,7 @@ module.exports = {
         ],
       },
     },
+=======
+>>>>>>> remove all unused, fix build
   ],
 };

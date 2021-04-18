@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import urljoin from 'url-join';
 import moment from 'moment';
@@ -15,25 +15,19 @@ import config from '@config/siteConfig';
  * - refactor each of these methods
  * - Create tests for each of these methods
  *
+ * WTF is postSEO?
  */
 
-function SEO({ postNode, postPath, postSEO }) {
-  let title;
-  let description;
-  let image;
-  let postURL;
+function renderSchemaOrgTags() {}
+function renderOpenGraphTags() {}
+function renderTwitterCardTags() {}
 
-  if (postSEO) {
-    const postMeta = postNode.frontmatter;
-    title = postMeta?.title || config.siteTitle;
-    description = postMeta?.description || postNode.excerpt;
-    image = postMeta.cover;
-    postURL = `${config.siteUrl}${config.pathPrefix}${postPath}`;
-  } else {
-    title = config.siteTitle;
-    description = config.siteDescription;
-    image = config.siteLogo;
-  }
+function SEO({ postNode, postPath, postSEO }) {
+  const [title] = useState(config.siteTitle);
+  const [description] = useState(config.siteDescription);
+
+  const postURL = `${config.siteUrl}${config.pathPrefix}${postPath}`;
+  let image = config.siteLogo;
 
   const getImagePath = (imageURI) => {
     if (

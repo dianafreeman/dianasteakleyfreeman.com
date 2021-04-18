@@ -1,5 +1,5 @@
 import React from 'react';
-import TagView from './view';
+import TagView from '.';
 import stub from './stub.json';
 
 export const view = (args) => {
