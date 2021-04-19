@@ -9,7 +9,6 @@ on:
   pull_request:
     branches: [ staging@next ]
 
-
 jobs:
   test:
     runs-on: ubuntu-16.04
