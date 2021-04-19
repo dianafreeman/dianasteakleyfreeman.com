@@ -5,9 +5,9 @@ name: Build and Test
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master,  staging]
   pull_request:
-    branches: [ staging, staging@next ]
+    branches: [ staging@next ]
 
 
 jobs:

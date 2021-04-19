@@ -70,6 +70,41 @@ This project is hosted as a static site via Netlify. Netlify auto-deploys the ma
 
 # Tests
 
+## Platforms & Tooling
+
+- GatsbyJS
+- [React Spring](https://github.com/drcmda/react-spring)
+- [Styled-Components](https://www.styled-components.com/)
+- React Storybook
+- React Spring
+- GraphQL
+- Cypress.io
+- CircleCI - CI/CD
+- Netlfiy
+- Reach Router
+
+## Project Structure
+
+### Configuration Targets
+
+- Development
+
+  - Storybook
+  - Code Coverage
+  - Babel & Babel Plugins
+  - Post CSS
+
+- Testing
+
+  - Jest Config: `./jest.config.js`
+  - Code Coverage
+  - Cypress
+
+- Build: `src/pages/index.jsx`
+  - `./gatsby-config.js`
+  - page configurations for production build:
+    `./gatsby-node.js`
+
 ## Author
 
 👤 **Diana M Steakley-Freeman**
