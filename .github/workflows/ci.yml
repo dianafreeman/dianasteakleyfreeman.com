@@ -2,13 +2,13 @@ name: CI Workflow
 
 on:
   push:
-    branches: [ main, staging ]
+    branches: [ staging ]
   pull_request:
-    branches: [ main, staging, staging@next ]
+    branches: [ staging, staging@next ]
 
 jobs:
-  build:
-    name: "Prep Environment & Build"
+  build-and-test:
+    name: "Build and Test"
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Files
@@ -29,23 +29,20 @@ jobs:
           ${{ runner.OS }}-
     - name: Install dependencies
       run: yarn  --frozen-lockfile
-  test:
-    runs-on: ubuntu-latest
-    needs: [build]
-    steps:
+
     - name: Check Formatting
       run: yarn run test:format
 
     - name: Run Unit Tests
       run: yarn run test:unit
+
   deploy:
     runs-on: ubuntu-latest
-    needs: [test]
+    needs: [build-and-test]
     name: 'Deploy to Netlify'
     steps:
       - uses: jsmrcaga/action-netlify-deploy@v1.1.0
         with:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{secrets.NETLIFY_SITE_ID}}
-          NETLIFY_DEPLOY_TO_PROD: true
 
