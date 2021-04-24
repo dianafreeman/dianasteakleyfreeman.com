@@ -1,0 +1,46 @@
+name: Main Deployment
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    name: "Prep Environment & Build"
+    runs-on: ubuntu-16.04
+    steps:
+    - name: Checkout Files
+      uses: actions/checkout@v2
+    - name: Use Node.js 12
+      uses: actions/setup-node@v1
+
+    - name: Cache Node.js modules
+      uses: actions/cache@v2
+      with:
+        path: ~/.npm
+        key: ${{ runner.OS }}-node-${{ hashFiles('yarn.lock') }}
+        restore-keys: |
+          ${{ runner.OS }}-node-
+          ${{ runner.OS }}-
+    - name: Install dependencies
+      run: yarn  --frozen-lockfile
+  test:
+    runs-on: ubuntu-16.04
+    needs: [build]
+    steps:
+    - name: Check Formatting
+      run: yarn run test:format
+
+    - name: Run Unit Tests
+      run: yarn run test:unit
+  deploy:
+    runs-on: ubuntu-16.04
+    needs: [test]
+    name: 'Deploy to Netlify'
+    steps:
+      - uses: jsmrcaga/action-netlify-deploy@v1.1.0
+        with:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{secrets.NETLIFY_SITE_ID}}
+          NETLIFY_DEPLOY_TO_PROD: true
+

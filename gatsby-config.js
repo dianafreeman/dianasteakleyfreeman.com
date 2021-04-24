@@ -1,59 +1,78 @@
-/* eslint-disable */
-const config = require('./src/config/web/metadata').data;
-const pathPrefix = config.pathPrefix === '/' ? '' : config.pathPrefix;
+const urljoin = require('url-join');
+const path = require('path');
+const config = require('./src/config/siteConfig');
+
+// Make sure that pathPrefix is not empty
+const validatedPathPrefix = config.pathPrefix === '' ? '/' : config.pathPrefix;
+const validSiteUrl = `${config.siteUrl}${validatedPathPrefix}`;
+
 module.exports = {
-  /* General Information */
+  pathPrefix: validatedPathPrefix,
   siteMetadata: {
-    siteUrl: config.siteUrl + pathPrefix,
+    siteUrl: urljoin(config.siteUrl, config.pathPrefix),
+    rssMetadata: {
+      site_url: urljoin(config.siteUrl, config.pathPrefix),
+      feed_url: urljoin(config.siteUrl, config.pathPrefix, config.siteRss),
+      title: config.siteTitle,
+      description: config.siteDescription,
+      image_url: `${urljoin(
+        config.siteUrl,
+        config.pathPrefix,
+      )}/logos/logo-512.png`,
+      image_url: `${validSiteUrl}/logos/logo-512.png`,
+      image_url: `${urljoin(
+        config.siteUrl,
+        config.pathPrefix,
+      )}/logos/logo-512.png`,
+      copyright: config.copyright,
+    },
   },
-  /* Plugins */
   plugins: [
+    'gatsby-transformer-remark',
     'gatsby-plugin-react-helmet',
-    'gatsby-plugin-postcss',
-    'gatsby-plugin-sass',
+
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: `gatsby-plugin-layout`,
       options: {
-        path: `src/content/blog`,
-        name: `blog-posts`,
+        component: require.resolve(`./src/components/Layout/index`),
       },
     },
 
     {
-      resolve: 'gatsby-plugin-google-analytics',
+      resolve: 'gatsby-source-filesystem',
       options: {
-        trackingId: config.googleAnalyticsID,
+        name: 'assets',
+        path: `${__dirname}/static/`,
       },
     },
-    `gatsby-transformer-remark`,
-    'gatsby-transformer-sharp',
-    'gatsby-plugin-sharp',
     {
-      resolve: 'gatsby-plugin-manifest',
+      resolve: 'gatsby-plugin-module-resolver',
       options: {
-        name: config.siteTitle,
-        short_name: config.siteTitleShort,
-        description: config.siteDescription,
-        start_url: config.pathPrefix,
-        background_color: config.backgroundColor,
-        theme_color: config.themeColor,
-        display: 'standalone',
-        icons: [
-          {
-            src: '/favicons/android-chrome-192x192.png',
-            sizes: '192x192',
-            type: 'image/png',
-          },
-          {
-            src: '/favicons/android-chrome-512x512.png',
-            sizes: '512x512',
-            type: 'image/png',
-          },
-        ],
+        root: './src', // <- will be used as a root dir
+        aliases: {
+          '@config': './config', // <- will become ./src/config
+          '@theme': './theme',
+          '@hooks': './hooks',
+          '@assets': './assets',
+        },
       },
     },
-    /* Must be placed at the end */
-    'gatsby-plugin-offline',
-    'gatsby-plugin-netlify',
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'posts',
+        path: `${__dirname}/content/`,
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-netlify-cms',
+      options: {
+        modulePath: path.resolve('src/netlifycms/index.js'), // default: undefined
+        enableIdentityWidget: true,
+        publicPath: 'admin',
+        htmlTitle: 'Content Manager',
+        includeRobots: false,
+      },
+    },
   ],
 };

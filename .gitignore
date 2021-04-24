@@ -63,3 +63,17 @@ bundle-stats.json
 .DS_store
 .vscode/
 scripts/
+
+/tmp
+
+.editorconfig
+.env
+
+
+# Created by https://www.toptal.com/developers/gitignore/api/node,react,macos
+# Edit at https://www.toptal.com/developers/gitignore?templates=node,react,macos
+
+psd
+thumb
+sketch
+

@@ -1,69 +1,91 @@
-# dianasteakleyfreeman.com
+<h1 align="center">Welcome to dianasteakleyfreeman.com 👋</h1>
+<p>
+  <img alt="Version" src="https://img.shields.io/badge/version-2.1.0-blue.svg?cacheSeconds=2592000" />
+  <a href="https://github.com/dianasfreeman/dianasteakelyfreeman.com#readme" target="_blank">
+    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
+  </a>
+  <a href="https://github.com/dianasfreeman/dianasteakelyfreeman.com/graphs/commit-activity" target="_blank">
+    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
+  </a>
+  <a href="https://github.com/dianasfreeman/dianasteakelyfreeman.com/blob/master/LICENSE" target="_blank">
+    <img alt="License: MIT" src="https://img.shields.io/github/license/dianasfreeman/dianasteakleyfreeman.com" />
+  </a>
+  <a href="https://api.netlify.com/api/v1/badges/7b5f4c1a-c979-4652-aacf-05076bfa2989/deploy-status" target="_blank">
+    <img alt="Netlify Status" src="https://api.netlify.com/api/v1/badges/7b5f4c1a-c979-4652-aacf-05076bfa2989/deploy-status" />
+  </a>
+  <a href="https://github.com/dianafreeman/dianasteakleyfreeman.com/workflows/Node.js+CI/badge.svg" target="_blank">
+    <img alt="Github Workflow Status" src="https://github.com/dianafreeman/dianasteakleyfreeman.com/workflows/Node.js+CI/badge.svg" />
+  </a>
 
-[![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme) [![Netlify Status](https://api.netlify.com/api/v1/badges/7b5f4c1a-c979-4652-aacf-05076bfa2989/deploy-status)](https://app.netlify.com/sites/loving-sammet-d1bb4f/deploys)
+</p>
 
-## Background
+> Portfolio for Diana M Steakley-Freeman. Coder, Creator, Communicator.
 
-## Install
+### 🏠 [Homepage](https://dianasteakleyfreeman.com)
 
-```bash
-yarn install
-# or
-npm install
+## Description
+
+At its core, this is a static site generator that creates a React App that renders a 3D scene in a WebGL canvas.
+
+## Scripts
+
+```sh
+yarn install # install dependencies
+yarn start # starts gatsby. This is required for netlify to work (known issue: https://github.com/netlify/cli/issues/1292)
 ```
 
-## Usage
+### Local Development
 
-### Develop
+Runs the app using gatsby development mode, no extra tooling for ThreeJS debugging.
 
-Run the following command to open the Gatsby/React/Node development environment.
-
-```bash
-yarn dev
-# or
-npm run dev
+```sh
+yarn start
 ```
 
-### Build
+### Linting and Foratting
 
-Run the following command to build the static site
+Runs the app using gatsby development mode, no extra tooling for ThreeJS debugging.
 
-```bash
-yarn build
-# or
-npm run build
+```sh
+yarn start
 ```
 
-### Test
+## Run Unit & Formatting Tests
 
-Run the following to run formatting, unit, and e2e tests.
-
-```bash
+```sh
 yarn test
-# or
-npm run test
 ```
 
-### Deploy
+### In Developer Mode [TODO]
 
-Run the following command to deploy to netlify.
+runs the application with debugging logs, browser rendering stats, and controllable ThreeJS properties.
 
-```bash
-yarn deploy
+````sh
+yarn run dev
 ```
+
+# Build & Deploy
+
+This project is hosted as a static site via Netlify. Netlify auto-deploys the master branch.
+
+Github Actions Workflow
+
+# TODO
+
+- [x] configure github actions
+- [x] linting with prettier and eslint
+- [] under construction page deployed with proper headers
+
+# Tests
 
 ## Platforms & Tooling
 
 - GatsbyJS
 - [React Spring](https://github.com/drcmda/react-spring)
-- [Styled-Components](https://www.styled-components.com/)
-- React Storybook
 - React Spring
-- GraphQL
 - Cypress.io
-- CircleCI - CI/CD
 - Netlfiy
-- Reach Router
+
 
 ## Project Structure
 
@@ -87,6 +109,24 @@ yarn deploy
   - page configurations for production build:
     `./gatsby-node.js`
 
-## Notes
+## Author
 
-- files in the static folder will not be processed by webpack -- they will be copied to the public folder untouched
+👤 **Diana M Steakley-Freeman**
+
+- Twitter: [@dianasfreeman](https://twitter.com/dianasfreeman)
+- Github: [@dianasfreeman](https://github.com/dianasfreeman)
+- LinkedIn: [@dianasteakleyfreeman](https://linkedin.com/in/dianasteakleyfreeman)
+
+## Show your support
+
+Give a ⭐️ if this project helped you!
+
+## 📝 License
+
+Copyright © 2021 [Diana M Steakley-Freeman](https://github.com/dianasfreeman).<br />
+This project is [MIT](https://github.com/dianasfreeman/dianasteakelyfreeman.com/blob/master/LICENSE) licensed.
+
+---
+
+_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
+````

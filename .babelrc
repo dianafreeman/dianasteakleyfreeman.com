@@ -1,26 +1,11 @@
 {
+  "presets": ["babel-preset-gatsby"],
   "plugins": [
-    ["@babel/plugin-proposal-optional-chaining"],
+    "@babel/plugin-syntax-class-properties",
     [
       "module-resolver",
       {
-        "root": ["./"],
-        "alias": {
-          "@story-decorators": "./.storybook/decorate",
-          "@site-config": "./src/config",
-          "@hooks": "./src/hooks",
-          "@fixtures": "./test/__fixtures__"
-        }
-      }
-    ]
-  ],
-  "presets": [
-    [
-      "babel-preset-gatsby",
-      {
-        "targets": {
-          "browsers": [">0.25%", "not dead"]
-        }
+        "root": ["./src/**/"]
       }
     ]
   ]
