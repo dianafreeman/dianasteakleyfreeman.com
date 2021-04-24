@@ -7,7 +7,6 @@ CMS.init({
       branch: 'main',
       repo: 'dianafreeman/dianasteakleyfreeman.com',
     },
-    // proxy_url: 'http://localhost:8081/api/v1',
     site_url: 'https://dianasteakleyfreeman.com',
     local_backend: true,
     load_config_file: false,
