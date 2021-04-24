@@ -22,9 +22,7 @@ import config from '@config/siteConfig';
 // function renderOpenGraphTags() {}
 // function renderTwitterCardTags() {}
 
-function SEO(props) {
-  console.log(props);
-  const { postNode, postPath, postSEO } = props;
+function SEO({ postNode, postPath, postSEO }) {
   const [title] = useState(config.siteTitle);
   const [description] = useState(config.siteDescription);
 
