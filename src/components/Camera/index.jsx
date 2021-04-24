@@ -15,7 +15,7 @@ const Camera = () => {
   }, [mainCamera]);
 
   // fov — Camera frustum vertical field of view.
-  const fov = 45;
+  const fov = 50;
   // aspect — Camera frustum aspect ratio.
   const aspect = window.innerWidth / window.innerHeight;
   // near — Camera frustum near plane.

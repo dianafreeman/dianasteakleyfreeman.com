@@ -89,7 +89,8 @@ const Main = () => {
 
   return (
     <>
-      <OrbitControls />
+      {/* Disabling for underconstruction mode */}
+      {/* <OrbitControls /> */}
       <Camera />
       <Lights />
       <SwirlingLights />
