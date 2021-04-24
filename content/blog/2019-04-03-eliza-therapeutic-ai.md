@@ -1,4 +1,5 @@
 ---
+category: blog
 path: '/blog/eliza-therapeutic-ai'
 slug: eliza-therapeutic-ai
 date: '2019-04-03'

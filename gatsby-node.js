@@ -3,7 +3,7 @@ const _ = require('lodash');
 const moment = require('moment');
 const siteConfig = require('./src/config/siteConfig');
 
-exports.onCreateNode = ({ node, actions, getNode, ...rest }) => {
+exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
   let slug;
   if (node.internal.type === 'MarkdownRemark') {
@@ -29,7 +29,6 @@ exports.onCreateNode = ({ node, actions, getNode, ...rest }) => {
         const date = moment(node.frontmatter.date, siteConfig.dateFromFormat);
         if (!date.isValid)
           console.warn(`WARNING: Invalid date.`, node.frontmatter);
-
         createNodeField({ node, name: 'date', value: date.toISOString() });
       }
     }
@@ -75,7 +74,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const postsEdges = markdownQueryResult.data.allMarkdownRemark.edges;
 
-  // Sort posts
+  // Sort posts by date
   postsEdges.sort((postA, postB) => {
     const dateA = moment(
       postA.node.frontmatter.date,
@@ -133,20 +132,21 @@ exports.createPages = async ({ graphql, actions }) => {
     }
 
     // Create post pages
+    const postPath = `${edge.node.frontmatter.category}${edge.node.fields.slug}`;
     const nextID = index + 1 < postsEdges.length ? index + 1 : 0;
     const prevID = index - 1 >= 0 ? index - 1 : postsEdges.length - 1;
     const nextEdge = postsEdges[nextID];
     const prevEdge = postsEdges[prevID];
 
     createPage({
-      path: edge.node.fields.slug,
+      path: postPath,
       component: postPage,
       context: {
         slug: edge.node.fields.slug,
-        nexttitle: nextEdge.node.frontmatter.title,
-        nextslug: nextEdge.node.fields.slug,
-        prevtitle: prevEdge.node.frontmatter.title,
-        prevslug: prevEdge.node.fields.slug,
+        next_title: nextEdge.node.frontmatter.title,
+        next_slug: nextEdge.node.fields.slug,
+        prev_title: prevEdge.node.frontmatter.title,
+        prev_slug: prevEdge.node.fields.slug,
       },
     });
   });
@@ -163,7 +163,7 @@ exports.createPages = async ({ graphql, actions }) => {
   // Create category pages
   categorySet.forEach((category) => {
     createPage({
-      path: `/categories/${_.kebabCase(category)}/`,
+      path: `/${_.kebabCase(category)}/`,
       component: categoryPage,
       context: { category },
     });

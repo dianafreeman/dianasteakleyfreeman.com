@@ -1,5 +1,5 @@
 ---
-path: '/blog/user-misdirection'
+category: blog
 slug: 'user-misdirection'
 date: '2019-04-05'
 title: 'The Art of [User] Misdirection'

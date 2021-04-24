@@ -22,9 +22,7 @@ import config from '@config/siteConfig';
 // function renderOpenGraphTags() {}
 // function renderTwitterCardTags() {}
 
-function SEO(props) {
-  console.log(props);
-  const { postNode, postPath, postSEO } = props;
+function SEO({ postNode, postPath, postSEO }) {
   const [title] = useState(config.siteTitle);
   const [description] = useState(config.siteDescription);
 
@@ -114,9 +112,9 @@ function SEO(props) {
       <meta name="image" content={image} />
 
       {/* Schema.org tags */}
-      <script type="application/ld+json">
+      {/* <script type="application/ld+json">
         {JSON.stringify(schemaOrgJSONLD)}
-      </script>
+      </script> */}
 
       {/* OpenGraph tags */}
       <meta property="og:url" content={postSEO ? postURL : blogURL} />
@@ -131,10 +129,7 @@ function SEO(props) {
 
       {/* Twitter Card tags */}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta
-        name="twitter:creator"
-        content={config.userTwitter ? config.userTwitter : ''}
-      />
+      <meta name="twitter:creator" content={config.userTwitter} />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />

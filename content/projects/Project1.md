@@ -1,7 +1,7 @@
 ---
-title: 'Lorem Birch in the Roses'
+title: 'Project Birch in the Roses'
 cover: 'project1.jpg'
-date: '2020-0`-01'
+date: '2020-01-01'
 category: 'projects'
 tags:
   - tag

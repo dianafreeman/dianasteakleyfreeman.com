@@ -9,21 +9,12 @@ const validSiteUrl = `${config.siteUrl}${validatedPathPrefix}`;
 module.exports = {
   pathPrefix: validatedPathPrefix,
   siteMetadata: {
-    siteUrl: urljoin(config.siteUrl, config.pathPrefix),
+    siteUrl: validSiteUrl,
     rssMetadata: {
-      site_url: urljoin(config.siteUrl, config.pathPrefix),
-      feed_url: urljoin(config.siteUrl, config.pathPrefix, config.siteRss),
+      site_url: validSiteUrl,
+      feed_url: urljoin(validSiteUrl, config.siteRss),
       title: config.siteTitle,
       description: config.siteDescription,
-      image_url: `${urljoin(
-        config.siteUrl,
-        config.pathPrefix,
-      )}/logos/logo-512.png`,
-      image_url: `${validSiteUrl}/logos/logo-512.png`,
-      image_url: `${urljoin(
-        config.siteUrl,
-        config.pathPrefix,
-      )}/logos/logo-512.png`,
       copyright: config.copyright,
     },
   },
@@ -55,6 +46,14 @@ module.exports = {
           '@hooks': './hooks',
           '@assets': './assets',
         },
+      },
+    },
+    `gatsby-plugin-sitemap`,
+    `gatsby-plugin-nprogress`,
+    {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        trackingIds: [config.googleAnalyticsID],
       },
     },
     {

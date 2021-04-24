@@ -1,8 +1,11 @@
 ---
-path: '/blog/digital-self-care'
+category: blog
 slug: digital-self-care
 date: '2019-03-31'
 title: 'Digital Self-Care in the era of #InsertCrisisHere'
+tags:
+  - humane
+  - techology
 ---
 
 _Note: this piece was originally published on the PsyberGuide Medium. You can read it_ [_here_](https://medium.com/psyberguide/digital-self-care-in-the-era-of-insertcrisishere-a49d661b9d11)_._
