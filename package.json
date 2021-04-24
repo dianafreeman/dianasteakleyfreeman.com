@@ -11,13 +11,12 @@
   "scripts": {
     "start": "gatsby develop",
     "build": "gatsby build",
-    "dev": "DEBUG=netlify concurrently 'netlify dev' 'npx netlify-cms-proxy-server'",
+    "dev": "netlify dev",
     "test:format": "prettier 'src/**/*.{js,jsx}' --check ",
     "test:unit": "echo 'You should write some proper tests.....' ",
-    "format": "yarn lint:js && yarn format:js",
+    "lint": "eslint --fix --ext .js,.jsx ./src",
     "clean": "rm -rf public && rm -rf .cache",
-    "lint:js": "eslint --fix --ext .js,.jsx ./src",
-    "format:js": "prettier 'src/**/*.{js,jsx}' --write"
+    "format": "prettier 'src/**/*.{js,jsx}' --write"
   },
   "browserslist": {
     "production": [
@@ -73,7 +72,6 @@
     "babel-plugin-module-resolver": "^4.1.0",
     "babel-plugin-remove-graphql-queries": "^2.14.0",
     "babel-preset-gatsby": "^1.3.0",
-    "concurrently": "^6.0.2",
     "eslint": "^7.24.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.1.0",
@@ -85,8 +83,9 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "gatsby-cli": "^3.3.0",
     "jest": "^24.9.0",
-    "netlify-cli": "^3.21.8",
-    "netlify-cms-proxy-server": "^1.3.12"
+    "netlify-cli": "^3.21.9",
+    "netlify-cms-proxy-server": "^1.3.12",
+    "npm-run-all": "^4.1.5"
   },
   "resolutions": {}
 }

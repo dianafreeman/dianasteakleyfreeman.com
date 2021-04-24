@@ -27,15 +27,22 @@
 
 At its core, this is a static site generator that creates a React App that renders a 3D scene in a WebGL canvas.
 
-## Install Dependencies
+## Scripts
 
 ```sh
-yarn install
+yarn install # install dependencies
+yarn start # starts gatsby. This is required for netlify to work (known issue: https://github.com/netlify/cli/issues/1292)
 ```
 
-## Local Development
+### Local Development
 
-### In Standard Mode
+Runs the app using gatsby development mode, no extra tooling for ThreeJS debugging.
+
+```sh
+yarn start
+```
+
+### Linting and Foratting
 
 Runs the app using gatsby development mode, no extra tooling for ThreeJS debugging.
 
