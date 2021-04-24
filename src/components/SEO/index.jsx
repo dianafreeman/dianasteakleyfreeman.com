@@ -18,11 +18,13 @@ import config from '@config/siteConfig';
  * WTF is postSEO?
  */
 
-function renderSchemaOrgTags() {}
-function renderOpenGraphTags() {}
-function renderTwitterCardTags() {}
+// function renderSchemaOrgTags() {}
+// function renderOpenGraphTags() {}
+// function renderTwitterCardTags() {}
 
-function SEO({ postNode, postPath, postSEO }) {
+function SEO(props) {
+  console.log(props);
+  const { postNode, postPath, postSEO } = props;
   const [title] = useState(config.siteTitle);
   const [description] = useState(config.siteDescription);
 
