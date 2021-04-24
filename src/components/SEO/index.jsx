@@ -91,7 +91,7 @@ function SEO({ postNode, postPath, postSEO }) {
         '@type': 'BlogPosting',
         url: blogURL,
         name: title,
-        alternateName: config.siteTitleAlt ? config.siteTitleAlt : '',
+        alternateName: config.siteTitleAlt || '',
         headline: title,
         image: { '@type': 'ImageObject', url: image },
         author: authorJSONLD,
@@ -112,9 +112,9 @@ function SEO({ postNode, postPath, postSEO }) {
       <meta name="image" content={image} />
 
       {/* Schema.org tags */}
-      {/* <script type="application/ld+json">
+      <script type="application/ld+json">
         {JSON.stringify(schemaOrgJSONLD)}
-      </script> */}
+      </script>
 
       {/* OpenGraph tags */}
       <meta property="og:url" content={postSEO ? postURL : blogURL} />
