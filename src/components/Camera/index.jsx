@@ -9,7 +9,7 @@ const Camera = () => {
 
   useEffect(() => {
     // Regular Camera
-    mainCamera.current.position.set(50, 75, 100);
+    mainCamera.current.position.set(40, 50, 75);
     mainCamera.current.lookAt(0, 0, 0);
     mainCamera.current.updateProjectionMatrix();
   }, [mainCamera]);

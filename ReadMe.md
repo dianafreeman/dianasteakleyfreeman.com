@@ -25,8 +25,6 @@
 
 ## Description
 
-This is a a helluva project, and it should probably be split out into multiple services. But alas, here we are.
-
 At its core, this is a static site generator that creates a React App that renders a 3D scene in a WebGL canvas.
 
 ## Install Dependencies
@@ -45,27 +43,30 @@ Runs the app using gatsby development mode, no extra tooling for ThreeJS debuggi
 yarn start
 ```
 
-### In Developer Mode
-
-runs the application with debugging logs, browser rendering stats, and controllable ThreeJS properties.
-
-```sh
-yarn run dev
-```
-
 ## Run Unit & Formatting Tests
 
 ```sh
 yarn test
 ```
 
+### In Developer Mode [TODO]
+
+runs the application with debugging logs, browser rendering stats, and controllable ThreeJS properties.
+
+````sh
+yarn run dev
+```
+
 # Build & Deploy
 
-This project is hosted as a static site via Netlify. Netlify auto-deploys the master AND the staging branch.
+This project is hosted as a static site via Netlify. Netlify auto-deploys the master branch.
+
+Github Actions Workflow
 
 # TODO
 
-- [] linting with prettier and eslint
+- [x] configure github actions
+- [x] linting with prettier and eslint
 - [] under construction page deployed with proper headers
 
 # Tests
@@ -74,14 +75,10 @@ This project is hosted as a static site via Netlify. Netlify auto-deploys the ma
 
 - GatsbyJS
 - [React Spring](https://github.com/drcmda/react-spring)
-- [Styled-Components](https://www.styled-components.com/)
-- React Storybook
 - React Spring
-- GraphQL
 - Cypress.io
-- CircleCI - CI/CD
 - Netlfiy
-- Reach Router
+
 
 ## Project Structure
 
@@ -125,3 +122,4 @@ This project is [MIT](https://github.com/dianasfreeman/dianasteakelyfreeman.com/
 ---
 
 _This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
+````

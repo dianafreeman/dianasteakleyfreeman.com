@@ -4,6 +4,7 @@ const config = require('./src/config/siteConfig');
 
 // Make sure that pathPrefix is not empty
 const validatedPathPrefix = config.pathPrefix === '' ? '/' : config.pathPrefix;
+const validSiteUrl = `${config.siteUrl}${validatedPathPrefix}`;
 
 module.exports = {
   pathPrefix: validatedPathPrefix,
@@ -30,8 +31,6 @@ module.exports = {
     'gatsby-transformer-remark',
     'gatsby-plugin-react-helmet',
 
-    'gatsby-plugin-postcss',
-    'gatsby-plugin-sass',
     {
       resolve: `gatsby-plugin-layout`,
       options: {
@@ -75,6 +74,5 @@ module.exports = {
         includeRobots: false,
       },
     },
-    'gatsby-plugin-offline',
   ],
 };
