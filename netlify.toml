@@ -1,0 +1,20 @@
+
+# Production context: all deploys from the Production branch set in your site’s
+# deploy contexts will inherit these settings.
+[build]
+  publish = "public/"
+  command = "yarn build"
+  environment = { NODE_VERSION = "12.13.0" }
+
+# # Specific branch context: all deploys from this specific branch will inherit
+# # these settings.
+# [context.staging] # “staging” is a branch name
+#   command = "echo 'staging'"
+#   base = "staging"
+
+# # Branch Deploy context: all deploys that are not from a pull/merge request or
+# # from the Production branch will inherit these settings.
+# [context.branch-deploy]
+#   command = "echo branch"
+# [context.branch-deploy.environment]
+#   NODE_ENV = "development"
