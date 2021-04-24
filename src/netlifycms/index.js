@@ -7,8 +7,9 @@ CMS.init({
       branch: 'main',
       repo: 'dianafreeman/dianasteakleyfreeman.com',
     },
-    proxy_url: 'http://localhost:8081/api/v1',
-    local_backend: process.env.NODE_ENV !== 'production',
+    // proxy_url: 'http://localhost:8081/api/v1',
+    site_url: 'https://dianasteakleyfreeman.com',
+    local_backend: true,
     load_config_file: false,
     media_folder: 'static/uploads/images',
     public_folder: '/uploads/images',
@@ -53,7 +54,7 @@ collections:
       - { label: "Category", name: "category", widget: "string" }
       - { label: "Tags", name: "tags", widget: "list" }
       - { label: "Body", name: "body", widget: "markdown" }
-local_backend: true
+
 
 
 */
