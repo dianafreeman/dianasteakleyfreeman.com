@@ -1,5 +1,6 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
+import SwirlingLights from './SwirlingLights';
 
 const Lights = () => {
   return (
@@ -15,6 +16,7 @@ const Lights = () => {
         position={[0, 30, 100]}
         lookAt={[0, 10, 0]}
       />
+      <SwirlingLights />
     </>
   );
 };

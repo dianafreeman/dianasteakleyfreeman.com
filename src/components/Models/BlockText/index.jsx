@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import * as THREE from 'three';
+import { Box3, FontLoader } from 'three';
 
 import Teko from '@assets/fonts/Teko_Bold.json';
 
 const BlockText = ({ word, color, materialProps, ...rest }) => {
-  const font = new THREE.FontLoader().parse(Teko);
+  const font = new FontLoader().parse(Teko);
   const textOptions = {
     font,
     size: 8,
@@ -16,7 +16,7 @@ const BlockText = ({ word, color, materialProps, ...rest }) => {
   const xPos = bounds.x / 2;
 
   useEffect(() => {
-    const box = new THREE.Box3().setFromObject(textRef.current);
+    const box = new Box3().setFromObject(textRef.current);
     setBounds(box.getSize());
   }, []);
   return (

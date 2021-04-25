@@ -13,8 +13,8 @@
   <a href="https://api.netlify.com/api/v1/badges/7b5f4c1a-c979-4652-aacf-05076bfa2989/deploy-status" target="_blank">
     <img alt="Netlify Status" src="https://api.netlify.com/api/v1/badges/7b5f4c1a-c979-4652-aacf-05076bfa2989/deploy-status" />
   </a>
-  <a href="https://github.com/dianafreeman/dianasteakleyfreeman.com/workflows/Node.js+CI/badge.svg" target="_blank">
-    <img alt="Github Workflow Status" src="https://github.com/dianafreeman/dianasteakleyfreeman.com/workflows/Node.js+CI/badge.svg" />
+  <a href="https://github.com/dianafreeman/dianasteakleyfreeman.com/workflows/main_deploy/badge.svg" target="_blank">
+    <img alt="Github Workflow Status" src="https://github.com/dianafreeman/dianasteakleyfreeman.com/workflows/main_deploy/badge.svg" />
   </a>
 
 </p>
@@ -30,51 +30,29 @@ At its core, this is a static site generator that creates a React App that rende
 ## Scripts
 
 ```sh
-yarn install # install dependencies
-yarn start # starts gatsby. This is required for netlify to work (known issue: https://github.com/netlify/cli/issues/1292)
-```
+ # install dependencies
+yarn install
 
-### Local Development
-
-Runs the app using gatsby development mode, no extra tooling for ThreeJS debugging.
-
-```sh
+# starts gatsby. This is required for netlify to work
+# (known issue: https://github.com/netlify/cli/issues/1292)
 yarn start
-```
 
-### Linting and Foratting
+# start a full netlify development service with CMS support
+yarn dev
 
-Runs the app using gatsby development mode, no extra tooling for ThreeJS debugging.
-
-```sh
-yarn start
-```
-
-## Run Unit & Formatting Tests
-
-```sh
-yarn test
-```
-
-### In Developer Mode [TODO]
-
-runs the application with debugging logs, browser rendering stats, and controllable ThreeJS properties.
-
-````sh
-yarn run dev
+# start a full netlify development service with CMS support
+yarn dev
 ```
 
 # Build & Deploy
 
-This project is hosted as a static site via Netlify. Netlify auto-deploys the master branch.
-
-Github Actions Workflow
+This project is hosted as a static site via Netlify. Netlify auto-deploys the `main` branch.
 
 # TODO
 
 - [x] configure github actions
 - [x] linting with prettier and eslint
-- [] under construction page deployed with proper headers
+- [x] under construction page deployed with proper headers
 
 # Tests
 
@@ -85,7 +63,6 @@ Github Actions Workflow
 - React Spring
 - Cypress.io
 - Netlfiy
-
 
 ## Project Structure
 
@@ -129,4 +106,3 @@ This project is [MIT](https://github.com/dianasfreeman/dianasteakelyfreeman.com/
 ---
 
 _This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
-````

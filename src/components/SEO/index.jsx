@@ -105,6 +105,7 @@ function SEO({ postNode, postPath, postSEO }) {
       },
     );
   }
+
   return (
     <Helmet>
       {/* General tags */}
