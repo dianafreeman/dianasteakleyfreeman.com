@@ -1,30 +1,18 @@
 import React, { useEffect, useRef } from 'react';
-import { extend, useThree, useFrame } from 'react-three-fiber';
-import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
-import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass';
-import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
-
-extend({
+import {
   EffectComposer,
-  RenderPass,
-  UnrealBloomPass,
-});
+  // DepthOfField,
+  Bloom,
+  // Noise,
+  // Vignette,
+} from '@react-three/postprocessing';
+
 
 function Effects({ children }) {
-  const bloomPass = useRef();
-  const composer = useRef();
-  const { scene, gl, size, camera } = useThree();
-
-  useEffect(() => {
-    composer.current.setSize(size.width, size.height);
-  }, [size]);
-
-  useFrame(() => composer.current.render(), 1);
 
   return (
-    <effectComposer ref={composer} args={[gl]}>
-      <renderPass attachArray="passes" scene={scene} camera={camera} />
-      <unrealBloomPass
+    <EffectComposer>
+      <Bloom
         ref={bloomPass}
         attachArray="passes"
         threshold={0}
@@ -32,7 +20,7 @@ function Effects({ children }) {
         args={[undefined, 1.6, 1, 0.9]}
       />
       {children}
-    </effectComposer>
+    </EffectComposer>
   );
 }
 

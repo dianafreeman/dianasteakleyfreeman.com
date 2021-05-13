@@ -40,8 +40,11 @@ yarn start
 # start a full netlify development service with CMS support
 yarn dev
 
-# start a full netlify development service with CMS support
-yarn dev
+# run unit tests
+yarn test ## TODO
+
+# run unit tests
+yarn test-e2e ## TODO
 ```
 
 # Build & Deploy

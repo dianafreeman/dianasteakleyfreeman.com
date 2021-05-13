@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 // import PropTypes from 'prop-types';
 
-import { useResource } from 'react-three-fiber';
+import { useResource } from '@hooks';
 import { PerspectiveCamera } from '@react-three/drei';
 
 const Camera = () => {

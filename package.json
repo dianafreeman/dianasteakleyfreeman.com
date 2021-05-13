@@ -15,7 +15,8 @@
     "test:format": "prettier 'src/**/*.{js,jsx}' --check ",
     "test:unit": "echo 'You should write some proper tests.....' ",
     "lint": "eslint --fix --ext .js,.jsx ./src",
-    "clean": "rm -rf public && rm -rf .cache",
+    "clean:cache": "rm -rf public && rm -rf .cache",
+    "clean:deps": "rm -rf node_modules yarn.lock",
     "format": "prettier 'src/**/*.{js,jsx}' --write"
   },
   "browserslist": {
@@ -31,9 +32,11 @@
     ]
   },
   "dependencies": {
-    "@react-three/drei": "^3.11.2",
-    "@react-three/fiber": "^5.3.15",
-    "@react-three/postprocessing": "^2.0.1",
+    "@babel/core": "7.0.0",
+    "@react-three/a11y": "^2.0.2",
+    "@react-three/drei": "^4.3.3",
+    "@react-three/fiber": "^6.1.2",
+    "@react-three/postprocessing": "^2.0.3",
     "@svgr/webpack": "^5.5.0",
     "css-loader": "^5.1.0",
     "gatsby": "^3.0.1",
@@ -56,11 +59,9 @@
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
     "react-spring": "^8.0.27",
-    "react-three-fiber": "^5.3.22",
-    "react-three-gui": "^0.4.2",
     "react-use-gesture": "^9.1.1",
     "resize-observer-polyfill": "^1.5.1",
-    "three": "^0.126.1",
+    "three": "0.128.0",
     "url-join": "^4.0.0",
     "web-vitals": "^0.2.4"
   },

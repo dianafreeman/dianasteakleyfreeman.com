@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 // import PropTypes from 'prop-types';
 import { MathUtils } from 'three';
-import { useFrame, useResource } from 'react-three-fiber';
+import { useFrame } from '@react-three/fiber';
+import { useResource } from '@hooks';
 
 const Lights = ({ showHelpers = false }) => {
   const [lights, setLights] = useState([]);

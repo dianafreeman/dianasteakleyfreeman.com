@@ -1,30 +1,37 @@
 import React, { useState, useEffect, Suspense } from 'react';
 // import PropTypes from 'prop-types';
-
+import {Center} from '@react-three/drei'
 import Camera from '../Camera';
-import Effects from '../Effects';
+// import Effects from '../Effects';
 import Canvas from '../Canvas';
 import Lights from '../Lights';
 import Models from '../Models';
 import Controls from '../Controls';
 
+
+
 const Main = () => {
   return (
     <>
+
       <Camera />
       <Lights />
+      <Center>
+
       <Models />
+      </Center>
       <Controls />
-    </>
+      </>
   );
 };
 
 function Scene() {
   return (
-    <Canvas>
+    <Canvas shadowMap colorManagement={false}>
       <Suspense fallback={null}>
         <Main />
-        <Effects />
+
+        {/* <Effects /> */}
       </Suspense>
     </Canvas>
   );
