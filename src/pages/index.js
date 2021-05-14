@@ -1,13 +1,26 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import reportWebVitals from '@config/reportWebVitals';
-// reportWebVitals(console.log);
+import { Canvas } from '@react-three/fiber';
 
-function Home() {
+import { useSpring } from '@react-spring/core';
+import { OrbitControls } from '@react-three/drei';
+import { a } from '@react-spring/web';
+
+import Scene from '../components/Scene';
+
+function Index() {
+  // This spring controls the background and the svg fill (text color)
+  const [{ background, fill }, set] = useSpring(
+    { background: '#f0f0f0', fill: '#202020' },
+    [],
+  );
   return (
-    <div>
-      <h1>This is Diana's Home PAge</h1>
-    </div>
+    <a.main>
+      <Suspense fallback={null}>
+        <Scene />
+      </Suspense>
+    </a.main>
   );
 }
 
-export default Home;
+export default Index;

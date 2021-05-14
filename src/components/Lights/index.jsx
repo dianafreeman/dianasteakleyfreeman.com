@@ -6,11 +6,9 @@ import { useResource } from '@hooks';
 import { DirectionalLightHelper } from 'three';
 
 const Lights = () => {
-  const light = useResource();
-  // useHelper(light, DirectionalLightHelper, 1, 'cyan');
   return (
     <>
-      <directionalLight
+      {/* <directionalLight
         ref={light}
         castShadow
         color="#f6f5cc"
@@ -24,8 +22,8 @@ const Lights = () => {
         position={[0, 30, 100]}
         lookAt={[0, 10, 0]}
       />
-      <ambientLight intensity={0.5} />
-      {/* <SwirlingLights /> */}
+      <ambientLight intensity={0.5} /> */}
+      <SwirlingLights />
     </>
   );
 };

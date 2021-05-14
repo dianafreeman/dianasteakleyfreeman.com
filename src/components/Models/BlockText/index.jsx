@@ -22,9 +22,8 @@ const BlockText = ({ word, color, materialProps, ...rest }) => {
     setBounds(box.getSize());
   }, []);
 
-
   return (
-    <animated.mesh ref={textRef}  {...rest}>
+    <animated.mesh ref={textRef} {...rest}>
       <textBufferGeometry attach="geometry" args={[word, textOptions]} />
       <meshStandardMaterial
         attach="material"

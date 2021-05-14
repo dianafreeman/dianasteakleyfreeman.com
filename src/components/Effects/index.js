@@ -7,9 +7,7 @@ import {
   // Vignette,
 } from '@react-three/postprocessing';
 
-
 function Effects({ children }) {
-
   return (
     <EffectComposer>
       <Bloom

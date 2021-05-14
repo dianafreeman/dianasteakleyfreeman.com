@@ -7,10 +7,8 @@ function Layout({ children, postNode, postPath, postSEO }) {
   return (
     <>
       <SEO postNode={postNode} postPath={postPath} postSEO={postSEO} />
-      <main>
-        <div style={{ height: '100vh', backgroundColor: '#686c6b' }}>
-          <Scene />
-        </div>
+      <main style={{ height: '100vh' }}>
+        <Scene />
         {children}
       </main>
     </>
