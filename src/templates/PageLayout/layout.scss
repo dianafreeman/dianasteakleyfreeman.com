@@ -16,17 +16,15 @@ main {
   height: 100vh;
 }
 
-.container {
-  height: inherit;
-  width: inherit;
-}
-
 .canvas-wrapper {
   height: 70%;
 }
 
 .content-wrapper {
-  /* width: 50%; */
+  position: absolute;
+  top: 0;
+  right: 50vw;
+  left: 0;
   margin: 1em;
 }
 

@@ -1,50 +1,34 @@
-import React, { Suspense, useEffect, useContext } from 'react';
-import { Canvas } from '@react-three/fiber';
+import React, { Suspense, useContext, useEffect, useRef } from 'react';
 import {
   Environment,
-  Center,
+  useContextBridge,
   ContactShadows,
   OrbitControls,
+  Center,
 } from '@react-three/drei';
+import { Flex, Box } from '@react-three/flex';
 
-import useSceneLayout from './useSceneLayout';
-
+import ThemeContext from '@context/ThemeContext';
+import Canvas from '../Canvas';
 import Ambiance from './Ambiance';
-import FloatingMesh from './FloatingMesh';
 
-function Scene() {
-  const { hovered } = useSceneLayout();
-
-  useEffect(() => {
-    document.body.style.cursor = hovered
-      ? 'none'
-      : `url('data:image/svg+xml;base64,${btoa(
-          '<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="16" r="10" fill="#E8B059"/></svg>',
-        )}'), auto`;
-  }, [hovered]);
+function Scene({ children }) {
+  const c = useContext(ThemeContext);
+  debugger;
 
   return (
     <Suspense fallback={null}>
-      <Canvas dpr={[1, 2]}>
+      <Canvas>
         <Ambiance />
-        <Center alignTop>
-          <FloatingMesh />
-        </Center>
-        <Environment preset="warehouse" />
+        {children}
         <ContactShadows
           rotation={[Math.PI / 2, 0, 0]}
-          position={[0, -1, 0]}
+          position={[0, -1.1, 0]}
           opacity={1}
           width={15}
           height={15}
           blur={2.5}
           far={1.6}
-        />
-        <OrbitControls
-          enablePan={false}
-          enableZoom={false}
-          maxPolarAngle={Math.PI / 2.5}
-          minPolarAngle={Math.PI / 2.5}
         />
       </Canvas>
     </Suspense>

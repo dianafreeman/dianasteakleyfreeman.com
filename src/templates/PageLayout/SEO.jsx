@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Helmet } from 'react-helmet';
 import urljoin from 'url-join';
 import moment from 'moment';
 
 import config from '@config/siteConfig';
-
+import ThemeContext from '../../context/ThemeContext';
 /**
  * AHH I hate this.
  *

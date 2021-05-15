@@ -20,6 +20,7 @@ module.exports = {
   },
   plugins: [
     'gatsby-transformer-remark',
+    'gatsby-plugin-sass',
     'gatsby-plugin-react-helmet',
     {
       resolve: `gatsby-plugin-layout`,

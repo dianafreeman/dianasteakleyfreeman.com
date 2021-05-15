@@ -1,19 +1,29 @@
-import React, { Suspense } from 'react';
-import reportWebVitals from '@config/reportWebVitals';
-import { a } from '@react-spring/web';
+import React, { useContext } from 'react';
+import { Center, Html } from '@react-three/drei';
+
+import Scene from '../components/Scene';
+import FloatingMesh from '../components/FloatingMesh';
+import ThemeContext from '../context/ThemeContext';
 
 function Index() {
-  // Use the spring to contol primary dark/light background and the svg fill (text color)
-  const fill = 'blue';
   return (
-    <div className="content">
-      <h1>Hi! 👋🏾 I'm Diana</h1>
-      <h2>Coder, Creator, Communicator.</h2>
-      <p>
-        10+ years of website and application development in academic, medical,
-        nonprofit, and start-up environments. Enthusiastic nerd.
-      </p>
-    </div>
+    <Scene>
+      <Center alignTop>
+        <FloatingMesh />
+      </Center>
+      <Html>
+        <div className="content-wrapper">
+          <div className="content">
+            <h1>Hi! 👋🏾 I'm Diana</h1>
+            <h2>Coder, Creator, Communicator.</h2>
+            <p>
+              10+ years of website and application development in academic,
+              medical, nonprofit, and start-up environments. Enthusiastic nerd.
+            </p>
+          </div>
+        </div>
+      </Html>
+    </Scene>
   );
 }
 
