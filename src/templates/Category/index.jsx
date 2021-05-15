@@ -1,12 +1,12 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import View from './view';
+import PostListing from '../../components/PostListing';
 
 export default function CategoryPage({ pageContext, data }) {
   const { category } = pageContext;
   const postEdges = data.allMarkdownRemark.edges;
-  return <View category={category} postEdges={postEdges} />;
+  return <PostListing category={category} postEdges={postEdges} />;
 }
 
 /* eslint no-undef: "off" */

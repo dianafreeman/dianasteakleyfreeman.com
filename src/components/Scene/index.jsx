@@ -6,12 +6,14 @@ import {
   ContactShadows,
   OrbitControls,
 } from '@react-three/drei';
+
+import useSceneLayout from './useSceneLayout';
+
 import Ambiance from './Ambiance';
-import { SceneContext } from './SceneProvider';
 import FloatingMesh from './FloatingMesh';
 
 function Scene() {
-  const { hovered } = useContext(SceneContext);
+  const { hovered } = useSceneLayout();
 
   useEffect(() => {
     document.body.style.cursor = hovered

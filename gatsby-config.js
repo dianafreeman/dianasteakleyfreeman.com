@@ -21,11 +21,10 @@ module.exports = {
   plugins: [
     'gatsby-transformer-remark',
     'gatsby-plugin-react-helmet',
-
     {
       resolve: `gatsby-plugin-layout`,
       options: {
-        component: require.resolve(`./src/Layout/index`),
+        component: require.resolve(`./src/templates/PageLayout/index.jsx`),
       },
     },
 
@@ -42,9 +41,10 @@ module.exports = {
         root: './src', // <- will be used as a root dir
         aliases: {
           '@config': './config', // <- will become ./src/config
-          '@theme': './theme',
           '@hooks': './hooks',
           '@assets': './assets',
+          '@fonts': './assets/fonts',
+          '@context': './context',
         },
       },
     },
@@ -66,7 +66,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-netlify-cms',
       options: {
-        modulePath: path.resolve('src/netlifycms/index.js'), // default: undefined
+        modulePath: path.resolve('src/templates/NetlifyCms/index.js'), // default: undefined
         enableIdentityWidget: true,
         publicPath: 'admin',
         htmlTitle: 'Content Manager',

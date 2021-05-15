@@ -1,8 +1,10 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby';
+
 import config from '@config/siteConfig';
-import SEO from '../../components/SEO';
+
+import SEO from '../PageLayout/SEO';
 
 export default function PostTemplate({ data, pageContext }) {
   const { slug } = pageContext;

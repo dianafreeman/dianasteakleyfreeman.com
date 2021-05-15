@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import debounce from './debounce';
 
-function useDebouncedScroll(callbackFn) {
+function useDebounce(callbackFn) {
   useEffect(() => {
     const handleScroll = () => callbackFn();
     window.addEventListener('scroll', debounce(handleScroll));
@@ -11,4 +11,4 @@ function useDebouncedScroll(callbackFn) {
   }, [debounce]);
 }
 
-export default useDebouncedScroll;
+export default useDebounce;

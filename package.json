@@ -12,12 +12,12 @@
     "start": "gatsby develop",
     "build": "gatsby build",
     "dev": "netlify dev",
+    "format": "yarn prettier && yarn lint",
     "test:format": "prettier 'src/**/*.{js,jsx}' --check ",
     "test:unit": "echo 'You should write some proper tests.....' ",
+    "clean": "rm -rf public && rm -rf .cache",
     "lint": "eslint --fix --ext .js,.jsx ./src",
-    "clean:cache": "rm -rf public && rm -rf .cache",
-    "clean:deps": "rm -rf node_modules yarn.lock",
-    "format": "prettier 'src/**/*.{js,jsx}' --write"
+    "prettier": "prettier 'src/**/*.{js,jsx}' --write"
   },
   "browserslist": {
     "production": [

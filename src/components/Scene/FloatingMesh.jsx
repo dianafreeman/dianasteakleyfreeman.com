@@ -1,18 +1,21 @@
-import React, { useContext, useRef, useEffect } from 'react';
 import * as THREE from 'three';
-import { SceneContext } from './SceneProvider';
+import React, { useContext, useRef, useEffect } from 'react';
 import { MeshDistortMaterial, useHelper, Sphere } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import { a } from '@react-spring/three';
 import { useSpring } from '@react-spring/core';
+
 import Dosis from '@assets/fonts/Dosis_Bold.json';
+
+import debounce from '@hooks/useDebounce/debounce';
+import useSceneLayout from './useSceneLayout';
 
 const AnimatedMaterial = a(MeshDistortMaterial);
 
 function FloatingMesh() {
   const mesh = useRef();
-  const { hovered, setHovered, down, darkMode, setDown } =
-    useContext(SceneContext);
+  const { hovered, setHovered, springs, setDown, toggleDarkMode } =
+    useSceneLayout();
 
   // This is frame-based animation, useFrame subscribes the component to the render-loop
   useFrame((state) => {
@@ -43,21 +46,18 @@ function FloatingMesh() {
     bevelSegments: 12,
   };
 
+  const { wobble, color, env, coat } = springs;
   return (
     <a.mesh
       ref={mesh}
       scale={wobble}
-      onPointerOver={() => setHovered(true)}
-      onPointerOut={() => setHovered(false)}
-      onPointerDown={() => setDown(true)}
+      onPointerOver={() => debounce(setHovered(true))}
+      onPointerOut={() => debounce(setHovered(false))}
+      onPointerDown={() => debounce(setDown(true))}
       onPointerUp={() => {
         setDown(false);
         // Toggle mode between dark and bright
-        // toggleMode();
-        // setBg({
-        //   background: !mode ? '#202020' : '#f0f0f0',
-        //   fill: !mode ? '#f0f0f0' : '#202020',
-        // });
+        toggleDarkMode();
       }}
     >
       <textBufferGeometry attach="geometry" args={['D', textOptions]} />;

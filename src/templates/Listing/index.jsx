@@ -1,11 +1,11 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import View from './view';
+import PostListing from '../../components/PostListing';
 
 export default function ListingPage({ pageContext, data }) {
   const postEdges = data.allMarkdownRemark.edges;
-  return <View pageContext={pageContext} postEdges={postEdges} />;
+  return <PostListing pageContext={pageContext} postEdges={postEdges} />;
 }
 
 /* eslint no-undef: "off" */
