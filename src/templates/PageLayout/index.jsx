@@ -60,6 +60,13 @@ function Layout({ children, postNode, postPath, postSEO }) {
   // Global DarkMode State
   const [darkMode, setDarkMode] = useState(false);
 
+  const [breakpoints] = useState({
+    sm: 576,
+    md: 768,
+    lg: 992,
+    xl: 1200,
+    xxl: 1400,
+  });
   const colorMap = {
     dark: '#0d1f2b',
     light: '#f1e9df',
@@ -140,6 +147,7 @@ function Layout({ children, postNode, postPath, postSEO }) {
         setHovered,
         colors,
         springs,
+        breakpoints,
       }}
     >
       <SEO postNode={postNode} postPath={postPath} postSEO={postSEO} />

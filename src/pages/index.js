@@ -12,54 +12,65 @@ import { useThree, useFrame } from '@react-three/fiber';
 import Scene from '../components/Scene';
 import FloatingMesh from '../components/FloatingMesh';
 import useTheme from '@hooks/useTheme';
-import { a } from '@react-spring/web';
+import { a } from '@react-spring/three';
 import { Flex, Box, useReflow } from '@react-three/flex';
 import PoppinsFont from '@fonts/2d/Poppins/Poppins-Bold.ttf';
+import PoppinsLightFont from '@fonts/2d/Poppins/Poppins-Light.ttf';
 
+const AniText = a(Text);
 const Title = (props) => {
-  const { colors } = useTheme();
+  const { colors, breakpoints } = useTheme();
+  const { viewport, size } = useThree();
 
+  useEffect(() => {}, [viewport]);
+
+  useFrame(({ camera }) => {
+    camera.position.set(5, 5, 15);
+    camera.lookAt(5, 0, 0);
+    camera.updateProjectionMatrix();
+  });
+
+  const isSmallScreen = viewport.width < breakpoints.sm ? '100%' : '50%';
   return (
     <Box
-      centerAnchor
       flexDirection="column"
       alignItems="center"
-      justifyContent="space-evenly"
-      width="50%"
-      flexWrap="no-wrap"
-      height="100%"
+      justifyContent="space-between"
+      width={isSmallScreen ? '100%' : '50%'}
+      height={isSmallScreen ? '50%' : '100%'}
+      // flexWrap="wrap"
     >
-      <Box centerAnchor margin={0.05}>
-        <Text
-          color={'black'}
+      <Box margin={0.05} centerAnchor>
+        <AniText
+          color={colors.text}
           font={PoppinsFont}
-          textAlign="left"
+          // textAlign="left"
           anchorX="left"
-          fontSize={1.5}
-          lineHeight={3}
+          fontSize={2.5}
+          lineHeight={1}
         >
-          Diana M
+          I'm Diana.
           <meshStandardMaterial />
-        </Text>
+        </AniText>
       </Box>
-      <Box centerAnchor margin={0.05}>
-        <Text
-          color={'black'}
-          font={PoppinsFont}
-          textAlign="left"
+      <Box margin={0.05} centerAnchor>
+        <AniText
+          color={colors.text}
+          font={PoppinsLightFont}
+          // textAlign="left"
           anchorX="left"
           fontSize={1.5}
-          lineHeight={3}
+          lineHeight={2}
         >
-          Steakley-Freeman
+          Coder, Creator, Communicator.
           <meshStandardMaterial />
-        </Text>
+        </AniText>
       </Box>
     </Box>
   );
 };
 const ContentPanel = () => {
-  // const { colors } = useTheme();
+  const { colors, breakpoints } = useTheme();
   const { viewport, size } = useThree();
   // const group = useRef();
   // const [vpWidth, vpHeight] = useAspect('cover', size.width, size.height);
@@ -86,39 +97,40 @@ const ContentPanel = () => {
         scaleFactor={state ? 10 : 10} // Default - integer scale factor, see above (Sizing)
       >
         <Box
-          centerAnchor
-          flexDirection="row"
+          flexDirection="column" // should be rows on desktop
           alignItems="center"
           justifyContent="center"
+          flexWrap="wrap"
           width="100%"
           height="100%"
-          flexWrap="wrap"
         >
-          <Title />
-          <Box
-            centerAnchor
-            flexDirection="column"
-            justifyContent="center"
-            alignItems="center"
-            height="100%"
-          >
-            <Box centerAnchor>
+          <group position-x={-5} position-y={2}>
+            <Title />
+          </group>
+
+          <group position-x={8}>
+            <Box
+              flexDirection="column"
+              justifyContent="center"
+              alignItems="center"
+              width="100%"
+              height="100%"
+              flexWrap="wrap"
+            >
               <FloatingMesh />
             </Box>
-            <Box centerAnchor>
-              <ContactShadows
-                rotation-x={Math.PI / 2}
-                opacity={0.75}
-                // position={[4, -4, 0]}
-                width={30}
-                height={30}
-                near={0.1}
-                blur={2} // Amount of blur (default=1)
-                far={100} // Focal distance (default=10)
-                resolution={256} // Rendertarget resolution (default=256)
-              />
-            </Box>
-          </Box>
+          </group>
+          <ContactShadows
+            rotation-x={Math.PI / 2}
+            opacity={0.75}
+            position={[0, -4, 0]}
+            width={30}
+            height={30}
+            near={0.1}
+            blur={2} // Amount of blur (default=1)
+            far={100} // Focal distance (default=10)
+            resolution={256} // Rendertarget resolution (default=256)
+          />
         </Box>
       </Flex>
     </Suspense>

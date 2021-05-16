@@ -38,7 +38,7 @@ function Scene({ children }) {
         <Canvas
           colorManagement
           shadowMap
-          camera={{ position: [0, 0, 2], zoom: 1 }}
+          camera={{ position: [0, 10, 5], zoom: 1 }}
         >
           <Lights />
           {children}
