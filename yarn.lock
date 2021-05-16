@@ -3217,6 +3217,18 @@
   resolved "https://registry.yarnpkg.com/@ungap/from-entries/-/from-entries-0.2.1.tgz#7e86196b8b2e99d73106a8f25c2a068326346354"
   integrity sha512-CAqefTFAfnUPwYqsWHXpOxHaq1Zo5UQ3m9Zm2p09LggGe57rqHoBn3c++xcoomzXKynAUuiBMDUCQvKMnXjUpA==
 
+"@use-gesture/core@^10.0.0-beta.1":
+  version "10.0.0-beta.6"
+  resolved "https://registry.yarnpkg.com/@use-gesture/core/-/core-10.0.0-beta.6.tgz#fdf461caa46269e26cab05a3708497b94c28fef8"
+  integrity sha512-fX0Q6Dhh5bDsFnfIJykJo/ThMCdX4UxCvKlDU8JYLPocxV/IAnLdoyEpJW61iPq3gr1mJ34jjfaUUZtS2BOGTA==
+
+"@use-gesture/react@^10.0.0-beta.6":
+  version "10.0.0-beta.6"
+  resolved "https://registry.yarnpkg.com/@use-gesture/react/-/react-10.0.0-beta.6.tgz#1977f4f47a7ca562cf232677f6ab9a1597904d75"
+  integrity sha512-oTy1JLQOf5ZQUj3qlRm31pHlz4oZAblplTi8g/IBJ+peGpfqIveTlg6IbupII1YZil7nY/MePXYcHdj8t0rB4g==
+  dependencies:
+    "@use-gesture/core" "^10.0.0-beta.1"
+
 "@webassemblyjs/ast@1.11.0":
   version "1.11.0"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.11.0.tgz#a5aa679efdc9e51707a4207139da57920555961f"
@@ -4447,11 +4459,6 @@ boolbase@^1.0.0, boolbase@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/boolbase/-/boolbase-1.0.0.tgz#68dff5fbe60c51eb37725ea9e3ed310dcc1e776e"
   integrity sha1-aN/1++YMUes3cl6p4+0xDcwed24=
-
-bootstrap@^5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-5.0.1.tgz#e7939d599119dc818a90478a2a299bdaff037e09"
-  integrity sha512-Fl79+wsLOZKoiU345KeEaWD0ik8WKRI5zm0YSPj2oF1Qr+BO7z0fco6GbUtqjoG1h4VI89PeKJnMsMMVQdKKTw==
 
 boxen@^4.1.0, boxen@^4.2.0:
   version "4.2.0"

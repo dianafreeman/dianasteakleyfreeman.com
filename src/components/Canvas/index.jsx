@@ -10,23 +10,15 @@ import {
 
 import ThemeContext from '@context/ThemeContext';
 
-function Stage({ children }) {
+function Stage({ children, ...rest }) {
   const ContextBridge = useContextBridge(ThemeContext);
-  // const c = useContext(ThemeContext);
-  debugger;
 
   return (
-    <Canvas>
+    <Canvas {...rest}>
       <ContextBridge>
         {children}
         <Environment preset="warehouse" />
       </ContextBridge>
-      <OrbitControls
-        enablePan={false}
-        enableZoom={false}
-        maxPolarAngle={Math.PI / 2.5}
-        minPolarAngle={Math.PI / 2.5}
-      />
     </Canvas>
   );
 }
