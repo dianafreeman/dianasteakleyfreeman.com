@@ -10,7 +10,7 @@ import {
 import { useThree, useFrame } from '@react-three/fiber';
 import ThemeContext from '@context/ThemeContext';
 import Canvas from '../Canvas';
-import Ambiance from './Ambiance';
+import Lights from './Lights';
 
 function ScrollContainer({ scroll, children }) {
   const { viewport } = useThree();
@@ -35,8 +35,12 @@ function Scene({ children }) {
   return (
     <>
       <Suspense fallback={null}>
-        <Canvas>
-          <Ambiance />
+        <Canvas
+          colorManagement
+          shadowMap
+          camera={{ position: [0, 0, 2], zoom: 1 }}
+        >
+          <Lights />
           {children}
         </Canvas>
       </Suspense>

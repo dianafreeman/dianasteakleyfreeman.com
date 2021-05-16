@@ -1,5 +1,5 @@
 import React, { Suspense, useContext, useEffect, useRef } from 'react';
-import { Canvas } from '@react-three/fiber';
+import { Canvas as ThreeCanvas } from '@react-three/fiber';
 import {
   Environment,
   useContextBridge,
@@ -10,16 +10,16 @@ import {
 
 import ThemeContext from '@context/ThemeContext';
 
-function Stage({ children, ...rest }) {
+function Canvas({ children, ...rest }) {
   const ContextBridge = useContextBridge(ThemeContext);
 
   return (
-    <Canvas {...rest}>
+    <ThreeCanvas {...rest}>
       <ContextBridge>
         {children}
         <Environment preset="warehouse" />
       </ContextBridge>
-    </Canvas>
+    </ThreeCanvas>
   );
 }
-export default Stage;
+export default Canvas;
