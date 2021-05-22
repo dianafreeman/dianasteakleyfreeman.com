@@ -1,79 +1,81 @@
 import * as THREE from 'three';
 import React, { useState, useRef, useEffect, Suspense } from 'react';
 import useInterval from '@use-it/interval';
-import {
-  ContactShadows,
-  Html,
-  Center,
-  useAspect,
-  Text,
-} from '@react-three/drei';
+import { ContactShadows, Html, Center, Plane, Text } from '@react-three/drei';
 import { useThree, useFrame } from '@react-three/fiber';
-import Scene from '../components/Scene';
-import FloatingMesh from '../components/FloatingMesh';
 import useTheme from '@hooks/useTheme';
 import { a } from '@react-spring/three';
 import { Flex, Box, useReflow } from '@react-three/flex';
 import PoppinsFont from '@fonts/2d/Poppins/Poppins-Bold.ttf';
-import PoppinsLightFont from '@fonts/2d/Poppins/Poppins-Light.ttf';
+
+import Scene from '../components/Scene';
+import Effects from '../components/Effects';
+import Lights from '../components/Scene/Lights';
+import FloatingMesh from '../components/Meshes/FloatingMesh';
 
 const AniText = a(Text);
-const Title = (props) => {
+
+const Title = ({ text = "I'm Diana", ...props }) => {
   const { colors, breakpoints } = useTheme();
-  const { viewport, size } = useThree();
-
-  useEffect(() => {}, [viewport]);
-
-  useFrame(({ camera }) => {
-    camera.position.set(5, 5, 15);
-    camera.lookAt(5, 0, 0);
-    camera.updateProjectionMatrix();
-  });
+  const { viewport } = useThree();
 
   const isSmallScreen = viewport.width < breakpoints.sm ? '100%' : '50%';
   return (
-    <Box
-      flexDirection="column"
-      alignItems="center"
-      justifyContent="space-between"
-      width={isSmallScreen ? '100%' : '50%'}
-      height={isSmallScreen ? '50%' : '100%'}
-      // flexWrap="wrap"
+    <AniText
+      color={colors.text}
+      font={PoppinsFont}
+      anchorX="center"
+      textAlign="center"
+      fontSize={isSmallScreen ? 2 : 3}
+      lineHeight={1}
+      outlineWidth={0.1}
+      outlineColor={colors.background}
+      {...props}
     >
-      <Box margin={0.05} centerAnchor>
-        <AniText
-          color={colors.text}
-          font={PoppinsFont}
-          // textAlign="left"
-          anchorX="left"
-          fontSize={2.5}
-          lineHeight={1}
-        >
-          I'm Diana.
-          <meshStandardMaterial />
-        </AniText>
-      </Box>
-      <Box margin={0.05} centerAnchor>
-        <AniText
-          color={colors.text}
-          font={PoppinsLightFont}
-          // textAlign="left"
-          anchorX="left"
-          fontSize={1.5}
-          lineHeight={2}
-        >
-          Coder, Creator, Communicator.
-          <meshStandardMaterial />
-        </AniText>
-      </Box>
-    </Box>
+      {text}
+      <meshStandardMaterial />
+    </AniText>
   );
 };
+function Floor({ position }) {
+  const { scene } = useThree();
+  const { darkMode, colors } = useTheme();
+
+  const fog = useState(new THREE.FogExp2(colors.light));
+
+  useEffect(() => {
+    scene.fog = fog;
+  }, [scene, fog]);
+
+  return (
+    <>
+      <ContactShadows
+        rotation-x={Math.PI / 2}
+        opacity={0.75}
+        position={[0, 0.1, 0]}
+        width={30}
+        height={30}
+        near={0.1}
+        blur={2} // Amount of blur (default=1)
+        far={10} // Focal distance (default=10)
+        resolution={256} // Rendertarget resolution (default=256)
+      />
+      <Plane
+        position={position}
+        rotation={[Math.PI / 2, 0, THREE.MathUtils.degToRad(90)]}
+        args={[100, 400, 80, 320]}
+      >
+        <meshBasicMaterial
+          color={'#929093'}
+          wireframe={darkMode}
+          side={THREE.DoubleSide}
+        />
+      </Plane>
+    </>
+  );
+}
 const ContentPanel = () => {
-  const { colors, breakpoints } = useTheme();
-  const { viewport, size } = useThree();
-  // const group = useRef();
-  // const [vpWidth, vpHeight] = useAspect('cover', size.width, size.height);
+  const { viewport } = useThree();
   const [state, setState] = useState(true);
 
   useInterval(() => setState((s) => !s), 80);
@@ -85,52 +87,30 @@ const ContentPanel = () => {
     width: viewport.width * conversionScale,
     height: viewport.height * conversionScale,
   };
-  const xOffset = -(scaledSize.width / 2);
-  const yOffset = scaledSize.height / 2;
-  return (
-    <Suspense fallback={null}>
-      <Flex
-        position={[xOffset, yOffset, 0]}
-        size={[scaledSize.width, scaledSize.height, 0]}
-        direction="ltr" // Default - right to left or right to left
-        plane="xy" // Default - plane axes, see above
-        scaleFactor={state ? 10 : 10} // Default - integer scale factor, see above (Sizing)
-      >
-        <Box
-          flexDirection="column" // should be rows on desktop
-          alignItems="center"
-          justifyContent="center"
-          flexWrap="wrap"
-          width="100%"
-          height="100%"
-        >
-          <group position-x={-5} position-y={2}>
-            <Title />
-          </group>
 
-          <group position-x={8}>
-            <Box
-              flexDirection="column"
-              justifyContent="center"
-              alignItems="center"
-              width="100%"
-              height="100%"
-              flexWrap="wrap"
-            >
-              <FloatingMesh />
-            </Box>
-          </group>
-          <ContactShadows
-            rotation-x={Math.PI / 2}
-            opacity={0.75}
-            position={[0, -4, 0]}
-            width={30}
-            height={30}
-            near={0.1}
-            blur={2} // Amount of blur (default=1)
-            far={100} // Focal distance (default=10)
-            resolution={256} // Rendertarget resolution (default=256)
-          />
+  return (
+    <Suspense
+      fallback={
+        <Html>
+          <h1>Loading...</h1>
+        </Html>
+      }
+    >
+      <Flex
+        position={[0, 0, 0]}
+        size={[scaledSize.width, scaledSize.height, 30]}
+        flexDirection="column"
+        justify="center"
+        alignContent="center"
+      >
+        <Box pb={2} m={3} height="auto" justifyContent="center">
+          <FloatingMesh />
+        </Box>
+        <Box pt={2} height="auto" justifyContent="center">
+          <Title position-z={3} />
+        </Box>
+        <Box pt={2}>
+          <Floor position={[0, -4, 0]} />
         </Box>
       </Flex>
     </Suspense>
@@ -140,7 +120,9 @@ const ContentPanel = () => {
 function Index() {
   return (
     <Scene>
+      <Lights />
       <ContentPanel />
+      <Effects />
     </Scene>
   );
 }

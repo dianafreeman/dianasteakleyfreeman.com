@@ -33,18 +33,22 @@ function Scene({ children }) {
     (scroll.current = e.target.scrollTop / e.target.scrollHeight);
 
   return (
-    <>
-      <Suspense fallback={null}>
-        <Canvas
-          colorManagement
-          shadowMap
-          camera={{ position: [0, 10, 5], zoom: 1 }}
-        >
-          <Lights />
-          {children}
-        </Canvas>
-      </Suspense>
-    </>
+    <Suspense
+      fallback={
+        <div>
+          <h1>Loading...</h1>
+        </div>
+      }
+    >
+      <Canvas
+        colorManagement
+        shadowMap
+        camera={{ position: [0, 10, 15], zoom: 1.5 }}
+      >
+        <Lights />
+        {children}
+      </Canvas>
+    </Suspense>
   );
 }
 export default Scene;

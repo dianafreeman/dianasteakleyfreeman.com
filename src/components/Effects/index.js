@@ -6,15 +6,16 @@ import {
   // Noise,
   // Vignette,
 } from '@react-three/postprocessing';
+import useTheme from '@hooks/useTheme';
 
 function Effects({ children }) {
+  const { darkMode } = useTheme();
   return (
     <EffectComposer>
       <Bloom
-        ref={bloomPass}
         attachArray="passes"
         threshold={0}
-        strength={0.5}
+        strength={darkMode ? 0.5 : 0}
         args={[undefined, 1.6, 1, 0.9]}
       />
       {children}
