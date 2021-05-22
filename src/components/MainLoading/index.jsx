@@ -1,10 +1,10 @@
 import 'react-typed/dist/animatedCursor.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import Typed from 'react-typed';
 import styled, { css } from 'styled-components';
 import { Html, useProgress } from '@react-three/drei';
 
-import useTheme from '@hooks/useTheme';
+import useLayout from '@hooks/useLayout';
 
 const PHRASE = "Hi, I'm Diana";
 
@@ -50,7 +50,8 @@ export default function MainLoading() {
   const [isLoaded, setLoaded] = useState(false);
   const [finished, setFinished] = useState(false);
 
-  const { colors } = useTheme();
+  const typeRef = useRef();
+  // const { colors } = useLayout();
 
   const { progress } = useProgress();
 
@@ -58,7 +59,7 @@ export default function MainLoading() {
     <FlexWrapper>
       <div>
         <H1>
-          <Typed strings={[PHRASE]} typeSpeed={80} />
+          <Typed ref={typeRef} strings={[PHRASE]} typeSpeed={80} />
         </H1>
         <ProgressBar bg="gray" percent={progress} />
       </div>

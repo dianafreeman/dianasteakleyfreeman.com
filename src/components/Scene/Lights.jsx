@@ -2,11 +2,11 @@ import React, { useContext, useRef, useEffect } from 'react';
 import { PerspectiveCamera, ContactShadows } from '@react-three/drei';
 import { useFrame, useThree } from '@react-three/fiber';
 import { a } from '@react-spring/three';
-import useTheme from '@hooks/useTheme';
+import useLayout from '@hooks/useLayout';
 
 const Lights = () => {
   const light = useRef();
-  const { colors, springs } = useTheme();
+  const { colors, springs } = useLayout();
 
   useFrame((state) => {
     light.current.position.y = state.mouse.y * 20;

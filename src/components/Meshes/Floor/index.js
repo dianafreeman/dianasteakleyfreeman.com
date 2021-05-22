@@ -3,10 +3,12 @@ import React, { useState, useRef, useEffect, Suspense } from 'react';
 import { ContactShadows, Plane } from '@react-three/drei';
 import { useThree } from '@react-three/fiber';
 import useTheme from '@hooks/useTheme';
+import useLayout from '@hooks/useLayout';
 
 function Floor({ position }) {
   const { scene } = useThree();
-  const { darkMode, colors } = useTheme();
+  const { darkMode } = useTheme();
+  const { colors } = useLayout();
 
   return (
     <>

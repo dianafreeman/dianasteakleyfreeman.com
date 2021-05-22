@@ -8,11 +8,13 @@ import { a } from '@react-spring/three';
 import { Flex, Box, useReflow } from '@react-three/flex';
 import PoppinsFont from '@fonts/2d/Poppins/Poppins-Bold.ttf';
 import useTheme from '@hooks/useTheme';
+import useLayout from '@hooks/useLayout';
 
 const AniText = a(Text);
 
 const TitleText = ({ text = "I'm Diana", ...props }) => {
-  const { colors, breakpoints } = useTheme();
+  const { breakpoints } = useTheme();
+  const { colors } = useLayout();
   const { viewport } = useThree();
 
   const mesh = useRef();

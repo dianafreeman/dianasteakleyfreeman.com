@@ -6,6 +6,8 @@ import { useSpring } from '@react-spring/core';
 import useTheme from '@hooks/useTheme';
 import MainLoading from '../components/MainLoading';
 
+import LayoutContext from './LayoutContext';
+
 /**
  *This can consume the theme!
  *
@@ -13,7 +15,7 @@ import MainLoading from '../components/MainLoading';
  * @returns
  */
 function LayoutProvider({ children }) {
-  const { colors } = useTheme();
+  const { darkMode, palette, springConfig } = useTheme();
 
   // Has Page Loaded?
   const [loading, setLoading] = useState(false);
@@ -29,6 +31,44 @@ function LayoutProvider({ children }) {
   // ThreeJS Model PointerDown State
   const [down, setDown] = useState(false);
 
+  // Color
+  const [colors] = useState({
+    background: darkMode ? palette.black : palette.white,
+    text: darkMode ? palette.light : palette.dark,
+    pointerLight: darkMode ? palette.secondaryLight : palette.primaryLight,
+    model: darkMode ? palette.secondaryDark : palette.primaryDark,
+    floor: darkMode ? palette.dark : palette.light,
+    pointer: darkMode ? palette.secondary : palette.primary,
+  });
+
+  // Color Springs
+  const [colorSprings] = useSpring(
+    {
+      background: darkMode ? palette.black : palette.white,
+      text: darkMode ? palette.light : palette.dark,
+      pointerLight: darkMode ? palette.secondaryLight : palette.primaryLight,
+      model: darkMode ? palette.secondaryDark : palette.primaryDark,
+      floor: darkMode ? palette.dark : palette.light,
+      pointer: darkMode ? palette.secondary : palette.primary,
+      config: springConfig,
+    },
+    [darkMode, hovered],
+  );
+
+  // Springs for color and overall looks, this is state-driven animation
+  // React-spring is physics based and turns static props into animated values
+  const [springs] = useSpring(
+    {
+      wobble: down ? 0.95 : hovered ? 1.05 : 1,
+      coat: darkMode && !hovered ? 0.04 : 1,
+      env: darkMode && !hovered ? 0.4 : 1,
+      ambient: darkMode && !hovered ? 1.5 : 0.5,
+      config: (n) =>
+        n === 'wobble' && hovered && { mass: 2, tension: 1000, friction: 10 },
+    },
+    [darkMode, hovered, down],
+  );
+
   useEffect(() => {
     document.body.style.cursor = hovered
       ? 'none'
@@ -40,15 +80,13 @@ function LayoutProvider({ children }) {
   return (
     <LayoutContext.Provider
       value={{
-        down,
-        setDown,
-        darkMode,
-        setDarkMode,
+        loading,
+        finished,
         hovered,
-        setHovered,
         colors,
+        colorSprings,
         springs,
-        breakpoints,
+        down,
       }}
     >
       {children}

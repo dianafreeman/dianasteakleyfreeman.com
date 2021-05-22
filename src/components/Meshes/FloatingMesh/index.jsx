@@ -8,6 +8,7 @@ import { useDrag } from '@use-gesture/react';
 import Dosis from '@assets/fonts/3d/Dosis_Bold.json';
 
 import useTheme from '@hooks/useTheme';
+import useLayout from '@hooks/useLayout';
 
 const AnimatedMaterial = a(MeshDistortMaterial);
 
@@ -15,7 +16,8 @@ function FloatingMesh() {
   const mesh = useRef();
   const group = useRef();
 
-  const { springs, setHovered, setDarkMode, setDown, colors } = useTheme();
+  const { setDarkMode } = useTheme();
+  const { springs, setHovered, setDown, colors } = useLayout();
 
   const [font] = useState(new THREE.FontLoader().parse(Dosis));
   const textOptions = {
@@ -27,6 +29,13 @@ function FloatingMesh() {
     bevelThickness: 1,
     bevelSize: 0.2,
     bevelSegments: 12,
+  };
+
+  const modelColor = (isDarkMode) => {
+    if (isDarkMode) {
+      return hovered ? colors.secondary : theme.model;
+    }
+    return hovered ? colors.primary : theme.model;
   };
 
   const { wobble, env, coat } = springs;

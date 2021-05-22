@@ -1,4 +1,4 @@
-import React, { useRef, forwardRef, useEffect } from 'react';
+import React, { useRef, forwardRef, Suspense } from 'react';
 
 import { a } from '@react-spring/web';
 import { useSpring } from '@react-spring/core';
@@ -7,7 +7,9 @@ import { Html, useProgress } from '@react-three/drei';
 import ThemeProvider from '@context/ThemeProvider';
 import LayoutProvider from '@context/LayoutProvider';
 
+import useLayout from '@hooks/useLayout';
 import MainLoading from '../../components/MainLoading';
+import Scene from '../../components/Scene';
 import ScrollContainer from './ScrollContainer';
 import SEO from './SEO';
 
@@ -32,6 +34,19 @@ const ScrollArea = forwardRef(({ onScroll }, ref) => {
   );
 });
 
+const Wrapper = ({ children }) => {
+  const { colors } = useLayout();
+  return (
+    <a.main
+      style={{
+        background: colors.background,
+      }}
+    >
+      {children}
+    </a.main>
+  );
+};
+
 /**
  * Wraps all gatsby generated pages with common neesd
  * handles
@@ -44,6 +59,8 @@ const ScrollArea = forwardRef(({ onScroll }, ref) => {
  * @returns
  */
 function Main({ children, postNode, postPath, postSEO }) {
+  // Load and Fallback Handling
+
   // Scroll Handling
   const scrollRef = useRef();
   const scroll = useRef(0);
@@ -51,26 +68,19 @@ function Main({ children, postNode, postPath, postSEO }) {
     (scroll.current = (e.target.scrollTop / e.target.scrollHeight) * 2);
 
   // Callbacks
-
   const onCanvasCreated = (state) => state.events.connect(scrollRef.current);
+
   return (
     <ThemeProvider>
       <SEO postNode={postNode} postPath={postPath} postSEO={postSEO} />
       <LayoutProvider>
-        <a.main
-          style={{
-            background: colors.background,
-          }}
-        >
-          <MainLoading />
-          <Scene
-            canvasProps={{
-              onCreated: onCanvasCreated,
-            }}
-          >
-            <ScrollContainer>{children}</ScrollContainer>
-          </Scene>
-        </a.main>
+        <Wrapper>
+          <Suspense fallback={<MainLoading />}>
+            <Scene cameraProps={{ onCanvasCreated }}>
+              <ScrollContainer scroll={scroll}>{children}</ScrollContainer>
+            </Scene>
+          </Suspense>
+        </Wrapper>
         <ScrollArea ref={scrollRef} onScroll={onScroll} />
       </LayoutProvider>
     </ThemeProvider>
