@@ -2,7 +2,7 @@ import React, { useContext, useRef, useEffect } from 'react';
 import { PerspectiveCamera, ContactShadows } from '@react-three/drei';
 import { useFrame, useThree } from '@react-three/fiber';
 import { a } from '@react-spring/three';
-import useTheme from '../../hooks/useTheme';
+import useTheme from '@hooks/useTheme';
 
 const Lights = () => {
   const light = useRef();

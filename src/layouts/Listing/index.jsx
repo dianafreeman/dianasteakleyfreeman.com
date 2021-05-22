@@ -1,23 +1,21 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import PostListing from '../../components/PostListing';
+import PostListing from './PostListing';
 
-export default function CategoryPage({ pageContext, data }) {
-  const { category } = pageContext;
+export default function ListingPage({ pageContext, data }) {
   const postEdges = data.allMarkdownRemark.edges;
-  return <PostListing category={category} postEdges={postEdges} />;
+  return <PostListing pageContext={pageContext} postEdges={postEdges} />;
 }
 
 /* eslint no-undef: "off" */
-export const pageQuery = graphql`
-  query CategoryPage($category: String) {
+export const listingQuery = graphql`
+  query ListingQuery($skip: Int!, $limit: Int!) {
     allMarkdownRemark(
-      limit: 1000
       sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { category: { eq: $category } } }
+      limit: $limit
+      skip: $skip
     ) {
-      totalCount
       edges {
         node {
           fields {

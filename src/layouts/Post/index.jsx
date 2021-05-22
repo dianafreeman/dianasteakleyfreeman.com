@@ -2,9 +2,9 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby';
 
-import config from '@config/siteConfig';
+import config from '@config/siteMeta';
 
-import SEO from '../PageLayout/SEO';
+import SEO from '../Main/SEO';
 
 export default function PostTemplate({ data, pageContext }) {
   const { slug } = pageContext;
@@ -16,10 +16,6 @@ export default function PostTemplate({ data, pageContext }) {
 
   return (
     <>
-      <Helmet>
-        <title>{`${post.title} | ${config.siteTitle}`}</title>
-      </Helmet>
-      <SEO postPath={slug} postNode={post} postSEO />
       <div style={{ marginLeft: 30 }}>
         <h1>{post.title}</h1>
         <p>{slug}</p>

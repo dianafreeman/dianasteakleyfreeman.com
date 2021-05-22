@@ -1,6 +1,6 @@
 const urljoin = require('url-join');
 const path = require('path');
-const config = require('./src/config/siteConfig');
+const config = require('./src/config/siteMeta');
 
 // Make sure that pathPrefix is not empty
 const validatedPathPrefix = config.pathPrefix === '' ? '/' : config.pathPrefix;
@@ -21,11 +21,12 @@ module.exports = {
   plugins: [
     'gatsby-transformer-remark',
     'gatsby-plugin-sass',
+    'gatsby-plugin-styled-components',
     'gatsby-plugin-react-helmet',
     {
       resolve: `gatsby-plugin-layout`,
       options: {
-        component: require.resolve(`./src/templates/PageLayout/index.jsx`),
+        component: require.resolve(`./src/layouts/Main/index.jsx`),
       },
     },
 
@@ -50,7 +51,7 @@ module.exports = {
       },
     },
     `gatsby-plugin-sitemap`,
-    `gatsby-plugin-nprogress`,
+    // `gatsby-plugin-nprogress`,
     {
       resolve: `gatsby-plugin-google-gtag`,
       options: {
@@ -67,7 +68,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-netlify-cms',
       options: {
-        modulePath: path.resolve('src/templates/NetlifyCms/index.js'), // default: undefined
+        modulePath: path.resolve('src/layouts/Admin/index.js'), // default: undefined
         enableIdentityWidget: true,
         publicPath: 'admin',
         htmlTitle: 'Content Manager',

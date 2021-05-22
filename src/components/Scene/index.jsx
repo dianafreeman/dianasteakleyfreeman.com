@@ -2,53 +2,42 @@ import * as THREE from 'three';
 import React, { Suspense, useContext, useEffect, useRef } from 'react';
 import {
   Environment,
-  OrbitControls,
+  useContextBridge,
   ContactShadows,
   Html,
   Center,
 } from '@react-three/drei';
-import { useThree, useFrame } from '@react-three/fiber';
+import { useThree, useFrame, Canvas } from '@react-three/fiber';
 import ThemeContext from '@context/ThemeContext';
-import Canvas from '../Canvas';
+import LayoutContext from '@context/LayoutContext';
+
 import Lights from './Lights';
 
-function ScrollContainer({ scroll, children }) {
-  const { viewport } = useThree();
-  const group = useRef();
-  const vec = new THREE.Vector3();
-  useFrame(() =>
-    group.current.position.lerp(
-      vec.set(0, viewport.height * scroll.current, 0),
-      0.1,
-    ),
+function Stage({ children, ...rest }) {
+  return (
+    <group {...rest}>
+      {children}
+      <Lights />
+      <Environment preset="warehouse" />
+    </group>
   );
-
-  return <group ref={group}>{children}</group>;
 }
 
-function Scene({ children }) {
-  const scrollRef = useRef();
-  const scroll = useRef(0);
-  const doScroll = (e) =>
-    (scroll.current = e.target.scrollTop / e.target.scrollHeight);
+function Scene({ children, canvasProps, ...rest }) {
+  const ContextBridge = useContextBridge(ThemeContext, LayoutContext);
 
   return (
-    <Suspense
-      fallback={
-        <div>
-          <h1>Loading...</h1>
-        </div>
-      }
+    <Canvas
+      concurrent
+      colorManagement
+      shadowMap
+      camera={{ position: [0, 5, 40], zoom: 1 }}
+      {...canvasProps}
     >
-      <Canvas
-        colorManagement
-        shadowMap
-        camera={{ position: [0, 10, 15], zoom: 1.5 }}
-      >
-        <Lights />
-        {children}
-      </Canvas>
-    </Suspense>
+      <ContextBridge>
+        <Stage children={children} {...rest} />
+      </ContextBridge>
+    </Canvas>
   );
 }
 export default Scene;

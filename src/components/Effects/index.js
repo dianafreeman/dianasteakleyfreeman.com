@@ -12,12 +12,14 @@ function Effects({ children }) {
   const { darkMode } = useTheme();
   return (
     <EffectComposer>
-      <Bloom
-        attachArray="passes"
-        threshold={0}
-        strength={darkMode ? 0.5 : 0}
-        args={[undefined, 1.6, 1, 0.9]}
-      />
+      {/* {darkMode ? (
+        <Bloom
+          attachArray="passes"
+          threshold={0}
+          strength={darkMode ? 0.5 : 0}
+          args={[undefined, 1.6, 1, 0.9]}
+        />
+      ) : null} */}
       {children}
     </EffectComposer>
   );

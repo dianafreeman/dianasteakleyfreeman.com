@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby';
-import config from '@config/siteConfig';
+import config from '@config/siteMeta';
 import Scene from '../../components/Scene';
 
 export default function TagTemplate({ pageContext, data }) {
