@@ -10,34 +10,48 @@ import {
 import { useThree, useFrame, Canvas } from '@react-three/fiber';
 import ThemeContext from '@context/ThemeContext';
 import LayoutContext from '@context/LayoutContext';
-
+import useTheme from '@hooks/useTheme';
+import useLayout from '@hooks/useLayout';
 import Lights from './Lights';
 
 function Stage({ children, ...rest }) {
+  const { colors } = useTheme();
+  // const { colorSprings } = useLayout();
+  useFrame(({ scene }) => {
+    {
+      const near = 40;
+      const far = 75;
+      const color = colors.background; //colors.background || 'lightblue';
+      scene.fog = new THREE.Fog(color, near, far);
+    }
+  });
   return (
     <group {...rest}>
-      {children}
       <Lights />
       <Environment preset="warehouse" />
+      {children}
     </group>
   );
 }
 
-function Scene({ children, canvasProps, ...rest }) {
+function Scene({ children, canvasProps, cameraProps, ...rest }) {
   const ContextBridge = useContextBridge(ThemeContext, LayoutContext);
 
   return (
-    <Canvas
-      concurrent
-      colorManagement
-      shadowMap
-      camera={{ position: [0, 5, 40], zoom: 1 }}
-      {...canvasProps}
-    >
-      <ContextBridge>
-        <Stage children={children} {...rest} />
-      </ContextBridge>
-    </Canvas>
+    <Suspense fallback={null}>
+      <Canvas
+        concurrent
+        colorManagement
+        shadowMap
+        camera={cameraProps}
+        {...canvasProps}
+        {...rest}
+      >
+        <ContextBridge>
+          <Stage children={children} />
+        </ContextBridge>
+      </Canvas>
+    </Suspense>
   );
 }
 export default Scene;

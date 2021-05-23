@@ -8,6 +8,7 @@ import ThemeProvider from '@context/ThemeProvider';
 import LayoutProvider from '@context/LayoutProvider';
 
 import useLayout from '@hooks/useLayout';
+import useTheme from '@hooks/useTheme';
 import MainLoading from '../../components/MainLoading';
 import Scene from '../../components/Scene';
 import ScrollContainer from './ScrollContainer';
@@ -35,7 +36,7 @@ const ScrollArea = forwardRef(({ onScroll }, ref) => {
 });
 
 const Wrapper = ({ children }) => {
-  const { colors } = useLayout();
+  const { colors } = useTheme();
   return (
     <a.main
       style={{
@@ -76,7 +77,10 @@ function Main({ children, postNode, postPath, postSEO }) {
       <LayoutProvider>
         <Wrapper>
           <Suspense fallback={<MainLoading />}>
-            <Scene cameraProps={{ onCanvasCreated }}>
+            <Scene
+              cameraProps={{ position: [0, 5, 30], zoom: 1 }}
+              canvasProps={{ onCreated: onCanvasCreated }}
+            >
               <ScrollContainer scroll={scroll}>{children}</ScrollContainer>
             </Scene>
           </Suspense>

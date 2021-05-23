@@ -4,10 +4,14 @@ import { a } from '@react-spring/web';
 import { useSpring } from '@react-spring/core';
 
 import useTheme from '@hooks/useTheme';
-import MainLoading from '../components/MainLoading';
 
 import LayoutContext from './LayoutContext';
 
+const SLIDES = [
+  {
+    camera: { position: [0, 0, 10] },
+  },
+];
 /**
  *This can consume the theme!
  *
@@ -15,31 +19,33 @@ import LayoutContext from './LayoutContext';
  * @returns
  */
 function LayoutProvider({ children }) {
-  const { darkMode, palette, springConfig } = useTheme();
+  const { darkMode, palette, springConfig, colors } = useTheme();
+
+  // POST LOADING STATE
+  // camera y = 0
+  // camera z = -2
 
   // Has Page Loaded?
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   // is the initial animation done?
-  const [finished, setFinished] = useState();
+  const [finished, setFinished] = useState(false);
 
   // Is this the index Page?
+  const [cameraSprings] = useSpring(
+    {
+      positionZ: 50,
+      positionY: finished ? 5 : 0,
+      config: springConfig,
+    },
+    [finished],
+  );
 
   // ThreeJS Model Hover State
   const [hovered, setHovered] = useState(false);
 
   // ThreeJS Model PointerDown State
   const [down, setDown] = useState(false);
-
-  // Color
-  const [colors] = useState({
-    background: darkMode ? palette.black : palette.white,
-    text: darkMode ? palette.light : palette.dark,
-    pointerLight: darkMode ? palette.secondaryLight : palette.primaryLight,
-    model: darkMode ? palette.secondaryDark : palette.primaryDark,
-    floor: darkMode ? palette.dark : palette.light,
-    pointer: darkMode ? palette.secondary : palette.primary,
-  });
 
   // Color Springs
   const [colorSprings] = useSpring(
@@ -80,13 +86,19 @@ function LayoutProvider({ children }) {
   return (
     <LayoutContext.Provider
       value={{
-        loading,
+        cameraSprings,
+        colorSprings,
+        down,
+        down,
         finished,
         hovered,
-        colors,
-        colorSprings,
+        hovered,
+        loading,
+        setDown,
+        setFinished,
+        setHovered,
+        setLoading,
         springs,
-        down,
       }}
     >
       {children}

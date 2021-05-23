@@ -16,8 +16,8 @@ function FloatingMesh() {
   const mesh = useRef();
   const group = useRef();
 
-  const { setDarkMode } = useTheme();
-  const { springs, setHovered, setDown, colors } = useLayout();
+  const { setDarkMode, colors } = useTheme();
+  const { springs, setHovered, setDown, colorSprings } = useLayout();
 
   const [font] = useState(new THREE.FontLoader().parse(Dosis));
   const textOptions = {
@@ -31,14 +31,8 @@ function FloatingMesh() {
     bevelSegments: 12,
   };
 
-  const modelColor = (isDarkMode) => {
-    if (isDarkMode) {
-      return hovered ? colors.secondary : theme.model;
-    }
-    return hovered ? colors.primary : theme.model;
-  };
-
   const { wobble, env, coat } = springs;
+
   useFrame(({ clock }) => {
     group.current.rotation.y = Math.sin(clock.elapsedTime);
     mesh.current.geometry.center();
@@ -60,7 +54,7 @@ function FloatingMesh() {
         <textBufferGeometry attach="geometry" args={['D', textOptions]} />
         <AnimatedMaterial
           attach="material"
-          color={colors.model}
+          color={colorSprings.model}
           envMapIntensity={env}
           clearcoat={coat}
           clearcoatRoughness={0}

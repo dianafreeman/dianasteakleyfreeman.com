@@ -20,7 +20,7 @@ function Floor({ position }) {
         height={30}
         near={0.1}
         blur={2} // Amount of blur (default=1)
-        far={10} // Focal distance (default=10)
+        far={40} // Focal distance (default=10)
         resolution={256} // Rendertarget resolution (default=256)
       />
       <Plane

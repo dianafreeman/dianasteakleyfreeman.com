@@ -23,6 +23,8 @@ const TitleText = ({ text = "Hi! I'm Diana", ...props }) => {
 
   const fontSize = scaledWidth < 5 ? 5 : scaledWidth;
 
+  // useFrame(() => mesh.current.geometry.center());
+  // useEffect(() => void mesh.current.geometry.translate(1, 0, 0), []); // .geometry.center(), [mesh.current]);
   return (
     <AniText
       ref={mesh}

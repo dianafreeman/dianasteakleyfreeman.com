@@ -32,13 +32,24 @@ function ThemeProvider({ children }) {
   const springConfig = (n) =>
     n === 'wobble' && hovered && { mass: 2, tension: 1000, friction: 5 };
 
+  // Color
+  const [colors] = useState({
+    background: darkMode ? palette.black : palette.white,
+    text: darkMode ? palette.light : palette.dark,
+    pointerLight: darkMode ? palette.secondaryLight : palette.primaryLight,
+    model: darkMode ? palette.secondaryDark : palette.primaryDark,
+    floor: darkMode ? palette.dark : palette.light,
+    pointer: darkMode ? palette.secondary : palette.primary,
+  });
+
   return (
     <ThemeContext.Provider
       value={{
         setDarkMode,
-        darkMode,
         springConfig,
+        darkMode,
         palette,
+        colors,
         breakpoints,
       }}
     >

@@ -1,5 +1,5 @@
-import 'react-typed/dist/animatedCursor.css';
-import React, { useState, useRef } from 'react';
+// import 'react-typed/dist/animatedCursor.css';
+import React, { useState, useRef, useEffect } from 'react';
 import Typed from 'react-typed';
 import styled, { css } from 'styled-components';
 import { Html, useProgress } from '@react-three/drei';
@@ -27,16 +27,17 @@ const ProgressBar = styled.div`
 const H1 = styled.h1`
   color: white;
   fontfamily: 'Poppins', sans-serif;
-  font-weight: 900;
-  font-size: 90px;
+  font-weight: 800;
+  font-size: 80px;
   text-align: left;
   min-width: 50vw;
 `;
 
 const FlexWrapper = styled.div`
-  zindex: 999;
-  background-color: black;
+  z-index: ${({ finished }) => (finished ? 0 : 999)};
+  background-color: ${(props) => props.bg || 'black'};
   position: absolute;
+  overflow: hidden;
   top: 0;
   left: 0;
   height: 100vh;
@@ -47,19 +48,23 @@ const FlexWrapper = styled.div`
 `;
 
 export default function MainLoading() {
-  const [isLoaded, setLoaded] = useState(false);
-  const [finished, setFinished] = useState(false);
-
   const typeRef = useRef();
-  // const { colors } = useLayout();
 
+  const { finished, setFinished } = useLayout();
   const { progress } = useProgress();
 
+  const onTypingComplete = () => setFinished(true);
+
   return (
-    <FlexWrapper>
+    <FlexWrapper finished={finished}>
       <div>
         <H1>
-          <Typed ref={typeRef} strings={[PHRASE]} typeSpeed={80} />
+          <Typed
+            ref={typeRef}
+            strings={['Loading...']}
+            typeSpeed={80}
+            onComplete={onTypingComplete}
+          />
         </H1>
         <ProgressBar bg="gray" percent={progress} />
       </div>
