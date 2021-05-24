@@ -1,40 +1,57 @@
-import * as THREE from 'three';
-import React, { Suspense, useContext, useEffect, useRef } from 'react';
+import React, { Suspense } from 'react';
+import { useThree, Canvas } from '@react-three/fiber';
 import {
   Environment,
   useContextBridge,
   ContactShadows,
-  Html,
-  Center,
 } from '@react-three/drei';
-import { useThree, useFrame, Canvas } from '@react-three/fiber';
+import { Flex, Box } from '@react-three/flex';
+
 import ThemeContext from '@context/ThemeContext';
 import LayoutContext from '@context/LayoutContext';
-import useTheme from '@hooks/useTheme';
-import useLayout from '@hooks/useLayout';
+
+import FloatingMesh from '../Meshes/FloatingMesh';
+import Loading from '../Loading';
 import Lights from './Lights';
 
 function Stage({ children, ...rest }) {
-  const { colors } = useTheme();
-  // const { colorSprings } = useLayout();
-  useFrame(({ scene }) => {
-    {
-      const near = 40;
-      const far = 75;
-      const color = colors.background; //colors.background || 'lightblue';
-      scene.fog = new THREE.Fog(color, near, far);
-    }
-  });
+  const { viewport } = useThree();
+
+  const flexWidth = viewport.width * 0.2;
+  const flexHeight = viewport.height * 0.2;
+
   return (
     <group {...rest}>
       <Lights />
+      <Flex
+        position={[0, 0, 0]}
+        justifyContent="center"
+        flexDirection="column"
+        size={[flexWidth, flexHeight, 0]}
+      >
+        <Box my={2}>
+          <FloatingMesh />
+        </Box>
+        <Box>
+          <ContactShadows
+            rotation-x={Math.PI / 2}
+            opacity={0.75}
+            position={[0, 0, 0]}
+            width={30}
+            height={30}
+            near={0.1}
+            blur={3} // Amount of blur (default=1)
+            far={40} // Focal distance (default=10)
+            resolution={256} // Rendertarget resolution (default=256)
+          />
+        </Box>
+      </Flex>
       <Environment preset="warehouse" />
-      {children}
     </group>
   );
 }
 
-function Scene({ children, canvasProps, cameraProps, ...rest }) {
+function Scene({ canvasProps, cameraProps, ...rest }) {
   const ContextBridge = useContextBridge(ThemeContext, LayoutContext);
 
   return (
@@ -48,7 +65,7 @@ function Scene({ children, canvasProps, cameraProps, ...rest }) {
         {...rest}
       >
         <ContextBridge>
-          <Stage children={children} />
+          <Stage />
         </ContextBridge>
       </Canvas>
     </Suspense>

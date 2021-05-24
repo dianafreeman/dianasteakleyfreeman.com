@@ -2,14 +2,14 @@ const config = {
   siteTitle: 'Diana M Steakley-Freeman', // Site title.
   siteTitleShort: 'DSF.com', // Short site title for homescreen (PWA). Preferably should be under 12 characters to prevent truncation.
   siteTitleAlt:
-    'Digital Policy Buff, User Rights Enthusiast. Former Scientist, Forever Experimenting', // Alternative site title for SEO.
+    'Software Engineer, Digital Policy Buff, User Rights Enthusiast. Former Scientist, Forever Experimenting', // Alternative site title for SEO.
   siteLogo: '/logos/screenshot.jpg', // Logo used for SEO and manifest.
   siteUrl: 'https://dianasteakleyfreeman.com', // Domain of your website without pathPrefix.
   pathPrefix: '/', // Prefixes all links. For cases when deployed to example.github.io/gatsby-advanced-starter/.
   siteDescription:
     "Coder, Creator, Communicator | Digital Policy Buff, User Rights Enthusiast | Former Scientist, Forever Experimenting.  I'm Diana, and this is my corner of the internet.", // Website description used for RSS feeds/meta description tag.
   siteRss: '/rss.xml', // Path to the RSS file.
-  siteRssTitle: 'Diana Steakley-Freeman | RSS feed', // Title of the RSS feed
+  siteRssTitle: 'Diana M Steakley-Freeman | RSS feed', // Title of the RSS feed
   // siteFBAppID: '1825356251115265', // FB Application ID for using app insights
   googleAnalyticsID: 'UA-134220362-1', // GA tracking ID.
   dateFromFormat: 'YYYY-MM-DD', // Date format used in the frontmatter.
@@ -26,20 +26,17 @@ const config = {
     {
       label: 'GitHub',
       url: 'https://github.com/dianafreeman',
-      iconClassName: 'fa fa-github',
     },
     {
       label: 'Twitter',
       url: 'https://twitter.com/dianasfreeman',
-      iconClassName: 'fa fa-twitter',
     },
     {
       label: 'Email',
       url: 'mailto:diana@dianasteakleyfreeman.com',
-      iconClassName: 'fa fa-envelope',
     },
   ],
-  copyright: 'Copyright © 2020. Diana M Steakley-Freeman', // Copyright string for the footer of the website and RSS feed.
+  copyright: 'Copyright © 2021. Diana M Steakley-Freeman', // Copyright string for the footer of the website and RSS feed.
   themeColor: '#8ab2fb', // Used for setting manifest and progress theme colors.
   backgroundColor: '#e0e0e0', // Used for setting manifest background color.
 };

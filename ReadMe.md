@@ -23,17 +23,17 @@
 
 ### 🏠 [Homepage](https://dianasteakleyfreeman.com)
 
-## Description
+# Description
 
-At its core, this is a static site generator that creates a React App that renders a 3D scene in a WebGL canvas.
+At its core, this is a static site generator that creates a React App that renders static content, and a 3D scene with a WebGL canvas.
 
-## Scripts
+## Local Development
 
 ```sh
  # install dependencies
 yarn install
 
-# starts gatsby. This is required for netlify to work
+# starts gatsby. This has to be listed in the package.json for `yarn dev` to work
 # (known issue: https://github.com/netlify/cli/issues/1292)
 yarn start
 
@@ -51,43 +51,28 @@ yarn test-e2e ## TODO
 
 This project is hosted as a static site via Netlify. Netlify auto-deploys the `main` branch.
 
-# TODO
-
-- [x] configure github actions
-- [x] linting with prettier and eslint
-- [x] under construction page deployed with proper headers
-
 # Tests
 
-## Platforms & Tooling
+## Ecosystem
+
+### Application
 
 - GatsbyJS
-- [React Spring](https://github.com/drcmda/react-spring)
+- Netify & Netlify CMS
+- React Three Fiber & Helpers (Drei, Postprocessing, Flex)
 - React Spring
+- Styled Components
 - Cypress.io
-- Netlfiy
 
-## Project Structure
+### Tooling
 
-### Configuration Targets
-
-- Development
-
-  - Storybook
-  - Code Coverage
-  - Babel & Babel Plugins
-  - Post CSS
-
-- Testing
-
-  - Jest Config: `./jest.config.js`
-  - Code Coverage
-  - Cypress
-
-- Build: `src/pages/index.jsx`
-  - `./gatsby-config.js`
-  - page configurations for production build:
-    `./gatsby-node.js`
+- Github Actions
+- Prettier ESlint
+- Cypress Integration Testing
+- Jest Unit Testing
+- Google Analytics
+- Web Vitals
+- Lighthouse
 
 ## Author
 

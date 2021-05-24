@@ -12,17 +12,21 @@ import useLayout from '@hooks/useLayout';
 
 const AnimatedMaterial = a(MeshDistortMaterial);
 
-function FloatingMesh() {
+function FloatingMesh(props) {
   const mesh = useRef();
   const group = useRef();
 
   const { setDarkMode, colors } = useTheme();
   const { springs, setHovered, setDown, colorSprings } = useLayout();
 
+  const { size: canvasSize } = useThree();
+
   const [font] = useState(new THREE.FontLoader().parse(Dosis));
+
+  const size = 10 + canvasSize.width * 0.01;
   const textOptions = {
     font,
-    size: 20,
+    size,
     height: 4,
     curveSegments: 40,
     bevelEnabled: true,
@@ -39,7 +43,7 @@ function FloatingMesh() {
   });
 
   return (
-    <a.group ref={group}>
+    <a.group ref={group} {...props}>
       <a.mesh
         ref={mesh}
         scale={wobble}

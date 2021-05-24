@@ -21,10 +21,6 @@ const SLIDES = [
 function LayoutProvider({ children }) {
   const { darkMode, palette, springConfig, colors } = useTheme();
 
-  // POST LOADING STATE
-  // camera y = 0
-  // camera z = -2
-
   // Has Page Loaded?
   const [loading, setLoading] = useState(true);
 
@@ -52,7 +48,7 @@ function LayoutProvider({ children }) {
     {
       background: darkMode ? palette.black : palette.white,
       text: darkMode ? palette.light : palette.dark,
-      pointerLight: darkMode ? palette.secondaryLight : palette.primaryLight,
+      pointerLight: darkMode ? palette.white : palette.primaryLight,
       model: darkMode ? palette.secondaryDark : palette.primaryDark,
       floor: darkMode ? palette.dark : palette.light,
       pointer: darkMode ? palette.secondary : palette.primary,
@@ -65,12 +61,12 @@ function LayoutProvider({ children }) {
   // React-spring is physics based and turns static props into animated values
   const [springs] = useSpring(
     {
-      wobble: down ? 0.95 : hovered ? 1.05 : 1,
+      wobble: hovered ? 1.05 : 1,
       coat: darkMode && !hovered ? 0.04 : 1,
       env: darkMode && !hovered ? 0.4 : 1,
       ambient: darkMode && !hovered ? 1.5 : 0.5,
       config: (n) =>
-        n === 'wobble' && hovered && { mass: 2, tension: 1000, friction: 10 },
+        n === 'wobble' && hovered && { mass: 2, tension: 1000, friction: 30 },
     },
     [darkMode, hovered, down],
   );
@@ -89,9 +85,7 @@ function LayoutProvider({ children }) {
         cameraSprings,
         colorSprings,
         down,
-        down,
         finished,
-        hovered,
         hovered,
         loading,
         setDown,

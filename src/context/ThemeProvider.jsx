@@ -5,7 +5,7 @@ import ThemeContext from '@context/ThemeContext';
 
 function ThemeProvider({ children }) {
   // Global DarkMode State
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
 
   const [breakpoints] = useState({
     sm: 576,
@@ -30,7 +30,7 @@ function ThemeProvider({ children }) {
   };
 
   const springConfig = (n) =>
-    n === 'wobble' && hovered && { mass: 2, tension: 1000, friction: 5 };
+    n === 'wobble' && hovered && { mass: 2, tension: 1000, friction: 20 };
 
   // Color
   const [colors] = useState({

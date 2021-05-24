@@ -47,7 +47,7 @@ const FlexWrapper = styled.div`
   align-items: center;
 `;
 
-export default function MainLoading() {
+export default function Loading() {
   const typeRef = useRef();
 
   const { finished, setFinished } = useLayout();

@@ -2,90 +2,102 @@ import React, { useRef, forwardRef, Suspense } from 'react';
 
 import { a } from '@react-spring/web';
 import { useSpring } from '@react-spring/core';
-import { Html, useProgress } from '@react-three/drei';
+import styled, { createGlobalStyle } from 'styled-components';
 
 import ThemeProvider from '@context/ThemeProvider';
 import LayoutProvider from '@context/LayoutProvider';
 
-import useLayout from '@hooks/useLayout';
 import useTheme from '@hooks/useTheme';
-import MainLoading from '../../components/MainLoading';
-import Scene from '../../components/Scene';
-import ScrollContainer from './ScrollContainer';
+import useLayout from '@hooks/useLayout';
+import { Helmet } from 'react-helmet';
 import SEO from './SEO';
+import Navigation from '../../components/Navigation';
+import Scene from '../../components/Scene';
 
-import 'layout.scss';
+const GlobalStyle = createGlobalStyle`
+  html {
+    padding: unset;
+    margin: unset;
+  }
 
-const ScrollArea = forwardRef(({ onScroll }, ref) => {
-  return (
-    <div
-      ref={ref}
-      onScroll={onScroll}
-      style={{
-        position: 'absolute',
-        width: '100vw',
-        height: '100vh',
-        overflowY: 'auto',
-        top: 0,
-        left: 0,
-      }}
-    >
-      <div style={{ height: `200vh`, pointerEvents: 'none' }}></div>
-    </div>
-  );
-});
+  h1,h2,h3,h4,h5,h6 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+  }
+
+  body {
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 300;
+    padding: unset;
+    margin: unset;
+    font-size: 21px;
+    height: 100vh;
+    overflow: none;
+
+  }
+`;
+const AniMain = styled(a.main)`
+  margin: unset;
+  padding-right: 10vw;
+  padding-left: 10vw;
+  z-index: -2;
+`;
 
 const Wrapper = ({ children }) => {
-  const { colors } = useTheme();
+  const { colorSprings } = useLayout();
+
   return (
-    <a.main
-      style={{
-        background: colors.background,
-      }}
-    >
+    <AniMain style={{ backgroundColor: colorSprings.background }}>
+      <Navigation />
+      <GlobalStyle />
       {children}
-    </a.main>
+    </AniMain>
   );
 };
 
+const SceneWrapper = styled.div`
+  z-index: 0;
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  @media screen and (min-width: 568px) {
+    width: 50%;
+    left: unset;
+    right: 0;
+  }
+  @media screen and (min-width: 768px) {
+    padding-right: 5vw;
+  }
+`;
+
 /**
- * Wraps all gatsby generated pages with common neesd
+ * Wraps all gatsby generated pages with common needs
  * handles
- *  scrolling,
- *  SEO,
- *  loading state,
- *  & ThreeJS Scene Setup
  *
  * @param {*} { children, postNode, postPath, postSEO }
  * @returns
  */
+
 function Main({ children, postNode, postPath, postSEO }) {
-  // Load and Fallback Handling
-
-  // Scroll Handling
-  const scrollRef = useRef();
-  const scroll = useRef(0);
-  const onScroll = (e) =>
-    (scroll.current = (e.target.scrollTop / e.target.scrollHeight) * 2);
-
-  // Callbacks
-  const onCanvasCreated = (state) => state.events.connect(scrollRef.current);
-
   return (
     <ThemeProvider>
-      <SEO postNode={postNode} postPath={postPath} postSEO={postSEO} />
       <LayoutProvider>
+        <SEO postNode={postNode} postPath={postPath} postSEO={postSEO} />
+        <Helmet>
+          <link rel="preconnect" href="https://fonts.gstatic.com" />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&#038;family=Roboto:wght@900&#038;display=swap"
+            rel="stylesheet"
+          />
+        </Helmet>
         <Wrapper>
-          <Suspense fallback={<MainLoading />}>
-            <Scene
-              cameraProps={{ position: [0, 5, 30], zoom: 1 }}
-              canvasProps={{ onCreated: onCanvasCreated }}
-            >
-              <ScrollContainer scroll={scroll}>{children}</ScrollContainer>
-            </Scene>
-          </Suspense>
+          {children}
+          <SceneWrapper>
+            <Scene cameraProps={{ position: [0, 5, 30], zoom: 1 }} />
+          </SceneWrapper>
         </Wrapper>
-        <ScrollArea ref={scrollRef} onScroll={onScroll} />
       </LayoutProvider>
     </ThemeProvider>
   );
