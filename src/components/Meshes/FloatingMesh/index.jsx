@@ -52,7 +52,8 @@ function FloatingMesh(props) {
         onPointerDown={() => setDown(true)}
         onPointerUp={() => {
           setDown(false);
-          setDarkMode((isDark) => !isDark);
+          // TODO: reenable when background animation is NOT coming from `main`
+          // setDarkMode((isDark) => !isDark);
         }}
       >
         <textBufferGeometry attach="geometry" args={['D', textOptions]} />

@@ -6,6 +6,7 @@ import { useSpring } from '@react-spring/core';
 import useTheme from '@hooks/useTheme';
 
 import LayoutContext from './LayoutContext';
+import { Helmet } from 'react-helmet';
 
 const SLIDES = [
   {
@@ -62,9 +63,12 @@ function LayoutProvider({ children }) {
   const [springs] = useSpring(
     {
       wobble: hovered ? 1.05 : 1,
-      coat: darkMode && !hovered ? 0.04 : 1,
-      env: darkMode && !hovered ? 0.4 : 1,
-      ambient: darkMode && !hovered ? 1.5 : 0.5,
+      coat: 1,
+      env: 1,
+      ambient: 0.5,
+      // coat: darkMode && !hovered ? 0.04 : 1,
+      // env: darkMode && !hovered ? 0.4 : 1,
+      // ambient: darkMode && !hovered ? 1.5 : 0.5,
       config: (n) =>
         n === 'wobble' && hovered && { mass: 2, tension: 1000, friction: 30 },
     },

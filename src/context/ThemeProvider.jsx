@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { useSpring } from '@react-spring/core';
-
+import { ThemeProvider as StyledThemeProvider } from 'styled-components';
 import ThemeContext from '@context/ThemeContext';
 
 function ThemeProvider({ children }) {
@@ -42,6 +41,22 @@ function ThemeProvider({ children }) {
     pointer: darkMode ? palette.secondary : palette.primary,
   });
 
+  const [spacing] = useState({
+    sm: '1rem',
+    md: '1.5rem',
+    lg: '2.75rem',
+    xl: '3rem',
+    responsive: {
+      sm: 'calc(0.5rem * 2vw)',
+    },
+  });
+
+  const theme = {
+    palette,
+    colors,
+    spacing,
+  };
+
   return (
     <ThemeContext.Provider
       value={{
@@ -53,7 +68,7 @@ function ThemeProvider({ children }) {
         breakpoints,
       }}
     >
-      {children}
+      <StyledThemeProvider theme={theme}>{children}</StyledThemeProvider>
     </ThemeContext.Provider>
   );
 }

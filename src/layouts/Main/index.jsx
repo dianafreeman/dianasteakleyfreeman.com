@@ -7,12 +7,9 @@ import styled, { createGlobalStyle } from 'styled-components';
 import ThemeProvider from '@context/ThemeProvider';
 import LayoutProvider from '@context/LayoutProvider';
 
-import useTheme from '@hooks/useTheme';
-import useLayout from '@hooks/useLayout';
 import { Helmet } from 'react-helmet';
 import SEO from './SEO';
 import Navigation from '../../components/Navigation';
-import Scene from '../../components/Scene';
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -36,41 +33,6 @@ const GlobalStyle = createGlobalStyle`
 
   }
 `;
-const AniMain = styled(a.main)`
-  margin: unset;
-  padding-right: 10vw;
-  padding-left: 10vw;
-  z-index: -2;
-`;
-
-const Wrapper = ({ children }) => {
-  const { colorSprings } = useLayout();
-
-  return (
-    <AniMain style={{ backgroundColor: colorSprings.background }}>
-      <Navigation />
-      <GlobalStyle />
-      {children}
-    </AniMain>
-  );
-};
-
-const SceneWrapper = styled.div`
-  z-index: 0;
-  width: 100%;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  @media screen and (min-width: 568px) {
-    width: 50%;
-    left: unset;
-    right: 0;
-  }
-  @media screen and (min-width: 768px) {
-    padding-right: 5vw;
-  }
-`;
 
 /**
  * Wraps all gatsby generated pages with common needs
@@ -92,12 +54,9 @@ function Main({ children, postNode, postPath, postSEO }) {
             rel="stylesheet"
           />
         </Helmet>
-        <Wrapper>
-          {children}
-          <SceneWrapper>
-            <Scene cameraProps={{ position: [0, 5, 30], zoom: 1 }} />
-          </SceneWrapper>
-        </Wrapper>
+        <GlobalStyle />
+        <Navigation />
+        {children}
       </LayoutProvider>
     </ThemeProvider>
   );
