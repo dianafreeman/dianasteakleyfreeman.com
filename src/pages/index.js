@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { a } from '@react-spring/web';
+import { Loader } from '@react-three/drei';
 
 import useLayout from '@hooks/useLayout';
 import Scene from '../components/Scene';
@@ -64,8 +65,7 @@ const Sub2 = styled(a.p)`
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.md}px) {
     text-align: left;
   }
-
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.lg}px) {
     padding-bottom: unset;
     padding-right: 5vw;
     font-size: calc(1.5rem + 0.5vw);
@@ -123,35 +123,40 @@ function Index() {
   const { colorSprings } = useLayout();
 
   return (
-    <FlexContainer>
-      <Section>
-        <FlexColumn>
-          <FlexBox justify="flex-start" justifyMd="center" order={1}>
-            <Display1 style={{ color: colorSprings.text }}>I'm Diana.</Display1>
-            <Sub2 style={{ color: colorSprings.text }}>
-              Coder, Creator, Communicator.
-            </Sub2>
-          </FlexBox>
-          <FlexBox order={2}>
-            <HorizBorder />
-            <a.p style={{ color: colorSprings.text }}>
-              There's more coming to this site soon.
-            </a.p>
-            <Button
-              style={{
-                backgroundColor: colorSprings.text,
-                color: colorSprings.background,
-              }}
-            >
-              Open in Github
-            </Button>
-            <HorizBorder />
-            <SocialLinks />
-          </FlexBox>
-          <RenderableScene />
-        </FlexColumn>
-      </Section>
-    </FlexContainer>
+    <>
+      <FlexContainer>
+        <Section>
+          <FlexColumn>
+            <FlexBox justify="flex-start" justifyMd="center" order={1}>
+              <Display1 style={{ color: colorSprings.text }}>
+                I'm Diana.
+              </Display1>
+              <Sub2 style={{ color: colorSprings.text }}>
+                Coder, Creator, Communicator.
+              </Sub2>
+            </FlexBox>
+            <FlexBox order={2}>
+              <HorizBorder />
+              <a.p style={{ color: colorSprings.text }}>
+                There's more coming to this site soon.
+              </a.p>
+              <Button
+                style={{
+                  backgroundColor: colorSprings.text,
+                  color: colorSprings.background,
+                }}
+              >
+                Open in Github
+              </Button>
+              <HorizBorder />
+              <SocialLinks />
+            </FlexBox>
+            <RenderableScene />
+          </FlexColumn>
+        </Section>
+      </FlexContainer>
+      <Loader />
+    </>
   );
 }
 
