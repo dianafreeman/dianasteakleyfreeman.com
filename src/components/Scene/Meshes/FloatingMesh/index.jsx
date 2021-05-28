@@ -12,11 +12,10 @@ import useLayout from '@project/hooks/useLayout';
 
 const AnimatedMaterial = a(MeshDistortMaterial);
 
-function FloatingMesh(props) {
+function FloatingMesh({ string, props }) {
   const mesh = useRef();
   const group = useRef();
 
-  const { setDarkMode, colors } = useTheme();
   const { springs, setHovered, setDown, colorSprings } = useLayout();
 
   const { size: canvasSize } = useThree();
@@ -56,7 +55,7 @@ function FloatingMesh(props) {
           // setDarkMode((isDark) => !isDark);
         }}
       >
-        <textBufferGeometry attach="geometry" args={['D', textOptions]} />
+        <textBufferGeometry attach="geometry" args={[string, textOptions]} />
         <AnimatedMaterial
           attach="material"
           color={colorSprings.model}

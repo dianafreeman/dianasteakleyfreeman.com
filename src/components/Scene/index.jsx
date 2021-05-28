@@ -13,7 +13,7 @@ import LayoutContext from '@project/context/LayoutContext';
 import FloatingMesh from './Meshes/FloatingMesh';
 import Lights from './Lights';
 
-function Stage({ children, ...rest }) {
+function Stage({ children, modelText, ...rest }) {
   const { viewport } = useThree();
 
   const flexWidth = viewport.width * 0.2;
@@ -29,7 +29,7 @@ function Stage({ children, ...rest }) {
         size={[flexWidth, flexHeight, 0]}
       >
         <Box my={2}>
-          <FloatingMesh />
+          <FloatingMesh string={modelText} />
         </Box>
         <Box>
           <ContactShadows
@@ -50,7 +50,7 @@ function Stage({ children, ...rest }) {
   );
 }
 
-function Scene({ canvasProps, cameraProps, ...rest }) {
+function Scene({ canvasProps, cameraProps, modelText, ...rest }) {
   const ContextBridge = useContextBridge(ThemeContext, LayoutContext);
 
   const isSSR = typeof window === 'undefined';
@@ -66,7 +66,7 @@ function Scene({ canvasProps, cameraProps, ...rest }) {
           {...rest}
         >
           <ContextBridge>
-            <Stage />
+            <Stage modelText={modelText} />
           </ContextBridge>
         </Canvas>
       </Suspense>

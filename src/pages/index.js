@@ -118,7 +118,7 @@ const RenderableScene = () => (
   <>
     <SceneBox>
       <SceneWrapper>
-        <Scene cameraProps={{ position: [0, 5, 30], zoom: 1 }} />
+        <Scene cameraProps={{ position: [0, 5, 30], zoom: 1 }} modelText="D" />
       </SceneWrapper>
     </SceneBox>
     <FlexSceneArea order={1} />
