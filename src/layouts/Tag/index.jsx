@@ -1,8 +1,8 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby';
-import config from '@config/siteMeta';
-import Scene from '../../components/Scene';
+import config from '@project/config/siteMeta';
+import PostListing from '../Listing/PostListing';
 
 export default function TagTemplate({ pageContext, data }) {
   const { tag } = pageContext;
@@ -10,7 +10,7 @@ export default function TagTemplate({ pageContext, data }) {
   return (
     <div className="tag-container">
       <Helmet title={`Posts tagged as "${tag}" | ${config.siteTitle}`} />
-      <Overlay postEdges={postEdges} />
+      <PostListing postEdges={postEdges} />
     </div>
   );
 }

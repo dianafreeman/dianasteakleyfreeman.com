@@ -4,23 +4,31 @@ import { a } from '@react-spring/web';
 import { useSpring } from '@react-spring/core';
 import styled, { createGlobalStyle } from 'styled-components';
 
-import ThemeProvider from '@context/ThemeProvider';
-import LayoutProvider from '@context/LayoutProvider';
+import ThemeProvider from '@project/context/ThemeProvider';
+import LayoutProvider from '@project/context/LayoutProvider';
 
-import useTheme from '@hooks/useTheme';
+import useTheme from '@project/hooks/useTheme';
 
 import { Helmet } from 'react-helmet';
 import SEO from './SEO';
 import Navigation from '../../components/Navigation';
 
 const GlobalStyle = createGlobalStyle`
+  @font-face {
+      font-family: 'Roboto Black';
+      src: local('Roboto Black'), url(../../assets/fonts/Roboto/Roboto-Black.ttf) format('truetype');
+  }
+  @font-face {
+      font-family: 'Roboto Mono';
+      src: local('Roboto Mono'), url(../../assets/fonts/Roboto_Mono/Roboto-VariableFont_wght.ttf) format('truetype');
+  }
   html {
     padding: unset;
     margin: unset;
   }
 
   h1,h2,h3,h4,h5,h6 {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto Black', sans-serif;
     font-weight: 900;
   }
 
@@ -40,13 +48,6 @@ const Internals = ({ children, postNode, postPath, postSEO }) => {
   return (
     <>
       <SEO postNode={postNode} postPath={postPath} postSEO={postSEO} />
-      <Helmet>
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&#038;family=Roboto:wght@900&#038;display=swap"
-          rel="stylesheet"
-        />
-      </Helmet>
       <GlobalStyle />
       <a.main
         style={{

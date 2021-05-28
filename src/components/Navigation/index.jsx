@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { AiFillLinkedin, AiFillGithub } from 'react-icons/ai';
-import useLayout from '@hooks/useLayout';
+import useLayout from '@project/hooks/useLayout';
 import { a } from '@react-spring/web';
 import { useSpring } from 'react-spring';
 

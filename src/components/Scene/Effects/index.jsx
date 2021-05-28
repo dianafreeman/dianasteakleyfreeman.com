@@ -6,7 +6,7 @@ import {
   // Noise,
   // Vignette,
 } from '@react-three/postprocessing';
-import useTheme from '@hooks/useTheme';
+import useTheme from '@project/hooks/useTheme';
 
 function Effects({ children }) {
   const { darkMode } = useTheme();

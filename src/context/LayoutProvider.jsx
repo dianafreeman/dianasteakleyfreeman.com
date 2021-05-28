@@ -3,10 +3,10 @@ import React, { useRef, useState, useEffect } from 'react';
 import { a } from '@react-spring/web';
 import { useSpring } from '@react-spring/core';
 
-import useTheme from '@hooks/useTheme';
+import useTheme from '@project/hooks/useTheme';
 
-import LayoutContext from './LayoutContext';
 import { Helmet } from 'react-helmet';
+import LayoutContext from './LayoutContext';
 
 const SLIDES = [
   {

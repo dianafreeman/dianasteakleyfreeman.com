@@ -1,14 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
+import { graphql } from 'gatsby';
 
 import { a } from '@react-spring/web';
 import { Loader } from '@react-three/drei';
 
-import useLayout from '@hooks/useLayout';
+import useLayout from '@project/hooks/useLayout';
+import { IoMdOpen } from 'react-icons/io';
 import Scene from '../components/Scene';
 
-import { FlexContainer, FlexBox, FlexColumn } from '../components/Flex';
-import SocialLinks from '../components/SocialLinks';
+import {
+  FlexContainer,
+  FlexBox,
+  FlexColumn,
+  FlexRow,
+} from '../components/Flex';
+import Links, { OutboundLink } from '../components/Links';
 
 const SceneWrapper = styled.div`
   z-index: 0;
@@ -67,7 +74,6 @@ const Sub2 = styled(a.p)`
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.lg}px) {
     padding-bottom: unset;
-    padding-right: 5vw;
     font-size: calc(1.5rem + 0.5vw);
   }
 }
@@ -86,12 +92,12 @@ const SceneBox = styled.div`
   }
 `;
 
-const Button = styled(a.a)`
+const Button = styled(OutboundLink)`
   padding: ${({ theme }) => theme.spacing.sm};
-  border-radius: 25px;
+  border-radius: 100%;
   font-size: 1rem;
   margin-bottom: 1em;
-  display: inline;
+  margin: auto;
 `;
 
 const HorizBorder = styled.hr`
@@ -119,7 +125,7 @@ const RenderableScene = () => (
   </>
 );
 
-function Index() {
+function Index({ data }) {
   const { colorSprings } = useLayout();
 
   return (
@@ -137,19 +143,23 @@ function Index() {
             </FlexBox>
             <FlexBox order={2}>
               <HorizBorder />
-              <a.p style={{ color: colorSprings.text }}>
-                There's more coming to this site soon.
-              </a.p>
-              <Button
-                style={{
-                  backgroundColor: colorSprings.text,
-                  color: colorSprings.background,
-                }}
-              >
-                Open in Github
-              </Button>
+              <FlexRow align="baseline">
+                <a.p style={{ color: colorSprings.text, margin: 'auto' }}>
+                  There's more coming to this site soon.
+                </a.p>
+                <Button
+                  target="_blank"
+                  href="https://github.com/dianafreeman/dianasteakleyfreeman.com"
+                  style={{
+                    color: colorSprings.background,
+                    backgroundColor: colorSprings.text,
+                  }}
+                >
+                  <IoMdOpen />
+                </Button>
+              </FlexRow>
               <HorizBorder />
-              <SocialLinks />
+              <Links />
             </FlexBox>
             <RenderableScene />
           </FlexColumn>
@@ -161,3 +171,15 @@ function Index() {
 }
 
 export default Index;
+
+export const pageQuery = graphql`
+  query IndexQuery {
+    site {
+      siteMetadata {
+        title
+        description
+        siteUrl
+      }
+    }
+  }
+`;

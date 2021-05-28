@@ -7,8 +7,8 @@ import {
 } from '@react-three/drei';
 import { Flex, Box } from '@react-three/flex';
 
-import ThemeContext from '@context/ThemeContext';
-import LayoutContext from '@context/LayoutContext';
+import ThemeContext from '@project/context/ThemeContext';
+import LayoutContext from '@project/context/LayoutContext';
 
 import FloatingMesh from './Meshes/FloatingMesh';
 import Lights from './Lights';
@@ -52,21 +52,25 @@ function Stage({ children, ...rest }) {
 
 function Scene({ canvasProps, cameraProps, ...rest }) {
   const ContextBridge = useContextBridge(ThemeContext, LayoutContext);
+
+  const isSSR = typeof window === 'undefined';
   return (
-    <Suspense fallback={null}>
-      <Canvas
-        concurrent
-        colorManagement
-        shadowMap
-        camera={cameraProps}
-        {...canvasProps}
-        {...rest}
-      >
-        <ContextBridge>
-          <Stage />
-        </ContextBridge>
-      </Canvas>
-    </Suspense>
+    !isSSR && (
+      <Suspense fallback={null}>
+        <Canvas
+          concurrent
+          colorManagement
+          shadowMap
+          camera={cameraProps}
+          {...canvasProps}
+          {...rest}
+        >
+          <ContextBridge>
+            <Stage />
+          </ContextBridge>
+        </Canvas>
+      </Suspense>
+    )
   );
 }
 export default Scene;

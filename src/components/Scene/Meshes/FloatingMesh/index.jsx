@@ -5,10 +5,10 @@ import { useFrame, useThree, useLoader } from '@react-three/fiber';
 import { a } from '@react-spring/three';
 import { useSpring } from '@react-spring/core';
 import { useDrag } from '@use-gesture/react';
-import Dosis from '@assets/fonts/3d/Dosis_Bold.json';
+import Dosis from '@project/assets/fonts/3d/Dosis_Bold.json';
 
-import useTheme from '@hooks/useTheme';
-import useLayout from '@hooks/useLayout';
+import useTheme from '@project/hooks/useTheme';
+import useLayout from '@project/hooks/useLayout';
 
 const AnimatedMaterial = a(MeshDistortMaterial);
 

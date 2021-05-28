@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ThemeProvider as StyledThemeProvider } from 'styled-components';
-import ThemeContext from '@context/ThemeContext';
+import ThemeContext from '@project/context/ThemeContext';
 
 function ThemeProvider({ children }) {
   // Global DarkMode State

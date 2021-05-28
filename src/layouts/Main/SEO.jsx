@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet';
 import urljoin from 'url-join';
 import moment from 'moment';
 
-import config from '@config/siteMeta';
+import config from '@project/config/siteMeta';
 import ThemeContext from '../../context/ThemeContext';
 /**
  * AHH I hate this.
@@ -62,7 +62,7 @@ function SEO({ postNode, postPath, postSEO }) {
   const blogURL = urljoin(config.siteUrl, config.pathPrefix);
   const schemaOrgJSONLD = [
     {
-      '@context': 'http://schema.org',
+      '@project/context': 'http://schema.org',
       '@type': 'WebSite',
       url: blogURL,
       name: title,
@@ -72,7 +72,7 @@ function SEO({ postNode, postPath, postSEO }) {
   if (postSEO) {
     schemaOrgJSONLD.push(
       {
-        '@context': 'http://schema.org',
+        '@project/context': 'http://schema.org',
         '@type': 'BreadcrumbList',
         itemListElement: [
           {
@@ -87,7 +87,7 @@ function SEO({ postNode, postPath, postSEO }) {
         ],
       },
       {
-        '@context': 'http://schema.org',
+        '@project/context': 'http://schema.org',
         '@type': 'BlogPosting',
         url: blogURL,
         name: title,
@@ -109,6 +109,7 @@ function SEO({ postNode, postPath, postSEO }) {
   return (
     <Helmet>
       {/* General tags */}
+      <title>{config.siteTitle}</title>
       <meta name="description" content={description} />
       <meta name="image" content={image} />
 
@@ -123,10 +124,6 @@ function SEO({ postNode, postPath, postSEO }) {
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={image} />
-      <meta
-        property="fb:app_id"
-        content={config.siteFBAppID ? config.siteFBAppID : ''}
-      />
 
       {/* Twitter Card tags */}
       <meta name="twitter:card" content="summary_large_image" />

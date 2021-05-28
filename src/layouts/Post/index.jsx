@@ -2,7 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby';
 
-import config from '@config/siteMeta';
+import config from '@project/config/siteMeta';
 
 import SEO from '../Main/SEO';
 

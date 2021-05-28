@@ -10,17 +10,11 @@ module.exports = {
   pathPrefix: validatedPathPrefix,
   siteMetadata: {
     siteUrl: validSiteUrl,
-    rssMetadata: {
-      site_url: validSiteUrl,
-      feed_url: urljoin(validSiteUrl, config.siteRss),
-      title: config.siteTitle,
-      description: config.siteDescription,
-      copyright: config.copyright,
-    },
+    title: config.siteTitle,
+    description: config.siteDescription,
   },
   plugins: [
     'gatsby-transformer-remark',
-    'gatsby-plugin-sass',
     'gatsby-plugin-styled-components',
     'gatsby-plugin-react-helmet',
     {
@@ -40,18 +34,19 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-module-resolver',
       options: {
-        root: './src', // <- will be used as a root dir
+        root: './src',
         aliases: {
-          '@config': './config', // <- will become ./src/config
-          '@hooks': './hooks',
-          '@assets': './assets',
-          '@fonts': './assets/fonts',
-          '@context': './context',
+          '@project/config': './config',
+          '@project/hooks': './hooks',
+          '@project/assets': './assets',
+          '@project/fonts': './assets/fonts',
+          '@project/context': './context',
+          '@project/components': './components',
         },
       },
     },
+
     `gatsby-plugin-sitemap`,
-    // `gatsby-plugin-nprogress`,
     {
       resolve: `gatsby-plugin-google-gtag`,
       options: {
@@ -71,9 +66,38 @@ module.exports = {
         modulePath: path.resolve('src/layouts/Admin/index.js'), // default: undefined
         enableIdentityWidget: true,
         publicPath: 'admin',
-        htmlTitle: 'Content Manager',
+        htmlTitle: 'DSF.com Content Manager',
         includeRobots: false,
       },
     },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: config.siteTitle,
+        short_name: config.siteTitleShort,
+        start_url: `/`,
+        background_color: config.backgroundColor,
+        theme_color: config.themeColor,
+        display: `standalone`,
+        icons: [
+          {
+            src: `/static/logos/logo-48x48.png`,
+            sizes: `48x48`,
+            type: `image/png`,
+          },
+          {
+            src: `/static/logos/logo-192x192.png`,
+            sizes: `192x192`,
+            type: `image/png`,
+          },
+          {
+            src: `/static/logos/logo-512x512.png`,
+            sizes: `512x512`,
+            type: `image/png`,
+          },
+        ],
+      },
+    },
+    `gatsby-plugin-offline`,
   ],
 };

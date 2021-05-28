@@ -4,7 +4,7 @@ import Typed from 'react-typed';
 import styled, { css } from 'styled-components';
 import { Html, useProgress } from '@react-three/drei';
 
-import useLayout from '@hooks/useLayout';
+import useLayout from '@project/hooks/useLayout';
 
 const PHRASE = "Hi, I'm Diana";
 
