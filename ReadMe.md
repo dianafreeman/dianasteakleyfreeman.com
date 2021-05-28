@@ -33,11 +33,10 @@ At its core, this is a static site generator that creates a React App that rende
  # install dependencies
 yarn install
 
-# starts gatsby. This has to be listed in the package.json for `yarn dev` to work
-# (known issue: https://github.com/netlify/cli/issues/1292)
+# starts gatsby on its own
 yarn start
 
-# start a full netlify development service with CMS support
+# start a full netlify development service with gatsby & CMS support
 yarn dev
 
 # run unit tests

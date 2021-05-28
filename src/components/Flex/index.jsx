@@ -9,6 +9,9 @@ export const FlexDiv = styled.div`
   justify-content: ${({ justify }) => justify || 'space-between'};
   align-content: ${({ align }) => align || 'top'};
   ${({ order }) => (order ? `order: ${order}` : ``)};
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
+    ${({ justifyMd }) => ` justify-content: ${justifyMd}`};
+  }
 `;
 
 export const FlexColumn = styled(FlexDiv)`
@@ -24,11 +27,11 @@ export const FlexBox = styled(FlexColumn)`
 `;
 
 const Wrapper = styled(a.div)`
+  display: flex;
   min-height: 640px;
   margin: unset;
   padding: ${(props) => props.theme.spacing.md};
-  display: flex;
-  @media screen and (min-width: ${(props) => props.theme.breakpoints.sm}px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
     padding: 0 ${(props) => props.theme.spacing.xl};
     min-height: unset;
     width: 90%;

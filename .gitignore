@@ -62,6 +62,7 @@ bundle-stats.json
 # DIANA'S ADDITONS
 .DS_store
 .DS_Store
+.DS_Store/
 .vscode/
 scripts/
 

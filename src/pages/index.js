@@ -1,17 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
-import { a, useSpring } from '@react-spring/web';
+import { a } from '@react-spring/web';
 
 import useLayout from '@hooks/useLayout';
 import Scene from '../components/Scene';
 
-import {
-  FlexContainer,
-  FlexBox,
-  FlexColumn,
-  FlexRow,
-} from '../components/Flex';
+import { FlexContainer, FlexBox, FlexColumn } from '../components/Flex';
 import SocialLinks from '../components/SocialLinks';
 
 const SceneWrapper = styled.div`
@@ -80,7 +75,7 @@ const Sub2 = styled(a.p)`
 
 const SceneBox = styled.div`
   top: calc(1em + 2vh);
-  height: calc(98vh - 1em);
+  height: calc(98vh - 4em);
   width: 100%;
   left: 0;
   position: absolute;
@@ -96,6 +91,7 @@ const Button = styled(a.a)`
   border-radius: 25px;
   font-size: 1rem;
   margin-bottom: 1em;
+  display: inline;
 `;
 
 const HorizBorder = styled.hr`
@@ -108,7 +104,7 @@ const HorizBorder = styled.hr`
 const FlexSceneArea = styled(FlexBox)`
   min-height: 50vh;
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.md}px) {
-    min-height: 30vh;
+    display: none;
   }
 `;
 
@@ -130,7 +126,7 @@ function Index() {
     <FlexContainer>
       <Section>
         <FlexColumn>
-          <FlexBox justify="flex-start" order={1}>
+          <FlexBox justify="flex-start" justifyMd="center" order={1}>
             <Display1 style={{ color: colorSprings.text }}>I'm Diana.</Display1>
             <Sub2 style={{ color: colorSprings.text }}>
               Coder, Creator, Communicator.
@@ -139,7 +135,7 @@ function Index() {
           <FlexBox order={2}>
             <HorizBorder />
             <a.p style={{ color: colorSprings.text }}>
-              Theres more coming to this site soon.
+              There's more coming to this site soon.
             </a.p>
             <Button
               style={{
@@ -147,7 +143,7 @@ function Index() {
                 color: colorSprings.background,
               }}
             >
-              View this project on Github
+              Open in Github
             </Button>
             <HorizBorder />
             <SocialLinks />
