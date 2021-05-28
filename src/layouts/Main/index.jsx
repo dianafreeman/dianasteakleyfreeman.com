@@ -1,26 +1,24 @@
-import React, { useRef, forwardRef, Suspense } from 'react';
+import React from 'react';
 
 import { a } from '@react-spring/web';
-import { useSpring } from '@react-spring/core';
-import styled, { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 
 import ThemeProvider from '@project/context/ThemeProvider';
 import LayoutProvider from '@project/context/LayoutProvider';
 
 import useTheme from '@project/hooks/useTheme';
 
-import { Helmet } from 'react-helmet';
 import SEO from './SEO';
 import Navigation from '../../components/Navigation';
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
       font-family: 'Roboto Black';
-      src: local('Roboto Black'), url(../../assets/fonts/Roboto/Roboto-Black.ttf) format('truetype');
+      src: local('Roboto Black'), url(../../assets/fonts/2d/Roboto/Roboto-Black.ttf) format('truetype');
   }
   @font-face {
       font-family: 'Roboto Mono';
-      src: local('Roboto Mono'), url(../../assets/fonts/Roboto_Mono/Roboto-VariableFont_wght.ttf) format('truetype');
+      src: local('Roboto Mono'), url(../../assets/fonts/2d/Roboto_Mono/static/RobotoMono-Light.ttf) format('truetype');
   }
   html {
     padding: unset;

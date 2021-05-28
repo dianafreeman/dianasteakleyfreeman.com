@@ -1,7 +1,7 @@
 const path = require('path');
 const _ = require('lodash');
 const moment = require('moment');
-const siteMeta = require('./src/config/siteMeta');
+const siteMeta = require('./config/siteMeta');
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
@@ -107,7 +107,7 @@ exports.createPages = async ({ graphql, actions }) => {
     // Load the landing page instead
     createPage({
       path: `/`,
-      component: landingPage,
+      component: landingtePage,
     });
   }
 

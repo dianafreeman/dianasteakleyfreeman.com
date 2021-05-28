@@ -1,19 +1,18 @@
 import React, { useState, useContext } from 'react';
 import { Helmet } from 'react-helmet';
 import urljoin from 'url-join';
-import moment from 'moment';
 
 import config from '@project/config/siteMeta';
-import ThemeContext from '../../context/ThemeContext';
+
 /**
  * AHH I hate this.
  *
  * TODO
  *
- * - Remove `moment`
- * - Remove `urlJoin`
- * - refactor each of these methods
- * - Create tests for each of these methods
+ * [x] Remove `moment`
+ *  - Remove `urlJoin`
+ *  - refactor each of these methods
+ *  - Create tests for each of these methods
  *
  * WTF is postSEO?
  */
@@ -41,7 +40,8 @@ function SEO({ postNode, postPath, postSEO }) {
 
   const getPublicationDate = () => {
     if (!postNode?.frontmatter?.date) return null;
-    return moment(postNode.frontmatter.date, config.dateFromFormat).toDate();
+    // DEV NOTE: test this, not sure it still works....
+    return postNode.frontmatter.date;
   };
 
   image = getImagePath(image);

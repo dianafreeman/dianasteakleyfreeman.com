@@ -1,6 +1,5 @@
-const urljoin = require('url-join');
 const path = require('path');
-const config = require('./src/config/siteMeta');
+const config = require('./config/siteMeta');
 
 // Make sure that pathPrefix is not empty
 const validatedPathPrefix = config.pathPrefix === '' ? '/' : config.pathPrefix;
@@ -34,14 +33,14 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-module-resolver',
       options: {
-        root: './src',
+        root: '.',
         aliases: {
           '@project/config': './config',
-          '@project/hooks': './hooks',
-          '@project/assets': './assets',
-          '@project/fonts': './assets/fonts',
-          '@project/context': './context',
-          '@project/components': './components',
+          '@project/hooks': './src/hooks',
+          '@project/assets': '.src//assets',
+          '@project/fonts': './src/assets/fonts',
+          '@project/context': './src/context',
+          '@project/components': './src/components',
         },
       },
     },

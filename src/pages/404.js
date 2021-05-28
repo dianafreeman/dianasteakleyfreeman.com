@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { graphql } from 'gatsby';
 
 import { a } from '@react-spring/web';
 import { Loader } from '@react-three/drei';
@@ -100,6 +99,22 @@ const RenderableScene = () => (
     <FlexSceneArea order={1} />
   </>
 );
+const Sub2 = styled(a.p)`
+  font-size: 1.5rem;
+  font-weight: 300;
+  line-height: 1.2;
+  margin: unset;
+  text-align: center;
+  padding-bottom: 2em;
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.md}px) {
+    text-align: left;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.lg}px) {
+    padding-bottom: unset;
+    font-size: calc(1.5rem + 0.5vw);
+  }
+}
+`;
 
 function NotFound({ data }) {
   const { colorSprings } = useLayout();
@@ -111,8 +126,11 @@ function NotFound({ data }) {
           <FlexColumn>
             <FlexBox justify="flex-start" justifyMd="center" order={1}>
               <Display1 style={{ color: colorSprings.text }}>
-                Page Not Found
+                Aw, snap.
               </Display1>
+              <Sub2 style={{ color: colorSprings.text }}>
+                This is not the page you're looking for.
+              </Sub2>
             </FlexBox>
             <FlexBox order={2}>
               <FlexRow align="baseline">
