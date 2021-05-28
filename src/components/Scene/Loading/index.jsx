@@ -8,6 +8,8 @@ import useLayout from '@hooks/useLayout';
 
 const PHRASE = "Hi, I'm Diana";
 
+// TODO
+// Not currently used anywhere
 const ProgressBar = styled.div`
   width: 100%;
   height: 10px;

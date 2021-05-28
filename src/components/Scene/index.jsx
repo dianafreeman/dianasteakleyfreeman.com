@@ -10,8 +10,7 @@ import { Flex, Box } from '@react-three/flex';
 import ThemeContext from '@context/ThemeContext';
 import LayoutContext from '@context/LayoutContext';
 
-import FloatingMesh from '../Meshes/FloatingMesh';
-import Loading from '../Loading';
+import FloatingMesh from './Meshes/FloatingMesh';
 import Lights from './Lights';
 
 function Stage({ children, ...rest }) {
@@ -53,7 +52,6 @@ function Stage({ children, ...rest }) {
 
 function Scene({ canvasProps, cameraProps, ...rest }) {
   const ContextBridge = useContextBridge(ThemeContext, LayoutContext);
-
   return (
     <Suspense fallback={null}>
       <Canvas

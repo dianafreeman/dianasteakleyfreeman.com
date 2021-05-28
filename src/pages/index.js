@@ -1,75 +1,46 @@
 import React, { useState } from 'react';
-import { useFrame, useThree } from '@react-three/fiber';
-import { Flex, Box } from '@react-three/flex';
 import styled from 'styled-components';
 
-import { a, useSpring} from '@react-spring/web';
-import { AiFillLinkedin, AiFillGithub, AiOutlineTwitter, AiFillMail } from 'react-icons/ai';
-import useTheme from '@hooks/useTheme';
+import { a, useSpring } from '@react-spring/web';
+
 import useLayout from '@hooks/useLayout';
 import Scene from '../components/Scene';
 
-const ContainWrapper = styled.div`
-  position: relative;
-  min-height: 100vh;
-`;
-
-
-const StyledMain = styled(a.main)`
-  margin: unset;
-  padding-right: 10vw;
-  padding-left: 10vw;
-`;
-
-const Wrapper = ({ children }) => {
-  const { colorSprings } = useLayout();
-
-  return (
-    <StyledMain style={{ backgroundColor: colorSprings.background }}>
-
-      {children}
-    </StyledMain>
-  );
-};
+import {
+  FlexContainer,
+  FlexBox,
+  FlexColumn,
+  FlexRow,
+} from '../components/Flex';
+import SocialLinks from '../components/SocialLinks';
 
 const SceneWrapper = styled.div`
   z-index: 0;
   width: 100%;
-  height: 100vh;
-  position: fixed;
+  height: 100%;
   top: 0;
   left: 0;
   pointer-events: none;
-  @media screen and (min-width: 568px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.md}px) {
+    position: fixed;
     width: 50%;
     left: unset;
     right: 0;
   }
 `;
 
-const Container = ({children, ...rest}) => (
-  <ContainWrapper {...rest}>
-    <Wrapper>
-
-      {children}
-        <SceneWrapper>
-          <Scene cameraProps={{ position: [0, 5, 30], zoom: 1 }} />
-        </SceneWrapper>
-    </Wrapper>
-  </ContainWrapper>
-)
-
 const Section = styled.div`
-  z-index: 2;
-  width: inherit;
-  padding-top: ${props => props.theme.spacing.xl};
-  padding-bottom: ${props => props.theme.spacing.xl};
-  height: calc(100vh - ${props => props.theme.spacing.xl} - ${props => props.theme.spacing.xl});
+  width: 100%;
+  padding-top: ${({ theme }) => theme.spacing.sm};
+  padding-bottom: ${({ theme }) => theme.spacing.sm};
   display: flex;
-  justify-content: space-between;
   flex-direction: column;
-  @media screen and (min-width: 568px) {
-    max-width: 60%;
+  justify-content: space-between;
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.md}px) {
+    padding-top: ${({ theme }) => theme.spacing.xl};
+    padding-bottom: ${({ theme }) => theme.spacing.xl};
+    padding-left: ${({ theme }) => theme.spacing.xl};
+    max-width: 50%;
     justify-content: center;
   }
 `;
@@ -80,7 +51,7 @@ const Display1 = styled(a.h1)`
   text-align: center;
   margin: unset;
   line-height: 1.2;
-  @media screen and (min-width: 568px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.md}px) {
     text-align: left;
   }
   @media screen and (min-width: 768px) {
@@ -95,7 +66,7 @@ const Sub2 = styled(a.p)`
   margin: unset;
   text-align: center;
   padding-bottom: 2em;
-  @media screen and (min-width: 568px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.md}px) {
     text-align: left;
   }
 
@@ -107,80 +78,85 @@ const Sub2 = styled(a.p)`
 }
 `;
 
-const SocialList = styled.ul`
-  display: flex;
-  flex-direction: row;
-  width: inherit;
-  justify-content: space-between;
-  list-style: none;
-  align-content: baseline;
-  padding: unset;
-`;
-
-const ExternalLink = styled(a.a)`
-  font-size: 4rem;
-  &:active, &:focus {
-    color: ${props => props.theme.palette.primaryLight}; // css fallback
+const SceneBox = styled.div`
+  top: calc(1em + 2vh);
+  height: calc(98vh - 1em);
+  width: 100%;
+  left: 0;
+  position: absolute;
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.md}px) {
+    right: 0;
+    left: unset;
+    width: 50%;
   }
 `;
 
-const AnimatedLink = (props) => {
-  const [isHovered, set] = useState(false)
-  const { springConfig: config, palette } = useTheme()
-  const [{ color }] = useSpring({
-    color: isHovered ? palette.primaryLight : palette.secondaryLight,
-    config,
-  }, [isHovered])
+const Button = styled(a.a)`
+  padding: ${({ theme }) => theme.spacing.sm};
+  border-radius: 25px;
+  font-size: 1rem;
+  margin-bottom: 1em;
+`;
 
-  const toggle = ( ) => set(bool => !bool)
+const HorizBorder = styled.hr`
+  width: 100%;
+  padding: unset;
+  margin: ${({ margin }) =>
+    margin ? `${margin[0] || 0} ${margin[1] || 0}` : 'auto'};
+`;
 
-  return <ExternalLink onMouseEnter={() => toggle()} onMouseLeave={() => toggle()} {...props} style={{ color }}/>
-}
-const SocialLinks = () => {
+const FlexSceneArea = styled(FlexBox)`
+  min-height: 50vh;
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.md}px) {
+    min-height: 30vh;
+  }
+`;
 
-  return (
-    <SocialList>
-      <li>
-        <AnimatedLink href="https://www.linkedin.com/in/dianasteakleyfreeman/">
-          <AiFillLinkedin />
-        </AnimatedLink>
-      </li>
-      <li>
-        <AnimatedLink href="https://github.com/dianafreeman">
-          <AiFillGithub />
-        </AnimatedLink>
-      </li>
-      <li>
-        <AnimatedLink href="https://twitter.com/dianasfreeman">
-          <AiOutlineTwitter />
-        </AnimatedLink>
-      </li>
-      <li>
-        <AnimatedLink href="mailto:diana@dianasteakelyfreeman.com">
-          <AiFillMail />
-        </AnimatedLink>
-      </li>
-    </SocialList>
-  );
-};
+const RenderableScene = () => (
+  <>
+    <SceneBox>
+      <SceneWrapper>
+        <Scene cameraProps={{ position: [0, 5, 30], zoom: 1 }} />
+      </SceneWrapper>
+    </SceneBox>
+    <FlexSceneArea order={1} />
+  </>
+);
 
 function Index() {
   const { colorSprings } = useLayout();
 
-  // set background to section background color
   return (
-    <Container>
+    <FlexContainer>
       <Section>
-        <Display1 style={{ color: colorSprings.text }}>I'm Diana. </Display1>
-        <Sub2 style={{ color: colorSprings.text }}>
-          Coder, Creator, Communicator.
-        </Sub2>
-        <hr style={{ width: "100%", marginTop: '2em' }} />
-        <SocialLinks />
+        <FlexColumn>
+          <FlexBox justify="flex-start" order={1}>
+            <Display1 style={{ color: colorSprings.text }}>I'm Diana.</Display1>
+            <Sub2 style={{ color: colorSprings.text }}>
+              Coder, Creator, Communicator.
+            </Sub2>
+          </FlexBox>
+          <FlexBox order={2}>
+            <HorizBorder />
+            <a.p style={{ color: colorSprings.text }}>
+              Theres more coming to this site soon.
+            </a.p>
+            <Button
+              style={{
+                backgroundColor: colorSprings.text,
+                color: colorSprings.background,
+              }}
+            >
+              View this project on Github
+            </Button>
+            <HorizBorder />
+            <SocialLinks />
+          </FlexBox>
+          <RenderableScene />
+        </FlexColumn>
       </Section>
-    </Container>
+    </FlexContainer>
   );
 }
 
 export default Index;
-

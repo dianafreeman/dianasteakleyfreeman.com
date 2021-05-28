@@ -51,10 +51,27 @@ function ThemeProvider({ children }) {
     },
   });
 
+  const [font] = useState({
+    size: {
+      sm: '2rem',
+      md: '3rem',
+      lg: '4.5rem',
+      xl: '6rem',
+      responsive: {
+        sm: 'calc(1rem + 4vw)',
+        md: 'calc(2rem + 4vw)',
+        lg: 'calc(3.5rem + 4vw)',
+        xl: 'calc(5rem + 4vw)',
+      },
+    },
+  });
+
   const theme = {
     palette,
     colors,
     spacing,
+    font,
+    breakpoints,
   };
 
   return (

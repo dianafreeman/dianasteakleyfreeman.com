@@ -1,7 +1,5 @@
 import { Vector3 } from 'three';
-import React, { useState, useRef, useEffect, Suspense } from 'react';
-import useInterval from '@use-it/interval';
-import { ContactShadows, Html, Center, Plane, Text } from '@react-three/drei';
+import React, { useRef } from 'react';
 import { useThree, useFrame } from '@react-three/fiber';
 
 function ScrollContainer({ scroll, children }) {
