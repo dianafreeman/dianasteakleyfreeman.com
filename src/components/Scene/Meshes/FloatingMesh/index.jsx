@@ -1,28 +1,23 @@
 import { FontLoader } from 'three';
 import React, { useRef, useState } from 'react';
-import { MeshDistortMaterial, Center, useTurntable } from '@react-three/drei';
-import { useFrame, useThree, useLoader } from '@react-three/fiber';
+import { MeshDistortMaterial } from '@react-three/drei';
+import { useFrame } from '@react-three/fiber';
 import { a } from '@react-spring/three';
-import { useSpring } from '@react-spring/core';
-import { useDrag } from '@use-gesture/react';
+
 import Dosis from '@project/assets/fonts/3d/Dosis_Bold.json';
 
-import useTheme from '@project/hooks/useTheme';
 import useLayout from '@project/hooks/useLayout';
 
 const AnimatedMaterial = a(MeshDistortMaterial);
 
-function FloatingMesh({ string, props }) {
+function FloatingMesh({ string, size, ...props }) {
   const mesh = useRef();
   const group = useRef();
 
   const { springs, setHovered, setDown, colorSprings } = useLayout();
 
-  const { size: canvasSize } = useThree();
-
   const [font] = useState(new FontLoader().parse(Dosis));
 
-  const size = 10 + canvasSize.width * 0.01;
   const textOptions = {
     font,
     size,

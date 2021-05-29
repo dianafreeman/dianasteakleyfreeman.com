@@ -116,17 +116,6 @@ const FlexSceneArea = styled(FlexBox)`
   }
 `;
 
-const RenderableScene = () => (
-  <>
-    <SceneBox>
-      <SceneWrapper>
-        <Scene cameraProps={{ position: [0, 5, 30], zoom: 1 }} modelText="D" />
-      </SceneWrapper>
-    </SceneBox>
-    <FlexSceneArea order={1} />
-  </>
-);
-
 function Index({ data }) {
   const { colorSprings } = useLayout();
 
@@ -163,7 +152,10 @@ function Index({ data }) {
               <HorizBorder />
               <Links />
             </FlexBox>
-            <RenderableScene />
+            <Scene
+              cameraProps={{ position: [0, 5, 30], zoom: 1 }}
+              modelText="D"
+            />
           </FlexColumn>
         </Section>
       </FlexContainer>
