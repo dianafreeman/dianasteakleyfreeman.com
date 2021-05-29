@@ -1,4 +1,4 @@
-import * as THREE from 'three';
+import { FontLoader } from 'three';
 import React, { useRef, useState } from 'react';
 import { MeshDistortMaterial, Center, useTurntable } from '@react-three/drei';
 import { useFrame, useThree, useLoader } from '@react-three/fiber';
@@ -20,7 +20,7 @@ function FloatingMesh({ string, props }) {
 
   const { size: canvasSize } = useThree();
 
-  const [font] = useState(new THREE.FontLoader().parse(Dosis));
+  const [font] = useState(new FontLoader().parse(Dosis));
 
   const size = 10 + canvasSize.width * 0.01;
   const textOptions = {

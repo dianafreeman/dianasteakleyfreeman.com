@@ -7,7 +7,7 @@ import { Loader } from '@react-three/drei';
 
 import useLayout from '@project/hooks/useLayout';
 import { IoMdOpen } from 'react-icons/io';
-import Scene from '../components/Scene';
+import loadable from '@loadable/component';
 
 import {
   FlexContainer,
@@ -16,6 +16,8 @@ import {
   FlexRow,
 } from '../components/Flex';
 import Links, { OutboundLink } from '../components/Links';
+
+const Scene = loadable(() => import('../components/Scene'));
 
 const SceneWrapper = styled.div`
   z-index: 0;

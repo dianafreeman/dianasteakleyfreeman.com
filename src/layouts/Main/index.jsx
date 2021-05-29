@@ -9,7 +9,6 @@ import LayoutProvider from '@project/context/LayoutProvider';
 import useTheme from '@project/hooks/useTheme';
 
 import SEO from './SEO';
-import Navigation from '../../components/Navigation';
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -55,7 +54,6 @@ const Internals = ({ children, postNode, postPath, postSEO }) => {
           display: 'flex',
         }}
       >
-        <Navigation />
         {children}
       </a.main>
     </>
