@@ -36,7 +36,9 @@ jobs:
     - name: Cache Static Build
       uses: actions/cache@v2
       with:
-        path: public
+        path: |
+          public
+          .cache
         key: static-build-${{ github.sha }}-${{ github.run_number }}
 
 
@@ -66,7 +68,9 @@ jobs:
       - name: Restore Static Build
         uses: actions/cache@v2
         with:
-          path: public
+          path: |
+            public
+            .cache
           key: static-build-${{ github.sha }}-${{ github.run_number }}
 
       - name: Cypress E2E
@@ -77,4 +81,5 @@ jobs:
         env:
           CYPRESS_host: http://localhost
           CYPRESS_port: 9000
+
 
