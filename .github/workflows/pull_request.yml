@@ -37,7 +37,7 @@ jobs:
       uses: actions/cache@v2
       with:
         path: public
-        key: static-build-${{ github.run_number }}
+        key: static-build-${{ github.sha }}-${{ github.run_number }}
 
 
   test-e2e-and-deploy:
@@ -48,6 +48,7 @@ jobs:
       - name: Restore Dependencies
         uses: actions/cache@v2
         with:
+          path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
       - name: Install Dependencies
@@ -56,7 +57,8 @@ jobs:
       - name: Restore Static Build
         uses: actions/cache@v2
         with:
-          key: static-build-${{ github.run_number }}
+          path: public
+          key: static-build-${{ github.sha }}-${{ github.run_number }}
 
       - name: Serve Gatsby Static
         run: yarn serve
