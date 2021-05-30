@@ -51,7 +51,7 @@ const FlexSceneArea = styled(FlexDiv)`
   }
 `;
 
-function ErrorPage({ data }) {
+function ErrorPage() {
   const { colorSprings } = useLayout();
 
   const [ready, setReady] = useState(false);
@@ -66,16 +66,16 @@ function ErrorPage({ data }) {
           <FlexColumn justify="center">
             <FlexColumn justify="center">
               <Display1 style={{ color: colorSprings.text }}>
-                I&apos;m Diana.
+                Well this is awkward.
               </Display1>
               <Sub2 style={{ color: colorSprings.text }}>
-                Coder, Creator, Communicator.
+                This is no the page you&apos;re looking for.
               </Sub2>
               <Links />
             </FlexColumn>
             <FlexSceneArea>
               {ready ? (
-                <Scene modelText="D" />
+                <Scene modelText="??" />
               ) : (
                 <a.div
                   style={{
@@ -90,9 +90,6 @@ function ErrorPage({ data }) {
               )}
             </FlexSceneArea>
           </FlexColumn>
-          <FlexRow>
-            <p>{data.site.siteMetadata.copyright}</p>
-          </FlexRow>
         </Section>
       </FlexContainer>
     </>
@@ -100,13 +97,3 @@ function ErrorPage({ data }) {
 }
 
 export default ErrorPage;
-
-export const pageQuery = graphql`
-  query ErrorPageQuery {
-    site {
-      siteMetadata {
-        copyright
-      }
-    }
-  }
-`;
