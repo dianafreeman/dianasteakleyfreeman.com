@@ -69,12 +69,10 @@ jobs:
           path: public
           key: static-build-${{ github.sha }}-${{ github.run_number }}
 
-      - name: Serve Gatsby Static
-        run: yarn serve
-
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
+          start: yarn serve
           browser: chrome
           headless: true
         env:

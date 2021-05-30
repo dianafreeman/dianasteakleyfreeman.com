@@ -70,11 +70,10 @@ scripts/
 .editorconfig
 .env
 
+# Local Netlify folder
+.netlify/
+
 
 # Created by https://www.toptal.com/developers/gitignore/api/node,react,macos
 # Edit at https://www.toptal.com/developers/gitignore?templates=node,react,macos
-
-psd
-thumb
-sketch
 
