@@ -4,12 +4,6 @@
   <a href="https://github.com/dianasfreeman/dianasteakelyfreeman.com#readme" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
-  <a href="https://github.com/dianasfreeman/dianasteakelyfreeman.com/graphs/commit-activity" target="_blank">
-    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
-  </a>
-  <a href="https://github.com/dianasfreeman/dianasteakelyfreeman.com/blob/master/LICENSE" target="_blank">
-    <img alt="License: MIT" src="https://img.shields.io/github/license/dianasfreeman/dianasteakleyfreeman.com" />
-  </a>
   <a href="https://api.netlify.com/api/v1/badges/7b5f4c1a-c979-4652-aacf-05076bfa2989/deploy-status" target="_blank">
     <img alt="Netlify Status" src="https://api.netlify.com/api/v1/badges/7b5f4c1a-c979-4652-aacf-05076bfa2989/deploy-status" />
   </a>

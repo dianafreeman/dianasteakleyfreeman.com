@@ -9,26 +9,23 @@ const Lights = loadable(() => import('../Lights'));
 
 function Stage({ children, modelText, ...rest }) {
   const { viewport, size } = useThree();
-
-  const yOffset = viewport.height / 10;
-  const meshSize = 10 + size.width * 0.01;
+  const meshSize = 2;
 
   return (
     <group {...rest}>
       <Lights />
-      <FloatingMesh size={meshSize} position={[0, 0, 0]} string={modelText} />
+      <FloatingMesh size={meshSize} position={[0, 0.5, 0]} string={modelText} />
       <ContactShadows
         rotation-x={Math.PI / 2}
         opacity={0.75}
-        position={[0, -(yOffset * 2), 0]}
-        width={30}
-        height={30}
+        position={[0, -1, 0]}
+        width={5}
+        height={5}
         near={0.1}
-        blur={3} // Amount of blur (default=1)
-        far={40} // Focal distance (default=10)
-        resolution={157} // Rendertarget resolution (default=256)
+        blur={5} // Amount of blur (default=1)
+        far={4} // Focal distance (default=10)
+        resolution={10} // Rendertarget resolution (default=256)
       />
-
       <Environment preset="warehouse" />
     </group>
   );

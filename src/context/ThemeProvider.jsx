@@ -85,6 +85,7 @@ function ThemeProvider({ children }) {
         breakpoints,
       }}
     >
+      {/* Makes the above configuration available to styled components internally as a global `theme` */}
       <StyledThemeProvider theme={theme}>{children}</StyledThemeProvider>
     </ThemeContext.Provider>
   );

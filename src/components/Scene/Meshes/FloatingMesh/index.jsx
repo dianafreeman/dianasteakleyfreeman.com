@@ -1,14 +1,11 @@
 import { FontLoader } from 'three';
 import React, { useRef, useState } from 'react';
-import { MeshDistortMaterial } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import { a } from '@react-spring/three';
 
 import Dosis from '@project/assets/fonts/3d/Dosis_Bold.json';
 
 import useLayout from '@project/hooks/useLayout';
-
-const AnimatedMaterial = a(MeshDistortMaterial);
 
 function FloatingMesh({ string, size, ...props }) {
   const mesh = useRef();
@@ -20,12 +17,12 @@ function FloatingMesh({ string, size, ...props }) {
 
   const textOptions = {
     font,
-    size,
-    height: 4,
+    size: 2,
+    height: 0.25,
     curveSegments: 40,
     bevelEnabled: true,
-    bevelThickness: 1,
-    bevelSize: 0.2,
+    bevelThickness: 0.25,
+    bevelSize: 0.09,
     bevelSegments: 12,
   };
 
@@ -51,7 +48,7 @@ function FloatingMesh({ string, size, ...props }) {
         }}
       >
         <textBufferGeometry attach="geometry" args={[string, textOptions]} />
-        <AnimatedMaterial
+        <a.meshPhysicalMaterial
           attach="material"
           color={colorSprings.model}
           envMapIntensity={env}

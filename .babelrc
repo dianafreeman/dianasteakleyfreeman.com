@@ -13,7 +13,7 @@
         "alias": {
           "@project/config": "./config",
           "@project/hooks": "./src/hooks",
-          "@project/assets": ".src//assets",
+          "@project/assets": "./src/assets",
           "@project/fonts": "./src/assets/fonts",
           "@project/context": "./src/context",
           "@project/components": "./src/components"

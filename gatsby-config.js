@@ -13,6 +13,8 @@ module.exports = {
     description: config.siteDescription,
   },
   plugins: [
+    'gatsby-plugin-loadable-components-ssr',
+    'gatsby-plugin-webpack-bundle-analyser-v2',
     'gatsby-transformer-remark',
     'gatsby-plugin-styled-components',
     'gatsby-plugin-react-helmet',
@@ -37,7 +39,7 @@ module.exports = {
         aliases: {
           '@project/config': './config',
           '@project/hooks': './src/hooks',
-          '@project/assets': '.src//assets',
+          '@project/assets': './src/assets',
           '@project/fonts': './src/assets/fonts',
           '@project/context': './src/context',
           '@project/components': './src/components',
@@ -80,17 +82,17 @@ module.exports = {
         display: `standalone`,
         icons: [
           {
-            src: `/static/logos/logo-48x48.png`,
+            src: `/logos/logo-48x48.png`,
             sizes: `48x48`,
             type: `image/png`,
           },
           {
-            src: `/static/logos/logo-192x192.png`,
+            src: `/logos/logo-192x192.png`,
             sizes: `192x192`,
             type: `image/png`,
           },
           {
-            src: `/static/logos/logo-512x512.png`,
+            src: `/logos/logo-512x512.png`,
             sizes: `512x512`,
             type: `image/png`,
           },

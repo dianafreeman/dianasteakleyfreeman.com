@@ -32,8 +32,8 @@ const config = {
     },
   ],
   copyright: 'Copyright © 2021. Diana M Steakley-Freeman', // Copyright string for the footer of the website and RSS feed.
-  themeColor: '#2b2b2b', // Used for setting manifest and progress theme colors.
-  backgroundColor: '#0094f1', // Used for setting manifest background color.
+  backgroundColor: '#2b2b2b', // Used for setting manifest and progress theme colors.
+  themeColor: '#0094f1', // Used for setting manifest background color.
 };
 
 /* VALIDATION */
