@@ -5,6 +5,7 @@ import { a } from "@react-spring/web";
 
 import useTheme from "@project/hooks/useTheme";
 import loadable from "@loadable/component";
+import { Helmet } from "react-helmet";
 
 import {
   FlexContainer,
@@ -58,6 +59,10 @@ function ErrorPage() {
 
   return (
     <FlexContainer>
+      <Helmet>
+        <title>404 Not Found | DSF.com</title>
+      </Helmet>
+
       <Section justify="center">
         <FlexColumn justify="center">
           <FlexColumn justify="center">

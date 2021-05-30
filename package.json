@@ -12,6 +12,7 @@
     "start": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
+    "dev": "netlify dev",
     "format": "eslint --fix --ext .js,.jsx ./src",
     "clean": "rm -rf public && rm -rf .cache",
     "test": "jest ./src",
