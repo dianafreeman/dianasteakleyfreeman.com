@@ -13,11 +13,13 @@
     "build": "gatsby build",
     "serve": "gatsby serve",
     "dev": "netlify dev",
-    "format": "eslint --fix --ext .js,.jsx ./src",
+    "format": "eslint --fix --ext .js,.jsx .",
     "clean": "rm -rf public && rm -rf .cache",
     "test": "jest ./src",
     "test-e2e": "cypress run -C ./cypress/cypress.json",
-    "test-e2e-dev": "cypress open -C ./cypress/cypress.json"
+    "test-e2e-dev": "cypress open -C ./cypress/cypress.json",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "browserslist": {
     "production": [
@@ -105,5 +107,12 @@
     "url-join": "^4.0.0",
     "web-vitals": "^0.2.4"
   },
-  "resolutions": {}
+  "resolutions": {},
+  "devDependencies": {
+    "@storybook/addon-actions": "^6.2.9",
+    "@storybook/addon-essentials": "^6.2.9",
+    "@storybook/addon-links": "^6.2.9",
+    "@storybook/react": "^6.2.9",
+    "babel-loader": "^8.2.2"
+  }
 }
