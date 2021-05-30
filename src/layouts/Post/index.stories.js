@@ -1,15 +1,15 @@
-import React from 'react';
+import React from "react";
 
-import PostView from '.';
-import stub from './stub.json';
+import PostPage from ".";
+import stub from "./stub.json";
 
 export const mainView = (args) => {
-  return <PostView {...args} />;
+  return <PostPage {...args} />;
 };
 
 export default {
-  title: 'Templates/Post',
-  component: PostView,
+  title: "Templates/Post",
+  component: PostPage,
   args: {
     post: stub.data.markdownRemark,
     pageContext: { slug: stub.data.markdownRemark.fields.slug },

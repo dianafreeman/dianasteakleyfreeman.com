@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
-import styled, { useTheme as useStyledTheme } from 'styled-components';
-import { a, useSpring } from '@react-spring/web';
-import { OutboundLink as GtagOutboundLink } from 'gatsby-plugin-google-gtag';
+import React, { useState } from "react";
+import styled, { useTheme as useStyledTheme } from "styled-components";
+import { a, useSpring } from "@react-spring/web";
+import { OutboundLink as GtagOutboundLink } from "gatsby-plugin-google-gtag";
 
-import useTheme from '@project/hooks/useTheme';
+import useLayout from "@project/hooks/useLayout";
+import useTheme from "@project/hooks/useTheme";
 
 import {
   AiFillLinkedin,
   AiFillGithub,
   AiOutlineTwitter,
   AiFillMail,
-} from 'react-icons/ai';
+} from "react-icons/ai";
 
 const SocialList = styled.ul`
   display: flex;
@@ -34,13 +35,14 @@ const ExternalLink = styled(a(GtagOutboundLink))`
 
 export const OutboundLink = ({ style, ...props }) => {
   const [isHovered, set] = useState(false);
-  const { springConfig: config, palette } = useTheme();
+  const { palette } = useTheme();
+  const { springConfig: config } = useLayout();
   const [{ color }] = useSpring(
     {
       color: isHovered ? palette.primaryLight : palette.secondaryLight,
       config,
     },
-    [isHovered],
+    [isHovered]
   );
 
   const toggle = () => set((bool) => !bool);

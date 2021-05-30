@@ -1,6 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
-import { a } from '@react-spring/web';
+import React from "react";
+import styled from "styled-components";
 
 export const FlexBase = styled.div`
   display: flex;
@@ -17,9 +16,9 @@ export const FlexBase = styled.div`
 
 export const FlexDiv = ({
   direction,
-  justify = 'center',
-  justifyMd = 'center',
-  align = 'center',
+  justify = "center",
+  justifyMd = "center",
+  align = "center",
   style = {},
   order,
   ...rest

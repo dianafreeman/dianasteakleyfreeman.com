@@ -5,7 +5,13 @@
   ],
 
   "plugins": [
-    "@babel/plugin-syntax-class-properties",
+    "babel-plugin-styled-components",
+    [
+      "@babel/plugin-syntax-class-properties",
+      {
+        "ssr": false
+      }
+    ],
     [
       "module-resolver",
       {

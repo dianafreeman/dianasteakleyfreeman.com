@@ -1,8 +1,8 @@
-const path = require('path');
-const config = require('./config/siteMeta');
+const path = require("path");
+const config = require("./config/siteMeta");
 
 // Make sure that pathPrefix is not empty
-const validatedPathPrefix = config.pathPrefix === '' ? '/' : config.pathPrefix;
+const validatedPathPrefix = config.pathPrefix === "" ? "/" : config.pathPrefix;
 const validSiteUrl = `${config.siteUrl}${validatedPathPrefix}`;
 
 module.exports = {
@@ -11,13 +11,14 @@ module.exports = {
     siteUrl: validSiteUrl,
     title: config.siteTitle,
     description: config.siteDescription,
+    copyright: config.copyright,
   },
   plugins: [
-    'gatsby-plugin-loadable-components-ssr',
-    'gatsby-plugin-webpack-bundle-analyser-v2',
-    'gatsby-transformer-remark',
-    'gatsby-plugin-styled-components',
-    'gatsby-plugin-react-helmet',
+    "gatsby-plugin-loadable-components-ssr",
+    "gatsby-plugin-webpack-bundle-analyser-v2",
+    "gatsby-transformer-remark",
+    "gatsby-plugin-styled-components",
+    "gatsby-plugin-react-helmet",
     {
       resolve: `gatsby-plugin-layout`,
       options: {
@@ -26,23 +27,23 @@ module.exports = {
     },
 
     {
-      resolve: 'gatsby-source-filesystem',
+      resolve: "gatsby-source-filesystem",
       options: {
-        name: 'assets',
+        name: "assets",
         path: `${__dirname}/static/`,
       },
     },
     {
-      resolve: 'gatsby-plugin-module-resolver',
+      resolve: "gatsby-plugin-module-resolver",
       options: {
-        root: '.',
+        root: ".",
         aliases: {
-          '@project/config': './config',
-          '@project/hooks': './src/hooks',
-          '@project/assets': './src/assets',
-          '@project/fonts': './src/assets/fonts',
-          '@project/context': './src/context',
-          '@project/components': './src/components',
+          "@project/config": "./config",
+          "@project/hooks": "./src/hooks",
+          "@project/assets": "./src/assets",
+          "@project/fonts": "./src/assets/fonts",
+          "@project/context": "./src/context",
+          "@project/components": "./src/components",
         },
       },
     },
@@ -55,19 +56,20 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-source-filesystem',
+      resolve: "gatsby-source-filesystem",
       options: {
-        name: 'posts',
+      options: {
+        name: "posts",
         path: `${__dirname}/content/`,
       },
     },
     {
-      resolve: 'gatsby-plugin-netlify-cms',
+      resolve: "gatsby-plugin-netlify-cms",
       options: {
-        modulePath: path.resolve('src/layouts/Admin/index.js'), // default: undefined
+        modulePath: path.resolve("src/layouts/Admin/index.js"), // default: undefined
         enableIdentityWidget: true,
-        publicPath: 'admin',
-        htmlTitle: 'DSF.com Content Manager',
+        publicPath: "admin",
+        htmlTitle: "DSF.com Content Manager",
         includeRobots: false,
       },
     },

@@ -1,16 +1,16 @@
-import React from 'react';
-import CategoryView from './view';
-import stub from './stub.json';
+import React from "react";
+import CategoryPage from ".";
+import stub from "./stub.json";
 
 export const view = (args) => {
-  return <CategoryView {...args} />;
+  return <CategoryPage {...args} />;
 };
 
 export default {
-  title: 'Templates/Category',
-  component: CategoryView,
+  title: "Templates/Category",
+  component: CategoryPage,
   args: {
-    category: 'Category Name',
+    category: "Category Name",
     postEdges: stub.data.allMarkdownRemark.edges,
   },
 };

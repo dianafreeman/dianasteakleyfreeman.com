@@ -1,11 +1,11 @@
-import { FontLoader } from 'three';
-import React, { useRef, useState } from 'react';
-import { useFrame } from '@react-three/fiber';
-import { a } from '@react-spring/three';
+import { FontLoader } from "three";
+import React, { useRef, useState } from "react";
+import { useFrame } from "@react-three/fiber";
+import { a } from "@react-spring/three";
 
-import Dosis from '@project/assets/fonts/3d/Dosis_Bold.json';
+import Dosis from "@project/assets/fonts/3d/Dosis_Bold.json";
 
-import useLayout from '@project/hooks/useLayout';
+import useLayout from "@project/hooks/useLayout";
 
 function FloatingMesh({ string, size, ...props }) {
   const mesh = useRef();

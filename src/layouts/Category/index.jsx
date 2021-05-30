@@ -1,7 +1,7 @@
-import React from 'react';
-import { graphql } from 'gatsby';
+import React from "react";
+import { graphql } from "gatsby";
 
-import PostListing from '../Listing/PostListing';
+import PostListing from "../Listing/PostListing";
 
 export default function CategoryPage({ pageContext, data }) {
   const { category } = pageContext;
@@ -9,7 +9,6 @@ export default function CategoryPage({ pageContext, data }) {
   return <PostListing category={category} postEdges={postEdges} />;
 }
 
-/* eslint no-undef: "off" */
 export const pageQuery = graphql`
   query CategoryPage($category: String) {
     allMarkdownRemark(

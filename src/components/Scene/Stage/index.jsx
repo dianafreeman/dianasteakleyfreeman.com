@@ -1,14 +1,12 @@
-import React from 'react';
-import { useThree } from '@react-three/fiber';
-import { Environment, ContactShadows } from '@react-three/drei';
+import React from "react";
+import { Environment, ContactShadows } from "@react-three/drei";
 
-import loadable from '@loadable/component';
+import loadable from "@loadable/component";
 
-const FloatingMesh = loadable(() => import('../Meshes/FloatingMesh'));
-const Lights = loadable(() => import('../Lights'));
+const FloatingMesh = loadable(() => import("../Meshes/FloatingMesh"));
+const Lights = loadable(() => import("../Lights"));
 
 function Stage({ children, modelText, ...rest }) {
-  const { viewport, size } = useThree();
   const meshSize = 2;
 
   return (

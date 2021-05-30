@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { ThemeProvider as StyledThemeProvider } from 'styled-components';
-import ThemeContext from '@project/context/ThemeContext';
+import React, { useState } from "react";
+import { ThemeProvider as StyledThemeProvider } from "styled-components";
+import ThemeContext from "@project/context/ThemeContext";
 
 function ThemeProvider({ children }) {
   // Global DarkMode State
@@ -15,21 +15,18 @@ function ThemeProvider({ children }) {
   });
 
   const palette = {
-    black: '#2b2b2b',
-    white: '#f0f0f0',
-    dark: '#0d1f2b',
-    light: '#f1e9df',
-    gray: '#929093',
-    primary: '#E8B059',
-    primaryLight: '#F8C069',
-    primaryDark: '#e09600',
-    secondary: '#0094f1',
-    secondaryLight: '#2fa4f4',
-    secondaryDark: '#2277b1',
+    black: "#2b2b2b",
+    white: "#f0f0f0",
+    dark: "#0d1f2b",
+    light: "#f1e9df",
+    gray: "#929093",
+    primary: "#E8B059",
+    primaryLight: "#F8C069",
+    primaryDark: "#e09600",
+    secondary: "#0094f1",
+    secondaryLight: "#2fa4f4",
+    secondaryDark: "#2277b1",
   };
-
-  const springConfig = (n) =>
-    n === 'wobble' && hovered && { mass: 2, tension: 1000, friction: 20 };
 
   // Color
   const [colors] = useState({
@@ -42,26 +39,26 @@ function ThemeProvider({ children }) {
   });
 
   const [spacing] = useState({
-    sm: '1rem',
-    md: '1.5rem',
-    lg: '2.75rem',
-    xl: '3rem',
+    sm: "1rem",
+    md: "1.5rem",
+    lg: "2.75rem",
+    xl: "3rem",
     responsive: {
-      sm: 'calc(0.5rem * 2vw)',
+      sm: "calc(0.5rem * 2vw)",
     },
   });
 
   const [font] = useState({
     size: {
-      sm: '2rem',
-      md: '3rem',
-      lg: '4.5rem',
-      xl: '6rem',
+      sm: "2rem",
+      md: "3rem",
+      lg: "4.5rem",
+      xl: "6rem",
       responsive: {
-        sm: 'calc(1rem + 4vw)',
-        md: 'calc(2rem + 4vw)',
-        lg: 'calc(3.5rem + 4vw)',
-        xl: 'calc(5rem + 4vw)',
+        sm: "calc(1rem + 4vw)",
+        md: "calc(2rem + 4vw)",
+        lg: "calc(3.5rem + 4vw)",
+        xl: "calc(5rem + 4vw)",
       },
     },
   });
@@ -78,17 +75,16 @@ function ThemeProvider({ children }) {
     <ThemeContext.Provider
       value={{
         setDarkMode,
-        springConfig,
         darkMode,
         palette,
         colors,
         breakpoints,
       }}
     >
-      {/* Makes the above configuration available to styled components internally as a global `theme` */}
+      {/* Makes the above configuration available
+      to styled components internally as a global `theme` */}
       <StyledThemeProvider theme={theme}>{children}</StyledThemeProvider>
     </ThemeContext.Provider>
   );
 }
 export default ThemeProvider;
-4;

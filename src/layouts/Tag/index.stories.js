@@ -1,16 +1,16 @@
-import React from 'react';
-import TagView from '.';
-import stub from './stub.json';
+import React from "react";
+import Tag from ".";
+import stub from "./stub.json";
 
 export const view = (args) => {
-  return <TagView {...args} />;
+  return <Tag {...args} />;
 };
 
 export default {
-  title: 'Templates/Tag',
-  component: TagView,
+  title: "Templates/Tag",
+  component: Tag,
   args: {
     postEdges: stub.data.allMarkdownRemark.edges,
-    pageContext: { tag: 'tech' },
+    pageContext: { tag: "tech" },
   },
 };

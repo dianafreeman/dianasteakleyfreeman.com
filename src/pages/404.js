@@ -1,49 +1,25 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import { graphql } from "gatsby";
 
-import { a } from '@react-spring/web';
-import { Loader } from '@react-three/drei';
+import { a } from "@react-spring/web";
 
-import useLayout from '@project/hooks/useLayout';
-import { IoMdOpen } from 'react-icons/io';
-import Scene from '../components/Scene';
+import useLayout from "@project/hooks/useLayout";
+import loadable from "@loadable/component";
 
 import {
   FlexContainer,
-  FlexBox,
   FlexColumn,
   FlexRow,
-} from '../components/Flex';
+  FlexDiv,
+} from "../components/Flex";
+import Links from "../components/Links";
 
-const SceneWrapper = styled.div`
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints.md}px) {
-    position: fixed;
-    width: 50%;
-    left: unset;
-    right: 0;
-  }
-`;
+const Scene = loadable(() => import("../components/Scene"));
 
-const Section = styled.div`
-  width: 100%;
-  padding-top: ${({ theme }) => theme.spacing.sm};
-  padding-bottom: ${({ theme }) => theme.spacing.sm};
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints.md}px) {
-    padding-top: ${({ theme }) => theme.spacing.xl};
-    padding-bottom: ${({ theme }) => theme.spacing.xl};
-    padding-left: ${({ theme }) => theme.spacing.xl};
-    max-width: 50%;
-    justify-content: center;
-  }
+const Section = styled(FlexRow)`
+  padding: ${({ theme }) => theme.spacing.sm} 0;
+  margin: 0 auto;
 `;
 
 const Display1 = styled(a.h1)`
@@ -52,110 +28,85 @@ const Display1 = styled(a.h1)`
   text-align: center;
   margin: unset;
   line-height: 1.2;
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints.md}px) {
-    text-align: left;
-  }
   @media screen and (min-width: 768px) {
     font-size: calc(4.5rem + 2vw);
   }
 `;
 
-const SceneBox = styled.div`
-  top: calc(1em + 2vh);
-  height: calc(98vh - 4em);
-  width: 100%;
-  left: 0;
-  position: absolute;
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints.md}px) {
-    right: 0;
-    left: unset;
-    width: 50%;
-  }
-`;
-
-const Button = styled(a.a)`
-  padding: ${({ theme }) => theme.spacing.sm};
-  border-radius: 100%;
-  font-size: 1rem;
-  margin-bottom: 1em;
-  margin: auto;
-  font-size: 2em;
-`;
-
-const FlexSceneArea = styled(FlexBox)`
-  min-height: 50vh;
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints.md}px) {
-    display: none;
-  }
-`;
-
-const RenderableScene = () => (
-  <>
-    <SceneBox>
-      <SceneWrapper>
-        <Scene cameraProps={{ position: [0, 5, 30], zoom: 1 }} modelText="?" />
-      </SceneWrapper>
-    </SceneBox>
-    <FlexSceneArea order={1} />
-  </>
-);
 const Sub2 = styled(a.p)`
   font-size: 1.5rem;
   font-weight: 300;
   line-height: 1.2;
   margin: unset;
   text-align: center;
-  padding-bottom: 2em;
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints.md}px) {
-    text-align: left;
-  }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.lg}px) {
-    padding-bottom: unset;
     font-size: calc(1.5rem + 0.5vw);
   }
-}
 `;
 
-function NotFound({ data }) {
+const FlexSceneArea = styled(FlexDiv)`
+  min-height: 370px;
+  margin: unset;
+  height: 50vh;
+  }
+`;
+
+function ErrorPage({ data }) {
   const { colorSprings } = useLayout();
+
+  const [ready, setReady] = useState(false);
+
+  // delay even the attempt at rendering
+  useEffect(() => void setTimeout(() => setReady(true), 500), []);
 
   return (
     <>
       <FlexContainer>
-        <Section>
-          <FlexColumn>
-            <FlexBox justify="flex-start" justifyMd="center" order={1}>
+        <Section justify="space-between" justifyMd="center">
+          <FlexColumn justify="center">
+            <FlexColumn justify="center">
               <Display1 style={{ color: colorSprings.text }}>
-                Aw, snap.
+                I&apos;m Diana.
               </Display1>
               <Sub2 style={{ color: colorSprings.text }}>
-                This is not the page you're looking for.
+                Coder, Creator, Communicator.
               </Sub2>
-            </FlexBox>
-            <FlexBox order={2}>
-              <FlexRow align="baseline">
-                <a.p style={{ color: colorSprings.text, margin: 'auto' }}>
-                  Back to Home
-                </a.p>
-                <Button
-                  target="_blank"
-                  href="/"
+              <Links />
+            </FlexColumn>
+            <FlexSceneArea>
+              {ready ? (
+                <Scene modelText="D" />
+              ) : (
+                <a.div
                   style={{
-                    color: colorSprings.background,
-                    backgroundColor: colorSprings.text,
+                    width: "100%",
+                    height: "100%",
+                    color: colorSprings.text,
+                    textAlign: "center",
                   }}
                 >
-                  <IoMdOpen />
-                </Button>
-              </FlexRow>
-            </FlexBox>
-            <RenderableScene />
+                  <p>Loading...</p>
+                </a.div>
+              )}
+            </FlexSceneArea>
           </FlexColumn>
+          <FlexRow>
+            <p>{data.site.siteMetadata.copyright}</p>
+          </FlexRow>
         </Section>
       </FlexContainer>
-      <Loader />
     </>
   );
 }
 
-export default NotFound;
+export default ErrorPage;
+
+export const pageQuery = graphql`
+  query ErrorPageQuery {
+    site {
+      siteMetadata {
+        copyright
+      }
+    }
+  }
+`;

@@ -1,12 +1,10 @@
 // import 'react-typed/dist/animatedCursor.css';
-import React, { useState, useRef, useEffect } from 'react';
-import Typed from 'react-typed';
-import styled, { css } from 'styled-components';
-import { Html, useProgress } from '@react-three/drei';
+import React, { useRef } from "react";
+import Typed from "react-typed";
+import styled from "styled-components";
+import { useProgress } from "@react-three/drei";
 
-import useLayout from '@project/hooks/useLayout';
-
-const PHRASE = "Hi, I'm Diana";
+import useLayout from "@project/hooks/useLayout";
 
 // TODO
 // Not currently used anywhere
@@ -16,7 +14,7 @@ const ProgressBar = styled.div`
   position: relative;
   background-color: ${(props) => props.bg};
   &:before {
-    content: ' ';
+    content: " ";
     position: absolute;
     top: 0;
     left: 0;
@@ -28,7 +26,7 @@ const ProgressBar = styled.div`
 
 const H1 = styled.h1`
   color: white;
-  fontfamily: 'Poppins', sans-serif;
+  fontfamily: "Poppins", sans-serif;
   font-weight: 800;
   font-size: 80px;
   text-align: left;
@@ -37,7 +35,7 @@ const H1 = styled.h1`
 
 const FlexWrapper = styled.div`
   z-index: ${({ finished }) => (finished ? 0 : 999)};
-  background-color: ${(props) => props.bg || 'black'};
+  background-color: ${(props) => props.bg || "black"};
   position: absolute;
   overflow: hidden;
   top: 0;
@@ -63,7 +61,7 @@ export default function Loading() {
         <H1>
           <Typed
             ref={typeRef}
-            strings={['Loading...']}
+            strings={["Loading..."]}
             typeSpeed={80}
             onComplete={onTypingComplete}
           />

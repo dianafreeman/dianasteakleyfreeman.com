@@ -1,23 +1,25 @@
-import React from 'react';
+import React from "react";
 
-import { a } from '@react-spring/web';
-import { createGlobalStyle } from 'styled-components';
+import { a } from "@react-spring/web";
+import { createGlobalStyle } from "styled-components";
 
-import ThemeProvider from '@project/context/ThemeProvider';
-import LayoutProvider from '@project/context/LayoutProvider';
+import ThemeProvider from "@project/context/ThemeProvider";
+import LayoutProvider from "@project/context/LayoutProvider";
+import RobotoBlack from "@project/assets/fonts/2d/Roboto/Roboto-Black.ttf";
+import RobotoMonoLight from "@project/assets/fonts/2d/Roboto_Mono/static/RobotoMono-Light.ttf";
 
-import useTheme from '@project/hooks/useTheme';
+import useTheme from "@project/hooks/useTheme";
 
-import SEO from './SEO';
+import SEO from "./SEO";
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
       font-family: 'Roboto Black';
-      src: local('Roboto Black'), url(../../assets/fonts/2d/Roboto/Roboto-Black.ttf) format('truetype');
+      src: local('Roboto Black'), url(${RobotoBlack}) format('truetype');
   }
   @font-face {
       font-family: 'Roboto Mono';
-      src: local('Roboto Mono'), url(../../assets/fonts/2d/Roboto_Mono/static/RobotoMono-Light.ttf) format('truetype');
+      src: local('Roboto Mono'), url(${RobotoMonoLight}) format('truetype');
   }
   html {
     padding: unset;
@@ -49,9 +51,9 @@ const Internals = ({ children, postNode, postPath, postSEO }) => {
       <a.main
         style={{
           backgroundColor: colors.background,
-          margin: 'unset',
-          minHeight: '100vh',
-          display: 'flex',
+          margin: "unset",
+          minHeight: "100vh",
+          display: "flex",
         }}
       >
         {children}

@@ -1,18 +1,8 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
+import { useSpring } from "@react-spring/core";
+import useTheme from "@project/hooks/useTheme";
+import LayoutContext from "./LayoutContext";
 
-import { a } from '@react-spring/web';
-import { useSpring } from '@react-spring/core';
-
-import useTheme from '@project/hooks/useTheme';
-
-import { Helmet } from 'react-helmet';
-import LayoutContext from './LayoutContext';
-
-const SLIDES = [
-  {
-    camera: { position: [0, 0, 10] },
-  },
-];
 /**
  *This can consume the theme!
  *
@@ -20,7 +10,7 @@ const SLIDES = [
  * @returns
  */
 function LayoutProvider({ children }) {
-  const { darkMode, palette, springConfig, colors } = useTheme();
+  const { darkMode, palette, colors } = useTheme();
 
   // Has Page Loaded?
   const [loading, setLoading] = useState(true);
@@ -28,21 +18,14 @@ function LayoutProvider({ children }) {
   // is the initial animation done?
   const [finished, setFinished] = useState(false);
 
-  // Is this the index Page?
-  const [cameraSprings] = useSpring(
-    {
-      positionZ: 50,
-      positionY: finished ? 5 : 0,
-      config: springConfig,
-    },
-    [finished],
-  );
-
   // ThreeJS Model Hover State
   const [hovered, setHovered] = useState(false);
 
   // ThreeJS Model PointerDown State
   const [down, setDown] = useState(false);
+
+  const springConfig = (n) =>
+    n === "wobble" && hovered && { mass: 2, tension: 1000, friction: 20 };
 
   // Color Springs
   const [colorSprings] = useSpring(
@@ -55,7 +38,7 @@ function LayoutProvider({ children }) {
       pointer: darkMode ? palette.secondary : palette.primary,
       config: springConfig,
     },
-    [darkMode, hovered],
+    [darkMode, hovered]
   );
 
   // Springs for color and overall looks, this is state-driven animation
@@ -70,24 +53,24 @@ function LayoutProvider({ children }) {
       // env: darkMode && !hovered ? 0.4 : 1,
       // ambient: darkMode && !hovered ? 1.5 : 0.5,
       config: (n) =>
-        n === 'wobble' && hovered && { mass: 2, tension: 1000, friction: 30 },
+        n === "wobble" && hovered && { mass: 2, tension: 1000, friction: 30 },
     },
-    [darkMode, hovered, down],
+    [darkMode, hovered, down]
   );
 
   useEffect(() => {
     document.body.style.cursor = hovered
-      ? 'none'
+      ? "none"
       : `url('data:image/svg+xml;base64,${btoa(
-          `<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="16" r="10" fill="${colors.pointer}"/></svg>`,
+          `<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="16" r="10" fill="${colors.pointer}"/></svg>`
         )}'), auto`;
-  }, [hovered]);
+  }, [hovered, colors.pointer]);
 
   return (
     <LayoutContext.Provider
       value={{
-        cameraSprings,
         colorSprings,
+        springConfig,
         down,
         finished,
         hovered,

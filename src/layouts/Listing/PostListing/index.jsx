@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import POSTS_STUB from './index.stub.json';
+import POSTS_STUB from "./index.stub.json";
 
 function PostListing({ postEdges = POSTS_STUB }) {
   return (

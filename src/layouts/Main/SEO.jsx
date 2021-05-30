@@ -1,8 +1,8 @@
-import React, { useState, useContext } from 'react';
-import { Helmet } from 'react-helmet';
-import urljoin from 'url-join';
+import React, { useState } from "react";
+import { Helmet } from "react-helmet";
+import urljoin from "url-join";
 
-import config from '@project/config/siteMeta';
+import config from "@project/config/siteMeta";
 
 /**
  * AHH I hate this.
@@ -31,7 +31,7 @@ function SEO({ postNode, postPath, postSEO }) {
   const getImagePath = (imageURI) => {
     if (
       !imageURI?.match(
-        `(https?|ftp|file)://[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]`,
+        `(https?|ftp|file)://[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]`
       )
     )
       return urljoin(config.siteUrl, config.pathPrefix, imageURI);
@@ -48,38 +48,38 @@ function SEO({ postNode, postPath, postSEO }) {
   const datePublished = getPublicationDate();
 
   const authorJSONLD = {
-    '@type': 'Person',
+    "@type": "Person",
     name: config.userName,
     email: config.userEmail,
     address: config.userLocation,
   };
 
   const logoJSONLD = {
-    '@type': 'ImageObject',
+    "@type": "ImageObject",
     url: getImagePath(config.siteLogo),
   };
 
   const blogURL = urljoin(config.siteUrl, config.pathPrefix);
   const schemaOrgJSONLD = [
     {
-      '@project/context': 'http://schema.org',
-      '@type': 'WebSite',
+      "@project/context": "http://schema.org",
+      "@type": "WebSite",
       url: blogURL,
       name: title,
-      alternateName: config.siteTitleAlt ? config.siteTitleAlt : '',
+      alternateName: config.siteTitleAlt ? config.siteTitleAlt : "",
     },
   ];
   if (postSEO) {
     schemaOrgJSONLD.push(
       {
-        '@project/context': 'http://schema.org',
-        '@type': 'BreadcrumbList',
+        "@project/context": "http://schema.org",
+        "@type": "BreadcrumbList",
         itemListElement: [
           {
-            '@type': 'ListItem',
+            "@type": "ListItem",
             position: 1,
             item: {
-              '@id': postURL,
+              "@id": postURL,
               name: title,
               image,
             },
@@ -87,22 +87,22 @@ function SEO({ postNode, postPath, postSEO }) {
         ],
       },
       {
-        '@project/context': 'http://schema.org',
-        '@type': 'BlogPosting',
+        "@project/context": "http://schema.org",
+        "@type": "BlogPosting",
         url: blogURL,
         name: title,
-        alternateName: config.siteTitleAlt || '',
+        alternateName: config.siteTitleAlt || "",
         headline: title,
-        image: { '@type': 'ImageObject', url: image },
+        image: { "@type": "ImageObject", url: image },
         author: authorJSONLD,
         publisher: {
           ...authorJSONLD,
-          '@type': 'Organization',
+          "@type": "Organization",
           logo: logoJSONLD,
         },
         datePublished,
         description,
-      },
+      }
     );
   }
 

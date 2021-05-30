@@ -1,12 +1,7 @@
-import React from 'react';
-import { Helmet } from 'react-helmet';
-import { graphql } from 'gatsby';
+import React from "react";
+import { graphql } from "gatsby";
 
-import config from '@project/config/siteMeta';
-
-import SEO from '../Main/SEO';
-
-export default function PostTemplate({ data, pageContext }) {
+function PostTemplate({ data, pageContext }) {
   const { slug } = pageContext;
   const postNode = data.markdownRemark;
   const post = postNode.frontmatter;
@@ -22,13 +17,14 @@ export default function PostTemplate({ data, pageContext }) {
         <div className="post-meta">
           <pre>{JSON.stringify(post, null, 2)}</pre>
         </div>
+        {/* eslint-disable-next-line react/no-danger */}
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
       </div>
     </>
   );
 }
+export default PostTemplate;
 
-/* eslint no-undef: "off" */
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {

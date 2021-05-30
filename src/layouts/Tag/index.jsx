@@ -1,8 +1,8 @@
-import React from 'react';
-import { Helmet } from 'react-helmet';
-import { graphql } from 'gatsby';
-import config from '@project/config/siteMeta';
-import PostListing from '../Listing/PostListing';
+import React from "react";
+import { Helmet } from "react-helmet";
+import { graphql } from "gatsby";
+import config from "@project/config/siteMeta";
+import PostListing from "../Listing/PostListing";
 
 export default function TagTemplate({ pageContext, data }) {
   const { tag } = pageContext;
@@ -15,7 +15,6 @@ export default function TagTemplate({ pageContext, data }) {
   );
 }
 
-/* eslint no-undef: "off" */
 export const pageQuery = graphql`
   query TagPage($tag: String) {
     allMarkdownRemark(
