@@ -1,33 +1,6 @@
 import CMS from "netlify-cms-app";
 
-CMS.init({
-  config: {
-    backend: {
-      name: "git-gateway",
-      branch: "main",
-      repo: "dianafreeman/dianasteakleyfreeman.com",
-    },
-    site_url: "https://dianasteakleyfreeman.com",
-    local_backend: true,
-    load_config_file: false,
-    media_folder: "static/uploads/images",
-    public_folder: "/uploads/images",
-    collections: [
-      {
-        label: "Blog Posts",
-        name: "blog",
-        folder: "content/blog",
-        create: true,
-        fields: [
-          { label: "Title", name: "title", widget: "string" },
-          { label: "Publish Date", name: "date", widget: "datetime" },
-          { label: "Featured Image", name: "thumbnail", widget: "image" },
-          { label: "Body", name: "body", widget: "markdown" },
-        ],
-      },
-    ],
-  },
-});
+CMS.init();
 /*
 
 

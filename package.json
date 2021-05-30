@@ -12,11 +12,11 @@
     "start": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
-    "dev": "netlify dev",
     "format": "eslint --fix --ext .js,.jsx ./src",
     "clean": "rm -rf public && rm -rf .cache",
     "test": "jest ./src",
-    "test-e2e": "cypress -run"
+    "test-e2e": "cypress run -C ./cypress/cypress.json",
+    "test-e2e-dev": "cypress open -C ./cypress/cypress.json"
   },
   "browserslist": {
     "production": [
@@ -86,7 +86,7 @@
     "jest-styled-components": "^7.0.4",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
-    "netlify-cli": "^3.21.9",
+    "netlify-cli": "^3.32.0",
     "netlify-cms-app": "^2.14.26",
     "postprocessing": "^6.21.2",
     "prettier": "^2.2.1",

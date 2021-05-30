@@ -63,7 +63,7 @@ module.exports = {
     {
       resolve: "gatsby-plugin-netlify-cms",
       options: {
-        modulePath: path.resolve("src/layouts/Admin/index.js"), // default: undefined
+        modulePath: path.resolve("src/layouts/Admin/index.js"),
         enableIdentityWidget: true,
         publicPath: "admin",
         htmlTitle: "DSF.com Content Manager",
@@ -99,5 +99,6 @@ module.exports = {
       },
     },
     `gatsby-plugin-offline`,
+    `gatsby-plugin-netlify`,
   ],
 };
