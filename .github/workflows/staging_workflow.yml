@@ -78,6 +78,7 @@ jobs:
         with:
           start: yarn serve
           headless: true
+          project: ./cypress
         env:
           CYPRESS_host: http://localhost
           CYPRESS_port: 9000
