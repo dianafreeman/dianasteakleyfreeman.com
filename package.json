@@ -15,8 +15,8 @@
     "dev": "netlify dev",
     "format": "eslint --fix --ext .js,.jsx ./src",
     "clean": "rm -rf public && rm -rf .cache",
-    "test": "jest",
-    "test-e2e": "jest"
+    "test": "jest ./src",
+    "test-e2e": "cypress -run"
   },
   "browserslist": {
     "production": [

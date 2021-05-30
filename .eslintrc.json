@@ -11,7 +11,9 @@
     "jest": true,
     "node": true
   },
-  "globals": {  },
+  "globals": {
+    "cy":"readonly"
+  },
   "settings": {
     "import/resolver": {
       "babel-module": {
