@@ -34,7 +34,7 @@ jobs:
           ${{ runner.os }}-yarn-
 
     - name: Run Unit Tests
-      run: yarn test:unit
+      run: yarn test
 
     - name: Build Static Site
       run: yarn build
@@ -46,7 +46,7 @@ jobs:
         path: public
 
   test-e2e-and-deploy:
-    name: "Unit Test and Build"
+    name: "Test E2E and deploy"
     runs-on: ubuntu-latest
     needs: test-and-build
     steps:
