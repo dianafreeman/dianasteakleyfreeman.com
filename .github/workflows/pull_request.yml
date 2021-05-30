@@ -1,36 +1,66 @@
 name: CI Workflow
 
 on:
-  pull_request:
+  push:
     branches: [ staging, staging@next ]
 
 jobs:
-  build-and-test:
-    name: "Build and Test"
+  test-and-build:
+    name: "Unit Test and Build"
     runs-on: ubuntu-latest
     steps:
+
     - name: Checkout Files
       uses: actions/checkout@v2
-      with:
-        ref: ${{ github.event.pull_request.head.sha }}
+
     - name: Use Node.js 12
       uses: actions/setup-node@v1
       with:
         node-version: '12.x'
-    - name: Cache Node.js modules
-      uses: actions/cache@v2
-      with:
-        # npm cache files are stored in `~/.npm` on Linux/macOS
-        path: ~/.npmN
-        key: ${{ runner.OS }}-node-${{ hashFiles('yarn.lock') }}
-        restore-keys: |
-          ${{ runner.OS }}-node-
-          ${{ runner.OS }}-
-    - name: Install dependencies
-      run: yarn  --frozen-lockfile
 
-    - name: Check Formatting
-      run: yarn run test:format
+    - name: Get yarn cache directory path
+      id: yarn-cache-dir-path
+      run: echo "::set-output name=dir::$(yarn cache dir)"
+
+    - name: Install dependencies
+      run: yarn install --silent --prefer-offline
+
+    - uses: actions/cache@v1
+      id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+      with:
+        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-
 
     - name: Run Unit Tests
-      run: yarn run test:unit
+      run: yarn test:unit
+
+    - name: Build Static Site
+      run: yarn build
+
+    - name: Archive build artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: site-build
+        path: public
+
+  test-e2e-and-deploy:
+    name: "Unit Test and Build"
+    runs-on: ubuntu-latest
+    needs: test-and-build
+    steps:
+      - name: Download all workflow run artifacts
+        uses: actions/download-artifact@v2
+
+      - name: Serve Gatsby Static
+        run: yarn serve
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        with:
+          browser: chrome
+          headless: true
+        env:
+          CYPRESS_host: api.dev.local
+          CYPRESS_port: 9000

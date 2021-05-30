@@ -25,7 +25,6 @@ module.exports = {
         component: require.resolve(`./src/layouts/Main/index.jsx`),
       },
     },
-
     {
       resolve: "gatsby-source-filesystem",
       options: {
@@ -47,7 +46,6 @@ module.exports = {
         },
       },
     },
-
     `gatsby-plugin-sitemap`,
     {
       resolve: `gatsby-plugin-google-gtag`,
@@ -57,7 +55,6 @@ module.exports = {
     },
     {
       resolve: "gatsby-source-filesystem",
-      options: {
       options: {
         name: "posts",
         path: `${__dirname}/content/`,

@@ -11,12 +11,12 @@
   "scripts": {
     "start": "gatsby develop",
     "build": "gatsby build",
+    "serve": "gatsby serve",
     "dev": "netlify dev",
     "format": "eslint --fix --ext .js,.jsx ./src",
-    "test:dev": "jest --watch",
     "clean": "rm -rf public && rm -rf .cache",
-    "lint": "eslint --fix --ext .js,.jsx ./src",
-    "test": "jest"
+    "test": "jest",
+    "test-e2e": "jest"
   },
   "browserslist": {
     "production": [
