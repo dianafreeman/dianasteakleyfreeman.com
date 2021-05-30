@@ -4,7 +4,7 @@ import { graphql } from "gatsby";
 
 import { a } from "@react-spring/web";
 
-import useLayout from "@project/hooks/useLayout";
+import useTheme from "@project/hooks/useTheme";
 import loadable from "@loadable/component";
 
 import {
@@ -22,23 +22,25 @@ const Section = styled(FlexRow)`
   margin: 0 auto;
 `;
 
-const Display1 = styled(a.h1)`
+const Display1 = styled.h1`
   font-size: 4.5rem;
   font-weight: 300;
   text-align: center;
   margin: unset;
   line-height: 1.2;
+  color: ${({ theme }) => theme.colors.text};
   @media screen and (min-width: 768px) {
     font-size: calc(4.5rem + 2vw);
   }
 `;
 
-const Sub2 = styled(a.p)`
+const Sub2 = styled.p`
   font-size: 1.5rem;
   font-weight: 300;
   line-height: 1.2;
   margin: unset;
   text-align: center;
+  color: ${({ theme }) => theme.colors.text};
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.lg}px) {
     font-size: calc(1.5rem + 0.5vw);
   }
@@ -48,11 +50,10 @@ const FlexSceneArea = styled(FlexDiv)`
   min-height: 370px;
   margin: unset;
   height: 50vh;
-  }
 `;
 
 function Index() {
-  const { colorSprings } = useLayout();
+  const { colors } = useTheme();
 
   const [ready, setReady] = useState(false);
 
@@ -65,12 +66,8 @@ function Index() {
         <Section justify="space-between" justifyMd="center">
           <FlexColumn justify="center">
             <FlexColumn justify="center">
-              <Display1 style={{ color: colorSprings.text }}>
-                I&apos;m Diana.
-              </Display1>
-              <Sub2 style={{ color: colorSprings.text }}>
-                Coder, Creator, Communicator.
-              </Sub2>
+              <Display1>I&apos;m Diana.</Display1>
+              <Sub2>Coder, Creator, Communicator.</Sub2>
               <Links />
             </FlexColumn>
             <FlexSceneArea>
@@ -81,7 +78,7 @@ function Index() {
                   style={{
                     width: "100%",
                     height: "100%",
-                    color: colorSprings.text,
+                    color: colors.text,
                     textAlign: "center",
                   }}
                 >

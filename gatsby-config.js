@@ -15,7 +15,6 @@ module.exports = {
   },
   plugins: [
     "gatsby-plugin-loadable-components-ssr",
-    "gatsby-plugin-webpack-bundle-analyser-v2",
     "gatsby-transformer-remark",
     "gatsby-plugin-styled-components",
     "gatsby-plugin-react-helmet",
@@ -70,6 +69,8 @@ module.exports = {
         includeRobots: false,
       },
     },
+    `gatsby-plugin-netlify`,
+
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -81,17 +82,17 @@ module.exports = {
         display: `standalone`,
         icons: [
           {
-            src: `/logos/logo-48x48.png`,
+            src: `/logos/logo-48.png`,
             sizes: `48x48`,
             type: `image/png`,
           },
           {
-            src: `/logos/logo-192x192.png`,
+            src: `/logos/logo-192.png`,
             sizes: `192x192`,
             type: `image/png`,
           },
           {
-            src: `/logos/logo-512x512.png`,
+            src: `/logos/logo-512.png`,
             sizes: `512x512`,
             type: `image/png`,
           },
@@ -99,6 +100,5 @@ module.exports = {
       },
     },
     `gatsby-plugin-offline`,
-    `gatsby-plugin-netlify`,
   ],
 };

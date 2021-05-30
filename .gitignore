@@ -59,7 +59,7 @@ public/
 # Bundle stats
 bundle-stats.json
 
-# DIANA'S ADDITONS
+# MAC
 .DS_store
 **/.DS_Store
 .vscode/
@@ -70,10 +70,11 @@ scripts/
 .editorconfig
 .env
 
-# Local Netlify folder
+# Netlify
 .netlify/
 
+# Cypress Artifcats
+**/*.mp4
+cypress/**/*.png
 
-# Created by https://www.toptal.com/developers/gitignore/api/node,react,macos
-# Edit at https://www.toptal.com/developers/gitignore?templates=node,react,macos
 

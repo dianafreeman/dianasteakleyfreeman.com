@@ -15,4 +15,12 @@ describe("Smoke Tests", () => {
       });
     });
   });
+  describe("visiting a non-existent page  ", () => {
+    beforeEach(() =>
+      cy.visit("/this-page-does-not-exist", { failOnStatusCode: false })
+    );
+    it("should show a 404 page", () => {
+      cy.title().should("include", "Not Found");
+    });
+  });
 });

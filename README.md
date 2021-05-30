@@ -67,6 +67,9 @@ This project is hosted as a static site via Netlify. Netlify auto-deploys the `m
 - Web Vitals
 - Lighthouse
 
+## Gotchas
+Using an OAuth provider (e.g. Github) to log in to the backend will not work during local development.
+
 ## Author
 
 👤 **Diana M Steakley-Freeman**

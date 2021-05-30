@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { graphql } from "gatsby";
 
 import { a } from "@react-spring/web";
 
-import useLayout from "@project/hooks/useLayout";
+import useTheme from "@project/hooks/useTheme";
 import loadable from "@loadable/component";
 
 import {
@@ -13,16 +12,15 @@ import {
   FlexRow,
   FlexDiv,
 } from "../components/Flex";
-import Links from "../components/Links";
 
 const Scene = loadable(() => import("../components/Scene"));
 
 const Section = styled(FlexRow)`
   padding: ${({ theme }) => theme.spacing.sm} 0;
-  margin: 0 auto;
+  margin: auto;
 `;
 
-const Display1 = styled(a.h1)`
+const Display1 = styled.h1`
   font-size: 4.5rem;
   font-weight: 300;
   text-align: center;
@@ -33,7 +31,7 @@ const Display1 = styled(a.h1)`
   }
 `;
 
-const Sub2 = styled(a.p)`
+const Sub2 = styled.p`
   font-size: 1.5rem;
   font-weight: 300;
   line-height: 1.2;
@@ -52,47 +50,41 @@ const FlexSceneArea = styled(FlexDiv)`
 `;
 
 function ErrorPage() {
-  const { colorSprings } = useLayout();
-
+  const { colors } = useTheme();
   const [ready, setReady] = useState(false);
 
   // delay even the attempt at rendering
   useEffect(() => void setTimeout(() => setReady(true), 500), []);
 
   return (
-    <>
-      <FlexContainer>
-        <Section justify="space-between" justifyMd="center">
+    <FlexContainer>
+      <Section justify="center">
+        <FlexColumn justify="center">
           <FlexColumn justify="center">
-            <FlexColumn justify="center">
-              <Display1 style={{ color: colorSprings.text }}>
-                Well this is awkward.
-              </Display1>
-              <Sub2 style={{ color: colorSprings.text }}>
-                This is no the page you&apos;re looking for.
-              </Sub2>
-              <Links />
-            </FlexColumn>
-            <FlexSceneArea>
-              {ready ? (
-                <Scene modelText="??" />
-              ) : (
-                <a.div
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    color: colorSprings.text,
-                    textAlign: "center",
-                  }}
-                >
-                  <p>Loading...</p>
-                </a.div>
-              )}
-            </FlexSceneArea>
+            <Display1 style={{ color: colors.text }}>404</Display1>
+            <Sub2 style={{ color: colors.text }}>
+              This is not the page you&apos;re looking for.
+            </Sub2>
           </FlexColumn>
-        </Section>
-      </FlexContainer>
-    </>
+          <FlexSceneArea>
+            {ready ? (
+              <Scene modelText="?" />
+            ) : (
+              <a.div
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  color: colors.text,
+                  textAlign: "center",
+                }}
+              >
+                <p>Loading...</p>
+              </a.div>
+            )}
+          </FlexSceneArea>
+        </FlexColumn>
+      </Section>
+    </FlexContainer>
   );
 }
 
