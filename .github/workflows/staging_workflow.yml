@@ -74,13 +74,8 @@ jobs:
           key: static-build-${{ github.sha }}-${{ github.run_number }}
 
       - name: Cypress E2E
-        uses: cypress-io/github-action@v2
-        with:
-          start: yarn serve
-          headless: true
-          project: ./cypress
-        env:
-          CYPRESS_host: http://localhost
-          CYPRESS_port: 9000
+        run: yarn test-e2e
+
+
 
 
