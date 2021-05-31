@@ -74,8 +74,10 @@ jobs:
           key: static-build-${{ github.sha }}-${{ github.run_number }}
 
       - name: Cypress E2E
-        run: yarn test-e2e
-
-
+        uses: cypress-io/github-action@v2
+        with:
+          start: yarn serve
+          headless: true
+          project: ./cypress
 
 
