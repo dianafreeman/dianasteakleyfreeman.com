@@ -10,7 +10,7 @@ export default {
   title: "Templates/Tag",
   component: Tag,
   args: {
-    postEdges: stub.data.allMarkdownRemark.edges,
+    data: stub.data,
     pageContext: { tag: "tech" },
   },
 };

@@ -16,7 +16,7 @@ module.exports = {
   coverageReporters: ["json", "text", "lcov", "clover"],
 
   globals: {},
-  setupFilesAfterEnv: ["./config/setupTests.js"],
+  setupFilesAfterEnv: ["./config/test/setupTests.js"],
   testMatch: ["**/__tests__/**/* .[jt]s?(x)", "**/?(*.)+(spec|test).[tj]s?(x)"],
   testPathIgnorePatterns: ["/node_modules/"],
 

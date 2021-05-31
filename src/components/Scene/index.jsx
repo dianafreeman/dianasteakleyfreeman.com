@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-
+import PropTypes from "prop-types";
 import loadable from "@loadable/component";
 
 const SceneInternals = loadable(() => import("./Internals"));
@@ -25,3 +25,7 @@ const RenderableScene = ({ modelText }) => {
   );
 };
 export default RenderableScene;
+
+RenderableScene.propTypes = {
+  modelText: PropTypes.string.isRequired,
+};

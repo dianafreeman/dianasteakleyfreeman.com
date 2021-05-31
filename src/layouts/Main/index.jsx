@@ -10,8 +10,6 @@ import RobotoMonoLight from "@project/assets/fonts/2d/Roboto_Mono/static/RobotoM
 
 import useTheme from "@project/hooks/useTheme";
 
-import SEO from "./SEO";
-
 const GlobalStyle = createGlobalStyle`
   @font-face {
       font-family: 'Roboto Black';
@@ -24,6 +22,7 @@ const GlobalStyle = createGlobalStyle`
   html {
     padding: unset;
     margin: unset;
+    background-color: ${({ bg }) => bg};
   }
 
   h1,h2,h3,h4,h5,h6 {
@@ -42,15 +41,13 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const Internals = ({ children, postNode, postPath, postSEO }) => {
+const Internals = ({ children }) => {
   const { colors } = useTheme();
   return (
     <>
-      <SEO postNode={postNode} postPath={postPath} postSEO={postSEO} />
-      <GlobalStyle />
+      <GlobalStyle bg={colors.background} />
       <a.main
         style={{
-          backgroundColor: colors.background,
           margin: "unset",
           minHeight: "100vh",
           display: "flex",

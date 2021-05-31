@@ -11,7 +11,7 @@ export default {
   title: "Templates/Post",
   component: PostPage,
   args: {
-    post: stub.data.markdownRemark,
+    data: stub.data,
     pageContext: { slug: stub.data.markdownRemark.fields.slug },
   },
 };

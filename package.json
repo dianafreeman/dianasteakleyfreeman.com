@@ -15,9 +15,9 @@
     "dev": "netlify dev",
     "format": "eslint --fix --ext .js,.jsx .",
     "clean": "rm -rf public && rm -rf .cache",
-    "test": "jest ./src",
-    "test-e2e": "cypress run -C ./cypress/cypress.json",
-    "test-e2e-dev": "cypress open -C ./cypress/cypress.json",
+    "test": "jest --ci ./src",
+    "test-dev": "jest --watchAll ./src",
+    "test-e2e": "cypress open -C ./cypress/cypress.json",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },

@@ -10,7 +10,7 @@ export default {
   title: "Templates/Category",
   component: CategoryPage,
   args: {
-    category: "Category Name",
-    postEdges: stub.data.allMarkdownRemark.edges,
+    pageContext: { category: "Category Name" },
+    data: stub.data,
   },
 };

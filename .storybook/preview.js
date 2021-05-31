@@ -1,3 +1,6 @@
+import React, { Suspense } from 'react'
+import Main from '../src/layouts/Main'
+
 // Gatsby's Link overrides:
 // Gatsby Link calls the `enqueue` & `hovering` methods on the global variable ___loader.
 // This global object isn't set in storybook context, requiring you to override it to empty functions (no-op),
@@ -24,3 +27,9 @@ export const parameters = {
     },
   },
 }
+
+export const decorators = [
+  (Story) => (
+    <Main><Suspense fallback={null}><Story /></Suspense></Main>
+  )
+]

@@ -14,6 +14,7 @@ import {
   FlexDiv,
 } from "../components/Flex";
 import Links from "../components/Links";
+import SEO from "../components/SEO";
 
 const Scene = loadable(() => import("../components/Scene"));
 
@@ -62,6 +63,9 @@ function Index() {
 
   return (
     <>
+      {/* <SEO postNode={postNode} postPath={postPath} postSEO={postSEO} /> */}
+      <SEO />
+
       <FlexContainer>
         <Section justify="space-between" justifyMd="center">
           <FlexColumn justify="center">
