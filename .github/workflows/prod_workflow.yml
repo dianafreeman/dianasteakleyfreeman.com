@@ -5,8 +5,8 @@ on:
     branches: [ main ]
 
 jobs:
-  test-and-build:
-    name: "Unit Test and Build"
+  build-test-deploy:
+    name: "Test and Build"
     runs-on: ubuntu-latest
     steps:
 
@@ -26,6 +26,15 @@ jobs:
 
     - name: Build Static Site
       run: yarn build
+
+    - name: Cypress E2E
+      uses: cypress-io/github-action@v2
+      with:
+        headless: true
+        install: false
+        start: yarn serve
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_ACTION_TOKEN }}
 
     - name: Deploy to Production
       env:
