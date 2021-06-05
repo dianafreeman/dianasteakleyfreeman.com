@@ -51,6 +51,7 @@ const Internals = ({ children }) => {
           margin: "unset",
           minHeight: "100vh",
           display: "flex",
+          flexDirection: "column",
         }}
       >
         {children}

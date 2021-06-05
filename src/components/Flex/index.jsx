@@ -40,6 +40,7 @@ export const FlexColumn = styled(FlexDiv)`
 
 export const FlexRow = styled(FlexDiv)`
   flex-direction: row;
+  width: 100%;
 `;
 
 export const FlexBox = styled(FlexDiv)`

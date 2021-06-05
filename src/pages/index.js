@@ -92,15 +92,23 @@ function Index() {
             </FlexSceneArea>
           </FlexColumn>
         </Section>
-        <FlexRow>
-          <footer>
-            <p>
-              This site is under construction. You check it out in GitHub,
-              though, if you&apos;re into that kind of thing.
-            </p>
-          </footer>
-        </FlexRow>
       </FlexContainer>
+      <div
+        style={{
+          backgroundColor: colors.text,
+          textAlign: "center",
+          position: "fixed",
+          width: "100vw",
+          bottom: 0,
+        }}
+      >
+        <p>
+          This site is under construction.{" "}
+          <a href="https://github.com/dianafreeman/dianasteakleyfreeman.com">
+            Check out the Git Repo here!
+          </a>
+        </p>
+      </div>
     </>
   );
 }
