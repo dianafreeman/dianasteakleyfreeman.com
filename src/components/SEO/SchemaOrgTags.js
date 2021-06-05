@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 
-import config from "@project/config/siteMeta";
+import config from "@project/config/siteConfig";
 import getPublicationDate from "./utils/getPublicationDate";
 import getImagePath from "./utils/getImagePath";
 
+const DEFAULTS = {
+  title: config.title,
+};
 function SchemaOrgTags({ title }) {
   const datePublished = getPublicationDate();
 

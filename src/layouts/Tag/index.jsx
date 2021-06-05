@@ -1,7 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import { graphql } from "gatsby";
-import config from "@project/config/siteMeta";
+import config from "@project/config/siteConfig";
 import PostListing from "../Listing/PostListing";
 
 export default function TagTemplate({ pageContext, data }) {

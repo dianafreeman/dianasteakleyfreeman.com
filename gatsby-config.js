@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 const path = require("path");
-const config = require("./config/siteMeta");
+const config = require("./config/siteConfig");
 
 // Make sure that pathPrefix is not empty
 const validatedPathPrefix = config.pathPrefix === "" ? "/" : config.pathPrefix;
@@ -10,9 +10,7 @@ module.exports = {
   pathPrefix: validatedPathPrefix,
   siteMetadata: {
     siteUrl: validSiteUrl,
-    title: config.siteTitle,
-    description: config.siteDescription,
-    copyright: config.copyright,
+    ...config,
   },
   plugins: [
     "gatsby-plugin-loadable-components-ssr",

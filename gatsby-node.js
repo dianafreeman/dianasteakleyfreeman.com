@@ -1,7 +1,7 @@
 const path = require("path");
 const _ = require("lodash");
 const moment = require("moment");
-const siteMeta = require("./config/siteMeta");
+const siteSettings = require("./config/site/settings");
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
@@ -26,7 +26,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       if (Object.prototype.hasOwnProperty.call(node.frontmatter, "slug"))
         slug = `/${_.kebabCase(node.frontmatter.slug)}`;
       if (Object.prototype.hasOwnProperty.call(node.frontmatter, "date")) {
-        const date = moment(node.frontmatter.date, siteMeta.dateFromFormat);
+        const date = moment(node.frontmatter.date, siteSettings.dateFromFormat);
         if (!date.isValid)
           console.warn(`WARNING: Invalid date.`, node.frontmatter);
         createNodeField({ node, name: "date", value: date.toISOString() });
@@ -76,9 +76,15 @@ exports.createPages = async ({ graphql, actions }) => {
 
   // Sort posts by date
   postsEdges.sort((postA, postB) => {
-    const dateA = moment(postA.node.frontmatter.date, siteMeta.dateFromFormat);
+    const dateA = moment(
+      postA.node.frontmatter.date,
+      siteSettings.dateFromFormat
+    );
 
-    const dateB = moment(postB.node.frontmatter.date, siteMeta.dateFromFormat);
+    const dateB = moment(
+      postB.node.frontmatter.date,
+      siteSettings.dateFromFormat
+    );
 
     if (dateA.isBefore(dateB)) return 1;
     if (dateB.isBefore(dateA)) return -1;
@@ -87,7 +93,7 @@ exports.createPages = async ({ graphql, actions }) => {
   });
 
   // Paging
-  const { postsPerPage } = siteMeta;
+  const { postsPerPage } = siteSettings;
   if (postsPerPage) {
     const pageCount = Math.ceil(postsEdges.length / postsPerPage);
 
