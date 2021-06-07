@@ -7,11 +7,7 @@ import { a } from "@react-spring/web";
 import useTheme from "@project/hooks/useTheme";
 import loadable from "@loadable/component";
 
-import {
-  FlexContainer,
-  FlexColumn,
-  FlexDiv,
-} from "../components/Flex";
+import { FlexContainer, FlexColumn, FlexDiv } from "../components/Flex";
 import Links from "../components/Links";
 import SEO from "../components/SEO";
 
