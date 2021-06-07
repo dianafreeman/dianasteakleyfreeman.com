@@ -49,7 +49,6 @@ export const FlexBox = styled(FlexDiv)`
 
 export const FlexContainer = styled(FlexBase)`
   margin: unset;
-  width: 100%;
   padding: ${(props) => props.theme.spacing.md};
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
     padding: 0 ${(props) => props.theme.spacing.xl};

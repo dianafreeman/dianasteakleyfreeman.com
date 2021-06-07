@@ -10,7 +10,6 @@ import loadable from "@loadable/component";
 import {
   FlexContainer,
   FlexColumn,
-  FlexRow,
   FlexDiv,
 } from "../components/Flex";
 import Links from "../components/Links";
@@ -18,7 +17,7 @@ import SEO from "../components/SEO";
 
 const Scene = loadable(() => import("../components/Scene"));
 
-const Section = styled(FlexRow)`
+const Section = styled(FlexDiv)`
   padding: ${({ theme }) => theme.spacing.sm} 0;
   margin: 0 auto;
 `;
