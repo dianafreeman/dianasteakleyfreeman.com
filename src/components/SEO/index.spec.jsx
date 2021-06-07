@@ -1,11 +1,11 @@
 import React from "react";
 import { render } from "@testing-library/react";
 import Helmet from "react-helmet";
-import SEO from "./SEO";
+import SEO from ".";
 
 describe("SEO Helmet", () => {
   beforeEach(() => {
-    render(<SEO />);
+    render(<SEO postNode={{}}/>);
   });
 
   it("should have a title", () => {

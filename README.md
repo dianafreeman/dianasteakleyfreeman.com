@@ -8,7 +8,7 @@
     <img alt="Netlify Status" src="https://api.netlify.com/api/v1/badges/7b5f4c1a-c979-4652-aacf-05076bfa2989/deploy-status" />
   </a>
   <a href="https://github.com/dianafreeman/dianasteakleyfreeman.com/workflows/main_deploy/badge.svg" target="_blank">
-    <img alt="Github Workflow Status" src="https://github.com/dianafreeman/dianasteakleyfreeman.com/workflows/main_deploy/badge.svg" />
+    <img alt="Github Workflow Status" src="https://github.com/dianafreeman/dianasteakleyfreeman.com/workflows/prod_workflow/badge.svg" />
   </a>
 
 </p>
@@ -33,10 +33,13 @@ yarn start
 # start a full netlify development service with gatsby & CMS support
 yarn dev
 
-# run unit tests
-yarn test ## TODO
+# starts react storybook
+yarn storybook
 
 # run unit tests
+yarn test
+
+# run cypress tests
 yarn test-e2e ## TODO
 ```
 
