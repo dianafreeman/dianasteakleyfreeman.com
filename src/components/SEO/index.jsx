@@ -1,135 +1,51 @@
-import React, { useState } from 'react';
-import { Helmet } from 'react-helmet';
-import urljoin from 'url-join';
-import moment from 'moment';
+import React, { useState } from "react";
+import { Helmet } from "react-helmet";
+import PropTypes from "prop-types";
 
-import config from '@config/siteConfig';
+import config from "@project/config/siteConfig";
+import SchemaOrgTags from "./SchemaOrgTags";
 
 /**
  * AHH I hate this.
  *
  * TODO
  *
- * - Remove `moment`
- * - Remove `urlJoin`
- * - refactor each of these methods
- * - Create tests for each of these methods
+ * [x] Remove `moment`
+ * [x] Remove `urlJoin`
+ *  - refactor each of these methods
+ *  - Create tests for each of these methods
  *
  * WTF is postSEO?
  */
-
-// function renderSchemaOrgTags() {}
-// function renderOpenGraphTags() {}
-// function renderTwitterCardTags() {}
 
 function SEO({ postNode, postPath, postSEO }) {
   const [title] = useState(config.siteTitle);
   const [description] = useState(config.siteDescription);
 
-  const postURL = `${config.siteUrl}${config.pathPrefix}${postPath}`;
-  let image = config.siteLogo;
+  // const postURL = `${config.siteUrl}${config.pathPrefix}${postPath}`;
+  const image = config.siteLogo;
 
-  const getImagePath = (imageURI) => {
-    if (
-      !imageURI?.match(
-        `(https?|ftp|file)://[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]`,
-      )
-    )
-      return urljoin(config.siteUrl, config.pathPrefix, imageURI);
-    return imageURI;
-  };
-
-  const getPublicationDate = () => {
-    if (!postNode?.frontmatter?.date) return null;
-    return moment(postNode.frontmatter.date, config.dateFromFormat).toDate();
-  };
-
-  image = getImagePath(image);
-  const datePublished = getPublicationDate();
-
-  const authorJSONLD = {
-    '@type': 'Person',
-    name: config.userName,
-    email: config.userEmail,
-    address: config.userLocation,
-  };
-
-  const logoJSONLD = {
-    '@type': 'ImageObject',
-    url: getImagePath(config.siteLogo),
-  };
-
-  const blogURL = urljoin(config.siteUrl, config.pathPrefix);
-  const schemaOrgJSONLD = [
-    {
-      '@context': 'http://schema.org',
-      '@type': 'WebSite',
-      url: blogURL,
-      name: title,
-      alternateName: config.siteTitleAlt ? config.siteTitleAlt : '',
-    },
-  ];
-  if (postSEO) {
-    schemaOrgJSONLD.push(
-      {
-        '@context': 'http://schema.org',
-        '@type': 'BreadcrumbList',
-        itemListElement: [
-          {
-            '@type': 'ListItem',
-            position: 1,
-            item: {
-              '@id': postURL,
-              name: title,
-              image,
-            },
-          },
-        ],
-      },
-      {
-        '@context': 'http://schema.org',
-        '@type': 'BlogPosting',
-        url: blogURL,
-        name: title,
-        alternateName: config.siteTitleAlt || '',
-        headline: title,
-        image: { '@type': 'ImageObject', url: image },
-        author: authorJSONLD,
-        publisher: {
-          ...authorJSONLD,
-          '@type': 'Organization',
-          logo: logoJSONLD,
-        },
-        datePublished,
-        description,
-      },
-    );
-  }
   return (
     <Helmet>
       {/* General tags */}
+      <title>{config.siteTitle}</title>
       <meta name="description" content={description} />
       <meta name="image" content={image} />
 
-      {/* Schema.org tags */}
-      <script type="application/ld+json">
-        {JSON.stringify(schemaOrgJSONLD)}
-      </script>
+      {/* TODO: */}
+      {/* <SchemaOrgTags postNode={postNode} /> */}
 
       {/* OpenGraph tags */}
-      <meta property="og:url" content={postSEO ? postURL : blogURL} />
-      {postSEO ? <meta property="og:type" content="article" /> : null}
+      <meta property="og:url" content={config.siteUrl} />
+      {/* TODO: */}
+      {/* {postSEO ? <meta property="og:type" content="article" /> : null} */}
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={image} />
-      <meta
-        property="fb:app_id"
-        content={config.siteFBAppID ? config.siteFBAppID : ''}
-      />
 
       {/* Twitter Card tags */}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:creator" content={config.userTwitter} />
+      <meta name="twitter:creator" content={config.authorTwitter} />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />
@@ -138,3 +54,10 @@ function SEO({ postNode, postPath, postSEO }) {
 }
 
 export default SEO;
+
+SEO.propTypes = {
+  postNode: PropTypes.shape({
+    slug: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+  }).isRequired,
+};

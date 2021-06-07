@@ -1,5 +1,6 @@
 {
-  "extends": ["airbnb", "plugin:prettier/recommended"],
+  "extends": ["airbnb","airbnb/hooks", "plugin:prettier/recommended"],
+  "parser": "babel-eslint",
   "parserOptions": {
     "ecmaVersion": 2020
   },
@@ -10,20 +11,33 @@
     "jest": true,
     "node": true
   },
+  "globals": {
+    "cy":"readonly"
+  },
   "settings": {
     "import/resolver": {
+      "babel-module": {
+        "root": ["./"],
+        "alias": {
+          "@project/config": "./config",
+          "@project/hooks": "./src/hooks",
+          "@project/assets": "./src/assets",
+          "@project/fonts": "./src/assets/fonts",
+          "@project/context": "./src/context",
+          "@project/components": "./src/components"
+        }
+      },
       "node": {
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
     }
   },
   "rules": {
-    "no-param-reassign": ["off"],
-    "import/no-unresolved": ["off"],
-    "no-void": ["off"], // FOR NOW
-    "react/prop-types": ["off"], // FOR NOW
+    "no-param-reassign": ["off"], // Breaks Three JS Standards
+    "no-void": ["off"], // Best practice for single line hook calls
+    "react/prop-types": ["off"],
     "react/jsx-props-no-spreading": ["off"],
-    "jsx-a11y/href-no-hash": ["off"],
+    "prettier/prettier": "error",
     "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".jsx"] }],
     "max-len": [
       "warn",

@@ -1,55 +1,50 @@
-const urljoin = require('url-join');
-const path = require('path');
-const config = require('./src/config/siteConfig');
+/* eslint-disable no-console */
+const path = require("path");
+const config = require("./config/siteConfig");
 
 // Make sure that pathPrefix is not empty
-const validatedPathPrefix = config.pathPrefix === '' ? '/' : config.pathPrefix;
+const validatedPathPrefix = config.pathPrefix === "" ? "/" : config.pathPrefix;
 const validSiteUrl = `${config.siteUrl}${validatedPathPrefix}`;
 
 module.exports = {
   pathPrefix: validatedPathPrefix,
   siteMetadata: {
     siteUrl: validSiteUrl,
-    rssMetadata: {
-      site_url: validSiteUrl,
-      feed_url: urljoin(validSiteUrl, config.siteRss),
-      title: config.siteTitle,
-      description: config.siteDescription,
-      copyright: config.copyright,
-    },
+    ...config,
   },
   plugins: [
-    'gatsby-transformer-remark',
-    'gatsby-plugin-react-helmet',
-
+    "gatsby-plugin-loadable-components-ssr",
+    "gatsby-transformer-remark",
+    "gatsby-plugin-styled-components",
+    "gatsby-plugin-react-helmet",
     {
       resolve: `gatsby-plugin-layout`,
       options: {
-        component: require.resolve(`./src/components/Layout/index`),
+        component: require.resolve(`./src/layouts/Main/index.jsx`),
       },
     },
-
     {
-      resolve: 'gatsby-source-filesystem',
+      resolve: "gatsby-source-filesystem",
       options: {
-        name: 'assets',
+        name: "assets",
         path: `${__dirname}/static/`,
       },
     },
     {
-      resolve: 'gatsby-plugin-module-resolver',
+      resolve: "gatsby-plugin-module-resolver",
       options: {
-        root: './src', // <- will be used as a root dir
+        root: ".",
         aliases: {
-          '@config': './config', // <- will become ./src/config
-          '@theme': './theme',
-          '@hooks': './hooks',
-          '@assets': './assets',
+          "@project/config": "./config",
+          "@project/hooks": "./src/hooks",
+          "@project/assets": "./src/assets",
+          "@project/fonts": "./src/assets/fonts",
+          "@project/context": "./src/context",
+          "@project/components": "./src/components",
         },
       },
     },
     `gatsby-plugin-sitemap`,
-    `gatsby-plugin-nprogress`,
     {
       resolve: `gatsby-plugin-google-gtag`,
       options: {
@@ -57,21 +52,51 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-source-filesystem',
+      resolve: "gatsby-source-filesystem",
       options: {
-        name: 'posts',
+        name: "posts",
         path: `${__dirname}/content/`,
       },
     },
     {
-      resolve: 'gatsby-plugin-netlify-cms',
+      resolve: "gatsby-plugin-netlify-cms",
       options: {
-        modulePath: path.resolve('src/netlifycms/index.js'), // default: undefined
+        modulePath: path.resolve("src/layouts/Admin/index.js"),
         enableIdentityWidget: true,
-        publicPath: 'admin',
-        htmlTitle: 'Content Manager',
+        publicPath: "admin",
+        htmlTitle: "DSF.com Content Manager",
         includeRobots: false,
       },
     },
+    `gatsby-plugin-netlify`,
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: config.siteTitle,
+        short_name: config.siteTitleShort,
+        start_url: `/`,
+        background_color: config.backgroundColor,
+        theme_color: config.themeColor,
+        display: `standalone`,
+        icons: [
+          {
+            src: `/logos/logo-48.png`,
+            sizes: `48x48`,
+            type: `image/png`,
+          },
+          {
+            src: `/logos/logo-192.png`,
+            sizes: `192x192`,
+            type: `image/png`,
+          },
+          {
+            src: `/logos/logo-512.png`,
+            sizes: `512x512`,
+            type: `image/png`,
+          },
+        ],
+      },
+    },
+    `gatsby-plugin-offline`,
   ],
 };
