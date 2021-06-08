@@ -1,16 +1,13 @@
 <h1 align="center">Welcome to dianasteakleyfreeman.com 👋</h1>
+
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-2.1.0-blue.svg?cacheSeconds=2592000" />
   <a href="https://github.com/dianasfreeman/dianasteakelyfreeman.com#readme" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
-  <a href="https://api.netlify.com/api/v1/badges/7b5f4c1a-c979-4652-aacf-05076bfa2989/deploy-status" target="_blank">
-    <img alt="Netlify Status" src="https://api.netlify.com/api/v1/badges/7b5f4c1a-c979-4652-aacf-05076bfa2989/deploy-status" />
+  <a href="https://github.com/dianafreeman/dianasteakleyfreeman.com/actions/workflows/prod_workflow.yml" target="_blank">
+    <img alt="Netlify Status" src="https://github.com/dianafreeman/dianasteakleyfreeman.com/actions/workflows/prod_workflow.yml/badge.svg" />
   </a>
-  <a href="https://github.com/dianafreeman/dianasteakleyfreeman.com/workflows/main_deploy/badge.svg" target="_blank">
-    <img alt="Github Workflow Status" src="https://github.com/dianafreeman/dianasteakleyfreeman.com/workflows/prod_workflow/badge.svg" />
-  </a>
-
 </p>
 
 > Portfolio for Diana M Steakley-Freeman. Coder, Creator, Communicator.
