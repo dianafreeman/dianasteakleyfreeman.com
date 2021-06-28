@@ -11,13 +11,25 @@ import LayoutContext from "@project/context/LayoutContext";
 
 const Stage = loadable(() => import("./Stage"));
 
-const RenderableScene = ({ modelText, width, height }) => {
+const RenderableScene = ({ modelText, height, width }) => {
   const isSSR = typeof window === "undefined";
 
   const ContextBridge = useContextBridge(ThemeContext, LayoutContext);
 
+  const divHeight =
+    typeof height === "string" ? height : `${height.value}${height.unit}`;
+  const divWidth =
+    typeof width === "string" ? width : `${width.value}${width.unit}`;
+
   return (
-    <a.div style={{ width, height, display: "flex", justifyContent: "center" }}>
+    <a.div
+      style={{
+        width: divWidth,
+        height: divHeight,
+        display: "flex",
+        justifyContent: "center",
+      }}
+    >
       <Canvas
         camera={{ fov: 30, zoom: 0.65 }}
         alpha={false}
@@ -38,10 +50,16 @@ export default RenderableScene;
 
 RenderableScene.propTypes = {
   modelText: PropTypes.string.isRequired,
-  height: PropTypes.number,
-  width: PropTypes.number,
+  width: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.shape({ value: PropTypes.number, unit: PropTypes.string }),
+  ]),
+  height: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.shape({ value: PropTypes.number, unit: PropTypes.string }),
+  ]),
 };
 RenderableScene.defaultProps = {
-  height: 100,
-  width: 100,
+  height: { value: 100, unit: "%" },
+  width: "100%",
 };

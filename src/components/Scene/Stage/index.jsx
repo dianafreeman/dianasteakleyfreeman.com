@@ -22,7 +22,7 @@ function Stage({ children, modelText, ...rest }) {
         near={0.1}
         blur={5} // Amount of blur (default=1)
         far={4} // Focal distance (default=10)
-        resolution={10} // Rendertarget resolution (default=256)
+        resolution={256} // Rendertarget resolution (default=256)
       />
       <Environment preset="warehouse" />
     </group>

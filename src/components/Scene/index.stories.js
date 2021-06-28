@@ -1,11 +1,11 @@
 import React from "react";
 import { Stats } from "@react-three/drei";
-import RenderableScene from ".";
+import Scene from ".";
 import Main from "../../layouts/Main";
 
 export default {
-  title: "ThreeJS/RenderableScene",
-  component: RenderableScene,
+  title: "Components/Scene",
+  component: Scene,
   argTypes: {
     showStats: { control: "boolean" },
   },
@@ -18,17 +18,19 @@ export default {
   ],
 };
 
-const Template = ({ showStats, ...restArgs }) => (
-  <>
-    {showStats && <Stats />}
-    <RenderableScene {...restArgs} />
-  </>
-);
+const Template = ({ showStats, ...restArgs }) => {
+  return (
+    <>
+      {showStats && <Stats />}
+      <Scene {...restArgs} />
+    </>
+  );
+};
 
-export const Letters = Template.bind({});
-Letters.args = {
+export const Model = Template.bind({});
+Model.args = {
   modelText: "Hi!",
   showStats: true,
-  height: "100vh",
-  width: "100vw",
+  height: { value: 100, unit: "vh" },
+  width: { value: 100, unit: "vw" },
 };
