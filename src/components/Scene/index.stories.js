@@ -1,7 +1,6 @@
 import React from "react";
 import { Stats } from "@react-three/drei";
 import Scene from ".";
-import Main from "../../layouts/Main";
 
 export default {
   title: "Components/Scene",
@@ -9,13 +8,6 @@ export default {
   argTypes: {
     showStats: { control: "boolean" },
   },
-  decorators: [
-    (Story, context) => (
-      <Main>
-        <Story {...context} />
-      </Main>
-    ),
-  ],
 };
 
 const Template = ({ showStats, ...restArgs }) => {

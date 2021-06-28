@@ -4,7 +4,7 @@ import ThemeContext from "@project/context/ThemeContext";
 
 function ThemeProvider({ children }) {
   // Global DarkMode State
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
 
   const [breakpoints] = useState({
     sm: 576,
@@ -29,22 +29,22 @@ function ThemeProvider({ children }) {
   };
 
   // Color
-  const [colors] = useState({
-    background: palette.black,
-    text: palette.light,
-    pointerLight: palette.secondaryLight,
-    model: palette.secondaryDark,
-    floor: palette.dark,
-    pointer: palette.secondary,
-  });
   // const [colors] = useState({
-  //   background: darkMode ? palette.black : palette.white,
-  //   text: darkMode ? palette.light : palette.dark,
-  //   pointerLight: darkMode ? palette.secondaryLight : palette.primaryLight,
-  //   model: darkMode ? palette.secondaryDark : palette.primaryDark,
-  //   floor: darkMode ? palette.dark : palette.light,
-  //   pointer: darkMode ? palette.secondary : palette.primary,
+  //   background: palette.black,
+  //   text: palette.light,
+  //   pointerLight: palette.secondaryLight,
+  //   model: palette.secondaryDark,
+  //   floor: palette.dark,
+  //   pointer: palette.secondary,
   // });
+  const [colors] = useState({
+    background: darkMode ? palette.black : palette.white,
+    text: darkMode ? palette.light : palette.dark,
+    pointerLight: darkMode ? palette.secondaryLight : palette.primaryLight,
+    model: darkMode ? palette.secondaryDark : palette.primaryDark,
+    floor: darkMode ? palette.dark : palette.light,
+    pointer: darkMode ? palette.secondary : palette.primary,
+  });
 
   const [spacing] = useState({
     sm: "1rem",

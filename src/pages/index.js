@@ -3,19 +3,19 @@ import styled from "styled-components";
 import { graphql } from "gatsby";
 
 import { a } from "@react-spring/web";
+import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 
 import useTheme from "@project/hooks/useTheme";
 import loadable from "@loadable/component";
 
-import { FlexContainer, FlexColumn, FlexDiv } from "../components/Flex";
+import { FlexColumn, FlexDiv } from "../components/Flex";
 import Links from "../components/Links";
 import SEO from "../components/SEO";
 
 const Scene = loadable(() => import("../components/Scene"));
 
-const Section = styled(FlexDiv)`
-  padding: ${({ theme }) => theme.spacing.sm} 0;
-  margin: 0 auto;
+const Section = styled(ParallaxLayer)`
+  background-color: ${({ background }) => background || "#2b2b2b"};
 `;
 
 const Display1 = styled.h1`
@@ -30,7 +30,7 @@ const Display1 = styled.h1`
   }
 `;
 
-const Sub2 = styled.p`
+const Sub2 = styled.h2`
   font-size: 1.5rem;
   font-weight: 300;
   line-height: 1.2;
@@ -51,18 +51,13 @@ const FlexSceneArea = styled(FlexDiv)`
 function Index() {
   const { colors } = useTheme();
 
-  const [ready, setReady] = useState(false);
-
-  // delay even the attempt at rendering
-  useEffect(() => void setTimeout(() => setReady(true), 500), []);
-
   return (
     <>
       {/* <SEO postNode={postNode} postPath={postPath} postSEO={postSEO} /> */}
       <SEO />
 
-      <FlexContainer>
-        <Section justify="space-between" justifyMd="center">
+      <Parallax pages={2}>
+        <Section offset={0}>
           <FlexColumn justify="center">
             <FlexColumn justify="center">
               <Display1>I&apos;m Diana.</Display1>
@@ -70,24 +65,15 @@ function Index() {
               <Links />
             </FlexColumn>
             <FlexSceneArea>
-              {ready ? (
-                <Scene modelText="D" />
-              ) : (
-                <a.div
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    color: colors.text,
-                    textAlign: "center",
-                  }}
-                >
-                  <p>Loading...</p>
-                </a.div>
-              )}
+              <Scene modelText="D" />
             </FlexSceneArea>
           </FlexColumn>
         </Section>
-      </FlexContainer>
+
+        <Section background="#fff" offset={1}>
+          <Display1>Coder</Display1>
+        </Section>
+      </Parallax>
       <div
         style={{
           backgroundColor: colors.text,
