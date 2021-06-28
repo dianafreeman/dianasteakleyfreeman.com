@@ -1,5 +1,5 @@
-import React, { Suspense } from 'react'
-import Main from '../src/layouts/Main'
+import React from 'react'
+import Providers from '../src/components/AppProviders'
 
 // Gatsby's Link overrides:
 // Gatsby Link calls the `enqueue` & `hovering` methods on the global variable ___loader.
@@ -26,10 +26,18 @@ export const parameters = {
       date: /Date$/,
     },
   },
+  backgrounds: {
+    default: "dark",
+    values: [
+      { name: "dark", value: "#2b2b2b" },
+      { name: "light", value: "#f2f2f2" }
+    ],
+  },
+
 }
 
 export const decorators = [
   (Story) => (
-    <Main><Suspense fallback={null}><Story /></Suspense></Main>
+    <Providers><Story /></Providers>
   )
 ]

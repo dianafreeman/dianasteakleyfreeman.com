@@ -17,10 +17,11 @@ module.exports = {
     "gatsby-transformer-remark",
     "gatsby-plugin-styled-components",
     "gatsby-plugin-react-helmet",
+
     {
       resolve: `gatsby-plugin-layout`,
       options: {
-        component: require.resolve(`./src/layouts/Main/index.jsx`),
+        component: require.resolve(`./src/components/AppProviders/index.jsx`),
       },
     },
     {
