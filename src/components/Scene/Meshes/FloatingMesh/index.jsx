@@ -1,5 +1,5 @@
+import React, { useRef, useState, useEffect } from "react";
 import { FontLoader } from "three";
-import React, { useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import { a } from "@react-spring/three";
 
@@ -28,9 +28,9 @@ function FloatingMesh({ string, size, ...props }) {
 
   const { wobble, env, coat } = springs;
 
+  useEffect(() => void mesh.current.geometry.center(), []);
   useFrame(({ clock }) => {
     group.current.rotation.y = Math.sin(clock.elapsedTime);
-    mesh.current.geometry.center();
   });
 
   return (
