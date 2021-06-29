@@ -1,6 +1,21 @@
 import React from "react";
 import { FlexDiv, FlexRow, FlexColumn } from ".";
 
+export const Responsive = () => {
+  return (
+    <FlexColumn>
+      <FlexRow style={{ height: "100%", width: "100%" }}>
+        <FlexColumn width={["25%", "60%"]} style={{ background: "red" }}>
+          <h1>Hello from column 1</h1>
+        </FlexColumn>
+        <FlexColumn style={{ background: "blue" }}>
+          <h1>Hello from column 2</h1>
+        </FlexColumn>
+      </FlexRow>
+    </FlexColumn>
+  );
+};
+
 export const Grid = (args) => {
   return (
     <FlexColumn>
@@ -8,7 +23,7 @@ export const Grid = (args) => {
         <FlexColumn style={{ background: "red" }}>
           <h1 style={{ height: "100%" }}>Hello from column 1</h1>
         </FlexColumn>
-        <FlexColumn style={{ background: "blue", width: "60%" }}>
+        <FlexColumn wistyle={{ background: "blue", width: "60%" }}>
           <h1>Hello from column 2</h1>
         </FlexColumn>
         <FlexColumn style={{ background: "yellow" }}>
