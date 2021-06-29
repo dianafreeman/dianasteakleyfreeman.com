@@ -1,45 +1,52 @@
 import styled, { css } from "styled-components";
 
-const calcWidth = ({ width = "auto" }) => {
-  const trueValue = Array.isArray(width) ? width : [width, width, width, width]; // typeof width === "array"
-
-  const [sm, md, lg, xl] = trueValue;
+function buildStyle(property, value) {
+  const style =
+    typeof value === "string" ? [value, value, value, value] : value;
+  const [sm, md, lg, xl] = style;
 
   return css`
-    width: ${sm};
+    ${property}: ${sm};
     ${md &&
     css`
       @media screen and (min-width: ${({ theme }) => theme.breakpoints.md}px) {
-        width: ${md};
+        ${property}: ${md};
       }
     `}
     ${lg &&
     css`
       @media screen and (min-width: ${({ theme }) => theme.breakpoints.lg}px) {
-        width: ${lg};
+        ${property}: ${lg};
       }
     `}
  ${xl &&
     css`
       @media screen and (min-width: ${({ theme }) => theme.breakpoints.xl}px) {
-        width: ${lg};
+        ${property}: ${lg};
       }
     `}
   `;
-};
+}
+
+const calcWidth = ({ width = "auto" }) => buildStyle("width", width);
+const calcHeight = ({ height = "auto" }) => buildStyle("height", height);
 
 export const FlexDiv = styled.div`
   position: relative;
   display: flex;
   background: ${({ background }) => background || "none"};
+  flex-grow: 1;
 `;
 
 export const FlexColumn = styled(FlexDiv)`
   flex-direction: column;
   padding: ${({ theme }) => theme.spacing.md};
-  ${calcWidth};
+  ${({ width }) => calcWidth({ width })}
+  ${({ height }) => calcHeight({ height })}
 `;
 
 export const FlexRow = styled(FlexDiv)`
   flex-direction: row;
+  ${({ width }) => calcWidth({ width })}
+  ${({ height }) => calcHeight({ height })}
 `;

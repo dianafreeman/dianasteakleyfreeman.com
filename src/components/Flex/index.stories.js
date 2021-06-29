@@ -16,7 +16,7 @@ export const Responsive = () => {
   );
 };
 
-export const Grid = (args) => {
+export const Grid = () => {
   return (
     <FlexColumn>
       <FlexRow style={{ height: "100%", width: "100%" }}>
