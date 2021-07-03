@@ -78,6 +78,8 @@ Using an OAuth provider (e.g. Github) to log in to the backend will not work dur
 - Github: [@dianasfreeman](https://github.com/dianasfreeman)
 - LinkedIn: [@dianasteakleyfreeman](https://linkedin.com/in/dianasteakleyfreeman)
 
+## Credits
+Laptop Model: "13 inch Apple MacBook Pro FREE DOWNLOAD" (https://skfb.ly/6VN9D) by Micah Sturtevant is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 ## Show your support
 
 Give a ⭐️ if this project helped you!
