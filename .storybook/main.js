@@ -1,3 +1,4 @@
+const path = require("path")
 module.exports = {
   "stories": [
     "../src/**/*.stories.mdx",
@@ -25,6 +26,15 @@ module.exports = {
     ]
     // Prefer Gatsby ES6 entrypoint (module) over commonjs (main) entrypoint
     config.resolve.mainFields = ["browser", "module", "main"];
+
+    // Add support for GLTF models
+    config.module.rules.push({
+      test: /\.(glsl|vs|fs|vert|frag)$/,
+      exclude: /node_modules/,
+      use: ['raw-loader', 'glslify-loader'],
+      include: path.resolve(__dirname, '../'),
+    })
+
     return config;
   },
 }

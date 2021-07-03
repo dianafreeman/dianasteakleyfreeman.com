@@ -1,17 +1,19 @@
 import React, { useRef, useState, useEffect } from "react";
 import { FontLoader } from "three";
 import { useFrame } from "@react-three/fiber";
-import { a } from "@react-spring/three";
+import { a, useSpring } from "@react-spring/three";
 
 import Dosis from "@project/assets/fonts/3d/Dosis_Bold.json";
 
 import useLayout from "@project/hooks/useLayout";
+import useTheme from "@project/hooks/useTheme";
 
 function FloatingMesh({ string, size, ...props }) {
   const mesh = useRef();
   const group = useRef();
 
-  const { springs, setHovered, setDown, colorSprings } = useLayout();
+  const { springs, setHovered, setDown } = useLayout();
+  const { colors } = useTheme();
 
   const [font] = useState(new FontLoader().parse(Dosis));
 
@@ -27,6 +29,7 @@ function FloatingMesh({ string, size, ...props }) {
   };
 
   const { wobble, env, coat } = springs;
+  const { color: colorSpring } = useSpring({ color: colors.model });
 
   useEffect(() => void mesh.current.geometry.center(), []);
   useFrame(({ clock }) => {
@@ -50,12 +53,13 @@ function FloatingMesh({ string, size, ...props }) {
         <textBufferGeometry attach="geometry" args={[string, textOptions]} />
         <a.meshPhysicalMaterial
           attach="material"
-          color={colorSprings.model}
+          color={colorSpring}
           envMapIntensity={env}
           clearcoat={coat}
           clearcoatRoughness={0}
           metalness={0.1}
           distort={0}
+          // wireframe
         />
       </a.mesh>
     </a.group>
