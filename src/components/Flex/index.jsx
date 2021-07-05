@@ -35,6 +35,7 @@ export const FlexDiv = styled.div`
   position: relative;
   display: flex;
   background: ${({ background }) => background || "none"};
+  justify-content: ${({ justify }) => justify || "unset"};
   flex-grow: 1;
 `;
 

@@ -2,17 +2,13 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 import { a } from "@react-spring/web";
-
+import { Row, Col } from "react-simple-flex-grid";
+import "react-simple-flex-grid/lib/main.css";
 import useTheme from "@project/hooks/useTheme";
 import loadable from "@loadable/component";
 import { Helmet } from "react-helmet";
 
-import {
-  FlexContainer,
-  FlexColumn,
-  FlexRow,
-  FlexDiv,
-} from "../components/Flex";
+import { FlexColumn, FlexRow, FlexDiv } from "../components/Flex";
 
 const Scene = loadable(() => import("../components/Scene"));
 
@@ -58,7 +54,7 @@ function ErrorPage() {
   useEffect(() => void setTimeout(() => setReady(true), 500), []);
 
   return (
-    <FlexContainer>
+    <div>
       <Helmet>
         <title>404 Not Found | DSF.com</title>
       </Helmet>
@@ -89,7 +85,7 @@ function ErrorPage() {
           </FlexSceneArea>
         </FlexColumn>
       </Section>
-    </FlexContainer>
+    </div>
   );
 }
 
