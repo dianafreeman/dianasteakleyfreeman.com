@@ -4,7 +4,7 @@ import { a } from "@react-spring/three";
 import useLayout from "@project/hooks/useLayout";
 import useTheme from "@project/hooks/useTheme";
 
-const Lights = () => {
+const MouseMoveLights = () => {
   const light = useRef();
   const { springs } = useLayout();
   const { colors } = useTheme();
@@ -25,4 +25,4 @@ const Lights = () => {
   );
 };
 
-export default Lights;
+export default MouseMoveLights;

@@ -1,25 +1,31 @@
 import React from "react";
-import { Stats, ContactShadows, OrbitControls, Html } from "@react-three/drei";
-import Stage from "./Stage";
-import Scene from ".";
+import { Stats, ContactShadows, OrbitControls } from "@react-three/drei";
+import Stage from "../Scene/Stage";
+import Scene from "../Scene";
+
+import TextModel from ".";
 
 export default {
-  title: "Components/Scene",
+  title: "Models/Text",
   component: Scene,
   argTypes: {
     showStats: { control: "boolean" },
   },
 };
 
-export const TextModel = ({ showStats, meshSize, modelText, ...restArgs }) => {
+export const Main = ({ showStats, meshSize, modelText, ...restArgs }) => {
   return (
     <>
       {showStats && <Stats />}
       <Scene {...restArgs}>
         <Stage>
-          <Html>
-            <h1>{modelText}</h1>
-          </Html>
+          <OrbitControls />
+
+          <TextModel
+            size={meshSize}
+            position={[0, 0.5, 0]}
+            string={modelText}
+          />
           <ContactShadows
             rotation-x={Math.PI / 2}
             opacity={0.75}
@@ -31,15 +37,14 @@ export const TextModel = ({ showStats, meshSize, modelText, ...restArgs }) => {
             far={4} // Focal distance (default=10)
             resolution={256} // Rendertarget resolution (default=256)
           />
-          <OrbitControls />
         </Stage>
       </Scene>
     </>
   );
 };
 
-TextModel.args = {
-  modelText: "Hello World",
+Main.args = {
+  modelText: "Hi!",
   meshSize: 2,
   showStats: true,
   height: { value: 100, unit: "vh" },

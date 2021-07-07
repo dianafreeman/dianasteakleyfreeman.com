@@ -1,10 +1,6 @@
 import React, { useRef, useState, Suspense } from "react";
 import { Stats, OrbitControls, useContextBridge } from "@react-three/drei";
-import ThemeContext from "@project/context/ThemeContext";
-import LayoutContext from "@project/context/LayoutContext";
-import { Canvas } from "@react-three/fiber";
-import Lights from "../../Lights";
-import Scene from "../..";
+
 import Test from ".";
 
 export default {
@@ -13,11 +9,18 @@ export default {
   argTypes: {
     showStats: { control: "boolean" },
   },
+  parameters: {
+    backgrounds: {
+      default: "dark",
+      values: [{ name: "dark", value: "#2b2b2b" }],
+    },
+  },
 };
 
 const Template = ({ showStats, index, height }) => {
   return (
     <div style={{ height: `${height.value}${height.unit}` }}>
+      {showStats && <Stats />}
       <Test index={index} />
     </div>
   );
@@ -28,6 +31,7 @@ Model.args = {
   showStats: true,
   index: 0,
   height: { value: 100, unit: "vh" },
+  background: "dark",
   // width: { value: 100, unit: "vw" },
   // colorManagement: true,
   // shadowMap: true,
