@@ -1,15 +1,14 @@
 import React from "react";
 
-import { a } from "@react-spring/web";
 import { createGlobalStyle } from "styled-components";
-
-import ThemeProvider from "@project/context/ThemeProvider";
-import LayoutProvider from "@project/context/LayoutProvider";
 
 import RobotoBlack from "@project/assets/fonts/2d/Roboto/Roboto-Black.ttf";
 import RobotoBold from "@project/assets/fonts/2d/Roboto/Roboto-Bold.ttf";
 import RobotoRegular from "@project/assets/fonts/2d/Roboto/Roboto-Regular.ttf";
 import RobotoThin from "@project/assets/fonts/2d/Roboto/Roboto-Thin.ttf";
+import LayoutProvider from "@project/context/LayoutProvider";
+import ThemeProvider from "@project/context/ThemeProvider";
+import "../../styles/global.css";
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -29,6 +28,16 @@ const GlobalStyle = createGlobalStyle`
       src: local('Roboto Thin'), url(${RobotoThin}) format('truetype');
   }
 
+  html, body{
+    padding: unset;
+    margin: unset;
+    position: fixed;
+    min-height: 100vh;
+    width: 100vw;
+    font-family: 'Roboto Bold', sans-serif;
+    font-size: 21px;
+}
+
   h1, .h1,
   h2, .h2,
   h3, .h3,
@@ -38,20 +47,6 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Roboto Black', sans-serif;
   }
 
-  body, p, a {
-    font-family: 'Roboto Bold', sans-serif;
-    font-size: 21px;
-  }
-
-  button, small {
-    font-family: 'Roboto Bold', sans-serif;
-    font-size: 0.95rem;
-    text-transform: uppercase;
-  }
-  html, body {
-    padding: unset;
-    margin: unset;
-  }
 `;
 
 /**
@@ -67,7 +62,7 @@ function AppProviders({ children }) {
     <ThemeProvider>
       <LayoutProvider>
         <GlobalStyle />
-        <a.main id="#main">{children}</a.main>
+        <div className="bg-gray-900 min-h-screen">{children}</div>
       </LayoutProvider>
     </ThemeProvider>
   );
