@@ -1,4 +1,5 @@
 const path = require("path")
+
 module.exports = {
   "stories": [
     "../src/**/*.stories.mdx",
@@ -6,9 +7,18 @@ module.exports = {
   ],
   "addons": [
     "@storybook/addon-links",
-    "@storybook/addon-essentials"
+    "@storybook/addon-essentials",
+     {
+    name: '@storybook/addon-postcss',
+    options: {
+      postcssLoaderOptions: {
+        implementation: require('postcss'),
+      },
+    },
+  },
   ],
   webpackFinal: async config => {
+
     // Transpile Gatsby module because Gatsby includes un-transpiled ES6 code.
     config.module.rules[0].exclude = [/node_modules\/(?!(gatsby)\/)/]
     // use installed babel-loader which is v8.0-beta (which is meant to work with @babel/core@7)
@@ -27,13 +37,19 @@ module.exports = {
     // Prefer Gatsby ES6 entrypoint (module) over commonjs (main) entrypoint
     config.resolve.mainFields = ["browser", "module", "main"];
 
-    // Add support for GLTF models
+    // GLTF Support
     config.module.rules.push({
       test: /\.(glsl|vs|fs|vert|frag)$/,
       exclude: /node_modules/,
       use: ['raw-loader', 'glslify-loader'],
       include: path.resolve(__dirname, '../'),
     })
+
+ // Add SVGR Loader
+  config.module.rules.unshift({
+    test:/\*\.svg$/,
+    use: ['@svgr/webpack', 'url-loader'],
+  })
 
     return config;
   },

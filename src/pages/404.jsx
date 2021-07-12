@@ -8,43 +8,43 @@ import useTheme from "@project/hooks/useTheme";
 import loadable from "@loadable/component";
 import { Helmet } from "react-helmet";
 
-import { FlexColumn, FlexRow, FlexDiv } from "../components/Flex";
+// import { FlexColumn, FlexRow, FlexDiv } from "../components/Flex";
 
-const Scene = loadable(() => import("../components/Scene"));
+// const Scene = loadable(() => import("../components/Scene"));
 
-const Section = styled(FlexRow)`
-  padding: ${({ theme }) => theme.spacing.sm} 0;
-  margin: auto;
-`;
+// const Section = styled(FlexRow)`
+//   padding: ${({ theme }) => theme.spacing.sm} 0;
+//   margin: auto;
+// `;
 
-const Display1 = styled.h1`
-  font-size: 4.5rem;
-  font-weight: 300;
-  text-align: center;
-  margin: unset;
-  line-height: 1.2;
-  @media screen and (min-width: 768px) {
-    font-size: calc(4.5rem + 2vw);
-  }
-`;
+// const Display1 = styled.h1`
+//   font-size: 4.5rem;
+//   font-weight: 300;
+//   text-align: center;
+//   margin: unset;
+//   line-height: 1.2;
+//   @media screen and (min-width: 768px) {
+//     font-size: calc(4.5rem + 2vw);
+//   }
+// `;
 
-const Sub2 = styled.p`
-  font-size: 1.5rem;
-  font-weight: 300;
-  line-height: 1.2;
-  margin: unset;
-  text-align: center;
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints.lg}px) {
-    font-size: calc(1.5rem + 0.5vw);
-  }
-`;
+// const Sub2 = styled.p`
+//   font-size: 1.5rem;
+//   font-weight: 300;
+//   line-height: 1.2;
+//   margin: unset;
+//   text-align: center;
+//   @media screen and (min-width: ${({ theme }) => theme.breakpoints.lg}px) {
+//     font-size: calc(1.5rem + 0.5vw);
+//   }
+// `;
 
-const FlexSceneArea = styled(FlexDiv)`
-  min-height: 370px;
-  margin: unset;
-  height: 50vh;
-  }
-`;
+// const FlexSceneArea = styled(FlexDiv)`
+//   min-height: 370px;
+//   margin: unset;
+//   height: 50vh;
+//   }
+// `;
 
 function ErrorPage() {
   const { colors } = useTheme();
@@ -55,7 +55,7 @@ function ErrorPage() {
 
   return (
     <div>
-      <Helmet>
+      {/* <Helmet>
         <title>404 Not Found | DSF.com</title>
       </Helmet>
 
@@ -84,7 +84,7 @@ function ErrorPage() {
             )}
           </FlexSceneArea>
         </FlexColumn>
-      </Section>
+      </Section> */}
     </div>
   );
 }
