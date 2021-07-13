@@ -57,7 +57,7 @@ const GlobalStyle = createGlobalStyle`
  * @returns
  */
 
-function AppProviders({ children }) {
+function App({ children }) {
   return (
     <ThemeProvider>
       <LayoutProvider>
@@ -67,4 +67,4 @@ function AppProviders({ children }) {
     </ThemeProvider>
   );
 }
-export default AppProviders;
+export default App;

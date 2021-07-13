@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useCallback, useRef, useState } from "react";
 // import PropTypes from "prop-types";
 import { useProgress } from "@react-three/drei";
 
@@ -9,11 +9,9 @@ const styles = {
     left: 0,
     width: "100%",
     height: "100%",
-    background: "#171717",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    transition: "opacity 300ms ease",
     zIndex: 1000,
   },
   inner: {
@@ -43,31 +41,35 @@ const styles = {
 
 const defaultInterp = (p) => `Loading ${p}%`;
 
+// Pulled directly from @react-three/drei and modified
 function Loader({ interpolation }) {
   const interp = interpolation || defaultInterp;
   const { active, progress } = useProgress();
-  const progressRef = React.useRef(0);
-  const aniFrameRef = React.useRef(0);
-  const progressSpanRef = React.useRef(null);
-  const [shown, setShown] = React.useState(active);
+  const progressRef = useRef(0);
+  const aniFrameRef = useRef(0);
+  const progressSpanRef = useRef(null);
+  const [shown, setShown] = useState(active);
 
-  React.useEffect(() => {
+  useEffect(() => {
     let t;
     if (active !== shown) t = setTimeout(() => setShown(active), 300);
     return () => clearTimeout(t);
   }, [shown, active]);
 
-  const updateProgress = React.useCallback(() => {
+  const updateProgress = useCallback(() => {
     if (!progressSpanRef.current) return;
     progressRef.current += (progress - progressRef.current) / 2;
+
     if (progressRef.current > 0.95 * progress || progress === 100)
       progressRef.current = progress;
+
     progressSpanRef.current.innerText = interp(progressRef.current);
+
     if (progressRef.current < progress)
       aniFrameRef.current = requestAnimationFrame(updateProgress);
   }, [interp, progress]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     updateProgress();
     return () => cancelAnimationFrame(aniFrameRef.current);
   }, [updateProgress]);
@@ -76,7 +78,6 @@ function Loader({ interpolation }) {
     <div
       style={{
         ...styles.container,
-        opacity: active ? 1 : 0,
       }}
     >
       <div>
@@ -85,7 +86,6 @@ function Loader({ interpolation }) {
             style={{
               ...styles.bar,
               transform: `scaleX(${progress / 100})`,
-              // ...barStyles,
             }}
           />
           <span ref={progressSpanRef} style={{ ...styles.data }} />

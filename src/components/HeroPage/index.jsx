@@ -7,15 +7,12 @@ import {
   ChartBarIcon,
   CursorClickIcon,
   MenuIcon,
-  PhoneIcon,
-  PlayIcon,
   RefreshIcon,
   ShieldCheckIcon,
   SupportIcon,
   ViewGridIcon,
   XIcon,
 } from "@heroicons/react/outline";
-import { ChevronDownIcon } from "@heroicons/react/solid";
 
 import DianaRafiki from "@project/assets/jpg/Diana_Rafiki.jpg";
 import DiSkyline from "@project/assets/jpg/Di_skyline.jpg";
@@ -85,16 +82,6 @@ const resources = [
     href: "#",
     icon: ShieldCheckIcon,
   },
-];
-
-const recentPosts = [
-  { id: 1, name: "Boost your conversion rate", href: "#" },
-  {
-    id: 2,
-    name: "How to use search engine optimization to drive traffic to your site",
-    href: "#",
-  },
-  { id: 3, name: "Improve your customer experience", href: "#" },
 ];
 
 const Brand = () => {
