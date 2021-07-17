@@ -15,7 +15,7 @@ const ValidAnimation = React.forwardRef(
   ({ animationType, strings, text, typeSpeed, children, ...rest }, ref) => {
     if (ANI_TYPE_MAP.typed === animationType) {
       return (
-        <TypedTextt
+        <TypedText
           ref={ref}
           strings={strings}
           typeSpeed={typeSpeed}
@@ -38,6 +38,7 @@ function AnimatedText({
   typeSpeed,
   className,
   show,
+  onComplete,
 }) {
   const Component = a(component);
   const animationRef = useRef();
@@ -46,6 +47,7 @@ function AnimatedText({
     <Component className={className}>
       <ValidAnimation
         ref={animationRef}
+        onComplete={onComplete}
         className={className}
         component={component}
         typeSpeed={typeSpeed}
