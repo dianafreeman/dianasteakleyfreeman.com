@@ -1,50 +1,16 @@
 import React, { useEffect, useCallback, useRef, useState } from "react";
-// import PropTypes from "prop-types";
-import { useProgress } from "@react-three/drei";
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import { a } from "@react-spring/web";
 
-const styles = {
-  container: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    width: "100%",
-    height: "100%",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    zIndex: 1000,
-  },
-  inner: {
-    width: 100,
-    height: 3,
-    background: "#272727",
-    textAlign: "center",
-  },
-  bar: {
-    height: 3,
-    width: "100%",
-    background: "white",
-    transition: "transform 200ms",
-    transformOrigin: "left center",
-  },
-  data: {
-    display: "inline-block",
-    position: "relative",
-    fontVariantNumeric: "tabular-nums",
-    marginTop: "0.8em",
-    color: "#f0f0f0",
-    fontSize: "0.6em",
-    fontFamily: `-apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", "Helvetica Neue", Helvetica, Arial, Roboto, Ubuntu, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
-    whiteSpace: "nowrap",
-  },
-};
+const ProgressBar = styled(a.div)`
+  transition: transform 200ms;
+  transform-origin: left center;
+`;
 
-const defaultInterp = (p) => `Loading ${p}%`;
-
-// Pulled directly from @react-three/drei and modified
-function Loader({ interpolation }) {
-  const interp = interpolation || defaultInterp;
-  const { active, progress } = useProgress();
+// Edited from @react-three/drei
+function Loader({ interpolation, active, progress }) {
+  const interp = interpolation;
   const progressRef = useRef(0);
   const aniFrameRef = useRef(0);
   const progressSpanRef = useRef(null);
@@ -75,26 +41,34 @@ function Loader({ interpolation }) {
   }, [updateProgress]);
 
   return shown ? (
-    <div
-      style={{
-        ...styles.container,
-      }}
-    >
+    <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
       <div>
-        <div style={{ ...styles.inner }}>
-          <div
+        <div className="w-full h-1 text-center bg-gray-800 rounded-sm">
+          <ProgressBar
+            className="w-full bg-white h-1"
             style={{
-              ...styles.bar,
               transform: `scaleX(${progress / 100})`,
             }}
           />
-          <span ref={progressSpanRef} style={{ ...styles.data }} />
+          <span
+            ref={progressSpanRef}
+            className="inline-block relative tabular-nums text-white text-xs mt-1 whitespace-nowrap  w-full"
+            style={{ minWidth: "75px" }}
+          />
         </div>
       </div>
     </div>
   ) : null;
 }
 
-Loader.propTypes = {};
+Loader.propTypes = {
+  progress: PropTypes.number.isRequired,
+  active: PropTypes.bool.isRequired,
+  interpolation: PropTypes.func,
+};
+
+Loader.defaultProps = {
+  interpolation: (p) => `${p}%`,
+};
 
 export default Loader;
