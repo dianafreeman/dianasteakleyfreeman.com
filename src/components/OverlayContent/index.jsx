@@ -1,10 +1,8 @@
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-/* eslint-disable react/no-array-index-key */
-import React, { useRef, useState, useEffect } from "react";
 import styled, { css } from "styled-components";
 import { useProgress } from "@react-three/drei";
-import tw from "twin.macro";
-import { a, useSpring, useTrail } from "@react-spring/web";
+import { a, useSpring } from "@react-spring/web";
 import AnimatedText from "../AnimatedText";
 
 const Section = styled(a.div)`
@@ -16,7 +14,7 @@ const Section = styled(a.div)`
 `;
 
 const OverlayContent = React.forwardRef(
-  ({ hide, onAnimationComplete }, ref) => {
+  ({ hide, onAnimationsComplete }, ref) => {
     const [lastIndex] = useState(2);
 
     const commonTextClasses = "text-base relative text-yellow-50 my-4 ";
@@ -76,13 +74,13 @@ const OverlayContent = React.forwardRef(
         />
         <AnimatedText
           animationType="trail"
-          component="p"
+          component="h2"
           strings={[..."EXPLORE".split("")]}
           show={activeIndex !== null && activeIndex >= 2}
           isStatic={false}
           onComplete={() => {
             // eslint-disable-next-line no-unused-expressions
-            onAnimationComplete && onAnimationComplete();
+            onAnimationsComplete && onAnimationsComplete();
           }}
           className="text-base relative text-yellow-50 my-4 text-3xl md:text-4xl lg:text-5xl"
         />
@@ -91,6 +89,12 @@ const OverlayContent = React.forwardRef(
   }
 );
 
-OverlayContent.propTypes = {};
+OverlayContent.propTypes = {
+  hide: PropTypes.bool.isRequired,
+  onAnimationsComplete: PropTypes.func,
+};
+OverlayContent.defaultProps = {
+  onAnimationsComplete: () => true,
+};
 
 export default OverlayContent;

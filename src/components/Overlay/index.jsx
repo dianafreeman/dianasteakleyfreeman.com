@@ -43,7 +43,6 @@ const Overlay = React.forwardRef(
       <OverlayOuter
         ref={ref}
         onScroll={onScroll}
-        className="bg-gray-900"
         disablePointer={disablePointer}
         {...rest}
       >

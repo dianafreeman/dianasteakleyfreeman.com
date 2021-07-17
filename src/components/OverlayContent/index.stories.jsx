@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from "react";
 import Overlay from "../Overlay";
 import OverlayContent from ".";
@@ -7,10 +8,10 @@ export default {
   component: Overlay,
 };
 
-export const Main = ({ showStats, meshSize, modelText, hide, ...restArgs }) => {
+export const Main = ({ hide, pages, onAnimationsComplete }) => {
   return (
-    <Overlay {...restArgs}>
-      <OverlayContent hide={hide} />
+    <Overlay pages={pages}>
+      <OverlayContent hide={hide} onAnimationsComplete={onAnimationsComplete} />
     </Overlay>
   );
 };
@@ -18,4 +19,5 @@ export const Main = ({ showStats, meshSize, modelText, hide, ...restArgs }) => {
 Main.args = {
   pages: 1,
   hide: false,
+  onAnimationsComplete: () => console.log("animations complete"),
 };
