@@ -6,7 +6,7 @@ export default {
   component: AnimatedText,
 };
 
-export const TypedText = ({ showStats, meshSize, modelText, ...restArgs }) => {
+export const TypedText = ({ ...restArgs }) => {
   return (
     <AnimatedText
       animationType="typed"
@@ -19,30 +19,23 @@ export const TypedText = ({ showStats, meshSize, modelText, ...restArgs }) => {
 TypedText.args = {
   component: "h1",
   isStatic: true,
+  animationType: "typed",
+  strings: ["Well Hello There"],
   show: true,
   className:
     "text-base relative text-yellow-50 my-4 text-5xl md:text-6xl lg:text-7xl",
 };
 
-export const TrailedText = ({
-  showStats,
-  meshSize,
-  modelText,
-  ...restArgs
-}) => {
-  return (
-    <AnimatedText
-      animationType="trail"
-      strings={[..."EXPLORE".split("")]}
-      {...restArgs}
-    />
-  );
+export const TrailedText = ({ ...restArgs }) => {
+  return <AnimatedText {...restArgs} />;
 };
 
 TrailedText.args = {
   component: "h3",
   isStatic: false,
   show: true,
+  strings: [..."EXPLORE".split("")],
+  animationType: "trail",
   className:
     "text-base relative text-yellow-50 my-4 text-5xl md:text-6xl lg:text-7xl",
 };
