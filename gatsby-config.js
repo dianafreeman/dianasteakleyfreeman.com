@@ -17,11 +17,19 @@ module.exports = {
     "gatsby-transformer-remark",
     "gatsby-plugin-styled-components",
     "gatsby-plugin-react-helmet",
-
+    "gatsby-plugin-postcss",
+    {
+      resolve: "gatsby-plugin-react-svg",
+      options: {
+        rule: {
+          include: /\*\.svg$/,
+        },
+      },
+    },
     {
       resolve: `gatsby-plugin-layout`,
       options: {
-        component: require.resolve(`./src/components/AppProviders/index.jsx`),
+        component: require.resolve(`./src/components/App/index.jsx`),
       },
     },
     {
