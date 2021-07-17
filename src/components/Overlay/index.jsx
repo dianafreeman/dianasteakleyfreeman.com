@@ -34,8 +34,7 @@ const Overlay = React.forwardRef(
       onScroll,
       children,
       disablePointer,
-      disableOuterPointer,
-      disableInnerPointer,
+
       ...rest
     },
     ref
@@ -45,15 +44,10 @@ const Overlay = React.forwardRef(
         ref={ref}
         onScroll={onScroll}
         className="bg-gray-900"
-        disablePointer={disablePointer || disableOuterPointer}
+        disablePointer={disablePointer}
         {...rest}
       >
-        <OverlayInner
-          disablePointer={disablePointer || disableInnerPointer}
-          pages={pages}
-        >
-          {children}
-        </OverlayInner>
+        <OverlayInner pages={pages}>{children}</OverlayInner>
       </OverlayOuter>
     );
   }
@@ -64,12 +58,8 @@ Overlay.propTypes = {
   pages: PropTypes.number.isRequired,
   onScroll: PropTypes.func.isRequired,
   disablePointer: PropTypes.bool,
-  disableOuterPointer: PropTypes.bool,
-  disableInnerPointer: PropTypes.bool,
 };
 
 Overlay.defaultProps = {
   disablePointer: false,
-  disableOuterPointer: false,
-  disableInnerPointer: false,
 };
