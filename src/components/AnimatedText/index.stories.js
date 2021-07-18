@@ -4,6 +4,13 @@ import AnimatedText from ".";
 export default {
   title: "Components/AnimatedText",
   component: AnimatedText,
+  decorators: [
+    (Story) => (
+      <div className="relative w-full h-full">
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export const TypedText = ({ ...restArgs }) => {
@@ -23,7 +30,7 @@ TypedText.args = {
   strings: ["Well Hello There"],
   show: true,
   className:
-    "text-base relative text-yellow-50 my-4 text-5xl md:text-6xl lg:text-7xl",
+    "text-base relative text-yellow-50 text-5xl md:text-6xl lg:text-7xl",
 };
 
 export const TrailedText = ({ ...restArgs }) => {
@@ -37,5 +44,5 @@ TrailedText.args = {
   strings: [..."EXPLORE".split("")],
   animationType: "trail",
   className:
-    "text-base relative text-yellow-50 my-4 text-5xl md:text-6xl lg:text-7xl",
+    "text-base relative text-yellow-50 text-5xl md:text-6xl lg:text-7xl",
 };

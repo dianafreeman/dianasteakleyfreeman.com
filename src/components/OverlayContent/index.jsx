@@ -15,18 +15,15 @@ const Section = styled(a.div)`
 
 const OverlayContent = React.forwardRef(
   ({ hide, onAnimationsComplete }, ref) => {
-    const [lastIndex] = useState(2);
-
     const commonTextClasses = "text-base relative text-yellow-50 my-4 ";
 
-    // null until loaded, then index of 0-2
+    const [lastIndex] = useState(3);
+    // null until loaded, then index of 0-3
     const [activeIndex, setActiveIndex] = useState(null);
     const { progress: loadingProgress, active: isLoading } = useProgress();
 
     const showNext = () => {
-      setActiveIndex((prevState) =>
-        prevState + 1 === lastIndex ? lastIndex : prevState + 1
-      );
+      if (activeIndex < lastIndex) setActiveIndex((prevState) => prevState + 1);
     };
 
     useEffect(() => {
@@ -35,10 +32,15 @@ const OverlayContent = React.forwardRef(
     }, [isLoading, loadingProgress, setActiveIndex]);
 
     useEffect(() => {
-      setTimeout(() => {
+      const t = setTimeout(() => {
         setActiveIndex(0);
       }, 500);
+      return () => clearTimeout(t);
     }, []);
+
+    useEffect(() => {
+      if (activeIndex === 3 && onAnimationsComplete) onAnimationsComplete();
+    }, [activeIndex, onAnimationsComplete]);
 
     const { opacity } = useSpring({
       opacity: hide ? 0 : 1,
@@ -78,10 +80,7 @@ const OverlayContent = React.forwardRef(
           strings={[..."EXPLORE".split("")]}
           show={activeIndex !== null && activeIndex >= 2}
           isStatic={false}
-          onComplete={() => {
-            // eslint-disable-next-line no-unused-expressions
-            onAnimationsComplete && onAnimationsComplete();
-          }}
+          onComplete={() => showNext()}
           className="text-base relative text-yellow-50 my-4 text-3xl md:text-4xl lg:text-5xl"
         />
       </Section>
