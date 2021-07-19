@@ -14,11 +14,12 @@ class ErrorBoundary extends Component {
     this.state = { hasError: false, error: null };
   }
 
-  static getDerivedStateFromErro dr(error) {
+  static getDerivedStateFromError(error) {
     // Update state so the next render will show the fallback UI.
     return { hasError: true, error };
   }
 
+  // eslint-disable-next-line no-unused-vars
   componentDidCatch(_error, _errorInfo) {
     // You can also log the error to an error reporting service
     // logErrorToMyService(error, errorInfo);

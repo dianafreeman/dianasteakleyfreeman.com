@@ -2,15 +2,15 @@
 import React, { useEffect, useRef } from "react";
 import Typed from "react-typed";
 import PropTypes from "prop-types";
-import { a, useSpring } from "@react-spring/web";
+import { a } from "@react-spring/web";
 
 const TypedText = ({
   strings,
-  show,
   onComplete,
   typeSpeed,
   component,
   isStatic,
+  ...rest
 }) => {
   const ref = useRef();
   const Component = a(component);
@@ -20,33 +20,20 @@ const TypedText = ({
     setTimeout(() => {
       ref.current.toggleBlinking();
       ref.current.cursor.style.visibility = "hidden";
-      return onComplete && onComplete();
-    }, 500);
+      if (onComplete) onComplete();
+    }, 100);
   };
 
-  const { opacity } = useSpring({
-    opacity: show ? 1 : 0,
-  });
-
-  useEffect(() => {
-    if (show) {
-      if (ref?.current?.start) ref.current.start();
-    } else {
-      if (ref?.current?.stop) ref.current.stop();
-      if (ref?.current?.reset) ref.current.reset();
-    }
-  }, [show, ref]);
-
   return isStatic ? (
-    <Component>{strings}</Component>
+    <Component {...rest}>{strings}</Component>
   ) : (
     <AniTyped
       strings={strings}
       typeSpeed={typeSpeed || 100}
-      style={{ opacity }}
       // eslint-disable-next-line no-return-assign
       typedRef={(typed) => (ref.current = typed)}
-      onComplete={handleComplete}
+      onComplete={() => handleComplete()}
+      {...rest}
     />
   );
 };
@@ -54,7 +41,7 @@ const TypedText = ({
 export default TypedText;
 
 TypedText.propTypes = {
-  show: PropTypes.bool.isRequired,
+  show: PropTypes.bool,
   strings: PropTypes.arrayOf(PropTypes.string).isRequired,
   isStatic: PropTypes.bool.isRequired,
   onComplete: PropTypes.func,
@@ -63,6 +50,7 @@ TypedText.propTypes = {
 };
 
 TypedText.defaultProps = {
+  show: null,
   onComplete: () => null,
   typeSpeed: 100,
   component: "span",

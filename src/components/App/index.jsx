@@ -28,10 +28,12 @@ const GlobalStyle = createGlobalStyle`
       src: local('Roboto Thin'), url(${RobotoThin}) format('truetype');
   }
 
-  html, body{
+  html, body, #root {
     padding: unset;
     margin: unset;
-    position: fixed;
+}
+#root{
+  //  position: fixed;
     min-height: 100vh;
     width: 100vw;
     font-family: 'Roboto Bold', sans-serif;

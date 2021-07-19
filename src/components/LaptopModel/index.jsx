@@ -19,14 +19,14 @@ export default function LaptopModel({
 
   useEffect(() => {
     // Center the group on mount if @center is true
-    return (
-      center &&
-      new THREE.Box3()
-        .setFromObject(group.current)
-        .getCenter(group.current.position)
-        .multiplyScalar(-1)
-    );
-  }, [center]);
+    // return (
+    //   center &&
+    new THREE.Box3()
+      .setFromObject(group.current)
+      .getCenter(group.current.position)
+      .multiplyScalar(-1);
+    // );
+  }, []);
 
   const { screenRotation } = useSpring({
     screenRotation: isOpen ? Math.PI / 2 : 0,

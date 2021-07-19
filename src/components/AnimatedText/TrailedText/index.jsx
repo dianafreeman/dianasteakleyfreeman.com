@@ -1,5 +1,5 @@
 /* eslint-disable no-nested-ternary */
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { a, useTrail } from "@react-spring/web";
 
@@ -14,7 +14,7 @@ const RAINBOW = [
 ];
 
 const TrailedText = React.forwardRef(
-  ({ show, strings, isStatic, onComplete }, ref) => {
+  ({ show, strings, isStatic, onComplete, ...rest }, ref) => {
     // X 2D Transformation
     const trail = useTrail(strings.length, {
       config: { mass: 5, tension: 2000, friction: 200 },
@@ -35,16 +35,15 @@ const TrailedText = React.forwardRef(
     useEffect(() => {
       let t;
       if (show && onComplete) {
-        t = setTimeout(onComplete, 1000);
+        t = setTimeout(() => onComplete(), 1300);
       }
       return () => clearTimeout(t);
     }, [show, onComplete]);
 
     return (
-      <div className="relative">
+      <div className="relative" ref={ref} {...rest}>
         {trail.map(({ transform, ...style }, idx) => (
           <a.span
-            ref={ref}
             style={
               isStatic
                 ? { ...staticStyles }

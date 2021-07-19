@@ -12,19 +12,15 @@ const ANI_TYPE_MAP = {
 const ANI_TYPE_VALUES = Object.values(ANI_TYPE_MAP);
 
 const ValidAnimation = React.forwardRef(
-  ({ animationType, strings, text, typeSpeed, children, ...rest }, ref) => {
+  (
+    { animationType, strings, show, text, typeSpeed, children, ...rest },
+    ref
+  ) => {
     if (ANI_TYPE_MAP.typed === animationType) {
-      return (
-        <TypedText
-          ref={ref}
-          strings={strings}
-          typeSpeed={typeSpeed}
-          {...rest}
-        />
-      );
+      return <TypedText strings={strings} typeSpeed={typeSpeed} {...rest} />;
     }
     if (ANI_TYPE_MAP.trail === animationType) {
-      return <TrailedText ref={ref} strings={strings} {...rest} />;
+      return <TrailedText show={show} strings={strings} {...rest} />;
     }
     return <h6 className="text-red-500">Error in Text Animation Component</h6>;
   }

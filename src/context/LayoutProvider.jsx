@@ -58,13 +58,13 @@ function LayoutProvider({ children }) {
     [darkMode, hovered, down]
   );
 
-  useEffect(() => {
-    document.body.style.cursor = hovered
-      ? "none"
-      : `url('data:image/svg+xml;base64,${btoa(
-          `<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="16" r="10" fill="${colors.pointer}"/></svg>`
-        )}'), auto`;
-  }, [hovered, colors.pointer]);
+  // useEffect(() => {
+  //   document.body.style.cursor = hovered
+  //     ? "none"
+  //     : `url('data:image/svg+xml;base64,${btoa(
+  //         `<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="16" r="10" fill="${colors.pointer}"/></svg>`
+  //       )}'), auto`;
+  // }, [hovered, colors.pointer]);
 
   return (
     <LayoutContext.Provider

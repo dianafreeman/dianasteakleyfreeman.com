@@ -1,7 +1,7 @@
 import React, { useEffect, useCallback, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { a } from "@react-spring/web";
+import { a, useSpring } from "@react-spring/web";
 
 const ProgressBar = styled(a.div)`
   transition: transform 200ms;
@@ -14,13 +14,13 @@ function Loader({ interpolation, active, progress }) {
   const progressRef = useRef(0);
   const aniFrameRef = useRef(0);
   const progressSpanRef = useRef(null);
-  const [shown, setShown] = useState(active);
+  const [finished, setFinished] = useState(false);
 
-  useEffect(() => {
-    let t;
-    if (active !== shown) t = setTimeout(() => setShown(active), 300);
-    return () => clearTimeout(t);
-  }, [shown, active]);
+  // useEffect(() => {
+  //   let t;
+  //   if (active !== shown) t = setTimeout(() => setShown(active), 300);
+  //   return () => clearTimeout(t);
+  // }, [shown, active]);
 
   const updateProgress = useCallback(() => {
     if (!progressSpanRef.current) return;
@@ -40,8 +40,19 @@ function Loader({ interpolation, active, progress }) {
     return () => cancelAnimationFrame(aniFrameRef.current);
   }, [updateProgress]);
 
-  return shown ? (
-    <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+  const { opacity } = useSpring({
+    opacity: finished ? 0 : 1,
+  });
+
+  useEffect(() => {
+    if (progress === 100) setTimeout(() => setFinished(true), 1000);
+  }, [progress, setFinished]);
+
+  return finished ? null : (
+    <a.div
+      className="absolute top-0 left-0 w-full h-full flex items-center justify-center bg-black"
+      style={{ zIndex: 200022, opacity }}
+    >
       <div>
         <div className="w-full h-1 text-center bg-gray-800 rounded-sm">
           <ProgressBar
@@ -57,8 +68,8 @@ function Loader({ interpolation, active, progress }) {
           />
         </div>
       </div>
-    </div>
-  ) : null;
+    </a.div>
+  );
 }
 
 Loader.propTypes = {

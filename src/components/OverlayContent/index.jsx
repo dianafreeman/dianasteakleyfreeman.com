@@ -1,88 +1,79 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
-import { useProgress } from "@react-three/drei";
 import { a, useSpring } from "@react-spring/web";
 import AnimatedText from "../AnimatedText";
 
-const Section = styled(a.div)`
-  ${({ disablePointer }) =>
-    disablePointer &&
-    css`
-      pointer-events: none;
-    `}
-`;
+const Section = styled(a.div)``;
 
 const OverlayContent = React.forwardRef(
-  ({ hide, onAnimationsComplete }, ref) => {
+  ({ ready, onAnimationsComplete, style }, ref) => {
     const commonTextClasses = "text-base relative text-yellow-50 my-4 ";
 
     const [lastIndex] = useState(3);
     // null until loaded, then index of 0-3
-    const [activeIndex, setActiveIndex] = useState(null);
-    const { progress: loadingProgress, active: isLoading } = useProgress();
+    const [animationIndex, setAnimationIndex] = useState(null);
 
     const showNext = () => {
-      if (activeIndex < lastIndex) setActiveIndex((prevState) => prevState + 1);
+      if (animationIndex < lastIndex)
+        setAnimationIndex((prevState) => prevState + 1);
     };
 
     useEffect(() => {
-      if (isLoading && loadingProgress === 100) return setActiveIndex(0);
-      return setActiveIndex(null);
-    }, [isLoading, loadingProgress, setActiveIndex]);
+      if (!ready) {
+        setAnimationIndex(null);
+      } else {
+        setAnimationIndex(0);
+      }
+      // return () => setAnimationIndex(null);
+    }, [ready]);
 
     useEffect(() => {
-      const t = setTimeout(() => {
-        setActiveIndex(0);
-      }, 500);
-      return () => clearTimeout(t);
-    }, []);
+      if (animationIndex === 3 && onAnimationsComplete) onAnimationsComplete();
+    }, [animationIndex, onAnimationsComplete]);
 
-    useEffect(() => {
-      if (activeIndex === 3 && onAnimationsComplete) onAnimationsComplete();
-    }, [activeIndex, onAnimationsComplete]);
-
-    const { opacity } = useSpring({
-      opacity: hide ? 0 : 1,
-    });
-    return (
+    return !ready ? null : (
       <Section
         ref={ref}
-        className="bg-blue flex justify-end p-10 pb-1 z-9 flex-col absolute bottom h-full"
-        style={{ opacity }}
+        className="bg-blue flex justify-end p-10 pb-1 z-9 absolute bottom h-1/2"
       >
-        <AnimatedText
-          component="h1"
-          animationType="typed"
-          strings={["Well Hello There!"]}
-          onComplete={() => showNext()}
-          typeSpeed={40}
-          className={`${commonTextClasses}text-5xl md:text-6xl lg:text-7xl`}
-          show={activeIndex !== null && activeIndex >= 0}
-          isStatic={false}
-        />
-        <AnimatedText
-          component="h1"
-          animationType="typed"
-          strings={[
-            `There is more coming to this site soon
-        but that doesn't mean you can't...`,
-          ]}
-          typeSpeed={40}
-          onComplete={() => showNext()}
-          className={`${commonTextClasses}text-2xl md:text-3xl lg:text-4xl`}
-          show={activeIndex !== null && activeIndex >= 1}
-          isStatic={false}
-        />
-        <AnimatedText
-          animationType="trail"
-          component="h2"
-          strings={[..."EXPLORE".split("")]}
-          show={activeIndex !== null && activeIndex >= 2}
-          isStatic={false}
-          onComplete={() => showNext()}
-          className="text-base relative text-yellow-50 my-4 text-3xl md:text-4xl lg:text-5xl"
-        />
+        <div className="flex flex-col">
+          {/* Index Of 0, mounts immediately */}
+          <AnimatedText
+            component="h1"
+            animationType="typed"
+            strings={["Well Hello There!"]}
+            onComplete={() => showNext()}
+            typeSpeed={40}
+            className={`${commonTextClasses}text-5xl md:text-6xl lg:text-7xl`}
+            isStatic={false}
+            style={style}
+          />
+          {animationIndex !== null && animationIndex >= 1 ? (
+            <AnimatedText
+              component="h1"
+              animationType="typed"
+              strings={[
+                `There is more coming to this site soon
+              but that doesn't mean you can't...`,
+              ]}
+              typeSpeed={40}
+              onComplete={() => showNext()}
+              className={`${commonTextClasses}text-2xl md:text-3xl lg:text-4xl lg:pr-80`}
+              isStatic={false}
+              style={style}
+            />
+          ) : null}
+
+          <AnimatedText
+            animationType="trail"
+            component="h2"
+            strings={[..."EXPLORE".split("")]}
+            onComplete={() => showNext()}
+            show={animationIndex !== null && animationIndex >= 2}
+            className="text-base relative text-yellow-50 my-4 text-3xl md:text-4xl lg:text-5xl"
+          />
+        </div>
       </Section>
     );
   }

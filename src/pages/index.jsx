@@ -1,5 +1,11 @@
 /* eslint-disable react/no-array-index-key */
-import React, { Suspense, useRef, useState, useEffect } from "react";
+import React, {
+  Suspense,
+  useRef,
+  useState,
+  useEffect,
+  useCallback,
+} from "react";
 
 import { Canvas, useThree } from "@react-three/fiber";
 import {
@@ -7,12 +13,13 @@ import {
   Environment,
   ContactShadows,
   OrbitControls,
+  useProgress,
 } from "@react-three/drei";
 
 import ThemeContext from "@project/context/ThemeContext";
 import LayoutContext from "@project/context/LayoutContext";
 import useWindowDimensions from "@project/hooks/useWindowDimensions";
-import { a, useSpring } from "@react-spring/three";
+import { a, useSpring, config } from "@react-spring/three";
 
 import LaptopModel from "../components/LaptopModel";
 import HeroPage from "../components/HeroPage";
@@ -46,8 +53,9 @@ const CAMERA = {
   fov: 45,
 };
 
-const Internal = ({ page }) => {
+const Internal = ({ page, laptopOpen, setLaptopOpen, ready }) => {
   const group = useRef();
+  const { width: windowWidth, height: windowHeight } = useWindowDimensions();
 
   const { camera } = useThree();
   const index = page - 1 < 0 ? 0 : page - 1;
@@ -64,20 +72,34 @@ const Internal = ({ page }) => {
     },
   });
 
-  const { position: grpPosition, rotation: grpRotation } = useSpring({
+  const {
+    position: grpPosition,
+    rotation: grpRotation,
+    scale,
+  } = useSpring({
     position: LAPTOP.position[page],
     rotation: LAPTOP.rotation[page],
+    scale:
+      windowWidth < 300
+        ? 0.4
+        : windowWidth < 500
+        ? 0.6
+        : windowWidth < 800
+        ? 0.8
+        : 1,
   });
 
-  const [laptopOpen, setLaptopOpen] = useState(false);
-
-  // useEffect(() => void setTimeout(() => setLaptopOpen(true), 500), []);
   return (
     <>
       <pointLight position={[10, 10, 10]} intensity={1} />
-      <a.group ref={group} position={grpPosition} rotation={grpRotation}>
+      <a.group
+        ref={group}
+        position={grpPosition}
+        rotation={grpRotation}
+        scale={scale}
+        opacity={ready ? 1 : 0}
+      >
         <LaptopModel
-          center
           position-y={-0.5}
           position-x={-0.25}
           rotation-y={Math.PI}
@@ -88,17 +110,18 @@ const Internal = ({ page }) => {
           <HeroPage />
         </LaptopModel>
       </a.group>
-      <Environment preset="city" />
       <ContactShadows
         rotation-x={Math.PI / 2}
         position={[0, -1, 0]}
-        opacity={0.5}
+        opacity={ready ? 0.5 : 0}
         width={20}
         height={20}
         blur={2}
         far={4.5}
         resolution={256}
       />
+      <Environment preset="city" />
+
       <OrbitControls
         enablePan={false}
         enableZoom={false}
@@ -112,8 +135,13 @@ const Internal = ({ page }) => {
 export default function Index() {
   const { width: windowWidth, height: windowHeight } = useWindowDimensions();
 
+  const { progress: loadingProgress, active: isLoading } = useProgress();
+
   const [page, setPage] = useState(0);
   const [scroll, setScroll] = useState(0);
+  const [internalsReady, setInternalsReady] = useState(false);
+
+  const [laptopOpen, setLaptopOpen] = useState(false);
   const scrollArea = useRef();
 
   useEffect(() => {
@@ -133,16 +161,40 @@ export default function Index() {
     setScroll(scrollAmt);
   };
 
+  const [{ overlayOpacity, canvasOpacity }, api] = useSpring(() => ({
+    overlayOpacity: 1,
+    canvasOpacity: 0,
+  }));
+
+  const onOverlayFinish = () => {
+    setTimeout(() => {
+      api.start({
+        overlayOpacity: 0,
+        canvasOpacity: 1,
+        config: config.molasses,
+      });
+    }, 500);
+  };
+
+  // Update spring with new props
   const ContextBridge = useContextBridge(ThemeContext, LayoutContext);
 
+  useEffect(() => {
+    if (loadingProgress === 100) setInternalsReady(true);
+  }, [loadingProgress]);
+  const AnimatedCanvas = a(Canvas);
   return (
-    <div style={{ height: "100vh" }}>
-      <Loader />
+    <div style={{ height: "100vh", position: "relative" }}>
+      <Loader progress={loadingProgress} active={isLoading} />
       <Overlay pages={1} ref={scrollArea} onScroll={handleScroll}>
-        <OverlayContent />
+        <OverlayContent
+          ready={internalsReady}
+          onAnimationsComplete={onOverlayFinish}
+          style={{ opacity: overlayOpacity }}
+        />
       </Overlay>
-      <Canvas
-        style={{ opacity: 0 }}
+      <AnimatedCanvas
+        style={{ opacity: canvasOpacity }}
         onCreated={(state) => state.events.connect(scrollArea.current)}
         raycaster={{
           computeOffsets: ({ clientX, clientY }) => ({
@@ -155,15 +207,21 @@ export default function Index() {
           position: CAMERA.position[page],
           fov: CAMERA.fov,
           aspect: windowWidth / windowHeight,
-          zoom: windowWidth < 532 ? 1 - windowWidth * 0.001 : 1,
+          zoom: 1,
         }}
       >
         <ContextBridge>
           <Suspense fallback={null}>
-            <Internal pageCt={3} page={page} scroll={scroll} />
+            <Internal
+              ready={internalsReady}
+              page={page}
+              scroll={scroll}
+              laptopOpen={laptopOpen}
+              setLaptopOpen={setLaptopOpen}
+            />
           </Suspense>
         </ContextBridge>
-      </Canvas>
+      </AnimatedCanvas>
     </div>
   );
 }

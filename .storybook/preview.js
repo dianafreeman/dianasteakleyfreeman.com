@@ -1,5 +1,5 @@
 import React from 'react'
-import Providers from '../src/components/AppProviders'
+import Providers from '../src/components/App'
 
 // Gatsby's Link overrides:
 // Gatsby Link calls the `enqueue` & `hovering` methods on the global variable ___loader.
@@ -19,6 +19,10 @@ window.___navigate = pathname => {
 
 
 export const parameters = {
+  layout: {
+    padded: false,
+    center: true,
+  },
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {
     matchers: {

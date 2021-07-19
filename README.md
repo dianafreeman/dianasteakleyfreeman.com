@@ -68,8 +68,10 @@ This project is hosted as a static site via Netlify. Netlify auto-deploys the `m
 - Lighthouse
 
 ## Gotchas
-Using an OAuth provider (e.g. Github) to log in to the backend will not work during local development.
+- Using an OAuth provider (e.g. Github) to log in to the CMS backend will not work during local development.
 
+
+- Tailwind V2 is used in this build and depends on PostCSS8 -- as of this commit, PostCSS8 is only a few months old, so I've installed a [tailwind compatibility build](https://tailwindcss.com/docs/installation#post-css-7-compatibility-build)
 ## Author
 
 👤 **Diana M Steakley-Freeman**
