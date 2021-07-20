@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import styled, { css } from "styled-components";
-import { a, useSpring } from "@react-spring/web";
+import styled from "styled-components";
+import { a } from "@react-spring/web";
 import AnimatedText from "../AnimatedText";
 
 const Section = styled(a.div)``;
@@ -80,7 +80,6 @@ const OverlayContent = React.forwardRef(
 );
 
 OverlayContent.propTypes = {
-  hide: PropTypes.bool.isRequired,
   onAnimationsComplete: PropTypes.func,
 };
 OverlayContent.defaultProps = {
