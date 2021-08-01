@@ -29,7 +29,6 @@ class ErrorBoundary extends Component {
     const { hasError, error } = this.state;
     const { children } = this.props;
     if (hasError) {
-      // You can render any custom fallback UI
       return <ErrorAlert error={error} />;
     }
     return children;

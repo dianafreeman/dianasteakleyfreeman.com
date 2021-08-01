@@ -20,17 +20,10 @@ const TrailedText = React.forwardRef(
       config: { mass: 5, tension: 2000, friction: 200 },
       opacity: show ? 1 : 0,
       x: 0,
-      height: 120,
+      height: 20,
       transform: `perspective(600px) rotateX(${show ? 0 : 180}deg)`,
       from: { opacity: 0, x: 20, height: 0 },
     });
-
-    const staticStyles = {
-      opacity: show ? 1 : 0,
-      x: 0,
-      height: "auto",
-      transform: `perspective(600px) rotateX(0deg)`,
-    };
 
     useEffect(() => {
       let t;
@@ -44,14 +37,10 @@ const TrailedText = React.forwardRef(
       <div className="relative" ref={ref} {...rest}>
         {trail.map(({ transform, ...style }, idx) => (
           <a.span
-            style={
-              isStatic
-                ? { ...staticStyles }
-                : {
-                    transform,
-                    ...style,
-                  }
-            }
+            style={{
+              transform,
+              ...style,
+            }}
             className="inline-block"
           >
             <a.span

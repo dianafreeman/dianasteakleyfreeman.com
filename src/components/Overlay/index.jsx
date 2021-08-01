@@ -17,7 +17,7 @@ const OverlayInner = styled(a.div)`
   min-height: ${({ pages }) => `calc(${pages} * 100vh)`};
 `;
 
-const Overlay = React.forwardRef(
+const ScrollOverlay = React.forwardRef(
   (
     {
       pages,
@@ -35,14 +35,14 @@ const Overlay = React.forwardRef(
     );
   }
 );
-export default Overlay;
+export default ScrollOverlay;
 
-Overlay.propTypes = {
+ScrollOverlay.propTypes = {
   pages: PropTypes.number.isRequired,
   onScroll: PropTypes.func.isRequired,
   disablePointer: PropTypes.bool,
 };
 
-Overlay.defaultProps = {
+ScrollOverlay.defaultProps = {
   disablePointer: false,
 };

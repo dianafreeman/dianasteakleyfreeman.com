@@ -8,16 +8,16 @@ export default {
   component: Overlay,
 };
 
-export const Main = ({ hide, pages, onAnimationsComplete }) => {
+export const Main = ({ open, pages, onAnimationsComplete }) => {
   return (
     <Overlay pages={pages}>
-      <OverlayContent hide={hide} onAnimationsComplete={onAnimationsComplete} />
+      <OverlayContent open={open} onAnimationsComplete={onAnimationsComplete} />
     </Overlay>
   );
 };
 
 Main.args = {
   pages: 1,
-  hide: false,
+  open: true,
   onAnimationsComplete: () => console.log("animations complete"),
 };

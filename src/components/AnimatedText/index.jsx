@@ -11,20 +11,23 @@ const ANI_TYPE_MAP = {
 };
 const ANI_TYPE_VALUES = Object.values(ANI_TYPE_MAP);
 
-const ValidAnimation = React.forwardRef(
-  (
-    { animationType, strings, show, text, typeSpeed, children, ...rest },
-    ref
-  ) => {
-    if (ANI_TYPE_MAP.typed === animationType) {
-      return <TypedText strings={strings} typeSpeed={typeSpeed} {...rest} />;
-    }
-    if (ANI_TYPE_MAP.trail === animationType) {
-      return <TrailedText show={show} strings={strings} {...rest} />;
-    }
-    return <h6 className="text-red-500">Error in Text Animation Component</h6>;
+const ValidAnimation = ({
+  animationType,
+  strings,
+  show,
+  text,
+  typeSpeed,
+  children,
+  ...rest
+}) => {
+  if (ANI_TYPE_MAP.typed === animationType) {
+    return <TypedText strings={strings} typeSpeed={typeSpeed} {...rest} />;
   }
-);
+  if (ANI_TYPE_MAP.trail === animationType) {
+    return <TrailedText show={show} strings={strings} {...rest} />;
+  }
+  return <h6 className="text-red-500">Error in Text Animation Component</h6>;
+};
 
 function AnimatedText({
   isStatic,

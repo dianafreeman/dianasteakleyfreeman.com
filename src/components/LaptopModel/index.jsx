@@ -3,20 +3,15 @@ import PropType from "prop-types";
 import { useGLTF } from "@react-three/drei";
 import { a, useSpring, config } from "@react-spring/three";
 import * as THREE from "three";
+import useWindowDimensions from "@project/hooks/useWindowDimensions";
 import LaptopScreen from "../LaptopScreen";
 
-export default function LaptopModel({
-  isOpen,
-  setOpen,
-  center = false,
-  children,
-  ...props
-}) {
+export default function LaptopModel({ isOpen, setOpen, children, ...props }) {
   const group = useRef();
   const screenGroup = useRef();
   const keyboardGroup = useRef();
   const { nodes, materials } = useGLTF("/glb/MacBookPro_blend.glb");
-
+  const { width, height } = useWindowDimensions();
   useEffect(() => {
     // Center the group on mount if @center is true
     // return (
@@ -26,7 +21,7 @@ export default function LaptopModel({
       .getCenter(group.current.position)
       .multiplyScalar(-1);
     // );
-  }, []);
+  }, [width, height]);
 
   const { screenRotation } = useSpring({
     screenRotation: isOpen ? Math.PI / 2 : 0,

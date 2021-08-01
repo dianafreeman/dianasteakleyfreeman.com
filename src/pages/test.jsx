@@ -17,7 +17,7 @@ import {
   OrbitControls,
   useProgress,
 } from "@react-three/drei";
-
+import { useInView } from "react-intersection-observer";
 import ThemeContext from "@project/context/ThemeContext";
 import LayoutContext from "@project/context/LayoutContext";
 import useWindowDimensions from "@project/hooks/useWindowDimensions";
@@ -27,7 +27,6 @@ import LaptopModel from "../components/LaptopModel";
 import HeroPage from "../components/HeroPage";
 import Loader from "../components/Loader";
 import Overlay from "../components/Overlay";
-import OverlayContent from "../components/OverlayContent";
 
 const LAPTOP = {
   rotation: [
@@ -128,71 +127,63 @@ const Internal = ({ page, laptopOpen, setLaptopOpen, ready }) => {
   );
 };
 
+const Section = (props) => {
+  const { ref, inView, entry } = useInView({
+    /* Optional options */
+    threshold: 0.5,
+  });
+
+  return (
+    <div ref={ref} {...props}>
+      <span>is in view {inView ? "true" : "false"}</span>
+      <span>is in view {inView ? "true" : "false"}</span>
+    </div>
+  );
+};
 export default function Index() {
   const { width: windowWidth, height: windowHeight } = useWindowDimensions();
 
   const { progress: loadingProgress, active: isLoading } = useProgress();
 
   const [page, setPage] = useState(0);
-  const [scroll, setScroll] = useState(0);
+  // const [scroll, setScroll] = useState(0);
   const [isLoaded, setLoaded] = useState(false);
-  const [showOverlay, setShowOverlay] = useState(false);
+  const scroll = useRef(0);
+  // const [showOverlay, setShowOverlay] = useState(false);
 
   const [laptopOpen, setLaptopOpen] = useState(false);
   const scrollArea = useRef();
 
-  useEffect(() => {
-    if (scroll < 0.33) setPage(0);
-    if (scroll > 0.33 && scroll < 0.66) {
-      setPage(1);
-    }
-    if (scroll > 0.66) {
-      setPage(2);
-    }
-  }, [scroll]);
+  // useEffect(() => {
+  //   if (scroll < 0.33) setPage(0);
+  //   if (scroll > 0.33 && scroll < 0.66) {
+  //     setPage(1);
+  //   }
+  //   if (scroll > 0.66) {
+  //     setPage(2);
+  //   }
+  // }, [scroll]);
 
   const handleScroll = (e) => {
     // proportion of total height scrolled
     const scrollAmt =
       e.target.scrollTop / (e.target.scrollHeight - windowHeight);
-    setScroll(scrollAmt);
+    scroll.current = scrollAmt;
   };
 
   const ContextBridge = useContextBridge(ThemeContext, LayoutContext);
   const AnimatedCanvas = a(Canvas);
 
-  const onCanvasCreated = useCallback(
-    (state) =>
-      scrollArea.current ? state.events.connect(scrollArea.current) : null,
-    [scrollArea]
-  );
-
-  useEffect(() => {
-    if (isLoading && loadingProgress === 100) {
-      setShowOverlay(true);
-      setLoaded(true);
-    }
-  }, [loadingProgress, isLoading]);
-
-  const onConfirmClick = () => {
-    setShowOverlay(false);
-    setLaptopOpen(true);
-  };
   return (
-    <div style={{ height: "100vh", width: "100vw", position: "relative" }}>
+    <>
       <Loader progress={loadingProgress} active={isLoading} />
-      <Overlay pages={3} ref={scrollArea} onScroll={handleScroll}>
-        <OverlayContent open={showOverlay} onConfirmClick={onConfirmClick} />
-      </Overlay>
-
       <AnimatedCanvas
-        style={{ opacity: 1 }}
-        onCreated={onCanvasCreated}
-        raycaster={{
-          computeOffsets: ({ clientX, clientY }) => ({
-            offsetX: clientX,
-            offsetY: clientY,
-          }),
+        style={{
+          height: "100vh",
+          width: "100%",
+          position: "absolute",
+          zIndex: 1,
+          pointerEvents: "none",
         }}
         dpr={[1, 2]}
         camera={{
@@ -219,6 +210,44 @@ export default function Index() {
           </Suspense>
         </ContextBridge>
       </AnimatedCanvas>
-    </div>
+
+      <Overlay
+        pages={3}
+        ref={scrollArea}
+        onScroll={handleScroll}
+        // onDrag={(e) => console.log(e)}
+      >
+        <Section
+          style={{
+            height: "100vh",
+            // backgroundColor: "pink",
+            opacity: 0.5,
+            display: "flex",
+            justifyContent: "space-between",
+            flexDirection: "column",
+          }}
+        />
+        <Section
+          style={{
+            height: "100vh",
+            // backgroundColor: "teal",
+            opacity: 0.5,
+            display: "flex",
+            justifyContent: "space-between",
+            flexDirection: "column",
+          }}
+        />
+        <Section
+          style={{
+            height: "100vh",
+            // backgroundColor: "orange",
+            opacity: 0.5,
+            display: "flex",
+            justifyContent: "space-between",
+            flexDirection: "column",
+          }}
+        />
+      </Overlay>
+    </>
   );
 }
