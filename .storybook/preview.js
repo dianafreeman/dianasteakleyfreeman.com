@@ -1,5 +1,6 @@
 import React from 'react'
 import Providers from '../src/components/App'
+import "../src/styles/global.css";
 
 // Gatsby's Link overrides:
 // Gatsby Link calls the `enqueue` & `hovering` methods on the global variable ___loader.

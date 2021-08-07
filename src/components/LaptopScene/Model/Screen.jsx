@@ -4,7 +4,29 @@ import { a } from "@react-spring/three";
 import { a as webA, useSpring as useWebSpring } from "@react-spring/web";
 import { Html } from "@react-three/drei";
 
-function LaptopScreen({ isOpen, setOpen, children, ...rest }) {
+const Content = () => {
+  return (
+    <div className="relative bg-gray-50 min-h-full">
+      <main>
+        <div className="mx-auto max-w-7xl w-full pt-16 pb-20 text-center">
+          <div className="px-8">
+            <h1 className="max-w-md mt-3 pb-5 mx-auto font-extrabold text-gray-900 text-5xl">
+              <span className="block">Diana M Steakley-Freeman.</span>
+            </h1>
+            <p className="max-w-md mx-auto mt-3 text-gray-500 text-xl">
+              Full-Stack Software Engineer, UI/UX Specialist, Humane
+              Technologist.
+            </p>
+            <div>
+              <h1>Hello</h1>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  );
+};
+function Screen({ isOpen, setOpen, children, ...rest }) {
   const { height, opacity } = useWebSpring({
     opacity: !isOpen ? 0 : 1,
     height: isOpen ? "227px" : "0px",
@@ -39,19 +61,19 @@ function LaptopScreen({ isOpen, setOpen, children, ...rest }) {
             opacity,
           }}
         >
-          {children}
+          <Content />
         </webA.div>
       </Html>
     </a.group>
   );
 }
 
-LaptopScreen.propTypes = {
-  detached: PropTypes.bool,
+Screen.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
 };
 
-LaptopScreen.defaultProps = {
-  detached: false,
+Screen.defaultProps = {
+  // detached: false,
 };
 
-export default LaptopScreen;
+export default Screen;

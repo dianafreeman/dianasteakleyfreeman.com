@@ -14,7 +14,7 @@
             "frontmatter": {
               "title": "The Butterfly of the Edge",
               "tags": ["programming", "more tags", "testing", "another one", "stuff", "other"],
-              "cover": "2.jpg",
+              "image": "2.jpg",
               "date": "2017-03-17"
             }
           }

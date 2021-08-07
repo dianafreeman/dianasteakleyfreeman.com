@@ -5,7 +5,7 @@ import SEO from ".";
 
 describe("SEO Helmet", () => {
   beforeEach(() => {
-    render(<SEO postNode={{}}/>);
+    render(<SEO postNode={{}} />);
   });
 
   it("should have a title", () => {

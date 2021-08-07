@@ -1,5 +1,5 @@
 /* eslint-disable no-nested-ternary */
-import React, { useRef } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { a } from "@react-spring/web";
 import TypedText from "./TypedText";
@@ -26,7 +26,7 @@ const ValidAnimation = ({
   if (ANI_TYPE_MAP.trail === animationType) {
     return <TrailedText show={show} strings={strings} {...rest} />;
   }
-  return <h6 className="text-red-500">Error in Text Animation Component</h6>;
+  return new Error("Error in Text Animation Component");
 };
 
 function AnimatedText({
@@ -40,12 +40,10 @@ function AnimatedText({
   onComplete,
 }) {
   const Component = a(component);
-  const animationRef = useRef();
 
   return (
     <Component className={className}>
       <ValidAnimation
-        ref={animationRef}
         onComplete={onComplete}
         className={className}
         component={component}
@@ -70,4 +68,5 @@ AnimatedText.propTypes = {
 AnimatedText.defaultProps = {
   typeSpeed: 100,
 };
+
 export default AnimatedText;

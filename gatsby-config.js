@@ -13,7 +13,6 @@ module.exports = {
     ...config,
   },
   plugins: [
-    "gatsby-plugin-loadable-components-ssr",
     "gatsby-transformer-remark",
     "gatsby-plugin-styled-components",
     "gatsby-plugin-react-helmet",

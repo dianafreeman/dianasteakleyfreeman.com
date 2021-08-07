@@ -2,3 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html, body {
+    padding: unset;
+    margin: unset;
+    font-size: 21px;
+    font-family: 'Roboto', sans-serif;
+  }
+
+}

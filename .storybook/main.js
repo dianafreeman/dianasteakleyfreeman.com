@@ -18,7 +18,21 @@ module.exports = {
   },
   ],
   webpackFinal: async config => {
-
+    // config.module.rules.push({
+    //   test: /\\.css$/,
+    //   use: [
+    //     // Loader for webpack to process CSS with PostCSS
+    //     {
+    //       loader: 'postcss-loader',
+    //       options: {
+    //         sourceMap: true,
+    //         config: {
+    //           path: './.storybook/'
+    //         }
+    //       }
+    //     }
+    //   ],    include: path.resolve(__dirname, '../')
+    // })
     // Transpile Gatsby module because Gatsby includes un-transpiled ES6 code.
     config.module.rules[0].exclude = [/node_modules\/(?!(gatsby)\/)/]
     // use installed babel-loader which is v8.0-beta (which is meant to work with @babel/core@7)
@@ -45,11 +59,11 @@ module.exports = {
       include: path.resolve(__dirname, '../'),
     })
 
- // Add SVGR Loader
-  config.module.rules.unshift({
-    test:/\*\.svg$/,
-    use: ['@svgr/webpack', 'url-loader'],
-  })
+    // Add SVGR Loader
+      config.module.rules.unshift({
+        test:/\*\.svg$/,
+        use: ['@svgr/webpack', 'url-loader'],
+      })
 
     return config;
   },

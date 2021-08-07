@@ -1,16 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
-import { a } from "@react-spring/web";
-import { Row, Col } from "react-simple-flex-grid";
-import "react-simple-flex-grid/lib/main.css";
-import useTheme from "@project/hooks/useTheme";
-import loadable from "@loadable/component";
-import { Helmet } from "react-helmet";
-
 // import { FlexColumn, FlexRow, FlexDiv } from "../components/Flex";
-
-// const Scene = loadable(() => import("../components/Scene"));
 
 // const Section = styled(FlexRow)`
 //   padding: ${({ theme }) => theme.spacing.sm} 0;
@@ -47,7 +38,6 @@ import { Helmet } from "react-helmet";
 // `;
 
 function ErrorPage() {
-  const { colors } = useTheme();
   const [ready, setReady] = useState(false);
 
   // delay even the attempt at rendering

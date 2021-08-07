@@ -1,9 +1,20 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 export const ErrorAlert = ({ error }) => {
   return (
-    <div className="bg-red-100 border-red-500 rounded-md">
-      <pre>{JSON.stringify(error, null, 2)}</pre>
+    <div style={{ width: "inherit", padding: "1em" }}>
+      <h1
+        style={{
+          fontWeight: 900,
+          color: "red",
+          fontSize: "48px",
+          lineHeight: "2em",
+        }}
+      >
+        Error
+      </h1>
+      <h1 style={{ color: "red" }}>{error}</h1>
     </div>
   );
 };
@@ -20,19 +31,23 @@ class ErrorBoundary extends Component {
   }
 
   // eslint-disable-next-line no-unused-vars
-  componentDidCatch(_error, _errorInfo) {
-    // You can also log the error to an error reporting service
+  componentDidCatch(error, errorInfo) {
     // logErrorToMyService(error, errorInfo);
   }
 
   render() {
     const { hasError, error } = this.state;
-    const { children } = this.props;
-    if (hasError) {
-      return <ErrorAlert error={error} />;
+    const { children, hideIn } = this.props;
+
+    if (hasError && !hideIn.includes(process.env.NODE_ENV)) {
+      return <ErrorAlert error={error.message} />;
     }
     return children;
   }
 }
 
 export default ErrorBoundary;
+
+ErrorBoundary.propTypes = {
+  hideIn: PropTypes.arrayOf(PropTypes.string).isRequired,
+};

@@ -1,224 +1,68 @@
 /* eslint-disable no-nested-ternary */
 /* eslint-disable react/no-array-index-key */
-import React, {
-  Suspense,
-  useRef,
-  useState,
-  useEffect,
-  useCallback,
-} from "react";
-import * as THREE from "three";
+import React, { useEffect, useState } from "react";
 
-import { Canvas, useThree } from "@react-three/fiber";
-import {
-  useContextBridge,
-  Environment,
-  ContactShadows,
-  OrbitControls,
-  useProgress,
-} from "@react-three/drei";
+import styled from "styled-components";
+import { Parallax, ParallaxLayer } from "@react-spring/parallax";
+import Scene from "@project/components/Scene";
+import useWindowDimensions from "../hooks/useWindowDimensions";
 
-import ThemeContext from "@project/context/ThemeContext";
-import LayoutContext from "@project/context/LayoutContext";
-import useWindowDimensions from "@project/hooks/useWindowDimensions";
-import { a, useSpring, config } from "@react-spring/three";
+const Section = styled.div`
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+`;
 
-import LaptopModel from "../components/LaptopModel";
-import HeroPage from "../components/HeroPage";
-import Loader from "../components/Loader";
-import Overlay from "../components/Overlay";
-import OverlayContent from "../components/OverlayContent";
+const Background = styled.div`
+  background-color: #0f0f0f;
+  height: 100vh;
+`;
 
-const LAPTOP = {
-  rotation: [
-    [0, 0, 0],
-    [0, -Math.PI / 6, 0],
-    [0, -Math.PI / 6, 0],
-  ],
-  position: [
-    [0, 0, 0],
-    [0, 0, 0],
-    [0, 0, 0],
-  ],
-};
-const CAMERA = {
-  position: [
-    [0, 6, 4],
-    [0, 8, 5],
-    [0, 8, 6],
-  ],
-  lookAt: [
-    [0, 0, 0],
-    [0, 0, 0],
-    [0, 0, 0],
-  ],
-  fov: 45,
-};
-
-const Internal = ({ page, laptopOpen, setLaptopOpen, ready }) => {
-  const group = useRef();
-  const { width: windowWidth } = useWindowDimensions();
-
-  const { camera } = useThree();
-  const index = page - 1 < 0 ? 0 : page - 1;
-
-  useSpring({
-    to: {
-      lookAt: [...CAMERA.lookAt[index]],
-      position: [...CAMERA.position[index]],
-    },
-    onFrame: ({ lookAt, position }) => {
-      camera.position.set(position);
-      camera.lookAt(lookAt);
-      camera.updateProjectionMatrix();
-    },
-  });
-
-  const {
-    position: grpPosition,
-    rotation: grpRotation,
-    scale,
-  } = useSpring({
-    position: LAPTOP.position[page],
-    rotation: LAPTOP.rotation[page],
-    scale: 1,
-  });
-
+const Card = () => {
   return (
-    <>
-      <pointLight position={[10, 10, 10]} intensity={1} />
-      <a.group
-        ref={group}
-        position={grpPosition}
-        rotation={grpRotation}
-        scale={scale}
-        opacity={ready ? 1 : 0}
-      >
-        <LaptopModel
-          position-y={-0.5}
-          position-x={-0.25}
-          rotation-y={Math.PI}
-          rotation-x={0.2}
-          isOpen={laptopOpen}
-          setOpen={setLaptopOpen}
-        >
-          <HeroPage />
-        </LaptopModel>
-        <ContactShadows
-          rotation-x={Math.PI / 2}
-          position={[0, -1.4, 0]}
-          opacity={ready ? 0.5 : 0}
-          width={20}
-          height={20}
-          blur={2}
-          far={4.5}
-          resolution={256}
-        />
-      </a.group>
-
-      <Environment preset="city" />
-
-      <OrbitControls
-        enablePan={false}
-        enableZoom={false}
-        minPolarAngle={Math.PI / 2}
-        maxPolarAngle={Math.PI / 2}
-      />
-    </>
+    <div className="bg-gray-800 w-full min-h-40 rounded-lg mb-6">
+      <div className="bg-gray-700 text-gray-400 p-2 font-thin text-right text-xs rounded-t-lg">
+        Card Top
+      </div>
+      <h3 className="text-md px-2 py-3 ">Card Title</h3>
+      <p className="text-sm px-2 py-3 font-thin">
+        Velit labore incididunt do laboris elit ipsum.
+      </p>
+    </div>
   );
 };
+const HEADING = "Well Hello There!";
+const SUBHEADING = "I'm Diana.";
 
 export default function Index() {
-  const { width: windowWidth, height: windowHeight } = useWindowDimensions();
+  const { width } = useWindowDimensions();
 
-  const { progress: loadingProgress, active: isLoading } = useProgress();
-
-  const [page, setPage] = useState(0);
-  const [scroll, setScroll] = useState(0);
-  const [isLoaded, setLoaded] = useState(false);
-  const [showOverlay, setShowOverlay] = useState(false);
-
-  const [laptopOpen, setLaptopOpen] = useState(false);
-  const scrollArea = useRef();
-
-  useEffect(() => {
-    if (scroll < 0.33) setPage(0);
-    if (scroll > 0.33 && scroll < 0.66) {
-      setPage(1);
-    }
-    if (scroll > 0.66) {
-      setPage(2);
-    }
-  }, [scroll]);
-
-  const handleScroll = (e) => {
-    // proportion of total height scrolled
-    const scrollAmt =
-      e.target.scrollTop / (e.target.scrollHeight - windowHeight);
-    setScroll(scrollAmt);
-  };
-
-  const ContextBridge = useContextBridge(ThemeContext, LayoutContext);
-  const AnimatedCanvas = a(Canvas);
-
-  const onCanvasCreated = useCallback(
-    (state) =>
-      scrollArea.current ? state.events.connect(scrollArea.current) : null,
-    [scrollArea]
-  );
-
-  useEffect(() => {
-    if (isLoading && loadingProgress === 100) {
-      setShowOverlay(true);
-      setLoaded(true);
-    }
-  }, [loadingProgress, isLoading]);
-
-  const onConfirmClick = () => {
-    setShowOverlay(false);
-    setLaptopOpen(true);
-  };
   return (
-    <div style={{ height: "100vh", width: "100vw", position: "relative" }}>
-      <Loader progress={loadingProgress} active={isLoading} />
-      <Overlay pages={3} ref={scrollArea} onScroll={handleScroll}>
-        <OverlayContent open={showOverlay} onConfirmClick={onConfirmClick} />
-      </Overlay>
-
-      <AnimatedCanvas
-        style={{ opacity: 1 }}
-        onCreated={onCanvasCreated}
-        raycaster={{
-          computeOffsets: ({ clientX, clientY }) => ({
-            offsetX: clientX,
-            offsetY: clientY,
-          }),
-        }}
-        dpr={[1, 2]}
-        camera={{
-          position: CAMERA.position[page],
-          fov: CAMERA.fov,
-          aspect: windowWidth / windowHeight,
-          zoom: 1,
-        }}
-      >
-        <ContextBridge>
-          <Suspense fallback={null}>
-            <Internal
-              ready={isLoaded}
-              page={page}
-              scroll={scroll}
-              laptopOpen={laptopOpen}
-              setLaptopOpen={setLaptopOpen}
-            />
-            <OrbitControls
-              enableZoom={false}
-              enablePan={false}
-              minPolarAngle={Math.PI / 2}
-            />
-          </Suspense>
-        </ContextBridge>
-      </AnimatedCanvas>
-    </div>
+    <Background>
+      <Parallax pages={3} enabled style={{ top: "0", left: "0" }}>
+        <ParallaxLayer offset={0} sticky={{ from: 0.5, to: 2 }}>
+          <Section className="text-white p-14 flex justify-start flex-col align-middle h-full">
+            <div className="md:w-1/2">
+              <h1 className="text-4xl font-roboto font-black">{HEADING}</h1>
+              <h2 className="text-3xl font-roboto font-light">{SUBHEADING}</h2>
+            </div>
+            <div className="md:w-1/2 h-full">
+              <Scene />
+            </div>
+          </Section>
+        </ParallaxLayer>
+        <ParallaxLayer offset={0.5}>
+          <Section className="text-white p-14 flex justify-end">
+            <div className="md:w-1/2">
+              {"thefox".split("").map((s) => (
+                <Card key={`${s}${s}`} />
+              ))}
+            </div>
+          </Section>
+        </ParallaxLayer>
+        <ParallaxLayer offset={1} />
+        <ParallaxLayer offset={2} />
+      </Parallax>
+    </Background>
   );
 }

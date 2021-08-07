@@ -10,7 +10,7 @@ function useWindowDimensions() {
       setSize({ height: window.innerHeight, width: window.innerWidth });
     };
     window.addEventListener("resize", handleResize);
-    // Clean up!
+
     return () => {
       window.removeEventListener("resize", handleResize);
     };

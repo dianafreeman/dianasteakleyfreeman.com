@@ -1,12 +1,12 @@
 import React from "react";
-import SocialLinks from ".";
+import Links from ".";
 
 export const Themed = (args) => {
-  return <SocialLinks {...args} />;
+  return <Links {...args} />;
 };
 
 export default {
-  title: "Components/SocialLinks",
-  component: SocialLinks,
+  title: "Components/Links",
+  component: Links,
   args: {},
 };

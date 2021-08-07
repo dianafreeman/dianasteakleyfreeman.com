@@ -20,32 +20,41 @@ const SocialList = styled.ul`
   margin: auto unset;
 `;
 
-function SocialLinks() {
+const DESTINATIONS = [
+  {
+    name: "LinkedIn",
+    description: "Connect with me on LinkedIn",
+    href: "#",
+    icon: AiFillLinkedin,
+  },
+  {
+    name: "Github",
+    description: "Browse my Github Repos",
+    href: "#",
+    icon: AiFillGithub,
+  },
+  {
+    name: "Twitter",
+    description: "Follow Me on Twitter",
+    href: "#",
+    icon: AiOutlineTwitter,
+  },
+  {
+    name: "Email",
+    description: "Shoot me an email!",
+    href: "#",
+    icon: AiFillMail,
+  },
+];
+function Links() {
   // TODO: gatsby query goes here
   return (
     <SocialList>
-      <li>
-        <OutboundLink href="https://www.linkedin.com/in/dianasteakleyfreeman/">
-          <AiFillLinkedin />
-        </OutboundLink>
-      </li>
-      <li>
-        <OutboundLink href="https://github.com/dianafreeman">
-          <AiFillGithub />
-        </OutboundLink>
-      </li>
-      <li>
-        <OutboundLink href="https://twitter.com/dianasfreeman">
-          <AiOutlineTwitter />
-        </OutboundLink>
-      </li>
-      <li>
-        <OutboundLink href="mailto:diana@dianasteakelyfreeman.com">
-          <AiFillMail />
-        </OutboundLink>
-      </li>
+      {DESTINATIONS.map((d) => (
+        <OutboundLink href={d.href}>{d.icon()}</OutboundLink>
+      ))}
     </SocialList>
   );
 }
 
-export default SocialLinks;
+export default Links;

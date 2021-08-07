@@ -1,5 +1,5 @@
 /* eslint-disable no-nested-ternary */
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import Typed from "react-typed";
 import PropTypes from "prop-types";
 import { a } from "@react-spring/web";
@@ -13,7 +13,6 @@ const TypedText = ({
   ...rest
 }) => {
   const ref = useRef();
-  const Component = a(component);
   const AniTyped = a(Typed);
 
   const handleComplete = () => {
@@ -25,7 +24,7 @@ const TypedText = ({
   };
 
   return isStatic ? (
-    <Component {...rest}>{strings}</Component>
+    strings.join("")
   ) : (
     <AniTyped
       strings={strings}

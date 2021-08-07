@@ -1,5 +1,5 @@
 import React from "react";
-import LandingPage from "../../../pages/index"
+import LandingPage from "../../../pages/index";
 
 export default {
   title: "Pages/LandingPage",

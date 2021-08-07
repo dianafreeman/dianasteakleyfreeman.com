@@ -30,7 +30,7 @@ TypedText.args = {
   strings: ["Well Hello There"],
   show: true,
   className:
-    "text-base relative text-yellow-50 text-5xl md:text-6xl lg:text-7xl",
+    "text-base relative text-white text-5xl md:text-6xl lg:text-7xl font-roboto font-black",
 };
 
 export const TrailedText = ({ ...restArgs }) => {
@@ -38,11 +38,11 @@ export const TrailedText = ({ ...restArgs }) => {
 };
 
 TrailedText.args = {
-  component: "h3",
-  isStatic: false,
-  show: true,
-  strings: [..."EXPLORE".split("")],
+  component: "h1",
+  isStatic: true,
   animationType: "trail",
+  strings: "EXPLORE".split(""),
+  show: true,
   className:
     "text-base relative text-yellow-50 text-5xl md:text-6xl lg:text-7xl",
 };
