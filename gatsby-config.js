@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 const path = require("path");
-const config = require("./config/siteConfig");
+const config = require("./config/site");
 
 // Make sure that pathPrefix is not empty
 const validatedPathPrefix = config.pathPrefix === "" ? "/" : config.pathPrefix;
