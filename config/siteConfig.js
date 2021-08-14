@@ -1,6 +1,6 @@
-const meta = require("./site/meta");
-const settings = require("./site/settings");
-const author = require("./site/author");
+const meta = require("./details/meta");
+const settings = require("./details/settings");
+const author = require("./details/author");
 
 const config = {
   ...meta,
