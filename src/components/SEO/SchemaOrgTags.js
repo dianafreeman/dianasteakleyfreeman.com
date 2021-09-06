@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 
-import config from "@project/config/siteConfig";
+import config from "@project/config/site";
 import getPublicationDate from "./utils/getPublicationDate";
 import getImagePath from "./utils/getImagePath";
 

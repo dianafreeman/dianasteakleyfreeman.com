@@ -2,7 +2,7 @@
 const path = require("path");
 const { kebabCase } = require("lodash");
 const moment = require("moment");
-const siteSettings = require("@project/config/details/settings");
+const siteSettings = require("../config/details/settings");
 
 function maybeFrontmatter(node, nestedProp) {
   if (node.frontmatter) {
@@ -39,13 +39,14 @@ function maybeDate(node) {
   return formattedDate;
 }
 
-function createSlug(node, fileNode) {
-  const filePath = getFilePath(fileNode);
+function createSlug(node) {
   const maybeSlug = maybeFrontmatter(node, "slug");
   if (maybeSlug) return maybeSlug;
 
   const maybeTitle = maybeFrontmatter(node, "title");
   if (maybeTitle) return slugFromTitle(maybeTitle);
+
+  const filePath = getFilePath(node);
 
   const maybePathSlug = maybeFilePathSlug(filePath);
   if (maybePathSlug) return maybePathSlug;
@@ -55,9 +56,8 @@ function createSlug(node, fileNode) {
   return `/${dir}/`;
 }
 
-function createMarkdownNode(node, fieldCallback, getFileNode) {
-  const fileNode = getFileNode(node);
-  const slug = createSlug(node, fileNode);
+function createMarkdownNode(node, fieldCallback) {
+  const slug = createSlug(node);
   const date = maybeDate(node);
   if (date) fieldCallback({ node, name: "date", value: date.toISOString() });
   fieldCallback({ node, name: "slug", value: slug });

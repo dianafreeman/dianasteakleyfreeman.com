@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 
 import styled from "styled-components";
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
-import Scene from "@project/components/Scene";
+import Scene from "@project/components/LaptopScene";
 import useWindowDimensions from "../hooks/useWindowDimensions";
 
 const Section = styled.div`

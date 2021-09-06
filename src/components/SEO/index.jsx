@@ -2,21 +2,8 @@ import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import PropTypes from "prop-types";
 
-import config from "@project/config/siteConfig";
+import config from "@project/config/site";
 import SchemaOrgTags from "./SchemaOrgTags";
-
-/**
- * AHH I hate this.
- *
- * TODO
- *
- * [x] Remove `moment`
- * [x] Remove `urlJoin`
- *  - refactor each of these methods
- *  - Create tests for each of these methods
- *
- * WTF is postSEO?
- */
 
 function SEO({ postNode, postPath, postSEO }) {
   const [title] = useState(config.siteTitle);
