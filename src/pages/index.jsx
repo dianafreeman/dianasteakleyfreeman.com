@@ -4,8 +4,9 @@ import React, { useEffect, useState } from "react";
 
 import styled from "styled-components";
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
-import Scene from "@project/components/LaptopScene";
+import Scene from "@project/components/Scene";
 import useWindowDimensions from "../hooks/useWindowDimensions";
+import { LaptopContext } from "../providers/LaptopProvider";
 
 const Section = styled.div`
   height: 100vh;
@@ -14,7 +15,7 @@ const Section = styled.div`
 `;
 
 const Background = styled.div`
-  background-color: #0f0f0f;
+  background-color: ${(props) => props.color || "#0f0f0f"};
   height: 100vh;
 `;
 
@@ -37,8 +38,11 @@ const SUBHEADING = "I'm Diana.";
 export default function Index() {
   const { width } = useWindowDimensions();
 
+  const [bg, setBg] = useState("#f0e9e9");
+  const [laptopOpen, setLaptopOpen] = useState(false);
+
   return (
-    <Background>
+    <Background color={bg}>
       <Parallax pages={3} enabled style={{ top: "0", left: "0" }}>
         <ParallaxLayer offset={0} sticky={{ from: 0.5, to: 2 }}>
           <Section className="text-white p-14 flex justify-start flex-col align-middle h-full">
@@ -46,8 +50,8 @@ export default function Index() {
               <h1 className="text-4xl font-roboto font-black">{HEADING}</h1>
               <h2 className="text-3xl font-roboto font-light">{SUBHEADING}</h2>
             </div>
-            <div className="md:w-1/2 h-full">
-              <Scene />
+            <div className="w-full h-full">
+              <Scene laptopOpen={laptopOpen} setLaptopOpen={setLaptopOpen} />
             </div>
           </Section>
         </ParallaxLayer>

@@ -1,22 +1,22 @@
 import React, { useState, createContext } from "react";
 
-export const LayoutContext = createContext(null);
+export const LaptopContext = createContext(null);
 
-function LayoutProvider({ children }) {
+function LaptopProvider({ children }) {
   const [loading, setLoading] = useState(true);
   const [laptopOpen, setLaptopOpen] = useState(false);
 
   return (
-    <LayoutContext.Provider
+    <LaptopContext.Provider
       value={{
         laptopOpen,
-        loading,
         setLaptopOpen,
+        loading,
         setLoading,
       }}
     >
       {children}
-    </LayoutContext.Provider>
+    </LaptopContext.Provider>
   );
 }
-export default LayoutProvider;
+export default LaptopProvider;

@@ -1,6 +1,6 @@
 import React from "react";
 
-import LayoutProvider from "@project/context/LayoutProvider";
+import LaptopProvider from "@project/providers/LaptopProvider";
 import ErrorBoundary from "@project/components/ErrorBoundary";
 
 import "@fontsource/roboto/100-italic.css";
@@ -19,7 +19,7 @@ import "@fontsource/roboto/900.css";
 function App({ children }) {
   return (
     <ErrorBoundary hideIn={["production", "prod"]}>
-      <LayoutProvider>{children}</LayoutProvider>
+      <LaptopProvider>{children}</LaptopProvider>
     </ErrorBoundary>
   );
 }
