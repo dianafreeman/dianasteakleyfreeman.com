@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 
 import styled from "styled-components";
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
-import Scene from "@project/components/Scene";
+import Scene from "@project/components/LaptopScene";
 import useWindowDimensions from "../hooks/useWindowDimensions";
 import { LaptopContext } from "../providers/LaptopProvider";
 
@@ -45,17 +45,13 @@ export default function Index() {
     <Background color={bg}>
       <Parallax pages={3} enabled style={{ top: "0", left: "0" }}>
         <ParallaxLayer offset={0} sticky={{ from: 0.5, to: 2 }}>
-          <Section className="text-white p-14 flex justify-start flex-col align-middle h-full">
-            <div className="md:w-1/2">
-              <h1 className="text-4xl font-roboto font-black">{HEADING}</h1>
-              <h2 className="text-3xl font-roboto font-light">{SUBHEADING}</h2>
-            </div>
+          <Section className="text-black lg:p-14 flex justify-start flex-col align-middle h-full">
             <div className="w-full h-full">
               <Scene laptopOpen={laptopOpen} setLaptopOpen={setLaptopOpen} />
             </div>
           </Section>
         </ParallaxLayer>
-        <ParallaxLayer offset={0.5}>
+        <ParallaxLayer offset={2}>
           <Section className="text-white p-14 flex justify-end">
             <div className="md:w-1/2">
               {"thefox".split("").map((s) => (

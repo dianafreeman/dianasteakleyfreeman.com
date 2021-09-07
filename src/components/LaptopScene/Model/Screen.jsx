@@ -6,12 +6,12 @@ import { Html } from "@react-three/drei";
 
 const Content = () => {
   return (
-    <div className="relative bg-gray-50 min-h-full">
+    <div className="relative min-h-full">
       <main>
         <div className="mx-auto max-w-7xl w-full pt-16 pb-20 text-center">
           <div className="px-8">
             <h1 className="max-w-md mt-3 pb-5 mx-auto font-extrabold text-gray-900 text-5xl">
-              <span className="block">Diana M Steakley-Freeman.</span>
+              <span className="block">I'm Diana.</span>
             </h1>
             <p className="max-w-md mx-auto mt-3 text-gray-500 text-xl">
               Full-Stack Software Engineer, UI/UX Specialist, Humane
@@ -41,6 +41,7 @@ function Screen({ isOpen, setOpen, children, ...rest }) {
           borderRadius: "3px",
           overflowY: "auto",
           padding: "0",
+          pointerEvents: "none",
         }}
         zIndexRange={[1000, 100]} // Z-order range (default=[16777271, 0])
         transform
@@ -54,8 +55,6 @@ function Screen({ isOpen, setOpen, children, ...rest }) {
       >
         <webA.div
           style={{
-            padding: "10px",
-            width: "670px",
             transition: "all 0.5s",
             height,
             opacity,
