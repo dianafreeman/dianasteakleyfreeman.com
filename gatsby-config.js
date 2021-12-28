@@ -47,7 +47,7 @@ module.exports = {
           "@project/hooks": "./src/hooks",
           "@project/assets": "./src/assets",
           "@project/fonts": "./src/assets/fonts",
-          "@project/context": "./src/context",
+          "@project/providers": "./src/providers",
           "@project/components": "./src/components",
         },
       },

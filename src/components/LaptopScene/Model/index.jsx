@@ -97,7 +97,10 @@ export default function LaptopModel(props) {
           material={materials.CameraGreen}
         />
 
-        <Screen isOpen={laptopOpen} setOpen={setLaptopOpen} />
+        <Screen style={{
+      
+          pointerEvents: "none",
+        }} isOpen={laptopOpen} setOpen={setLaptopOpen} />
       </a.group>
       <a.group
         ref={keyboardGroup}

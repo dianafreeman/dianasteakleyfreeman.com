@@ -26,6 +26,7 @@ import useWindowDimensions from "../../hooks/useWindowDimensions";
 import LaptopModel from "./Model";
 
 const LaptopGroup = React.forwardRef(({ groupProps, ...rest }, ref) => (
+  
   <a.group ref={ref} {...groupProps}>
     <LaptopModel {...rest} />
   </a.group>
@@ -43,16 +44,15 @@ const Scene = () => {
       .multiplyScalar(-1);
   }, [width, height]);
 
-  const [scale, setScale] = useState(1);
+  const [down, setDown] = useState(true);
   const [titlePositionPx, setTitlePosition] = useState(-10);
   const [laptopPositionY, setLaptopPosition] = useState(0);
-  const [htmlYPos, setHtmlYPos] = useState(0);
 
   const { titlePosSpring, scaleSpring, laptopPosSpringY, htmlPosSPring } =
     useSpring({
       titlePosSpring: titlePositionPx,
-      // htmlPosSPring: laptopOpen ? 0.8 : 0.25,
-      scaleSpring: scale,
+      htmlPosSPring: laptopOpen ? 0.8 : 0.25,
+      scaleSpring: down ? 0.96 : 1,
       laptopPosSpringY: laptopPositionY,
     });
 
@@ -69,7 +69,6 @@ const Scene = () => {
     <>
       <Html
         fullscreen
-        // position-y={htmlPosSPring}
         style={{ display: "flex", pointerEvents: "none" }}
       >
         <webA.h1
@@ -92,15 +91,8 @@ const Scene = () => {
           "position-y": laptopPosSpringY,
         }}
         scale={scaleSpring}
-        onClick={() => {
-          setLaptopOpen((prev) => !prev);
-        }}
-        onPointerDown={() => {
-          setScale(0.96);
-        }}
-        onPointerUp={() => {
-          setScale(1);
-        }}
+     
+        
       />
       <ContactShadows
         rotation-x={Math.PI / 2}

@@ -6,7 +6,7 @@ import { Html } from "@react-three/drei";
 
 const Content = () => {
   return (
-    <div className="relative min-h-full">
+    <div className="relative min-h-full pointer-events-none">
       <main>
         <div className="mx-auto max-w-7xl w-full pt-16 pb-20 text-center">
           <div className="px-8">
@@ -26,6 +26,7 @@ const Content = () => {
     </div>
   );
 };
+
 function Screen({ isOpen, setOpen, children, ...rest }) {
   const { height, opacity } = useWebSpring({
     opacity: !isOpen ? 0 : 1,
@@ -41,10 +42,10 @@ function Screen({ isOpen, setOpen, children, ...rest }) {
           borderRadius: "3px",
           overflowY: "auto",
           padding: "0",
-          pointerEvents: "none",
         }}
         zIndexRange={[1000, 100]} // Z-order range (default=[16777271, 0])
         transform
+        center
         occlude
         rotation-x={-Math.PI / 2}
         rotation-y={Math.PI}
@@ -58,6 +59,8 @@ function Screen({ isOpen, setOpen, children, ...rest }) {
             transition: "all 0.5s",
             height,
             opacity,
+            pointerEvents: "none",
+
           }}
         >
           <Content />
