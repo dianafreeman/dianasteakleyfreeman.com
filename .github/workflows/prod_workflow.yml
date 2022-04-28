@@ -2,42 +2,41 @@ name: Production CI/CD
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build-test-deploy:
-    name: "Test and Build"
+    name: 'Test and Build'
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Files
+        uses: actions/checkout@v2
 
-    - name: Checkout Files
-      uses: actions/checkout@v2
+      - name: Use Node.js 12
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
 
-    - name: Use Node.js 12
-      uses: actions/setup-node@v1
-      with:
-        node-version: '12.x'
+      - name: Install Dependencies
+        run: yarn install --silent --frozen-lockfile
 
-    - name: Install Dependencies
-      run: yarn install --silent --frozen-lockfile
+      - name: Run Unit Tests
+        run: yarn test
 
-    - name: Run Unit Tests
-      run: yarn test
+      - name: Build Static Site
+        run: yarn build
 
-    - name: Build Static Site
-      run: yarn build
+      - name: Cypress E2E
+        uses: cypress-io/github-action@v2
+        with:
+          headless: true
+          install: false
+          start: yarn serve
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_ACTION_TOKEN }}
 
-    - name: Cypress E2E
-      uses: cypress-io/github-action@v2
-      with:
-        headless: true
-        install: false
-        start: yarn serve
-      env:
-        GITHUB_TOKEN: ${{ secrets.GH_ACTION_TOKEN }}
-
-    - name: Deploy to Production
-      env:
+      - name: Deploy to Production
+        env:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-      run: netlify deploy --prod
+        run: netlify deploy --prod
