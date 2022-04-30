@@ -1,5 +1,6 @@
 <script>
   import SlidesStore from "$stores/SlidesStore";
+  import NavBrand from "./NavBrand.svelte";
   import NavItem from "./NavItem.svelte";
   import NavToggle from "./NavToggle.svelte";
   import SideNav from "./SideNav.svelte";
@@ -19,7 +20,7 @@
 <header class="flex flex-row">
   <nav class="w-full p-10">
     <li class="list-none flex flex-row justify-between align-middle">
-      <ul class="flex flex-1"><a href="/" class="text-4xl font-bold"> d. </a></ul>
+      <NavBrand textColor="white" />
       <NavItem>About</NavItem>
       <NavItem>Gallery</NavItem>
       <button class="flex align-middle m-auto font-poppins" on:click={toggle} style="z-index: 900">

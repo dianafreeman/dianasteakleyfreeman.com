@@ -142,22 +142,7 @@
     font-style: italic;
     src: url("/static/fonts/Poppins-BlackItalic.woff2") format("woff2");
   }
-
-  /*
-	Headings
-	*/
-  h1 {
-    @apply text-3xl;
-  }
-  h2 {
-    @apply text-2xl;
-  }
-  h3 {
-    @apply text-xl;
-  }
-  h4 {
-    @apply text-lg;
-  }
+  
   body {
     font-size: 16px;
     @apply text-white;
