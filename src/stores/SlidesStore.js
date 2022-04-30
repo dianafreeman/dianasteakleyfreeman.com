@@ -7,18 +7,21 @@ function createSlidesStore() {
     {
       title: "Coder",
       color: "#0C023C",
-      description: "(v.) To dance between the lines of art, science, and opinion."
+      description: "(v.) To dance between the lines of art, science, and opinion.",
+      categoryName: "Projects",
     },
     {
       title: "Creator",
       color: "#3C021F",
-      description: "Something creative"
+      description: "Something creative",
+      categoryName: "Gallery"
     },
     {
       //  &shy; is the manual hyphen indicator
       title: "Communicator",
       color: "#005F42",
-      description: "Lorem upsum even better"
+      description: "Lorem upsum even better",
+      categoryName: "Posts"
     }
   ]
 
@@ -32,14 +35,13 @@ function createSlidesStore() {
 
   function next() {
     update(({ activeIndex, ...rest }) => {
-      if (activeIndex === MAX_INDEX ) return {  activeIndex: MAX_INDEX, ...rest}
-
+      if (activeIndex === MAX_INDEX ) return {  activeIndex: MIN_INDEX, ...rest}
       return { activeIndex: activeIndex + 1, ...rest}
     })
   }
   function previous() {
     update(({ activeIndex, ...rest }) => {
-      if (activeIndex === MIN_INDEX) return {  activeIndex: min, ...rest}
+      if (activeIndex === MIN_INDEX) return {  activeIndex: MAX_INDEX, ...rest}
      return {  activeIndex: activeIndex - 1, ...rest}
     })
   }
