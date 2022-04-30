@@ -14,7 +14,7 @@
 </script>
 
 <div
-  class="absolute w-full h-screen lg:w-1/2 p-5 right-0 top-0"
+  class="absolute w-full h-screen lg:w-1/2 p-5 right-0 top-0 text-black"
   style="background-color: rgba(255,255,255,0.9); z-index: 100;"
 >
   <div id="spacer" class="h-12" />

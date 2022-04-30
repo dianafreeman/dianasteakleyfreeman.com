@@ -17,8 +17,8 @@
 </script>
 
 <header class="flex flex-row">
-  <nav class="w-full p-4">
-    <li class="list-none flex flex-row justify-between text-white align-middle">
+  <nav class="w-full p-10">
+    <li class="list-none flex flex-row justify-between align-middle">
       <ul class="flex flex-1"><a href="/" class="text-4xl font-bold"> d. </a></ul>
       <NavItem>About</NavItem>
       <NavItem>Gallery</NavItem>

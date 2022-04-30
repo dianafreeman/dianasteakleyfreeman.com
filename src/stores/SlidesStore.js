@@ -7,7 +7,7 @@ function createSlidesStore() {
     {
       title: "Coder",
       color: "#0C023C",
-      description: "(v.) To dances between the lines of art, science, and opinion."
+      description: "(v.) To dance between the lines of art, science, and opinion."
     },
     {
       title: "Creator",
@@ -15,6 +15,7 @@ function createSlidesStore() {
       description: "Something creative"
     },
     {
+      //  &shy; is the manual hyphen indicator
       title: "Communicator",
       color: "#005F42",
       description: "Lorem upsum even better"

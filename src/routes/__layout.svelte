@@ -11,7 +11,7 @@
 </script>
 
 <main
-  class="bg-black h-screen w-screen relative font-poppins"
+  class="bg-black min-h-screen w-screen relative flex flex-col"
   style="background-color: {activeColor};"
 >
   <Header />
