@@ -1,7 +1,7 @@
 ---
-title: 'Anti-Human Trafficking Intelligence Initiative'
-image: 'ATII_logo.png'
-date: '2020-01-01'
+title: "Anti-Human Trafficking Intelligence Initiative"
+image: "ATII_logo.png"
+date: "2020-01-01"
 category:
   - graphic-design
 tags:

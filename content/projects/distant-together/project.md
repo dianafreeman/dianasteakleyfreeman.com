@@ -1,7 +1,7 @@
 ---
-title: 'Distant Together'
-image: 'DistantTogether.jpg'
-date: '2020-01-01'
+title: "Distant Together"
+image: "DistantTogether.jpg"
+date: "2020-01-01"
 category:
   - applications
 tags:
