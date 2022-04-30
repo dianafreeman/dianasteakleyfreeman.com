@@ -7,24 +7,21 @@
   import SideNav from "./SideNav.svelte";
 
   let slides, activeColor, activeIdx, toggleColor;
-  let isOpen
-  function toggle() {
-    SideNavStore.update(current => !current)
+  let isOpen;
 
+  function toggle() {
+    SideNavStore.update((current) => !current);
   }
 
-  SideNavStore.subscribe( sideNavOpen => {
-    isOpen = sideNavOpen
-    toggleColor = isOpen ? "black" : "white"
-
-  })
+  SideNavStore.subscribe((sideNavOpen) => {
+    isOpen = sideNavOpen;
+    toggleColor = isOpen ? "black" : "white";
+  });
   SlidesStore.subscribe((data) => {
     slides = data.slides;
     activeIdx = data.activeIndex;
     activeColor = slides[activeIdx].color;
   });
-
-  
 </script>
 
 <header class="flex flex-row">
@@ -36,8 +33,7 @@
       <button class="flex align-middle m-auto font-poppins" on:click={toggle} style="z-index: 900">
         <NavToggle {isOpen} class="w-7 mx-2" color={toggleColor} />
       </button>
-      <SideNav activeColor={"red"} {activeIdx} items={slides} />
+      <SideNav  />
     </li>
   </nav>
-
 </header>
