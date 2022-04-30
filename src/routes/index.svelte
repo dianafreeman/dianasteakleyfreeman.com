@@ -1,32 +1,34 @@
 <script context="module">
-	export const prerender = true;
+  export const prerender = true;
+</script>
+
+<script>
+	  let slides = [
+    {
+      title: "Coder",
+	  color: "red",
+      description: "(v.) To dances between the lines of art, science, and opinion."
+    },
+    {
+      title: "Creator",
+	  color: "blue",
+      description: "Something creative"
+    },
+    {
+      title: "Communicator",
+	  color: "yellow",
+      description: "Lorem upsum even better"
+    }
+  ];
 </script>
 
 <svelte:head>
-	<title>Home</title>
+  <title>Home</title>
 </svelte:head>
 
-<section>
-	<h1>Some Stuff</h1>
-</section>
-
-<style>
-	h1 {
-		width: 100%;
-	}
-
-	.welcome {
-		position: relative;
-		width: 100%;
-		height: 0;
-		padding: 0 0 calc(100% * 495 / 2048) 0;
-	}
-
-	.welcome img {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		display: block;
-	}
-</style>
+<div class=" text-white">
+	{#each slides as slide}
+		<h1>{slide.title}</h1>
+		<p>{slide.description}</p>
+	{/each}
+</div>
