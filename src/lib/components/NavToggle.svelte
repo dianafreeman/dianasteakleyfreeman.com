@@ -3,8 +3,8 @@
   let clazz;
   export { clazz as class };
   export let color;
-  export let isOpen = false;
-
+  export let isOpen
+  
   $: x1s = isOpen ? [0, 0] : [0, 0];
   $: y1s = isOpen ? [90, 0] : [30, 70];
   $: x2s = isOpen ? [90, 90] : [100, 100];

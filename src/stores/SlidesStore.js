@@ -22,6 +22,9 @@ function createSlidesStore() {
     }
   ]
 
+  let MIN_INDEX = 0;
+  let MAX_INDEX = slides.length - 1
+
   const { subscribe, set, update } = writable({
     slides,
     activeIndex,
@@ -29,17 +32,21 @@ function createSlidesStore() {
 
   function next() {
     update(({ activeIndex, ...rest }) => {
-      let max = slides.length - 1
-      if (activeIndex === max ) return {  activeIndex: max, ...rest}
+      if (activeIndex === MAX_INDEX ) return {  activeIndex: MAX_INDEX, ...rest}
 
       return { activeIndex: activeIndex + 1, ...rest}
     })
   }
   function previous() {
     update(({ activeIndex, ...rest }) => {
-      let min = 0;
-      if (activeIndex === min) return {  activeIndex: min, ...rest}
+      if (activeIndex === MIN_INDEX) return {  activeIndex: min, ...rest}
      return {  activeIndex: activeIndex - 1, ...rest}
+    })
+  }
+
+  function setActiveIndex(idx){
+    update(({ activeIndex, ...rest }) => {
+     return {  activeIndex: idx, ...rest}
     })
   }
 
@@ -47,6 +54,7 @@ function createSlidesStore() {
     subscribe,
     previous,
     next,
+    setActiveIndex,
     reset: () => set({ slides, activeIndex: DEFAULT_INDEX })
 
   }

@@ -1,20 +1,30 @@
 <script>
   import SlidesStore from "$stores/SlidesStore";
+  import SideNavStore from "$stores/SideNavStore";
   import NavBrand from "./NavBrand.svelte";
   import NavItem from "./NavItem.svelte";
   import NavToggle from "./NavToggle.svelte";
   import SideNav from "./SideNav.svelte";
 
-  let slides, activeColor, activeIdx;
-  let isOpen = false;
+  let slides, activeColor, activeIdx, toggleColor;
+  let isOpen
   function toggle() {
-    isOpen = !isOpen;
+    SideNavStore.update(current => !current)
+
   }
+
+  SideNavStore.subscribe( sideNavOpen => {
+    isOpen = sideNavOpen
+    toggleColor = isOpen ? "black" : "white"
+
+  })
   SlidesStore.subscribe((data) => {
     slides = data.slides;
     activeIdx = data.activeIndex;
     activeColor = slides[activeIdx].color;
   });
+
+  
 </script>
 
 <header class="flex flex-row">
@@ -24,11 +34,10 @@
       <NavItem>About</NavItem>
       <NavItem>Gallery</NavItem>
       <button class="flex align-middle m-auto font-poppins" on:click={toggle} style="z-index: 900">
-        <NavToggle {isOpen} class="w-7 mx-2" color={isOpen ? "black" : "white"} />
+        <NavToggle {isOpen} class="w-7 mx-2" color={toggleColor} />
       </button>
-    </li>
-    {#if isOpen}
       <SideNav activeColor={"red"} {activeIdx} items={slides} />
-    {/if}
+    </li>
   </nav>
+
 </header>

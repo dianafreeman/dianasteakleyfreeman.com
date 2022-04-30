@@ -1,5 +1,7 @@
 <script>
-  import Header from "$lib/components/Header.svelte";
+	import { spring } from 'svelte/motion';
+
+import Header from "$lib/components/Header.svelte";
   import "normalize.css";
   import SlidesStore from "$stores/SlidesStore";
   import "../app.css";
@@ -8,6 +10,8 @@
   SlidesStore.subscribe((data) => {
     activeColor = data.slides[data.activeIndex].color;
   });
+
+
 </script>
 
 <main
@@ -18,3 +22,9 @@
 
   <slot />
 </main>
+
+<style>
+  main { 
+    transition: background-color 0.5s;
+  }
+</style>
