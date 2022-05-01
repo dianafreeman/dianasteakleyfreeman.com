@@ -1,6 +1,7 @@
 
 import { writable } from "svelte/store";
 const DEFAULT_INDEX = 0
+
 function createSlidesStore() {
   let activeIndex = DEFAULT_INDEX
   let slides = [
@@ -23,32 +24,34 @@ function createSlidesStore() {
       description: "Lorem upsum even better",
       categoryName: "Posts"
     }
-  ]
+  ].map((item, i) => ({ index: i, ...item }))
 
   let MIN_INDEX = 0;
   let MAX_INDEX = slides.length - 1
+
 
   const { subscribe, set, update } = writable({
     slides,
     activeIndex,
   });
 
+
   function next() {
     update(({ activeIndex, ...rest }) => {
-      if (activeIndex === MAX_INDEX ) return {  activeIndex: MIN_INDEX, ...rest}
-      return { activeIndex: activeIndex + 1, ...rest}
+      if (activeIndex === MAX_INDEX) return { activeIndex: MIN_INDEX, ...rest }
+      return { activeIndex: activeIndex + 1, ...rest }
     })
   }
   function previous() {
     update(({ activeIndex, ...rest }) => {
-      if (activeIndex === MIN_INDEX) return {  activeIndex: MAX_INDEX, ...rest}
-     return {  activeIndex: activeIndex - 1, ...rest}
+      if (activeIndex === MIN_INDEX) return { activeIndex: MAX_INDEX, ...rest }
+      return { activeIndex: activeIndex - 1, ...rest }
     })
   }
 
-  function setActiveIndex(idx){
+  function setActiveIndex(idx) {
     update(({ activeIndex, ...rest }) => {
-     return {  activeIndex: idx, ...rest}
+      return { activeIndex: idx, ...rest }
     })
   }
 

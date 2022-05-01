@@ -6,16 +6,16 @@
   import SlidesStore from "$stores/SlidesStore";
   import "../app.css";
 
-  let activeColor = "black";
+  let activeSlide = "black";
   SlidesStore.subscribe((data) => {
-    activeColor = data.slides[data.activeIndex].color;
+    activeSlide = data.slides[data.activeIndex];
   });
 </script>
 
-<main class="bg-black min-h-screen" style="background-color: {activeColor};">
+<main class="bg-black min-h-screen" style="background-color: {activeSlide.color};">
   <Header />
   <slot />
-  <footer class="h-16 flex flex-row justify-center m-auto" style="background-color: {activeColor};">
+  <footer class="h-16 flex flex-row justify-center m-auto" style="background-color: {activeSlide.color};">
     <p class="p-4">Copyright 2022 | Diana M Steakley-Freeman</p>
   </footer>
 </main>

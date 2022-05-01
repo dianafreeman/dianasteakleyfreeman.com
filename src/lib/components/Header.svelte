@@ -6,7 +6,7 @@
   import NavToggle from "./NavToggle.svelte";
   import SideNav from "./SideNav.svelte";
 
-  let slides, activeColor, activeIdx, toggleColor;
+  let activeIdx, toggleColor;
   let isOpen;
 
   function toggle() {
@@ -18,9 +18,7 @@
     toggleColor = isOpen ? "black" : "white";
   });
   SlidesStore.subscribe((data) => {
-    slides = data.slides;
     activeIdx = data.activeIndex;
-    activeColor = slides[activeIdx].color;
   });
 </script>
 
