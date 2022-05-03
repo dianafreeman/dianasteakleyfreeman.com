@@ -29,7 +29,6 @@ function createSlidesStore() {
   let MIN_INDEX = 0;
   let MAX_INDEX = slides.length - 1
 
-
   const { subscribe, set, update } = writable({
     slides,
     activeIndex,

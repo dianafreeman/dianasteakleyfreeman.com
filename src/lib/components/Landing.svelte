@@ -18,7 +18,7 @@
 </script>
 
 {#key activeIndex}
-  <div transition:fly={{ x: 600 }}>
+  <div>
     <div
       class="flex flex-col md:flex-row flex-1 align-middle justify-center px-5"
       style="min-height: 70vh;"
