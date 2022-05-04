@@ -1,4 +1,35 @@
 <script>
-    export let color;
+  import { onMount } from "svelte";
+
+  import { spring } from "svelte/motion";
+
+  export let color;
+
+  let width = 85;
+  let hidden = false;
+  let spanWidth = spring(0);
+
+  function show() {
+    spanWidth.set(width);
+  }
+
+  function hide() {
+    spanWidth.set(0);
+  }
+
 </script>
-<ul class="flex flex-1" ><a href="/" class="text-4xl font-bold" style="color: {color};"> d. </a></ul>
+
+<div class="flex flex-1">
+  <a
+    href="/"
+    on:focus={show}
+    on:mouseenter={show}
+    on:mouseleave={hide}
+    class="text-4xl font-bold flex"
+    style="color: {color};"
+  >
+    <div>d</div>
+    <div class="overflow-hidden" style="width: {$spanWidth}px;">iana</div>
+    .
+  </a>
+</div>
