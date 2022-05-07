@@ -1,1 +1,2 @@
-<li class="flex p-2"><slot /></li>
+
+<a class="flex p-2"><slot /></a>
