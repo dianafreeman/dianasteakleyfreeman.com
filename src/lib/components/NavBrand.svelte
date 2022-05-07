@@ -19,17 +19,15 @@
 
 </script>
 
-<div class="flex flex-1">
   <a
     href="/"
     on:focus={show}
     on:mouseenter={show}
     on:mouseleave={hide}
-    class="text-4xl font-bold flex"
+    class="text-4xl font-bold inline-flex"
     style="color: {color};"
   >
     <div>d</div>
     <div class="overflow-hidden" style="width: {$spanWidth}px;">iana</div>
     .
   </a>
-</div>

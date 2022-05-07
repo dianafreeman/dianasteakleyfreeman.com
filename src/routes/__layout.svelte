@@ -6,14 +6,14 @@
   import SlidesStore from "$stores/SlidesStore";
   import "../app.css";
 
-  let activeSlide = {  };
+  let activeSlide = {};
   SlidesStore.subscribe((data) => {
     activeSlide = data.slides[data.activeIndex];
   });
 </script>
 
 <main class="bg-black min-h-screen" style="background-color: {activeSlide.color};">
-  <Header />
+  <div class="flex flex-row p-16 w-full"><Header /></div>
   <slot />
   <footer
     class="h-16 flex flex-row justify-center m-auto"
