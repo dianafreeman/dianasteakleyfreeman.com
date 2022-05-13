@@ -1,11 +1,11 @@
 <script>
-  import { afterUpdate, onMount } from "svelte";
+  import { afterUpdate, onMount, tick } from "svelte";
   import { fade, blur, fly, slide, scale } from "svelte/transition";
 
   import { writable } from "svelte/store";
 
-  export let skip = false;
   export let words;
+  export let onComplete;
 
   const wordInput = words;
   const wordStore = writable([]);
@@ -14,21 +14,28 @@
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
-  onMount(async () => {
-
+  async function play(){
     for (let w in wordInput) {
-      if (!skip) await delay(wordInput[w].delay);
+      await delay(wordInput[w].delay);
       wordStore.update((current) => [...current, wordInput[w]]);
     }
-  });
+  }
+
+
+  onMount(play)
+  $: {
+    if (wordInput.length === $wordStore.length){
+      if (onComplete) onComplete()
+    }
+  }
+  
 </script>
+<span class="sr-only">the future of engineering is human. Hi, I'm Diana.</span>
 
 {#each $wordStore as w}
   {#if w.break}
     <br />
-  {:else if skip}
-    <span class="font-poppins {w.class} mr-5">{w.text}</span>
   {:else}
-    <span class="font-poppins {w.class} mr-5" in:fade>{w.text}</span>
+    <span class="font-poppins {w.class}" in:fade aria-hidden="true">{w.text} </span>
   {/if}
 {/each}
