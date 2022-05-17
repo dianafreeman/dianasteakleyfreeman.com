@@ -9,7 +9,7 @@
   argTypes={{
     onLogin: { action: "onLogin" },
     onLogout: { action: "onLogout" },
-    onCreateAccount: { action: "onCreateAccount" },
+    onCreateAccount: { action: "onCreateAccount" }
   }}
 />
 
@@ -25,7 +25,7 @@
 <Story
   name="LoggedIn"
   args={{
-    user: {},
+    user: {}
   }}
 />
 

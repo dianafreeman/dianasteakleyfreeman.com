@@ -14,9 +14,9 @@
     onClick: { action: "onClick" },
     primary: { control: "boolean" },
     size: {
-      control: { type: 'select' },
-      options: ['small', 'medium', 'large'],
-    },
+      control: { type: "select" },
+      options: ["small", "medium", "large"]
+    }
   }}
 />
 
@@ -30,21 +30,21 @@
   name="Primary"
   args={{
     primary: true,
-    label: "Button",
+    label: "Button"
   }}
 />
 
 <Story
   name="Secondary"
   args={{
-    label: "Button",
+    label: "Button"
   }}
 />
 <Story
   name="Large"
   args={{
     size: "large",
-    label: "Button",
+    label: "Button"
   }}
 />
 
@@ -52,6 +52,6 @@
   name="Small"
   args={{
     size: "small",
-    label: "Button",
+    label: "Button"
   }}
 />
