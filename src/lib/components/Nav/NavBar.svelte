@@ -6,31 +6,11 @@
   import NavToggle from "./NavToggle.svelte";
   import DoubleChevronRight from "$lib/icons/doubleChevronRight.svelte";
   import IntroStore from "$stores/IntroStore";
-  // import SideNav from "./SideNav.svelte";
-
-  export let onFullWidthToggleClick;
-  export let toggleColor;
-  export let textColor;
-  export let shouldHide;
-  // let items;
-  let isOpen;
-  let introIsShowing;
-  let introIsDone;
-
-  NavigationStore.subscribe((data) => {
-    isOpen = data.isOpen;
-    // items = data.items;
-    // textColor = data.isOpen ? "black" : "white";
-  });
+  // import store from "$lib/animations/Trail/store";
 
   function handleClick() {
     NavigationStore.toggleNav();
   }
-
-  IntroStore.subscribe(({ isShowing, isComplete }) => {
-    introIsShowing = isShowing;
-    introIsDone = isComplete;
-  });
 
   function flip3d(_node, options) {
     return {
@@ -44,26 +24,30 @@
       }
     };
   }
-
-  function handleSkip(){
-    
-  }
 </script>
 
-<nav class="p-12 w-full fixed z-50 text-black">
+<nav class="w-full fixed z-50">
   <ul transition:fade class="list-none flex flex-row align-middle w-full">
-    <NavItem class="flex-1">
-      {#if introIsDone}
-        <NavBrand color={textColor} />
+    <NavItem class="flex-1 p-10">
+      {#if $IntroStore.isComplete || !$IntroStore.isShowing}
+        <NavBrand color={$IntroStore.isShowing ? "black" : "white"} />
       {/if}
     </NavItem>
-
-    {#if introIsDone}
-      <div out:flip3d>
-        <NavToggle {isOpen} class="w-10 mx-2" color={toggleColor} onClick={handleClick} />
-      </div>
-    {:else}
-      <button class="w-10 mx-2" on:click={handleSkip}><DoubleChevronRight /></button>
-    {/if}
+    <NavItem class="p-10">
+      <button transition:fade class="absolute w-full top-0 left-0 text-center bg-black">
+        Show Intro
+      </button>
+    </NavItem>
+    <NavItem class="p-10">
+      {#if $IntroStore.isComplete}
+        <div out:flip3d>
+          <NavToggle isOpen={$IntroStore.isOpen} class="w-10 mx-2" onClick={handleClick} />
+        </div>
+      {:else}
+        <div in:fade>
+          <button class="w-10 mx-2"><DoubleChevronRight /></button>
+        </div>
+      {/if}
+    </NavItem>
   </ul>
 </nav>

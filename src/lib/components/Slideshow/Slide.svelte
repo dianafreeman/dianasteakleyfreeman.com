@@ -14,8 +14,8 @@
 </script>
 
 <div class="absolute w-full h-full flex m-auto" style="left: {index * 100}vw; ">
-  <div class="inline-flex w-screen p-16">
-    <div class="flex flex-col xl:flex-row flex-1 align-middle justify-center h-full">
+  <div class="inline-flex w-screen py-16">
+    <div class="flex flex-col xl:flex-row flex-1 align-middle justify-center h-full px-16">
       <div bind:clientWidth={inlineSize} class="flex flex-col xl:m-auto xl:w-1/2">
         <h1
           style="hyphens: auto; inline-size: {inlineSize}px;  overflow-wrap: break-word;"

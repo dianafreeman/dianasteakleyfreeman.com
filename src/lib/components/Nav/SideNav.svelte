@@ -7,12 +7,13 @@
   import NavToggle from "./NavToggle.svelte";
 
   export let color;
+  export let background;
   let isOpen;
   let slides;
   let activeIdx;
 
   SlidesStore.subscribe((data) => {
-    slides = data.slides;
+    slides = data.landingSlides;
     activeIdx = data.activeIndex;
   });
 
@@ -31,16 +32,14 @@
 {#if isOpen}
   <div
     transition:fly={{ x: 100 }}
-    class="absolute w-full h-screen xl:w-1/2 p-12 right-0 top-0 text-black bg-white"
+    class="absolute w-full h-screen xl:w-1/2 p-12 right-0 top-0 text-black"
+    style:background
   >
     <div class="flex flex-col w-full m-auto h-full">
       <div class="flex flex-row flex-1">
-        <div class="m-auto">
+        <div class="m-auto" style:color>
           {#each slides as item, i}
-            <li
-              class="border-l-8 list-none my-2 flex-row"
-              style="border-color:{i === activeIdx ? color : 'transparent'}"
-            >
+            <li class="border-l-8 list-none my-2 flex-row">
               <button on:click={() => handleClick(i)} class="font-bold text-5xl pl-4"
                 >{item.title}</button
               >

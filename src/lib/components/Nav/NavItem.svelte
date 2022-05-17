@@ -1,6 +1,6 @@
 <script>
-  let clazz;
-  export { clazz as class}
+  let clazz = "";
+  export { clazz as class };
   export let color;
   export let text;
   export let target;
