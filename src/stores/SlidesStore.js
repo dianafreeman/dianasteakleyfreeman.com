@@ -1,35 +1,18 @@
 import { writable } from "svelte/store";
+import { LANDING_SLIDES, CONTENT_SLIDES } from "./content";
 const DEFAULT_INDEX = 0;
 
 function createSlidesStore() {
   let activeIndex = DEFAULT_INDEX;
-  let slides = [
-    {
-      title: "Coder",
-      color: "#0C023C",
-      description: "(v.) To dance between the lines of art, science, and opinion.",
-      categoryName: "Projects"
-    },
-    {
-      title: "Creator",
-      color: "#3C021F",
-      description: "Something creative",
-      categoryName: "Gallery"
-    },
-    {
-      //  &shy; is the manual hyphen indicator
-      title: "Communicator",
-      color: "#005F42",
-      description: "Lorem upsum even better",
-      categoryName: "Posts"
-    }
-  ].map((item, i) => ({ index: i, ...item }));
+  let landingSlides = LANDING_SLIDES.map((item, i) => ({ index: i, ...item }));
+  let contentSlides = CONTENT_SLIDES.map((item, i) => ({ index: i, ...item }));
 
   let MIN_INDEX = 0;
-  let MAX_INDEX = slides.length - 1;
+  let MAX_INDEX = landingSlides.length - 1;
 
   const { subscribe, set, update } = writable({
-    slides,
+    landingSlides,
+    contentSlides,
     activeIndex
   });
 
@@ -57,7 +40,7 @@ function createSlidesStore() {
     previous,
     next,
     setActiveIndex,
-    reset: () => set({ slides, activeIndex: DEFAULT_INDEX })
+    reset: () => set({ landingSlides, activeIndex: DEFAULT_INDEX })
   };
 }
 

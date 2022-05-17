@@ -1,20 +1,20 @@
 import { writable } from "svelte/store";
 
 function createNavigationStore() {
-    const { set, update, subscribe } = writable({
-        isOpen: false,
-        items: ["About", "Gallery", "Contact"]
-    });
+  const { set, update, subscribe } = writable({
+    isOpen: false,
+    items: ["About", "Gallery", "Contact"]
+  });
 
-    function toggleNav() {
-        update(stuff => ({ ...stuff, isOpen: !stuff.isOpen }))
-    }
+  function toggleNav() {
+    update((stuff) => ({ ...stuff, isOpen: !stuff.isOpen }));
+  }
 
-    return {
-        subscribe,
-        toggleNav,
-    }
+  return {
+    subscribe,
+    toggleNav
+  };
 }
 
-const NavigationStore = createNavigationStore()
+const NavigationStore = createNavigationStore();
 export default NavigationStore;
