@@ -1,30 +1,27 @@
 <script>
-  // import { spring } from "svelte/motion";
-
-  import Header from "$lib/components/Header.svelte";
+  import NavBar from "$lib/components/Nav/NavBar.svelte";
   import "normalize.css";
-  import SlidesStore from "$stores/SlidesStore";
   import "../app.css";
+  import Landing from "$lib/components/Landing.svelte";
+  import IntroStore from "$stores/IntroStore";
+  import { spring } from "svelte/motion";
+  import SideNav from "$lib/components/Nav/SideNav.svelte";
 
-  let activeSlide = {};
-  SlidesStore.subscribe((data) => {
-    activeSlide = data.slides[data.activeIndex];
-  });
+  let top = spring(0);
+
+  function resetTop() {
+    top.update((v) => (v = 0));
+  }
 </script>
 
-<main class="bg-black min-h-screen" style="background-color: {activeSlide.color};">
-  <div class="flex flex-row p-16 w-full"><Header /></div>
+<header class="w-full flex fixed flex-row " style="z-index: 9999999">
+  <Landing {top} />
+  <NavBar />
+  <SideNav background={$IntroStore.isShowing ? "black" : "white"} />
+</header>
+<main class="relative bg-black">
   <slot />
-  <footer
-    class="h-16 flex flex-row justify-center m-auto"
-    style="background-color: {activeSlide.color};"
-  >
+  <footer class="h-16 flex flex-row justify-center m-auto">
     <p class="p-4">Copyright 2022 | Diana M Steakley-Freeman</p>
   </footer>
 </main>
-
-<style>
-  main {
-    transition: background-color 0.5s;
-  }
-</style>
