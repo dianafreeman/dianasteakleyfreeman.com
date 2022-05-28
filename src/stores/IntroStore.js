@@ -2,15 +2,26 @@ import { writable } from "svelte/store";
 
 function createIntroStore() {
   let { set, update, subscribe } = writable({
-    isShowing: false,
-    isComplete: true
+    isShowing: true,
+    isComplete: false
   });
 
-  let skip = false;
+  let windowHeight = writable(0)
+  
+  function setWindowHeight(height){
+    windowHeight.set(height)
+  }
 
-  function toggleIsShowing(callbackFn) {
-    update((store) => ({ ...store, isShowing: !store.isShowing }));
-    if (callbackFn) callbackFn();
+  function hideIntro(callbackFn) {
+    console.log('hiding')
+    update((store) => ({ ...store, isShowing: false }))
+    if (callbackFn) callbackFn()
+  }
+  
+  function showIntro(callbackFn) {
+    console.log('showing')
+    update((store) => ({ ...store, isShowing: true }))
+    if (callbackFn) callbackFn()
   }
 
   function setIsComplete(bool) {
@@ -19,8 +30,10 @@ function createIntroStore() {
 
   return {
     subscribe,
+    setWindowHeight,
     setIsComplete,
-    toggleIsShowing
+    hideIntro,
+    showIntro,
   };
 }
 

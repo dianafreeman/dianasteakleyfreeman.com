@@ -32,7 +32,7 @@
 {#if isOpen}
   <div
     transition:fly={{ x: 100 }}
-    class="absolute w-full h-screen xl:w-1/2 p-12 right-0 top-0 text-black"
+    class="absolute w-full h-screen p-12 right-0 top-0 text-black"
     style:background
   >
     <div class="flex flex-col w-full m-auto h-full">
