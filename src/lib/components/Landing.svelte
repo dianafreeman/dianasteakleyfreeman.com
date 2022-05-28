@@ -25,7 +25,7 @@
   function toggleIntro() {
     if (isShowing) {
       IntroStore.hideIntro();
-      slideOut()
+      slideOut();
     } else {
       IntroStore.showIntro();
       slideIn();
@@ -33,15 +33,14 @@
   }
 
   IntroStore.subscribe((store) => {
-    isShowing = store.isShowing
-  })
+    isShowing = store.isShowing;
+  });
   onMount(() => {
     IntroStore.setWindowHeight(windowHeight);
   });
 </script>
 
 <svelte:window bind:innerHeight={windowHeight} />
-
 
 <div
   class="bg-white w-screen h-screen p-16 flex flex-col m-auto text-black absolute"
@@ -67,12 +66,10 @@
     </div>
   {/if}
 </div>
-<button
-  class="relative w-full top-0 left-0 text-center bg-black z-50"
-  on:click={toggleIntro}
->
+<button class="relative w-full top-0 left-0 text-center bg-black z-50" on:click={toggleIntro}>
   {isShowing ? "Hide" : "Show"} Intro
 </button>
+
 <style>
   .float-up-and-down {
     animation-name: floating;

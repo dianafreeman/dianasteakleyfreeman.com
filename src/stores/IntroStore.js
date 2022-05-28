@@ -6,22 +6,22 @@ function createIntroStore() {
     isComplete: false
   });
 
-  let windowHeight = writable(0)
-  
-  function setWindowHeight(height){
-    windowHeight.set(height)
+  let windowHeight = writable(0);
+
+  function setWindowHeight(height) {
+    windowHeight.set(height);
   }
 
   function hideIntro(callbackFn) {
-    console.log('hiding')
-    update((store) => ({ ...store, isShowing: false }))
-    if (callbackFn) callbackFn()
+    console.log("hiding");
+    update((store) => ({ ...store, isShowing: false }));
+    if (callbackFn) callbackFn();
   }
-  
+
   function showIntro(callbackFn) {
-    console.log('showing')
-    update((store) => ({ ...store, isShowing: true }))
-    if (callbackFn) callbackFn()
+    console.log("showing");
+    update((store) => ({ ...store, isShowing: true }));
+    if (callbackFn) callbackFn();
   }
 
   function setIsComplete(bool) {
@@ -33,7 +33,7 @@ function createIntroStore() {
     setWindowHeight,
     setIsComplete,
     hideIntro,
-    showIntro,
+    showIntro
   };
 }
 

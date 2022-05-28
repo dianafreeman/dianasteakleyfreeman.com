@@ -1,6 +1,4 @@
 <script>
-  import { onMount } from "svelte";
-  import { writable } from "svelte/store";
   import { fade } from "svelte/transition";
 
   export let items;
@@ -9,7 +7,7 @@
 
 {#each items as item}
   {#if item && item.element === "br"}
-    <svelte:element this={item.element}/>
+    <svelte:element this={item.element} class={item.class}/>
   {:else if item}
     <svelte:element this={item.element} class={item.class} transition:fade>{`${item.text} `}</svelte:element>
   {/if}

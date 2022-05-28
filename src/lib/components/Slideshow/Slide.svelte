@@ -15,8 +15,8 @@
 
 <div class="absolute w-full h-full flex m-auto" style="left: {index * 100}vw; ">
   <div class="inline-flex w-screen py-16">
-    <div class="flex flex-col xl:flex-row flex-1 align-middle justify-center h-full px-16">
-      <div bind:clientWidth={inlineSize} class="flex flex-col xl:m-auto xl:w-1/2">
+    <div class="flex xl:flex-row flex-1 align-middle justify-center h-full px-16">
+      <div bind:clientWidth={inlineSize} class="flex">
         <h1
           style="hyphens: auto; inline-size: {inlineSize}px;  overflow-wrap: break-word;"
           class="font-bold xl:text-center  {isLongWord
@@ -26,7 +26,7 @@
           {slide.title}
         </h1>
       </div>
-      <div class="flex flex-col xl:m-auto xl:w-1/2">
+      <div class="flex">
         <h2 class="text-transparent-60 font-manrope font-black text-5xl xl:text-6xl py-3">
           {displayNumber}
         </h2>

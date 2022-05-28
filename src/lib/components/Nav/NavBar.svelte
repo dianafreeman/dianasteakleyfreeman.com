@@ -8,14 +8,14 @@
   import IntroStore from "$stores/IntroStore";
   import TrailStore from "$stores/TrailStore";
 
-  let introIsShowing
+  let introIsShowing;
   function handleClick() {
     NavigationStore.toggleNav();
   }
 
-  IntroStore.subscribe( store => {
-    introIsShowing = store.isShowing
-  })
+  IntroStore.subscribe((store) => {
+    introIsShowing = store.isShowing;
+  });
 
   function flip3d(_node, options) {
     return {
@@ -31,22 +31,22 @@
 <nav class="w-full fixed z-50">
   <ul transition:fade class="list-none flex flex-row align-middle w-full">
     <NavItem class="flex-1 p-10">
-      <NavBrand color={$NavigationStore.isOpen ? 'black' : textColor} />
+      <NavBrand color={$NavigationStore.isOpen ? "black" : textColor} />
     </NavItem>
-  
+
     <NavItem class="p-10">
       {#if $IntroStore.isComplete}
-      <!-- NavToggle -->
+        <!-- NavToggle -->
         <div out:flip3d>
           <NavToggle
             isOpen={$NavigationStore.isOpen}
-            color={$NavigationStore.isOpen ? 'black' : textColor}
+            color={$NavigationStore.isOpen ? "black" : textColor}
             class="w-10 mx-2"
             onClick={handleClick}
           />
         </div>
       {:else}
-      <!-- IntroSkip Button -->
+        <!-- IntroSkip Button -->
         <div in:fade>
           <button
             class="w-10 mx-2 text-black"
