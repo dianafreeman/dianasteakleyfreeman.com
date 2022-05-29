@@ -6,20 +6,19 @@
   export let color;
   export let background;
   let isOpen;
- 
 
   function handleClick(activeIndex) {
     SlidesStore.setActiveIndex(activeIndex);
     setTimeout(() => {
       NavigationStore.update((options) => (options.isOpen = !isOpen));
     }, 300);
-  } 
+  }
 </script>
 
 {#if $NavigationStore.isOpen}
   <div
     transition:fly={{ x: 100 }}
-    class="absolute w-full h-screen p-12 right-0 top-0 text-black"
+    class="absolute w-screen h-screen p-12 right-0 top-0 text-black"
     style:background
   >
     <div class="flex flex-col w-full m-auto h-full">
@@ -28,7 +27,7 @@
           <!-- Slide List Navivation -->
           {#each $SlidesStore.slides as item, i}
             <li class="border-l-8 list-none my-2 flex-row">
-              <button on:click={() => handleClick(i)} class="font-bold text-5xl pl-4"
+              <button on:click={() => handleClick(i)} class="font-bold text-3xl pl-4"
                 >{item.title}</button
               >
             </li>
