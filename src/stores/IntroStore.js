@@ -2,8 +2,8 @@ import { writable } from "svelte/store";
 
 function createIntroStore() {
   let { set, update, subscribe } = writable({
-    isShowing: true,
-    isComplete: false
+    isShowing: false,
+    isComplete: true
   });
 
   let windowHeight = writable(0);
@@ -30,6 +30,7 @@ function createIntroStore() {
 
   return {
     subscribe,
+    set,
     setWindowHeight,
     setIsComplete,
     hideIntro,

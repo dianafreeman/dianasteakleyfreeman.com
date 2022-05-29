@@ -6,6 +6,7 @@ function createNavigationStore() {
     items: ["About", "Gallery", "Contact"]
   });
 
+  
   function toggleNav() {
     update((stuff) => ({ ...stuff, isOpen: !stuff.isOpen }));
   }

@@ -1,16 +1,11 @@
 <script>
   import SlidesStore from "$stores/SlidesStore";
   import { spring } from "svelte/motion";
-  import ContentSlide from "./ContentSlide.svelte";
-  import LandingSlide from "./LandingSlide.svelte";
+  import Slide from "./Slide.svelte";
+  import SlideNav from "$lib/components/Slideshow/SlideNav.svelte";
 
   export let slides;
-  export let type;
 
-  const TYPES = {
-    LANDING: LandingSlide,
-    CONTENT: ContentSlide
-  };
   let left = spring(0);
 
   SlidesStore.subscribe((data) => {
@@ -18,14 +13,19 @@
   });
 </script>
 
-<div id="slideshow-outer" class="w-screen overflow-hidden relative flex items-end h-screen">
+<div id="slideshow-outer" class="w-screen overflow-hidden relative flex items-end" style="height: calc(100vh - 136px)">
+  <div class="absolute bottom-10 p-10">
+    <SlideNav />
+  </div>
   <div
     id="slideshow-inner"
-    style="height:100%; width: calc(100vw * {slides.length}); left: -{$left}vw; top: 0; "
+    style="width: calc(100vw * {slides.length}); transform: translateX(-{$left}vw); top: 0; "
     class="absolute"
   >
     {#each slides as slide, i}
-      <svelte:component this={TYPES[type]} {slide} index={i} />
+      <Slide {slide} index={i} />
     {/each}
   </div>
+
+
 </div>

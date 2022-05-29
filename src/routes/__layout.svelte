@@ -17,7 +17,6 @@
   import SideNav from "$lib/components/Nav/SideNav.svelte";
   import { onMount } from "svelte";
   import Navigation from "$stores/NavigationStore";
-  import { spring } from "svelte/motion";
 
   export let url;
 
@@ -31,16 +30,6 @@
       if (introIsShowing) return "black";
       return "white";
     }
-  }
-
-  // Y position of the Intro panel
-  let top = spring(0);
-
-  function slideOut() {
-    top.update((v) => (v = windowHeight - 10));
-  }
-  function slideIn() {
-    top.update((v) => (v = 0));
   }
 
   function toggleIntro() {
@@ -69,7 +58,7 @@
 
 <svelte:window bind:innerHeight={windowHeight} />
 <header class="w-full flex fixed flex-row z-50">
-  {#if $Intro.isShowing}<IntroComponent {top} {toggleIntro} {windowHeight} />{/if}
+  <IntroComponent {toggleIntro} {windowHeight} />
   <NavBar contentColor={navBarContentColor}>
     <button class="absolute w-full top-0 left-0 text-center bg-black z-50" on:click={toggleIntro}>
       {$Intro.isShowing ? "Hide" : "Show"} Intro

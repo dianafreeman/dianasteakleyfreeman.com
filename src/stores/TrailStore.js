@@ -25,7 +25,7 @@ export function createTrailStore() {
       await delay(data[trackedIndex].delay);
       next();
     }
-    if (trackedIndex === data.length) {
+    if (finished || trackedIndex === data.length) {
       if (onCompleteCb) onCompleteCb();
       finished = true;
     }
