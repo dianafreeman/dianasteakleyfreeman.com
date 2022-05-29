@@ -21,11 +21,11 @@ export function createTrailStore() {
   async function play(onCompleteCb) {
     while (trackedIndex < data.length) {
       if (!data[trackedIndex]) return;
-      if (paused || finished) return;
+      if (paused || finished) break;
       await delay(data[trackedIndex].delay);
       next();
     }
-    if (finished || trackedIndex === data.length) {
+    if (trackedIndex === data.length) {
       if (onCompleteCb) onCompleteCb();
       finished = true;
     }
@@ -59,6 +59,8 @@ export function createTrailStore() {
     subscribe: items.subscribe,
     next,
     play,
+    pause,
+    resume,
     skip,
     paused,
     finished,
