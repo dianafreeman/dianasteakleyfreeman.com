@@ -7,13 +7,12 @@
 
   import Slideshow from "$lib/components/Slideshow/Slideshow.svelte";
   import SlidesStore from "$stores/SlidesStore";
-  import SlideNav from "$lib/components/Slideshow/SlideNav.svelte";
 
   let landing, content;
 
   SlidesStore.subscribe((data) => {
-    landing = data.landingSlides;
-    content = data.contentSlides;
+    landing = data.slides;
+    // content = data.contentSlides;
   });
 </script>
 
@@ -22,9 +21,8 @@
 </svelte:head>
 
 <div class="relative">
-  <Slideshow type="LANDING" slides={$SlidesStore.landingSlides} />
-  <div class="absolute bottom-0 p-6">
-    <SlideNav />
-  </div>
+  <Slideshow slides={$SlidesStore.slides} />
+  <!-- <div class="absolute bottom-0 p-6"> -->
+  <!-- </div> -->
 </div>
-<Slideshow type="CONTENT" slides={$SlidesStore.contentSlides} />
+<!-- <Slideshow type="CONTENT" slides={$SlidesStore.contentSlides} /> -->
