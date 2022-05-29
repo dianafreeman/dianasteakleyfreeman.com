@@ -1,31 +1,38 @@
 <script>
   import SlidesStore from "$stores/SlidesStore";
   import { spring } from "svelte/motion";
-  import Slide from "./Slide.svelte";
-  import SlideNav from "$lib/components/Slideshow/SlideNav.svelte";
 
-  export let slides;
+  export let nubmerOfSlides;
+  export let sectionsPerSlide;
 
-  let left = spring(0);
+
+  let xPos = spring(0);
 
   SlidesStore.subscribe((data) => {
-    left.set(data.activeIndex * 100);
+    xPos.set(data.activeIndex * 100);
   });
+
+  let NAV_HEIGHT = 136; // TODO add this to a layout store.
+
 </script>
 
-<div id="slideshow-outer" class="w-screen overflow-hidden relative flex items-end" style="height: calc(100vh - 136px)">
-  <div class="absolute bottom-10 p-10">
-    <SlideNav />
-  </div>
+<div
+  id="slideshow-outer"
+  class="w-full overflow-hidden relative flex items-end"
+  style="height: calc({sectionsPerSlide * 100}vh)"
+>
   <div
     id="slideshow-inner"
-    style="width: calc(100vw * {slides.length}); transform: translateX(-{$left}vw); top: 0; "
-    class="absolute"
+    class="absolute u"
+    style:width="calc(100vw * {nubmerOfSlides})"
+    style:transform="translateX(-{$xPos}vw)"
   >
-    {#each slides as slide, i}
-      <Slide {slide} index={i} />
-    {/each}
+    <slot />
   </div>
-
-
 </div>
+
+<style>
+  #slideshow-inner {
+    height: inherit;
+  }
+</style>
