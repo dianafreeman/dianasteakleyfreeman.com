@@ -4,6 +4,6 @@
   
 </script>
 
-<section class="flex flex-col {clazz} " style="min-height: 90vh">
+<section {...$$props} class="flex flex-col {clazz}" >
   <slot />
 </section>
