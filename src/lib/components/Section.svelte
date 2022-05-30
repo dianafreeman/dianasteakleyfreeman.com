@@ -4,6 +4,6 @@
   
 </script>
 
-<section class="flex flex-col {clazz} " style="min-height: 70vh">
+<section class="flex flex-col {clazz} " style="min-height: 90vh">
   <slot />
 </section>
