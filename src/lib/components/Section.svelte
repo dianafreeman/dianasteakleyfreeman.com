@@ -1,9 +1,8 @@
 <script>
   let clazz;
   export { clazz as class };
-  
 </script>
 
-<section {...$$props} class="flex flex-col {clazz}" >
+<section {...$$props} class={clazz}>
   <slot />
 </section>

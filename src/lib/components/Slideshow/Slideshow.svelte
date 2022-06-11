@@ -5,7 +5,6 @@
   export let nubmerOfSlides;
   export let sectionsPerSlide;
 
-
   let xPos = spring(0);
 
   SlidesStore.subscribe((data) => {
@@ -13,7 +12,6 @@
   });
 
   let NAV_HEIGHT = 136; // TODO add this to a layout store.
-
 </script>
 
 <div

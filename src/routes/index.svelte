@@ -4,17 +4,10 @@
 
 <script>
   import { fade, blur, fly, slide, scale } from "svelte/transition";
-  import Slideshow from "$lib/components/Slideshow/Slideshow.svelte";
   import SectionStore from "$stores/SlidesStore";
-  import Slide from "$lib/components/Slideshow/Slide.svelte";
   import Section from "$lib/components/Section.svelte";
   import IntroStore from "$stores/IntroStore";
-  import SlideControls from "$lib/components/Slideshow/SlideControls.svelte";
   import Intro from "$lib/components/Intro.svelte";
-
-  // export let index;
-
-  // $: displayNumber = ;
 
   const items = [
     { title: "title 1", category: "code", slug: "/projects/title-1" },
@@ -25,29 +18,15 @@
     { title: "title 6", category: "graphics", slug: "/projects/title-6" }
   ];
 
-  let contentAnchor;
-  let titleAnchor;
-
-  let yPosition;
-
-  $: {
-    if (contentAnchor) console.log("contentAnchor", contentAnchor);
-    if (titleAnchor) console.log("titleAnchor", titleAnchor);
+  function toggleIntro() {
+    // Duplicated Code Alert!
+    if ($IntroStore.isShowing) {
+      IntroStore.hideIntro();
+    } else {
+      IntroStore.showIntro();
+    }
   }
-
-  function handleClick(idx) {
-    yPosition = titleAnchor.offsetTop;
-    SectionStore.setActiveIndex(idx);
-  }
-  let slideNavHeight;
   let scrollY;
-
-  let showSlideControls = !$IntroStore.isShowing;
-  // get topOffset of target Section
-  // if scrollY > target { show slide navigation}
-  $: {
-    console.log(scrollY);
-  }
 </script>
 
 <svelte:head>
@@ -56,25 +35,38 @@
 
 <svelte:window bind:scrollY />
 
-<section>
-  <Intro />
+<section id="intro">
+  {#if $IntroStore.isShowing}
+    <Intro />
+  {/if}
+  <button
+    class:invisible={$IntroStore.isShowing}
+    class="absolute w-screen top-0 left-0 text-center bg-black z-50"
+    on:click={toggleIntro}
+  >
+    {$IntroStore.isShowing ? "Hide" : "Show"} Intro
+  </button>
 </section>
-<section class="justify-between">
+<Section class="flex flex-col justify-between overflow-scroll" style="height: 100vh;">
   <div class="relative p-6 my-auto">
     <h1 class="text-4xl lg:text-5xl xl:text-7xl font-bold ">Hi. I'm Diana</h1>
-    <h2 class="font-manrope text-3xl lg:text-4xl xl:text-5xl py-3 flex">
-      <button class="inline">Coder.</button>
-      <button class="inline">Creator.</button>
-      <button class="inline">Communicator.</button>
+    <h2 class="font-manrope text-3xl lg:text-4xl xl:text-5xl py-3 flex flex-wrap">
+      <button class="mr-2">Coder.</button>
+      <button class="mr-2">Creator.</button>
+      <button class="mr-2">Communicator.</button>
     </h2>
   </div>
-</section>
-<div id="title-anchor" bind:this={titleAnchor}>
+</Section>
+
+<div class="flex flex-row" style="width: calc({$SectionStore.slides.length} * 100vw)">
   {#each $SectionStore.slides as slide, idx}
-    <Section class="flex flex-col justify-around" style="min-height:100vh">
-      <div class="relative">
-        <h1 class="font-bold text-6xl xl:text-7xl ">
-          {slide.title}
+    <Section
+      class="flex flex-col justify-around overflow-scroll relative"
+      style="width: 100vw; height:100vh"
+    >
+      <div class="p-6">
+        <h1 class="font-bold text-6xl xl:text-7xl">
+          {@html slide.title}
         </h1>
 
         <h2
@@ -84,11 +76,19 @@
         </h2>
         <p class="font-manrope text-xl">{slide.description}</p>
       </div>
-    
-      <div class="relative">
-        <h2 class="text-4xl font-bold text-center">Projects</h2>
+    </Section>
+  {/each}
+</div>
+<div class="flex flex-row" style="width: calc({$SectionStore.slides.length} * 100vw)">
+  {#each $SectionStore.slides as slide, idx}
+    <Section
+      class="flex flex-col justify-center overflow-hidden relative"
+      style="width: 100vw; height:100vh"
+    >
+      <div class="p-6">
+        <h2 class="text-4xl font-bold text-center">subtitle</h2>
       </div>
-      {#if idx === $SectionStore.activeIndex}
+      <div id="scroll-container-{idx}" class="overflow-y-scroll p-6" style:height="50vh">
         {#each items as item}
           <a
             transition:fade
@@ -102,7 +102,7 @@
             </div>
           </a>
         {/each}
-      {/if}
+      </div>
     </Section>
   {/each}
 </div>
