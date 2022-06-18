@@ -4,7 +4,7 @@
   import TrailStore from "$stores/TrailStore";
   import { onMount } from "svelte";
   import { fly, fade } from "svelte/transition";
-  import ArrowDown from "$lib/icons/arrowDown.svelte";
+  import ArrowDown from "$lib/icons/lineArrowDown.svelte";
   import FloatingButton from "$lib/animations/FloatingButton.svelte";
 
   let playing = true;

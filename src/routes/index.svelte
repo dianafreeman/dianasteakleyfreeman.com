@@ -7,7 +7,9 @@
   import SectionStore from "$stores/SlidesStore";
   import Section from "$lib/components/Section.svelte";
   import IntroStore from "$stores/IntroStore";
+  import LayoutStore from "$stores/LayoutStore";
   import Intro from "$lib/components/Intro.svelte";
+  import SectionHero from "$lib/components/SectionHero.svelte";
 
   const items = [
     { title: "title 1", category: "code", slug: "/projects/title-1" },
@@ -27,6 +29,12 @@
     }
   }
   let scrollY;
+  const { setCell, sections } = LayoutStore;
+
+  let landingButtonClass =
+    "text-3xl lg:text-4xl xl:text-5xl mr-2 w-full text-right p-1 hover:bg-white hover:text-black focus:bg-white focus:text-black";
+
+  
 </script>
 
 <svelte:head>
@@ -47,46 +55,46 @@
     {$IntroStore.isShowing ? "Hide" : "Show"} Intro
   </button>
 </section>
-<Section class="flex flex-col justify-between overflow-scroll" style="height: 100vh;">
-  <div class="relative p-6 my-auto">
-    <h1 class="text-4xl lg:text-5xl xl:text-7xl font-bold ">Hi. I'm Diana</h1>
-    <h2 class="font-manrope text-3xl lg:text-4xl xl:text-5xl py-3 flex flex-wrap">
-      <button class="mr-2">Coder.</button>
-      <button class="mr-2">Creator.</button>
-      <button class="mr-2">Communicator.</button>
-    </h2>
+<Section class="flex flex-col overflow-scroll" style="height: 100vh;">
+  <!-- 
+    LANDING
+    This section is not a scrollable -->
+  <div class="relative p-6 h-full justify-evenly flex flex-col">
+    <h1 class="text-5xl lg:text-6xl xl:text-8xl font-bold ">Hi. I'm Diana</h1>
+    <ul class="font-manrope py-3">
+      <li>
+        <button on:click={() => setCell({ x: 0, y: 1 })} class={landingButtonClass}>Coder.</button>
+      </li>
+      <li>
+        <button on:click={() => setCell({ x: 1, y: 1 })} class={landingButtonClass}>Creator.</button
+        >
+      </li>
+      <li>
+        <button on:click={() => setCell({ x: 2, y: 1 })} class={landingButtonClass}
+          >Communicator.</button
+        >
+      </li>
+    </ul>
   </div>
 </Section>
-
-<div class="flex flex-row" style="width: calc({$SectionStore.slides.length} * 100vw)">
-  {#each $SectionStore.slides as slide, idx}
+<div class="flex flex-row" style="width: calc({$sections.length} * 100vw)">
+  {#each $sections as section, idx}
     <Section
       class="flex flex-col justify-around overflow-scroll relative"
       style="width: 100vw; height:100vh"
     >
-      <div class="p-6">
-        <h1 class="font-bold text-6xl xl:text-7xl">
-          {@html slide.title}
-        </h1>
-
-        <h2
-          class="text-transparent-60 font-manrope font-black text-3xl lg:text-4xl xl:text-5xl py-3"
-        >
-          {`0${idx + 1}.`}
-        </h2>
-        <p class="font-manrope text-xl">{slide.description}</p>
-      </div>
+      <SectionHero data={{ ...section, cell: { x: idx, y: 1 } }} index={idx} />
     </Section>
   {/each}
 </div>
-<div class="flex flex-row" style="width: calc({$SectionStore.slides.length} * 100vw)">
-  {#each $SectionStore.slides as slide, idx}
+<div class="flex flex-row" style="width: calc({$sections.length} * 100vw)">
+  {#each $sections as section, idx}
     <Section
       class="flex flex-col justify-center overflow-hidden relative"
       style="width: 100vw; height:100vh"
     >
       <div class="p-6">
-        <h2 class="text-4xl font-bold text-center">subtitle</h2>
+        <h2 class="text-4xl font-bold text-center">{@html section.title}</h2>
       </div>
       <div id="scroll-container-{idx}" class="overflow-y-scroll p-6" style:height="50vh">
         {#each items as item}
