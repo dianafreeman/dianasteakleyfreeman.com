@@ -3,9 +3,7 @@
 </script>
 
 <script>
-  import { fade, blur, fly, slide, scale } from "svelte/transition";
   import ContentStore from "$stores/ContentStore";
-
   import Section from "$lib/components/Section.svelte";
   import IntroStore from "$stores/IntroStore";
   import LayoutStore from "$stores/LayoutStore";
@@ -47,14 +45,14 @@
 </section> -->
 
 {#each $ContentStore as row, rowIndex}
-  <div class="flex flex-row" style="width: calc({row.length} * 100vw)">
+  <div class="flex flex-row" style="width: calc({row.length} * 100vw);">
     {#each row as section, sectionIndex}
       <Section
         cell={{y: rowIndex, x: sectionIndex }}
-        class="flex flex-col justify-around overflow-scroll relative p-5"
+        class="flex flex-col justify-evenly overflow-scroll relative p-5"
         style="width: 100vw; height:100vh"
       >
-        <svelte:component this={section.component} {section} />
+        <svelte:component this={section.component} {section} index={sectionIndex}/>
       </Section>
     {/each}
   </div>
