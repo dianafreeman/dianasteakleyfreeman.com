@@ -4,21 +4,11 @@
 
 <script>
   import { fade, blur, fly, slide, scale } from "svelte/transition";
-  import SectionStore from "$stores/SlidesStore";
+  import ContentStore from "$stores/ContentStore";
+
   import Section from "$lib/components/Section.svelte";
   import IntroStore from "$stores/IntroStore";
   import LayoutStore from "$stores/LayoutStore";
-  import Intro from "$lib/components/Intro.svelte";
-  import SectionHero from "$lib/components/SectionHero.svelte";
-
-  const items = [
-    { title: "title 1", category: "code", slug: "/projects/title-1" },
-    { title: "title 2", category: "graphics", slug: "/projects/title-2" },
-    { title: "title 3", category: "code", slug: "/projects/title-2" },
-    { title: "title 4", category: "writing", slug: "/blog/title-4" },
-    { title: "title 5", category: "writing", slug: "/blog/title-5" },
-    { title: "title 6", category: "graphics", slug: "/projects/title-6" }
-  ];
 
   function toggleIntro() {
     // Duplicated Code Alert!
@@ -29,12 +19,14 @@
     }
   }
   let scrollY;
-  const { setCell, sections } = LayoutStore;
 
-  let landingButtonClass =
-    "text-3xl lg:text-4xl xl:text-5xl mr-2 w-full text-right p-1 hover:bg-white hover:text-black focus:bg-white focus:text-black";
+  // let grid;
+  // // const contentGrid = derived(ContentStore, $ContentStore => $ContentStore)
 
-  
+  // ContentStore.subscribe(val => {
+  //   grid = val;
+  //   // console.log('grid[1]', v[1]))
+  // })
 </script>
 
 <svelte:head>
@@ -43,10 +35,8 @@
 
 <svelte:window bind:scrollY />
 
-<section id="intro">
-  {#if $IntroStore.isShowing}
-    <Intro />
-  {/if}
+<!-- <section id="intro">
+
   <button
     class:invisible={$IntroStore.isShowing}
     class="absolute w-screen top-0 left-0 text-center bg-black z-50"
@@ -54,11 +44,21 @@
   >
     {$IntroStore.isShowing ? "Hide" : "Show"} Intro
   </button>
-</section>
-<Section class="flex flex-col overflow-scroll" style="height: 100vh;">
-  <!-- 
-    LANDING
-    This section is not a scrollable -->
+</section> -->
+
+{#each $ContentStore as row}
+  <div class="flex flex-row" style="width: calc({row.length} * 100vw)">
+    {#each row as section, sectionIndex}
+      <Section
+        class="flex flex-col justify-around overflow-scroll relative p-5"
+        style="width: 100vw; height:100vh"
+      >
+        <svelte:component this={section.component} {section} />
+      </Section>
+    {/each}
+  </div>
+{/each}
+<!-- <Section id="landing" class="flex flex-col overflow-scroll" style="height: 100vh;">
   <div class="relative p-6 h-full justify-evenly flex flex-col">
     <h1 class="text-5xl lg:text-6xl xl:text-8xl font-bold ">Hi. I'm Diana</h1>
     <ul class="font-manrope py-3">
@@ -87,30 +87,4 @@
     </Section>
   {/each}
 </div>
-<div class="flex flex-row" style="width: calc({$sections.length} * 100vw)">
-  {#each $sections as section, idx}
-    <Section
-      class="flex flex-col justify-center overflow-hidden relative"
-      style="width: 100vw; height:100vh"
-    >
-      <div class="p-6">
-        <h2 class="text-4xl font-bold text-center">{@html section.title}</h2>
-      </div>
-      <div id="scroll-container-{idx}" class="overflow-y-scroll p-6" style:height="50vh">
-        {#each items as item}
-          <a
-            transition:fade
-            href={item.slug}
-            class="my-12 flex align-bottom"
-            style:min-height="20vh"
-          >
-            <div class="flex flex-col self-middle justify-end py-4 text-right w-full">
-              <h4 class=" text-3xl lg:text-4xl xl:text-5xlfont-medium">{item.title}</h4>
-              <p class="font-manrope font-thin">very short description</p>
-            </div>
-          </a>
-        {/each}
-      </div>
-    </Section>
-  {/each}
-</div>
+-->

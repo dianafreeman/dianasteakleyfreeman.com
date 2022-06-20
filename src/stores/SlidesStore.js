@@ -1,5 +1,5 @@
 import { writable } from "svelte/store";
-import { SLIDES } from "./content";
+import { SLIDES } from "./ContentStore";
 const DEFAULT_INDEX = 0;
 
 function createSlidesStore() {
