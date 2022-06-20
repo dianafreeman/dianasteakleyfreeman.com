@@ -7,7 +7,7 @@
 </script>
 
 <li class="flex flex-col {clazz}">
-  <a href={target} class="flex p-2" style:color>
+  <a href={target} class="flex p-2 font-thin" style:color>
     {#if text}
       {text}
     {:else}
