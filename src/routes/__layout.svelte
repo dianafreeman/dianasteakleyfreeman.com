@@ -21,10 +21,11 @@
   import SolidCircleDown from "$lib/icons/solidCircleDown.svelte";
   import SolidCircleRight from "$lib/icons/solidCircleRight.svelte";
   import ContentStore from "$stores/ContentStore";
+  import { derived } from "svelte/store";
+
   export let url;
 
   const ONE_HUNDRED = 100; // TODO: convert to pixel measurements by window size?
-  const ZERO = 0; // TODO: convert to pixel measurements by window size?
 
   let windowHeight;
 
@@ -49,25 +50,46 @@
     translateX.set(cell.x * ONE_HUNDRED); // uses relative vw/vh units for now
   });
 
-  const { incrementRow, decrementRow, incrementCol, decrementCol, existsInGrid } = LayoutStore;
+  const { incrementRow, decrementRow, incrementCol, decrementCol } = LayoutStore;
 
-  function scrollDown() {
-    let updated = { y: $LayoutStore.y + 1, x: $LayoutStore.x };
-    if (ContentStore.cellExists(updated)) incrementRow();
-  }
-  function scrollUp() {
-    let updated = { y: $LayoutStore.y - 1, x: $LayoutStore.x };
-    if (ContentStore.cellExists(updated)) decrementRow();
-  }
-
-  function scrollRight() {
-    let updated = { x: $LayoutStore.x + 1, y: $LayoutStore.y };
-    if (ContentStore.cellExists(updated)) incrementCol();
-  }
-  function scrollLeft() {
-    let updated = { x: $LayoutStore.x - 1, y: $LayoutStore.y };
-    if (ContentStore.cellExists(updated)) decrementCol();
-  }
+  const actionButtonGroups = derived(LayoutStore, ($LayoutStore) => {
+    return [
+      [
+        {
+          id: "scrollLeft",
+          text: "left",
+          value: { x: $LayoutStore.x - 1, y: $LayoutStore.y },
+          component: SolidCircleLeft,
+          fn: decrementCol
+        }
+      ],
+      [
+        {
+          id: "scrollUp",
+          text: "up",
+          value: { y: $LayoutStore.y - 1, x: $LayoutStore.x },
+          component: SolidCircleUp,
+          fn: decrementRow
+        },
+        {
+          id: "scrollDown",
+          text: "down",
+          value: { y: $LayoutStore.y + 1, x: $LayoutStore.x },
+          component: SolidCircleDown,
+          fn: incrementRow
+        }
+      ],
+      [
+        {
+          id: "scrollRight",
+          text: "right",
+          value: { x: $LayoutStore.x + 1, y: $LayoutStore.y },
+          component: SolidCircleRight,
+          fn: incrementCol
+        }
+      ]
+    ];
+  });
 </script>
 
 <!-- TODO: Add gesture support -->
@@ -75,23 +97,29 @@
 <Header {windowHeight} />
 
 <main class="relative bg-black">
-  <div class="fixed w-full flex flex-row bottom-0 justify-evenly" style:z-index={99999}>
-    <button class="bg-blue-400 w-full h-10" on:click={scrollLeft}>
-      <!-- left -->
-      <SolidCircleLeft />
-    </button>
-    <button class="bg-red-400 w-full h-10" on:click={scrollUp}>
-      <!-- up -->
-      <SolidCircleUp />
-    </button>
-    <button class="bg-yellow-400 w-full h-10" on:click={scrollDown}>
-      <!-- down -->
-      <SolidCircleDown />
-    </button>
-    <button class="bg-green-400 w-full h-10" on:click={scrollRight}>
-      <!-- right -->
-      <SolidCircleRight />
-    </button>
+  <div class="absolute bottom-10 right-3" style:z-index={99999}>
+    <div class="flex justify-end align-middle h-28">
+      {#each $actionButtonGroups as buttonGroup}
+        <div
+          class="flex flex-col"
+          class:justify-center={buttonGroup.length === 1}
+          class:justify-between={buttonGroup.length > 1}
+        >
+          {#each buttonGroup as button}
+            <button
+              class="text-green-500 disabled:text-red-500 h-10 lowercase font-thin px-3 disabled:line-through"
+              disabled={!ContentStore.cellExists(button.value)}
+              on:click={button.fn}
+            >
+            <span>{button.text}</span>
+            <!-- TODO: do we want this icon version? seems to bulky/bold rn
+            <span class="sr-only">{button.text}</span>
+              <svelte:component this={button.component} />-->
+            </button> 
+          {/each}
+        </div>
+      {/each}
+    </div>
   </div>
   <div class="relative h-screen w-screen overflow-hidden">
     <div style="transform: translate(-{$translateX}vw, -{$translateY}vh)">

@@ -46,10 +46,11 @@
   </button>
 </section> -->
 
-{#each $ContentStore as row}
+{#each $ContentStore as row, rowIndex}
   <div class="flex flex-row" style="width: calc({row.length} * 100vw)">
     {#each row as section, sectionIndex}
       <Section
+        cell={{y: rowIndex, x: sectionIndex }}
         class="flex flex-col justify-around overflow-scroll relative p-5"
         style="width: 100vw; height:100vh"
       >

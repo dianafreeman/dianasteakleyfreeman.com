@@ -13,7 +13,6 @@ function createIntroStore() {
   }
 
   function hideIntro(callbackFn) {
-    
     update((store) => ({ ...store, isShowing: false }));
     if (callbackFn) callbackFn();
   }

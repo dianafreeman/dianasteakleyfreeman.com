@@ -1,7 +1,7 @@
 import { readable } from "svelte/store";
 import IntroComponent from "$lib/content/Intro.svelte";
 import LandingComponent from "$lib/content/Landing.svelte";
-import SectionComponent from "$lib/content/Section.svelte";
+import SectionComponent from "$lib/content/SectionContent.svelte";
 
 export const CONTENT_HEROES = [
   {
