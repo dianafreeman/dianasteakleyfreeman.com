@@ -1,61 +1,38 @@
 import { readable } from "svelte/store";
 import IntroComponent from "$lib/content/Intro.svelte";
 import LandingComponent from "$lib/content/Landing.svelte";
-import SectionComponent from "$lib/content/SectionContent.svelte";
+import HeroContent from "$lib/content/HeroContent.svelte";
 
 export const CONTENT_HEROES = [
   {
-    component: SectionComponent,
+    component: HeroContent,
     title: "Coder",
     description: "(v.) To dance between the lines of art, science, and opinion.",
+    verb: "Browse",
     categoryName: "Projects",
-    categoryItems: [
-      { title: "title 1", category: "code", slug: "/projects/title-1" },
-      { title: "title 2", category: "graphics", slug: "/projects/title-2" },
-      { title: "title 3", category: "code", slug: "/projects/title-2" },
-      { title: "title 4", category: "writing", slug: "/blog/title-4" },
-      { title: "title 5", category: "writing", slug: "/blog/title-5" },
-      { title: "title 6", category: "graphics", slug: "/projects/title-6" }
-    ]
   },
   {
-    component: SectionComponent,
+    component: HeroContent,
     title: "Creator",
     description: "Something creative",
+    verb: "Discover",
     categoryName: "Gallery",
-    categoryItems: [
-      { title: "title 1", category: "code", slug: "/projects/title-1" },
-      { title: "title 2", category: "graphics", slug: "/projects/title-2" },
-      { title: "title 3", category: "code", slug: "/projects/title-2" },
-      { title: "title 4", category: "writing", slug: "/blog/title-4" },
-      { title: "title 5", category: "writing", slug: "/blog/title-5" },
-      { title: "title 6", category: "graphics", slug: "/projects/title-6" }
-    ]
   },
   {
-    component: SectionComponent,
+    component: HeroContent,
     title: "Commu&shy;nicator",
     description: "Lorem upsum even better",
+    verb: "Read",
     categoryName: "Posts",
-    categoryItems: [
-      { title: "title 1", category: "code", slug: "/projects/title-1" },
-      { title: "title 2", category: "graphics", slug: "/projects/title-2" },
-      { title: "title 3", category: "code", slug: "/projects/title-2" },
-      { title: "title 4", category: "writing", slug: "/blog/title-4" },
-      { title: "title 5", category: "writing", slug: "/blog/title-5" },
-      { title: "title 6", category: "graphics", slug: "/projects/title-6" }
-    ]
   }
 ];
 
 const Intro = [{ title: "Intro", component: IntroComponent }]
-const Landing = [{ title: "Hi! I'm Diana", component: LandingComponent }]
-const Sections = CONTENT_HEROES
+const HeroSections = CONTENT_HEROES
 
 const CONTENT = [
   Intro,
-  Landing,
-  Sections,
+  HeroSections,
 ]
 
 function createContentStore() {
