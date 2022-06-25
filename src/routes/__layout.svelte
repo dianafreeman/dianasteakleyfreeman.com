@@ -15,35 +15,32 @@
   import Header from "$lib/components/Header.svelte";
   import LayoutStore from "$stores/LayoutStore";
   import { spring } from "svelte/motion";
-
   import FlatButtonGroup from "$lib/components/ButtonGroup/FlatButtonGroup.svelte";
 
-  export let url;
+  import { navigating } from "$app/stores";
+
+  // export let url;
 
   const ONE_HUNDRED = 100; // TODO: convert to pixel measurements by window size?
 
   let windowHeight;
 
-  onMount(() => {
-    // if (url.pthname == "/") {
-    //   // reset the intro on home page mount
-      Intro.set({
-        isShowing: true,
-        isComplete: false
-      });
-    
-    // Intro.setWindowHeight(windowHeight);
-  });
-
   const { subscribe: subscribeToActiveCell } = LayoutStore;
 
   const translateY = spring(0);
   const translateX = spring(0);
+  let activeCell, isTop, isBottom
 
   subscribeToActiveCell((cell) => {
+    activeCell = cell
     translateY.set(cell.y * ONE_HUNDRED); // uses relative vw/vh units for now
     translateX.set(cell.x * ONE_HUNDRED); // uses relative vw/vh units for now
+    isTop = cell.y === 0
+    isBottom = cell.y === 2
   });
+
+  
+  $: $navigating && LayoutStore.setCell({x: 0, y: 0})
 </script>
 
 <!-- TODO: Add gesture support -->
@@ -51,8 +48,8 @@
 <Header {windowHeight} />
 
 <main class="relative bg-black">
-  <FlatButtonGroup />
-  <div class="relative h-screen w-screen overflow-hidden">
+  <!-- TODO: set overflow-y-scroll based on the active section settings -->
+  <div class="relative w-screen overflow-x-hidden h-screen overflow-y-hidden" >
     <div style="transform: translate(-{$translateX}vw, -{$translateY}vh)">
       <slot />
     </div>
