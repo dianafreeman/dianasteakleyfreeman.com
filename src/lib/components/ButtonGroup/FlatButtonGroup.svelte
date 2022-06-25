@@ -9,36 +9,33 @@
 
   const { incrementRow, decrementRow, incrementCol, decrementCol } = LayoutStore;
 
-  const actionButtonGroups = derived(LayoutStore, ($LayoutStore) => {
+  const allButtons = derived(LayoutStore, ($LayoutStore) => {
     return [
-      [
         {
           id: "scrollLeft",
           text: "left",
           value: { x: $LayoutStore.x - 1, y: $LayoutStore.y },
           component: SolidCircleLeft,
           fn: decrementCol
-        }
-      ],
-      [
+        },
+      
+      
         {
           id: "scrollUp",
           text: "up",
           value: { y: $LayoutStore.y - 1, x: $LayoutStore.x },
           component: SolidCircleUp,
           fn: decrementRow
-        }
-      ],
-      [
+        },
+
         {
           id: "scrollDown",
           text: "down",
           value: { y: $LayoutStore.y + 1, x: $LayoutStore.x },
           component: SolidCircleDown,
           fn: incrementRow
-        }
-      ],
-      [
+        },
+      
         {
           id: "scrollRight",
           text: "right",
@@ -46,28 +43,28 @@
           component: SolidCircleRight,
           fn: incrementCol
         }
-      ]
+      
     ];
   });
+  
+  let activeButtons = derived(allButtons, ($allButtons) => {
+    // console.log($allButtons.map( b => ))
+    const filtered =  $allButtons.filter( b => ContentStore.cellExists(b.value))
+    return filtered
+  })
 </script>
 
 <div class="fixed bottom-0 w-full" style:z-index={99999}>
   <div class="flex justify-evenly align-middle h-28">
-    {#each $actionButtonGroups as buttonGroup}
-      <div
-        class="flex flex-col"
-        class:justify-center={buttonGroup.length === 1}
-        class:justify-between={buttonGroup.length > 1}
-      >
-        {#each buttonGroup as button}
+    {#each $allButtons as button}
+      <div class="flex flex-col justify-between">
           <button
-            class="text-green-500 disabled:text-red-500 h-10 lowercase font-thin px-3 disabled:line-through"
+            class="disabled:text-gray-500 lowercase font-thin px-3 disabled:line-through m-auto"
             disabled={!ContentStore.cellExists(button.value)}
             on:click={button.fn}
           >
             {button.text}
           </button>
-        {/each}
       </div>
     {/each}
   </div>

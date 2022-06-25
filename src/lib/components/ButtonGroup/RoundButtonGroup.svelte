@@ -49,8 +49,8 @@
   });
 </script>
 
-<div class="absolute bottom-10 right-3" style:z-index={99999}>
-  <div class="flex justify-end align-middle h-28">
+<div class="fixed bottom-24 right-3 w-full" style:z-index={99999}>
+  <div class="flex justify-center align-middle h-28">
     {#each $actionButtonGroups as buttonGroup}
       <div
         class="flex flex-col"
@@ -59,14 +59,14 @@
       >
         {#each buttonGroup as button}
           <button
-            class="text-green-500 disabled:text-red-500 h-10 lowercase font-thin px-3 disabled:line-through"
+            class="disabled:text-gray-500 lowercase font-thin px-3 disabled:line-through m-auto"
             disabled={!ContentStore.cellExists(button.value)}
             on:click={button.fn}
           >
             <span>{button.text}</span>
-            <!-- TODO: do we want this icon version? seems to bulky/bold rn
+            
               <span class="sr-only">{button.text}</span>
-                <svelte:component this={button.component} />-->
+                <svelte:component this={button.component} />
           </button>
         {/each}
       </div>
