@@ -1,7 +1,7 @@
 import { readable } from "svelte/store";
 import IntroComponent from "$lib/content/Intro.svelte";
-import LandingComponent from "$lib/content/Landing.svelte";
-import HeroContent from "$lib/content/HeroContent.svelte";
+import ListContent from "$lib/content/SectionContent.svelte";
+import HeroContent from "$lib/content/SectionHero.svelte";
 
 export const CONTENT_HEROES = [
   {
@@ -29,10 +29,12 @@ export const CONTENT_HEROES = [
 
 const Intro = [{ title: "Intro", component: IntroComponent }]
 const HeroSections = CONTENT_HEROES
+const ContentSections = CONTENT_HEROES.map( s => ({...s, component: ListContent}))
 
 const CONTENT = [
   Intro,
   HeroSections,
+  ContentSections
 ]
 
 function createContentStore() {
