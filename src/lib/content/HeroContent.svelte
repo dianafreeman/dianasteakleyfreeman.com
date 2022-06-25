@@ -14,6 +14,9 @@
     </h2>
     <p class="font-manrope text-xl">{section.description}</p>
 
+    <div style="height: 650px; background: blue">
+
+      </div>
     <!-- <button class="bg-white text-black p-2 rounded my-3">{section.verb} {section.categoryName}</button> -->
     <!-- <h3 class="uppercase font-thin absolute text-gray-700 text-8xl bottom-10">{section.verb}</h3> -->
   </div>
