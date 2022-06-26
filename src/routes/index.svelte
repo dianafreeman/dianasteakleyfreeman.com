@@ -1,6 +1,6 @@
 <script context="module">
   export const prerender = true;
-  export let contentGrid;
+  export let pageBody;
 </script>
 
 <script>

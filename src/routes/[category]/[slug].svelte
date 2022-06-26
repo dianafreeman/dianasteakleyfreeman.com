@@ -1,12 +1,15 @@
 <script>
-  import SvelteMarkdown from "svelte-markdown";
-  import Paragraph from "$lib/components/MarkdownParagraph.svelte";
-  export let markdown;
-  export let frontmatter;
+  export let category;
+  export let slug;
+  export let entry;
+
+  const component = () => import(`../../content/${category}/${slug}.md`);
 </script>
 
-<h1 class="p-6 text-4xl font-bold font-poppins">{frontmatter.title}</h1>
+<h1 class="p-6 text-4xl font-bold font-poppins">{entry.metadata.title}</h1>
 
-<div id="markdown" class="p-6">
-  <SvelteMarkdown source={markdown} renderers={{ paragraph: Paragraph }} />
+<div class="p-6">
+  {#await component() then module}
+    <svelte:component this={module.default} />
+  {/await}
 </div>

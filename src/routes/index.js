@@ -33,11 +33,10 @@ export const SECOND_ROW = [
   }
 ];
 
-export async function load({ url, params, fetch, session, stuff }) {
+export async function get() {
   return {
-    status: response.status,
     props: {
-      contentGrid: [FIRST_ROW, SECOND_ROW]
+      pageBody: [FIRST_ROW, SECOND_ROW]
     }
   };
 }

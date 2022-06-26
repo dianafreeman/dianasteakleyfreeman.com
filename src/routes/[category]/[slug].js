@@ -1,30 +1,22 @@
-import fs from "fs";
-import path from "path";
-import yaml from "js-yaml";
-
-const YAML_DELIMITER = "---";
+import { getEntry } from "$content/helpers";
 
 export async function get({ params }) {
-  const filePath = path.resolve(".", `content/${params.category}/${params.slug}.md`);
-  const file = await fs.readFileSync(filePath);
-  const fileContent = Buffer.from(file).toString();
+  const { category, slug } = params;
 
-  const body = fileContent.split(YAML_DELIMITER).reduce((acc, markdown) => {
-    try {
-      const obj = yaml.load(markdown);
-      return { ...acc, frontmatter: { ...acc.frontmatter, ...obj } };
-    } catch (err) {
-      console.log("Not Valid YAML");
-      return { ...acc, markdown };
-    }
-  }, {});
+  const [contentFilePath, entry] = await getEntry(slug);
 
-  if (file) {
+  if (entry) {
     return {
-      body
+      body: {
+        entry,
+        category,
+        slug,
+        filePath: contentFilePath
+      }
+    };
+  } else {
+    return {
+      status: 404
     };
   }
-  return {
-    status: 404
-  };
 }
