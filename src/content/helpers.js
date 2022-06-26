@@ -15,8 +15,8 @@ function decorateWithUrlPaths(entries) {
   return Object.fromEntries(newEntries);
 }
 
-function getImports(category) {
-  // `import.meta.globEager` method only accepts string literals
+function getContentImports(category) {
+  // NOTE: `import.meta.globEager` method only accepts string literals
   switch (category) {
     case "blog":
       return import.meta.globEager("$content/blog/*");
@@ -27,8 +27,12 @@ function getImports(category) {
   }
 }
 
+export async function getPageData() {
+  return import.meta.globEager("$content/pageData/*");
+}
+
 export async function getEntries(category) {
-  const modules = await getImports(category);
+  const modules = await getContentImports(category);
   const modulesWithPaths = decorateWithUrlPaths(modules);
   return modulesWithPaths;
 }
