@@ -29,18 +29,17 @@
 
   const translateY = spring(0);
   const translateX = spring(0);
-  let activeCell, isTop, isBottom
+  let activeCell, isTop, isBottom;
 
   subscribeToActiveCell((cell) => {
-    activeCell = cell
+    activeCell = cell;
     translateY.set(cell.y * ONE_HUNDRED); // uses relative vw/vh units for now
     translateX.set(cell.x * ONE_HUNDRED); // uses relative vw/vh units for now
-    isTop = cell.y === 0
-    isBottom = cell.y === 2
+    isTop = cell.y === 0;
+    isBottom = cell.y === 2;
   });
 
-  
-  $: $navigating && LayoutStore.setCell({x: 0, y: 0})
+  $: $navigating && LayoutStore.setCell({ x: 0, y: 0 });
 </script>
 
 <!-- TODO: Add gesture support -->
@@ -49,7 +48,7 @@
 
 <main class="relative bg-black">
   <!-- TODO: set overflow-y-scroll based on the active section settings -->
-  <div class="relative w-screen overflow-x-hidden h-screen overflow-y-hidden" >
+  <div class="relative w-screen overflow-x-hidden h-screen overflow-y-hidden">
     <div style="transform: translate(-{$translateX}vw, -{$translateY}vh)">
       <slot />
     </div>

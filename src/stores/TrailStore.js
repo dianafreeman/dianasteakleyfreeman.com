@@ -2,6 +2,7 @@ import { writable } from "svelte/store";
 import data from "./data/TrailWords.json";
 
 export function createTrailStore() {
+  // TODO: redo this
   let paused = false;
   let finished = false;
   let trackedIndex = 0;
@@ -32,11 +33,10 @@ export function createTrailStore() {
   }
 
   function pause() {
-    if (finished) return;
+    // if (finished) return;
+    paused = true;
     trackedIndex = trackedIndex - 1;
     items.set(data.slice(0, trackedIndex));
-
-    paused = true;
   }
 
   function resume() {

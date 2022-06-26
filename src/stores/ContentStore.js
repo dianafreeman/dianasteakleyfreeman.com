@@ -9,39 +9,35 @@ export const CONTENT_HEROES = [
     title: "Coder",
     description: "(v.) To dance between the lines of art, science, and opinion.",
     verb: "Browse",
-    categoryName: "Projects",
+    categoryName: "Projects"
   },
   {
     component: HeroContent,
     title: "Creator",
     description: "Something creative",
     verb: "Discover",
-    categoryName: "Gallery",
+    categoryName: "Gallery"
   },
   {
     component: HeroContent,
     title: "Commu&shy;nicator",
     description: "Lorem upsum even better",
     verb: "Read",
-    categoryName: "Posts",
+    categoryName: "Posts"
   }
 ];
 
-const Intro = [{ title: "Intro", component: IntroComponent }]
-const HeroSections = CONTENT_HEROES
-const ContentSections = CONTENT_HEROES.map( s => ({...s, component: ListContent}))
+const Intro = [{ title: "Intro", component: IntroComponent }];
+const HeroSections = CONTENT_HEROES;
+const ContentSections = CONTENT_HEROES.map((s) => ({ ...s, component: ListContent }));
 
-const CONTENT = [
-  Intro,
-  HeroSections,
-  ContentSections
-]
+const CONTENT = [Intro, HeroSections, ContentSections];
 
 function createContentStore() {
-  const { subscribe } = readable(CONTENT)
+  const { subscribe } = readable(CONTENT);
 
-  let grid
-  subscribe(content => grid = content)
+  let grid;
+  subscribe((content) => (grid = content));
 
   function cellExists(proposal) {
     if (proposal.y < 0 || proposal.x < 0) return false;
@@ -53,9 +49,9 @@ function createContentStore() {
   return {
     subscribe,
     cellExists
-  }
+  };
 }
 
-const ContentStore = createContentStore()
+const ContentStore = createContentStore();
 
-export default ContentStore
+export default ContentStore;

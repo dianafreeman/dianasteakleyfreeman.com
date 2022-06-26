@@ -1,7 +1,7 @@
 <script context="module">
   import { browser, dev } from "$app/env";
   import Section from "$lib/components/Section.svelte";
-
+  export const prerender = true;
   // // we don't need any JS on this page, though we'll load
   // // it in dev so that we get hot module replacement...
   // export const hydrate = dev;
@@ -21,7 +21,7 @@
 
 <div class="flex flex-row" style="width: 100vw">
   <Section
-  cell={{x: 0, y:0}}
+    cell={{ x: 0, y: 0 }}
     class="flex flex-col justify-around overflow-scroll relative p-5"
     style="width: 100vw; height:100vh"
   >

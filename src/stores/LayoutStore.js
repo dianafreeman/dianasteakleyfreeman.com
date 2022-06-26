@@ -4,8 +4,7 @@ import { spring } from "svelte/motion";
 function createLayoutStore() {
   const activeCell = writable({ x: 0, y: 0 });
   const { set, update: updateActiveCell, subscribe } = activeCell;
-  
-  
+
   function incrementRow() {
     return updateActiveCell((cell) => {
       let updated = { y: cell.y + 1, x: cell.x };
@@ -52,17 +51,16 @@ function createLayoutStore() {
     setColumn(newX);
   }
 
-
   return {
     subscribe,
+    activeCell,
     incrementRow,
     decrementRow,
     incrementCol,
     decrementCol,
-    setCell,
+    setCell
   };
 }
 const layoutStore = createLayoutStore();
-
 
 export default layoutStore;

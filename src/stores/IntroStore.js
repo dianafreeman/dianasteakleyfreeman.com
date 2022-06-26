@@ -1,41 +1,13 @@
 import { writable } from "svelte/store";
 
 function createIntroStore() {
-  let { set, update, subscribe } = writable({
-    isShowing: false,
-    isComplete: true
-  });
-
-  let windowHeight = writable(0);
-
-  function setWindowHeight(height) {
-    windowHeight.set(height);
-  }
-
-  function hideIntro(callbackFn) {
-    update((store) => ({ ...store, isShowing: false }));
-    if (callbackFn) callbackFn();
-  }
-
-  function showIntro(callbackFn) {
-    
-    update((store) => ({ ...store, isShowing: true }));
-    if (callbackFn) callbackFn();
-  }
-
-  function setIsComplete(bool) {
-    update((store) => ({ ...store, isComplete: bool }));
-  }
+  let { set, update, subscribe } = writable(false);
 
   return {
     subscribe,
-    set,
-    setWindowHeight,
-    setIsComplete,
-    hideIntro,
-    showIntro
+    setIsComplete: set
   };
 }
 
-const IntroStore = createIntroStore();
+const IntroStore = writable(false);
 export default IntroStore;

@@ -14,6 +14,4 @@
     </h2>
     <p class="font-manrope text-xl">{section.description}</p>
   </div>
-
-
 </div>

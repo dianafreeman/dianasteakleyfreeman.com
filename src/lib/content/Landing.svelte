@@ -19,8 +19,7 @@
 <div class="relative h-full justify-evenly flex flex-col">
   <h1 class="text-5xl lg:text-6xl xl:text-8xl font-bold ">Hi. I'm Diana</h1>
   <h1 class="text-sm">
-    Web Engineer. Digital Policy Buff, User Rights Enthusiast.
-    Former Scientist, Forever Experimenting. Enthusiastic nerd.
+    Web Engineer. Digital Policy Buff, User Rights Enthusiast. Former Scientist, Forever
+    Experimenting. Enthusiastic nerd.
   </h1>
-  
 </div>

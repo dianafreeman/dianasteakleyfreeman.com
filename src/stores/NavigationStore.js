@@ -3,7 +3,7 @@ import { writable } from "svelte/store";
 function createNavigationStore() {
   const { set, update, subscribe } = writable({
     isOpen: false,
-    items: ["About", "Gallery", "Contact"]
+    items: ["About", "Blog", "Gallery", "Contact"]
   });
 
   function toggleNav() {

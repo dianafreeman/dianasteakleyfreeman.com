@@ -6,12 +6,11 @@
   export let style;
   let clazz;
   export { clazz as class };
-
 </script>
 
 <section transition:fade={{ duration: 500 }} {id} class={clazz} {style}>
-    <slot />
-  </section>
+  <slot />
+</section>
 
 <style>
   .inherit {

@@ -18,7 +18,7 @@
     <h1 class="font-bold text-6xl xl:text-7xl mb-8">
       {section.categoryName}
     </h1>
-<!-- 
+    <!-- 
     <button
       disabled={!$isActiveSection}
       class="disabled:bg-red-300 bg-white w-full text-black p-2 rounded-full my-12"
@@ -29,15 +29,14 @@
       <div class="mx-2 py-6">
         <Card />
       </div>
-      
+
       <div class="mx-2 py-6">
         <Card />
       </div>
-      
+
       <div class="mx-2 py-6">
         <Card />
       </div>
-      
     </div>
   </div>
 </div>

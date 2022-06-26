@@ -1,6 +1,5 @@
 <script context="module">
-import Section from "$lib/components/Section.svelte";
-
+  import Section from "$lib/components/Section.svelte";
 
   export async function load({ params, fetch, session, stuff }) {
     return {
@@ -9,8 +8,8 @@ import Section from "$lib/components/Section.svelte";
       }
     };
   }
-
 </script>
+
 <script>
   export let title;
 </script>

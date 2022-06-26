@@ -64,9 +64,7 @@
             on:click={button.fn}
           >
             <span>{button.text}</span>
-            
-              <span class="sr-only">{button.text}</span>
-                <svelte:component this={button.component} />
+            <svelte:component this={button.component} />
           </button>
         {/each}
       </div>
