@@ -43,6 +43,7 @@
     "@fontsource/fira-mono": "^4.5.0",
     "@lukeed/uuid": "^2.0.0",
     "cookie": "^0.4.1",
-    "normalize.css": "^8.0.1"
+    "normalize.css": "^8.0.1",
+    "svelte-typewriter": "^3.0.0-alpha.20"
   }
 }
