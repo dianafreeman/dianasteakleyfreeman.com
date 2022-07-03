@@ -118,29 +118,110 @@
     font-family: "Poppins";
     font-weight: 700;
     font-style: italic;
-    src: url("/static/fonts/Poppins-BoldItalic.woff2") format("woff2");
+    src: url("/src/fonts/Poppins-BoldItalic.woff2") format("woff2");
   }
   @font-face {
     font-family: "Poppins";
     font-weight: 800;
-    src: url("/static/fonts/Poppins-ExtraBold.woff2") format("woff2");
+    src: url("/src/fonts/Poppins-ExtraBold.woff2") format("woff2");
   }
   @font-face {
     font-family: "Poppins";
     font-weight: 800;
     font-style: italic;
-    src: url("/static/fonts/Poppins-ExtraBoldItalic.woff2") format("woff2");
+    src: url("/src/fonts/Poppins-ExtraBoldItalic.woff2") format("woff2");
   }
   @font-face {
     font-family: "Poppins";
     font-weight: 900;
-    src: url("/static/fonts/Poppins-Black.woff2") format("woff2");
+    src: url("/src/fonts/Poppins-Black.woff2") format("woff2");
   }
   @font-face {
     font-family: "Poppins";
     font-weight: 900;
     font-style: italic;
-    src: url("/static/fonts/Poppins-BlackItalic.woff2") format("woff2");
+    src: url("/src/fonts/Poppins-BlackItalic.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "ShareTechMono";
+    src: url("/src/fonts/ShareTechMono-Regular.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Newsreader";
+    font-weight: 200;
+    src: url("/src/fonts/Newsreader-ExtraLight.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Newsreader";
+    font-weight: 200;
+    font-style: italic;
+    src: url("/src/fonts/Newsreader-ExtraLightItalic.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Newsreader";
+    font-weight: 300;
+    src: url("/src/fonts/Newsreader-Light.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Newsreader";
+    font-weight: 300;
+    font-style: italic;
+    src: url("/src/fonts/Newsreader-LightItalic.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Newsreader";
+    font-weight: 400;
+    src: url("/src/fonts/Newsreader-Regular.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Newsreader";
+    font-weight: 400;
+    font-style: italic;
+    src: url("/src/fonts/Newsreader-RegularItalic.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Newsreader";
+    font-weight: 500;
+    src: url("/src/fonts/Newsreader-Medium.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Newsreader";
+    font-weight: 500;
+    font-style: italic;
+    src: url("/src/fonts/Newsreader-MediumItalic.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Newsreader";
+    font-weight: 600;
+    src: url("/src/fonts/Newsreader-SemiBold.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Newsreader";
+    font-weight: 600;
+    font-style: italic;
+    src: url("/src/fonts/Newsreader-SemiBoldItalic.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Newsreader";
+    font-weight: 700;
+    src: url("/src/fonts/Newsreader-Bold.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Newsreader";
+    font-weight: 700;
+    font-style: italic;
+    src: url("/src/fonts/Newsreader-BoldItalic.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Newsreader";
+    font-weight: 800;
+    src: url("/src/fonts/Newsreader-ExtraBold.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Newsreader";
+    font-weight: 800;
+    font-style: italic;
+    src: url("/src/fonts/Newsreader-ExtraBoldItalic.woff2") format("woff2");
   }
   h1 {
     @apply text-6xl xl:text-7xl;

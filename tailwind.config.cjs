@@ -4,7 +4,9 @@ module.exports = {
     extend: {
       fontFamily: {
         poppins: ["Poppins"],
-        manrope: ["Manrope"]
+        manrope: ["Manrope"],
+        sharetechmono: ["ShareTechMono"],
+        newsreader: ["Newsreader"]
       }
     }
   },
