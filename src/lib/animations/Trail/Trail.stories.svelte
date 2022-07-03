@@ -1,7 +1,7 @@
 <script>
   import { Meta, Template, Story } from "@storybook/addon-svelte-csf";
   import Trail from "./Trail.svelte";
-  import words from "./TrailWords.json";
+  import words from "$stores/data/TrailWords.json";
 </script>
 
 <Meta
@@ -13,7 +13,7 @@
 />
 
 <Template let:args>
-  <Trail input={args.input} />
+  <Trail items={args.input} />
 </Template>
 
 <Story
