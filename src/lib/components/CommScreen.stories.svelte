@@ -6,7 +6,9 @@
   <Meta title="Inro Animations/CommScreen" component={CommScreen} />
   
   <Template let:args>
-      <CommScreen {...args}>Oh hello.</CommScreen>
+      <CommScreen {...args}>
+
+    </CommScreen>
   </Template>
   
   <Story name="Default" parameters={{ backgrounds: { default: "light" } }} />
