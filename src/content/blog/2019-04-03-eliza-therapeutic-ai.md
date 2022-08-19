@@ -2,6 +2,9 @@
 slug: eliza-therapeutic-ai
 date: "2019-04-03"
 title: "What ELIZA can teach us about therapeutic AI"
+tags: 
+- ai
+- mental-health
 ---
 
 Chatting Robots — “chatbots” — have made their way into every industry, and now, they are making waves in healthcare. The concept of a virtual doctor seems novel — versions of the idea have [disappointed](https://www.fastcompany.com/90318752/doctors-are-using-hospital-robots-to-tell-patients-theyre-dying-sparking-an-outcry) patients and clinicians alike.

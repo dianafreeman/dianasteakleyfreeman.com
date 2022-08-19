@@ -4,12 +4,13 @@ export async function get({ params }) {
   const { category } = params;
 
   const entries = await getEntries(category);
+  const hasEntries = !!entries && Object.keys(entries).length
 
-  if (entries) {
+  if (hasEntries) {
     return {
       body: {
         title: category,
-        entries
+        entries: entries
       }
     };
   } else {

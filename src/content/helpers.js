@@ -21,7 +21,7 @@ function getContentImports(category) {
     case "blog":
       return import.meta.globEager("$content/blog/*");
     case "projects":
-      return import.meta.globEager("$content/projects/*");
+      return import.meta.globEager("$content/projects/**/*.md");
     default:
       return import.meta.globEager("$content/**/*");
   }
@@ -33,7 +33,9 @@ export async function getPageData() {
 
 export async function getEntries(category) {
   const modules = await getContentImports(category);
+  // console.log(modules)
   const modulesWithPaths = decorateWithUrlPaths(modules);
+  console.log(modulesWithPaths)
   return modulesWithPaths;
 }
 
