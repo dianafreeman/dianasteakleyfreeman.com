@@ -6,6 +6,9 @@
 <script>
   import ContentStore from "$stores/ContentStore";
   import Section from "$lib/components/Section.svelte";
+  import IntroComponent from "$lib/content/Intro.svelte";
+  import ListContent from "$lib/content/SectionContent.svelte";
+  import HeroContent from "$lib/content/SectionHero.svelte";
 
   let scrollY;
 </script>
@@ -14,25 +17,33 @@
   <title>Home</title>
 </svelte:head>
 
-<svelte:window bind:scrollY />
-
-{#each $ContentStore as row, rowIndex}
-  <div class="flex flex-row h-auto" style="width: calc({row.length} * 100vw);">
-    {#each row as section, sectionIndex}
-      <!-- {#if $LayoutStore.x === sectionIndex && $LayoutStore.y === rowIndex} -->
-      <Section
-        cell={{ x: sectionIndex, y: rowIndex }}
-        class="flex flex-col justify-evenly relative p-5 h-auto"
-        style="width: 100vw; min-height: 100vh"
-      >
-        <svelte:component
-          this={section.component}
-          {section}
-          cell={{ x: sectionIndex, y: rowIndex }}
-          index={sectionIndex}
-        />
-      </Section>
-      <!-- {/if} -->
-    {/each}
+<div class="">
+  <div class="flex flex-col justify-evenly relative p-5 h-auto">
+    <IntroComponent />
   </div>
-{/each}
+  <div
+    class="flex flex-col justify-evenly relative p-5 h-auto bg-neutral-900"
+    
+  >
+    <HeroContent
+      section={{
+        title: "Coder",
+        description: "(v.) To dance between the lines of art, science, and opinion.",
+        verb: "Browse",
+        categoryName: "Projects"
+      }}
+    />
+  </div>
+  <div
+    class="flex flex-col justify-evenly relative p-5 h-auto"
+  >
+    <HeroContent
+      section={{
+        title: "Coder",
+        description: "(v.) To dance between the lines of art, science, and opinion.",
+        verb: "Browse",
+        categoryName: "Projects"
+      }}
+    />
+  </div>
+</div>
