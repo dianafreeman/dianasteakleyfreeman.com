@@ -33,15 +33,12 @@ export async function getPageData() {
 
 export async function getEntries(category) {
   const modules = await getContentImports(category);
-  // console.log(modules)
   const modulesWithPaths = decorateWithUrlPaths(modules);
-  console.log(modulesWithPaths);
   return modulesWithPaths;
 }
 
 export async function getEntry(targetPath) {
   const entries = await getEntries();
-
   const entry = Object.entries(entries).filter(([filePath, entry]) =>
     entry.metadata.path.match(targetPath)
   )[0];

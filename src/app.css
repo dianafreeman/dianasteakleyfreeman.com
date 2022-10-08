@@ -229,7 +229,8 @@
   body {
     font-size: 16px;
     @apply text-white;
-    @apply font-poppins;
+    /* @apply font-manrope; */
+    font-family: "Montserrat", sans-serif;
   }
 }
 

@@ -15,12 +15,12 @@
 </script>
 
 <!-- This example requires Tailwind CSS v2.0+ -->
-<nav class="bg-neutral-800 relative">
+<nav class="absolute w-full z-50">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-end h-16">
-      <div class="flex flex-1 items-center">
+      <!-- <div class="flex flex-1 items-center">
         <NavBrand />
-      </div>
+      </div> -->
 
       <div class="hidden sm:block">
         <div class="flex space-x-4">
