@@ -217,7 +217,7 @@
     font-style: italic;
     src: url("/src/fonts/Newsreader-ExtraBoldItalic.woff2") format("woff2");
   }
-  h1 {
+  /* h1 {
     @apply text-6xl xl:text-7xl;
   }
   h2 {
@@ -225,7 +225,7 @@
   }
   h3 {
     @apply text-4xl xl:text-5xl;
-  }
+  } */
   body {
     font-size: 16px;
     @apply text-white;

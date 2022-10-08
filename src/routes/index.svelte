@@ -4,11 +4,7 @@
 </script>
 
 <script>
-  import ContentStore from "$stores/ContentStore";
-  import Section from "$lib/components/Section.svelte";
-  import IntroComponent from "$lib/content/Intro.svelte";
-  import ListContent from "$lib/content/SectionContent.svelte";
-  import HeroContent from "$lib/content/SectionHero.svelte";
+  import Card from "$lib/components/Card.svelte";
 
   let scrollY;
 </script>
@@ -17,33 +13,25 @@
   <title>Home</title>
 </svelte:head>
 
-<div class="">
-  <div class="flex flex-col justify-evenly relative p-5 h-auto">
-    <IntroComponent />
+<div class="flex flex-col">
+  <div class="flex flex-row relative p-5 text-center align-center m-16 mb-4">
+    <h1 class="m-auto text-5xl font-bold">Hi. I'm Diana.</h1>
   </div>
-  <div
-    class="flex flex-col justify-evenly relative p-5 h-auto bg-neutral-900"
-    
-  >
-    <HeroContent
-      section={{
-        title: "Coder",
-        description: "(v.) To dance between the lines of art, science, and opinion.",
-        verb: "Browse",
-        categoryName: "Projects"
-      }}
-    />
-  </div>
-  <div
-    class="flex flex-col justify-evenly relative p-5 h-auto"
-  >
-    <HeroContent
-      section={{
-        title: "Coder",
-        description: "(v.) To dance between the lines of art, science, and opinion.",
-        verb: "Browse",
-        categoryName: "Projects"
-      }}
-    />
+  <div class="flex flex-row relative p-5 text-center align-center w-1/2 m-auto ">
+    <h3 class="text-gray-400">
+      Humane Technologist, Software Engineer, Digital Policy Buff, User Rights Enthusiast.
+      Former Scientist, Forever Experimenting.
+    </h3>
   </div>
 </div>
+<div class="flex flex-row justify-center py-32 mx-8">
+  <button class="rounded-full p-3 px-6 mx-2 bg-neutral-800">blog</button>
+  <button class="rounded-full p-3 px-6 mx-2 bg-neutral-800">projects</button>
+  <button class="rounded-full p-3 px-6 mx-2 bg-neutral-800">science</button>
+</div>
+<div class="flex flex-row justify-center py-32 mx-8">
+
+  <Card />
+</div>
+
+

@@ -17,8 +17,8 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
 <nav class="bg-neutral-800 relative">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-16">
-      <div class="flex items-center">
+    <div class="flex items-center justify-end h-16">
+      <div class="flex flex-1 items-center">
         <NavBrand />
       </div>
 
@@ -32,10 +32,6 @@
         </div>
       </div>
       <div class="sm:ml-6 sm:block flex">
-        <div class="flex items-center px-3">
-          <AccessNav />
-        </div>
-
         <div class="-mr-2 flex sm:hidden">
           <!-- Mobile menu button -->
           <button
@@ -82,6 +78,9 @@
               </svg>
             {/if}
           </button>
+        </div>
+        <div class="flex items-center px-3">
+          <AccessNav />
         </div>
       </div>
     </div>

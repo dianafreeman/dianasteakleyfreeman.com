@@ -1,6 +1,6 @@
 <script>
   import { Meta, Template, Story } from "@storybook/addon-svelte-csf";
-  import CodeScreen from "./CodeScreen.svelte";
+  import CodeScreen from "../src/lib/components/CodeScreen.svelte";
   import Typewriter from "svelte-typewriter";
 </script>
 

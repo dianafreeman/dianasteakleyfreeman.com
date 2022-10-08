@@ -3,9 +3,9 @@
   import NavBar from "$lib/components/Nav/NavBar.svelte";
 </script>
 
-<header class="w-screen bg-black">
+<header class="w-screen">
   <NavBar />
 </header>
-<main class="relative bg-black">
+<main class="relative bg-neutral-900">
   <slot />
 </main>
