@@ -7,7 +7,9 @@ import adapter from "@sveltejs/adapter-static";
 const config = {
   extensions: [".svelte", ...mdsvexConfig.extensions],
   kit: {
-    adapter: adapter(),
+    adapter: adapter({
+      fallback: 'index.html'
+    }),
     vite: {
       resolve: {
         alias: {
