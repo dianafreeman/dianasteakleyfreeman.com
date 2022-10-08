@@ -35,7 +35,7 @@ export async function getEntries(category) {
   const modules = await getContentImports(category);
   // console.log(modules)
   const modulesWithPaths = decorateWithUrlPaths(modules);
-  console.log(modulesWithPaths)
+  console.log(modulesWithPaths);
   return modulesWithPaths;
 }
 

@@ -21,8 +21,8 @@ module.exports = {
 
     return mergeConfig(config, {
       resolve: {
-        alias :{
-          ...alias, 
+        alias: {
+          ...alias,
           $lib: path.resolve("./src/lib")
         }
       }

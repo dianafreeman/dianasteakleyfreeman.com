@@ -2,7 +2,6 @@
   export let entry;
 
   const { metadata, default: module } = entry;
-  
 </script>
 
 <div id="listing" class="my-16">

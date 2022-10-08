@@ -2,7 +2,7 @@
   import ArrowSmRight from "$lib/icons/arrowSmRight.svelte";
   import ArrowSmLeft from "$lib/icons/arrowSmLeft.svelte";
   import Refresh from "$lib/icons/refresh.svelte";
-import Typewriter from "svelte-typewriter";
+  import Typewriter from "svelte-typewriter";
 </script>
 
 <div class="bg-gray-300 shadow h-full w-full rounded-md p-2 ">
@@ -27,9 +27,9 @@ import Typewriter from "svelte-typewriter";
       <div style="min-height: 300px;" class="flex flex-col justify-around">
         <p class="text-5xl xl:text-6xl font-newsreader">Communicator</p>
         <Typewriter interval={100} cursor={false}>
-        The conversation about user privacy is not the same as the conversation about informed user consent.
-        This will be the fundamental reckoning of our time.
-      </Typewriter>
+          The conversation about user privacy is not the same as the conversation about informed
+          user consent. This will be the fundamental reckoning of our time.
+        </Typewriter>
       </div>
       <!-- <slot /> -->
     </div>

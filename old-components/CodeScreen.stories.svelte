@@ -7,9 +7,7 @@
 <Meta title="Inro Animations/CodeScreen" component={CodeScreen} />
 
 <Template let:args>
-  <CodeScreen {...args}>
-  
-  </CodeScreen>
+  <CodeScreen {...args} />
 </Template>
 
 <Story name="Default" parameters={{ backgrounds: { default: "light" } }} />

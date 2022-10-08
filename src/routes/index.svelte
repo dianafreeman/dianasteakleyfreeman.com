@@ -19,8 +19,8 @@
   </div>
   <div class="flex flex-row relative p-5 text-center align-center w-1/2 m-auto ">
     <h3 class="text-gray-400">
-      Humane Technologist, Software Engineer, Digital Policy Buff, User Rights Enthusiast.
-      Former Scientist, Forever Experimenting.
+      Humane Technologist, Software Engineer, Digital Policy Buff, User Rights Enthusiast. Former
+      Scientist, Forever Experimenting.
     </h3>
   </div>
 </div>
@@ -30,8 +30,5 @@
   <button class="rounded-full p-3 px-6 mx-2 bg-neutral-800">science</button>
 </div>
 <div class="flex flex-row justify-center py-32 mx-8">
-
   <Card />
 </div>
-
-

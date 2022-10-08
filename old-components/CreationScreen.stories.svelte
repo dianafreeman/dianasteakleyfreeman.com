@@ -7,9 +7,7 @@
 <Meta title="Inro Animations/CreationScreen" component={CreationScreen} />
 
 <Template let:args>
-  <CreationScreen {...args}>
-   
-  </CreationScreen>
+  <CreationScreen {...args} />
 </Template>
 
 <Story name="Default" parameters={{ backgrounds: { default: "light" } }} />

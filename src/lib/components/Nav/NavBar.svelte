@@ -86,32 +86,32 @@
     </div>
 
     {#if $mobileMenuOpen}
-    <!-- Mobile menu, show/hide based on menu state. -->
-    <div class="sm:hidden " id="mobile-menu">
-      <div class="px-2 pt-2 pb-3 space-y-1 left-0 absolute w-full bg-neutral-800 z-50">
-        <!-- Current: "bg-neutral-900 text-white", Default: "text-neutral-300 hover:bg-neutral-700 hover:text-white" -->
-        <a
-          href="/about"
-          class="bg-neutral-900 text-white block px-3 py-2 rounded-md text-base font-medium"
-          >About</a
-        >
-        <a
-          href="/blog"
-          class="text-neutral-300 hover:bg-neutral-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-          >Blog</a
-        >
-        <a
-          href="/projects"
-          class="text-neutral-300 hover:bg-neutral-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-          >Projects</a
-        >
-        <a
-          href="/contact"
-          class="text-neutral-300 hover:bg-neutral-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-          >Contact</a
-        >
+      <!-- Mobile menu, show/hide based on menu state. -->
+      <div class="sm:hidden " id="mobile-menu">
+        <div class="px-2 pt-2 pb-3 space-y-1 left-0 absolute w-full bg-neutral-800 z-50">
+          <!-- Current: "bg-neutral-900 text-white", Default: "text-neutral-300 hover:bg-neutral-700 hover:text-white" -->
+          <a
+            href="/about"
+            class="bg-neutral-900 text-white block px-3 py-2 rounded-md text-base font-medium"
+            >About</a
+          >
+          <a
+            href="/blog"
+            class="text-neutral-300 hover:bg-neutral-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+            >Blog</a
+          >
+          <a
+            href="/projects"
+            class="text-neutral-300 hover:bg-neutral-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+            >Projects</a
+          >
+          <a
+            href="/contact"
+            class="text-neutral-300 hover:bg-neutral-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+            >Contact</a
+          >
+        </div>
       </div>
-    </div>
     {/if}
   </div>
 </nav>

@@ -7,5 +7,3 @@
 </script>
 
 <svelte:window bind:scrollY={yPos} />
-
-
