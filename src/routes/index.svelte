@@ -25,9 +25,9 @@
   </div>
 </div>
 <div class="flex flex-row justify-center py-32 mx-8">
-  <button class="rounded-full p-3 px-6 mx-2 bg-neutral-800">blog</button>
-  <button class="rounded-full p-3 px-6 mx-2 bg-neutral-800">projects</button>
-  <button class="rounded-full p-3 px-6 mx-2 bg-neutral-800">science</button>
+  <a class="rounded-full p-3 px-6 mx-2 bg-neutral-800" href="/blog">blog</a>
+  <a class="rounded-full p-3 px-6 mx-2 bg-neutral-800" href="/projects">projects</a>
+  <a class="rounded-full p-3 px-6 mx-2 bg-neutral-800" href="/science">science</a>
 </div>
 <div class="flex flex-row justify-center py-32 mx-8">
   <Card />

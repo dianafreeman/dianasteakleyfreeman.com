@@ -1,6 +1,8 @@
 <script>
   import "../app.css";
   import NavBar from "$lib/components/Nav/NavBar.svelte";
+
+  export const prerender = true
 </script>
 
 <header class="w-screen">

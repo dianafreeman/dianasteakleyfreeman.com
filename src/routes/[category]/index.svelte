@@ -1,6 +1,5 @@
 <script>
   import BlogItem from "$lib/components/BlogItem.svelte";
-  import Section from "$lib/components/Section.svelte";
   export let title;
   export let entries;
 </script>
