@@ -11,7 +11,8 @@ export async function get({ params }) {
     return {
       body: {
         title: category,
-        entries: entries
+        entries: entries,
+        category
       }
     };
   } else {

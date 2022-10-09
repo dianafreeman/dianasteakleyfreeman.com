@@ -27,14 +27,21 @@
 </script>
 
 <script>
+  import Breadcrumbs from "$lib/components/Breadcrumbs.svelte";
+
   export let category;
   export let slug;
   export let image;
   export let entry;
 </script>
 
+<div id="spacer" style:height="60px" />
+<div class="py-5 px-3 "><Breadcrumbs {category} {slug} /></div>
 <div class="mx-3 flex flex-col min-h-screen justify-center">
-  <div class="flex flex-col md:flex-row md:justify-center md:align-middle pt-32">
+  <!-- <div class="flex flex-row relative text-white">
+    <p>share icons</p>
+  </div> -->
+  <div class="flex flex-col md:flex-row md:justify-center md:align-middle pt-16">
     <h1 class="text-4xl md:text-5xl lg:text-6xl text-center font-bold md:text-left mb-12">
       {entry.metadata.title}
     </h1>
