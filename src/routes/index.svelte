@@ -31,14 +31,29 @@
       Experimenting.
     </p>
 
-    <hr class="my-10"/>
+    <hr class="my-10" />
 
     <div class="text-md flex justify-evenly w-full">
-    <a href="/blog" class="outline-0 underline underline-offset-4 text-neutral-300 hover:text-white hover:bg-black focus:text-white focus:bg-black active:text-white active:bg-black focus:outline-white py-3 px-6">writing</a>
-    <a href="/blog" class="outline-0 underline underline-offset-4 text-neutral-300 hover:text-white hover:bg-black focus:text-white focus:bg-black active:text-white active:bg-black focus:outline-white py-3 px-6">code</a>
-    <a href="/blog" class="outline-0 underline underline-offset-4 text-neutral-300 hover:text-white hover:bg-black focus:text-white focus:bg-black active:text-white active:bg-black focus:outline-white py-3 px-6">art</a>
-    <a href="/blog" class="outline-0 underline underline-offset-4 text-neutral-300 hover:text-white hover:bg-black focus:text-white focus:bg-black active:text-white active:bg-black focus:outline-white py-3 px-6">science</a>
-</div>
-
+      <a
+        href="/blog"
+        class="outline-0 underline underline-offset-4 text-neutral-300 hover:text-white hover:bg-black focus:text-white focus:bg-black active:text-white active:bg-black focus:outline-white py-3 px-6"
+        >writing</a
+      >
+      <a
+        href="/blog"
+        class="outline-0 underline underline-offset-4 text-neutral-300 hover:text-white hover:bg-black focus:text-white focus:bg-black active:text-white active:bg-black focus:outline-white py-3 px-6"
+        >code</a
+      >
+      <a
+        href="/blog"
+        class="outline-0 underline underline-offset-4 text-neutral-300 hover:text-white hover:bg-black focus:text-white focus:bg-black active:text-white active:bg-black focus:outline-white py-3 px-6"
+        >art</a
+      >
+      <a
+        href="/blog"
+        class="outline-0 underline underline-offset-4 text-neutral-300 hover:text-white hover:bg-black focus:text-white focus:bg-black active:text-white active:bg-black focus:outline-white py-3 px-6"
+        >science</a
+      >
+    </div>
   </div>
 </div>

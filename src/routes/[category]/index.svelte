@@ -22,10 +22,10 @@
     <hr class="my-10" />
 
     <ul>
-      {#each entries as [path,entry]}
-      <li class="border-l-2 pl-4 py-3 my-2">
-        <a href={path} class="text-md font-bold">{entry.metadata.title}</a>
-      </li>
+      {#each entries as [path, entry]}
+        <li class="border-l-2 pl-4 py-3 my-2">
+          <a href={path} class="text-md font-bold">{entry.metadata.title}</a>
+        </li>
       {/each}
     </ul>
   </div>

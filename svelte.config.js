@@ -7,11 +7,11 @@ import adapter from "@sveltejs/adapter-static";
 const config = {
   compilerOptions: {
     enableSourcemap: true
- },
+  },
   extensions: [".svelte", ...mdsvexConfig.extensions],
   kit: {
     adapter: adapter({
-      fallback: 'index.html'
+      fallback: "index.html"
     }),
     vite: {
       resolve: {

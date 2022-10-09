@@ -7,6 +7,7 @@ tags:
   - humane techology
   - mental health
 ---
+
 _Note: this piece was originally published on the PsyberGuide Medium. You can read it_ [_here_](https://medium.com/psyberguide/digital-self-care-in-the-era-of-insertcrisishere-a49d661b9d11)_._
 
 We have become accustomed to reading the latest headlines from a newsfeed.

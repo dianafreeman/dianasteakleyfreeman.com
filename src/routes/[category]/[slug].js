@@ -6,14 +6,14 @@ export async function get({ params }) {
   const data = await getEntry(category, slug);
 
   if (data) {
-    const [, entry ] = data
-    const image = `/images/${entry.metadata.image}`
+    const [, entry] = data;
+    const image = `/images/${entry.metadata.image}`;
     return {
       body: {
         entry,
         category,
         slug,
-        image,
+        image
       }
     };
   } else {

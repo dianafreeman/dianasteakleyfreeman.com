@@ -16,7 +16,7 @@ function decorateWithUrlPaths(entries) {
 }
 
 function getContentImports(category) {
-  const validDirectories = ['blog', 'projects', 'resources', 'gallery']
+  const validDirectories = ["blog", "projects", "resources", "gallery"];
   if (!validDirectories.includes(category)) return [];
   // NOTE: `import.meta.globEager` method only accepts string literals
   switch (category) {
@@ -32,7 +32,7 @@ function getContentImports(category) {
 export async function getEntries(category) {
   const modules = await getContentImports(category);
   const modulesWithPaths = decorateWithUrlPaths(modules);
-  return Object.entries(modulesWithPaths)
+  return Object.entries(modulesWithPaths);
 }
 
 export async function getEntry(category, targetPath) {
