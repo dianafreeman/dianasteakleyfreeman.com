@@ -1,31 +1,60 @@
-<script>
-  export let category;
-  export let slug;
-  export let entry;
-  export let component;
+<script context="module">
+  import { getEntry } from "$content/helpers";
+
+  export async function load({ params }) {
+    const { category, slug } = params;
+
+    const data = await getEntry(category, slug);
+    if (data.length) {
+      const [, entry] = data;
+      const image = `/images/${entry.metadata.image}`;
+      return {
+        props: {
+          entry,
+          category,
+          slug,
+          image
+        }
+      };
+    } else {
+      return {
+        status: 404
+      };
+    }
+  }
+
   export let image;
 </script>
 
-<div class="flex flex-col min-h-screen justify-center">
-  <div class="flex flex-col lg:flex-row lg:justify-center lg:align-middle pt-32">
-    <div class="mx-3 mt-10 mb-12 relative p-2 lg:p-5 lg:m-auto align-center">
-      <h1 class="m-auto text-6xl text-center font-bold lg:text-left">{entry.metadata.title}</h1>
-    </div>
-    <div class="flex justify-center">
-      <div class="m-auto w-3/4 ">
-        <img src={image} alt="" />
-      </div>
+<script>
+  export let category;
+  export let slug;
+  export let image;
+  export let entry;
+</script>
+
+<div class="mx-3 flex flex-col min-h-screen justify-center">
+  <div class="flex flex-col md:flex-row md:justify-center md:align-middle pt-32">
+    <h1 class="text-4xl md:text-5xl lg:text-6xl text-center font-bold md:text-left mb-12">
+      {entry.metadata.title}
+    </h1>
+    <img src={image} alt="caption" class="m-auto w-3/4 mb-12" />
+
+    <div class="w-5/6 mx-auto lg:absolute lg:bottom-14 lg:flex text-left">
+      <p class="mr-3 text-md">
+        Published on <span class="font-bold">{new Date(entry.metadata.date).toDateString()}</span>
+      </p>
+      <p class="mr-3 text-md">
+        Tags:
+        {#each entry.metadata.tags.toString().split(",") as tag}
+          <span class="font-bold underline underline-offset-4">{tag}</span>{`, `}
+        {/each}
+      </p>
     </div>
   </div>
-  <div class="relative lg:p-5 mt-5 font-thin text-center lg:text-left">
-    <div class="lg:absolute lg:bottom-14 lg:flex">
-      <p class="mr-3 text-xl ">Published on {new Date(entry.metadata.date).toLocaleDateString()}</p>
-      <p class="mr-3 text-xl ">Tags: {entry.metadata.tags}</p>
-    </div>
-  </div>
-  <hr class="mx-10 my-5" />
-  <div class="markdown m-10 md:w-5/6 lg:w-3/4 mx-auto">
-    <svelte:component this={component} />
+  <hr class="w-5/6 lg:w-3/4 mx-auto my-5" />
+  <div class="markdown w-5/6 lg:w-3/4 mx-auto">
+    <svelte:component this={entry.default} />
   </div>
 </div>
 

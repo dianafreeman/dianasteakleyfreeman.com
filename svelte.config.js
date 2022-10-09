@@ -5,6 +5,9 @@ import adapter from "@sveltejs/adapter-static";
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
+  compilerOptions: {
+    enableSourcemap: true
+ },
   extensions: [".svelte", ...mdsvexConfig.extensions],
   kit: {
     adapter: adapter({

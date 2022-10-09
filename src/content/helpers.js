@@ -1,6 +1,3 @@
-import fs from 'fs'
-import path from 'path'
-
 function filePathToUrlPath(filePath) {
   let validUrlPath = filePath.substring(1); // trim period from relative path
   let regex = new RegExp(/\.(md|png|jpg)/, "g");
@@ -19,7 +16,7 @@ function decorateWithUrlPaths(entries) {
 }
 
 function getContentImports(category) {
-  const validDirectories = fs.readdirSync('./src/content', { withFileTypes: true}).filter(f => f.isDirectory() === true).map( d => d.name)
+  const validDirectories = ['blog', 'projects', 'resources', 'gallery']
   if (!validDirectories.includes(category)) return [];
   // NOTE: `import.meta.globEager` method only accepts string literals
   switch (category) {
@@ -30,10 +27,6 @@ function getContentImports(category) {
     default:
       return import.meta.globEager("$content/**/*");
   }
-}
-
-export async function getPageData() {
-  return import.meta.globEager("$content/pageData/*");
 }
 
 export async function getEntries(category) {

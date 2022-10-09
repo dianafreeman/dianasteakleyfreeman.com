@@ -14,18 +14,17 @@
   </div>
 
   <div class="p-2 lg:p-5 my-5">
-    <p class="mr-3 text-xl font-thin text-center">
+    <!-- <p class="mr-3 text-xl font-thin text-center">
       Software Engineer, Digital Policy Buff, User Rights Enthusiast, Former Scientist, Forever
       Experimenting.
-    </p>
+    </p> -->
 
     <hr class="my-10" />
 
     <ul>
       {#each entries as [path,entry]}
-      <li class="">
-        <a href={path} >{entry.metadata.title}</a>
-
+      <li class="border-l-2 pl-4 py-3 my-2">
+        <a href={path} class="text-md font-bold">{entry.metadata.title}</a>
       </li>
       {/each}
     </ul>

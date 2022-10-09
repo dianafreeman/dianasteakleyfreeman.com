@@ -1,26 +1,23 @@
 <script>
-  import { fade, blur, fly, slide, scale } from "svelte/transition";
   import NavigationStore from "$stores/NavigationStore";
   import NavBrand from "./NavBrand.svelte";
   import NavItem from "./NavItem.svelte";
-  import NavToggle from "./NavToggle.svelte";
   import AccessNav from "./AccessNav.svelte";
   import { writable } from "svelte/store";
 
-  function handleClick() {
-    NavigationStore.toggleNav();
-  }
-
+  let scrollY;
   const mobileMenuOpen = writable(false);
+
 </script>
 
+<svelte:window bind:scrollY={scrollY} />
 <!-- This example requires Tailwind CSS v2.0+ -->
-<nav class="absolute w-full z-50">
+<nav class="absolute w-full z-50 {scrollY > 90 ? "semi-transparent": ""}">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-end h-16">
-      <!-- <div class="flex flex-1 items-center">
+       <div class="flex flex-1 items-center">
         <NavBrand />
-      </div> -->
+      </div> 
 
       <div class="hidden sm:block">
         <div class="flex space-x-4">
@@ -115,3 +112,10 @@
     {/if}
   </div>
 </nav>
+<style>
+  .semi-transparent { 
+    background-color: rgba(23, 23, 23, 0.89 );
+    transition-property: background-color;
+    transition-timing-function: ease-in;
+  }
+</style>

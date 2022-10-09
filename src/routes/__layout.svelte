@@ -8,9 +8,11 @@
 </script>
 
 <svelte:window bind:scrollY={scrollY} />
-<header class="w-screen relative z-99"  style:top={`${scrollY}px `}>
+
+<header class="w-screen relative z-99"  style:top={`${scrollY}px`}>
   <NavBar />
 </header>
 <main class="relative">
   <slot />
 </main>
+
