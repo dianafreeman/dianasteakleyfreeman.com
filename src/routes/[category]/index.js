@@ -6,6 +6,7 @@ export async function get({ params }) {
   const entries = await getEntries(category);
   const hasEntries = !!entries && Object.keys(entries).length;
 
+  // console.log(entries)
   if (hasEntries) {
     return {
       body: {

@@ -5,7 +5,6 @@
   let scrollY
   export const prerender = true
 
-  $: console.log(scrollY)
 </script>
 
 <svelte:window bind:scrollY={scrollY} />

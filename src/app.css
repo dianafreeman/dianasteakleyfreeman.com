@@ -217,20 +217,41 @@
     font-style: italic;
     src: url("/src/fonts/Newsreader-ExtraBoldItalic.woff2") format("woff2");
   }
-  /* h1 {
-    @apply text-6xl xl:text-7xl;
-  }
-  h2 {
-    @apply text-5xl xl:text-6xl;
-  }
-  h3 {
-    @apply text-4xl xl:text-5xl;
-  } */
+
   body {
     font-size: 16px;
     @apply text-white;
     /* @apply font-manrope; */
     font-family: "Montserrat", sans-serif;
+  }
+
+  .markdown p {
+    margin-bottom: 1em;
+  }
+
+  .markdown h1 {
+    @apply text-3xl;
+    @apply font-bold;
+  }
+  
+  .markdown h2 {
+    @apply text-2xl;
+    @apply font-bold;
+  }
+  .markdown h4 {
+    @apply text-xl;
+  }
+  
+  .markdown ul{ 
+    list-style-type: disc;
+  }
+  .markdown ol { 
+    list-style-type: decimal;
+    margin-left: 2em;
+  }
+
+  .markdown li {
+    margin-bottom: 1em;
   }
 }
 
@@ -245,8 +266,4 @@
   --background-without-opacity: rgba(255, 255, 255, 0.7);
   --column-width: 42rem;
   --column-margin-top: 4rem;
-}
-
-.text-transparent-60 {
-  color: rgba(255, 255, 255, 0.6);
 }

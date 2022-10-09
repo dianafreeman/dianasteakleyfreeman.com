@@ -1,3 +1,6 @@
+import fs from 'fs'
+import path from 'path'
+
 function filePathToUrlPath(filePath) {
   let validUrlPath = filePath.substring(1); // trim period from relative path
   let regex = new RegExp(/\.(md|png|jpg)/, "g");
@@ -16,6 +19,8 @@ function decorateWithUrlPaths(entries) {
 }
 
 function getContentImports(category) {
+  const validDirectories = fs.readdirSync('./src/content', { withFileTypes: true}).filter(f => f.isDirectory() === true).map( d => d.name)
+  if (!validDirectories.includes(category)) return [];
   // NOTE: `import.meta.globEager` method only accepts string literals
   switch (category) {
     case "blog":
@@ -34,14 +39,11 @@ export async function getPageData() {
 export async function getEntries(category) {
   const modules = await getContentImports(category);
   const modulesWithPaths = decorateWithUrlPaths(modules);
-  return modulesWithPaths;
+  return Object.entries(modulesWithPaths)
 }
 
-export async function getEntry(targetPath) {
-  const entries = await getEntries();
-  const entry = Object.entries(entries).filter(([filePath, entry]) =>
-    entry.metadata.path.match(targetPath)
-  )[0];
-
+export async function getEntry(category, targetPath) {
+  const entries = await getEntries(category);
+  const entry = entries.filter(([filePath]) => filePath.includes(targetPath))[0];
   return entry;
 }
