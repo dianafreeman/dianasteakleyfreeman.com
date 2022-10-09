@@ -9,23 +9,25 @@ function decorateWithUrlPaths(entries) {
   let newEntries = Object.entries(entries).map(([markdownPath, data]) => {
     // remove period from relative path
     let urlPath = filePathToUrlPath(markdownPath);
-
     return [markdownPath, { ...data, metadata: { ...data.metadata, path: urlPath } }];
   });
   return Object.fromEntries(newEntries);
 }
 
 function getContentImports(category) {
-  const validDirectories = ["blog", "projects", "resources", "gallery"];
+  const validDirectories = ["writing", "code", "resources", "gallery"];
   if (!validDirectories.includes(category)) return [];
+  
   // NOTE: `import.meta.globEager` method only accepts string literals
   switch (category) {
-    case "blog":
-      return import.meta.globEager("$content/blog/*");
-    case "projects":
-      return import.meta.globEager("$content/projects/**/*.md");
-    default:
-      return import.meta.globEager("$content/**/*");
+    case "writing":
+      return import.meta.globEager("$content/writing/*");
+    case "code":
+      return import.meta.globEager("$content/code/**/*.md");
+    case "gallery":
+      return import.meta.globEager("$content/gallery/**/*.md");
+    case "resources":
+      return import.meta.globEager("$content/resources/**/*.md");
   }
 }
 

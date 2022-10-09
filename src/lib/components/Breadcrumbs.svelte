@@ -5,7 +5,7 @@
   export let slug;
 </script>
 
-<nav class="flex " aria-label="Breadcrumb" >
+<nav class="flex " aria-label="Breadcrumb">
   <ol class="flex items-center space-x-4">
     <li>
       <div>
@@ -32,19 +32,24 @@
     <li>
       <div class="flex items-center">
         <Slash />
-        <a href="/{category}" class="ml-4 text-sm font-thin text-gray-300 underline underline-offset-4 hover:text-white">{category}</a>
-      </div>
-    </li>
-
-    <li>
-      <div class="flex items-center">
-        <Slash />
         <a
-          href="/{category}/{slug}"
+          href="/{category}"
           class="ml-4 text-sm font-thin text-gray-300 underline underline-offset-4 hover:text-white"
-          aria-current="page">{slug}</a
+          >{category}</a
         >
       </div>
     </li>
+    {#if slug}
+      <li>
+        <div class="flex items-center">
+          <Slash />
+          <a
+            href="/{category}/{slug}"
+            class="ml-4 text-sm font-thin text-gray-300 underline underline-offset-4 hover:text-white"
+            aria-current="page">{slug}</a
+          >
+        </div>
+      </li>
+    {/if}
   </ol>
 </nav>
