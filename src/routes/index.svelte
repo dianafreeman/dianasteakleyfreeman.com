@@ -1,4 +1,5 @@
 <script context="module">
+  import Button from "$lib/components/Button.svelte";
   import layoutStore from "$stores/LayoutStore";
   export const prerender = true;
 </script>
@@ -29,11 +30,7 @@
 
     <div class="text-md flex justify-evenly w-full">
       {#each layoutStore.validCategories as category}
-        <a
-          href="/{category}"
-          class="outline-0 underline underline-offset-4 text-neutral-300 hover:text-white hover:bg-black focus:text-white focus:bg-black active:text-white active:bg-black focus:outline-white py-3 px-6"
-          >{category}</a
-        >
+        <Button href="/{category}">{category}</Button>
       {/each}
     </div>
   </div>
