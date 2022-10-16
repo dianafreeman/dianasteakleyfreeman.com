@@ -20,10 +20,12 @@
   $: {
     if (active) {
       top.set(0)
-      setTimeout(() => dashoffset.set(0), 100)
+      dashoffset.set(0)
+      // setTimeout(() => dashoffset.set(0), 100)
     } else {
       dashoffset.set(-(polylineLength - defaultStateLineWidth))
-      setTimeout(() =>  top.set(topTranslate), 100)
+      top.set(topTranslate)
+      // setTimeout(() =>  top.set(topTranslate), 100)
     }
   }
 

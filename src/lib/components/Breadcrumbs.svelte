@@ -2,7 +2,8 @@
   import Slash from "./Slash.svelte";
 
   export let category;
-  export let slug;
+  export let subcategory;
+  export let active;
 </script>
 
 <nav class="flex " aria-label="Breadcrumb">
@@ -28,25 +29,39 @@
         </a>
       </div>
     </li>
+    {#if category}
 
     <li>
       <div class="flex items-center">
         <Slash />
         <a
-          href="/{category}"
+          href="/{category.name}"
           class="ml-4 text-sm font-thin text-gray-300 underline underline-offset-4 hover:text-white"
-          >{category}</a
+          >{category.name}</a
         >
       </div>
     </li>
-    {#if slug}
+    {/if}
+    {#if subcategory}
       <li>
         <div class="flex items-center">
           <Slash />
           <a
-            href="/{category}/{slug}"
+            href="/{subcategory.name}"
             class="ml-4 text-sm font-thin text-gray-300 underline underline-offset-4 hover:text-white"
-            aria-current="page">{slug}</a
+            >{subcategory.name}</a
+          >
+        </div>
+      </li>
+    {/if}
+    {#if active}
+      <li>
+        <div class="flex items-center">
+          <Slash />
+          <p
+            
+            class="ml-4 text-sm text-white"
+            aria-current="page">{active}</p
           >
         </div>
       </li>
