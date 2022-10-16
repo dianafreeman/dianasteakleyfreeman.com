@@ -32,6 +32,7 @@
 </script>
 
 <svg
+  aria-hidden="true"
   style:top={$top}
   class="absolute left-0 top-0 {clazz || ''}"
   {width}

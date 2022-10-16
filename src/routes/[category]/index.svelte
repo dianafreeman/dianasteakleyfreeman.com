@@ -2,10 +2,30 @@
   import Breadcrumbs from "$lib/components/Breadcrumbs.svelte";
   import Button from "$lib/components/Button.svelte";
   import Card from "$lib/components/Card.svelte";
+  import FilterButton from "$lib/components/FilterButton.svelte";
+  import { derived, writable } from "svelte/store";
 
   export let title;
   export let entries;
   export let category;
+
+  const { subcategories } = category;
+  const filterOptions = subcategories;
+  const activeFilters = writable(filterOptions ? filterOptions.map((f) => f.name) : []);
+
+  function toggleFilter(evt) {
+    const { term } = evt.detail;
+    if ($activeFilters.includes(term)) {
+      return activeFilters.update((curr) => curr.filter((f) => f !== term));
+    }
+    return activeFilters.update((curr) => [...curr, term]);
+  }
+
+  const filteredEntries = derived(activeFilters, ($activeFilters) =>
+    entries.filter(([path, entry]) => {
+      return $activeFilters.length ? $activeFilters.includes(entry.metadata.subcategory) : true;
+    })
+  );
 </script>
 
 <svelte:head>
@@ -19,18 +39,26 @@
     <h1 class="text-6xl text-center font-bold">{title}</h1>
   </div>
   <div class="p-2 lg:p-5 my-5">
-    <hr class="m-10" />
-    <ul class="grid sm:grid-cols-2 gap-5 md:grid-cols-3 md:max-w-[768px] m-auto">
-      {#if category.subcategories}
-        {#each category.subcategories as subcat}
-          <li class="max-w-xs m-auto">
-            <Button href="/{category.name}/{subcat.name}">
-              {subcat.name}
-            </Button>
-          </li>
+    {#if category.subcategories}
+      <p id="filter" class="font-bold">filter by subcategory:</p>
+      <ul aria-describedby="filter" role="menu" class="flex flex-col wrap mx-auto">
+        {#each filterOptions as subcat}
+          <FilterButton
+            on:click={(event) => toggleFilter(event)}
+            label={subcat.name}
+            isActive={$activeFilters.includes(subcat.name)}
+          />
         {/each}
-      {:else}
-        {#each entries as [_, entry]}
+      </ul>
+    {/if}
+    <p class="italic mt-5 text-center">
+      showing {$filteredEntries.length} entr{$filteredEntries.length === 1 ? "y" : "ies"}
+    </p>
+    <hr class="m-5" />
+    {#if entries.length}
+      <h2 class="font-bold text-3xl text-center">Results</h2>
+      <ol class="grid sm:grid-cols-2 gap-5 md:grid-cols-3 md:max-w-[768px] m-auto">
+        {#each $filteredEntries as [_, entry]}
           <li class="max-w-xs m-auto">
             <Card
               title={entry.metadata.title}
@@ -39,7 +67,9 @@
             />
           </li>
         {/each}
-      {/if}
-    </ul>
+      </ol>
+    {:else}
+      <p class="font-bold text-3xl text-center">Nothing found.</p>
+    {/if}
   </div>
 </div>

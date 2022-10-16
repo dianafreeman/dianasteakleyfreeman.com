@@ -7,7 +7,7 @@
   let scrollY;
   export const prerender = true;
 
-  const { setScrollY, setNavHeight } = LayoutStore;
+  const { setScrollY } = LayoutStore;
 
   $: if (browser && scrollY) {
     setScrollY(scrollY);
@@ -16,7 +16,7 @@
 
 <svelte:window bind:scrollY />
 
-<header class="w-screen relative z-99" style:top={`${$LayoutStore.scrollY}px`}>
+<header class="w-screen relative">
   <NavBar />
 </header>
 <main class="relative">

@@ -3,11 +3,11 @@
   import LayoutStore from "$stores/LayoutStore";
   import { onMount } from "svelte";
   import { slide } from "svelte/transition";
-  import Toggle from "../Toggle.svelte";
+  import ToggleSwitch from "../ToggleSwitch.svelte";
   import Button from "../Button.svelte";
 
   let navWrapper;
-  let expandedMenu;
+
   let focusableContent;
   let firstFocusableElement;
   let lastFocusableElement;
@@ -18,22 +18,22 @@
   const navLinkClasses =
     "text-neutral-300 focus:bg-neutral-800 focus:outline-white hover:bg-neutral-800 px-4 block py-5 text-base font-medium text-center";
   const settingItemClasses =
-    "text-neutral-300 px-4 flex justify-between items-center py-5 text-base font-medium";
+    "text-neutral-300 hover:bg-neutral-800 px-4 flex justify-between items-center py-5 text-base font-medium";
 
   const navWrapperClassesClosed = "h-fit";
   const navWrapperClassesOpen = "h-screen overflow-y-scroll";
 
   const menuOpen = writable(false);
-  const toggleMenu = () => menuOpen.update((bool) => !bool)
+  const toggleMenu = () => menuOpen.update((bool) => !bool);
   const { setNavHeight } = LayoutStore;
 
   onMount(() => {
     function onKeyDown(e) {
       let isTabPressed = e.key === "Tab" || e.keyCode === 9;
-      let isEscPressed = e.key === "Escape" || e.keyCode === 27
+      let isEscPressed = e.key === "Escape" || e.keyCode === 27;
 
-      if (isEscPressed){
-        return menuOpen.set(false)
+      if (isEscPressed) {
+        return menuOpen.set(false);
       }
       if (!isTabPressed) {
         return;
@@ -62,10 +62,8 @@
     firstFocusableElement = focusableContent[0]; // get first element to be focused inside modal
     lastFocusableElement = focusableContent[focusableContent.length - 1]; // get last element to be focused inside modal
 
-
     document.addEventListener("keydown", onKeyDown);
   });
-
 </script>
 
 <nav
@@ -81,57 +79,50 @@
       >D<span class="text-gray-400">iana</span>.</a
     >
 
-    <Button type="button" onClick={toggleMenu}>
-      {#if $menuOpen}
-        <i class="text-3xl las la-times" />
-      {:else}
-        <i class="text-3xl las la-bars" />
-      {/if}
+    <Button
+      type="button"
+      onClick={toggleMenu}
+      label="Main Menu"
+      ariaSettings={{ controls: "main-menu", expanded: $menuOpen }}
+    >
+      <span>
+        {#if $menuOpen}
+          <i class="text-3xl las la-times" aria-hidden="true" />
+        {:else}
+          <i class="text-3xl las la-bars" aria-hidden="true" />
+        {/if}
+      </span>
     </Button>
   </div>
-
   <div
-    bind:this={expandedMenu}
     id="main-menu"
     class:hidden={!$menuOpen}
     class:flex={$menuOpen}
-    class="flex-col justify-between hidden"
+    class="flex-col justify-between"
   >
-    <ul class="relative flex flex-col w-full justify-center">
-      <li>
+    <ul aria-label="Main" role="menu" class="relative flex flex-col w-full justify-center">
+      <li role="menuitem">
         <a href="/" class={navLinkClasses}>home</a>
       </li>
-
       {#each LayoutStore.validCategories as category}
-        <li>
+        <li role="menuitem">
           <a href="/{category}" class={navLinkClasses}>{category}</a>
         </li>
       {/each}
-    </ul>
 
-    <!-- <hr class="border-neutral-500 my-10" /> -->
-    <!-- ACCESS NAV -->
-    <ul class="flex flex-col">
-      <li>
-        <p href="#" class={settingItemClasses} role="menuitem" id="user-menu-item-0">
-          dyslexia mode
-          <Toggle />
-        </p>
+      <li class={settingItemClasses} role="menuitem">
+        dyslexia mode
+        <ToggleSwitch enabled={false}  on:switch={bool => console.log('dyslexia switch', bool)}/>
       </li>
-      <li>
-        <p href="#" class={settingItemClasses} role="menuitem"  id="user-menu-item-1">
-          allow google analytics
-          <Toggle />
-        </p>
-        <p
-          
-          class="text-neutral-300 hover:text-white text-right block px-3 py-5 text-base font-medium"
-          role="menuitem"
-        
-          id="user-menu-item-2"
-        >
-          Clear Settings
-        </p>
+      <li class={settingItemClasses} role="menuitem">
+        <span>allow google analytics</span>
+        <ToggleSwitch />
+      </li>
+      <li
+        class="text-neutral-300 hover:text-white text-right block px-3 py-5 text-base font-medium"
+        role="menuitem"
+      >
+        Clear Settings
       </li>
     </ul>
   </div>
