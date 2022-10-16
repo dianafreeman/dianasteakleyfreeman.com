@@ -1,6 +1,6 @@
 ---
 title: "Anti-Human Trafficking Intelligence Initiative"
-image: "ATII_logo.png"
+image: ATII_logo.png
 date: "2020-01-01"
 category:
   - graphic-design
