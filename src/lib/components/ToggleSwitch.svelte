@@ -1,35 +1,33 @@
 <script>
   import { createEventDispatcher } from "svelte";
 
-
   export let enabled = true;
 
   let clazz;
-  export {clazz as class}
+  export { clazz as class };
 
-  const buttonClasses = `text-black switch ${clazz}`
+  const buttonClasses = `text-black switch ${clazz}`;
   // function toggleEnabled() {
   //   enabled = !enabled;
   // }
 
   const dispatch = createEventDispatcher();
 
-  function handleClick(event){
-    dispatch('click', event )
-    
+  function handleClick(event) {
+    dispatch("click", event);
   }
 
-  function handleOnSwitch(en){
-    dispatch('switch', en);
+  function handleOnSwitch(en) {
+    dispatch("switch", en);
   }
-  
-  $: enabled && handleOnSwitch(enabled)
+
+  $: enabled && handleOnSwitch(enabled);
 </script>
 
-  <button on:click={handleClick} aria-pressed={enabled} class:enabled class={buttonClasses}>
-    <slot />
-    <span class="slider text-xs" />
-  </button>
+<button on:click={handleClick} aria-pressed={enabled} class:enabled class={buttonClasses}>
+  <slot />
+  <span class="slider text-xs" />
+</button>
 
 <style>
   .switch {

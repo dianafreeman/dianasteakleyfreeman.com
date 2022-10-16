@@ -112,7 +112,7 @@
 
       <li class={settingItemClasses} role="menuitem">
         dyslexia mode
-        <ToggleSwitch enabled={false}  on:switch={bool => console.log('dyslexia switch', bool)}/>
+        <ToggleSwitch enabled={false} on:switch={(bool) => console.log("dyslexia switch", bool)} />
       </li>
       <li class={settingItemClasses} role="menuitem">
         <span>allow google analytics</span>
