@@ -1,4 +1,5 @@
 import { mdsvex } from "mdsvex";
+import preprocess from "svelte-preprocess";
 import mdsvexConfig from "./mdsvex.config.js";
 import path from "path";
 import adapter from "@sveltejs/adapter-static";
@@ -24,7 +25,7 @@ const config = {
       }
     }
   },
-  preprocess: [mdsvex(mdsvexConfig)]
+  preprocess: [preprocess(), mdsvex(mdsvexConfig)]
 };
 
 export default config;
