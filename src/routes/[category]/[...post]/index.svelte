@@ -4,15 +4,15 @@
   export async function load({ params }) {
     const { category, post } = params;
 
-    const categoryEntry = getCategory(category)
-    const data = await getEntry({category}, post);
+    const categoryEntry = getCategory(category);
+    const data = await getEntry({ category }, post);
     if (data.length) {
       const [, entry] = data;
       const image = `/images/${entry.metadata.image}`;
       return {
         props: {
           entry,
-          category:categoryEntry,
+          category: categoryEntry,
           post,
           image
         }

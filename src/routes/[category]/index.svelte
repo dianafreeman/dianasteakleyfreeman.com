@@ -26,8 +26,7 @@
           <li class="max-w-xs m-auto">
             <Button href="/{category.name}/{subcat.name}">
               {subcat.name}
-              </Button
-            >
+            </Button>
           </li>
         {/each}
       {:else}

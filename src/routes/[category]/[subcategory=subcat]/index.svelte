@@ -21,7 +21,7 @@
   <div class="p-2 lg:p-5 my-5">
     <hr class="m-10" />
     <ul class="grid sm:grid-cols-2 gap-5 md:grid-cols-3 md:max-w-[768px] m-auto">
-      {#each entries as [, entry]}
+      {#each entries as [ entry]}
         <li class="max-w-xs m-auto">
           <Card
             title={entry.metadata.title}

@@ -4,8 +4,8 @@ import { getCategory } from "$content/helpers";
 export async function get({ params }) {
   const { category } = params;
 
-  const categoryEntry = getCategory(category)
-  const entries = await getEntries({category});
+  const categoryEntry = getCategory(category);
+  const entries = await getEntries({ category });
   const hasEntries = !!entries && Object.keys(entries).length;
 
   if (hasEntries) {

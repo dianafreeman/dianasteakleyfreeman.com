@@ -9,7 +9,9 @@
 
   const { setScrollY, setNavHeight } = LayoutStore;
 
-  $: if(browser && scrollY) {setScrollY(scrollY);}
+  $: if (browser && scrollY) {
+    setScrollY(scrollY);
+  }
 </script>
 
 <svelte:window bind:scrollY />
