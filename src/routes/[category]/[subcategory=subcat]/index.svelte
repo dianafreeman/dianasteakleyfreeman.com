@@ -1,7 +1,6 @@
 <script>
   import Breadcrumbs from "$lib/components/Breadcrumbs.svelte";
 
-
   export let title;
   export let entries;
   export let category;
@@ -24,7 +23,7 @@
     <ul class="grid sm:grid-cols-2 gap-5 md:grid-cols-3 md:max-w-[768px] m-auto">
       {#each entries as [path, entry]}
         <li class="max-w-xs m-auto">
-          <a href={path} class="text-md font-bold p-3">
+          <a href={entry.metadata.path} class="text-md font-bold p-3">
             <img src={`/images/${entry.metadata.image}`} alt="caption descripton" class="w-full" />
             <span class="block my-3">{entry.metadata.title}</span>
           </a>

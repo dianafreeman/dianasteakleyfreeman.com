@@ -2,7 +2,6 @@ import { getEntries } from "$content/helpers";
 
 export async function get({ params }) {
   const { category, subcategory } = params;
-// console.log('subcategory',subcategory)
   const entries = await getEntries({category, subcategory});
   const hasEntries = !!entries && Object.keys(entries).length;
 

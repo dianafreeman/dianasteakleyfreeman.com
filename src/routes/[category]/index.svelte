@@ -5,7 +5,8 @@
   export let title;
   export let entries;
   export let category;
-  // console.log(entries)
+
+
 </script>
 
 <svelte:head>
@@ -22,10 +23,11 @@
     <hr class="m-10" />
     <ul class="grid sm:grid-cols-2 gap-5 md:grid-cols-3 md:max-w-[768px] m-auto">
       {#each entries as [path, entry]}
+      
         <li class="max-w-xs m-auto">
           <a href={path} class="text-md font-bold p-3">
-            <img src={`/images/${entry.metadata.image}`} alt="caption descripton" class="w-full" />
-            <span class="block my-3">{entry.metadata.title}</span>
+            <img async src={entry.metadata.image ? `/images/${entry.metadata.image}` : "https://picsum.photos/200/300?grayscale"} alt="caption descripton" class="w-full" />
+            <span class="block my-3">{entry.metadata.title || path.split("/")[path.split("/").length - 1]}<span>
           </a>
         </li>
       {/each}
