@@ -218,7 +218,9 @@
     src: url("/src/fonts/Newsreader-ExtraBoldItalic.woff2") format("woff2");
   }
 
-  html, #root, #docs-root {
+  html,
+  #root,
+  #docs-root {
     box-sizing: border-box;
   }
   body {

@@ -1,7 +1,7 @@
 import "../src/app.css";
 
 export const parameters = {
-  backgrounds: { default: "dark" },
+  backgrounds: { default: "dark", values: [{ name: "dark", value: "#171717" }] },
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {
     matchers: {
