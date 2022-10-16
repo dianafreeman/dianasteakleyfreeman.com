@@ -30,17 +30,16 @@
       </div>
     </li>
     {#if category}
-
-    <li>
-      <div class="flex items-center">
-        <Slash />
-        <a
-          href="/{category.name}"
-          class="ml-4 text-sm font-thin text-gray-300 underline underline-offset-4 hover:text-white"
-          >{category.name}</a
-        >
-      </div>
-    </li>
+      <li>
+        <div class="flex items-center">
+          <Slash />
+          <a
+            href="/{category.name}"
+            class="ml-4 text-sm font-thin text-gray-300 underline underline-offset-4 hover:text-white"
+            >{category.name}</a
+          >
+        </div>
+      </li>
     {/if}
     {#if subcategory}
       <li>
@@ -58,11 +57,7 @@
       <li>
         <div class="flex items-center">
           <Slash />
-          <p
-            
-            class="ml-4 text-sm text-white"
-            aria-current="page">{active}</p
-          >
+          <p class="ml-4 text-sm text-white" aria-current="page">{active}</p>
         </div>
       </li>
     {/if}

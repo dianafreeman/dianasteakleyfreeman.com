@@ -6,11 +6,12 @@
 
   export let width;
   export let height;
+  export let strokeColor = "white";
   export let defaultStateLineWidth;
   export let topTranslate = -10;
   export let active = false;
 
-  const polylineLength = width + height;
+  const polylineLength = width;
 
   const dasharray = spring(active ? -polylineLength : polylineLength);
   const dashoffset = spring(
@@ -32,25 +33,16 @@
 
 <svg
   style:top={$top}
-  class="absolute left-0 {clazz || ''}"
+  class="absolute left-0 top-0 {clazz || ''}"
   {width}
-  {height}
   xmlns="http://www.w3.org/2000/svg"
 >
   <polyline
     stroke-dashoffset={$dashoffset}
     stroke-dasharray={$dasharray}
-    stroke="white"
+    stroke={strokeColor}
     fill="none"
-    stroke-width={3}
-    points="{width / 2},0 0,0 0,{height} {width / 2},{height}"
-  />
-  <polyline
-    stroke-dashoffset={$dashoffset}
-    stroke-dasharray={$dasharray}
-    stroke="white"
-    fill="none"
-    stroke-width={3}
-    points="{width / 2},0 {width},0 {width},{height} {width / 2},{height}"
+    stroke-width={1}
+    points="0,{height} {width},{height}"
   />
 </svg>
