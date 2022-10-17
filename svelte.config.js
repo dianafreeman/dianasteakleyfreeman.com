@@ -2,7 +2,7 @@ import { mdsvex } from "mdsvex";
 import preprocess from "svelte-preprocess";
 import mdsvexConfig from "./mdsvex.config.js";
 import path from "path";
-import adapter from "@sveltejs/adapter-auto";
+import adapter from "@sveltejs/adapter-netlify";
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -11,7 +11,7 @@ const config = {
   },
   extensions: [".svelte", ...mdsvexConfig.extensions],
   kit: {
-    adapter: adapter(),
+    adapter: adapter({ }),
     vite: {
       resolve: {
         alias: {

@@ -5,7 +5,7 @@
   import LayoutStore from "$stores/LayoutStore";
 
   let scrollY;
-  export const prerender = true;
+  // export const prerender = true;
 
   const { setScrollY } = LayoutStore;
 

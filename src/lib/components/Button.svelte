@@ -49,7 +49,7 @@
   {...type === "a" ? linkProps : buttonProps}
 >
   <slot />
-  <div class="-z-50">
+  <!-- <div class="-z-50">
     {#if wrapper?.clientWidth}
       {#if underline}
         <SvgUnderline
@@ -69,7 +69,7 @@
         />
       {/if}
     {/if}
-  </div>
+  </div> -->
 </svelte:element>
 
 <style>
