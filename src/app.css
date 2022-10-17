@@ -8,214 +8,30 @@
   /*
 	Self Hosted Fonts
 	*/
+
   @font-face {
-    font-family: "Manrope";
-    font-weight: 200;
-    src: url("/src/fonts/Manrope-ExtraLight.woff2") format("woff2");
-  }
-  @font-face {
-    font-family: "Manrope";
-    font-weight: 300;
-    src: url("/src/fonts/Manrope-Light.woff2") format("woff2");
-  }
-  @font-face {
-    font-family: "Manrope";
+    font-family: "OpenDyslexic";
     font-weight: 400;
-    src: url("/src/fonts/Manrope-Regular.woff2") format("woff2");
+    src: url("/fonts/open-dyslexic/OpenDyslexic-Regular.otf") format("opentype");
   }
+
   @font-face {
-    font-family: "Manrope";
-    font-weight: 500;
-    src: url("/src/fonts/Manrope-Medium.woff2") format("woff2");
-  }
-  @font-face {
-    font-family: "Manrope";
-    font-weight: 600;
-    src: url("/src/fonts/Manrope-SemiBold.woff2") format("woff2");
-  }
-  @font-face {
-    font-family: "Manrope";
-    font-weight: 700;
-    src: url("/src/fonts/Manrope-Bold.woff2") format("woff2");
-  }
-  @font-face {
-    font-family: "Manrope";
-    font-weight: 800;
-    src: url("/src/fonts/Manrope-ExtraBold.woff2") format("woff2");
-  }
-  @font-face {
-    font-family: "Poppins";
-    font-weight: 100;
-    src: url("/src/fonts/Poppins-Thin.woff2") format("woff2");
-  }
-  @font-face {
-    font-family: "Poppins";
-    font-weight: 100;
-    font-style: italic;
-    src: url("/src/fonts/Poppins-ThinItalic.woff2") format("woff2");
-  }
-  @font-face {
-    font-family: "Poppins";
-    font-weight: 200;
-    src: url("/src/fonts/Poppins-ExtraLight.woff2") format("woff2");
-  }
-  @font-face {
-    font-family: "Poppins";
-    font-weight: 200;
-    font-style: italic;
-    src: url("/src/fonts/Poppins-ExtraLightItalic.woff2") format("woff2");
-  }
-  @font-face {
-    font-family: "Poppins";
-    font-weight: 300;
-    src: url("/src/fonts/Poppins-Light.woff2") format("woff2");
-  }
-  @font-face {
-    font-family: "Poppins";
-    font-weight: 300;
-    font-style: italic;
-    src: url("/src/fonts/Poppins-LightItalic.woff2") format("woff2");
-  }
-  @font-face {
-    font-family: "Poppins";
-    font-weight: 400;
-    src: url("/src/fonts/Poppins-Regular.woff2") format("woff2");
-  }
-  @font-face {
-    font-family: "Poppins";
-    font-weight: 500;
-    src: url("/src/fonts/Poppins-Medium.woff2") format("woff2");
-  }
-  @font-face {
-    font-family: "Poppins";
-    font-weight: 500;
-    font-style: italic;
-    src: url("/src/fonts/Poppins-MediumItalic.woff2") format("woff2");
-  }
-  @font-face {
-    font-family: "Poppins";
-    font-weight: 600;
-    src: url("/src/fonts/Poppins-SemiBold.woff2") format("woff2");
-  }
-  @font-face {
-    font-family: "Poppins";
-    font-weight: 600;
-    font-style: italic;
-    src: url("/src/fonts/Poppins-SemiBoldItalic.woff2") format("woff2");
-  }
-  @font-face {
-    font-family: "Poppins";
-    font-weight: 700;
-    src: url("/src/fonts/Poppins-Bold.woff2") format("woff2");
-  }
-  @font-face {
-    font-family: "Poppins";
-    font-weight: 700;
-    font-style: italic;
-    src: url("/src/fonts/Poppins-BoldItalic.woff2") format("woff2");
-  }
-  @font-face {
-    font-family: "Poppins";
-    font-weight: 800;
-    src: url("/src/fonts/Poppins-ExtraBold.woff2") format("woff2");
-  }
-  @font-face {
-    font-family: "Poppins";
-    font-weight: 800;
-    font-style: italic;
-    src: url("/src/fonts/Poppins-ExtraBoldItalic.woff2") format("woff2");
-  }
-  @font-face {
-    font-family: "Poppins";
-    font-weight: 900;
-    src: url("/src/fonts/Poppins-Black.woff2") format("woff2");
-  }
-  @font-face {
-    font-family: "Poppins";
-    font-weight: 900;
-    font-style: italic;
-    src: url("/src/fonts/Poppins-BlackItalic.woff2") format("woff2");
-  }
-  @font-face {
-    font-family: "ShareTechMono";
-    src: url("/src/fonts/ShareTechMono-Regular.woff2") format("woff2");
-  }
-  @font-face {
-    font-family: "Newsreader";
-    font-weight: 200;
-    src: url("/src/fonts/Newsreader-ExtraLight.woff2") format("woff2");
-  }
-  @font-face {
-    font-family: "Newsreader";
-    font-weight: 200;
-    font-style: italic;
-    src: url("/src/fonts/Newsreader-ExtraLightItalic.woff2") format("woff2");
-  }
-  @font-face {
-    font-family: "Newsreader";
-    font-weight: 300;
-    src: url("/src/fonts/Newsreader-Light.woff2") format("woff2");
-  }
-  @font-face {
-    font-family: "Newsreader";
-    font-weight: 300;
-    font-style: italic;
-    src: url("/src/fonts/Newsreader-LightItalic.woff2") format("woff2");
-  }
-  @font-face {
-    font-family: "Newsreader";
-    font-weight: 400;
-    src: url("/src/fonts/Newsreader-Regular.woff2") format("woff2");
-  }
-  @font-face {
-    font-family: "Newsreader";
+    font-family: "OpenDyslexic";
     font-weight: 400;
     font-style: italic;
-    src: url("/src/fonts/Newsreader-RegularItalic.woff2") format("woff2");
+    src: url("/fonts/open-dyslexic/OpenDyslexic-Italic.otf") format("opentype");
   }
   @font-face {
-    font-family: "Newsreader";
-    font-weight: 500;
-    src: url("/src/fonts/Newsreader-Medium.woff2") format("woff2");
-  }
-  @font-face {
-    font-family: "Newsreader";
-    font-weight: 500;
-    font-style: italic;
-    src: url("/src/fonts/Newsreader-MediumItalic.woff2") format("woff2");
-  }
-  @font-face {
-    font-family: "Newsreader";
-    font-weight: 600;
-    src: url("/src/fonts/Newsreader-SemiBold.woff2") format("woff2");
-  }
-  @font-face {
-    font-family: "Newsreader";
-    font-weight: 600;
-    font-style: italic;
-    src: url("/src/fonts/Newsreader-SemiBoldItalic.woff2") format("woff2");
-  }
-  @font-face {
-    font-family: "Newsreader";
+    font-family: "OpenDyslexic";
     font-weight: 700;
-    src: url("/src/fonts/Newsreader-Bold.woff2") format("woff2");
+    src: url("/fonts/open-dyslexic/OpenDyslexic-Bold.otf") format("opentype");
   }
+
   @font-face {
-    font-family: "Newsreader";
+    font-family: "OpenDyslexic";
     font-weight: 700;
     font-style: italic;
-    src: url("/src/fonts/Newsreader-BoldItalic.woff2") format("woff2");
-  }
-  @font-face {
-    font-family: "Newsreader";
-    font-weight: 800;
-    src: url("/src/fonts/Newsreader-ExtraBold.woff2") format("woff2");
-  }
-  @font-face {
-    font-family: "Newsreader";
-    font-weight: 800;
-    font-style: italic;
-    src: url("/src/fonts/Newsreader-ExtraBoldItalic.woff2") format("woff2");
+    src: url("/fonts/open-dyslexic/OpenDyslexic-BoldItalic.otf") format("opentype");
   }
 
   html,
@@ -223,10 +39,15 @@
   #docs-root {
     box-sizing: border-box;
   }
+
   body {
     font-size: 16px;
     font-family: "Montserrat", sans-serif;
     @apply text-white;
+  }
+
+  .dyslexia {
+    font-family: "OpenDyslexic", sans-serif !important;
   }
 
   .markdown p {

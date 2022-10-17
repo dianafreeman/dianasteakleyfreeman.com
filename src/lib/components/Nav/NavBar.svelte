@@ -25,7 +25,7 @@
 
   const menuOpen = writable(false);
   const toggleMenu = () => menuOpen.update((bool) => !bool);
-  const { setNavHeight } = LayoutStore;
+  const { setNavHeight, toggleDyslexia } = LayoutStore;
 
   onMount(() => {
     function onKeyDown(e) {
@@ -112,12 +112,12 @@
 
       <li class={settingItemClasses} role="menuitem">
         dyslexia mode
-        <ToggleSwitch enabled={false} on:switch={(bool) => console.log("dyslexia switch", bool)} />
+        <ToggleSwitch enabled={$LayoutStore.dyslexia} on:click={() => toggleDyslexia()} />
       </li>
-      <li class={settingItemClasses} role="menuitem">
+      <!-- <li class={settingItemClasses} role="menuitem">
         <span>allow google analytics</span>
         <ToggleSwitch />
-      </li>
+      </li> -->
       <li
         class="text-neutral-300 hover:text-white text-right block px-3 py-5 text-base font-medium"
         role="menuitem"

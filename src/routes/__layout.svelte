@@ -16,9 +16,9 @@
 
 <svelte:window bind:scrollY />
 
-<header class="w-screen relative">
+<header class="w-screen relative" class:dyslexia={$LayoutStore.dyslexia}>
   <NavBar />
 </header>
-<main class="relative">
+<main class="relative" class:dyslexia={$LayoutStore.dyslexia}>
   <slot />
 </main>

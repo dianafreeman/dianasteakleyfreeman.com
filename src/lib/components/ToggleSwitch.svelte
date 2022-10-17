@@ -13,12 +13,12 @@
 
   const dispatch = createEventDispatcher();
 
-  function handleClick(event) {
-    dispatch("click", event);
+  function handleClick() {
+    dispatch("click", { enabled });
   }
 
-  function handleOnSwitch(en) {
-    dispatch("switch", en);
+  function handleOnSwitch() {
+    dispatch("switch", { enabled });
   }
 
   $: enabled && handleOnSwitch(enabled);

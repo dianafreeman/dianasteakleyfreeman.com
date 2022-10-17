@@ -24,6 +24,8 @@ function createLayoutStore() {
   const setScrollY = (y) => settings.update((curr) => ({ ...curr, scrollY: y }));
   const setNavHeight = (val) => settings.update((curr) => ({ ...curr, navHeight: val }));
   const setMode = (modeEnum) => settings.update((curr) => ({ ...curr, mode: modeEnum }));
+  const toggleDyslexia = (bool) =>
+    settings.update((curr) => ({ ...curr, dyslexia: !curr.dyslexia }));
 
   const toggleMode = () =>
     settings.update((curr) => {
@@ -45,7 +47,8 @@ function createLayoutStore() {
     validSubCategories,
     setScrollY,
     setNavHeight,
-    toggleMode
+    toggleMode,
+    toggleDyslexia
   };
 }
 

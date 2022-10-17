@@ -30,12 +30,6 @@
       const path = pathsInOrder[idx];
       length.set(path.getTotalLength());
     });
-    // pathsInOrder.forEach(function (item, idx) {
-    //   // console.log('total length', item.getTotalLength())
-    //   s0.set()
-
-    //   item.style.strokeDasharray = item.style.strokeDashoffset = item.getTotalLength() //springs[idx].set(i.getTotalLength());
-    // });
   });
 
   function update() {
