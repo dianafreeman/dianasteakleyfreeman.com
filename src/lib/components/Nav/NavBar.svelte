@@ -83,6 +83,7 @@
       type="button"
       onClick={toggleMenu}
       label="Main Menu"
+      class="w-fit px-6"
       ariaSettings={{ controls: "main-menu", expanded: $menuOpen }}
     >
       <span>
