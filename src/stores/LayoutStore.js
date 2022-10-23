@@ -1,6 +1,6 @@
 import { writable, derived } from "svelte/store";
 import { page } from "$app/stores";
-import { getCategories } from "$content/queries";
+import { getCategories } from "$lib/queries";
 
 const createMapFromArray = (item) => ({ [item]: item });
 

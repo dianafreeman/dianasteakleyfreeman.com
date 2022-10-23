@@ -1,10 +1,10 @@
-import { getCategories } from '$content/queries';
+import { getCategories } from '$lib/queries';
 
 /** @type {import('./$types').PageLoad} */
 export async function load({ params }) {
 
     const categories = await getCategories({ category: ""})
-    // console.log(categories)
+    
     return { 
         categories
     }

@@ -1,4 +1,4 @@
-import { flattenModuleData } from "$content/queries";
+import { flattenModuleData } from "$lib/queries";
 
 export const SSR = true
 

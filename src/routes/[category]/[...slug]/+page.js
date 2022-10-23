@@ -1,5 +1,5 @@
 import { error } from "@sveltejs/kit";
-import { markdownPathToRelativePath } from "$content/queries";
+import { markdownPathToRelativePath } from "$lib/queries";
 
 export async function load({ params }) {
     const { category, slug } = params

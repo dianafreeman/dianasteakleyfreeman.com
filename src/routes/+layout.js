@@ -1,4 +1,4 @@
-import { getCategories } from "$content/queries";
+import { getCategories } from "$lib/queries";
   
 /** @type {import('./$types').LayoutLoad} */
 export async function load({category}) {
