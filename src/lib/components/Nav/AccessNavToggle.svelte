@@ -1,7 +1,5 @@
 <script>
   import Accessibility from "$lib/icons/accessibility.svelte";
-  import { writable } from "svelte/store";
-  import { slide } from "svelte/transition";
 
   export let toggle;
 </script>
