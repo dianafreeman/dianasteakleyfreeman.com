@@ -12,7 +12,9 @@ const config = {
   extensions: [".svelte", ...mdsvexConfig.extensions],
   kit: {
     trailingSlash: 'always',
-    adapter: adapter(),
+    adapter: adapter({
+      split: true,
+    }),
     alias: {
       $routes: path.resolve("./src/routes"),
       $stores: path.resolve("./src/stores"),
