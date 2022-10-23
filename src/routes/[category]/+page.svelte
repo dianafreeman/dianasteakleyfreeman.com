@@ -10,7 +10,7 @@
   
   const { title, entries, category } = data
 
-  const subcategories = category.subcategories
+  const subcategories = category?.subcategories
   const filterOptions = subcategories;
   const activeFilters = writable(filterOptions ? filterOptions.map((f) => f.name) : []);
 
@@ -37,11 +37,8 @@
 <div class="py-5 px-3 "><Breadcrumbs active={category.name} /></div>
 
 <div class="mx-3 flex flex-col min-h-screen justify-center">
-  <div class="my-12 relative p-2 lg:p-5 align-center">
-    <h1 class="text-6xl text-center font-bold">{title}</h1>
-  </div>
   <div class="p-2 lg:p-5 my-5">
-    {#if category.subcategories}
+    {#if category?.subcategories}
       <p id="filter" class="font-bold">filter by subcategory:</p>
       <ul aria-describedby="filter" role="menu" class="flex flex-col wrap mx-auto">
         {#each filterOptions as subcat}
@@ -53,26 +50,22 @@
         {/each}
       </ul>
     {/if}
-    <p class="italic mt-5 text-center">
-      showing {$filteredEntries.length} entr{$filteredEntries.length === 1 ? "y" : "ies"}
-    </p>
     <hr class="m-5" />
-    {#if $filteredEntries.length}
-      <h2 class="font-bold text-3xl text-center">Results</h2>
+     {#if $filteredEntries.length}
       <ol class="grid sm:grid-cols-2 gap-5 md:grid-cols-3 md:max-w-[768px] m-auto">
         {#each $filteredEntries as entry}
           <li class="max-w-xs m-auto">
             <Card
               title={entry.title}
               target={entry.path}
-              imageName={entry.image}
+              imgSrc={entry.image}
             />
           </li>
         {/each}
       </ol>
     {:else}
       <p class="font-bold text-3xl text-center">Nothing found.</p>
-    {/if}
+    {/if} 
   </div>
 </div>
 {/key}

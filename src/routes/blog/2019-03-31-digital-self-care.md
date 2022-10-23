@@ -2,7 +2,7 @@
 slug: digital-self-care
 date: "2019-03-31"
 title: "Digital Self-Care in the era of #InsertCrisisHere"
-image: phone-disconnected-from-chain.jpeg
+image: /images/phone-disconnected-from-chain.jpeg
 tags:
   - humane techology
   - mental health

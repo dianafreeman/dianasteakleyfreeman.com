@@ -1,22 +1,20 @@
-import { getEntry, getCategory } from "$content/queries";
 import { error } from "@sveltejs/kit";
+import { markdownPathToRelativePath } from "$content/queries";
 
 export async function load({ params }) {
-    
-    const { category, slug } = params;
-    
-    const categoryEntry = await getCategory({category});
-    const entry = await getEntry({ category }, slug);
-    
+    const { category, slug } = params
+    const modules = import.meta.glob("$routes/**/*.md")
+    const entry = Object.entries(modules).find(([key, value]) => key.includes(slug) && key.includes(category))
+
     if (entry) {
-        const image = `/images/${entry.image}`;
-        return {
-            entry,
-            category: categoryEntry,
-            slug,
-            image,
-        };
-    } else {
-        throw error(404)
+        const [markdownPath, create] = entry
+        const relativePath = markdownPathToRelativePath(markdownPath)
+        const renderableEntry = await create()
+
+        return { component: renderableEntry.default, ...renderableEntry.metadata, slug, path: relativePath }
+    } else { 
+        throw error(404, "Not Found")
     }
+
+
 }

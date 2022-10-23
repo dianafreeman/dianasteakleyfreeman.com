@@ -1,24 +1,24 @@
-import { getCategory,getEntries } from "$content/queries";
-import { error } from "@sveltejs/kit";
+import { flattenModuleData } from "$content/queries";
 
 export const SSR = true
+
 /** @type {import('./$types').PageLoad} */
 export async function load({ params }) {
 
   const { category } = params;
 
-  const categoryEntry = await getCategory({category});
-  const entries = await getEntries({ category });
-  const hasEntries = !!entries && Object.keys(entries).length;
+  const modules = import.meta.glob("$routes/**/*.md")
+  const moduleEntries = Object.entries(modules)
 
-  if (hasEntries) {
-    return {
-        title: category,
-        entries: entries,
-        category: categoryEntry,
-        path: `/${category}`
-    };
-  } else {
-   throw error(404)
-  }
+  const promises = await moduleEntries.filter(([markdownPath, getter]) => markdownPath.includes(category)).map(async ([markdownPath, getter]) => [markdownPath, await getter()])
+  const resolved = await Promise.all(promises)
+
+  const entries = resolved.map(d => flattenModuleData(d))
+
+  return {
+    title: 'blog',
+    entries,
+    category: { name: 'blog' }
+
+  };
 }
