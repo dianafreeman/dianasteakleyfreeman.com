@@ -5,9 +5,8 @@
   import ToggleSwitch from "../ToggleSwitch.svelte";
   import Button from "../Button.svelte";
   import { page } from "$app/stores";
-  
-  
-  export let categories
+
+  export let categories;
   // export let active
 
   let navWrapper;
@@ -31,7 +30,7 @@
   const toggleMenu = () => menuOpen.update((bool) => !bool);
   const { setNavHeight, toggleDyslexia } = LayoutStore;
 
-  $: $page.url.pathname && menuOpen.set(false)
+  $: $page.url.pathname && menuOpen.set(false);
   onMount(() => {
     function onKeyDown(e) {
       let isTabPressed = e.key === "Tab" || e.keyCode === 9;
@@ -69,7 +68,6 @@
 
     document.addEventListener("keydown", onKeyDown);
   });
-
 </script>
 
 <nav

@@ -7,7 +7,6 @@
   /** @type {import('./$types').LayoutData} */
   export let data;
   const { categories } = data;
-
 </script>
 
 <svelte:window bind:scrollY />

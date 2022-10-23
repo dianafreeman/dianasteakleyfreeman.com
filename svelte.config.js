@@ -11,9 +11,9 @@ const config = {
   },
   extensions: [".svelte", ...mdsvexConfig.extensions],
   kit: {
-    trailingSlash: 'always',
+    trailingSlash: "always",
     adapter: adapter({
-      split: true,
+      split: true
     }),
     alias: {
       $routes: path.resolve("./src/routes"),
@@ -21,7 +21,6 @@ const config = {
       $content: path.resolve("./src/content"),
       $fonts: path.resolve("./src/fonts")
     }
-  
   },
   preprocess: [preprocess(), mdsvex(mdsvexConfig)]
 };

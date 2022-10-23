@@ -40,9 +40,9 @@
   const beforeClasses = `before:block before:content-["_"] before:border-none before:absolute before:w-0 before:h-0 before:top-0 before:left-0 ${hoverBeforeClasses}`;
   const afterClasses = `after:block after:content-["_"] after:border-none after:absolute after:w-0 after:h-0 after:bottom-0 after:right-0 ${hoverAfterClasses}`;
 
-  const buttonActiveClasses = `active:bg-neutral-800`
-  const buttonFocusClasses = `focus:bg-neutral-800 focus:outline-none`
-  const buttonHoverClasses = `hover:bg-neutral-800 ${buttonActiveClasses} ${buttonFocusClasses}`
+  const buttonActiveClasses = `active:bg-neutral-800`;
+  const buttonFocusClasses = `focus:bg-neutral-800 focus:outline-none`;
+  const buttonHoverClasses = `hover:bg-neutral-800 ${buttonActiveClasses} ${buttonFocusClasses}`;
   const classes = `button inline-block p-5 relative cursor-pointer mb-4 w-full text-white text-center px-1 py-6 z-[3] ${buttonHoverClasses} ${beforeClasses} ${afterClasses} `;
 </script>
 
@@ -67,12 +67,16 @@
     transition: opacity 200ms ease-in-out;
   }
 
-  .button:hover::before, .button:active::before, .button:focus::before {
+  .button:hover::before,
+  .button:active::before,
+  .button:focus::before {
     transition: width 150ms cubic-bezier(0.07, 0.62, 0.61, 1),
       height 75ms 150ms cubic-bezier(0.07, 0.62, 0.61, 1);
   }
 
-  .button:hover::after, .button:active::after, .button:focus::after {
+  .button:hover::after,
+  .button:active::after,
+  .button:focus::after {
     transition: width 150ms 225ms cubic-bezier(0.07, 0.62, 0.61, 1),
       height 75ms 450ms cubic-bezier(0.07, 0.62, 0.61, 1), border-left 0ms 225ms linear;
   }

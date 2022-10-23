@@ -2,7 +2,6 @@
   import Button from "$lib/components/Button.svelte";
   export let data;
   const { categories } = data;
-  
 </script>
 
 <svelte:head>
@@ -32,7 +31,7 @@
     <div class="text-md flex justify-evenly w-full ">
       <div class="text-center">
         <h2 class="font-bold text-xl">Exciting Updates Ahead!</h2>
-        <p class="text-italic text-neutral-300"> There is more to this site coming soon.</p>
+        <p class="text-italic text-neutral-300">There is more to this site coming soon.</p>
       </div>
       <!-- {#each categories as category}
         <Button href="/{category}">{category}</Button>

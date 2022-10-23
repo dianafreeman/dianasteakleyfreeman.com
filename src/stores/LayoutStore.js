@@ -7,7 +7,6 @@ const createMapFromArray = (item) => ({ [item]: item });
 const MODES = ["dark", "light"].map(createMapFromArray);
 
 function createLayoutStore() {
-  
   const settings = writable({
     mode: MODES.dark,
     dyslexia: false,

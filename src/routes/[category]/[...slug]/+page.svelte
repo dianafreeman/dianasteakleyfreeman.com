@@ -2,7 +2,6 @@
   import Breadcrumbs from "$lib/components/Breadcrumbs.svelte";
 
   export let data;
-
 </script>
 
 <div class="mx-3 flex flex-col min-h-screen justify-center">
