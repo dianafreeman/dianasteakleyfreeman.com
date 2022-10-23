@@ -2,9 +2,13 @@
   import { writable } from "svelte/store";
   import LayoutStore from "$stores/LayoutStore";
   import { onMount } from "svelte";
-  import { slide } from "svelte/transition";
   import ToggleSwitch from "../ToggleSwitch.svelte";
   import Button from "../Button.svelte";
+  import { page } from "$app/stores";
+  
+  
+  export let categories
+  // export let active
 
   let navWrapper;
 
@@ -27,6 +31,7 @@
   const toggleMenu = () => menuOpen.update((bool) => !bool);
   const { setNavHeight, toggleDyslexia } = LayoutStore;
 
+  $: $page.url.pathname && menuOpen.set(false)
   onMount(() => {
     function onKeyDown(e) {
       let isTabPressed = e.key === "Tab" || e.keyCode === 9;
@@ -64,6 +69,7 @@
 
     document.addEventListener("keydown", onKeyDown);
   });
+
 </script>
 
 <nav
@@ -105,9 +111,9 @@
       <li role="menuitem">
         <a href="/" class={navLinkClasses}>home</a>
       </li>
-      {#each LayoutStore.validCategories as category}
+      {#each categories as category}
         <li role="menuitem">
-          <a href="/{category}" class={navLinkClasses}>{category}</a>
+          <a rel="external" href="/{category.name}" class={navLinkClasses}>{category.name}</a>
         </li>
       {/each}
 

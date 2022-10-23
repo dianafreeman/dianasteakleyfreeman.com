@@ -1,19 +1,13 @@
 import { writable, derived } from "svelte/store";
 import { page } from "$app/stores";
-import { getCategories } from "$content/helpers";
+import { getCategories } from "$content/queries";
 
 const createMapFromArray = (item) => ({ [item]: item });
 
 const MODES = ["dark", "light"].map(createMapFromArray);
 
 function createLayoutStore() {
-  const categories = getCategories();
-  const validCategories = categories.map((v) => v.name);
-  const validSubCategories = categories
-    .filter((c) => c.subcategories)
-    .map((c) => c.subcategories.map((s) => s.name))
-    .flat(); //.filter(c => c.subcategories > 0)//.map(v => v.subcategories.map(s => s.name))
-
+  
   const settings = writable({
     mode: MODES.dark,
     dyslexia: false,
@@ -43,8 +37,6 @@ function createLayoutStore() {
   return {
     subscribe: settings.subscribe,
     combined: combined,
-    validCategories,
-    validSubCategories,
     setScrollY,
     setNavHeight,
     toggleMode,
@@ -52,5 +44,5 @@ function createLayoutStore() {
   };
 }
 
-const LayoutStore = createLayoutStore();
-export default LayoutStore;
+const layoutStore = createLayoutStore();
+export default layoutStore;

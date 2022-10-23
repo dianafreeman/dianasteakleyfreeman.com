@@ -1,7 +1,9 @@
-<script context="module">
+<script>
   import Button from "$lib/components/Button.svelte";
-  import layoutStore from "$stores/LayoutStore";
   export const prerender = true;
+
+  export let data;
+  const { categories } = data;
 </script>
 
 <svelte:head>
@@ -29,7 +31,7 @@
     <hr class="my-10" />
 
     <div class="text-md flex justify-evenly w-full">
-      {#each layoutStore.validCategories as category}
+      {#each categories as category}
         <Button href="/{category}">{category}</Button>
       {/each}
     </div>
