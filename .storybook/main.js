@@ -17,7 +17,7 @@ module.exports = {
       path.resolve(__dirname, "../svelte.config.js")
     );
     // TODO: not working
-    const { alias } = sKitConfig.config.kit.vite.resolve;
+    // const { alias } = sKitConfig.config.kit.vite.resolve;
 
     return mergeConfig(config, {
       resolve: {

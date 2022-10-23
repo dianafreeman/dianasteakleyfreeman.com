@@ -7,7 +7,7 @@
 
 <div class="mx-3 flex flex-col min-h-screen justify-center">
   <!-- <div class="flex flex-row relative text-white">
-      <p>share icons</p>
+      <p>share icons</p>a
     </div> -->
   <div class="flex flex-col md:flex-row md:justify-center md:align-middle pt-16">
     <h1 class="text-4xl md:text-5xl lg:text-6xl text-center font-bold md:text-left mb-12">

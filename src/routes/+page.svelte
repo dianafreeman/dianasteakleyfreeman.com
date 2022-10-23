@@ -1,9 +1,8 @@
 <script>
   import Button from "$lib/components/Button.svelte";
-  export const prerender = true;
-
   export let data;
   const { categories } = data;
+  
 </script>
 
 <svelte:head>

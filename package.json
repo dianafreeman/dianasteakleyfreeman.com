@@ -7,10 +7,11 @@
     "package": "vite package",
     "preview": "vite preview --host",
     "lint": "eslint --ignore-path .gitignore .",
-    "format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. .",
+    "prettify": "prettier --ignore-path .gitignore --write --plugin-search-dir=. .",
+    "format": "npm run lint && npm run format",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "clean": "rm -rf public .svelte-kit"
+    "clean": "rm -rf public .svelte-kit .netlify"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^6.5.12",
@@ -22,6 +23,7 @@
     "@storybook/svelte": "^6.1.21",
     "@sveltejs/adapter-auto": "^1.0.0-next.80",
     "@sveltejs/adapter-netlify": "^1.0.0-next.81",
+    "@sveltejs/adapter-static": "^1.0.0-next.46",
     "@sveltejs/kit": "next",
     "autoprefixer": "^10.4.2",
     "eslint": "^7.32.0",
@@ -35,8 +37,8 @@
     "prettier-plugin-svelte": "^2.4.0",
     "svelte": "^3.48.0",
     "svelte-markdown": "^0.2.2",
-    "tailwindcss": "^3.0.18",
     "svelte-preprocess": "^4.10.7",
+    "tailwindcss": "^3.0.18",
     "vite": "^3.1.8"
   },
   "type": "module",

@@ -2,7 +2,6 @@
   import "../app.css";
   import NavBar from "$lib/components/Nav/NavBar.svelte";
   import LayoutStore from "$stores/LayoutStore";
-  import { page } from "$app/stores";
 
   let scrollY;
   /** @type {import('./$types').LayoutData} */
