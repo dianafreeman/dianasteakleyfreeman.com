@@ -1,66 +1,48 @@
-import { derived, readable, writable } from "svelte/store";
-import { spring } from "svelte/motion";
+import { writable, derived } from "svelte/store";
+import { page } from "$app/stores";
+import { getCategories } from "$lib/queries";
+
+const createMapFromArray = (item) => ({ [item]: item });
+
+const MODES = ["dark", "light"].map(createMapFromArray);
 
 function createLayoutStore() {
-  const activeCell = writable({ x: 0, y: 0 });
-  const { set, update: updateActiveCell, subscribe } = activeCell;
+  
+  const settings = writable({
+    mode: MODES.dark,
+    dyslexia: false,
+    navHeight: 0,
+    scrollY: 0
+  });
 
-  function incrementRow() {
-    return updateActiveCell((cell) => {
-      let updated = { y: cell.y + 1, x: cell.x };
-      return { ...cell, ...updated };
-    });
-  }
+  const setScrollY = (y) => settings.update((curr) => ({ ...curr, scrollY: y }));
+  const setNavHeight = (val) => settings.update((curr) => ({ ...curr, navHeight: val }));
+  const setMode = (modeEnum) => settings.update((curr) => ({ ...curr, mode: modeEnum }));
+  const toggleDyslexia = (bool) =>
+    settings.update((curr) => ({ ...curr, dyslexia: !curr.dyslexia }));
 
-  function decrementRow() {
-    return updateActiveCell((cell) => {
-      let updated = { y: cell.y - 1, x: cell.x };
-      return { ...cell, ...updated };
+  const toggleMode = () =>
+    settings.update((curr) => {
+      if (curr.mode === MODES.dark) return setMode(MODES.light);
+      return setMode(MODES.dark);
     });
-  }
-  function incrementCol() {
-    return updateActiveCell((cell) => {
-      let updated = { x: cell.x + 1, y: cell.y };
-      return { ...cell, ...updated };
-    });
-  }
 
-  function decrementCol() {
-    return updateActiveCell((cell) => {
-      let updated = { x: cell.x - 1, y: cell.y };
-      return { ...cell, ...updated };
-    });
-  }
-
-  function setRow(y) {
-    return updateActiveCell((cell) => {
-      let updated = { y, x: cell.x };
-      return { ...cell, ...updated };
-    });
-  }
-  function setColumn(x) {
-    return updateActiveCell((cell) => {
-      let updated = { x, y: cell.y };
-      return { ...cell, ...updated };
-    });
-  }
-
-  function setCell(newValues) {
-    const { x: newX, y: newY } = newValues;
-    setRow(newY);
-    setColumn(newX);
-  }
+  const combined = derived([settings, page], ($settings, $page) => {
+    return {
+      ...$settings,
+      page: $page
+    };
+  });
 
   return {
-    subscribe,
-    activeCell,
-    incrementRow,
-    decrementRow,
-    incrementCol,
-    decrementCol,
-    setCell
+    subscribe: settings.subscribe,
+    combined: combined,
+    setScrollY,
+    setNavHeight,
+    toggleMode,
+    toggleDyslexia
   };
 }
-const layoutStore = createLayoutStore();
 
+const layoutStore = createLayoutStore();
 export default layoutStore;
