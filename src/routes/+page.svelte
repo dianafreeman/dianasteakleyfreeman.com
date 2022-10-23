@@ -29,10 +29,14 @@
 
     <hr class="my-10" />
 
-    <div class="text-md flex justify-evenly w-full">
-      {#each categories as category}
+    <div class="text-md flex justify-evenly w-full ">
+      <div class="text-center">
+        <h2 class="font-bold text-xl">Exciting Updates Ahead!</h2>
+        <p class="text-italic text-neutral-300"> There is more to this site coming soon.</p>
+      </div>
+      <!-- {#each categories as category}
         <Button href="/{category}">{category}</Button>
-      {/each}
+      {/each} -->
     </div>
   </div>
 </div>
