@@ -1,6 +1,6 @@
 import { markdownPathToRelativePath, relativePathWithoutSlugChunk } from "./helpers";
 
-export function flattenModuleData([markdownPath, moduleData]) {
+export function flattenModuleData(markdownPath, moduleData) {
   const { metadata } = moduleData;
   const relativePath = markdownPathToRelativePath(markdownPath);
   const withoutTitle = relativePathWithoutSlugChunk(relativePath, metadata.slug);
@@ -11,7 +11,7 @@ export function flattenModuleData([markdownPath, moduleData]) {
 
 async function resolveMarkdown() {
   const modules = import.meta.glob("$routes/**/*.md");
-  const moduleEntries = Object.entries(modules); //.filter(([path, _getter]) => {
+  const moduleEntries = Object.entries(modules);
 
   const promises = await moduleEntries.map(async ([markdownPath, getter]) => [
     markdownPath,
@@ -27,9 +27,9 @@ export async function getMarkdownContent(params) {
   const allModules = included.map(([markdownPath, obj]) => flattenModuleData(markdownPath, obj));
 
   const filtered = allModules.filter((data) => {
-    if (params.subcategory && params.subcategory !== null)
-      return data.subcategory === params.subcategory;
-    if (params.category && params.category !== null) return data.category === params.category;
+    if (params?.subcategory && params?.subcategory !== null)
+      return data.subcategory === params?.subcategory;
+    if (params?.category && params?.category !== null) return data.category === params.category;
     return true;
   });
   const resolved = await Promise.all(filtered);
@@ -44,11 +44,11 @@ export async function getEntries(categoryParams) {
 export async function getEntry({ category }, targetPath) {
   const moduleEntries = await getEntries({ category });
   const entry = moduleEntries.find((entry) => entry.path.includes(targetPath));
-
   return entry;
 }
 
 export async function getCategories() {
+  // EW! Clean this up.
   const contentModules = await getMarkdownContent();
   let categories = [];
   const moduleData = Object.values(contentModules);
@@ -75,7 +75,6 @@ export async function getCategories() {
       }
     }
   });
-  // console.log('categories', categories)
   return categories;
 }
 

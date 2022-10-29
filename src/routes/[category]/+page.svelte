@@ -33,9 +33,6 @@
   <title>{title}</title>
 </svelte:head>
 {#key title}
-  <div id="spacer" style:height="60px" />
-  <div class="py-5 px-3 "><Breadcrumbs active={category.name} /></div>
-
   <div class="mx-3 flex flex-col min-h-screen justify-center">
     <div class="p-2 lg:p-5 my-5">
       {#if category?.subcategories}

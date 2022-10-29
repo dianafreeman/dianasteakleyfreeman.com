@@ -1,11 +1,13 @@
 import { error } from "@sveltejs/kit";
-import { markdownPathToRelativePath } from "$lib/queries";
+import { markdownPathToRelativePath } from "$lib/helpers.js";
 
 export async function load({ params }) {
-  const { category, slug } = params;
+  const { category, slug: slugWithSlash } = params;
+  const slug = (slugWithSlash.charAt(0) === "/" || slugWithSlash.charAt(slugWithSlash.length - 1) === "/") ? slugWithSlash.replaceAll("/", "") : slugWithSlash
   const modules = import.meta.glob("$routes/**/*.md");
   const entry = Object.entries(modules).find(
     ([key, value]) => key.includes(slug) && key.includes(category)
+
   );
 
   if (entry) {

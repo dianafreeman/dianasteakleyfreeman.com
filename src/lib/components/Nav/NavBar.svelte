@@ -6,8 +6,7 @@
   import Button from "../Button.svelte";
   import { page } from "$app/stores";
 
-  export let categories;
-  // export let active
+  export let items;
 
   let navWrapper;
 
@@ -109,9 +108,9 @@
       <li role="menuitem">
         <a href="/" class={navLinkClasses}>home</a>
       </li>
-      {#each categories as category}
+      {#each items as navItem}
         <li role="menuitem">
-          <a rel="external" href="/{category.name}" class={navLinkClasses}>{category.name}</a>
+          <a href="/{navItem.name}" class={navLinkClasses}>{navItem.name}</a>
         </li>
       {/each}
 

@@ -14,7 +14,7 @@ export async function load({ params }) {
     .map(async ([markdownPath, getter]) => [markdownPath, await getter()]);
   const resolved = await Promise.all(promises);
 
-  const entries = resolved.map((d) => flattenModuleData(d));
+  const entries = resolved.map(([path,d]) => flattenModuleData(path, d));
 
   return {
     title: "blog",
