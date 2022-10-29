@@ -1,8 +1,8 @@
 import { markdownPathToRelativePath, relativePathWithoutSlugChunk } from "./helpers";
 
 export function flattenModuleData(markdownPath, moduleData) {
-  const { metadata } = moduleData;
   const relativePath = markdownPathToRelativePath(markdownPath);
+  const { metadata } = moduleData;
   const withoutTitle = relativePathWithoutSlugChunk(relativePath, metadata.slug);
   const [category, subcategory] = withoutTitle.split("/");
   const categoryInfo = subcategory ? { category, subcategory } : { category };
@@ -23,7 +23,9 @@ async function resolveMarkdown() {
 export async function getMarkdownContent(params) {
   const resolvedModules = await resolveMarkdown();
   // exclude entries without metadata
+  // const entries = filterModulesHasMetadata
   const included = resolvedModules.filter(([_mdPath, obj]) => obj.metadata);
+  // const included = resolvedModules.filter(([_mdPath, obj]) => obj.metadata);
   const allModules = included.map(([markdownPath, obj]) => flattenModuleData(markdownPath, obj));
 
   const filtered = allModules.filter((data) => {
@@ -46,6 +48,21 @@ export async function getEntry({ category }, targetPath) {
   const entry = moduleEntries.find((entry) => entry.path.includes(targetPath));
   return entry;
 }
+
+function createCategoryEntry(moduleMeta, existingEntry) {
+  let current = existingEntry || {}
+  const { subcategory } = moduleMeta;
+  if (subcategory) {
+    const subcategories = existingEntry?.subcategories
+      ? [...existingEntry?.subcategories, { name: subcategory }]
+      : [{ name: subcategory }];
+    current = { ...current, name: moduleMeta.category, subcategories };
+  } else {
+    current = { ...current, name: moduleMeta.category };
+  }
+  return current
+}
+
 
 export async function getCategories() {
   // EW! Clean this up.
@@ -77,6 +94,23 @@ export async function getCategories() {
   });
   return categories;
 }
+// export async function getCategories() {
+//   const contentModules = await getMarkdownContent();
+//   let categories = [];
+//   const moduleData = Object.values(contentModules);
+//   moduleData.forEach((moduleMeta) => {
+//     const existingCategory = categories.find((c) => c.name === moduleMeta.category);
+//     const newCategory = createCategoryEntry(moduleMeta, existingCategory)
+
+//     if (existingCategory) {
+//       const allButExisting = categories.filter((c) => c.name !== moduleMeta.category);
+//       categories = [...allButExisting, newCategory];
+//     } else {
+//       categories.push(newCategory)
+//     }
+//   });
+//   return categories;
+// }
 
 export async function getCategory({ category }) {
   const cats = await getCategories();

@@ -17,3 +17,13 @@ export function relativePathWithoutSlugChunk(relPath, slug) {
     .filter((v) => !v.includes(slug))
     .join("/");
 }
+
+
+export function filterModules(modules, filterFn){
+  const entries = Object.entries(modules)
+  const filtered = entries.filter(filterFn)
+  return Object.fromEntries(filtered)
+}
+export function filterModulesByPathString(modules, stringToMatch) {
+  return filterModules(modules, ([path, _getter]) => path.includes(stringToMatch))
+}
