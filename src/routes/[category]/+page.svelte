@@ -2,31 +2,14 @@
   import Breadcrumbs from "$lib/components/Breadcrumbs.svelte";
   import Button from "$lib/components/Button.svelte";
   import Card from "$lib/components/Card.svelte";
-  import FilterButton from "$lib/components/FilterButton.svelte";
+  import FilterButton from "$lib/components/Toggles/FilterButton.svelte";
   import { derived, writable } from "svelte/store";
 
   /** @type {import('./$types').PageData} */
   export let data;
 
-  const { title, entries, category } = data;
-
-  const subcategories = category?.subcategories;
-  const filterOptions = subcategories;
-  const activeFilters = writable(filterOptions ? filterOptions.map((f) => f.name) : []);
-
-  function toggleFilter(evt) {
-    const { term } = evt.detail;
-    if ($activeFilters.includes(term)) {
-      return activeFilters.update((curr) => curr.filter((f) => f !== term));
-    }
-    return activeFilters.update((curr) => [...curr, term]);
-  }
-
-  const filteredEntries = derived(activeFilters, ($activeFilters) =>
-    Object.values(entries).filter((entry) => {
-      return $activeFilters.length ? $activeFilters.includes(entry.subcategory) : true;
-    })
-  );
+  const { title, entries } = data;
+  
 </script>
 
 <svelte:head>
@@ -35,7 +18,7 @@
 {#key title}
   <div class="mx-3 flex flex-col min-h-screen justify-center">
     <div class="p-2 lg:p-5 my-5">
-      {#if category?.subcategories}
+      <!-- {#if category?.subcategories}
         <p id="filter" class="font-bold">filter by subcategory:</p>
         <ul aria-describedby="filter" role="menu" class="flex flex-col wrap mx-auto">
           {#each filterOptions as subcat}
@@ -46,13 +29,14 @@
             />
           {/each}
         </ul>
-      {/if}
+      {/if} -->
       <hr class="m-5" />
-      {#if $filteredEntries.length}
+      {#if entries?.length}
+      
         <ol class="grid sm:grid-cols-2 gap-5 md:grid-cols-3 md:max-w-[768px] m-auto">
-          {#each $filteredEntries as entry}
+          {#each entries as entry}
             <li class="max-w-xs m-auto">
-              <Card title={entry.title} target={entry.path} imgSrc={entry.image} />
+              <Card title={entry.metadata.title} target={entry.relativePath} imgSrc={entry.metadata.image} />
             </li>
           {/each}
         </ol>

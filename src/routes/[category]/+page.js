@@ -1,4 +1,5 @@
-import { flattenModuleData } from "$lib/queries";
+import { flattenModuleData } from "$lib/content/helpers";
+import { getMarkdownEntries, getModuleContent } from "$lib/content/queries";
 
 export const SSR = true;
 
@@ -6,19 +7,17 @@ export const SSR = true;
 export async function load({ params }) {
   const { category } = params;
 
-  const modules = import.meta.glob("$routes/**/*.md");
-  const moduleEntries = Object.entries(modules);
-
-  const promises = await moduleEntries
-    .filter(([markdownPath, getter]) => markdownPath.includes(category))
-    .map(async ([markdownPath, getter]) => [markdownPath, await getter()]);
-  const resolved = await Promise.all(promises);
-
-  const entries = resolved.map(([path,d]) => flattenModuleData(path, d));
-
-  return {
-    title: "blog",
-    entries,
-    category: { name: "blog" }
+  
+  const entries = await getMarkdownEntries(category)
+  
+  
+  if (entries){
+    console.log('entries', entries)
+    
+    return {
+      title: "blog",
+      entries,
+      category: { name: "blog" }
+    }
   };
 }
