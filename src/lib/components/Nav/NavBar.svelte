@@ -5,7 +5,6 @@
   import ToggleSwitch from "../ToggleSwitch.svelte";
   import Button from "../Button.svelte";
   import { page } from "$app/stores";
-
   export let items;
 
   let navWrapper;
@@ -59,7 +58,7 @@
 
     // Set navigation height so other components can use it
     // TODO: do we need this?
-    setNavHeight(navWrapper.clientHeight);
+    // setNavHeight(navWrapper.clientHeight);
 
     focusableContent = navWrapper.querySelectorAll(focusableElements);
     firstFocusableElement = focusableContent[0]; // get first element to be focused inside modal
@@ -69,68 +68,73 @@
   });
 </script>
 
-<nav
+<div
   bind:this={navWrapper}
   class:bg-neutral-900={$menuOpen}
   class:semi-transparent={!$menuOpen && $LayoutStore.scrollY > $LayoutStore.navHeight}
-  class="fixed top-0 left-0 right-0 z-50 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 {$menuOpen
+  class=" top-0 left-0 right-0 z-50 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 {$menuOpen
     ? navWrapperClassesOpen
     : navWrapperClassesClosed}"
 >
-  <div class="flex items-center justify-between">
-    <a href="/" class="text-2xl lg:text-3xl xl:text-4xl inline-flex font-bold"
-      >D<span class="text-gray-400">iana</span>.</a
-    >
-
-    <Button
-      type="button"
-      onClick={toggleMenu}
-      label="Main Menu"
-      class="w-fit px-6"
-      ariaSettings={{ controls: "main-menu", expanded: $menuOpen }}
-    >
-      <span>
-        {#if $menuOpen}
-          <i class="text-3xl las la-times" aria-hidden="true" />
-        {:else}
-          <i class="text-3xl las la-bars" aria-hidden="true" />
-        {/if}
-      </span>
-    </Button>
-  </div>
-  <div
-    id="main-menu"
-    class:hidden={!$menuOpen}
-    class:flex={$menuOpen}
-    class="flex-col justify-between"
-  >
-    <ul aria-label="Main" role="menu" class="relative flex flex-col w-full justify-center">
-      <li role="menuitem">
-        <a href="/" class={navLinkClasses}>home</a>
-      </li>
-      {#each items as navItem}
-        <li role="menuitem">
-          <a href="/{navItem.name}" class={navLinkClasses}>{navItem.name}</a>
-        </li>
-      {/each}
-
-      <li class={settingItemClasses} role="menuitem">
-        dyslexia mode
-        <ToggleSwitch enabled={$LayoutStore.dyslexia} on:click={() => toggleDyslexia()} />
-      </li>
-      <!-- <li class={settingItemClasses} role="menuitem">
-        <span>allow google analytics</span>
-        <ToggleSwitch />
-      </li> -->
-      <li
-        class="text-neutral-300 hover:text-white text-right block px-3 py-5 text-base font-medium"
-        role="menuitem"
+  <nav>
+    <div class="flex justify-between w-full ">
+      <a href="/" class="mb-0 m-2 pt-2 pb-0 text-2xl lg:text-3xl xl:text-4xl inline-flex font-bold"
+        >D<span class="text-gray-400">iana</span>.</a
       >
-        Clear Settings
-      </li>
-    </ul>
-  </div>
-</nav>
+      <Button
+        type="button"
+        onClick={toggleMenu}
+        label="Main Menu"
+        class="w-fit h-fit my-auto p-3"
+        ariaSettings={{ controls: "main-menu", expanded: $menuOpen }}
+      >
+        <span>
+          {#if $menuOpen}
+            <i class="text-3xl las la-times" aria-hidden="true" />
+          {:else}
+            <i class="text-3xl las la-bars" aria-hidden="true" />
+          {/if}
+        </span>
+      </Button>
+    </div>
+    <slot name="breadcrumbs"></slot>
+
+    <div
+      id="main-menu"
+      class:hidden={!$menuOpen}
+      class:flex={$menuOpen}
+      class="flex-col justify-between"
+    >
+      <ul aria-label="Main" role="menu" class="relative flex flex-col w-full justify-center">
+        <li role="menuitem">
+          <a href="/" class={navLinkClasses}>home</a>
+        </li>
+        {#each items as navItem}
+          <li role="menuitem">
+            <a data-sveltekit-reload href="/{navItem.name}" class={navLinkClasses}>{navItem.name}</a
+            >
+          </li>
+        {/each}
+      </ul>
+      <ul aria-label="Settings" role="menu" class="relative flex flex-col w-full justify-center">
+        <li class={settingItemClasses} role="menuitem">
+          dyslexia mode
+          <ToggleSwitch enabled={$LayoutStore.dyslexia} on:click={() => toggleDyslexia()} />
+        </li>
+        <li class={settingItemClasses} role="menuitem">
+          <span>allow google analytics</span>
+          <ToggleSwitch enabled />
+        </li>
+        <li
+          class="text-neutral-300 hover:text-white text-right block px-3 py-5 text-base font-medium"
+          role="menuitem"
+        >
+          Clear Settings
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
 
 <!-- </div> -->
 <style>
