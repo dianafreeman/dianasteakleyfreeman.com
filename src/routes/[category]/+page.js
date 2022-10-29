@@ -6,18 +6,12 @@ export const SSR = true;
 /** @type {import('./$types').PageLoad} */
 export async function load({ params }) {
   const { category } = params;
-
-  
   const entries = await getMarkdownEntries(category)
-  
-  
-  if (entries){
-    console.log('entries', entries)
-    
+
+  if (entries){    
     return {
-      title: "blog",
+      // title: "blog",
       entries,
-      category: { name: "blog" }
     }
   };
 }
