@@ -1,6 +1,4 @@
 <script>
-  import Breadcrumbs from "$lib/components/Breadcrumbs.svelte";
-
   export let data;
 </script>
 
