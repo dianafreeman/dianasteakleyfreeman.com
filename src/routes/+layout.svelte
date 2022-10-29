@@ -8,7 +8,7 @@
 
   /** @type {import('./$types').LayoutData} */
   export let data;
-  const { categories, staticRoutes } = data;
+  const { routes } = data;
 
   let category, subcategory, active; // export let active;
 
@@ -21,7 +21,7 @@
 </script>
 
 <header class="w-screen h-100 relative" class:dyslexia={$LayoutStore.dyslexia}>
-  <NavBar items={[...categories, ...staticRoutes]}>
+  <NavBar items={routes}>
     <Breadcrumbs
       slot="breadcrumbs"
       class="w-full"
