@@ -13,11 +13,11 @@
   let category, subcategory, active; // export let active;
 
   page.subscribe(({url}) => {
+    // TODO: create 
     let urlData = url.pathname.split("/").filter(v => v.length)
     category = urlData[0]
     active = urlData[urlData.length - 1]
   })
-  
 </script>
 
 <header class="w-screen h-100 relative" class:dyslexia={$LayoutStore.dyslexia}>

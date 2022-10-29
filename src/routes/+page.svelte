@@ -1,17 +1,15 @@
 <script>
   import Button from "$lib/components/Button.svelte";
-  export let data;
-  const { categories } = data;
+  // export let data;
 </script>
-
-<svelte:head>
-  <title>Home</title>
-</svelte:head>
 
 <div class="mx-3 flex flex-col min-h-screen justify-end">
   <div class="my-12 relative p-2 lg:p-5 align-center">
     <h1 class="text-6xl font-thin" aria-label="the future of engineering is human.">
-      <span aria-hidden="true">the future of engineering is </span><span aria-hidden="true" class="font-bold">human.</span>
+      <span aria-hidden="true">the future of engineering is </span><span
+        aria-hidden="true"
+        class="font-bold">human.</span
+      >
     </h1>
   </div>
 </div>
