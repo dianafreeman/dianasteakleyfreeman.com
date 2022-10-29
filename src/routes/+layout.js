@@ -4,7 +4,9 @@ import { getCategories } from "$lib/queries";
 export async function load({ category }) {
   const categories = await getCategories({ category });
 
-  const modules = import.meta.glob("$routes/")
-
-  return { categories };
+  const staticRouteModules = import.meta.glob("$routes/**/metadata.json")
+  
+  const resolved = await Promise.all(Object.entries(staticRouteModules).map(async ([_path, getter]) => await getter()))
+  const staticRoutes = resolved.map( r => r.default)
+  return { categories, staticRoutes };
 }

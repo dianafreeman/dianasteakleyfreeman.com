@@ -5,81 +5,46 @@
   import ToggleSwitch from "../ToggleSwitch.svelte";
   import Button from "../Button.svelte";
   import { page } from "$app/stores";
+  import createTrapFocus from "$lib/trapFocus";
   export let items;
 
-  let navWrapper;
-
-  let focusableContent;
-  let firstFocusableElement;
-  let lastFocusableElement;
-
-  const focusableElements =
-    'a, button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+  let navWrapper, scrollY;
 
   const navLinkClasses =
-    "text-neutral-300 focus:bg-neutral-800 focus:outline-white hover:bg-neutral-800 px-4 block py-5 text-base font-medium text-center";
+    "text-neutral-200 focus:bg-neutral-800 focus:outline-white hover:bg-neutral-800 px-4 block py-5 text-base font-medium text-center";
   const settingItemClasses =
-    "text-neutral-300 hover:bg-neutral-800 px-4 flex justify-between items-center py-5 text-base font-medium";
+    "text-neutral-200 hover:bg-neutral-800 px-4 flex justify-between items-center py-5 text-base font-medium";
 
   const navWrapperClassesClosed = "h-fit";
   const navWrapperClassesOpen = "h-screen overflow-y-scroll";
 
   const menuOpen = writable(false);
   const toggleMenu = () => menuOpen.update((bool) => !bool);
-  const { setNavHeight, toggleDyslexia } = LayoutStore;
+  const { toggleDyslexia } = LayoutStore;
 
   $: $page.url.pathname && menuOpen.set(false);
   onMount(() => {
-    function onKeyDown(e) {
-      let isTabPressed = e.key === "Tab" || e.keyCode === 9;
-      let isEscPressed = e.key === "Escape" || e.keyCode === 27;
-
-      if (isEscPressed) {
-        return menuOpen.set(false);
-      }
-      if (!isTabPressed) {
-        return;
-      }
-      if (e.shiftKey) {
-        // if shift key pressed for shift + tab combination
-        if (document.activeElement === firstFocusableElement) {
-          // lastFocusableElement.focus(); // add focus for the last focusable element
-          e.preventDefault();
-        }
-      } else {
-        // if tab key is pressed
-        if ($menuOpen && document.activeElement === lastFocusableElement) {
-          // if focused has reached to last focusable element then focus first focusable element after pressing tab
-          firstFocusableElement.focus(); // add focus for the first focusable element
-          e.preventDefault();
-        }
-      }
-    }
-
-    // Set navigation height so other components can use it
-    // TODO: do we need this?
-    // setNavHeight(navWrapper.clientHeight);
-
-    focusableContent = navWrapper.querySelectorAll(focusableElements);
-    firstFocusableElement = focusableContent[0]; // get first element to be focused inside modal
-    lastFocusableElement = focusableContent[focusableContent.length - 1]; // get last element to be focused inside modal
-
-    document.addEventListener("keydown", onKeyDown);
+    const trapFocus = createTrapFocus();
+    document.addEventListener("keydown", trapFocus);
   });
 </script>
 
+<svelte:window bind:scrollY />
+
 <div
   bind:this={navWrapper}
-  class:bg-neutral-900={$menuOpen}
-  class:semi-transparent={!$menuOpen && $LayoutStore.scrollY > $LayoutStore.navHeight}
-  class=" top-0 left-0 right-0 z-50 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 {$menuOpen
+  style="top: {scrollY}px;"
+  class="{$menuOpen
+    ? 'bg-neutral-900'
+    : 'semi-transparent'} relative left-0 right-0 z-50 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 {$menuOpen
     ? navWrapperClassesOpen
     : navWrapperClassesClosed}"
 >
   <nav>
     <div class="flex justify-between w-full ">
-      <a href="/" class="mb-0 m-2 pt-2 pb-0 text-2xl lg:text-3xl xl:text-4xl inline-flex font-bold"
-        >D<span class="text-gray-400">iana</span>.</a
+      <a href="/" aria-label="Diana" class="mb-0 m-2 pt-2 pb-0 text-2xl lg:text-3xl xl:text-4xl inline-flex font-bold"
+        >
+        <span>D</span><span class="text-gray-400">iana</span>.</a
       >
       <Button
         type="button"
@@ -97,7 +62,7 @@
         </span>
       </Button>
     </div>
-    <slot name="breadcrumbs"></slot>
+    <slot name="breadcrumbs" />
 
     <div
       id="main-menu"
@@ -105,33 +70,40 @@
       class:flex={$menuOpen}
       class="flex-col justify-between"
     >
-      <ul aria-label="Main" role="menu" class="relative flex flex-col w-full justify-center">
-        <li role="menuitem">
-          <a href="/" class={navLinkClasses}>home</a>
-        </li>
-        {#each items as navItem}
+      <div>
+        <hr class="font-bold text-sm border-neutral-600 uppercase my-5" />
+        <ul aria-label="Main" role="menu" class="relative flex flex-col w-full justify-center">
           <li role="menuitem">
-            <a data-sveltekit-reload href="/{navItem.name}" class={navLinkClasses}>{navItem.name}</a
-            >
+            <a href="/" class={navLinkClasses}>home</a>
           </li>
-        {/each}
-      </ul>
-      <ul aria-label="Settings" role="menu" class="relative flex flex-col w-full justify-center">
-        <li class={settingItemClasses} role="menuitem">
-          dyslexia mode
-          <ToggleSwitch enabled={$LayoutStore.dyslexia} on:click={() => toggleDyslexia()} />
-        </li>
-        <li class={settingItemClasses} role="menuitem">
-          <span>allow google analytics</span>
-          <ToggleSwitch enabled />
-        </li>
-        <li
-          class="text-neutral-300 hover:text-white text-right block px-3 py-5 text-base font-medium"
-          role="menuitem"
-        >
-          Clear Settings
-        </li>
-      </ul>
+          {#each items as navItem}
+            <li role="menuitem">
+              <a data-sveltekit-reload href="/{navItem.name}" class={navLinkClasses}
+                >{navItem.name}</a
+              >
+            </li>
+          {/each}
+        </ul>
+      </div>
+      <div>
+        <hr class="font-bold text-sm border-neutral-600 uppercase my-5" />
+        <ul aria-label="Settings" role="menu" class="relative flex flex-col w-full justify-center">
+          <li class={settingItemClasses} role="menuitem">
+            dyslexia mode
+            <ToggleSwitch enabled={$LayoutStore.dyslexia} on:click={() => toggleDyslexia()} />
+          </li>
+          <li class={settingItemClasses} role="menuitem">
+            <span>allow google analytics</span>
+            <ToggleSwitch enabled />
+          </li>
+          <li
+            class="text-neutral-300 hover:text-white text-right block px-3 py-5 text-base font-medium"
+            role="menuitem"
+          >
+            Clear Settings
+          </li>
+        </ul>
+      </div>
     </div>
   </nav>
 </div>

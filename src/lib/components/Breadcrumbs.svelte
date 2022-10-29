@@ -10,7 +10,7 @@
 
 </script>
 
-<nav class="flex items-center space-x-4 {clazz}" aria-label="Breadcrumb">
+<nav class="flex items-center space-x-4 py-4 {clazz}" aria-label="Breadcrumb">
   <ol class="list-none {clazz} flex mx-1">
     <li>
       <a href="/" class="text-gray-400 hover:text-white">
