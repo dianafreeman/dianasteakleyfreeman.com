@@ -1,14 +1,13 @@
 <script>
   import Card from "$lib/components/Card.svelte";
+    import Seo from "$lib/components/Seo.svelte";
   /** @type {import('./$types').PageData} */
   export let data;
 
   const { title, entries } = data;
 </script>
 
-<svelte:head>
-  <title>{title}</title>
-</svelte:head>
+<Seo title={title} />
 {#key title}
   <div class="mx-3 flex flex-col ">
     <div class="p-2 lg:p-5 my-5">

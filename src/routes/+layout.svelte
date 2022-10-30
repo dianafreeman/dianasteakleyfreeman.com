@@ -3,14 +3,16 @@
   import NavBar from "$lib/components/NavBar.svelte";
   import Breadcrumbs from "$lib/components/Breadcrumbs.svelte";
   import LayoutStore from "$stores/LayoutStore";
+    import Seo from "$lib/components/Seo.svelte";
 
 
   /** @type {import('./$types').LayoutData} */
   export let data;
-  const { navItems, breadcrumbs } = data;
+  const { navItems, breadcrumbs, seoMeta } = data;
+
 
 </script>
-
+<Seo title={seoMeta.title} description={seoMeta.description || seoMeta.excerpt || null} />
 <header class="w-screen h-100 relative" class:dyslexia={$LayoutStore.dyslexia}>
   <NavBar items={navItems}>
     <Breadcrumbs

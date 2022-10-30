@@ -1,4 +1,6 @@
-import { getPageEntries, getMarkdownEntries } from '$lib/content/queries';
+
+  import landingMeta from './_metadata.json'
+  import { getPageEntries, getMarkdownEntries } from '$lib/content/queries';
 
 function isTopLevelRoute(entry) {
   const pathArray = entry.relativePath.split("/").filter((v) => v.length !== 0);
@@ -13,15 +15,20 @@ export async function load({ params, url, routeId }) {
 
   
   const navItems = pageEntries.filter(isTopLevelRoute);
-  const subcategory = params.subcategory || params.entry && params.entry.split("/").filter( v => v.length)[0]
 
-  
+  const category = params.category && pageEntries.find( e => e.relativePath === `/${params.category}`);
+  const subcategory = params.subcategory && pageEntries.find( e => e.relativePath === `/${params.category}/${subcategory}`);
+  const activeEntry = params.entry && mdEntries ? mdEntries[0] : null;
+
+  let seoEntry = activeEntry ? activeEntry.metadata : (subcategory ? subcategory.default : category ? category.default : landingMeta)
+
   return {
     breadcrumbs: {
-      category: params.category && pageEntries.find( e => e.relativePath === `/${params.category}`),
-      subcategory: params.subcategory && pageEntries.find( e => e.relativePath === `/${params.category}/${subcategory}`),
-      activeEntry: params.entry && mdEntries ? mdEntries[0] : null
+      category,
+      subcategory,
+      activeEntry,
     },
+    seoMeta: seoEntry,
     navItems
   }
 

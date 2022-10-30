@@ -1,13 +1,38 @@
 <script>
+  import { onMount } from "svelte";
+    import { writable } from "svelte/store";
+  import { fade } from "svelte/transition";
+
+  const PHRASE = "The future of engineering is human.";
+  let words = writable([])
+
+
+  function addWord() {
+   const fullPhrase = PHRASE.split(" ")
+    if ($words.length < fullPhrase.length){
+     let  nextWord = fullPhrase[$words.length]
+     words.update( curr => [...curr, nextWord])
+    }
+  }
+  
+  onMount(()  => {
+    const interval = setInterval(addWord, 300);
+    addWord();
+    return () => clearInterval(interval);
+  }) 
 </script>
 
-<div class="flex flex-col min-h-screen justify-end max-w-4xl mx-auto">
-  <div class="my-12 relative p-2 lg:p-5 align-center">
+<div class="flex flex-col min-h-[90vh] justify-end max-w-4xl mx-auto">
+  <div class="my-12 relative p-2 lg:p-5 align-center min-h-[30vh]">
     <h1 class="text-6xl font-thin" aria-label="the future of engineering is human.">
-      <span aria-hidden="true">the future of engineering is </span><span
-        aria-hidden="true"
-        class="font-bold">human.</span
-      >
+      {#each $words as word, idx}
+        <span
+          aria-hidden="true"
+          transition:fade
+          class:font-bold={idx === PHRASE.split(" ").length - 1}
+          >{word}
+        </span>
+      {/each}
     </h1>
   </div>
 </div>
