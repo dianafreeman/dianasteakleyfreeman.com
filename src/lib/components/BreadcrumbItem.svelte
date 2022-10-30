@@ -12,7 +12,7 @@
   <div class="flex items-center">
     <Slash />
     {#if current}
-      <p>{item.name}</p>
+      <p class="w-[33vw] whitespace-nowrap overflow-hidden overflow-ellipsis md:w-full">{item.name}</p>
     {:else}
     <NavLink
       href={item.relativePath}

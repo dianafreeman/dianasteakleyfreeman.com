@@ -44,7 +44,7 @@
   const buttonActiveClasses = `active:bg-neutral-800`;
   const buttonFocusClasses = `focus:bg-neutral-800 focus:outline-none`;
   const buttonHoverClasses = `hover:bg-neutral-800 ${buttonActiveClasses} ${buttonFocusClasses}`;
-  const classes = `button inline-block relative cursor-pointer w-full text-white text-center z-[3] ${buttonHoverClasses} ${beforeClasses} ${afterClasses} `;
+  const classes = `button block relative cursor-pointer w-full text-white text-center z-[3] ${buttonHoverClasses} ${beforeClasses} ${afterClasses} `;
 </script>
 
 <svelte:element

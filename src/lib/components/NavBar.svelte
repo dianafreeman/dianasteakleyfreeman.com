@@ -40,7 +40,7 @@
   style="top: {scrollY}px;"
   class="{$menuOpen
     ? 'bg-neutral-900'
-    : 'semi-transparent'} relative left-0 right-0 z-50 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 {$menuOpen
+    : 'semi-transparent'} relative left-0 right-0 z-50 w-full max-w-7xl mx-auto px-4 pb-4 {$menuOpen
     ? navWrapperClassesOpen
     : navWrapperClassesClosed}"
 >
