@@ -1,17 +1,18 @@
 <script>
+  import { page } from "$app/stores";
+  import BreadcrumbItem from "./BreadcrumbItem.svelte";
   import Slash from "./Slash.svelte";
+  import NavLink from "./NavLink.svelte";
 
   let clazz;
   export { clazz as class };
-
   export let category;
   export let subcategory;
-  export let active;
-
+  export let activeEntry;
 </script>
 
-<nav class="flex items-center space-x-4 py-4 {clazz}" aria-label="Breadcrumb">
-  <ol class="list-none {clazz} flex mx-1">
+<nav class=" {clazz}" aria-label="Breadcrumb">
+  <ol class="list-none flex  mx-1">
     <li>
       <a href="/" class="text-gray-400 hover:text-white">
         <!-- Heroicon n400: mini/home -->
@@ -31,37 +32,14 @@
         <span class="sr-only">Home</span>
       </a>
     </li>
-    {#if category && category !== active}
-      <li>
-        <div class="flex items-center">
-          <Slash />
-          <a
-            href="/{category}"
-            class="ml-4 text-base font-thin text-gray-300 underline underline-offset-4 hover:text-white"
-            >{category}</a
-          >
-        </div>
-      </li>
+    {#if category}
+      <BreadcrumbItem item={category} />
     {/if}
     {#if subcategory}
-      <li>
-        <div class="flex items-center">
-          <Slash />
-          <a
-            href="/{subcategory.name}"
-            class="ml-4 text-base font-thin text-gray-300 underline underline-offset-4 hover:text-white"
-            >{subcategory.name}</a
-          >
-        </div>
-      </li>
+      <BreadcrumbItem item={subcategory} />
     {/if}
-    {#if active}
-      <li aria-current="page">
-        <div class="flex items-center">
-          <Slash />
-          <p class="ml-4 text-base text-white" >{active}</p>
-        </div>
-      </li>
+    {#if activeEntry}
+      <BreadcrumbItem current item={{name: activeEntry.metadata.title, relativePath: activeEntry.relativePath}} />
     {/if}
   </ol>
 </nav>

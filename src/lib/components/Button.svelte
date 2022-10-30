@@ -9,7 +9,7 @@
   export let ariaSettings;
   export let label;
 
-  // const boxSize = spring(0)
+
   let hover = writable(false);
   let wrapper;
 

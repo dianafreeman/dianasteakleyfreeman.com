@@ -2,12 +2,14 @@
   import { writable } from "svelte/store";
   import LayoutStore from "$stores/LayoutStore";
   import { onMount } from "svelte";
-  import ToggleSwitch from "../ToggleSwitch.svelte";
-  import Button from "../Button.svelte";
+  import ToggleSwitch from "./Toggles/ToggleSwitch.svelte";
+  import Button from "./Button.svelte";
   import { page } from "$app/stores";
   import createTrapFocus from "$lib/trapFocus";
+    import NavLink from "./NavLink.svelte";
   export let items;
 
+  
   let navWrapper, scrollY;
 
   const navLinkClasses =
@@ -42,10 +44,8 @@
 >
   <nav>
     <div class="flex justify-between w-full ">
-      <a href="/" aria-label="Diana" class="mb-0 m-2 pt-2 pb-0 text-2xl lg:text-3xl xl:text-4xl inline-flex font-bold"
-        >
-        <span>D</span><span class="text-gray-400">iana</span>.</a
-      >
+      <NavLink href="/" aria-label="Diana" class="mb-0 m-2 pt-2 pb-0 text-2xl lg:text-3xl xl:text-4xl inline-flex font-bold">
+        <span>D</span><span class="text-gray-400">iana</span>.</NavLink>
       <Button
         type="button"
         onClick={toggleMenu}
@@ -73,14 +73,14 @@
       <div>
         <hr class="font-bold text-sm border-neutral-600 uppercase my-5" />
         <ul aria-label="Main" role="menu" class="relative flex flex-col w-full justify-center">
-          <li role="menuitem">
+          <!-- <li role="menuitem">
             <a href="/" class={navLinkClasses}>home</a>
-          </li>
+          </li> -->
           {#each items as navItem}
             <li role="menuitem">
-              <a data-sveltekit-reload href="/{navItem.name}" class={navLinkClasses}
-                >{navItem.name}</a
-              >
+              <NavLink href={navItem.relativePath} class={navLinkClasses}
+                >{navItem.name}</NavLink>
+              
             </li>
           {/each}
         </ul>
