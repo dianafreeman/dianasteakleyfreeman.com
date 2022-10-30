@@ -1,5 +1,4 @@
 import { getPageEntries, getMarkdownEntries } from '$lib/content/queries';
-import { error } from '@sveltejs/kit';
 
 function isTopLevelRoute(entry) {
   const pathArray = entry.relativePath.split("/").filter((v) => v.length !== 0);

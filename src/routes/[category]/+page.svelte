@@ -1,10 +1,5 @@
 <script>
-  import Breadcrumbs from "$lib/components/Breadcrumbs.svelte";
-  import Button from "$lib/components/Button.svelte";
   import Card from "$lib/components/Card.svelte";
-  import FilterButton from "$lib/components/Toggles/FilterButton.svelte";
-  import { derived, writable } from "svelte/store";
-
   /** @type {import('./$types').PageData} */
   export let data;
 

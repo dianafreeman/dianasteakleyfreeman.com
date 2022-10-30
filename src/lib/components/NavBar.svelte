@@ -1,9 +1,7 @@
 <script>
   import { writable } from "svelte/store";
   import LayoutStore from "$stores/LayoutStore";
-  import { onMount } from "svelte";
   import ToggleSwitch from "./Toggles/ToggleSwitch.svelte";
-  import Button from "./Button.svelte";
   import { page } from "$app/stores";
   import createTrapFocus from "$lib/trapFocus";
   import NavLink from "./NavLink.svelte";

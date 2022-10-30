@@ -1,9 +1,7 @@
 <script>
-  import Button from "$lib/components/Button.svelte";
-  // export let data;
 </script>
 
-<div class="mx-3 flex flex-col min-h-screen justify-end max-w-4xl mx-auto">
+<div class="flex flex-col min-h-screen justify-end max-w-4xl mx-auto">
   <div class="my-12 relative p-2 lg:p-5 align-center">
     <h1 class="text-6xl font-thin" aria-label="the future of engineering is human.">
       <span aria-hidden="true">the future of engineering is </span><span
@@ -13,7 +11,7 @@
     </h1>
   </div>
 </div>
-<div class="mx-3 flex flex-col min-h-screen justify-center max-w-4xl mx-auto">
+<div class="flex flex-col min-h-screen justify-center max-w-4xl mx-auto">
   <div class="my-12 relative p-2 lg:p-5 align-center">
     <h1 class="text-6xl text-center font-bold">I'm Diana.</h1>
   </div>
