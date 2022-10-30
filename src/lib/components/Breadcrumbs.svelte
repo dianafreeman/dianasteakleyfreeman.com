@@ -3,18 +3,20 @@
   import BreadcrumbItem from "./BreadcrumbItem.svelte";
   import Slash from "./Slash.svelte";
   import NavLink from "./NavLink.svelte";
-
+ 
+  
   let clazz;
   export { clazz as class };
   export let category;
-  export let subcategory;
   export let activeEntry;
+  // export let subcategory;
 </script>
 
+<!-- {#key $page.url.pathname} -->
 <nav class=" {clazz}" aria-label="Breadcrumb">
   <ol class="list-none flex  mx-1">
     <li>
-      <a href="/" class="text-gray-400 hover:text-white">
+      <NavLink href="/" class="text-gray-400 hover:text-white">
         <!-- Heroicon n400: mini/home -->
         <svg
           class="h-5 w-5 flex-shrink-0"
@@ -30,16 +32,19 @@
           />
         </svg>
         <span class="sr-only">Home</span>
-      </a>
+      </NavLink>
     </li>
     {#if category}
       <BreadcrumbItem item={category} />
     {/if}
-    {#if subcategory}
+    <!--
+      TODO: 
+      {#if subcategory}
       <BreadcrumbItem item={subcategory} />
-    {/if}
+    {/if} -->
     {#if activeEntry}
       <BreadcrumbItem current item={{name: activeEntry.metadata.title, relativePath: activeEntry.relativePath}} />
     {/if}
   </ol>
 </nav>
+<!-- {/key} -->

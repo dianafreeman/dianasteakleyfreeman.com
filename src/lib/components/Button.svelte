@@ -24,12 +24,13 @@
   };
 
   const buttonProps = {
-    "aria-expanded": ariaSettings?.expanded || null,
+    "aria-expanded": ariaSettings?.expanded || false,
+    "aria-live": ariaSettings?.live || null,
     "aria-label": label,
     "aria-controls": ariaSettings?.controls || null,
-    "aria-live": "polite",
     type: type
   };
+  
   const activeBeforeClasses = `active:before:w-full active:before:h-full active:before:border-[#ecf0f1] active:before:opacity-1 active:before:border-t active:before:border-r active:before:border-solid`;
   const focusBeforeClasses = `focus:before:w-full focus:before:h-full focus:before:border-[#ecf0f1] focus:before:opacity-1 focus:before:border-t focus:before:border-r focus:before:border-solid`;
   const hoverBeforeClasses = `hover:before:w-full hover:before:h-full hover:before:border-[#ecf0f1] hover:before:opacity-1 hover:before:border-t hover:before:border-r hover:before:border-solid ${activeBeforeClasses} ${focusBeforeClasses}`;
@@ -55,7 +56,8 @@
   on:mouseleave={toggleHover}
   on:focus={hoverOn}
   on:blur={hoverOff}
-  {...type === "a" ? linkProps : buttonProps}
+  aria-pressed={false}
+  {...(type === "a" ? linkProps : buttonProps)}
 >
   <slot />
   <span class="shape" />

@@ -25,6 +25,8 @@
   const { toggleDyslexia } = LayoutStore;
 
   $: $page.url.pathname && menuOpen.set(false);
+
+  $: ariaSettings = { controls: "main-menu", expanded: $menuOpen, pressed: $menuOpen, live: 'polite'}
   onMount(() => {
     const trapFocus = createTrapFocus();
     document.addEventListener("keydown", trapFocus);
@@ -49,9 +51,9 @@
       <Button
         type="button"
         onClick={toggleMenu}
-        label="Main Menu"
+        label="{$menuOpen ? "Close" : "Open" } Main Menu"
         class="w-fit h-fit my-auto p-3"
-        ariaSettings={{ controls: "main-menu", expanded: $menuOpen }}
+        ariaSettings={ariaSettings}
       >
         <span>
           {#if $menuOpen}
@@ -69,13 +71,12 @@
       class:hidden={!$menuOpen}
       class:flex={$menuOpen}
       class="flex-col justify-between"
+      aria-label="Main Menu"
+      role="menu"
     >
       <div>
         <hr class="font-bold text-sm border-neutral-600 uppercase my-5" />
-        <ul aria-label="Main" role="menu" class="relative flex flex-col w-full justify-center">
-          <!-- <li role="menuitem">
-            <a href="/" class={navLinkClasses}>home</a>
-          </li> -->
+        <ul class="relative flex flex-col w-full justify-center">
           {#each items as navItem}
             <li role="menuitem">
               <NavLink href={navItem.relativePath} class={navLinkClasses}
@@ -87,14 +88,10 @@
       </div>
       <div>
         <hr class="font-bold text-sm border-neutral-600 uppercase my-5" />
-        <ul aria-label="Settings" role="menu" class="relative flex flex-col w-full justify-center">
+        <ul aria-label="Settings"  class="relative flex flex-col w-full justify-center">
           <li class={settingItemClasses} role="menuitem">
             dyslexia mode
             <ToggleSwitch enabled={$LayoutStore.dyslexia} on:click={() => toggleDyslexia()} />
-          </li>
-          <li class={settingItemClasses} role="menuitem">
-            <span>allow google analytics</span>
-            <ToggleSwitch enabled />
           </li>
           <li
             class="text-neutral-300 hover:text-white text-right block px-3 py-5 text-base font-medium"
