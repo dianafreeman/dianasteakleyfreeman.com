@@ -6,9 +6,10 @@ const FOCUSABLE_ELEMENTS =
 * @param focusableElements = an array of selectors
 * returns a function that can be bound to an event
 */
-function createTrapFocus() {
-    return function (e) {
-        let focusableContent = navWrapper.querySelectorAll(FOCUSABLE_ELEMENTS);
+function createTrapFocus(conditionBool) {
+    return function (e, element) {
+        console.log(e.currentTarget)
+        let focusableContent = element.querySelectorAll(FOCUSABLE_ELEMENTS);
         // get first element to be focused inside trap
         let firstFocusableElement = focusableContent[0]; 
         
@@ -31,7 +32,7 @@ function createTrapFocus() {
             }
         } else {
             // if tab key is pressed
-            if ($menuOpen && document.activeElement === lastFocusableElement) {
+            if (conditionBool && document.activeElement === lastFocusableElement) {
                 // if focused has reached to last focusable element then focus first focusable element after pressing tab
                 firstFocusableElement.focus(); // add focus for the first focusable element
                 e.preventDefault();
