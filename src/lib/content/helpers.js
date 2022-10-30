@@ -1,4 +1,5 @@
 const CONTENT_ROOT = "/src/routes";
+const METADATA_NAME = "/_metadata.json";
 
 
 /**
@@ -13,11 +14,24 @@ function removePatternFromString(string, pattern) {
   return string.replace(new RegExp(pattern, "g"), "");
 }
 
-
+export function removeTrailingSlash(path){
+  let starts = path.charAt(0) === "/"
+  let ends = path.charAt(path.length - 1) === "/"
+  if (starts && ends){ 
+    return path.slice(1, -1)
+  } else if (starts){
+    return path.substring(1)
+  } else if (ends){
+    return path.slice(0, -1)
+  }
+  return path
+}
 export function markdownPathToRelativePath(markdownPath) {
   const withoutRoot = removePatternFromString(markdownPath, CONTENT_ROOT);
-  let fileExtensionRegex = new RegExp(/\.(md|png|jpg|js)/, "g");
-  return withoutRoot.replace(fileExtensionRegex, "");
+  const withoutMetadataName = removePatternFromString(withoutRoot, METADATA_NAME);
+  const fileExtensionRegex = new RegExp(/\.(md|png|jpg|js|json)/, "g");
+  const withoutFileExtension = withoutMetadataName.replace(fileExtensionRegex, "")
+  return withoutFileExtension
 }
 
 export function relativePathWithoutSlugChunk(relPath, slug) {
@@ -29,7 +43,7 @@ export function relativePathWithoutSlugChunk(relPath, slug) {
 }
 
 
-function filterModules(modules, filterFn){
+export function filterModuleMap(modules, filterFn){
   const entries = Object.entries(modules)
   const filtered = entries.filter(filterFn)
   if (!filtered.length) return null;
@@ -37,17 +51,7 @@ function filterModules(modules, filterFn){
 }
 
 
-export function filterModulesByPathString(moduleEntries, stringToMatch) {
-  
-  return filterModules(moduleEntries, ([path, _getter]) => path.includes(stringToMatch))
-}
-
-
-export function flattenModuleData(markdownPath, moduleData) {
-  const relativePath = markdownPathToRelativePath(markdownPath);
-  const { metadata } = moduleData;
-  const withoutTitle = relativePathWithoutSlugChunk(relativePath, metadata.slug);
-  const [category, subcategory] = withoutTitle.split("/");
-  const categoryInfo = subcategory ? { category, subcategory } : { category };
-  return { ...metadata, ...categoryInfo, path: relativePath };
+export function filterModuleMapByPathString(moduleMap, stringToMatch) {
+  const queryString = removeTrailingSlash(stringToMatch)
+  return filterModuleMap(moduleMap, ([path, _getter]) => path.toString().includes(queryString))
 }
