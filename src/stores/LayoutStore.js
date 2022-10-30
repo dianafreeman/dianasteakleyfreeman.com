@@ -1,6 +1,5 @@
 import { writable, derived } from "svelte/store";
 import { page } from "$app/stores";
-import { getCategories } from "$lib/queries";
 
 const createMapFromArray = (item) => ({ [item]: item });
 
@@ -10,12 +9,8 @@ function createLayoutStore() {
   const settings = writable({
     mode: MODES.dark,
     dyslexia: false,
-    navHeight: 0,
-    scrollY: 0
   });
 
-  const setScrollY = (y) => settings.update((curr) => ({ ...curr, scrollY: y }));
-  const setNavHeight = (val) => settings.update((curr) => ({ ...curr, navHeight: val }));
   const setMode = (modeEnum) => settings.update((curr) => ({ ...curr, mode: modeEnum }));
   const toggleDyslexia = (bool) =>
     settings.update((curr) => ({ ...curr, dyslexia: !curr.dyslexia }));
@@ -36,8 +31,6 @@ function createLayoutStore() {
   return {
     subscribe: settings.subscribe,
     combined: combined,
-    setScrollY,
-    setNavHeight,
     toggleMode,
     toggleDyslexia
   };
