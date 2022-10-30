@@ -1,6 +1,6 @@
 <script>
   import { Meta, Template, Story } from "@storybook/addon-svelte-csf";
-  import Toggle from "$lib/components/ToggleSwitch.svelte";
+  import Toggle from "$lib/components/Toggles/ToggleSwitch.svelte";
 </script>
 
 <!-- More on default export: https://storybook.js.org/docs/react/blog-stories/introduction#default-export -->

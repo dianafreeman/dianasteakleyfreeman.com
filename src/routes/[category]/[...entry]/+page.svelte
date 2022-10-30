@@ -20,12 +20,12 @@
         Published on <span class="font-bold">{new Date(entry.metadata?.date).toDateString()}</span>
       </p>
       {/if}
-      <p class="mr-3 text-md">
+      <!-- <p class="mr-3 text-md">
         Tags:
         {#each entry.metadata?.tags.toString().split(",") as tag}
           <span class="font-bold underline underline-offset-4">{tag}</span>{`, `}
         {/each}
-      </p>
+      </p> -->
     </div>
   </div>
   <hr class="w-5/6 lg:w-3/4 mx-auto my-5" />

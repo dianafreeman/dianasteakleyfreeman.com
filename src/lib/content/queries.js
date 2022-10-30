@@ -38,6 +38,7 @@ export async function getPageEntries(){
 
 export function getMarkdownModules(stringMatcher) {
   const allModules = getMarkdownModuleMap()
+  
   const results = filterModuleMapByPathString(allModules, stringMatcher)
   
   if (!stringMatcher) return modules
@@ -48,7 +49,7 @@ export function getMarkdownModules(stringMatcher) {
 export async function getMarkdownEntries(stringMatcher){
   const modules = await getMarkdownModules(stringMatcher)
   if (!modules) return null
-
+  
   const renderable = await getModuleContentMap(modules);
   const withPathsAsKeys = useRelativePathKeys(renderable)
   const entries = Object.entries(withPathsAsKeys).map(([relativePath, data]) => ({...data, relativePath}))
