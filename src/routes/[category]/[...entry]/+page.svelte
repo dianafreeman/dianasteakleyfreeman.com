@@ -1,6 +1,6 @@
 <script>
   export let data;
-  const { entry , component } = data
+  const { entry } = data
   
 </script>
 
@@ -30,7 +30,7 @@
   </div>
   <hr class="w-5/6 lg:w-3/4 mx-auto my-5" />
   <div class="markdown w-5/6 lg:w-3/4 mx-auto">
-    <svelte:component this={component} />
+    <svelte:component this={entry.default} />
   </div>
 </div>
 

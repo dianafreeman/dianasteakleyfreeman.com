@@ -7,6 +7,7 @@ export const SSR = true;
 /** @type {import('./$types').PageLoad} */
 export async function load({ params }) {
   const { category, subcategory } = params;
+  
   const entries = await getMarkdownEntries(`${category}/${subcategory}`)
   if (entries.length){    
   return {
