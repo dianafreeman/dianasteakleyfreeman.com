@@ -8,22 +8,9 @@
 
   /** @type {import('./$types').LayoutData} */
   export let data;
-  const { pageEntries } = data;
-  // // console.log(data)
-  // const activePageEntry =  pageEntries.find( e => {
-  //   return removeTrailingSlash(e.relativePath) === removeTrailingSlash($page.url.pathname)
-  // })
+  const { navItems, breadcrumbs } = data;
 
-  // console.log(pageEntries)
-  function isTopLevel(entry) {
-    if (!entry.relativePath) error(500, `entry ${entry.title} is missing a relativePath `);
-    const pathArray = entry.relativePath.split("/").filter((v) => v.length !== 0);
-
-    if (pathArray.length > 1) return false;
-    return true;
-  }
-  const topLevelRoutes = pageEntries.filter(isTopLevel);
-  const navItems = Object.values(topLevelRoutes);
+// console.log(breadcrumbs)
 </script>
 
 <header class="w-screen h-100 relative" class:dyslexia={$LayoutStore.dyslexia}>
@@ -31,8 +18,10 @@
     <Breadcrumbs
       slot="breadcrumbs"
       class="w-full"
-      category={$page.params.category}
-      subcategory={$page.params.subcategory}
+      category={breadcrumbs.category}
+      subcategory={breadcrumbs.subcategory}
+      activeEntry={breadcrumbs.activeEntry}
+      
     />
   </NavBar>
 </header>
