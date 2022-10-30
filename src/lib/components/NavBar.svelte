@@ -6,10 +6,10 @@
   import Button from "./Button.svelte";
   import { page } from "$app/stores";
   import createTrapFocus from "$lib/trapFocus";
-    import NavLink from "./NavLink.svelte";
+  import NavLink from "./NavLink.svelte";
+  import NavToggle from "./NavToggle.svelte";
   export let items;
 
-  
   let navWrapper, scrollY;
 
   const navLinkClasses =
@@ -25,12 +25,14 @@
   const { toggleDyslexia } = LayoutStore;
 
   $: $page.url.pathname && menuOpen.set(false);
+  
+  $: {
+    const trapFocus = createTrapFocus($menuOpen);
+    if (navWrapper){
+      navWrapper.addEventListener("keydown", e => trapFocus(e, navWrapper));
+    }
+  };
 
-  $: ariaSettings = { controls: "main-menu", expanded: $menuOpen, pressed: $menuOpen, live: 'polite'}
-  onMount(() => {
-    const trapFocus = createTrapFocus();
-    document.addEventListener("keydown", trapFocus);
-  });
 </script>
 
 <svelte:window bind:scrollY />
@@ -46,23 +48,21 @@
 >
   <nav>
     <div class="flex justify-between w-full ">
-      <NavLink href="/" aria-label="Diana" class="mb-0 m-2 pt-2 pb-0 text-2xl lg:text-3xl xl:text-4xl inline-flex font-bold">
-        <span>D</span><span class="text-gray-400">iana</span>.</NavLink>
-      <Button
-        type="button"
-        onClick={toggleMenu}
-        label="{$menuOpen ? "Close" : "Open" } Main Menu"
-        class="w-fit h-fit my-auto p-3"
-        ariaSettings={ariaSettings}
+      <NavLink
+        href="/"
+        props={{'aria-label':"Diana"}}
+        class="mb-0 m-2 pt-2 pb-0 text-2xl lg:text-3xl xl:text-4xl inline-flex font-bold"
       >
-        <span>
+        <span aria-hidden="true">D</span><span aria-hidden="true" class="text-gray-400">iana</span>.
+      </NavLink>
+
+      <NavToggle onClick={toggleMenu} buttonProps={{'aria-expanded': $menuOpen}}>
           {#if $menuOpen}
             <i class="text-3xl las la-times" aria-hidden="true" />
           {:else}
             <i class="text-3xl las la-bars" aria-hidden="true" />
           {/if}
-        </span>
-      </Button>
+      </NavToggle>
     </div>
     <slot name="breadcrumbs" />
 
@@ -79,16 +79,14 @@
         <ul class="relative flex flex-col w-full justify-center">
           {#each items as navItem}
             <li role="menuitem">
-              <NavLink href={navItem.relativePath} class={navLinkClasses}
-                >{navItem.name}</NavLink>
-              
+              <NavLink props={{ "aria-expanded": $menuOpen}} href={navItem.relativePath} class={navLinkClasses}>{navItem.name}</NavLink>
             </li>
           {/each}
         </ul>
       </div>
       <div>
         <hr class="font-bold text-sm border-neutral-600 uppercase my-5" />
-        <ul aria-label="Settings"  class="relative flex flex-col w-full justify-center">
+        <ul aria-label="Settings" class="relative flex flex-col w-full justify-center">
           <li class={settingItemClasses} role="menuitem">
             dyslexia mode
             <ToggleSwitch enabled={$LayoutStore.dyslexia} on:click={() => toggleDyslexia()} />

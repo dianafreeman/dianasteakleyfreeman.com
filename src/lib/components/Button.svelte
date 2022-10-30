@@ -1,14 +1,12 @@
 <script>
   import { writable } from "svelte/store";
+  import { createEventDispatcher } from "svelte"
 
   let clazz;
   export { clazz as class };
-  export let href = "/";
-  export let type = "a";
   export let onClick;
-  export let ariaSettings;
-  export let label;
-
+  export let buttonProps
+  
 
   let hover = writable(false);
   let wrapper;
@@ -18,18 +16,6 @@
   };
   const hoverOn = () => hover.set(true);
   const hoverOff = () => hover.set(false);
-
-  const linkProps = {
-    href
-  };
-
-  const buttonProps = {
-    "aria-expanded": ariaSettings?.expanded || false,
-    "aria-live": ariaSettings?.live || null,
-    "aria-label": label,
-    "aria-controls": ariaSettings?.controls || null,
-    type: type
-  };
   
   const activeBeforeClasses = `active:before:w-full active:before:h-full active:before:border-[#ecf0f1] active:before:opacity-1 active:before:border-t active:before:border-r active:before:border-solid`;
   const focusBeforeClasses = `focus:before:w-full focus:before:h-full focus:before:border-[#ecf0f1] focus:before:opacity-1 focus:before:border-t focus:before:border-r focus:before:border-solid`;
@@ -47,8 +33,7 @@
   const classes = `button block relative cursor-pointer w-full text-white text-center z-[3] ${buttonHoverClasses} ${beforeClasses} ${afterClasses} `;
 </script>
 
-<svelte:element
-  this={type}
+<button
   bind:this={wrapper}
   class="{classes} {clazz}"
   on:click={onClick}
@@ -56,12 +41,10 @@
   on:mouseleave={toggleHover}
   on:focus={hoverOn}
   on:blur={hoverOff}
-  aria-pressed={false}
-  {...(type === "a" ? linkProps : buttonProps)}
+  {...buttonProps}
 >
   <slot />
-  <span class="shape" />
-</svelte:element>
+</button>
 
 <style>
   .button:before,
