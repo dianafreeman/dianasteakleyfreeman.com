@@ -6,11 +6,11 @@ export const SSR = true;
 
 /** @type {import('./$types').PageLoad} */
 export async function load({ params }) {
-  const { category } = params;
-  const entries = await getMarkdownEntries(category)
+  const { category, entry } = params;
+  const entries = await getMarkdownEntries(`${category}/${entry}`)
   if (entries.length){    
   return {
-      entries
+      entry: entries[0]
     }
   } else { 
     throw error(404)

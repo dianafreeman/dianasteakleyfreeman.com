@@ -1,10 +1,12 @@
+import { getPageEntries, getMarkdownEntries } from '$lib/content/queries';
+import { error } from '@sveltejs/kit';
 
 /** @type {import('./$types').LayoutLoad} */
-export async function load() {
+export async function load({ params }) {
+  const results = await getPageEntries()
+  const pageEntries = await getPageEntries()
+  
+  if (!pageEntries.length) throw error(404)
+  return { pageEntries };
 
-  const metadataModules = import.meta.glob("$routes/**/_metadata.json")
-  
-  const routes = await Promise.all(Object.entries(metadataModules).map(async ([_path, getter]) => await getter()))
-  return { routes };
-  
 }
