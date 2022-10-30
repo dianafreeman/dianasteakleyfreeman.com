@@ -18,7 +18,7 @@
     "text-neutral-200 hover:bg-neutral-800 px-4 flex justify-between items-center py-5 text-base font-medium";
 
   const navWrapperClassesClosed = "h-fit";
-  const navWrapperClassesOpen = "h-screen overflow-y-scroll";
+  const navWrapperClassesOpen = "h-screen";
 
   const menuOpen = writable(false);
   const toggleMenu = () => menuOpen.update((bool) => !bool);
@@ -42,12 +42,12 @@
   style="top: {scrollY}px;"
   class="{$menuOpen
     ? 'bg-neutral-900'
-    : 'semi-transparent'} relative left-0 right-0 z-50 w-full max-w-7xl mx-auto px-4 pb-4 {$menuOpen
+    : 'semi-transparent'} relative left-0 right-0 z-50 w-full mx-auto pb-4 {$menuOpen
     ? navWrapperClassesOpen
     : navWrapperClassesClosed}"
 >
-  <nav>
-    <div class="flex justify-between w-full ">
+  <nav class="m-auto md:max-w-3xl lg:max-w-4xl">
+    <div class="flex justify-between w-full">
       <NavLink
         href="/"
         props={{'aria-label':"Diana"}}
@@ -69,7 +69,7 @@
     <div
       id="main-menu"
       class:hidden={!$menuOpen}
-      class:flex={$menuOpen}
+      class:block={$menuOpen}
       class="flex-col justify-between"
       aria-label="Main Menu"
       role="menu"

@@ -10,7 +10,8 @@ export async function load({ params, data }) {
   const entries = await getMarkdownEntries(category)
   if (entries.length){    
   return {
-      entries
+      entries,
+      title: params.category
     }
   } else { 
     throw error(404)

@@ -7,7 +7,7 @@
   export let imgSrc;
 </script>
 
-<NavLink href={target} class="text-md font-bold p-3">
-  <img src={imgSrc} alt="caption descripton" class="w-full" />
+<NavLink href={target} class="inline-block text-md font-bold p-3 ">
+  <img src={imgSrc} alt="caption descripton" class="w-full self-start" />
   <span class="block my-3">{title}</span>
 </NavLink>
