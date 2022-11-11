@@ -2,6 +2,8 @@
     "title": "Resources ",
     "description": "Resources | Collected by Diana M Steakley-Freeman. Links to anti-racism and allyship resources; practical tricks and tools to understand your digital footprint; musings on my favorite thinkers, creators, tools, products, speeches, books, podcasts, and movies. ", 
     "slug": "resources",
-    "name": "resources",
-    "image": null
+    "relativePath": "/resources",
+    "image": null,
+    "navigationText": "resources"
+
 }

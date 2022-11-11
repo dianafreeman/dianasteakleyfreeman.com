@@ -2,6 +2,7 @@
     "title": "Contact ",
     "description": "Contact Diana M Steakley-Freeman | Nerding out is one of my favorite pastimes. Let's connect! Use the form on this page to shoot me a message. If you're an aspiring engineer looking for a mentor, check the \"I'm looking for mentorship\" box", 
     "slug": "contact",
-    "name": "contact",
-    "image": null
+    "relativePath": "/contact",
+    "image": null,
+    "navigationText": "contact"
 }
