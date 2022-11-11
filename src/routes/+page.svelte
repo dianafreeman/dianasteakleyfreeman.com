@@ -10,8 +10,8 @@
 </script>
 
 <div class="flex flex-col min-h-[90vh] justify-center mx-auto">
-  <div class="my-12 relative p-2 lg:p-5 align-center min-h-[45vh]">
-    <h1 class="text-6xl font-thin" aria-label="the future of engineering is human.">
+  <div class="my-12 relative p-2 lg:p-5 align-center pt-[4vh]">
+    <h1 class="text-4xl md:text-5xl lg:text-6xl font-thin min-h-[400px]" aria-label="the future of engineering is human.">
       <TrailedText />
     </h1>
   </div>
