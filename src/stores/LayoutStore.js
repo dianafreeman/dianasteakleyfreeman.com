@@ -39,7 +39,6 @@ export function createLayoutStore() {
     function saveSettings(obj) {
       if (!obj) return
       localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(obj))
-      // console.log(localStorage.getItem(LOCAL_STORAGE_KEY))
     }
     
     function clearSettings() {

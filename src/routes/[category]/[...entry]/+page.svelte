@@ -8,7 +8,7 @@
     <h1 class="text-4xl md:text-5xl lg:text-6xl text-center font-bold md:text-left mb-12">
       {entry.metadata.title}
     </h1>
-    <img src={entry.metadata.image} alt="caption" class="m-auto w-3/4 mb-12 md:w-1/2 pl-10" />
+    <img src={entry.metadata.image} alt="caption" class="m-auto w-3/4 mb-12 md:w-1/2 lg:pl-10" />
   </div>
 
   {#if entry.metadata?.date}

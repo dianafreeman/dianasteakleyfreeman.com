@@ -3,6 +3,7 @@ import landingMeta from './_metadata.json'
 import { getPageEntries } from '$lib/content/queries';
 import { page } from '$app/stores';
 import { writable } from 'svelte/store';
+import { browser } from '$app/environment';
 
 function isTopLevelRoute(entry) {
   const pathArray = entry.relativePath.split("/").filter((v) => v.length !== 0);
@@ -31,13 +32,14 @@ export async function load({  url }) {
 
 
   page.subscribe(async (pageStore) => {
-    const breadcrumbPromises = pageStore.url.pathname.split("/").map(async (pathSection) => {
-      return await getEntry( e => e.relativePath.includes(pathSection))
-  
-    })
-    // console.log(page.url.pathname)
-    const updated = await Promise.all(breadcrumbPromises)
-    breadcrumbs.set(updated)
+    if (pageStore && pageStore.url){
+      const breadcrumbPromises = pageStore.url.pathname.split("/").map(async (pathSection) => {
+        return await getEntry( e => e.relativePath.includes(pathSection))
+        
+      })
+      const updated = await Promise.all(breadcrumbPromises)
+      breadcrumbs.set(updated)
+    }
   })
 
   return {

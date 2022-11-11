@@ -36,26 +36,5 @@
     "class": "font-bold",
     "delay": 900,
     "element": "span"
-  },
-  { "element": "br", "delay": 0 },
-  { "element": "br", "delay": 0 },
-  { "element": "br", "delay": 0 },
-  {
-    "text": "Hi.",
-    "class": "font-bold",
-    "delay": 2000,
-    "element": "span"
-  },
-  {
-    "text": "I'm",
-    "class": "font-bold",
-    "delay": 1400,
-    "element": "span"
-  },
-  {
-    "text": "Diana.",
-    "class": "font-bold",
-    "delay": 400,
-    "element": "span"
   }
 ]

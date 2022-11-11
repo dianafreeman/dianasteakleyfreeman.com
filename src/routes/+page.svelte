@@ -11,7 +11,7 @@
 
 <div class="flex flex-col min-h-[90vh] justify-center mx-auto">
   <div class="my-12 relative p-2 lg:p-5 align-center pt-[4vh]">
-    <h1 class="text-4xl md:text-5xl lg:text-6xl font-thin min-h-[400px]" aria-label="the future of engineering is human.">
+    <h1 class="text-5xl md:text-6xl lg:text-7xl font-thin min-h-[3em]" aria-label="the future of engineering is human.">
       <TrailedText />
     </h1>
   </div>

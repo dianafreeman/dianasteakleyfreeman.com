@@ -6,6 +6,8 @@
   import createTrapFocus from "$lib/trapFocus";
   import NavLink from "./NavLink.svelte";
   import NavToggle from "./NavToggle.svelte";
+    import NavBrand from "./NavBrand.svelte";
+    import Button from "./Button.svelte";
   export let items;
   export let menuOpen
   let navWrapper, scrollY;
@@ -43,13 +45,7 @@
 >
   <nav>
     <div class="flex justify-between w-full">
-      <NavLink
-        href="/"
-        props={{'aria-label':"Diana"}}
-        class="mb-0 m-2 pt-2 pb-0 text-2xl lg:text-3xl xl:text-4xl inline-flex font-bold"
-      >
-        <span aria-hidden="true">D</span><span aria-hidden="true" class="text-gray-400">iana</span>.
-      </NavLink>
+      <NavBrand />
 
       <NavToggle onClick={toggleMenu} buttonProps={{'aria-expanded': $menuOpen}}>
           {#if $menuOpen}
@@ -89,8 +85,10 @@
             class="text-neutral-300 hover:text-white text-right block px-3 py-5 text-base font-medium"
             role="menuitem"
           >
+          <Button class="inline p-3 text-right w-fit" on:click={() => LayoutStore.clearSettings()}>
             Clear Settings
-          </li>
+          </Button>
+        </li>
         </ul>
       </div>
     </div>
