@@ -1,38 +1,18 @@
 <script>
+  import TrailedText from "$lib/components/TrailedText.svelte";
+  import TrailStore from "$lib/components/Trail/store";
   import { onMount } from "svelte";
-    import { writable } from "svelte/store";
-  import { fade } from "svelte/transition";
 
-  const PHRASE = "The future of engineering is human.";
-  let words = writable([])
-
-
-  function addWord() {
-   const fullPhrase = PHRASE.split(" ")
-    if ($words.length < fullPhrase.length){
-     let  nextWord = fullPhrase[$words.length]
-     words.update( curr => [...curr, nextWord])
-    }
-  }
+  onMount(() => {
+    TrailStore.play();
+  });
   
-  onMount(()  => {
-    const interval = setInterval(addWord, 300);
-    addWord();
-    return () => clearInterval(interval);
-  }) 
 </script>
 
-<div class="flex flex-col min-h-[90vh] justify-end max-w-4xl mx-auto">
-  <div class="my-12 relative p-2 lg:p-5 align-center min-h-[30vh]">
+<div class="flex flex-col min-h-[90vh] justify-center max-w-4xl mx-auto">
+  <div class="my-12 relative p-2 lg:p-5 align-center min-h-[45vh]">
     <h1 class="text-6xl font-thin" aria-label="the future of engineering is human.">
-      {#each $words as word, idx}
-        <span
-          aria-hidden="true"
-          transition:fade
-          class:font-bold={idx === PHRASE.split(" ").length - 1}
-          >{word}
-        </span>
-      {/each}
+      <TrailedText />
     </h1>
   </div>
 </div>
