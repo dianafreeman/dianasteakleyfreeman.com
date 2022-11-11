@@ -59,7 +59,6 @@
           {/if}
       </NavToggle>
     </div>
-    <slot name="breadcrumbs" />
 
     <div
       id="main-menu"
@@ -74,7 +73,7 @@
         <ul class="relative flex flex-col w-full justify-center">
           {#each items as navItem}
             <li role="menuitem">
-              <NavLink props={{ "aria-expanded": $menuOpen}} href={navItem.relativePath} class={navLinkClasses}>{navItem.name}</NavLink>
+              <NavLink props={{ "aria-expanded": $menuOpen}} href={navItem.relativePath} class={navLinkClasses}>{navItem.navigationText}</NavLink>
             </li>
           {/each}
         </ul>

@@ -10,7 +10,7 @@
     <svelte:element this={item.element} class={item.class}/>
   {:else if item}
     <!-- prettier-ignore -->
-    <svelte:element this={item.element} class={item.class} transition:fade>{`${item.text} `}</svelte:element>
+    <svelte:element this={item.element} class={item.class} in:fade>{`${item.text} `}</svelte:element>
   {/if}
 {/each}
 <br />

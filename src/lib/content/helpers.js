@@ -15,6 +15,7 @@ function removePatternFromString(string, pattern) {
 }
 
 export function removeTrailingSlash(path){
+  if (!path) return
   let starts = path.charAt(0) === "/"
   let ends = path.charAt(path.length - 1) === "/"
   if (starts && ends){ 

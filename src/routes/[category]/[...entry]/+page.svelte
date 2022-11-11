@@ -3,12 +3,12 @@
   const { entry } = data;
 </script>
 
-<div class="flex flex-col min-h-screen justify-center m-auto md:max-w-3xl lg:max-w-4xl">
+<div class="flex flex-col min-h-screen justify-center m-auto ">
   <div class="relative flex flex-col md:justify-center md:align-middle pt-16 md:flex-row">
     <h1 class="text-4xl md:text-5xl lg:text-6xl text-center font-bold md:text-left mb-12">
       {entry.metadata.title}
     </h1>
-    <img src={entry.metadata.image} alt="caption" class="m-auto w-3/4 mb-12 md:w-1/2" />
+    <img src={entry.metadata.image} alt="caption" class="m-auto w-3/4 mb-12 md:w-1/2 pl-10" />
   </div>
 
   {#if entry.metadata?.date}

@@ -17,7 +17,7 @@
             <li class="max-w-xs mx-auto mb-auto">
               <Card
                 title={entry.metadata.title}
-                target={entry.relativePath}
+                target={entry.metadata.relativePath}
                 imgSrc={entry.metadata.image}
               />
             </li>

@@ -23,15 +23,15 @@ export async function getModuleContentMap(moduleMap) {
   return Object.fromEntries(resolved)
 }
 
-export async function getPageEntriesMap(){
+export async function getStaticPageEntriesMap(){
   const pageMeta = getPageMetaModuleMap()
   const pageMetaContent = await getModuleContentMap(pageMeta)
   const withPathsAsKeys = useRelativePathKeys(pageMetaContent)
   return withPathsAsKeys
 }
 
-export async function getPageEntries(){
-  const pageEntries = await getPageEntriesMap()
+export async function getStaticPageEntries(){
+  const pageEntries = await getStaticPageEntriesMap()
   const valuesWithRelativePaths = Object.entries(pageEntries).map(([path, content]) => ({...content, relativePath: `${path.charAt(0) === "/" ? "" : "/"}${path}`}))
   return valuesWithRelativePaths
 }
@@ -41,7 +41,7 @@ export function getMarkdownModules(stringMatcher) {
   
   const results = filterModuleMapByPathString(allModules, stringMatcher)
   
-  if (!stringMatcher) return modules
+  if (!stringMatcher) return allModules
   if (stringMatcher && !results) return null
   return results
 }
@@ -52,8 +52,30 @@ export async function getMarkdownEntries(stringMatcher){
   
   const renderable = await getModuleContentMap(modules);
   const withPathsAsKeys = useRelativePathKeys(renderable)
-  const entries = Object.entries(withPathsAsKeys).map(([relativePath, data]) => ({...data, relativePath}))
+  const entries = Object.entries(withPathsAsKeys).map(([relativePath, data]) => ({...data, metadata: {...data.metadata, relativePath}}))
   return entries
 }
 
 
+export async function getPageEntries(){
+  const markdownEntriesRaw = await getMarkdownEntries()
+  const staticEntriesRaw = await getStaticPageEntries()
+  
+  const markdownEntries = markdownEntriesRaw.map( obj => {
+    // we remove the component renderer from the return value because the component isn't serializable by the server-side load function
+    // we only need it to render the full post, which we do on the entry page
+    const { default: _componentRenderer , metadata } = obj
+    return metadata
+  })
+
+  const staticEntries = staticEntriesRaw.map( obj => {
+    // we use the default here because static entries are JSON fikes
+    return obj.default
+  })
+
+
+// console.log([...staticEntries, ...markdownEntries])
+// console.log([...staticEntries, ...markdownEntries].length)
+
+  return [...staticEntries, ...markdownEntries]
+}

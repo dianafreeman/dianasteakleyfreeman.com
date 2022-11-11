@@ -1,36 +1,48 @@
-
+``
 import landingMeta from './_metadata.json'
-import { getPageEntries, getMarkdownEntries } from '$lib/content/queries';
+import { getPageEntries } from '$lib/content/queries';
+import { page } from '$app/stores';
+import { writable } from 'svelte/store';
 
 function isTopLevelRoute(entry) {
   const pathArray = entry.relativePath.split("/").filter((v) => v.length !== 0);
   if (pathArray.length > 1) return false;
   return true;
+
 }
-/** @type {import('./$types').LayoutLoad} */
-export async function load({ params, url, routeId }) {
-  const pageEntries = await getPageEntries()
-  const mdEntries = params.entry ?
-    params.subcategory ? await getMarkdownEntries(`${params.category}/${params.subcategory}/${params.entry}`) : await getMarkdownEntries(`${params.category}/${params.entry}`) : null
 
-  // START Breadcrumb creation
-  const navItems = pageEntries.filter(isTopLevelRoute);
-  const category = params.category && pageEntries.find(e => e.relativePath === `/${params.category}`);
-  const subcategory = params.subcategory && pageEntries.find(e => e.relativePath === `/${params.category}/${subcategory}`);
-  const activeEntry = params.entry && mdEntries ? mdEntries[0] : null;
-  // END breadcrumb creation
 
-  let seoEntry = activeEntry ? activeEntry.metadata : (subcategory ? subcategory.default : category ? category.default : landingMeta)
 
+async function getEntries(filter) {
+  const entries = await getPageEntries()
+  return !!filter ? entries.filter(filter) : entries
+}
+async function getEntry(uniqueFilter) {
+  const entries = await getPageEntries()
+  return !!uniqueFilter ? entries.find(uniqueFilter) : entries[0]
+}
+
+/** @type {import('../../.svelte-kit/types/src/routes/$types').LayoutServerLoad} */
+export async function load({  url }) {
   
+  const topLevelNavTargets = await getEntries(isTopLevelRoute);
+
+  const breadcrumbs = writable([])
+
+
+  page.subscribe(async (pageStore) => {
+    const breadcrumbPromises = pageStore.url.pathname.split("/").map(async (pathSection) => {
+      return await getEntry( e => e.relativePath.includes(pathSection))
+  
+    })
+    // console.log(page.url.pathname)
+    const updated = await Promise.all(breadcrumbPromises)
+    breadcrumbs.set(updated)
+  })
+
   return {
-    breadcrumbs: {
-      category,
-      subcategory,
-      activeEntry,
-    },
-    seoMeta: seoEntry,
-    navItems,
+    breadcrumbs,
+    navItems: topLevelNavTargets
   }
 
 }
