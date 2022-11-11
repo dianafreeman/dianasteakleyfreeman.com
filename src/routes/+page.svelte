@@ -9,14 +9,14 @@
   
 </script>
 
-<div class="flex flex-col min-h-[90vh] justify-center max-w-4xl mx-auto">
+<div class="flex flex-col min-h-[90vh] justify-center mx-auto">
   <div class="my-12 relative p-2 lg:p-5 align-center min-h-[45vh]">
     <h1 class="text-6xl font-thin" aria-label="the future of engineering is human.">
       <TrailedText />
     </h1>
   </div>
 </div>
-<div class="flex flex-col min-h-screen justify-center max-w-4xl mx-auto">
+<div class="flex flex-col min-h-screen justify-center mx-auto">
   <div class="my-12 relative p-2 lg:p-5 align-center">
     <h1 class="text-6xl text-center font-bold">I'm Diana.</h1>
   </div>

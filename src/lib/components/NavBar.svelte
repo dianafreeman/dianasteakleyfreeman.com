@@ -44,7 +44,7 @@
     ? navWrapperClassesOpen
     : navWrapperClassesClosed}"
 >
-  <nav class="m-auto md:max-w-3xl lg:max-w-4xl">
+  <nav>
     <div class="flex justify-between w-full">
       <NavLink
         href="/"

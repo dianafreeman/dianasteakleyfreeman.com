@@ -13,7 +13,7 @@
 
 </script>
 <Seo title={seoMeta.title} description={seoMeta.description || seoMeta.excerpt || null} />
-<header class="w-screen h-100 relative" class:dyslexia={$LayoutStore.dyslexia}>
+<header class="w-screen h-100 relative m-auto max-w-md md:max-w-3xl lg:max-w-4xl" class:dyslexia={$LayoutStore.dyslexia}>
   <NavBar items={navItems}>
     <Breadcrumbs
       slot="breadcrumbs"
@@ -25,6 +25,6 @@
     />
   </NavBar>
 </header>
-<main class="relative" class:dyslexia={$LayoutStore.dyslexia}>
+<main class="relative m-auto max-w-md md:max-w-3xl lg:max-w-4xl" class:dyslexia={$LayoutStore.dyslexia}>
   <slot />
 </main>

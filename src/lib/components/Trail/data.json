@@ -17,14 +17,14 @@
     "class": "",
     "delay": 1000
   },
-  { "element": "br" },
+  
   {
     "text": "engineering",
     "class": "",
     "element": "span",
     "delay": 300
   },
-  { "element": "br" },
+  
   {
     "text": "is",
     "class": "",
