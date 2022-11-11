@@ -7,7 +7,7 @@
   import NavLink from "./NavLink.svelte";
   import NavToggle from "./NavToggle.svelte";
   export let items;
-
+  export let menuOpen
   let navWrapper, scrollY;
 
   const navLinkClasses =
@@ -18,7 +18,6 @@
   const navWrapperClassesClosed = "h-fit";
   const navWrapperClassesOpen = "h-screen";
 
-  const menuOpen = writable(false);
   const toggleMenu = () => menuOpen.update((bool) => !bool);
   const { toggleDyslexia } = LayoutStore;
 
@@ -38,9 +37,7 @@
 <div
   bind:this={navWrapper}
   style="top: {scrollY}px;"
-  class="{$menuOpen
-    ? 'bg-neutral-900'
-    : 'semi-transparent'} relative left-0 right-0 z-50 w-full mx-auto pb-4 {$menuOpen
+  class="relative left-0 right-0 z-50 w-full mx-auto pb-4 bg-neutral-900 {$menuOpen
     ? navWrapperClassesOpen
     : navWrapperClassesClosed}"
 >
@@ -87,7 +84,7 @@
         <ul aria-label="Settings" class="relative flex flex-col w-full justify-center">
           <li class={settingItemClasses} role="menuitem">
             dyslexia mode
-            <ToggleSwitch enabled={$LayoutStore.dyslexia} on:click={() => toggleDyslexia()} />
+            <ToggleSwitch enabled={$LayoutStore?.dyslexia} on:click={() => toggleDyslexia()} />
           </li>
           <li
             class="text-neutral-300 hover:text-white text-right block px-3 py-5 text-base font-medium"
@@ -105,7 +102,5 @@
 <style>
   .semi-transparent {
     background-color: rgba(23, 23, 23, 0.89);
-    transition-property: background-color;
-    transition-timing-function: ease-in;
   }
 </style>

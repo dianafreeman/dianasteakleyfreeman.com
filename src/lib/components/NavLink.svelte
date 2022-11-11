@@ -6,6 +6,7 @@
   
 </script>
 
-<a data-sveltekit-reload {href} class={clazz} {...props}>
+<!-- <a data-sveltekit-reload {href} class={clazz} {...props}> -->
+<a  {href} class={clazz} {...props}>
 <slot />    
 </a>
