@@ -1,7 +1,7 @@
 <script>
 
   export let title;
-  // export let description;
+  
   export let target;
   export let imgSrc;
 </script>

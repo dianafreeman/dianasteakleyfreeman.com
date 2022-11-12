@@ -2,19 +2,17 @@
 import { getMarkdownEntries } from "$lib/content/queries";
 import { error } from "@sveltejs/kit";
 
-export const SSR = true;
 
-/** @type {import('./$types').PageLoad} */
-export async function load({ params, ...data }) {
+export async function load({ params }) {
   const { category } = params;
-
   const entries = await getMarkdownEntries(category)
-  if (entries.length){    
-  return {
-      entries,
-      title: params.category
+
+  if (entries.length) {
+    return {
+      entries: entries,
+      title: category
     }
-  } else { 
+  } else {
     throw error(404)
   }
 }

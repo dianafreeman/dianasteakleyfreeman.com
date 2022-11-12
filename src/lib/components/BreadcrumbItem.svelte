@@ -1,5 +1,4 @@
 <script>
-  import NavLink from "./NavLink.svelte";
   import Slash from "./Slash.svelte";
   import Home from "$lib/icons/home.svelte";
 
@@ -8,29 +7,23 @@
 
   let itemProps = current ? { "aria-current": "page" } : {};
 
-  let isHomePageCrumb = item.relativePath === "/";
+  $: isHomePageCrumb = item.relativePath === "/";
 </script>
 
-<!-- <li {...itemProps}> -->
 <div class="flex items-center">
   {#if isHomePageCrumb}
-    <NavLink href="/" class="text-gray-400 hover:text-white">
-    <Home />
-    <span class="sr-only">Home Page</span>
-    </NavLink>
+    <a href="/" class="text-gray-400 hover:text-white">
+      <Home />
+      <span class="sr-only">Home Page</span>
+    </a>
   {:else}
     <Slash />
-    {#if current}
-      <p class="w-[33vw] whitespace-nowrap overflow-hidden overflow-ellipsis md:w-full">
-        {item.navigationText || item.title}
-      </p>
-    {:else}
-      <NavLink
-        href={item.relativePath}
-        class="ml-4 text-base font-thin text-gray-300 underline underline-offset-4 hover:text-white"
-        >{item.navigationText || item.title}</NavLink
-      >
-    {/if}
+    <a
+      href={item.relativePath}
+      class:underline={!current}
+      class:font-medium={current}
+      class="ml-4 text-base font-thin text-gray-300 underline underline-offset-4 rounded-sm focus:outline focus:outline-white focus:outline-offset-8 focus:outline-1"
+      {...itemProps}>{item.navigationText || item.title}</a
+    >
   {/if}
 </div>
-

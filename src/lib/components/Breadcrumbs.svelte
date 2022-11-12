@@ -8,17 +8,12 @@
   let clazz;
   export { clazz as class };
   export let items;
-
 </script>
 
-<!-- {#key $page.url.pathname} -->
-<nav class=" {clazz}" aria-label="Breadcrumb">
-  <ol class="list-none flex  mx-1">
-
+<nav class="z-50 relative {clazz}" aria-label="Breadcrumb">
+  <ol class="list-none flex mx-1">
     {#each items as item}
       <BreadcrumbItem current={item.relativePath === $page.url.pathname} {item} />
     {/each}
-
   </ol>
 </nav>
-<!-- {/key} -->

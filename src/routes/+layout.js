@@ -12,8 +12,6 @@ function isTopLevelRoute(entry) {
 
 }
 
-
-
 async function getEntries(filter) {
   const entries = await getPageEntries()
   return !!filter ? entries.filter(filter) : entries
@@ -24,23 +22,19 @@ async function getEntry(uniqueFilter) {
 }
 
 /** @type {import('../../.svelte-kit/types/src/routes/$types').LayoutServerLoad} */
-export async function load({  url }) {
-  
+export async function load({ url }) {
+
   const topLevelNavTargets = await getEntries(isTopLevelRoute);
 
-  const breadcrumbs = writable([])
+  let breadcrumbs = []
 
-
-  page.subscribe(async (pageStore) => {
-    if (pageStore && pageStore.url){
-      const breadcrumbPromises = pageStore.url.pathname.split("/").map(async (pathSection) => {
-        return await getEntry( e => e.relativePath.includes(pathSection))
-        
-      })
-      const updated = await Promise.all(breadcrumbPromises)
-      breadcrumbs.set(updated)
-    }
-  })
+  if (browser) {
+    const breadcrumbPromises = Array.from(new Set(url.pathname.split("/"))).map(async (pathSection) => {
+      return await getEntry(e => e.relativePath.includes(pathSection))
+    })
+    const updated = await Promise.all(breadcrumbPromises)
+    breadcrumbs = updated
+  }
 
   return {
     breadcrumbs,

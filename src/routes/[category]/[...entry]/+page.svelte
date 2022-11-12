@@ -4,7 +4,7 @@
 </script>
 
 <div class="flex flex-col min-h-screen justify-center m-auto ">
-  <div class="relative flex flex-col md:justify-center md:align-middle pt-16 md:flex-row">
+  <div class="relative flex flex-col md:justify-center md:align-middle md:flex-row">
     <h1 class="text-4xl md:text-5xl lg:text-6xl text-center font-bold md:text-left mb-12">
       {entry.metadata.title}
     </h1>
