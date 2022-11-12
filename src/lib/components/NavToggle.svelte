@@ -12,7 +12,7 @@
   onClick={onClick}
   label={label}
   class="w-fit h-fit my-auto p-3"
-  props={buttonProps}
+  buttonProps={buttonProps}
 >
 <slot />
 </Button>

@@ -8,7 +8,6 @@
     "text-neutral-200 hover:bg-neutral-800 px-4 flex justify-between items-center py-5 text-base font-medium";
 </script>
 
-  <ul class="relative flex flex-col w-full justify-center">
     <li class={settingItemClasses} role="menuitem">
       dyslexia mode
       <ToggleSwitch enabled={$LayoutStore.dyslexia} on:click={() => LayoutStore.toggleDyslexia()} />
@@ -21,4 +20,3 @@
         Clear Settings
       </Button>
     </li>
-  </ul>

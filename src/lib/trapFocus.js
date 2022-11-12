@@ -1,25 +1,29 @@
 const FOCUSABLE_ELEMENTS =
-'a, button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+    'a, button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
 
 
 /* 
 * @param focusableElements = an array of selectors
 * returns a function that can be bound to an event
 */
-function createTrapFocus(conditionBool) {
+function createTrapFocus(menuOpenStore) {
     return function (e, element) {
-        console.log(e.currentTarget)
+        let conditionBool
+
+        menuOpenStore.subscribe(v => {
+            conditionBool = v
+        })
         let focusableContent = element.querySelectorAll(FOCUSABLE_ELEMENTS);
         // get first element to be focused inside trap
-        let firstFocusableElement = focusableContent[0]; 
-        
+        let firstFocusableElement = focusableContent[0];
+
         // get last element to be focused inside trap
-        let lastFocusableElement = focusableContent[focusableContent.length - 1]; 
+        let lastFocusableElement = focusableContent[focusableContent.length - 1];
         let isTabPressed = e.key === "Tab" || e.keyCode === 9;
         let isEscPressed = e.key === "Escape" || e.keyCode === 27;
 
         if (isEscPressed) {
-            return menuOpen.set(false);
+            return menuOpenStore.set(false);
         }
         if (!isTabPressed) {
             return;

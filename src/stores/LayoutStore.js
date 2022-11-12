@@ -16,7 +16,7 @@ const DEFAULT_SETTINGS = {
 }
 
 export function createLayoutStore() {
-  const settings = writable();
+  const settings = writable([]);
 
   const setMode = (modeEnum) => settings.update((curr) => ({ ...curr, mode: modeEnum }));
   const toggleDyslexia = () =>
@@ -42,7 +42,11 @@ export function createLayoutStore() {
     }
     
     function clearSettings() {
-      if (browser) localStorage.removeItem(LOCAL_STORAGE_KEY)
+      settings.set(DEFAULT_SETTINGS)
+      if (browser) {
+        localStorage.removeItem(LOCAL_STORAGE_KEY)
+      }
+
     }
 
 
