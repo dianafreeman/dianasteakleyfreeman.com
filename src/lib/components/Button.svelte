@@ -27,8 +27,8 @@
   const beforeClasses = ` before:content-["_"] before:border-none before:absolute before:w-0 before:h-0 before:top-0 before:left-0 ${hoverBeforeClasses}`;
   const afterClasses = ` after:content-["_"] after:border-none after:absolute after:w-0 after:h-0 after:bottom-0 after:right-0 ${hoverAfterClasses}`;
 
-  const buttonFocusClasses = `focus:bg-neutral-800 focus:outline-none`;
-  const buttonHoverClasses = `hover:bg-neutral-800  ${buttonFocusClasses}`;
+  const buttonFocusClasses = `focus:bg-medium-gray focus:outline-none`;
+  const buttonHoverClasses = `hover:bg-medium-gray  ${buttonFocusClasses}`;
   const classes = `button relative cursor-pointer w-full text-white text-center z-[3] ${buttonHoverClasses} ${beforeClasses} ${afterClasses} `;
 </script>
 

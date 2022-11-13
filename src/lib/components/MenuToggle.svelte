@@ -1,17 +1,15 @@
 <script>
   import Button from "./Button.svelte";
 
-  export let expanded  
-  export let items;
-  export let label;
+  export let expanded = false
   export let hideLabel = false;
+  
+  /** @type { string } */
+  export let label;
+  /** @type { string } */
   export let id;
+  /** @type { "hamburger" | "settings "} */
   export let menuType;
-
-  const MENU_TYPE_MAP = {
-    hamburger: "hamburger",
-    settings: "settings"
-  };
 
   const ICON_CLASS_MAP = {
     hamburger: "las la-bars",
@@ -21,7 +19,7 @@
   const iconClass = ICON_CLASS_MAP[menuType];
 </script>
 
-<!-- <div class="relative w-full"> -->
+
 <Button
   class="p-4 flex w-fit justify-center items-center"
   buttonProps={{ "aria-expanded": expanded, "aria-controls": id }}
@@ -31,4 +29,3 @@
   <i class="text-3xl {iconClass}" aria-hidden="true" />
 </Button>
 
-<!-- </div> -->

@@ -3,6 +3,7 @@
   const { entry } = data;
 </script>
 
+<div id="spacer" class="h-[50px]" />
 <div class="flex flex-col min-h-screen justify-center m-auto ">
   <div class="relative flex flex-col md:justify-center md:align-middle md:flex-row">
     <h1 class="text-4xl md:text-5xl lg:text-6xl text-center font-bold md:text-left mb-12">
@@ -12,16 +13,11 @@
   </div>
 
   {#if entry.metadata?.date}
-    <div class="mx-auto md:w-full flex flex-col text-left">
+    <div data-scrolltarget class="mx-auto md:w-full flex flex-col text-left">
         <p class="mr-3 text-md">
           Published on <span class="font-bold">{new Date(entry.metadata?.date).toDateString()}</span>
         </p>
-        <!-- <p class="mr-3 text-md">
-          Tags:
-          {#each entry.metadata?.tags.toString().split(",") as tag}
-          <span class="font-bold underline underline-offset-4">{tag}</span>{`, `}
-          {/each}
-        </p> -->
+
     </div>
   {/if}
 

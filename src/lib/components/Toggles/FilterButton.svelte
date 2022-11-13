@@ -38,7 +38,7 @@
   on:mouseleave={() => isHovered.set(false)}
   on:focus={() => isHovered.set(true)}
   on:blur={() => isHovered.set(false)}
-  class="p-3 text-white hover:bg-neutral-800 w-full border-b border-neutral-800"
+  class="p-3 text-white hover:bg-medium-gray w-full border-b border-neutral-800"
 >
   <div class="flex flex-row justify-between items-center">
     <i class={icon} aria-hidden="true" />

@@ -23,7 +23,7 @@
   </div>
 
 </div>
-<div data-scrolltarget class="flex flex-col min-h-screen justify-center mx-auto">
+<div data-scrolltarget class="flex flex-col min-h-screen justify-center mx-auto ">
   <div class="my-12 relative p-2 lg:p-5 align-center">
     <h1 class="text-6xl text-left font-bold">I'm Diana.</h1>
   </div>
@@ -47,3 +47,7 @@
     </div>
   </div>
 </div>
+<div data-scrolltarget class="flex flex-col min-h-screen justify-center mx-auto ">
+<h2>About</h2>
+</div>
+

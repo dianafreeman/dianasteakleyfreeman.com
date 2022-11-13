@@ -10,7 +10,7 @@
   export let menuOpen;
 
   const navLinkClasses =
-    "text-neutral-200 focus:bg-neutral-800 focus:outline-white hover:bg-neutral-800 px-4 block py-5 text-base font-medium text-right";
+    "text-neutral-200 focus:bg-medium-gray focus:outline-white hover:bg-medium-gray px-4 block py-5 text-base font-medium text-right";
 
   $: $page.url.pathname && menuOpen.set(false);
 
