@@ -4,7 +4,7 @@
 
   let clazz;
   export { clazz as class };
-  export let onClick;
+
   export let buttonProps
   
 
@@ -24,19 +24,18 @@
   const focusAfterClasses = `focus:after:w-full focus:after:h-full focus:after:border-[#ecf0f1] focus:after:opacity-1 focus:after:border-b focus:after:border-l focus:after:border-solid`;
   const hoverAfterClasses = `hover:after:w-full hover:after:h-full hover:after:border-[#ecf0f1] hover:after:opacity-1 hover:after:border-b hover:after:border-l hover:after:border-solid ${activeAfterClasses} ${focusAfterClasses}`;
 
-  const beforeClasses = `before:block before:content-["_"] before:border-none before:absolute before:w-0 before:h-0 before:top-0 before:left-0 ${hoverBeforeClasses}`;
-  const afterClasses = `after:block after:content-["_"] after:border-none after:absolute after:w-0 after:h-0 after:bottom-0 after:right-0 ${hoverAfterClasses}`;
+  const beforeClasses = ` before:content-["_"] before:border-none before:absolute before:w-0 before:h-0 before:top-0 before:left-0 ${hoverBeforeClasses}`;
+  const afterClasses = ` after:content-["_"] after:border-none after:absolute after:w-0 after:h-0 after:bottom-0 after:right-0 ${hoverAfterClasses}`;
 
-  const buttonActiveClasses = `active:bg-neutral-800`;
   const buttonFocusClasses = `focus:bg-neutral-800 focus:outline-none`;
-  const buttonHoverClasses = `hover:bg-neutral-800 ${buttonActiveClasses} ${buttonFocusClasses}`;
-  const classes = `button block relative cursor-pointer w-full text-white text-center z-[3] ${buttonHoverClasses} ${beforeClasses} ${afterClasses} `;
+  const buttonHoverClasses = `hover:bg-neutral-800  ${buttonFocusClasses}`;
+  const classes = `button relative cursor-pointer w-full text-white text-center z-[3] ${buttonHoverClasses} ${beforeClasses} ${afterClasses} `;
 </script>
 
 <button
   bind:this={wrapper}
   class="{classes} {clazz}"
-  on:click={onClick}
+  on:click
   on:mouseenter={toggleHover}
   on:mouseleave={toggleHover}
   on:focus={hoverOn}

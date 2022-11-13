@@ -3,6 +3,6 @@
     "description": "Blog - Diana M. Steakley Freeman. Musings on software engineering, psychology, public policy, and digital safety.",
     "slug": "blog",
     "relativePath": "/blog",
-    "displayText": "blog",
+    "navigationText": "blog",
     "image": null
 }
