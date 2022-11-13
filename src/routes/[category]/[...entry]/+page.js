@@ -8,7 +8,7 @@ export const SSR = true;
 export async function load({ params }) {
   const { category, entry } = params;
   const entries = await getMarkdownEntries(`${category}/${entry}`)
-  if (entries.length){    
+  if (entries && entries.length){    
   return {
       entry: entries[0]
     }

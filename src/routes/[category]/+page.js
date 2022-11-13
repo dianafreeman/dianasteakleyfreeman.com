@@ -13,6 +13,9 @@ export async function load({ params }) {
       title: category
     }
   } else {
-    throw error(404)
+    // temporary escape hatch
+    if (category !== "admin") {
+      throw error(404)
+    }
   }
 }

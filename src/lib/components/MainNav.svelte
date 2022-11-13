@@ -22,7 +22,7 @@
     {
       func: LayoutStore.toggleDyslexia,
       value: $LayoutStore.dyslexia,
-      displayText: "dyslexia mode"
+      navigationText: "dyslexia mode"
     }
   ];
 </script>

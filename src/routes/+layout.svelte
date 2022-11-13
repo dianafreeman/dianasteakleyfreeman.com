@@ -101,7 +101,7 @@
     {
       func: LayoutStore.toggleDyslexia,
       value: $LayoutStore.dyslexia === true,
-      displayText: "dyslexia mode"
+      navigationText: "dyslexia mode"
     }
   ];
   function closeMenuOnEscape(e) {

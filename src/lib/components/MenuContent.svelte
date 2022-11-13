@@ -23,7 +23,7 @@
       <li role="menuitem" class="w-inherit">
         {#if menuType === MENU_TYPE_MAP["settings"]}
           <ToggleItem on:click={() => item.func()} value={item.value}>
-            {item.displayText}
+            {item.navigationText}
           </ToggleItem>
         {:else}
           <a href={item.relativePath} class={navLinkClasses}>{item.navigationText}</a>
