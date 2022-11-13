@@ -41,13 +41,10 @@
         <h2 class="font-bold text-xl">Exciting Updates Ahead!</h2>
         <p class="text-italic text-neutral-300">There is more to this site coming soon.</p>
       </div>
-      <!-- {#each categories as category}
-        <Button href="/{category}">{category}</Button>
-      {/each} -->
     </div>
   </div>
 </div>
-<div data-scrolltarget class="flex flex-col min-h-screen justify-center mx-auto ">
+<!-- <div data-scrolltarget class="flex flex-col min-h-screen justify-center mx-auto ">
 <h2>About</h2>
-</div>
+</div> -->
 
