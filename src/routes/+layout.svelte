@@ -12,7 +12,6 @@
   import { writable } from "svelte/store";
   import { browser } from "$app/environment";
   import createTrapFocus from "$lib/trapFocus";
-  import { spring } from "svelte/motion";
 
   /** @type {import('./$types').LayoutData} */
   export let data;
@@ -46,56 +45,7 @@
 
   let height, width;
 
-  let ySpring = spring(0);
 
-  function createScrollTargets() {
-    const scrollTargets = Array.from(main.querySelectorAll("[data-scrolltarget]"));
-    console.log(scrollTargets);
-    const positions = [0, ...scrollTargets.map((e) => e.offsetTop + e.clientHeight)];
-
-    // get the position that is closest to the current value of scrollY
-    const current = positions.reduce((prev, curr) =>
-      Math.abs(curr - (scrollY + height)) < Math.abs(prev - (scrollY + height)) ? curr : prev
-    );
-
-    const first = positions[0];
-    const last = positions[positions.length - 1];
-
-    const previousPositions = positions.filter((p) => p <= scrollY);
-    const previous = previousPositions[previousPositions.length - 1];
-
-    const nextPositions = positions.filter((p) => p > scrollY);
-    const next = nextPositions[0];
-
-    return {
-      current,
-      first,
-      last,
-      next,
-      previous
-    };
-  }
-
-  function onArrowClick(type) {
-    // TODO: make this stateful
-    const { first, last, current, next } = createScrollTargets();
-
-    console.log(first);
-    if (type === "down") {
-      if (!next || current === last) return ySpring.set(first);
-      return ySpring.set(next);
-    }
-  }
-
-  function onDownClick() {
-    onArrowClick("down");
-  }
-
-  ySpring.subscribe((y) => {
-    if (browser) {
-      window.scrollTo(0, y);
-    }
-  });
 
   $: settingsItems = [
     {
@@ -126,7 +76,7 @@
   });
 </script>
 
-<svelte:window bind:scrollY bind:innerHeight={height} bind:innerWidth={width} />
+<svelte:window bind:scrollY  />
 
 <Seo
   title={data.seoMeta?.title}
@@ -148,7 +98,7 @@
         <!-- Top Bar -- Nav Brand and Menu Toggle -->
         <NavBrand />
 
-        <div class="relative flex flex-row">
+        <div class="relative flex flex-row-reverse">
           <MenuToggle
             on:click={() => {
               settingsMenuOpen.set(false);
@@ -191,16 +141,7 @@
     class="relative mx-auto h-full max-w-xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl"
     class:dyslexia
   >
-    <div
-      class="fixed bottom-10 inline-flex justify-end w-full z-50 max-w-xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl"
-    >
-      <Button
-        class="p-5 w-fit bg-semi-transparent mx-2 outline-neutral-600 outline outline-1"
-        on:click={onDownClick}
-      >
-        <i class="text-4xl las la-long-arrow-alt-down" />
-      </Button>
-    </div>
+  
     <div>
       <slot />
     </div>
