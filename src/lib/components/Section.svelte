@@ -1,6 +1,5 @@
 <script>
   import LayoutStore from "$stores/LayoutStore";
-  import { fly, fade } from "svelte/transition";
 
   export let id;
   export let style;
@@ -8,7 +7,7 @@
   export { clazz as class };
 </script>
 
-<section transition:fade={{ duration: 500 }} {id} class={clazz} {style}>
+<section {id} class={clazz} {style}>
   <slot />
 </section>
 

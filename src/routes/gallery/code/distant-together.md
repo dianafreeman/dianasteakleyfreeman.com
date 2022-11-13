@@ -1,7 +1,8 @@
 ---
+slug: distant-together
+date: "2020-03-15"
 title: "Distant Together"
-image: distant-together-screencap.jpg
-date: "2020-01-01"
+image: /images/distant-together-screencap.jpg
 tags:
   - react
 ---

@@ -1,44 +1,66 @@
-import { writable, derived } from "svelte/store";
-import { page } from "$app/stores";
-import { getCategories } from "$lib/queries";
+import { onMount } from "svelte";
+import { browser, dev, prerendering } from "$app/environment";
+import { writable } from "svelte/store";
 
-const createMapFromArray = (item) => ({ [item]: item });
 
-const MODES = ["dark", "light"].map(createMapFromArray);
+const MODES = {
+  DARK: 'dark',
+  LIGHT: 'light'
+}
 
-function createLayoutStore() {
-  
-  const settings = writable({
-    mode: MODES.dark,
-    dyslexia: false,
-    navHeight: 0,
-    scrollY: 0
-  });
+const LOCAL_STORAGE_KEY = 'dianasteakleyfreeman.com-settings'
 
-  const setScrollY = (y) => settings.update((curr) => ({ ...curr, scrollY: y }));
-  const setNavHeight = (val) => settings.update((curr) => ({ ...curr, navHeight: val }));
+const DEFAULT_SETTINGS = {
+  mode: MODES.DARK,
+  dyslexia: false,
+}
+
+export function createLayoutStore() {
+  const settings = writable([]);
+
   const setMode = (modeEnum) => settings.update((curr) => ({ ...curr, mode: modeEnum }));
-  const toggleDyslexia = (bool) =>
+  const toggleDyslexia = () =>
     settings.update((curr) => ({ ...curr, dyslexia: !curr.dyslexia }));
 
   const toggleMode = () =>
     settings.update((curr) => {
-      if (curr.mode === MODES.dark) return setMode(MODES.light);
-      return setMode(MODES.dark);
+      if (curr.mode === MODES.dark) return setMode(MODES.LIGHT);
+      return setMode(MODES.DARK);
     });
 
-  const combined = derived([settings, page], ($settings, $page) => {
-    return {
-      ...$settings,
-      page: $page
-    };
-  });
+
+    function restoreSettings() {
+      let savedSettings = localStorage.getItem(LOCAL_STORAGE_KEY)
+      if (!savedSettings) return settings.set(DEFAULT_SETTINGS)
+      settings.set(JSON.parse(savedSettings))
+    }
+    
+    
+    function saveSettings(obj) {
+      if (!obj) return
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(obj))
+    }
+    
+    function clearSettings() {
+      settings.set(DEFAULT_SETTINGS)
+      if (browser) {
+        localStorage.removeItem(LOCAL_STORAGE_KEY)
+      }
+
+    }
+
+
+  settings.subscribe(s => {
+    if (browser) {
+      saveSettings(s)
+    }
+  })
 
   return {
     subscribe: settings.subscribe,
-    combined: combined,
-    setScrollY,
-    setNavHeight,
+    restoreSettings,
+    saveSettings,
+    clearSettings,
     toggleMode,
     toggleDyslexia
   };

@@ -11,19 +11,16 @@ const config = {
   },
   extensions: [".svelte", ...mdsvexConfig.extensions],
   kit: {
-    trailingSlash: 'always',
-    adapter: adapter({
-      split: true,
-    }),
+    trailingSlash: "never",
+    adapter: adapter(),
     alias: {
       $routes: path.resolve("./src/routes"),
       $stores: path.resolve("./src/stores"),
       $content: path.resolve("./src/content"),
       $fonts: path.resolve("./src/fonts")
     }
-  
   },
-  preprocess: [preprocess(), mdsvex(mdsvexConfig)]
+  preprocess: [preprocess({ sourceMap: true}), mdsvex(mdsvexConfig)]
 };
 
 export default config;

@@ -1,0 +1,40 @@
+[
+  {
+    "text": "The",
+    "element": "span",
+    "class": "",
+    "delay": 100
+  },
+  {
+    "text": "future",
+    "element": "span",
+    "class": "",
+    "delay": 100
+  },
+  {
+    "text": "of",
+    "element": "span",
+    "class": "",
+    "delay": 1000
+  },
+  
+  {
+    "text": "engineering",
+    "class": "",
+    "element": "span",
+    "delay": 300
+  },
+  
+  {
+    "text": "is",
+    "class": "",
+    "delay": 900,
+    "element": "span"
+  },
+  {
+    "text": "human.",
+    "class": "font-bold",
+    "delay": 900,
+    "element": "span"
+  }
+]
