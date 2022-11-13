@@ -26,6 +26,7 @@ export async function load({ url }) {
 
   const topLevelNavTargets = await getEntries(isTopLevelRoute);
 
+  let activeEntry = getEntry(e => e.relativePath === url.pathname)
   let breadcrumbs = []
 
   if (browser) {
@@ -38,7 +39,8 @@ export async function load({ url }) {
 
   return {
     breadcrumbs,
-    navItems: topLevelNavTargets
+    navItems: topLevelNavTargets,
+    seoMeta: activeEntry
   }
 
 }

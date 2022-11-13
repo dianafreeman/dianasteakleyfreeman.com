@@ -129,8 +129,8 @@
 <svelte:window bind:scrollY bind:innerHeight={height} bind:innerWidth={width} />
 
 <Seo
-  title={data.seoData?.title}
-  description={data.seoData?.description || data.seoData?.excerpt || null}
+  title={data.seoMeta?.title}
+  description={data.seoMeta?.description || data.seoMeta?.excerpt || null}
 />
 <div bind:this={main} class="flex-col flex justify-between min-h-screen">
   <header
