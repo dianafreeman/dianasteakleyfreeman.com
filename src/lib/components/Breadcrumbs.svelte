@@ -8,12 +8,15 @@
   let clazz;
   export { clazz as class };
   export let items;
-</script>
 
-<nav class:hidden={$page.url.pathname === "/"} class=" relative {clazz}" aria-label="Breadcrumb">
+  const DISABLED_PAGES = ["/", "/admin"]
+</script>
+{#if !DISABLED_PAGES.includes($page.url.pathname)}
+<nav  class=" relative {clazz}" aria-label="Breadcrumb">
   <ol class="list-none flex mx-1">
     {#each items as item}
       <BreadcrumbItem current={item.relativePath === $page.url.pathname} {item} />
     {/each}
   </ol>
 </nav>
+{/if}
