@@ -7,7 +7,7 @@ export async function load({ params }) {
   const { category } = params;
   const entries = await getMarkdownEntries(category)
 
-  if (entries.length) {
+  if (entries && entries.length) {
     return {
       entries: entries,
       title: category

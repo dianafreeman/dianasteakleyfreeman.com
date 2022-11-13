@@ -10,7 +10,7 @@
   export let items;
 </script>
 
-<nav class=" relative {clazz}" aria-label="Breadcrumb">
+<nav class:hidden={$page.url.pathname === "/"} class=" relative {clazz}" aria-label="Breadcrumb">
   <ol class="list-none flex mx-1">
     {#each items as item}
       <BreadcrumbItem current={item.relativePath === $page.url.pathname} {item} />
