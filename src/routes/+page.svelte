@@ -12,7 +12,7 @@
 </script>
 
 
-<div class="relative flex flex-col min-h-[90vh] justify-center mx-auto">
+<div data-scrolltarget class="relative flex flex-col min-h-[90vh] justify-center mx-auto">
   <div class="my-12 relative p-2 lg:p-5 align-center pt-[4vh]">
     <h1
       class="text-5xl md:text-6xl lg:text-7xl font-thin min-h-[3em]"
@@ -23,7 +23,7 @@
   </div>
 
 </div>
-<div class="flex flex-col min-h-screen justify-center mx-auto">
+<div data-scrolltarget class="flex flex-col min-h-screen justify-center mx-auto">
   <div class="my-12 relative p-2 lg:p-5 align-center">
     <h1 class="text-6xl text-left font-bold">I'm Diana.</h1>
   </div>

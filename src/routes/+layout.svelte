@@ -16,7 +16,7 @@
 
   /** @type {import('./$types').LayoutData} */
   export let data;
-  let scrollY, trapFocusWapper;
+  let scrollY, trapFocusWapper, main;
 
   let mainMenuOpen = writable(false);
   let settingsMenuOpen = writable(false);
@@ -41,8 +41,52 @@
 
   let ySpring = spring(0);
 
+  function createScrollTargets() {
+    const scrollTargets = Array.from(main.querySelectorAll("[data-scrolltarget]"));
+    const positions = scrollTargets.map((e) => e.offsetTop);
+
+    // get the position that is closest to the current value of scrollY
+    const current = positions.reduce((prev, curr) => Math.abs(curr - scrollY) < Math.abs(prev - scrollY) ? curr : prev);
+
+    const first = positions[0];
+    const last = positions[positions.length - 1];
+    
+    const previousPositions = positions.filter((p) => p <= scrollY);
+    const previous = previousPositions[previousPositions.length - 1];
+
+    const nextPositions = positions.filter((p) => p > scrollY);
+    const next = nextPositions[0];
+
+    return {
+      current,
+      first,
+      last,
+      next,
+      previous
+    };
+  }
+
+  function onArrowClick(type) {
+    const { first, last, current, next, previous } = createScrollTargets();
+
+    if (type === "down"){
+      if (!next) return ySpring.set(first)
+      return ySpring.set(next)
+    }
+    if (type === "up"){
+      if (!previous) return ySpring.set(last)
+      // console.log(previous === current)
+      if (last === current || previous === current) return ySpring.set(first)
+      return ySpring.set(previous)
+    }
+    
+  }
+
   function onDownClick() {
-    ySpring.update((v) => v + height);
+    onArrowClick('down')
+  }
+  function onUpClick() {
+    onArrowClick('up')
   }
 
   ySpring.subscribe((y) => {
@@ -58,14 +102,14 @@
       displayText: "dyslexia mode"
     }
   ];
+  function closeMenuOnEscape(e) {
+    if (e.key === "Escape") {
+      mainMenuOpen.set(false);
+      settingsMenuOpen.set(false);
+    }
+  }
   onMount(() => {
     const trapFocus = createTrapFocus(mainMenuOpen);
-    function closeMenuOnEscape(e){
-      if(e.key === "Escape"){
-        mainMenuOpen.set(false)
-settingsMenuOpen.set(false)
-      }
-    }
     if (trapFocusWapper) {
       trapFocusWapper.addEventListener("keydown", closeMenuOnEscape);
       trapFocusWapper.addEventListener("keydown", (e) => trapFocus(e, trapFocusWapper));
@@ -141,11 +185,18 @@ settingsMenuOpen.set(false)
     <Breadcrumbs slot="breadcrumbs" class="w-full m-auto -z-10" items={data.breadcrumbs} />
   </div>
 </header>
-<main class="relative m-auto max-w-xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl" class:dyslexia>
+<main
+  bind:this={main}
+  class="relative m-auto max-w-xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl"
+  class:dyslexia
+>
   <div
     class="fixed bottom-10 inline-flex justify-end w-full z-50 max-w-xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl"
   >
-    <Button class="p-5 w-fit" on:click={() => onDownClick()}>
+    <Button class="p-5 w-fit" on:click={onUpClick}>
+      <i class="text-4xl las la-long-arrow-alt-up" />
+    </Button>
+    <Button class="p-5 w-fit" on:click={onDownClick}>
       <i class="text-4xl las la-long-arrow-alt-down" />
     </Button>
   </div>
