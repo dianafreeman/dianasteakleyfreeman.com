@@ -1,6 +1,8 @@
 <script>
   import { inview } from "svelte-inview";
 
+  let clazz;
+  export { clazz as class };
   let isInView = false;
 </script>
 
@@ -10,7 +12,7 @@
     const { inView } = evt.detail;
     isInView = inView;
   }}
-  class="flex flex-col min-h-screen justify-center mx-auto "
+  class="flex flex-col min-h-screen justify-center my-auto w-full {clazz}"
   class:tracking-out-contract={!isInView}
   class:tracking-in-expand={!!isInView}
 >

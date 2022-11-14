@@ -2,43 +2,14 @@
   import TrailedText from "$lib/components/TrailedText.svelte";
   import TrailStore from "$lib/components/Trail/store";
   import { onMount } from "svelte";
-  import Button from "$lib/components/Button.svelte";
   import { spring } from "svelte/motion";
   import { browser } from "$app/environment";
   import LandingSection from "$lib/components/LandingSection.svelte";
 
-  let scrollTargetContainer, scrollY;
+  let scrollY;
   onMount(() => {
     TrailStore.play();
   });
-
-  function createScrollTargets() {
-    const scrollTargets = Array.from(scrollTargetContainer.querySelectorAll("[data-scrolltarget]"));
-
-    const positions = [0, ...scrollTargets.map((e) => e.offsetTop + e.clientHeight)];
-
-    // get the position that is closest to the current value of scrollY
-    const current = positions.reduce((prev, curr) =>
-      Math.abs(curr - (scrollY + height)) < Math.abs(prev - (scrollY + height)) ? curr : prev
-    );
-
-    const first = positions[0];
-    const last = positions[positions.length - 1];
-
-    const previousPositions = positions.filter((p) => p <= scrollY);
-    const previous = previousPositions[previousPositions.length - 1];
-
-    const nextPositions = positions.filter((p) => p > scrollY);
-    const next = nextPositions[0];
-
-    return {
-      current,
-      first,
-      last,
-      next,
-      previous
-    };
-  }
 
   let ySpring = spring(0);
 
@@ -76,18 +47,18 @@
     <i class="text-4xl las la-long-arrow-alt-down" />
   </button>
 </div>
-<div bind:this={scrollTargetContainer}>
+
   <LandingSection>
-    <div class="my-12 relative lg:p-5 align-center">
+    <div class="my-12 relative lg:p-5 align-center max-w-xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl ">
       <h1
-        class="text-5xl md:text-7xl break-words lg:text-8xl font-thin min-h-[3em]"
+        class="text-5xl md:text-7xl break-words lg:text-8xl font-thin min-h-[3em] w-full text-left"
         aria-label="the future of engineering is human."
       >
         <TrailedText />
       </h1>
     </div>
   </LandingSection>
-  <LandingSection>
+  <LandingSection class="mx-auto">
     <div class="relative md:flex flex-col items-center my-5 hidden">
       <div id="vertical-line" class="absolute w-0 h-[125%] -z-10 top-[-15%] border-r border-r-white mx-auto"/>
       <img class="rounded-full w-1/2 md:w-1/3 lg:w-1/4 my-5 border border-white" src="/images/diana-and-rafiki.jpg" alt=""/>
@@ -105,4 +76,4 @@
       </p>
     </div>
   </LandingSection>
-</div>
+
