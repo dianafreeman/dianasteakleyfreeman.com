@@ -2,7 +2,7 @@
   import ToggleItem from "./ToggleItem.svelte";
 
   const navLinkClasses =
-    "text-neutral-200 focus:bg-medium-gray focus:outline-white hover:bg-medium-gray px-4 block py-5 text-base font-medium text-right";
+    "text-neutral-200 focus:bg-medium-gray focus:outline-white hover:bg-medium-gray px-4 block py-5 text-base font-medium text-center md:text-right";
 
   export let items;
 
@@ -17,7 +17,7 @@
   export let id;
 </script>
 
-<ul class="bg-dark-gray right-0 absolute w-full {expanded ? " border-white border": ""}" aria-hidden={!expanded} {id}>
+<ul class="bg-dark-gray right-0 absolute w-full md:w-1/3 {expanded ? " border-white border": ""}" aria-hidden={!expanded} {id}>
   {#if expanded}
     {#each items as item}
       <li role="menuitem" class="w-inherit">

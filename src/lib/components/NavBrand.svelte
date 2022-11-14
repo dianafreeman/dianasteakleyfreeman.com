@@ -37,7 +37,7 @@
   on:mouseleave={toggleHovered}
 >
 
-  <span aria-hidden="true">D</span><span bind:this={animatedSpan} aria-hidden="true" style="width: {$widthSpring}px" class="overflow-hidden text-gray-400"
+  <span aria-hidden="true">d</span><span bind:this={animatedSpan} aria-hidden="true" style="width: {$widthSpring}px" class="overflow-hidden text-gray-400"
       >iana</span
     >.
 </a>

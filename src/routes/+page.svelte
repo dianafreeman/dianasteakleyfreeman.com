@@ -5,6 +5,7 @@
   import Button from "$lib/components/Button.svelte";
   import { spring } from "svelte/motion";
   import { browser } from "$app/environment";
+  import LandingSection from "$lib/components/LandingSection.svelte";
 
   let scrollTargetContainer, scrollY;
   onMount(() => {
@@ -13,7 +14,7 @@
 
   function createScrollTargets() {
     const scrollTargets = Array.from(scrollTargetContainer.querySelectorAll("[data-scrolltarget]"));
-    
+
     const positions = [0, ...scrollTargets.map((e) => e.offsetTop + e.clientHeight)];
 
     // get the position that is closest to the current value of scrollY
@@ -43,76 +44,65 @@
 
   let height, width;
 
-
-
-ySpring.subscribe((y) => {
-  if (browser) {
-    window.scrollTo(0, y);
-  }
-});
-  function onArrowClick(type) {
-    // window.scrollTo(0, window.clientHeight)
-    // // TODO: make this stateful
-    const { first, last, current, next } = createScrollTargets();
-
-    if (type === "down") {
-      if (!next || current === last) return ySpring.set(first);
-      return ySpring.set(next);
+  ySpring.subscribe((y) => {
+    if (browser) {
+      window.scrollTo(0, y);
     }
-  }
+  });
 
   function onDownClick() {
-    onArrowClick("down");
+    ySpring.set($ySpring + height);
+  }
+  function onUpClick() {
+    ySpring.set($ySpring - height);
   }
 
+  const wordClasses =
+    "rounded-sm mx-1 focus:outline focus:outline-white focus:outline-offset-8 focus:outline-1";
 </script>
+
 <svelte:window bind:scrollY bind:innerHeight={height} bind:innerWidth={width} />
-
-<div bind:this={scrollTargetContainer}>
-<div data-scrolltarget class="relative flex flex-col min-h-[90vh] justify-center mx-auto">
-  <div class="my-12 relative p-2 lg:p-5 align-center pt-[4vh]">
-    <h1
-      class="text-5xl md:text-6xl lg:text-7xl font-thin min-h-[5em]"
-      aria-label="the future of engineering is human."
-    >
-      <TrailedText />
-    </h1>
-    <div
-    class="fixed bottom-10 inline-flex justify-end w-full z-50 max-w-xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl"
+<div class="fixed bottom-10 left-0 w-full text-center z-50">
+  <button
+    class="rounded-full p-5 w-fit mx-2 outline-neutral-600 outline outline-1 hover:bg-medium-gray"
+    on:click={onUpClick}
   >
-    <Button
-      class="p-5 w-fit bg-semi-transparent mx-2 outline-neutral-600 outline outline-1"
-      on:click={onDownClick}
-    >
-      <i class="text-4xl las la-long-arrow-alt-down" />
-    </Button>
-  </div>
-  </div>
-
+    <i class="text-4xl las la-long-arrow-alt-up" />
+  </button>
+  <button
+    class="rounded-full p-5 w-fit mx-2 outline-neutral-600 outline outline-1 hover:bg-medium-gray"
+    on:click={onDownClick}
+  >
+    <i class="text-4xl las la-long-arrow-alt-down" />
+  </button>
 </div>
-<div data-scrolltarget class="flex flex-col min-h-screen justify-center mx-auto ">
-  <div class="my-12 relative p-2 lg:p-5 align-center">
-    <h1 class="text-6xl text-left font-bold">I'm Diana.</h1>
-  </div>
-
-  <div class="p-2 lg:p-5 my-5">
-    <p class="mr-3 text-xl font-thin text-left">
-      Software Engineer, Digital Policy Buff, User Rights Enthusiast, Former Scientist, Forever
-      Experimenting.
-    </p>
-
-    <hr class="my-10" />
-
-    <div class="text-md flex justify-evenly w-full ">
-      <div class="text-left">
-        <h2 class="font-bold text-xl">Exciting Updates Ahead!</h2>
-        <p class="text-italic text-neutral-300">There is more to this site coming soon.</p>
-      </div>
+<div bind:this={scrollTargetContainer}>
+  <LandingSection>
+    <div class="my-12 relative lg:p-5 align-center">
+      <h1
+        class="text-5xl md:text-7xl break-words lg:text-8xl font-thin min-h-[3em]"
+        aria-label="the future of engineering is human."
+      >
+        <TrailedText />
+      </h1>
     </div>
-  </div>
-</div>
-<!-- <div data-scrolltarget class="flex flex-col min-h-screen justify-center mx-auto ">
-<h2>About</h2>
-</div> -->
-
+  </LandingSection>
+  <LandingSection>
+    <div class="relative md:flex flex-col items-center my-5 hidden">
+      <div id="vertical-line" class="absolute w-0 h-[125%] -z-10 top-[-15%] border-r border-r-white mx-auto"/>
+      <img class="rounded-full w-1/2 md:w-1/3 lg:w-1/4 my-5 border border-white" src="/images/diana-and-rafiki.jpg" alt=""/>
+    </div>
+    <div id="vertical-line" class="w-2 h-1/3 border-r-1"/>
+    <div class="my-12 relative p-2 lg:p-5 align-center">
+      <p class="text-8xl md:text-8xl text-center font-thin mb-4">
+        i'm <span class="font-bold">diana.</span>
+      </p>
+      <p class="text-xl md:text-[2rem] text-center font-thin">
+        <a href="/gallery/code" class="w-inherit {wordClasses}">coder.</a><a
+          href="/gallery"
+          class={wordClasses}>creator.</a
+        ><a href="/blog" class={wordClasses}>commnuicator.</a>
+      </p>
+    </div>
+  </LandingSection>
 </div>

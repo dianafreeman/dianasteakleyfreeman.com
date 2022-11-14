@@ -9,11 +9,11 @@
 </script>
 
 <Seo title={data.title} />
-<div class="mx-3 flex flex-col ">
-  <div class="p-2 lg:p-5 my-5">
-    <ol class="grid sm:grid-cols-2 gap md:grid-cols-3 md:max-w-3xl lg:max-w-4xl m-auto">
+<div class="mx-3 flex flex-col">
+  <div class="my-5">
+    <ol class="grid sm:grid-cols-2 gap-4 md:grid-cols-3 md:max-w-3xl lg:max-w-4xl m-auto">
       {#each data.entries as entry}
-        <li class="max-w-xs mx-auto mb-auto">
+        <li class="max-w-xs">
           <Card
             title={entry.metadata.title}
             target={entry.metadata.relativePath}

@@ -6,7 +6,9 @@
   export let imgSrc;
 </script>
 
-<a href={target} class="inline-block text-md font-bold p-3 focus:outline-white focus:outline-1">
-  <img src={imgSrc} alt="caption descripton" class="w-full self-start" />
-  <span class="block my-3">{title}</span>
+<a href={target} class="relative text-md focus:outline-white focus:outline-1 grayscale hover:grayscale-0">
+  <img src={imgSrc} alt="" class="w-full self-start object-contain" />
+  <div class="bottom-0 absolute w-full p-3" style="background-color: rgba(0,0,0,0.9);">
+  <h3 class="text-xl lowercase">{title}.</h3></div>
+  
 </a>

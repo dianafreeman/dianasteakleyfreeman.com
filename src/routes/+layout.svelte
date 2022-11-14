@@ -1,7 +1,7 @@
 <script>
   import "../app.css";
   import { page } from "$app/stores";
-  import Button from "$lib/components/Button.svelte";
+  import { fade } from "svelte/transition";
   import NavBrand from "$lib/components/NavBrand.svelte";
   import MenuToggle from "$lib/components/MenuToggle.svelte";
   import MenuContent from "$lib/components/MenuContent.svelte";
@@ -43,9 +43,7 @@
   const navWrapperClassesClosed = "h-0";
   const navWrapperClassesOpen = "top-0 h-screen";
 
-  let height, width;
-
-
+  let headerHeight;
 
   $: settingsItems = [
     {
@@ -76,108 +74,107 @@
   });
 </script>
 
-<svelte:window bind:scrollY  />
+<svelte:window bind:scrollY />
 
 <Seo
   title={data.seoMeta?.title}
   description={data.seoMeta?.description || data.seoMeta?.excerpt || null}
 />
-<div bind:this={main} class="flex-col flex justify-between min-h-screen">
-  <header
-    class="relative pb-4 z-10 bg-dark-gray"
-    style="transform: translateY({scrollY}px);"
-    class:dyslexia
+<div id="superparent" class="bg-black min-h-screen flex-col flex justify-between">
+<!-- <div id="spacer" style="height: {headerHeight}px" /> -->
+<header
+  bind:clientHeight={headerHeight}
+  class="fixed w-full top-0 pb-4 z-10 bg-dark-gray"
+  class:dyslexia
+>
+  <div
+    bind:this={trapFocusWapper}
+    class="relative w-inherit left-0 right-0 w-full h-full max-w-xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto {$mainMenuOpen
+      ? navWrapperClassesOpen
+      : navWrapperClassesClosed}"
   >
-    <div
-      bind:this={trapFocusWapper}
-      class="relative w-inherit left-0 right-0 w-full h-full max-w-xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto {$mainMenuOpen
-        ? navWrapperClassesOpen
-        : navWrapperClassesClosed}"
-    >
-      <div class="m-auto h-fit flex flex-row justify-between {$mainMenuOpen ? '' : ''}">
-        <!-- Top Bar -- Nav Brand and Menu Toggle -->
-        <NavBrand />
+    <div class="m-auto h-fit flex flex-row justify-between {$mainMenuOpen ? '' : ''}">
+      <!-- Top Bar -- Nav Brand and Menu Toggle -->
+      <NavBrand />
 
-        <div class="relative flex flex-row-reverse">
-          <MenuToggle
-            on:click={() => {
-              settingsMenuOpen.set(false);
-              mainMenuOpen.update((v) => !v);
-            }}
-            label="menu"
-            menuType="hamburger"
-            id="mainMenu"
-            hideLabel
-            expanded={$mainMenuOpen}
-          />
-          <MenuToggle
-            on:click={() => {
-              mainMenuOpen.set(false);
-              settingsMenuOpen.update((v) => !v);
-            }}
-            label="settings"
-            menuType="settings"
-            hideLabel
-            expanded={$settingsMenuOpen}
-          />
-        </div>
+      <div class=" flex flex-row-reverse">
+        <MenuToggle
+          on:click={() => {
+            settingsMenuOpen.set(false);
+            mainMenuOpen.update((v) => !v);
+          }}
+          label="menu"
+          menuType="hamburger"
+          id="mainMenu"
+          hideLabel
+          expanded={$mainMenuOpen}
+        />
+        <MenuToggle
+          on:click={() => {
+            mainMenuOpen.set(false);
+            settingsMenuOpen.update((v) => !v);
+          }}
+          label="settings"
+          menuType="settings"
+          hideLabel
+          expanded={$settingsMenuOpen}
+        />
       </div>
-      <MenuContent
-        items={data.navItems}
-        id="mainMenu"
-        menuType="hamburger"
-        expanded={$mainMenuOpen}
-      />
-      <MenuContent
-        items={settingsItems}
-        id="settingsMenu"
-        menuType="settings"
-        expanded={$settingsMenuOpen}
-      />
-      <Breadcrumbs slot="breadcrumbs" class="w-full m-auto -z-10" items={data.breadcrumbs} />
     </div>
-  </header>
-  <main
-    class="relative mx-auto h-full max-w-xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl"
-    class:dyslexia
-  >
-  
-    <div>
-      <slot />
-    </div>
-  </main>
+    <MenuContent
+      items={data.navItems}
+      id="mainMenu"
+      menuType="hamburger"
+      expanded={$mainMenuOpen}
+    />
+    <MenuContent
+      items={settingsItems}
+      id="settingsMenu"
+      menuType="settings"
+      expanded={$settingsMenuOpen}
+    />
+    <Breadcrumbs slot="breadcrumbs" class="w-full m-auto" items={data.breadcrumbs} />
+  </div>
+</header>
 
-  <footer class="bg-dark-gray py-5" class:dyslexia>
-    <div data-scrolltarget class="flex flex-row justify-around">
-      <div>
-        <p class="font-bold uppercase">Main Menu</p>
-        <ul>
-          <li>Home</li>
-          <li>Gallery</li>
-          <li>Blog</li>
-        </ul>
-      </div>
-      <div>
-        <p class="font-bold uppercase">For Users</p>
-        <ul>
-          <li>Privacy Statement</li>
-          <li>Cookie</li>
-          <li>Report A Problem</li>
-        </ul>
-      </div>
-      <div>
-        <p class="font-bold uppercase">Socials</p>
-        <ul>
-          <li>Github</li>
-          <li>TikTok</li>
-          <li>Twitter</li>
-          <li>Medium</li>
-        </ul>
-      </div>
-      <div>
-        <p>Diana M Steakley-Freeman</p>
-        <p>(c) 2023</p>
-      </div>
+<main
+  class="relative mx-auto max-w-xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl flex-grow flex-col flex justify-between"
+  class:dyslexia
+  bind:this={main}
+  transition:fade
+>
+    <slot />
+</main>
+
+<footer class="bg-dark-gray p-5" class:dyslexia>
+  <div class="flex flex-row flex-wrap mx-auto justify-between">
+    <div class="w-1/2 mb-8 ">
+      <p class="font-bold lowercase">Navigation.</p>
+      <ul>
+        <li>Home</li>
+        <li>Gallery</li>
+        <li>Blog</li>
+        <li>Resources</li>
+      </ul>
     </div>
-  </footer>
+
+    <div class="w-1/2 mb-8">
+      <p class="font-bold lowercase">Terms.</p>
+      <ul>
+        <li>Privacy Policy</li>
+        <li>Report A Problem</li>
+      </ul>
+    </div>
+    <div class="mb-8">
+      <p class="font-bold lowercase">Links.</p>
+      <ul class="flex w-full">
+        <li class="mx-1">Github</li>
+        <li class="mx-1">TikTok</li>
+        <li class="mx-1">Twitter</li>
+        <li class="mx-1">Medium</li>
+      </ul>
+    </div>
+    <p>Diana M Steakley-Freeman (c) 2023</p>
+  </div>
+</footer>
 </div>
