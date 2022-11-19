@@ -27,7 +27,7 @@
 
 <svelte:window bind:scrollY bind:innerHeight={height} bind:innerWidth={width} />
 
-<div class="fixed right-0 z-50 w-fit">
+<div class="fixed right-0 z-10 w-fit">
   <!-- <p>page sections</p> -->
   <ol class="h-screen w-inherit flex flex-col justify-center">
     <li>

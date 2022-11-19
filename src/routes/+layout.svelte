@@ -13,7 +13,7 @@
   import { writable } from "svelte/store";
   import { browser } from "$app/environment";
   import createTrapFocus from "$lib/trapFocus";
-    import createButtonClasses from "$lib/createButtonClasses";
+  import createButtonClasses from "$lib/createButtonClasses";
 
   /** @type {import('./$types').LayoutData} */
   export let data;
@@ -31,9 +31,8 @@
 
   const navWrapperClassesClosed = "h-0";
   const navWrapperClassesOpen = "top-0 h-screen";
-  const buttonClasses = createButtonClasses()
-  const navLinkClasses =
-    `${buttonClasses} inherit px-4 py-5 text-left md:text-right`;
+  const buttonClasses = createButtonClasses();
+  const navLinkClasses = `${buttonClasses} inherit px-4 py-5 text-left md:text-right`;
 
   $: {
     if (browser && $LayoutStore) {
@@ -102,9 +101,8 @@
     }
   });
 
-
   $: {
-    if (innerWidth > 640 ){
+    if (innerWidth > 640) {
       mainMenuOpen.set(true);
     }
   }
@@ -118,17 +116,15 @@
 />
 <header
   bind:clientHeight={headerHeight}
-  class="fixed w-full top-0 pb-4 z-10 bg-dark-gray"
+  class="fixed w-full top-0 pb-4 z-30 bg-dark-gray"
   class:dyslexia
 >
   <div
-    bind:this={trapFocusWapper}
     class="relative w-inherit left-0 right-0 w-full h-full max-w-xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto {$mainMenuOpen
       ? navWrapperClassesOpen
       : navWrapperClassesClosed}"
   >
     <div class="m-auto h-fit flex flex-row flex-wrap justify-between {$mainMenuOpen ? '' : ''}">
-      <!-- Top Bar -- Nav Brand and Menu Toggle -->
       <NavBrand class="" />
       <div class="flex-grow justify-start md:hidden">
         <MenuToggle
@@ -162,11 +158,11 @@
 
       <MenuToggle
         on:click={() => {
-          mainMenuOpen.set(false);
           settingsMenuOpen.update((v) => !v);
         }}
         label="settings"
         menuType="settings"
+        iconType={$settingsMenuOpen ? "close" : "settings"}
         hideLabel
         class="order-2"
         expanded={$settingsMenuOpen}

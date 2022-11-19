@@ -18,7 +18,8 @@
   const ICON_CLASS_MAP = {
     hamburger: "las la-bars",
     times: "las la-times",
-    settings: "las la-ellipsis-v"
+    settings: "las la-ellipsis-v",
+    close: "las la-angle-up"
   };
 
   $: iconClass = iconType ? ICON_CLASS_MAP[iconType] : ICON_CLASS_MAP[menuType];
