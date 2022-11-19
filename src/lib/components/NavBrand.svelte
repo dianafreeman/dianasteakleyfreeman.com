@@ -1,8 +1,9 @@
 <script>
-    import { onMount } from 'svelte';
+    import { page } from '$app/stores';
+import { onMount } from 'svelte';
 	import { spring } from 'svelte/motion';
  import { writable } from "svelte/store";
-  import NavLink from "./NavLink.svelte";
+
 
   let hovered = writable(false);
   let widthSpring = spring()
@@ -35,6 +36,13 @@
   on:blur={toggleHovered}
   on:mouseenter={toggleHovered}
   on:mouseleave={toggleHovered}
+  on:click={(e) => {
+    if ($page.url.pathname === "/"){
+      e.preventDefault();
+      toggleHovered()
+    }
+    
+  }}
 >
 
   <span aria-hidden="true">d</span><span bind:this={animatedSpan} aria-hidden="true" style="width: {$widthSpring}px" class="overflow-hidden text-gray-400"

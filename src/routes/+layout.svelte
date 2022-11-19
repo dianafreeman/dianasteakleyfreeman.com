@@ -4,7 +4,7 @@
   import { fade } from "svelte/transition";
   import NavBrand from "$lib/components/NavBrand.svelte";
   import MenuToggle from "$lib/components/MenuToggle.svelte";
-  import MenuContent from "$lib/components/MenuContent.svelte";
+  import ToggleItem from "$lib/components/ToggleItem.svelte";
   import Breadcrumbs from "$lib/components/Breadcrumbs.svelte";
   import Seo from "$lib/components/Seo.svelte";
   import { onDestroy, onMount } from "svelte";
@@ -15,12 +15,23 @@
 
   /** @type {import('./$types').LayoutData} */
   export let data;
-  let scrollY, trapFocusWapper, main;
+  let scrollY;
+  let innerWidth;
+  let trapFocusWapper;
+  let main;
+  let footer;
+  let dyslexia;
+  let mode;
+  let headerHeight;
 
   let mainMenuOpen = writable(false);
   let settingsMenuOpen = writable(false);
 
-  let dyslexia, mode;
+  const navWrapperClassesClosed = "h-0";
+  const navWrapperClassesOpen = "top-0 h-screen";
+  const navLinkClasses =
+    "inherit text-neutral-200 w-full focus:bg-medium-gray focus:outline-white focus:outline hover:outline active:outline-1 hover:bg-medium-gray px-4  py-5 text-base font-medium text-left md:text-right";
+
   $: {
     if (browser && $LayoutStore) {
       dyslexia = $LayoutStore.dyslexia;
@@ -28,22 +39,13 @@
     }
   }
 
+  // Close navigation menu when the page changes
   page.subscribe((p) => {
     if (p.url.pathname) {
       mainMenuOpen.set(false);
       settingsMenuOpen.set(false);
     }
   });
-  // if (page?.url?.pathname) {
-
-  onMount(() => {
-    LayoutStore.restoreSettings();
-  });
-
-  const navWrapperClassesClosed = "h-0";
-  const navWrapperClassesOpen = "top-0 h-screen";
-
-  let headerHeight;
 
   $: settingsItems = [
     {
@@ -58,9 +60,32 @@
       settingsMenuOpen.set(false);
     }
   }
+  // Restore any user settings
+  onMount(() => {
+    LayoutStore.restoreSettings();
+  });
+  // enable scroll snapping
+  onMount(() => {
+    document.querySelector("body, html").classList.add("scroll-snap-mandatory");
+  });
 
+  function onFooterReached() {
+    // disable scroll snapping once the footer is reached
+    // .scroll-snap-mandatory is configured in src/app.css
+    if (footer) {
+      const elementAboveFooter = footer.previousElementSibling;
+      const lastItemAboveFooter = elementAboveFooter.lastElementChild;
+      if (scrollY > lastItemAboveFooter.offsetTop) {
+        document.querySelector("body, html").classList.remove("scroll-snap-mandatory");
+      } else {
+        if (!document.querySelector("body, html").classList.contains("scroll-snap-mandatory"))
+          document.querySelector("body, html").classList.add("scroll-snap-mandatory");
+      }
+    }
+  }
   onMount(() => {
     const trapFocus = createTrapFocus(mainMenuOpen);
+    document.addEventListener("scroll", onFooterReached);
     if (trapFocusWapper) {
       trapFocusWapper.addEventListener("keydown", closeMenuOnEscape);
       trapFocusWapper.addEventListener("keydown", (e) => trapFocus(e, trapFocusWapper));
@@ -74,80 +99,92 @@
   });
 </script>
 
-<svelte:window bind:scrollY />
+<svelte:window bind:scrollY bind:innerWidth/>
 
 <Seo
   title={data.seoMeta?.title}
   description={data.seoMeta?.description || data.seoMeta?.excerpt || null}
 />
-<div id="superparent" class="bg-black min-h-screen flex-col flex justify-between">
-  <header
-    bind:clientHeight={headerHeight}
-    class="fixed w-full top-0 pb-4 z-10 bg-dark-gray"
-    class:dyslexia
+<header
+  bind:clientHeight={headerHeight}
+  class="fixed w-full top-0 pb-4 z-10 bg-dark-gray"
+  class:dyslexia
+>
+  <div
+    bind:this={trapFocusWapper}
+    class="relative w-inherit left-0 right-0 w-full h-full max-w-xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto {$mainMenuOpen
+      ? navWrapperClassesOpen
+      : navWrapperClassesClosed}"
   >
-    <div
-      bind:this={trapFocusWapper}
-      class="relative w-inherit left-0 right-0 w-full h-full max-w-xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto {$mainMenuOpen
-        ? navWrapperClassesOpen
-        : navWrapperClassesClosed}"
-    >
-      <div class="m-auto h-fit flex flex-row justify-between {$mainMenuOpen ? '' : ''}">
-        <!-- Top Bar -- Nav Brand and Menu Toggle -->
-        <NavBrand />
-
-        <div class=" flex flex-row-reverse">
-          <MenuToggle
-            on:click={() => {
-              settingsMenuOpen.set(false);
-              mainMenuOpen.update((v) => !v);
-            }}
-            label="menu"
-            menuType="hamburger"
-            id="mainMenu"
-            hideLabel
-            expanded={$mainMenuOpen}
-          />
-          <MenuToggle
-            on:click={() => {
-              mainMenuOpen.set(false);
-              settingsMenuOpen.update((v) => !v);
-            }}
-            label="settings"
-            menuType="settings"
-            hideLabel
-            expanded={$settingsMenuOpen}
-          />
-        </div>
+    <div class="m-auto h-fit flex flex-row flex-wrap justify-between {$mainMenuOpen ? '' : ''}">
+      <!-- Top Bar -- Nav Brand and Menu Toggle -->
+      <NavBrand class="" />
+      <div class="flex-grow justify-start md:hidden">
+        <MenuToggle
+          on:click={() => {
+            settingsMenuOpen.set(false);
+            mainMenuOpen.update((v) => !v);
+          }}
+          label="menu"
+          menuType="hamburger"
+          id="mainMenu"
+          hideLabel
+          expanded={$mainMenuOpen}
+        />
       </div>
-      <MenuContent
-        items={data.navItems}
-        id="mainMenu"
-        menuType="hamburger"
-        expanded={$mainMenuOpen}
-      />
-      <MenuContent
-        items={settingsItems}
-        id="settingsMenu"
+      <ul
+        aria-expanded={$mainMenuOpen}
+        class="flex flex-col md:flex-row flex-grow list-none w-full md:w-fit md:justify-end justify-center items-center order-3 md:order-2"
+      >
+        {#each data.navItems as item}
+          <li
+            role="menuitem"
+            class="w-full md:w-fit m-2"
+            aria-hidden={$mainMenuOpen}
+            class:hidden={!$mainMenuOpen}
+          >
+            <a href={item.relativePath} class={navLinkClasses}>{item.navigationText}</a>
+          </li>
+        {/each}
+      </ul>
+
+      <MenuToggle
+        on:click={() => {
+          mainMenuOpen.set(false);
+          settingsMenuOpen.update((v) => !v);
+        }}
+        label="settings"
         menuType="settings"
+        hideLabel
+        class="order-2"
         expanded={$settingsMenuOpen}
       />
-      <Breadcrumbs slot="breadcrumbs" class="w-full m-auto" items={data.breadcrumbs} />
     </div>
-  </header>
+    {#if $settingsMenuOpen}
+      <ul aria-hidden={!settingsMenuOpen}>
+        {#each settingsItems as item}
+          <ToggleItem on:click={() => item.func()} value={item.value}>
+            {item.navigationText}
+          </ToggleItem>
+        {/each}
+      </ul>
+    {/if}
+    <Breadcrumbs slot="breadcrumbs" class="w-full m-auto z-40" items={data.breadcrumbs} />
+  </div>
+</header>
+<body class="bg-black min-h-screen flex-col flex justify-between">
   {#if $page.params.category || $page.params.subcategory}
-  <div id="spacer" style="height: {headerHeight}px" />
+    <div id="spacer" style="height: {headerHeight}px" />
   {/if}
   <main
-    class="relative m-auto flex-grow flex-col flex justify-between align-middle "
+    class="relative m-auto flex-grow flex-col flex justify-between "
     class:dyslexia
     bind:this={main}
     transition:fade
   >
     <slot />
   </main>
-
-  <footer class="bg-dark-gray p-5 w-full" class:dyslexia>
+  <footer bind:this={footer} class=" bg-dark-gray p-5 w-full" class:dyslexia>
     <div
       class="flex flex-row flex-wrap mx-auto justify-between max-w-xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl "
     >
@@ -180,4 +217,10 @@
       <p class="text-center flex-grow">Diana M Steakley-Freeman (c) 2023</p>
     </div>
   </footer>
-</div>
+</body>
+
+<style>
+  .inherit {
+    display: inherit;
+  }
+</style>

@@ -42,6 +42,13 @@
     font-size: 16px;
     font-family: "Montserrat", sans-serif;
     @apply text-white;
+    
+  }
+
+  .scroll-snap-mandatory { 
+    scroll-snap-type: mandatory;
+    scroll-snap-points-y: repeat(100vh);
+    scroll-snap-type: y mandatory;
   }
 
   .dyslexia {

@@ -3,6 +3,8 @@
 
   export let expanded = false
   export let hideLabel = false;
+  let clazz = ""
+  export { clazz as class }
   
   /** @type { string } */
   export let label;
@@ -21,7 +23,7 @@
 
 
 <Button
-  class="p-4 flex w-fit justify-center items-center"
+  class="p-4 flex w-fit justify-center items-center {clazz}"
   buttonProps={{ "aria-expanded": expanded, "aria-controls": id }}
   on:click
 >

@@ -6,6 +6,7 @@ import { writable } from 'svelte/store';
 import { browser } from '$app/environment';
 
 function isTopLevelRoute(entry) {
+  if (entry.relativePath === "/") return false
   const pathArray = entry.relativePath.split("/").filter((v) => v.length !== 0);
   if (pathArray.length > 1) return false;
   return true;
@@ -25,7 +26,6 @@ async function getEntry(uniqueFilter) {
 export async function load({ url }) {
 
   const topLevelNavTargets = await getEntries(isTopLevelRoute);
-
   let activeEntry = getEntry(e => e.relativePath === url.pathname)
   let breadcrumbs = []
 
