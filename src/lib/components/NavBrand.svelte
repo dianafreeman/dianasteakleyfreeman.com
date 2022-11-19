@@ -1,12 +1,11 @@
 <script>
-    import { page } from '$app/stores';
-import { onMount } from 'svelte';
-	import { spring } from 'svelte/motion';
- import { writable } from "svelte/store";
-
+  import { page } from "$app/stores";
+  import { onMount } from "svelte";
+  import { spring } from "svelte/motion";
+  import { writable } from "svelte/store";
 
   let hovered = writable(false);
-  let widthSpring = spring()
+  let widthSpring = spring();
   let initialNameWidth;
   let animatedSpan;
 
@@ -14,38 +13,39 @@ import { onMount } from 'svelte';
     hovered.update((h) => !h);
   }
 
-  hovered.subscribe(isHovered => {
-    if (initialNameWidth){
-      widthSpring.set(isHovered ? initialNameWidth : 0)
+  hovered.subscribe((isHovered) => {
+    if (initialNameWidth) {
+      widthSpring.set(isHovered ? initialNameWidth : 0);
     }
-  })
+  });
 
-  onMount(()=> {
-    if (animatedSpan){
-      initialNameWidth = animatedSpan.clientWidth
-      widthSpring.set(0)
+  onMount(() => {
+    if (animatedSpan) {
+      initialNameWidth = animatedSpan.clientWidth;
+      widthSpring.set(0);
     }
-  })
+  });
 </script>
 
 <a
   href="/"
-  aria-label="Diana" 
-  class="mb-0 m-2 pt-2 pb-0 text-2xl lg:text-3xl xl:text-4xl inline-flex font-bold focus:outline-white focus:outline-1"
+  aria-label="Diana"
+  class="mb-0 m-2 pt-2 pb-4 my-3 px-3 text-2xl lg:text-3xl xl:text-4xl inline-flex font-bold focus:outline-white focus:outline-1"
   on:focus={toggleHovered}
   on:blur={toggleHovered}
   on:mouseenter={toggleHovered}
   on:mouseleave={toggleHovered}
   on:click={(e) => {
-    if ($page.url.pathname === "/"){
+    if ($page.url.pathname === "/") {
       e.preventDefault();
-      toggleHovered()
+      toggleHovered();
     }
-    
   }}
 >
-
-  <span aria-hidden="true">d</span><span bind:this={animatedSpan} aria-hidden="true" style="width: {$widthSpring}px" class="overflow-hidden text-gray-400"
-      >iana</span
-    >.
+  <span aria-hidden="true">d</span><span
+    bind:this={animatedSpan}
+    aria-hidden="true"
+    style="width: {$widthSpring}px"
+    class="overflow-hidden text-gray-400">iana</span
+  >.
 </a>

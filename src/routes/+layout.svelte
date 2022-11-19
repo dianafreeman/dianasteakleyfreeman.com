@@ -4,6 +4,7 @@
   import { fade } from "svelte/transition";
   import NavBrand from "$lib/components/NavBrand.svelte";
   import MenuToggle from "$lib/components/MenuToggle.svelte";
+  import Button from "$lib/components/Button.svelte";
   import ToggleItem from "$lib/components/ToggleItem.svelte";
   import Breadcrumbs from "$lib/components/Breadcrumbs.svelte";
   import Seo from "$lib/components/Seo.svelte";
@@ -12,6 +13,7 @@
   import { writable } from "svelte/store";
   import { browser } from "$app/environment";
   import createTrapFocus from "$lib/trapFocus";
+    import createButtonClasses from "$lib/createButtonClasses";
 
   /** @type {import('./$types').LayoutData} */
   export let data;
@@ -29,8 +31,9 @@
 
   const navWrapperClassesClosed = "h-0";
   const navWrapperClassesOpen = "top-0 h-screen";
+  const buttonClasses = createButtonClasses()
   const navLinkClasses =
-    "inherit text-neutral-200 w-full focus:bg-medium-gray focus:outline-white focus:outline hover:outline active:outline-1 hover:bg-medium-gray px-4  py-5 text-base font-medium text-left md:text-right";
+    `${buttonClasses} inherit px-4 py-5 text-left md:text-right`;
 
   $: {
     if (browser && $LayoutStore) {
@@ -90,6 +93,7 @@
       trapFocusWapper.addEventListener("keydown", closeMenuOnEscape);
       trapFocusWapper.addEventListener("keydown", (e) => trapFocus(e, trapFocusWapper));
     }
+    return () => document.removeEventListener("scroll", onFooterReached);
   });
   onDestroy(() => {
     if (trapFocusWapper) {
@@ -97,9 +101,16 @@
       trapFocusWapper.removeEventListener("keydown", (e) => trapFocus(e, trapFocusWapper), true);
     }
   });
+
+
+  $: {
+    if (innerWidth > 640 ){
+      mainMenuOpen.set(true);
+    }
+  }
 </script>
 
-<svelte:window bind:scrollY bind:innerWidth/>
+<svelte:window bind:scrollY bind:innerWidth />
 
 <Seo
   title={data.seoMeta?.title}
@@ -127,6 +138,7 @@
           }}
           label="menu"
           menuType="hamburger"
+          iconType={$mainMenuOpen ? "times" : "hamburger"}
           id="mainMenu"
           hideLabel
           expanded={$mainMenuOpen}
@@ -139,7 +151,7 @@
         {#each data.navItems as item}
           <li
             role="menuitem"
-            class="w-full md:w-fit m-2"
+            class="w-full md:w-fit m-2 px-2"
             aria-hidden={$mainMenuOpen}
             class:hidden={!$mainMenuOpen}
           >

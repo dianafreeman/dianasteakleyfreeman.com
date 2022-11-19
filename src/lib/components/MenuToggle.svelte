@@ -12,13 +12,16 @@
   export let id;
   /** @type { "hamburger" | "settings "} */
   export let menuType;
+  /** @type { "hamburger" | "times" | "settings"} */
+  export let iconType = "";
 
   const ICON_CLASS_MAP = {
     hamburger: "las la-bars",
+    times: "las la-times",
     settings: "las la-ellipsis-v"
   };
 
-  const iconClass = ICON_CLASS_MAP[menuType];
+  $: iconClass = iconType ? ICON_CLASS_MAP[iconType] : ICON_CLASS_MAP[menuType];
 </script>
 
 
