@@ -13,7 +13,7 @@ export async function load({ params }) {
       title: category
     }
   } else {
-    // temporary escape hatch
+    // admin page escape hatch
     if (category !== "admin") {
       throw error(404)
     }

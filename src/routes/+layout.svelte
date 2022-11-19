@@ -14,6 +14,7 @@
   import { browser } from "$app/environment";
   import createTrapFocus from "$lib/trapFocus";
   import createButtonClasses from "$lib/createButtonClasses";
+  import { RESPONSIVE_CONTAINER_CLASSES } from "$lib/constants";
 
   /** @type {import('./$types').LayoutData} */
   export let data;
@@ -106,6 +107,8 @@
       mainMenuOpen.set(true);
     }
   }
+
+  $: console.log("headerHeight", headerHeight);
 </script>
 
 <svelte:window bind:scrollY bind:innerWidth />
@@ -116,11 +119,11 @@
 />
 <header
   bind:clientHeight={headerHeight}
-  class="fixed w-full top-0 pb-4 z-30 bg-dark-gray"
+  class="fixed w-full top-0 pb-4 z-30 bg-darkest-gray"
   class:dyslexia
 >
   <div
-    class="relative w-inherit left-0 right-0 w-full h-full max-w-xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto {$mainMenuOpen
+    class="relative w-inherit left-0 right-0 w-full h-full {RESPONSIVE_CONTAINER_CLASSES} {$mainMenuOpen
       ? navWrapperClassesOpen
       : navWrapperClassesClosed}"
   >
@@ -180,29 +183,26 @@
     <Breadcrumbs slot="breadcrumbs" class="w-full m-auto z-40" items={data.breadcrumbs} />
   </div>
 </header>
+<div style="height: {headerHeight}px" />
+
 <body class="bg-black min-h-screen flex-col flex justify-between">
-  {#if $page.params.category || $page.params.subcategory}
-    <div id="spacer" style="height: {headerHeight}px" />
-  {/if}
   <main
-    class="relative m-auto flex-grow flex-col flex justify-between "
+    class="relative m-auto flex-grow flex-col flex justify-between {RESPONSIVE_CONTAINER_CLASSES} "
     class:dyslexia
     bind:this={main}
     transition:fade
   >
     <slot />
   </main>
-  <footer bind:this={footer} class=" bg-dark-gray p-5 w-full" class:dyslexia>
-    <div
-      class="flex flex-row flex-wrap mx-auto justify-between max-w-xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl "
-    >
+  <footer bind:this={footer} class=" bg-darkest-gray p-5 w-full" class:dyslexia>
+    <div class="flex flex-row flex-wrap justify-between {RESPONSIVE_CONTAINER_CLASSES}">
       <div class="w-1/2 mb-8 ">
         <p class="font-bold lowercase">Navigation.</p>
         <ul>
-          <li class="lowercase">Home</li>
-          <li class="lowercase">Gallery</li>
-          <li class="lowercase">Blog</li>
-          <li class="lowercase">Resources</li>
+          <li class="lowercase"><a href="/" >Home</a></li>
+          <li class="lowercase"><a href="/gallery" >Gallery</a></li>
+          <li class="lowercase"><a href="/blog" >Blog</a></li>
+          <li class="lowercase"><a href="/resources" >Resources</a></li>
         </ul>
       </div>
 

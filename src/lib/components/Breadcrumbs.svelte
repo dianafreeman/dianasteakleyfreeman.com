@@ -15,7 +15,7 @@
 
 {#if !DISABLED_PAGES.includes($page.url.pathname)}
   <nav
-    class="px-4 relative bg-medium-gray py-2 {clazz}"
+    class="px-4 relative bg-darkest-gray py-2 {clazz}"
     aria-label="Breadcrumb"
   >
     <ol class="list-none flex gap-2 mx-1">

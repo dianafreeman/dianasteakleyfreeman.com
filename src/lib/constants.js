@@ -1,0 +1,1 @@
+export const RESPONSIVE_CONTAINER_CLASSES = "max-w-md md:max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto"

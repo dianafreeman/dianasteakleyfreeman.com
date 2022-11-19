@@ -10,10 +10,10 @@
 </script>
 
 <li class="flex items-center ">
-  <i aria-hidden="true" class="las la-angle-right mr-2 " />
+  <i aria-hidden="true" class="las la-angle-right mr-2 text-white " />
 
   {#if isHomePageCrumb}
-    <a href="/" class="text-gray-400 hover:text-white">
+    <a href="/" class="text-white hover:text-white">
       <Home />
       <span class="sr-only">Home Page</span>
     </a>
@@ -23,7 +23,7 @@
       href={item.relativePath}
       class:underline={!current}
       class:font-medium={current}
-      class="text-base font-thin text-gray-300 underline underline-offset-4 rounded-sm focus:outline focus:outline-white focus:outline-offset-8 focus:outline-1"
+      class="text-base font-thin text-white underline underline-offset-4 rounded-sm focus:outline focus:outline-white focus:outline-offset-8 focus:outline-1"
       {...itemProps}
     >
       {item.navigationText || item.title}</a

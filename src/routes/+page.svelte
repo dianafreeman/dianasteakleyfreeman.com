@@ -5,6 +5,7 @@
   import { spring } from "svelte/motion";
   import { browser } from "$app/environment";
   import LandingSection from "$lib/components/LandingSection.svelte";
+  import { RESPONSIVE_CONTAINER_CLASSES } from "$lib/constants";
 
   let scrollY;
   onMount(() => {
@@ -28,7 +29,6 @@
 <svelte:window bind:scrollY bind:innerHeight={height} bind:innerWidth={width} />
 
 <div class="fixed right-0 z-10 w-fit">
-  <!-- <p>page sections</p> -->
   <ol class="h-screen w-inherit flex flex-col justify-center">
     <li>
       <button
@@ -51,7 +51,7 @@
 </div>
 
 <LandingSection>
-  <div class="my-12 relative lg:p-5 align-center max-w-xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl ">
+  <div class="my-12 relative lg:p-5 align-center {RESPONSIVE_CONTAINER_CLASSES}">
     <h1
       class="text-5xl md:text-7xl break-words lg:text-8xl font-thin min-h-[3em] w-full text-left"
       aria-label="the future of engineering is human."
@@ -69,7 +69,8 @@
       <a href="/gallery/code" class="w-inherit {wordClasses}">coder.</a><a
         href="/gallery"
         class={wordClasses}>creator.</a
-      ><a href="/blog" class={wordClasses}>commnuicator.</a>
+      >
+      <a href="/blog" class={wordClasses}>commnuicator.</a>
     </p>
   </div>
 </LandingSection>
