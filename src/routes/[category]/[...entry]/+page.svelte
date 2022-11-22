@@ -13,12 +13,12 @@
 
   {#if entry.metadata?.date}
     <div class="mx-auto md:w-full flex flex-col text-left">
-        <p class="mr-3 text-md">
-          Published on <span class="font-bold">{new Date(entry.metadata?.date).toDateString()}</span>
-        </p>
+      <p class="mr-3 text-md">
+        Published on <span class="font-bold">{new Date(entry.metadata?.date).toDateString()}</span>
+      </p>
     </div>
   {/if}
-  
+
   <div class="markdown w-full mx-auto px-4 md:px-0">
     <svelte:component this={entry.default} />
   </div>

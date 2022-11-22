@@ -1,17 +1,19 @@
 <script>
   import "../app.css";
+  import { browser } from "$app/environment";
   import { page } from "$app/stores";
   import { fade } from "svelte/transition";
+  import { onDestroy, onMount } from "svelte";
+  import { writable } from "svelte/store";
+
+  import SettingsStore from "$stores/SettingsStore";
+
   import NavBrand from "$lib/components/NavBrand.svelte";
   import MenuToggle from "$lib/components/MenuToggle.svelte";
   import Button from "$lib/components/Button.svelte";
   import ToggleItem from "$lib/components/ToggleItem.svelte";
   import Breadcrumbs from "$lib/components/Breadcrumbs.svelte";
   import Seo from "$lib/components/Seo.svelte";
-  import { onDestroy, onMount } from "svelte";
-  import LayoutStore from "$stores/LayoutStore";
-  import { writable } from "svelte/store";
-  import { browser } from "$app/environment";
   import createTrapFocus from "$lib/trapFocus";
   import createButtonClasses from "$lib/createButtonClasses";
   import { RESPONSIVE_CONTAINER_CLASSES } from "$lib/constants";
@@ -36,24 +38,24 @@
   const navLinkClasses = `${buttonClasses} inherit px-4 py-5 text-left md:text-right`;
 
   $: {
-    if (browser && $LayoutStore) {
-      dyslexia = $LayoutStore.dyslexia;
-      mode = $LayoutStore.mode;
+    if (browser && $SettingsStore) {
+      dyslexia = $SettingsStore.dyslexia;
+      mode = $SettingsStore.mode;
     }
   }
 
   // Close navigation menu when the page changes
   page.subscribe((p) => {
     if (p.url.pathname) {
-      mainMenuOpen.set(false);
+      // mainMenuOpen.set(false);
       settingsMenuOpen.set(false);
     }
   });
 
   $: settingsItems = [
     {
-      func: LayoutStore.toggleDyslexia,
-      value: $LayoutStore.dyslexia === true,
+      func: SettingsStore.toggleDyslexia,
+      value: $SettingsStore.dyslexia === true,
       navigationText: "dyslexia mode"
     }
   ];
@@ -65,50 +67,22 @@
   }
   // Restore any user settings
   onMount(() => {
-    LayoutStore.restoreSettings();
-  });
-  // enable scroll snapping
-  onMount(() => {
-    document.querySelector("body, html").classList.add("scroll-snap-mandatory");
+    SettingsStore.restoreSettings();
   });
 
-  function onFooterReached() {
-    // disable scroll snapping once the footer is reached
-    // .scroll-snap-mandatory is configured in src/app.css
-    if (footer) {
-      const elementAboveFooter = footer.previousElementSibling;
-      const lastItemAboveFooter = elementAboveFooter.lastElementChild;
-      if (scrollY > lastItemAboveFooter.offsetTop) {
-        document.querySelector("body, html").classList.remove("scroll-snap-mandatory");
-      } else {
-        if (!document.querySelector("body, html").classList.contains("scroll-snap-mandatory"))
-          document.querySelector("body, html").classList.add("scroll-snap-mandatory");
-      }
-    }
-  }
-  onMount(() => {
+  $: {
     const trapFocus = createTrapFocus(mainMenuOpen);
-    document.addEventListener("scroll", onFooterReached);
     if (trapFocusWapper) {
       trapFocusWapper.addEventListener("keydown", closeMenuOnEscape);
       trapFocusWapper.addEventListener("keydown", (e) => trapFocus(e, trapFocusWapper));
     }
-    return () => document.removeEventListener("scroll", onFooterReached);
-  });
+  }
   onDestroy(() => {
     if (trapFocusWapper) {
       trapFocusWapper.removeEventListener("keydown", closeMenuOnEscape);
       trapFocusWapper.removeEventListener("keydown", (e) => trapFocus(e, trapFocusWapper), true);
     }
   });
-
-  $: {
-    if (innerWidth > 640) {
-      mainMenuOpen.set(true);
-    }
-  }
-
-  $: console.log("headerHeight", headerHeight);
 </script>
 
 <svelte:window bind:scrollY bind:innerWidth />
@@ -172,7 +146,7 @@
       />
     </div>
     {#if $settingsMenuOpen}
-      <ul aria-hidden={!settingsMenuOpen}>
+      <ul bind:this={trapFocusWapper} aria-hidden={!settingsMenuOpen}>
         {#each settingsItems as item}
           <ToggleItem on:click={() => item.func()} value={item.value}>
             {item.navigationText}
@@ -186,12 +160,8 @@
 <div style="height: {headerHeight}px" />
 
 <body class="bg-black min-h-screen flex-col flex justify-between">
-  <main
-    class="relative m-auto flex-grow flex-col flex justify-between {RESPONSIVE_CONTAINER_CLASSES} "
-    class:dyslexia
-    bind:this={main}
-    transition:fade
-  >
+  <!-- class="relative m-auto flex-grow flex-col flex justify-between " -->
+  <main class:dyslexia bind:this={main} transition:fade>
     <slot />
   </main>
   <footer bind:this={footer} class=" bg-darkest-gray p-5 w-full" class:dyslexia>
@@ -199,10 +169,10 @@
       <div class="w-1/2 mb-8 ">
         <p class="font-bold lowercase">Navigation.</p>
         <ul>
-          <li class="lowercase"><a href="/" >Home</a></li>
-          <li class="lowercase"><a href="/gallery" >Gallery</a></li>
-          <li class="lowercase"><a href="/blog" >Blog</a></li>
-          <li class="lowercase"><a href="/resources" >Resources</a></li>
+          <li class="lowercase"><a href="/">Home</a></li>
+          <li class="lowercase"><a href="/gallery">Gallery</a></li>
+          <li class="lowercase"><a href="/blog">Blog</a></li>
+          <li class="lowercase"><a href="/resources">Resources</a></li>
         </ul>
       </div>
 
@@ -222,7 +192,7 @@
           <li class="mx-1">Medium</li>
         </ul>
       </div>
-      <p class="text-center flex-grow">Diana M Steakley-Freeman (c) 2023</p>
+      <p class="text-center flex-grow">Diana M Steakley-Freeman &copy; 2023</p>
     </div>
   </footer>
 </body>

@@ -1,8 +1,8 @@
 {
-    "title": "Gallery",
-    "description": "Gallery by Diana M Steakley-Freeman | To be a coder is to be a creator. Browse Projects, Poetry, Art, Design, and Photography",
-    "slug": "gallery",
-    "relativePath": "/gallery",
-    "image": null,
-    "navigationText": "gallery"
+  "title": "Gallery",
+  "description": "Gallery by Diana M Steakley-Freeman | To be a coder is to be a creator. Browse Projects, Poetry, Art, Design, and Photography",
+  "slug": "gallery",
+  "relativePath": "/gallery",
+  "image": null,
+  "navigationText": "gallery"
 }

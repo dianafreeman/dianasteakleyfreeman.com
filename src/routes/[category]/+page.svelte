@@ -1,11 +1,9 @@
 <script>
-    import { invalidate } from "$app/navigation";
+  import { invalidate } from "$app/navigation";
   import Card from "$lib/components/Card.svelte";
   import Seo from "$lib/components/Seo.svelte";
   /** @type {import('./$types').PageData} */
   export let data;
-
-
 </script>
 
 <Seo title={data.title} />
