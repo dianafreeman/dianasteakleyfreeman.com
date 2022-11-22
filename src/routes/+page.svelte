@@ -5,11 +5,7 @@
   import { spring } from "svelte/motion";
   import { browser } from "$app/environment";
   import LandingSection from "$lib/components/LandingSection.svelte";
-  import {
-    HEADING_CLASSES,
-    RESPONSIVE_CONTAINER_CLASSES,
-    SUBHEADING_CLASSES
-  } from "$lib/constants";
+  import { HEADING_CLASSES, SUBHEADING_CLASSES } from "$lib/constants";
   import Card from "$lib/components/Card.svelte";
 
   let scrollY;
@@ -33,7 +29,7 @@
 
 <svelte:window bind:scrollY bind:innerHeight={height} bind:innerWidth={width} />
 
-<LandingSection class="justify-end">
+<LandingSection class="justify-center">
   <div class="my-12 relative lg:p-5 align-center ">
     <h1
       class="{HEADING_CLASSES} font-thin min-h-[3em] w-full text-left"

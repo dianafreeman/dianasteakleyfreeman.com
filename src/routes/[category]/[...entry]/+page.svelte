@@ -3,7 +3,7 @@
   const { entry } = data;
 </script>
 
-<div class="flex flex-col min-h-screen justify-start mb-auto ">
+<div class="flex flex-col min-h-screen justify-start mb-auto px-4">
   <div class="relative flex flex-col md:justify-center md:align-middle md:flex-row">
     <h1 class="text-4xl md:text-5xl lg:text-6xl text-center font-bold md:text-left mb-12 lowercase">
       {entry.metadata.title}.
@@ -19,7 +19,7 @@
     </div>
   {/if}
 
-  <div class="markdown w-full mx-auto px-4 md:px-0">
+  <div class="markdown w-full mx-sauto ">
     <svelte:component this={entry.default} />
   </div>
 </div>
