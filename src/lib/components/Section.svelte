@@ -1,6 +1,4 @@
 <script>
-  import LayoutStore from "$stores/LayoutStore";
-
   export let id;
   export let style;
   let clazz;

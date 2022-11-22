@@ -4,7 +4,7 @@
   import SettingsPanel from "$lib/components/SettingsPanel.svelte";
   import MenuToggle from "./MenuToggle.svelte";
   import MenuContent from "./MenuContent.svelte";
-  import LayoutStore from "$stores/LayoutStore";
+  import SettingsStore from "$stores/SettingsStore";
 
   export let items;
   export let menuOpen;
@@ -17,11 +17,11 @@
   let mainMenuExpanded = false;
   let settingsMenuExpanded = false;
 
-  console.log(LayoutStore)
+  console.log(SettingsStore);
   $: settingsItems = [
     {
-      func: LayoutStore.toggleDyslexia,
-      value: $LayoutStore.dyslexia,
+      func: SettingsStore.toggleDyslexia,
+      value: $SettingsStore.dyslexia,
       navigationText: "dyslexia mode"
     }
   ];
@@ -29,22 +29,21 @@
 
 <!-- <div class="overflow-x-hidden overflow-y-scroll h-screen"> -->
 <!-- <div class="relative flex flex-row"> -->
-  <MenuToggle
-    on:click={() => (mainMenuExpanded = !mainMenuExpanded)}
-    label="menu"
-    menuType="hamburger"
-    id="mainMenu"
-    hideLabel
-    expanded={mainMenuExpanded}
-  />
-  <MenuToggle
-    on:click={() => (settingsMenuExpanded = !settingsMenuExpanded)}
-    label="settings"
-    menuType="settings"
-    hideLabel
-    expanded={settingsMenuExpanded}
-
-  />
+<MenuToggle
+  on:click={() => (mainMenuExpanded = !mainMenuExpanded)}
+  label="menu"
+  menuType="hamburger"
+  id="mainMenu"
+  hideLabel
+  expanded={mainMenuExpanded}
+/>
+<MenuToggle
+  on:click={() => (settingsMenuExpanded = !settingsMenuExpanded)}
+  label="settings"
+  menuType="settings"
+  hideLabel
+  expanded={settingsMenuExpanded}
+/>
 <!-- </div> -->
 <div>
   <MenuContent {items} id="mainMenu" menuType="hamburger" expanded={mainMenuExpanded} />

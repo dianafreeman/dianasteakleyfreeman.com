@@ -1,11 +1,11 @@
 <script>
   import Button from "./Button.svelte";
 
-  export let expanded = false
+  export let expanded = false;
   export let hideLabel = false;
-  let clazz = ""
-  export { clazz as class }
-  
+  let clazz = "";
+  export { clazz as class };
+
   /** @type { string } */
   export let label;
   /** @type { string } */
@@ -25,7 +25,6 @@
   $: iconClass = iconType ? ICON_CLASS_MAP[iconType] : ICON_CLASS_MAP[menuType];
 </script>
 
-
 <Button
   class="p-4 flex w-fit justify-center items-center {clazz}"
   buttonProps={{ "aria-expanded": expanded, "aria-controls": id }}
@@ -34,4 +33,3 @@
   <span class:sr-only={hideLabel}>{label}</span>
   <i class="text-3xl {iconClass}" aria-hidden="true" />
 </Button>
-

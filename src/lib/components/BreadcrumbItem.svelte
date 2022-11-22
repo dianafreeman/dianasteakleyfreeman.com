@@ -10,14 +10,14 @@
 </script>
 
 <li class="flex items-center ">
-  <i aria-hidden="true" class="las la-angle-right mr-2 text-white " />
-
   {#if isHomePageCrumb}
     <a href="/" class="text-white hover:text-white">
       <Home />
       <span class="sr-only">Home Page</span>
     </a>
   {:else}
+    <i aria-hidden="true" class="las la-angle-right mr-2 text-white " />
+
     <a
       aria-current={current}
       href={item.relativePath}

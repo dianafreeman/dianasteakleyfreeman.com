@@ -10,14 +10,10 @@
   export let items;
 
   const DISABLED_PAGES = ["/", "/admin"];
-
 </script>
 
 {#if !DISABLED_PAGES.includes($page.url.pathname)}
-  <nav
-    class="px-4 relative bg-darkest-gray py-2 {clazz}"
-    aria-label="Breadcrumb"
-  >
+  <nav class="px-4 relative bg-darkest-gray py-2 {clazz}" aria-label="Breadcrumb">
     <ol class="list-none flex gap-2 mx-1">
       {#each items as item}
         <BreadcrumbItem current={item.relativePath === $page.url.pathname} {item} />

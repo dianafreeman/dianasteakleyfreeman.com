@@ -23,7 +23,7 @@
     "element": "span",
     "delay": 300
   },
-  
+
   {
     "text": "is",
     "class": "",
@@ -36,5 +36,4 @@
     "delay": 900,
     "element": "span"
   }
-
 ]
