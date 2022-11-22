@@ -47,6 +47,10 @@
   a {
     @apply rounded-sm mx-1 focus:outline focus:outline-white focus:outline-offset-8 focus:outline-1;
   }
+
+  .inherit {
+    display: inherit;
+  }
   .scroll-snap-container {
     scroll-padding-top: 10vh;
     scroll-snap-points-y: repeat(90vh);
@@ -114,6 +118,10 @@
   .animate-button-borders:focus::after {
     transition: width 150ms 225ms cubic-bezier(0.07, 0.62, 0.61, 1),
       height 75ms 450ms cubic-bezier(0.07, 0.62, 0.61, 1), border-left 0ms 225ms linear;
+  }
+
+  .responsive-container {
+    @apply max-w-md md:max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto;
   }
 }
 
