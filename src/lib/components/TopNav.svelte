@@ -28,7 +28,7 @@
     <MainMenu items={navItems} />
 
     <!-- Settings Menu Toggle, as part of the top nav -->
-    <div class="flex flex-grow justify-end lg:order-2">
+    <div class="flex flex-grow justify-end md:order-2">
       <MenuToggle
         on:click={() => {
           settingsMenuIsOpen.update((v) => !v);

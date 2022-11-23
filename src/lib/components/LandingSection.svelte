@@ -18,7 +18,7 @@
   class="my-auto flex w-full flex-col {clazz}"
   style="min-height: calc(100vh - {$topNavHeight}px)"
 >
-  <div class:enter={!!isInView} class:exit={!isInView}>
+  <div class="flex flex-col flex-grow justify-evenly" class:enter={!!isInView} class:exit={!isInView}>
     <slot />
   </div>
 </section>

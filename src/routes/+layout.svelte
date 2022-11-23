@@ -47,7 +47,7 @@
   });
 
   $: {
-    if (innerWidth > 640) {
+    if (innerWidth >= 768) {
       mainMenuIsOpen.set(true);
       isMobileScreen.set(false);
     } else {
