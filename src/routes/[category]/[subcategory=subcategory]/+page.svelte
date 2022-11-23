@@ -6,18 +6,14 @@
 </script>
 
 <Seo title={data.title} />
-<div class="mx-3 flex flex-col ">
-  <div class="my-5 p-2 lg:p-5">
-    <ol class="gap m-auto grid sm:grid-cols-2 md:max-w-3xl md:grid-cols-3 lg:max-w-4xl">
-      {#each data.entries as entry}
-        <li class="mx-auto mb-auto max-w-xs">
-          <Card
-            title={entry.metadata.title}
-            target={entry.metadata.relativePath}
-            imgSrc={entry.metadata.image}
-          />
-        </li>
-      {/each}
-    </ol>
-  </div>
-</div>
+<ol class="grid w-full justify-center gap-4 p-3 md:grid-cols-2 lg:grid-cols-3">
+  {#each data.entries as entry}
+    <li>
+      <Card
+        title={entry.metadata.title}
+        target={entry.metadata.relativePath}
+        imgSrc={entry.metadata.image}
+      />
+    </li>
+  {/each}
+</ol>

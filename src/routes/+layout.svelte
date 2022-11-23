@@ -33,14 +33,17 @@
   // Close navigation menu when the page changes
   page.subscribe((p) => {
     if (p.url.pathname) {
-      if ($isMobileScreen) mainMenuIsOpen.set(false);
+      if ($isMobileScreen) {
+        console.log("closing menus");
+        mainMenuIsOpen.set(false);
+      }
       settingsMenuIsOpen.set(false);
     }
   });
 
   $: {
     if (innerWidth > 640) {
-      mainMenuIsOpen.set(true)
+      mainMenuIsOpen.set(true);
       isMobileScreen.set(false);
     } else {
       isMobileScreen.set(true);

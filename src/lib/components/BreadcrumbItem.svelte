@@ -11,7 +11,10 @@
 
 <li class="flex items-center ">
   {#if isHomePageCrumb}
-    <a href="/" class="text-white hover:text-white">
+    <a
+      href="/"
+      class="focus:outline-white; rounded-sm text-white hover:text-white focus:outline focus:outline-1 focus:outline-offset-8 focus:outline-white"
+    >
       <Home />
       <span class="sr-only">Home Page</span>
     </a>

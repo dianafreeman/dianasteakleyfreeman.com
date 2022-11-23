@@ -1,8 +1,5 @@
 import { readable, writable } from "svelte/store";
 
-// function createLayoutStore(){
-
-// }
 export const navHeight = writable(0);
 export const scrollY = writable(0);
 export const mainMenuIsOpen = writable(false);

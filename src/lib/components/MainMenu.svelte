@@ -2,11 +2,15 @@
   import { mainMenuIsOpen, settingsMenuIsOpen, isMobileScreen } from "$stores/LayoutStore";
   import createButtonClasses from "$lib/createButtonClasses";
   import MenuToggle from "./MenuToggle.svelte";
+  import { page } from "$app/stores";
 
   const buttonClasses = createButtonClasses();
+
   const navItemClasses = `${buttonClasses} inherit px-4 py-5 text-left md:text-right`;
-  
+
   export let items;
+
+  $: isActive = (item) => $page.url.pathname === item.relativePath;
 </script>
 
 {#if $isMobileScreen}
@@ -36,7 +40,11 @@
       aria-hidden={!$mainMenuIsOpen}
       class:hidden={!$mainMenuIsOpen}
     >
-      <a href={item.relativePath} class={navItemClasses}>{item.navigationText}</a>
+      <a
+        href={item.relativePath}
+        class="{navItemClasses} {isActive(item) ? 'font-bold underline underline-offset-8' : ''}"
+        >{item.navigationText}</a
+      >
     </li>
   {/each}
 </ul>

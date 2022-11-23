@@ -22,7 +22,7 @@
 </script>
 
 <div class="w-inherit relative left-0 right-0 h-full w-full">
-  <div class="m-auto flex h-fit flex-row flex-wrap justify-between ">
+  <nav class="m-auto flex h-fit flex-row flex-wrap justify-between ">
     <NavBrand class="" />
     <MainMenu items={navItems} />
 
@@ -38,7 +38,7 @@
       class="order-2"
       expanded={$settingsMenuIsOpen}
     />
-  </div>
+  </nav>
   <!-- Settings menu items -->
   {#if $settingsMenuIsOpen}
     <ul bind:this={trapFocusWapper} aria-hidden={!settingsMenuIsOpen}>

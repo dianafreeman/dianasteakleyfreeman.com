@@ -7,7 +7,7 @@
 
 <Seo title={data.title} />
 
-<ol class="sm:grid-cols- grid w-full gap-y-4 p-3 md:grid-cols-2 lg:grid-cols-3">
+<ol class="grid w-full justify-center gap-4 p-3 md:grid-cols-2 lg:grid-cols-3">
   {#each data.entries as entry}
     <li>
       <Card
