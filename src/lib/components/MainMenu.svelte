@@ -13,8 +13,8 @@
   $: isActive = (item) => $page.url.pathname === item.relativePath;
 </script>
 
+<div class="flex order-3 ">
 {#if $isMobileScreen}
-  <div class="flex-grow justify-start">
     <MenuToggle
       on:click={() => {
         settingsMenuIsOpen.set(false);
@@ -27,11 +27,11 @@
       hideLabel
       expanded={$mainMenuIsOpen}
     />
+    {/if}
   </div>
-{/if}
 <ul
   aria-expanded={$mainMenuIsOpen}
-  class="order-3 flex w-full flex-grow list-none flex-col items-center justify-center md:order-2 md:w-fit md:flex-row md:justify-end"
+  class="order-4 flex w-full flex-grow list-none flex-col items-center justify-center md:order-2 md:w-fit md:flex-row md:justify-end"
 >
   {#each items as item}
     <li
