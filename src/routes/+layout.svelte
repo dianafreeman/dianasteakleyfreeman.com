@@ -33,7 +33,7 @@
   // Close navigation menu when the page changes
   page.subscribe((p) => {
     if (p.url.pathname) {
-      mainMenuIsOpen.set(false);
+      if ($isMobileScreen) mainMenuIsOpen.set(false);
       settingsMenuIsOpen.set(false);
     }
   });
