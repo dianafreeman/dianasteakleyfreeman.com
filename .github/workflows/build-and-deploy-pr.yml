@@ -1,4 +1,4 @@
-name: Build and Deploy Pull Request To Netlify 
+name: Build and Deploy Pull Request To Netlify
 on:
   pull_request:
 

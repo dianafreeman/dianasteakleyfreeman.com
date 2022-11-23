@@ -8,7 +8,12 @@
   import SettingsStore from "$stores/SettingsStore";
   import Seo from "$lib/components/Seo.svelte";
   // import createTrapFocus from "$lib/trapFocus";
-  import { mainMenuIsOpen, settingsMenuIsOpen, isMobileScreen, topNavHeight} from "$stores/LayoutStore";
+  import {
+    mainMenuIsOpen,
+    settingsMenuIsOpen,
+    isMobileScreen,
+    topNavHeight
+  } from "$stores/LayoutStore";
   import TopNav from "$lib/components/TopNav.svelte";
   import FooterNav from "$lib/components/FooterNav.svelte";
 
@@ -53,8 +58,8 @@
   onMount(() => {
     SettingsStore.restoreSettings();
   });
-  
-  $: headerHeight && topNavHeight.set(headerHeight)
+
+  $: headerHeight && topNavHeight.set(headerHeight);
 </script>
 
 <svelte:window bind:scrollY bind:innerWidth />

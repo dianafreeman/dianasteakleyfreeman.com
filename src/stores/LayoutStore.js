@@ -6,5 +6,4 @@ export const mainMenuIsOpen = writable(false);
 export const settingsMenuIsOpen = writable(false);
 export const pageHeadings = writable([]);
 
-
 export const isMobileScreen = writable(false);
