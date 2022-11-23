@@ -1,8 +1,4 @@
-``;
-import landingMeta from "./_metadata.json";
 import { getPageEntries } from "$lib/content/queries";
-import { page } from "$app/stores";
-import { writable } from "svelte/store";
 import { browser } from "$app/environment";
 
 function isTopLevelRoute(entry) {
@@ -14,11 +10,11 @@ function isTopLevelRoute(entry) {
 
 async function getEntries(filter) {
   const entries = await getPageEntries();
-  return !!filter ? entries.filter(filter) : entries;
+  return filter ? entries.filter(filter) : entries;
 }
 async function getEntry(uniqueFilter) {
   const entries = await getPageEntries();
-  return !!uniqueFilter ? entries.find(uniqueFilter) : entries[0];
+  return uniqueFilter ? entries.find(uniqueFilter) : entries[0];
 }
 
 /** @type {import('../../.svelte-kit/types/src/routes/$types').LayoutServerLoad} */

@@ -1,5 +1,4 @@
 <script>
-  import { invalidate } from "$app/navigation";
   import Card from "$lib/components/Card.svelte";
   import Seo from "$lib/components/Seo.svelte";
   /** @type {import('./$types').PageData} */

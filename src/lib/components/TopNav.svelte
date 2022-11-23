@@ -1,5 +1,4 @@
 <script>
-  import { writable } from "svelte/store";
   import SettingsStore from "$stores/SettingsStore";
   import createButtonClasses from "$lib/createButtonClasses";
 
@@ -10,10 +9,10 @@
   import { mainMenuIsOpen, settingsMenuIsOpen, isMobileScreen } from "$stores/LayoutStore";
 
   export let navItems;
-  const navWrapperClassesClosed = "h-0";
-  const navWrapperClassesOpen = "top-0 h-screen";
+
   const buttonClasses = createButtonClasses();
   const navLinkClasses = `${buttonClasses} inherit px-4 py-5 text-left md:text-right`;
+
   let trapFocusWapper;
   $: settingsItems = [
     {
@@ -26,12 +25,13 @@
 
 <div
   class="relative w-inherit left-0 right-0 w-full h-full {$mainMenuIsOpen
-    ? navWrapperClassesOpen
-    : navWrapperClassesClosed}"
+    ? "h-0"
+    : "top-0 h"}"
 >
   <div class="m-auto h-fit flex flex-row flex-wrap justify-between {$mainMenuIsOpen ? '' : ''}">
     <NavBrand class="" />
-    <div class="flex-grow justify-start md:hidden">
+  {#if $isMobileScreen}
+    <div class="flex-grow justify-start">
       <MenuToggle
         on:click={() => {
           settingsMenuIsOpen.set(false);
@@ -42,19 +42,20 @@
         iconType={$mainMenuIsOpen ? "times" : "hamburger"}
         id="mainMenu"
         hideLabel
-        expanded={!$isMobileScreen || $mainMenuIsOpen}
+        expanded={$mainMenuIsOpen}
       />
     </div>
+    {/if}
     <ul
-      aria-expanded={!$isMobileScreen || $mainMenuIsOpen}
+      aria-expanded={$mainMenuIsOpen}
       class="flex flex-col md:flex-row flex-grow list-none w-full md:w-fit md:justify-end justify-center items-center order-3 md:order-2"
     >
       {#each navItems as item}
         <li
           role="menuitem"
-          class="w-full md:w-fit m-2 px-2"
-          aria-hidden={$mainMenuIsOpen}
-          class:hidden={isMobileScreen && !$mainMenuIsOpen}
+          class="w-full md:w-fit m-2"
+          aria-hidden={!(!$isMobileScreen ? false : $mainMenuIsOpen)}
+          class:hidden={!$isMobileScreen ? false : $mainMenuIsOpen}
         >
           <a href={item.relativePath} class={navLinkClasses}>{item.navigationText}</a>
         </li>

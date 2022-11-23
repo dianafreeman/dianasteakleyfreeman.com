@@ -1,5 +1,4 @@
 <script>
-  import { invalidate } from "$app/navigation";
   import Card from "$lib/components/Card.svelte";
   import Seo from "$lib/components/Seo.svelte";
   /** @type {import('./$types').PageData} */
@@ -8,9 +7,8 @@
 
 <Seo title={data.title} />
 
-<div class="mx-3 flex flex-col">
-  <div class="my-5">
-    <ol class="grid sm:grid-cols-2 gap-4 md:grid-cols-2 md:max-w-3xl lg:max-w-4xl m-auto">
+
+    <ol class="p-3 grid sm:grid-cols- gap-y-4 md:grid-cols-2 lg:grid-cols-3 w-full">
       {#each data.entries as entry}
         <li>
           <Card
@@ -21,5 +19,4 @@
         </li>
       {/each}
     </ol>
-  </div>
-</div>
+

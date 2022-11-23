@@ -1,11 +1,8 @@
 <script>
   import { page } from "$app/stores";
   import BreadcrumbItem from "./BreadcrumbItem.svelte";
-  import NavLink from "./NavLink.svelte";
-  import { getPageEntries } from "$lib/content/queries";
 
   let clazz;
-  let wrapper;
   export { clazz as class };
   export let items;
 

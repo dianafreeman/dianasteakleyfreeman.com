@@ -1,5 +1,4 @@
 <script>
-  import { RESPONSIVE_CONTAINER_CLASSES } from "$lib/constants";
   import { inview } from "svelte-inview";
 
   let sectionWrapper;
@@ -7,11 +6,6 @@
   export { clazz as class };
   let isInView = false;
 
-  function onVisible() {
-    // snap window to element top
-
-    window.scrollTo();
-  }
 </script>
 
 <section
@@ -21,11 +15,7 @@
     const { inView } = evt.detail;
     isInView = inView;
   }}
-  on:enter={(evt) => {
-    console.log("entered evt", evt);
-    // setTimeout(() => window.scrollTo(0, sectionWrapper.offsetTop), 1000 );
-  }}
-  class="flex flex-col min-h-[80vh] my-auto w-full {RESPONSIVE_CONTAINER_CLASSES} {clazz}"
+  class="flex flex-col min-h-[90vh] my-auto w-full {clazz}"
 >
   <div class:enter={!!isInView} class:exit={!isInView}>
     <slot />

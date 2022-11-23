@@ -1,6 +1,5 @@
 <script>
   import { writable } from "svelte/store";
-  import { createEventDispatcher } from "svelte";
   import createButtonClasses from "$lib/createButtonClasses";
 
   let clazz;

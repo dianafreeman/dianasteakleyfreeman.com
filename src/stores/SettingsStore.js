@@ -1,5 +1,4 @@
-import { onMount } from "svelte";
-import { browser, dev, prerendering } from "$app/environment";
+import { browser } from "$app/environment";
 import { writable } from "svelte/store";
 
 const MODES = {

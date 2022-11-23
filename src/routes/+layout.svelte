@@ -4,7 +4,7 @@
   import { page } from "$app/stores";
   import { fade } from "svelte/transition";
   import Breadcrumbs from "$lib/components/Breadcrumbs.svelte";
-  import { onDestroy, onMount } from "svelte";
+  import { onMount } from "svelte";
   import SettingsStore from "$stores/SettingsStore";
   import Seo from "$lib/components/Seo.svelte";
   // import createTrapFocus from "$lib/trapFocus";
@@ -57,6 +57,8 @@
   title={data.seoMeta?.title}
   description={data.seoMeta?.description || data.seoMeta?.excerpt || null}
 />
+<body class="bg-black flex flex-col min-h-screen justify-between">
+
 <header
   bind:clientHeight={headerHeight}
   class="fixed w-full top-0 pb-4 z-30 bg-darkest-gray"
@@ -65,13 +67,12 @@
   <TopNav navItems={data.navItems} />
   <Breadcrumbs slot="breadcrumbs" class="w-full m-auto z-40" items={data.breadcrumbs} />
 </header>
-<div style="height: {headerHeight}px" />
+<div id="spacer" style="height: {headerHeight}px" />
 
-<body class="bg-black min-h-screen flex-col flex ">
   <main class:dyslexia bind:this={main} transition:fade>
     <slot />
   </main>
-  <footer bind:this={footer} class=" bg-darkest-gray p-5 w-full" class:dyslexia>
+  <footer bind:this={footer} class="bg-darkest-gray p-5 w-full" class:dyslexia>
     <FooterNav />
   </footer>
 </body>

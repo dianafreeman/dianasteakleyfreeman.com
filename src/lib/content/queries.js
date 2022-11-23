@@ -69,7 +69,7 @@ export async function getPageEntries() {
   const markdownEntries = markdownEntriesRaw.map((obj) => {
     // we remove the component renderer from the return value because the component isn't serializable by the server-side load function
     // we only need it to render the full post, which we do on the entry page
-    const { default: _componentRenderer, metadata } = obj;
+    const { default: _componentRenderer, metadata } = obj; // eslint-disable-line no-unused-vars
     return metadata;
   });
 
@@ -77,9 +77,6 @@ export async function getPageEntries() {
     // we use the default here because static entries are JSON fikes
     return obj.default;
   });
-
-  // console.log([...staticEntries, ...markdownEntries])
-  // console.log([...staticEntries, ...markdownEntries].length)
 
   return [...staticEntries, ...markdownEntries];
 }

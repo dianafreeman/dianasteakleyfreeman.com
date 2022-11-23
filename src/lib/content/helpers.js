@@ -51,5 +51,6 @@ export function filterModuleMap(modules, filterFn) {
 
 export function filterModuleMapByPathString(moduleMap, stringToMatch) {
   const queryString = removeTrailingSlash(stringToMatch);
+  // eslint-disable-next-line no-unused-vars
   return filterModuleMap(moduleMap, ([path, _getter]) => path.toString().includes(queryString));
 }
