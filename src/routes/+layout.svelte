@@ -71,7 +71,7 @@
 <body class="flex min-h-screen flex-col justify-between bg-black">
   <header
     bind:clientHeight={headerHeight}
-    class="fixed top-0 z-30 w-full bg-darkest-gray pb-4"
+    class="bg-darkest-gray fixed top-0 z-30 w-full pb-4"
     class:dyslexia
   >
     <TopNav navItems={data.navItems} />
@@ -82,7 +82,7 @@
   <main class:dyslexia bind:this={main} transition:fade>
     <slot />
   </main>
-  <footer bind:this={footer} class="w-full bg-darkest-gray p-5" class:dyslexia>
+  <footer bind:this={footer} class="bg-darkest-gray w-full p-5" class:dyslexia>
     <FooterNav />
   </footer>
 </body>
