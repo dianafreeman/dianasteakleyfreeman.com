@@ -6,11 +6,12 @@
 
 <a
   href={target}
-  class="text-md active:outline-offset-5 relative flex aspect-square max-w-sm flex-col items-center justify-center p-4 text-white grayscale hover:bg-white  hover:text-black focus:bg-white focus:text-black focus:outline-1 focus:outline-white active:bg-white active:text-black active:outline active:outline-white sm:max-w-md md:max-w-lg"
+  class="text-md active:outline-offset-5 hover:bg-medium-gray relative flex aspect-square max-w-sm flex-col items-center justify-center p-4 text-white grayscale  focus:outline focus:outline-white active:outline active:outline-white sm:max-w-md md:max-w-lg"
 >
   <img
     src={imgSrc}
     alt=""
+    aria-hidden={true}
     class="absolute left-0 -z-10 w-full self-start object-contain"
     style="opacity: 0.3;"
   />

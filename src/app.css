@@ -86,6 +86,10 @@
     @apply text-xl;
   }
 
+  .markdown a { 
+    text-decoration: underline;
+  }
+
   .markdown ul {
     list-style-type: disc;
   }
