@@ -1,12 +1,19 @@
 <script>
-
   export let title;
-  
   export let target;
   export let imgSrc;
 </script>
 
-<a href={target} class="inline-block text-md font-bold p-3 focus:outline-white focus:outline-1">
-  <img src={imgSrc} alt="caption descripton" class="w-full self-start" />
-  <span class="block my-3">{title}</span>
+<a
+  href={target}
+  class="text-md active:outline-offset-5 hover:bg-medium-gray relative flex aspect-square max-w-sm flex-col items-center justify-center p-4 text-white grayscale  focus:outline focus:outline-white active:outline active:outline-white sm:max-w-md md:max-w-lg"
+>
+  <img
+    src={imgSrc}
+    alt=""
+    aria-hidden={true}
+    class="absolute left-0 -z-10 w-full self-start object-contain"
+    style="opacity: 0.3;"
+  />
+  <h3 class="text-3xl font-bold lowercase md:text-4xl">{title}.</h3>
 </a>

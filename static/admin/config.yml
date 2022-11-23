@@ -1,4 +1,3 @@
-
 media_folder: "static/images" # Media files will be stored in the repo under images/uploads
 public_folder: "/images" # Media files will be stored in the repo under images/uploads
 
@@ -23,7 +22,7 @@ collections:
       - { label: "Featured Image", name: "image", widget: "image" }
       - { label: "Tags", name: "tags", widget: "list", allow_add: true }
       - { label: "Body", name: "body", widget: "markdown" }
-  
+
   - name: "resources" # Used in routes, e.g., /admin/collections/blog
     label: "Resources" # Used in the UI
     label_singular: "Resource" # Used in the UI
@@ -87,75 +86,75 @@ collections:
         name: "home"
         file: "src/routes/_metadata.json"
         fields:
-          - {label: Title, name: title, widget: string}
-          - {label: Description, name: description, widget: string}
-          - {label: Slug, name: slug, widget: string}
-          - {label: "Relative Path", name: relativePath, widget: string}
+          - { label: Title, name: title, widget: string }
+          - { label: Description, name: description, widget: string }
+          - { label: Slug, name: slug, widget: string }
+          - { label: "Relative Path", name: relativePath, widget: string }
           - { label: "Featured Image", name: image, widget: "image" }
-          - {label: "Navigation Display Text", name: navigationText, widget: string}
+          - { label: "Navigation Display Text", name: navigationText, widget: string }
 
       - label: "Blog Page"
         name: "blog"
         file: "src/routes/blog/_metadata.json"
         fields:
-          - {label: Title, name: title, widget: string}
-          - {label: Description, name: description, widget: string}
-          - {label: Slug, name: slug, widget: string}
-          - {label: "Relative Path", name: relativePath, widget: string}
+          - { label: Title, name: title, widget: string }
+          - { label: Description, name: description, widget: string }
+          - { label: Slug, name: slug, widget: string }
+          - { label: "Relative Path", name: relativePath, widget: string }
           - { label: "Featured Image", name: image, widget: "image" }
-          - {label: "Navigation Display Text", name: navigationText, widget: string}
+          - { label: "Navigation Display Text", name: navigationText, widget: string }
 
       - label: "Resources Page"
         name: "resources"
         file: "src/routes/resources/_metadata.json"
         fields:
-          - {label: Title, name: title, widget: string}
-          - {label: Description, name: description, widget: string}
-          - {label: Slug, name: slug, widget: string}
-          - {label: "Relative Path", name: relativePath, widget: string}
+          - { label: Title, name: title, widget: string }
+          - { label: Description, name: description, widget: string }
+          - { label: Slug, name: slug, widget: string }
+          - { label: "Relative Path", name: relativePath, widget: string }
           - { label: "Featured Image", name: image, widget: "image" }
-          - {label: "Navigation Display Text", name: navigationText, widget: string}
+          - { label: "Navigation Display Text", name: navigationText, widget: string }
 
       - label: "Gallery Page"
         name: "gallery"
         file: "src/routes/gallery/_metadata.json"
         fields:
-          - {label: Title, name: title, widget: string}
-          - {label: Description, name: description, widget: string}
-          - {label: Slug, name: slug, widget: string}
-          - {label: "Relative Path", name: relativePath, widget: string}
+          - { label: Title, name: title, widget: string }
+          - { label: Description, name: description, widget: string }
+          - { label: Slug, name: slug, widget: string }
+          - { label: "Relative Path", name: relativePath, widget: string }
           - { label: "Featured Image", name: image, widget: "image" }
-          - {label: "Navigation Display Text", name: navigationText, widget: string}
-    
+          - { label: "Navigation Display Text", name: navigationText, widget: string }
+
       - label: "Art Gallery Page"
         name: "art"
         file: "src/routes/gallery/art/_metadata.json"
         fields:
-          - {label: Title, name: title, widget: string}
-          - {label: Description, name: description, widget: string}
-          - {label: Slug, name: slug, widget: string}
-          - {label: "Relative Path", name: relativePath, widget: string}
+          - { label: Title, name: title, widget: string }
+          - { label: Description, name: description, widget: string }
+          - { label: Slug, name: slug, widget: string }
+          - { label: "Relative Path", name: relativePath, widget: string }
           - { label: "Featured Image", name: image, widget: "image" }
-          - {label: "Navigation Display Text", name: navigationText, widget: string}
+          - { label: "Navigation Display Text", name: navigationText, widget: string }
 
       - label: "Code Gallery Page"
         name: "code"
         file: "src/routes/gallery/code/_metadata.json"
         fields:
-          - {label: Title, name: title, widget: string}
-          - {label: Description, name: description, widget: string}
-          - {label: Slug, name: slug, widget: string}
-          - {label: "Relative Path", name: relativePath, widget: string}
+          - { label: Title, name: title, widget: string }
+          - { label: Description, name: description, widget: string }
+          - { label: Slug, name: slug, widget: string }
+          - { label: "Relative Path", name: relativePath, widget: string }
           - { label: "Featured Image", name: image, widget: "image" }
-          - {label: "Navigation Display Text", name: navigationText, widget: string}
+          - { label: "Navigation Display Text", name: navigationText, widget: string }
 
       - label: "Design Gallery Page"
         name: "design"
         file: "src/routes/gallery/design/_metadata.json"
         fields:
-          - {label: Title, name: title, widget: string}
-          - {label: Description, name: description, widget: string}
-          - {label: Slug, name: slug, widget: string}
-          - {label: "Relative Path", name: relativePath, widget: string}
+          - { label: Title, name: title, widget: string }
+          - { label: Description, name: description, widget: string }
+          - { label: Slug, name: slug, widget: string }
+          - { label: "Relative Path", name: relativePath, widget: string }
           - { label: "Featured Image", name: image, widget: "image" }
-          - {label: "Navigation Display Text", name: navigationText, widget: string}
+          - { label: "Navigation Display Text", name: navigationText, widget: string }

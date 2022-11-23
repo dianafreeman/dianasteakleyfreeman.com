@@ -44,6 +44,27 @@
     @apply text-white;
   }
 
+  a:not(nav a),
+  .link {
+    @apply mx-1 focus:outline focus:outline-1 focus:outline-offset-8 focus:outline-white;
+  }
+
+  .inherit {
+    display: inherit;
+  }
+  .scroll-snap-container {
+    scroll-padding-top: 10vh;
+    scroll-snap-points-y: repeat(90vh);
+  }
+  .scroll-snap-mandatory {
+    scroll-snap-type: mandatory;
+    scroll-snap-type: y mandatory;
+  }
+  .scroll-snap-proximity {
+    scroll-snap-type: proximity;
+    scroll-snap-type: y proximity;
+  }
+
   .dyslexia {
     font-family: "OpenDyslexic", sans-serif !important;
   }
@@ -65,6 +86,10 @@
     @apply text-xl;
   }
 
+  .markdown a { 
+    text-decoration: underline;
+  }
+
   .markdown ul {
     list-style-type: disc;
   }
@@ -78,11 +103,32 @@
   }
   /* TODO: add this to tailwind */
   .bg-semi-transparent {
-    background-color: rgba(23, 23, 23, 0.7) ;
+    background-color: rgba(23, 23, 23, 0.7);
+  }
+
+  .animate-button-borders:before,
+  .animate-button-borders:after {
+    transition: opacity 200ms ease-in-out;
+  }
+
+  .animate-button-borders:hover::before,
+  .animate-button-borders:active::before,
+  .animate-button-borders:focus::before {
+    transition: width 150ms cubic-bezier(0.07, 0.62, 0.61, 1),
+      height 75ms 150ms cubic-bezier(0.07, 0.62, 0.61, 1);
+  }
+
+  .animate-button-borders:hover::after,
+  .animate-button-borders:active::after,
+  .animate-button-borders:focus::after {
+    transition: width 150ms 225ms cubic-bezier(0.07, 0.62, 0.61, 1),
+      height 75ms 450ms cubic-bezier(0.07, 0.62, 0.61, 1), border-left 0ms 225ms linear;
+  }
+
+  .responsive-container {
+    @apply mx-auto max-w-md md:max-w-3xl lg:max-w-4xl xl:max-w-5xl;
   }
 }
-
-
 
 :root {
   --pure-white: #ffffff;

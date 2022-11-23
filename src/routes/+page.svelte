@@ -2,49 +2,59 @@
   import TrailedText from "$lib/components/TrailedText.svelte";
   import TrailStore from "$lib/components/Trail/store";
   import { onMount } from "svelte";
-  import Button from "$lib/components/Button.svelte";
+  import { spring } from "svelte/motion";
+  import { browser } from "$app/environment";
+  import LandingSection from "$lib/components/LandingSection.svelte";
+  import { HEADING_CLASSES, SUBHEADING_CLASSES } from "$lib/constants";
 
+  let scrollY;
   onMount(() => {
     TrailStore.play();
   });
 
+  let ySpring = spring(0);
 
+  let height, width;
+
+  ySpring.subscribe((y) => {
+    if (browser) {
+      window.scrollTo(0, y);
+    }
+  });
 </script>
 
+<svelte:window bind:scrollY bind:innerHeight={height} bind:innerWidth={width} />
 
-<div data-scrolltarget class="relative flex flex-col min-h-[90vh] justify-center mx-auto">
-  <div class="my-12 relative p-2 lg:p-5 align-center pt-[4vh]">
+<LandingSection class="justify-center">
+  <div class="align-center relative my-12 md:max-w-xl lg:max-w-3xl lg:p-5">
     <h1
-      class="text-5xl md:text-6xl lg:text-7xl font-thin min-h-[3em]"
+      class="{HEADING_CLASSES} min-h-[3em] w-full text-left font-thin"
       aria-label="the future of engineering is human."
     >
       <TrailedText />
     </h1>
   </div>
-
-</div>
-<div data-scrolltarget class="flex flex-col min-h-screen justify-center mx-auto ">
-  <div class="my-12 relative p-2 lg:p-5 align-center">
-    <h1 class="text-6xl text-left font-bold">I'm Diana.</h1>
-  </div>
-
-  <div class="p-2 lg:p-5 my-5">
-    <p class="mr-3 text-xl font-thin text-left">
-      Software Engineer, Digital Policy Buff, User Rights Enthusiast, Former Scientist, Forever
-      Experimenting.
+</LandingSection>
+<LandingSection class="mx-auto justify-around">
+  <div class="align-center relative my-12 h-full p-2 lg:p-5">
+    <p class="{HEADING_CLASSES} mb-4 text-center font-thin">
+      i'm <span class="font-bold">diana.</span>
     </p>
-
-    <hr class="my-10" />
-
-    <div class="text-md flex justify-evenly w-full ">
-      <div class="text-left">
-        <h2 class="font-bold text-xl">Exciting Updates Ahead!</h2>
-        <p class="text-italic text-neutral-300">There is more to this site coming soon.</p>
-      </div>
-    </div>
+    <p class="{SUBHEADING_CLASSES} text-center font-thin">
+      <a href="/gallery/code" class="w-inherit">coder.</a><a href="/gallery">creator.</a><a
+        href="/blog">commnuicator.</a
+      >
+    </p>
   </div>
-</div>
-<!-- <div data-scrolltarget class="flex flex-col min-h-screen justify-center mx-auto ">
-<h2>About</h2>
-</div> -->
+  <img
+    src="/images/diana-and-rafiki.jpg"
+    class="mx-auto max-w-xs rounded-full border-2 border-white"
+    alt="Diana and her dog "
+  />
 
+  <div class="align-center relative my-12 p-2 text-right text-lg md:text-xl lg:text-2xl lg:p-5">
+    {#each "Full Stack Software Engineer / Digital Policy Buff, User Advocate / Former Scientist, Forever Experimenting".split("/") as phrase}
+      <p class="font-thin">{phrase}</p>
+    {/each}
+  </div>
+</LandingSection>

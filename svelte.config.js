@@ -20,7 +20,7 @@ const config = {
       $fonts: path.resolve("./src/fonts")
     }
   },
-  preprocess: [preprocess({ sourceMap: true}), mdsvex(mdsvexConfig)]
+  preprocess: [preprocess({ sourceMap: true }), mdsvex(mdsvexConfig)]
 };
 
 export default config;

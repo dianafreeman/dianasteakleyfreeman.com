@@ -1,6 +1,5 @@
 <script>
-    import { page } from "$app/stores";
-
+  import { page } from "$app/stores";
 
   export let title;
   export let description;
@@ -9,23 +8,16 @@
      @type { website | article | profile | video }
      */
 
-  export let type = "website"
+  export let type = "website";
   export let imageSrc = "/static/screenshot.png";
-  
 </script>
 
 <svelte:head>
   <title>{title}</title>
   <meta name="description" content={description} />
-  <meta
-    property="og:url"
-    content={$page.url.href}
-  />
+  <meta property="og:url" content={$page.url.href} />
   <meta property="og:type" content={type} />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
-  <meta
-    property="og:image"
-    content={imageSrc}
-  />
+  <meta property="og:image" content={imageSrc} />
 </svelte:head>

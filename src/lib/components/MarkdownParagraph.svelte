@@ -1,1 +1,1 @@
-<p class="leading-5 mt-4 font-manrope"><slot /></p>
+<p class="font-manrope mt-4 leading-5"><slot /></p>

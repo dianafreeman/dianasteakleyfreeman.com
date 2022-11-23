@@ -1,5 +1,5 @@
 <script>
-  import LayoutStore from "$stores/LayoutStore";
+  import SettingsStore from "$stores/SettingsStore";
 
   import Button from "./Button.svelte";
 
@@ -10,26 +10,25 @@
   export let id;
 </script>
 
-<ul class="absolute w-fit lg:w-1/3 py-4 bg-black" aria-hidden={!expanded} {id}>
+<ul class="absolute w-fit bg-black py-4 lg:w-1/3" aria-hidden={!expanded} {id}>
   {#if expanded}
     <li class={settingItemClasses} role="menuitem">
-      
-      <!-- <button on:click={() => LayoutStore.toggleMode()}>
+      <!-- <button on:click={() => SettingsStore.toggleMode()}>
         dark mode
-        <ToggleSwitch enabled={$LayoutStore.darkMode} />
+        <ToggleSwitch enabled={$SettingsStore.darkMode} />
       </button> -->
     </li>
     <li class={settingItemClasses} role="menuitem">
-      <!-- <button on:click={() => LayoutStore.toggleDyslexia()}>
+      <!-- <button on:click={() => SettingsStore.toggleDyslexia()}>
         dyslexia mode
-        <ToggleSwitch enabled={$LayoutStore.dyslexia} />
+        <ToggleSwitch enabled={$SettingsStore.dyslexia} />
       </button> -->
     </li>
     <li
-      class="text-neutral-300 hover:text-white text-right block px-3 py-5 text-base font-medium"
+      class="block px-3 py-5 text-right text-base font-medium text-neutral-300 hover:text-white"
       role="menuitem"
     >
-      <Button class="inline p-3 text-right w-fit" on:click={() => LayoutStore.clearSettings()}>
+      <Button class="inline w-fit p-3 text-right" on:click={() => SettingsStore.clearSettings()}>
         Clear Settings
       </Button>
     </li>

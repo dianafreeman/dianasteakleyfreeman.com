@@ -6,13 +6,11 @@
   <title>Error {$page.status}</title>
 </svelte:head>
 
-<div class="mx-3 flex flex-col min-h-screen justify-end">
-  <div class="my-12 relative p-2 lg:p-5 align-center">
-    <div class="p-2 lg:p-5 my-5">
-      <p class="mr-3 text-xl">Error {$page.status}: {$page.error.message}.</p>
-    </div>
+<section class="h-full">
+  <div class="align-center relative my-12 lg:max-w-3xl lg:p-5">
     <p class="text-6xl font-thin">
       what a <span class="font-bold">bummer.</span>
     </p>
+    <p class="mr-3 text-2xl font-thin">error {$page.status}.</p>
   </div>
-</div>
+</section>
