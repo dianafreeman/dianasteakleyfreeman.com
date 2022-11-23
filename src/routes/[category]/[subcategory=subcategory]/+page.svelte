@@ -7,10 +7,10 @@
 
 <Seo title={data.title} />
 <div class="mx-3 flex flex-col ">
-  <div class="p-2 lg:p-5 my-5">
-    <ol class="grid sm:grid-cols-2 gap md:grid-cols-3 md:max-w-3xl lg:max-w-4xl m-auto">
+  <div class="my-5 p-2 lg:p-5">
+    <ol class="gap m-auto grid sm:grid-cols-2 md:max-w-3xl md:grid-cols-3 lg:max-w-4xl">
       {#each data.entries as entry}
-        <li class="max-w-xs mx-auto mb-auto">
+        <li class="mx-auto mb-auto max-w-xs">
           <Card
             title={entry.metadata.title}
             target={entry.metadata.relativePath}

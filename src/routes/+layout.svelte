@@ -57,22 +57,21 @@
   title={data.seoMeta?.title}
   description={data.seoMeta?.description || data.seoMeta?.excerpt || null}
 />
-<body class="bg-black flex flex-col min-h-screen justify-between">
-
-<header
-  bind:clientHeight={headerHeight}
-  class="fixed w-full top-0 pb-4 z-30 bg-darkest-gray"
-  class:dyslexia
->
-  <TopNav navItems={data.navItems} />
-  <Breadcrumbs slot="breadcrumbs" class="w-full m-auto z-40" items={data.breadcrumbs} />
-</header>
-<div id="spacer" style="height: {headerHeight}px" />
+<body class="flex min-h-screen flex-col justify-between bg-black">
+  <header
+    bind:clientHeight={headerHeight}
+    class="fixed top-0 z-30 w-full bg-darkest-gray pb-4"
+    class:dyslexia
+  >
+    <TopNav navItems={data.navItems} />
+    <Breadcrumbs slot="breadcrumbs" class="z-40 m-auto w-full" items={data.breadcrumbs} />
+  </header>
+  <div id="spacer" style="height: {headerHeight}px" />
 
   <main class:dyslexia bind:this={main} transition:fade>
     <slot />
   </main>
-  <footer bind:this={footer} class="bg-darkest-gray p-5 w-full" class:dyslexia>
+  <footer bind:this={footer} class="w-full bg-darkest-gray p-5" class:dyslexia>
     <FooterNav />
   </footer>
 </body>

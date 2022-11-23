@@ -21,15 +21,14 @@
       window.scrollTo(0, y);
     }
   });
-
 </script>
 
 <svelte:window bind:scrollY bind:innerHeight={height} bind:innerWidth={width} />
 
 <LandingSection class="justify-center">
-  <div class="my-12 relative lg:p-5 align-center lg:max-w-3xl">
+  <div class="align-center relative my-12 lg:max-w-3xl lg:p-5">
     <h1
-      class="{HEADING_CLASSES} font-thin min-h-[3em] w-full text-left"
+      class="{HEADING_CLASSES} min-h-[3em] w-full text-left font-thin"
       aria-label="the future of engineering is human."
     >
       <TrailedText />
@@ -37,8 +36,8 @@
   </div>
 </LandingSection>
 <LandingSection class="mx-auto justify-center">
-  <div class="my-12 relative p-2 lg:p-5 align-center">
-    <p class="{HEADING_CLASSES} text-left font-thin mb-4">
+  <div class="align-center relative my-12 p-2 lg:p-5">
+    <p class="{HEADING_CLASSES} mb-4 text-left font-thin">
       <!-- <p class="text-8xl md:text-8xl text-left font-thin mb-4"> -->
       i'm <span class="font-bold">diana.</span>
     </p>

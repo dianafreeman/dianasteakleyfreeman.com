@@ -9,7 +9,7 @@
 
 <!-- More on component templates: https://storybook.js.org/docs/svelte/blog-stories/introduction#using-args -->
 <Template let:args>
-  <div class="block mt-10">
+  <div class="mt-10 block">
     <Toggle>Text</Toggle>
   </div>
 </Template>

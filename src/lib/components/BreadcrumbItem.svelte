@@ -23,7 +23,7 @@
       href={item.relativePath}
       class:underline={!current}
       class:font-medium={current}
-      class="text-base font-thin text-white underline underline-offset-4 rounded-sm focus:outline focus:outline-white focus:outline-offset-8 focus:outline-1"
+      class="rounded-sm text-base font-thin text-white underline underline-offset-4 focus:outline focus:outline-1 focus:outline-offset-8 focus:outline-white"
       {...itemProps}
     >
       {item.navigationText || item.title}</a

@@ -6,6 +6,6 @@
   export let buttonProps;
 </script>
 
-<Button type="button" {onClick} {label} class="w-fit h-fit my-auto p-3" {buttonProps}>
+<Button type="button" {onClick} {label} class="my-auto h-fit w-fit p-3" {buttonProps}>
   <slot />
 </Button>

@@ -10,8 +10,8 @@
 </script>
 
 {#if !DISABLED_PAGES.includes($page.url.pathname)}
-  <nav class="px-4 relative bg-darkest-gray py-2 {clazz}" aria-label="Breadcrumb">
-    <ol class="list-none flex gap-2 mx-1">
+  <nav class="relative bg-darkest-gray px-4 py-2 {clazz}" aria-label="Breadcrumb">
+    <ol class="mx-1 flex list-none gap-2">
       {#each items as item}
         <BreadcrumbItem current={item.relativePath === $page.url.pathname} {item} />
       {/each}

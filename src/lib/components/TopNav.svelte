@@ -23,37 +23,33 @@
   ];
 </script>
 
-<div
-  class="relative w-inherit left-0 right-0 w-full h-full {$mainMenuIsOpen
-    ? "h-0"
-    : "top-0 h"}"
->
-  <div class="m-auto h-fit flex flex-row flex-wrap justify-between {$mainMenuIsOpen ? '' : ''}">
+<div class="w-inherit relative left-0 right-0 h-full w-full {$mainMenuIsOpen ? 'h-0' : 'top-0 h'}">
+  <div class="m-auto flex h-fit flex-row flex-wrap justify-between {$mainMenuIsOpen ? '' : ''}">
     <NavBrand class="" />
-  {#if $isMobileScreen}
-    <div class="flex-grow justify-start">
-      <MenuToggle
-        on:click={() => {
-          settingsMenuIsOpen.set(false);
-          mainMenuIsOpen.update((v) => !v);
-        }}
-        label="menu"
-        menuType="hamburger"
-        iconType={$mainMenuIsOpen ? "times" : "hamburger"}
-        id="mainMenu"
-        hideLabel
-        expanded={$mainMenuIsOpen}
-      />
-    </div>
+    {#if $isMobileScreen}
+      <div class="flex-grow justify-start">
+        <MenuToggle
+          on:click={() => {
+            settingsMenuIsOpen.set(false);
+            mainMenuIsOpen.update((v) => !v);
+          }}
+          label="menu"
+          menuType="hamburger"
+          iconType={$mainMenuIsOpen ? "times" : "hamburger"}
+          id="mainMenu"
+          hideLabel
+          expanded={$mainMenuIsOpen}
+        />
+      </div>
     {/if}
     <ul
       aria-expanded={$mainMenuIsOpen}
-      class="flex flex-col md:flex-row flex-grow list-none w-full md:w-fit md:justify-end justify-center items-center order-3 md:order-2"
+      class="order-3 flex w-full flex-grow list-none flex-col items-center justify-center md:order-2 md:w-fit md:flex-row md:justify-end"
     >
       {#each navItems as item}
         <li
           role="menuitem"
-          class="w-full md:w-fit m-2"
+          class="m-2 w-full md:w-fit"
           aria-hidden={!(!$isMobileScreen ? false : $mainMenuIsOpen)}
           class:hidden={!$isMobileScreen ? false : $mainMenuIsOpen}
         >

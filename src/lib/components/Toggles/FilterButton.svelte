@@ -38,13 +38,13 @@
   on:mouseleave={() => isHovered.set(false)}
   on:focus={() => isHovered.set(true)}
   on:blur={() => isHovered.set(false)}
-  class="p-3 text-white hover:bg-medium-gray w-full border-b border-neutral-800"
+  class="w-full border-b border-neutral-800 p-3 text-white hover:bg-medium-gray"
 >
-  <div class="flex flex-row justify-between items-center">
+  <div class="flex flex-row items-center justify-between">
     <i class={icon} aria-hidden="true" />
     {#if $isHovered && isActive}
       <i
-        class="text-neutral-700 flex-1 lar la-check-square text-2xl inline-flex"
+        class="lar la-check-square inline-flex flex-1 text-2xl text-neutral-700"
         aria-label="currently active"
       />
     {/if}

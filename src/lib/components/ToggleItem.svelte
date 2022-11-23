@@ -8,7 +8,7 @@
   $: console.log(value);
 </script>
 
-<Button on:click class="w-full flex justify-between p-4 items-center">
+<Button on:click class="flex w-full items-center justify-between p-4">
   <slot />
   <ToggleSwitch enabled={responsiveValue} />
 </Button>

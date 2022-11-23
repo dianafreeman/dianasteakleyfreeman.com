@@ -30,7 +30,7 @@
 <a
   href="/"
   aria-label="Diana"
-  class="mb-0 m-2 pt-2 pb-4 my-3 px-3 text-2xl lg:text-3xl xl:text-4xl inline-flex font-bold focus:outline-white focus:outline-1"
+  class="m-2 my-3 mb-0 inline-flex px-3 pt-2 pb-4 text-2xl font-bold focus:outline-1 focus:outline-white lg:text-3xl xl:text-4xl"
   on:focus={toggleHovered}
   on:blur={toggleHovered}
   on:mouseenter={toggleHovered}
@@ -46,6 +46,6 @@
     bind:this={animatedSpan}
     aria-hidden="true"
     style="width: {$widthSpring}px"
-    class="overflow-hidden text-gray-400">iana</span
+    class="text-gray-400 overflow-hidden">iana</span
   >.
 </a>

@@ -9,7 +9,7 @@
 <div>
   <button
     type="button"
-    class="bg-medium-gray text-neutral-400 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-neutral-800 focus:ring-white"
+    class="flex rounded-full bg-medium-gray text-sm text-neutral-400 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-neutral-800"
     id="user-menu-button"
     aria-expanded="false"
     aria-haspopup="true"

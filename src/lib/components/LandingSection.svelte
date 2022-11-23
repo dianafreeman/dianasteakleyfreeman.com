@@ -5,7 +5,6 @@
   let clazz;
   export { clazz as class };
   let isInView = false;
-
 </script>
 
 <section
@@ -15,7 +14,7 @@
     const { inView } = evt.detail;
     isInView = inView;
   }}
-  class="flex flex-col min-h-[90vh] my-auto w-full {clazz}"
+  class="my-auto flex min-h-[90vh] w-full flex-col {clazz}"
 >
   <div class:enter={!!isInView} class:exit={!isInView}>
     <slot />

@@ -45,7 +45,7 @@
   }
 
   a {
-    @apply rounded-sm mx-1 focus:outline focus:outline-white focus:outline-offset-8 focus:outline-1;
+    @apply mx-1 rounded-sm focus:outline focus:outline-1 focus:outline-offset-8 focus:outline-white;
   }
 
   .inherit {
@@ -121,7 +121,7 @@
   }
 
   .responsive-container {
-    @apply max-w-md md:max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto;
+    @apply mx-auto max-w-md md:max-w-3xl lg:max-w-4xl xl:max-w-5xl;
   }
 }
 
