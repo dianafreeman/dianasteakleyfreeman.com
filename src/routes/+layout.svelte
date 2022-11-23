@@ -8,7 +8,7 @@
   import SettingsStore from "$stores/SettingsStore";
   import Seo from "$lib/components/Seo.svelte";
   // import createTrapFocus from "$lib/trapFocus";
-  import { mainMenuIsOpen, settingsMenuIsOpen, isMobileScreen } from "$stores/LayoutStore";
+  import { mainMenuIsOpen, settingsMenuIsOpen, isMobileScreen, topNavHeight} from "$stores/LayoutStore";
   import TopNav from "$lib/components/TopNav.svelte";
   import FooterNav from "$lib/components/FooterNav.svelte";
 
@@ -53,6 +53,8 @@
   onMount(() => {
     SettingsStore.restoreSettings();
   });
+  
+  $: headerHeight && topNavHeight.set(headerHeight)
 </script>
 
 <svelte:window bind:scrollY bind:innerWidth />
@@ -70,7 +72,7 @@
     <TopNav navItems={data.navItems} />
     <Breadcrumbs slot="breadcrumbs" class="z-40 m-auto w-full" items={data.breadcrumbs} />
   </header>
-  <div id="spacer" style="height: {headerHeight}px" />
+  <div id="spacer" style="height: {$topNavHeight}px;" />
 
   <main class:dyslexia bind:this={main} transition:fade>
     <slot />
