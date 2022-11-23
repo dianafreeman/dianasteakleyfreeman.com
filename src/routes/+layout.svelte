@@ -40,6 +40,7 @@
 
   $: {
     if (innerWidth > 640) {
+      mainMenuIsOpen.set(true)
       isMobileScreen.set(false);
     } else {
       isMobileScreen.set(true);

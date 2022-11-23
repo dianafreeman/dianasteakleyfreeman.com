@@ -5,7 +5,6 @@
   export let value;
 
   $: responsiveValue = value;
-  $: console.log(value);
 </script>
 
 <Button on:click class="flex w-full items-center justify-between p-4">
