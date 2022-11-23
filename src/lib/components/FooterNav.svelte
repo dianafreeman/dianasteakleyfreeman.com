@@ -51,8 +51,8 @@
           text: "Twitter"
         },
         {
-          href: "https://www.tiktok.com/@diana_rises",
-          text: "TikTok"
+          href: "https://www.linkedin.com/in/dianasteakleyfreeman/",
+          text: "linkedin"
         }
       ]
     }
