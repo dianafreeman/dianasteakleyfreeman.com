@@ -1,12 +1,12 @@
 <script>
   import TrailedText from "$lib/components/TrailedText.svelte";
   import TrailStore from "$lib/components/Trail/store";
+  import Typewriter from "svelte-typewriter";
   import { onMount } from "svelte";
   import { spring } from "svelte/motion";
   import { browser } from "$app/environment";
   import LandingSection from "$lib/components/LandingSection.svelte";
   import { HEADING_CLASSES, SUBHEADING_CLASSES } from "$lib/constants";
-  import Expandable from "$lib/components/Expandable.svelte";
   import { inview } from "svelte-inview";
 
   let scrollY;
@@ -39,7 +39,7 @@
   </div>
 </LandingSection>
 <LandingSection class="mx-auto justify-around">
-  <div class="align-center relative my-12 h-full p-2 lg:p-5">
+  <div class="align-center relative my-12 h-full p-2 lg:p-5" use:inview>
     <h1 class="{HEADING_CLASSES} mb-4 text-center font-thin">
       i'm <span class="font-bold">diana.</span>
     </h1>
@@ -54,9 +54,6 @@
     class="mx-auto max-w-xs rounded-full border-2 border-white"
     alt="Diana and her dog "
   />
-  <!-- </LandingSection>
-<LandingSection> -->
-
   <div
     class="relative my-[100px] p-2 text-right text-lg md:text-xl lg:p-5 lg:text-2xl"
     use:inview={{ threshold: 1, rootMargin: "100px" }}
@@ -70,16 +67,32 @@
     }}
   >
     <div
-      class="m-auto flex flex-col"
-      style="width: max-content;"
+      class="monospace m-auto my-10 max-w-lg flex-col overflow-hidden p-5 text-left font-thin"
       class:exit={!expandsAreInView}
       class:enter={expandsAreInView}
     >
-      <Expandable title="Full Stack Software Engineer">
-        <p class="my-5 font-thin">Ea sunt magna id nostrud sint velit id ad in.</p>
-      </Expandable>
-      <Expandable title="Digital Policy Buff, User Advocate " />
-      <Expandable title="Former Scientist, Forever Experimenting" />
+      <div class="relative flex h-full min-h-[200px] w-full rounded-md bg-neutral-800 p-2 shadow">
+        <div id="buttons" class="absolute top-3 left-3 flex w-full flex-row justify-start">
+          <div class="mr-2 h-3 w-3 rounded-full bg-red-500" />
+          <div class="mr-2 h-3 w-3 rounded-full bg-yellow-500" />
+          <div class="mr-2 h-3 w-3 rounded-full bg-green-500" />
+        </div>
+        <div class="w-full pb-3 pt-8 text-xl">
+          {#if expandsAreInView}
+            <p>
+              <Typewriter mode="cascade">
+                Software Engineer, <!-- intentional line break for typewriter timing-->
+                Humane Technologist. <!-- intentional line break for typewriter timing-->
+                Digital Policy Buff, <!-- intentional line break for typewriter timing-->
+                User Rights Enthusiast. <!-- intentional line break for typewriter timing-->
+                Former Scientist, <!-- intentional line break for typewriter timing-->
+                Forever Experimenting. <!-- intentional line break for typewriter timing-->
+                <!-- intentional line break for typewriter timing-->
+              </Typewriter>
+            </p>
+          {/if}
+        </div>
+      </div>
     </div>
   </div>
 </LandingSection>

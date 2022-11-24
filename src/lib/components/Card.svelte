@@ -6,6 +6,8 @@
 
 <a
   href={target}
+  class:border-medium-gray={!imgSrc}
+  class:border-2={!imgSrc}
   class="text-md active:outline-offset-5 hover:bg-medium-gray relative flex aspect-square max-w-sm flex-col items-center justify-center p-4 text-white grayscale  focus:outline focus:outline-white active:outline active:outline-white sm:max-w-md md:max-w-lg"
 >
   <img
