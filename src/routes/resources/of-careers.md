@@ -2,7 +2,6 @@
 slug: of-careers
 date: "2022-10-23"
 title: The Obama Foundation is hiring Software Engineers
-image: /images/of-careers.jpg
 tags:
   - jobs
   - civic-tech

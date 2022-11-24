@@ -2,7 +2,6 @@
 slug: humane-tech
 date: "2022-01-12"
 title: WTF is "Humane Technology?"
-image: /images/humane-tech-image.jpg
 tags:
   - education
   - policy
