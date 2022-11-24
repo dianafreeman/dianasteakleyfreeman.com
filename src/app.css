@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@500&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -46,7 +48,7 @@
 
   a:not(nav a),
   .link {
-    @apply mx-1 focus:outline focus:outline-1 focus:outline-offset-8 focus:outline-white;
+    @apply focus:outline focus:outline-1 focus:outline-offset-8 focus:outline-white;
   }
 
   .inherit {
@@ -86,7 +88,7 @@
     @apply text-xl;
   }
 
-  .markdown a { 
+  .markdown a {
     text-decoration: underline;
   }
 
