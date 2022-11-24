@@ -57,17 +57,17 @@
   <div
     class="relative my-[100px] p-2 text-right text-lg md:text-xl lg:p-5 lg:text-2xl"
     use:inview={{ threshold: 1, rootMargin: "100px" }}
-    on:enter={(evt) => {
+    on:enter={() => {
       console.log("entering");
       expandsAreInView = true;
     }}
-    on:leave={(evt) => {
+    on:leave={() => {
       console.log("exiting");
       expandsAreInView = false;
     }}
   >
     <div
-      class="monospace m-auto my-10 max-w-lg flex-col overflow-hidden p-5 text-left font-thin"
+      class="m-auto my-5 max-w-lg flex-col overflow-hidden p-5 text-left font-monospace font-thin"
       class:exit={!expandsAreInView}
       class:enter={expandsAreInView}
     >

@@ -39,7 +39,6 @@
   page.subscribe((p) => {
     if (p.url.pathname) {
       if ($isMobileScreen) {
-        console.log("closing menus");
         mainMenuIsOpen.set(false);
       }
       settingsMenuIsOpen.set(false);
@@ -68,21 +67,19 @@
   title={data.seoMeta?.title}
   description={data.seoMeta?.description || data.seoMeta?.excerpt || null}
 />
-<body class="flex min-h-screen flex-col justify-between bg-black">
-  <header
-    bind:clientHeight={headerHeight}
-    class="bg-darkest-gray fixed top-0 z-30 w-full pb-4"
-    class:dyslexia
-  >
-    <TopNav navItems={data.navItems} />
-    <Breadcrumbs slot="breadcrumbs" class="z-40 m-auto w-full" items={data.breadcrumbs} />
-  </header>
-  <div id="spacer" style="height: {$topNavHeight}px;" />
+<header
+  bind:clientHeight={headerHeight}
+  class="fixed top-0 z-30 w-full bg-darkest-gray pb-4"
+  class:dyslexia
+>
+  <TopNav navItems={data.navItems} />
+  <Breadcrumbs slot="breadcrumbs" class="z-40 m-auto w-full" items={data.breadcrumbs} />
+</header>
+<div id="spacer" style="height: {$topNavHeight}px;" />
 
-  <main class:dyslexia bind:this={main} transition:fade>
-    <slot />
-  </main>
-  <footer bind:this={footer} class="bg-darkest-gray w-full p-5" class:dyslexia>
-    <FooterNav />
-  </footer>
-</body>
+<main class:dyslexia bind:this={main} transition:fade>
+  <slot />
+</main>
+<footer bind:this={footer} class="w-full bg-darkest-gray p-5" class:dyslexia>
+  <FooterNav />
+</footer>
