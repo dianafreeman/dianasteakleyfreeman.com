@@ -1,6 +1,5 @@
 <script>
-    import Button from "./Button.svelte";
-
+  import Button from "./Button.svelte";
 
   /** @type { string } */
   export let title;
@@ -10,12 +9,15 @@
   let isOpen = false;
 </script>
 
-<div class="flex flex-col w-auto">
-  <Button on:click={() => (isOpen = !isOpen)} class=" my-2 py-3 flex justify-between items-center">
-    <svelte:element this={titleElement} class="text-2xl font-thin mx-2 ">
+<div class="flex w-auto flex-col">
+  <Button on:click={() => (isOpen = !isOpen)} class=" my-2 flex items-center justify-between py-3">
+    <svelte:element this={titleElement} class="mx-2 text-2xl font-thin ">
       {title}
     </svelte:element>
-    <i aria-hidden="true" class="mx-2 text-light-gray text-3xl las la-angle-{isOpen ? 'up' : 'down'}" />
+    <i
+      aria-hidden="true"
+      class="las mx-2 text-3xl text-light-gray la-angle-{isOpen ? 'up' : 'down'}"
+    />
   </Button>
   {#if isOpen}
     <!-- <div class="bg-darkest-gray text-sm"> -->
