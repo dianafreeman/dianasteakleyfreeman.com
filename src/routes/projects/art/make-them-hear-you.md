@@ -8,7 +8,7 @@ tags:
 ---
 
 <!-- <img src="/images/video-thummake-them-hear-you"> -->
-# "Make Them Hear You"
+## "Make Them Hear You"
 Cover by Diana M Steakley-Freeman
 ---------------------------------------------
 Set in the early 1900's the Broadway Musical "Ragtime" follows the story of a young Black pianist, Coalhouse Walker Jr. Coalhouse follows his first love, and a dream of a musical career to "post-slavery" America.
