@@ -40,7 +40,7 @@
     {
       title: "Links",
       containerClass: "w-1/2 mb-8",
-      class: "flex flex-row",
+      class: "flex flex-row gap-2",
       items: [
         {
           href: "https://github.com/dianafreeman",

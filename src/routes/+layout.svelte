@@ -7,7 +7,7 @@
   import { onMount } from "svelte";
   import SettingsStore from "$stores/SettingsStore";
   import Seo from "$lib/components/Seo.svelte";
-  // import createTrapFocus from "$lib/trapFocus";
+  
   import {
     mainMenuIsOpen,
     settingsMenuIsOpen,
@@ -39,7 +39,6 @@
   page.subscribe((p) => {
     if (p.url.pathname) {
       if ($isMobileScreen) {
-        console.log("closing menus");
         mainMenuIsOpen.set(false);
       }
       settingsMenuIsOpen.set(false);
@@ -68,21 +67,20 @@
   title={data.seoMeta?.title}
   description={data.seoMeta?.description || data.seoMeta?.excerpt || null}
 />
-<body class="flex min-h-screen flex-col justify-between bg-black">
-  <header
-    bind:clientHeight={headerHeight}
-    class="bg-darkest-gray fixed top-0 z-30 w-full pb-4"
-    class:dyslexia
-  >
-    <TopNav navItems={data.navItems} />
-    <Breadcrumbs slot="breadcrumbs" class="z-40 m-auto w-full" items={data.breadcrumbs} />
-  </header>
-  <div id="spacer" style="height: {$topNavHeight}px;" />
-
-  <main class:dyslexia bind:this={main} transition:fade>
+<header
+  bind:clientHeight={headerHeight}
+  class="bg-darkest-gray fixed top-0 z-30 w-full pb-4"
+  class:dyslexia
+>
+  <TopNav navItems={data.navItems} />
+  <Breadcrumbs slot="breadcrumbs" class="z-40 m-auto w-full" items={data.breadcrumbs} />
+</header>
+<div id="spacer" style="height: {$topNavHeight}px;" />
+{#key $page.url.pathname}
+  <main class:dyslexia bind:this={main} in:fade>
     <slot />
   </main>
-  <footer bind:this={footer} class="bg-darkest-gray w-full p-5" class:dyslexia>
-    <FooterNav />
-  </footer>
-</body>
+{/key}
+<footer bind:this={footer} class="bg-darkest-gray w-full p-5" class:dyslexia>
+  <FooterNav />
+</footer>

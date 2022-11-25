@@ -6,11 +6,13 @@
 
 {#each items as item}
   {#if item && item.element === "br"}
-    <!-- prettier-ignore -->
-    <svelte:element this={item.element} class={item.class}/>
+    <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+    <svelte:element this={item.element} tabindex={-1} class={item.class} />
   {:else if item}
-    <!-- prettier-ignore -->
-    <svelte:element this={item.element} class={item.class} in:fade>{`${item.text} `}</svelte:element>
+    <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+    <svelte:element this={item.element} tabindex={-1} class={item.class} in:fade
+      >{`${item.text} `}</svelte:element
+    >
   {/if}
 {/each}
 <br />

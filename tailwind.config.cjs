@@ -12,8 +12,7 @@ module.exports = {
       fontFamily: {
         montserrat: ["Monserrat"],
         dyslexic: ["OpenDyslexic"],
-        sharetechmono: ["ShareTechMono"],
-        newsreader: ["Newsreader"]
+        monospace: ["Inconsolata"]
       }
     }
   },
