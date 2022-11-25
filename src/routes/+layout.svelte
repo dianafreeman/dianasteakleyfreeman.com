@@ -7,7 +7,7 @@
   import { onMount } from "svelte";
   import SettingsStore from "$stores/SettingsStore";
   import Seo from "$lib/components/Seo.svelte";
-  // import createTrapFocus from "$lib/trapFocus";
+  
   import {
     mainMenuIsOpen,
     settingsMenuIsOpen,
@@ -69,17 +69,18 @@
 />
 <header
   bind:clientHeight={headerHeight}
-  class="fixed top-0 z-30 w-full bg-darkest-gray pb-4"
+  class="bg-darkest-gray fixed top-0 z-30 w-full pb-4"
   class:dyslexia
 >
   <TopNav navItems={data.navItems} />
   <Breadcrumbs slot="breadcrumbs" class="z-40 m-auto w-full" items={data.breadcrumbs} />
 </header>
 <div id="spacer" style="height: {$topNavHeight}px;" />
-
-<main class:dyslexia bind:this={main} transition:fade>
-  <slot />
-</main>
-<footer bind:this={footer} class="w-full bg-darkest-gray p-5" class:dyslexia>
+{#key $page.url.pathname}
+  <main class:dyslexia bind:this={main} in:fade>
+    <slot />
+  </main>
+{/key}
+<footer bind:this={footer} class="bg-darkest-gray w-full p-5" class:dyslexia>
   <FooterNav />
 </footer>
