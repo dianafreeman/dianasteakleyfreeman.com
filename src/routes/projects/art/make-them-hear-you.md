@@ -1,13 +1,12 @@
 ---
 slug: make-them-hear-you
 date: "2020-03-15"
-title: "Make Them Hear You - cover by Diana"
+title: "Make Them Hear You - Cover by Diana"
 image: /images/snapshot-make-them-hear-you.jpg
 tags:
-  - react
+  - music
 ---
 
-<!-- <img src="/images/video-thummake-them-hear-you"> -->
 ## "Make Them Hear You"
 Cover by Diana M Steakley-Freeman
 ---------------------------------------------
@@ -110,3 +109,7 @@ Coalhouse learns that he will have to make himself heard.
 - Miriam Iris Carey
 - Barrington “BJ” Williams
 
+<style>
+li { margin: unset }
+ul { padding: 2em}
+</style>
