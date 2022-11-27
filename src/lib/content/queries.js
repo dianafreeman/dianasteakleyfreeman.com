@@ -59,7 +59,7 @@ export async function getMarkdownEntries(stringMatcher) {
     ...data,
     metadata: { ...data.metadata, relativePath }
   }));
-  return entries;
+  return entries.filter(e => e.metadata.draft !== true );
 }
 
 export async function getPageEntries() {
