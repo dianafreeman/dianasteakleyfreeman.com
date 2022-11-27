@@ -5,9 +5,8 @@
 
 <div class="mb-auto flex min-h-screen flex-col justify-start px-4">
   <div
-    class="before:content-[' '] relative flex min-h-[50vh] flex-col justify-center grayscale bg-center lg:bg-right bg-contain before:absolute before:top-0 before:-z-0 before:h-full before:w-full before:bg-[rgba(0,0,0,0.5)] lg:min-h-[80vh]"
-    style="background-image: url({entry.metadata
-      .image}); background-repeat: no-repeat;"
+    class="before:content-[' '] relative flex min-h-[50vh] flex-col justify-center bg-contain bg-center grayscale before:absolute before:top-0 before:-z-0 before:h-full before:w-full before:bg-[rgba(0,0,0,0.5)] lg:min-h-[80vh] lg:bg-right"
+    style="background-image: url({entry.metadata.image}); background-repeat: no-repeat;"
   >
     <div class="z-10">
       <h1

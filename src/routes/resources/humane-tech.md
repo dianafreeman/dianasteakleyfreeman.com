@@ -1,7 +1,7 @@
 ---
 slug: humane-tech
 date: "2022-01-12"
-title: WTF is "Humane Technology?"
+title: 5 Women Whose Names
 tags:
   - education
   - policy

@@ -1,4 +1,5 @@
 <script>
+  import { useLazyImage as lazyImage } from "svelte-lazy-image";
   export let title;
   export let target;
   export let imgSrc;
@@ -11,7 +12,8 @@
   class="text-md active:outline-offset-5 hover:bg-medium-gray relative flex aspect-square max-w-sm flex-col items-center justify-center overflow-hidden p-4 text-white  grayscale hover:outline-white focus:outline focus:outline-white active:outline active:outline-white sm:max-w-md md:max-w-lg"
 >
   <img
-    src={imgSrc}
+    use:lazyImage
+    data-src={imgSrc}
     alt=""
     aria-hidden={true}
     class="absolute left-0 -z-10 h-full w-full self-start object-cover object-center"

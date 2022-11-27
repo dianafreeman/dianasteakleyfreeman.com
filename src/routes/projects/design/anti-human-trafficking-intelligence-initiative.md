@@ -7,11 +7,13 @@ link: https://followmoneyfightslavery.org/
 tags:
   - adobe
 ---
+
 <script>
 import Button from '$lib/components/Button.svelte'
   </script>
 
-In 2019, I was contracted to create and implement a branding and design overhaul for the Anti-Human Trafficking Intelligence Initiative. 
+In 2019, I was contracted to create and implement a branding and design overhaul for the Anti-Human Trafficking Intelligence Initiative.
+
 <blockquote style="border-left: 4px solid white; padding: 1em; margin: 1rem;">
 The AHTII aims to help financial institutions promote corporate social responsibility through increasing awareness, facilitating intelligence integration & technology advancement, and encouraging strategic data collaboration - to combat human trafficking.
 </blockquote>
