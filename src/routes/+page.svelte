@@ -44,7 +44,7 @@
       i'm <span class="font-bold">diana.</span>
     </h1>
     <h2 class="{SUBHEADING_CLASSES} text-center font-thin">
-      <a href="/gallery/code" class="w-inherit">coder.</a><a href="/gallery">creator.</a><a
+      <a href="/projects/code" class="w-inherit">coder.</a><a href="/gallery">creator.</a><a
         href="/blog">commnuicator.</a
       >
     </h2>

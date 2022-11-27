@@ -7,7 +7,7 @@
   import { onMount } from "svelte";
   import SettingsStore from "$stores/SettingsStore";
   import Seo from "$lib/components/Seo.svelte";
-  
+
   import {
     mainMenuIsOpen,
     settingsMenuIsOpen,
@@ -69,7 +69,7 @@
 />
 <header
   bind:clientHeight={headerHeight}
-  class="bg-darkest-gray fixed top-0 z-30 w-full pb-4"
+  class="fixed top-0 z-30 w-full bg-darkest-gray pb-4"
   class:dyslexia
 >
   <TopNav navItems={data.navItems} />
@@ -81,6 +81,6 @@
     <slot />
   </main>
 {/key}
-<footer bind:this={footer} class="bg-darkest-gray w-full p-5" class:dyslexia>
+<footer bind:this={footer} class="w-full bg-darkest-gray p-5" class:dyslexia>
   <FooterNav />
 </footer>
