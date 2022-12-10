@@ -23,7 +23,7 @@ module.exports = {
   "features": {
     "storyStoreV7": false
   },
-  async viteFinal(config, { configType }) {
+  async viteFinal(config) {
 		const { config: userConfig } = await loadConfigFromFile(
 			path.resolve(__dirname, "../vite.config.js")
 		);
