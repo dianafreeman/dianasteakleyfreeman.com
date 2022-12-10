@@ -1,4 +1,5 @@
 <script>
+  import ComputerScreen from "$lib/components/ComputerScreen.svelte";
   import TrailedText from "$lib/components/TrailedText.svelte";
   import TrailStore from "$lib/components/Trail/store";
   import Typewriter from "svelte-typewriter";
@@ -71,29 +72,21 @@
       class:exit={!expandsAreInView}
       class:enter={expandsAreInView}
     >
-      <div class="relative flex h-full min-h-[200px] w-full rounded-md bg-neutral-800 p-2 shadow">
-        <div id="buttons" class="absolute top-3 left-3 flex w-full flex-row justify-start">
-          <div class="mr-2 h-3 w-3 rounded-full bg-red-500" />
-          <div class="mr-2 h-3 w-3 rounded-full bg-yellow-500" />
-          <div class="mr-2 h-3 w-3 rounded-full bg-green-500" />
-        </div>
-        <div class="w-full pb-3 pt-8 text-xl">
-          {#if expandsAreInView}
-            <p>
-              <Typewriter mode="cascade">
-                Software Engineer, <!-- intentional line break for typewriter timing-->
-                Humane Technologist. <!-- intentional line break for typewriter timing-->
-                Digital Policy Buff, <!-- intentional line break for typewriter timing-->
-                User Rights Enthusiast. <!-- intentional line break for typewriter timing-->
-                Former Scientist, <!-- intentional line break for typewriter timing-->
-                Forever Experimenting. <!-- intentional line break for typewriter timing-->
-                <!-- intentional line break for typewriter timing-->
-              </Typewriter>
-            </p>
-          {/if}
-        </div>
-      </div>
-    </div>
+     <ComputerScreen>
+      {#if expandsAreInView}
+      <p>
+        <Typewriter mode="cascade">
+          Software Engineer, <!-- intentional line break for typewriter timing-->
+          Humane Technologist. <!-- intentional line break for typewriter timing-->
+          Digital Policy Buff, <!-- intentional line break for typewriter timing-->
+          User Rights Enthusiast. <!-- intentional line break for typewriter timing-->
+          Former Scientist, <!-- intentional line break for typewriter timing-->
+          Forever Experimenting. <!-- intentional line break for typewriter timing-->
+          <!-- intentional line break for typewriter timing-->
+        </Typewriter>
+      </p>
+    {/if}
+     </ComputerScreen>
   </div>
 </LandingSection>
 
