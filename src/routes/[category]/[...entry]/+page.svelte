@@ -5,12 +5,12 @@
 
 <div class="mb-auto flex min-h-screen flex-col justify-start px-4">
   <div
-    class="before:content-[' '] relative flex min-h-[50vh] flex-col justify-center bg-contain bg-center grayscale before:absolute before:top-0 before:-z-0 before:h-full before:w-full before:bg-[rgba(0,0,0,0.5)] lg:min-h-[80vh] lg:bg-right"
+    class="before:content-[' '] relative flex min-h-[50vh] flex-col justify-center bg-contain bg-center grayscale before:absolute before:top-0 before:-z-0 before:h-full before:w-full before:bg-[rgba(0,0,0,0.5)] lg:min-h-[80vh] md:bg-right"
     style="background-image: url({entry.metadata.image}); background-repeat: no-repeat;"
   >
     <div class="z-10">
       <h1
-        class="mb-12 text-left text-4xl font-bold lowercase md:text-left md:text-5xl lg:w-1/2 lg:text-6xl"
+        class="mb-12 text-left text-4xl font-bold lowercase md:text-left md:text-5xl md:w-1/2 lg:text-6xl"
       >
         {entry.metadata.title}.
       </h1>

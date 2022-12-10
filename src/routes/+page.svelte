@@ -1,7 +1,5 @@
 <script>
   import ComputerScreen from "$lib/components/ComputerScreen.svelte";
-  import TrailedText from "$lib/components/TrailedText.svelte";
-  import TrailStore from "$lib/components/Trail/store";
   import Typewriter from "svelte-typewriter";
   import { onMount } from "svelte";
   import { spring } from "svelte/motion";
@@ -9,14 +7,18 @@
   import LandingSection from "$lib/components/LandingSection.svelte";
   import { HEADING_CLASSES, SUBHEADING_CLASSES } from "$lib/constants";
   import { inview } from "svelte-inview";
+  import { fade } from "svelte/transition";
+  import Button from "$lib/components/Button.svelte";
 
   let scrollY;
-  let expandsAreInView;
-  onMount(() => {
-    TrailStore.play();
-  });
+  let landingIsInView;
+  let firstTypewriterIsDone;
+  let secondTypewriterIsDone;
 
-  let ySpring = spring(0);
+  let ySpring = spring(0, {
+    stiffness: 0.05,
+    damping: 0.8
+  });
 
   let height, width;
 
@@ -25,69 +27,100 @@
       window.scrollTo(0, y);
     }
   });
+
+  function onDownClick() {
+    const sections = document.querySelectorAll("section");
+    const secondSection = sections[1];
+    ySpring.set(secondSection.offsetTop);
+  }
+
+  let mounted = false;
+  onMount(() => {
+    mounted = true;
+    return () => {
+      mounted = false
+    }
+  })
+
 </script>
 
 <svelte:window bind:scrollY bind:innerHeight={height} bind:innerWidth={width} />
 
-<LandingSection class="justify-center">
-  <div class="align-center relative my-12 md:max-w-xl lg:max-w-3xl lg:p-5">
-    <h1
-      class="{HEADING_CLASSES} min-h-[3em] w-full text-left font-thin"
-      aria-label="the future of engineering is human."
+<LandingSection class="justify-center font-monospace">
+  <div
+    class="relative bg-darkest-gray lg:min-w-md m-auto  w-full max-w-sm md:max-w-lg flex flex-col justify-between text-left font-thin "
     >
-      <TrailedText />
-    </h1>
+    <div id="framebar" class="rounded-tr-lg rounded-tl-lg bg-dark-gray absolute -top-10 w-full h-10 left-0">
+    <span class="text-gray rounded-full px-2 py-1 cursor-none">x</span>  
+    </div>
+    <div class="w-full min-h-[200px] flex flex-col justify-between p-5">
+    {#if mounted}
+        <p class="text-3xl">
+          <Typewriter on:done={() => (firstTypewriterIsDone = true)}>
+            the future <!-- intentional line break for typewriter timing-->
+            of <!-- intentional line break for typewriter timing-->
+            engineering <!-- intentional line break for typewriter timing-->
+            is <!-- intentional line break for typewriter timing-->
+            human. <!-- intentional line break for typewriter timing-->
+          </Typewriter>
+        </p>
+    
+    <span class="text-3xl min-h-[1em] font-thin mt-5">
+      {#if firstTypewriterIsDone}
+      <Typewriter delay={800} on:done={() => (secondTypewriterIsDone = true)}>
+      hi. <!-- intentional line break for typewriter timing-->
+       <!-- intentional line break for typewriter timing-->
+       <!-- intentional line break for typewriter timing-->
+       <!-- intentional line break for typewriter timing-->
+      i'm <!-- intentional line break for typewriter timing-->
+      diana.</Typewriter>
+      {/if}
+    </span>
+    {/if}
+  </div>
+
+  </div>
+  <div class="flex justify-center">
+    {#key secondTypewriterIsDone}
+    <button
+      class:invisible={!secondTypewriterIsDone}
+      disabled={!secondTypewriterIsDone}
+      on:click={onDownClick}
+      in:fade
+      class="z-10 bg-darkest-gray hover:border-gray hover:bg-darkest-gray w-fit rounded-full p-5 text-white hover:border"
+    >
+    <i class="las la-angle-down" aria-hidden="true" />
+    <span class="sr-only">down</span>
+    </button>
+    {/key}
   </div>
 </LandingSection>
 <LandingSection class="mx-auto justify-around">
-  <div class="align-center relative my-12 h-full p-2 lg:p-5" use:inview>
-    <h1 class="{HEADING_CLASSES} mb-4 text-center font-thin">
-      i'm <span class="font-bold">diana.</span>
-    </h1>
-    <h2 class="{SUBHEADING_CLASSES} text-center font-thin">
-      <a href="/projects/code" class="w-inherit">coder.</a><a href="/gallery">creator.</a><a
-        href="/blog">commnuicator.</a
-      >
-    </h2>
+  <div class="align-center relative my-12 h-full p-2 lg:p-5">
+    <h1 class="{HEADING_CLASSES} mb-4 text-center font-bold">Diana M. Steakley-Freeman</h1>
+    <p class="{SUBHEADING_CLASSES} text-center font-thin">coder. creator. communicator.</p>
   </div>
-  <img
-    src="/images/diana-and-rafiki.jpg"
-    class="mx-auto max-w-xs rounded-full border-2 border-white"
-    alt="Diana and her dog "
-  />
-  <div
-    class="relative my-[100px] p-2 text-right text-lg md:text-xl lg:p-5 lg:text-2xl"
-    use:inview={{ threshold: 1, rootMargin: "100px" }}
-    on:enter={() => {
-      console.log("entering");
-      expandsAreInView = true;
-    }}
-    on:leave={() => {
-      console.log("exiting");
-      expandsAreInView = false;
-    }}
-  >
-    <div
-      class="m-auto my-5 max-w-lg flex-col overflow-hidden p-5 text-left font-monospace font-thin"
-      class:exit={!expandsAreInView}
-      class:enter={expandsAreInView}
-    >
-     <ComputerScreen>
-      {#if expandsAreInView}
-      <p>
-        <Typewriter mode="cascade">
-          Software Engineer, <!-- intentional line break for typewriter timing-->
-          Humane Technologist. <!-- intentional line break for typewriter timing-->
-          Digital Policy Buff, <!-- intentional line break for typewriter timing-->
-          User Rights Enthusiast. <!-- intentional line break for typewriter timing-->
-          Former Scientist, <!-- intentional line break for typewriter timing-->
-          Forever Experimenting. <!-- intentional line break for typewriter timing-->
-          <!-- intentional line break for typewriter timing-->
-        </Typewriter>
+  <div class="gap-4 md:flex">
+    <img
+      src="/images/diana-and-rafiki.jpg"
+      class="mx-auto max-w-xs rounded-full border-2 border-white"
+      alt=""
+    />
+    <div class="flex w-full flex-col justify-between p-5 md:w-1/2">
+      <p class="m-auto my-3">
+        Full Stack Software Engineer. 10+ years of website and application development in academic,
+        medical, nonprofit, and start-up environments.
       </p>
-    {/if}
-     </ComputerScreen>
+      <p class="m-auto my-3">
+        Digital Policy Buff, User Rights Enthusiast, Former Scientist, Forever Experimenting.
+        Enthusiastic nerd.
+      </p>
+      <Button class="bg-darkest-gray my-auto w-fit p-5">More about Diana</Button>
+    </div>
   </div>
+</LandingSection>
+<LandingSection class="mx-auto justify-around">
+  <h2>Let's Connect!</h2>
 </LandingSection>
 
 <style>
