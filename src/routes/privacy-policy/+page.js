@@ -1,7 +1,7 @@
 
 import { error } from "@sveltejs/kit";
 
-export async function load({ params }) {
+export async function load() {
     const [, module] = Object.entries(import.meta.glob("./index.md")).flat();
     const entry =  await module()
     if (entry) {

@@ -1,12 +1,8 @@
 ---
-date: "2019-03-31"
-title: "Privacy Policy"
+date: "2022-12-03"
+title: "Privacy Notice"
 image: /images/phone-disconnected-from-chain.jpeg
 ---
-
-**PRIVACY NOTICE**
-
-**Last updated December 03, 2022**
 
 This privacy notice for Diana M Steakley-Freeman ("**Company**," "**we**," "**us**," or "**our**"), describes how and why we might collect, store, use, and/or share ("**process**") your information when you use our services ("**Services**"), such as when you:
 
