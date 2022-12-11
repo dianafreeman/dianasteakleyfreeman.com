@@ -109,4 +109,3 @@ Coalhouse learns that he will have to make himself heard.
 - Andy Lopez
 - Miriam Iris Carey
 - Barrington “BJ” Williams
-
