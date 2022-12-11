@@ -6,6 +6,9 @@
 </script>
 
 <Seo title={data.title} />
+<div>
+  
+</div>
 
 <ol class="grid w-full justify-center gap-4 p-3 md:grid-cols-2 lg:grid-cols-3">
   {#each data.entries as entry}

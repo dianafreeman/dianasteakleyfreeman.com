@@ -1,7 +1,7 @@
 <script>
   import SettingsStore from "$stores/SettingsStore";
 
-  import Button from "./Button.svelte";
+  import Button from "./Buttons/Button.svelte";
 
   const settingItemClasses =
     "text-neutral-200 px-4 flex justify-between items-center py-5 text-base font-medium";

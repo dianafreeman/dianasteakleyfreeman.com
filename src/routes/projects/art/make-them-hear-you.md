@@ -110,7 +110,3 @@ Coalhouse learns that he will have to make himself heard.
 - Miriam Iris Carey
 - Barrington “BJ” Williams
 
-<style>
-li { margin: unset }
-ul { padding: 2em}
-</style>

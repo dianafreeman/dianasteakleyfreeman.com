@@ -1,16 +1,13 @@
 <script>
   import { createEventDispatcher } from "svelte";
 
+  
+  let clazz = ""
+  export { clazz as class };
   export let enabled = true;
 
-  let clazz;
-  export { clazz as class };
-
+  
   const buttonClasses = `text-black switch ${clazz}`;
-  // function toggleEnabled() {
-  //   enabled = !enabled;
-  // }
-
   const dispatch = createEventDispatcher();
 
   function handleClick() {

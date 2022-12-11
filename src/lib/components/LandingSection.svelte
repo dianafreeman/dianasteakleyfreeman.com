@@ -15,7 +15,7 @@
     const { inView } = evt.detail;
     isInView = inView;
   }}
-  class="my-auto flex w-full flex-col {clazz}"
+  class="my-auto flex w-full flex-col {clazz} {!isInView && "overflow-hidden"}"
   style="min-height: calc(100vh - {$topNavHeight}px)"
 >
   <div

@@ -1,12 +1,12 @@
 <script>
   import SettingsStore from "$stores/SettingsStore";
 
-  import NavBrand from "$lib/components/NavBrand.svelte";
-  import MenuToggle from "$lib/components/MenuToggle.svelte";
-  import ToggleItem from "$lib/components/ToggleItem.svelte";
+  import NavBrand from "$lib/components/Nav/NavBrand.svelte";
+  import MenuToggle from "$lib/components/Buttons/MenuToggle.svelte";
+  import ToggleItem from "$lib/components/Buttons/ToggleItem.svelte";
 
   import { settingsMenuIsOpen } from "$stores/LayoutStore";
-  import MainMenu from "./MainMenu.svelte";
+  import MainMenu from "./Nav/MainNav.svelte";
 
   export let navItems;
 

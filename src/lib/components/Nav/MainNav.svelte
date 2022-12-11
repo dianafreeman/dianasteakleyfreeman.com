@@ -1,12 +1,11 @@
 <script>
   import { mainMenuIsOpen, settingsMenuIsOpen, isMobileScreen } from "$stores/LayoutStore";
-  import createButtonClasses from "$lib/createButtonClasses";
-  import MenuToggle from "./MenuToggle.svelte";
+  import MenuToggle from "../Buttons/MenuToggle.svelte";
   import { page } from "$app/stores";
 
-  const buttonClasses = createButtonClasses();
 
-  const navItemClasses = `${buttonClasses} inherit px-4 py-5 text-left md:text-right`;
+  // const navItemClasses = `${buttonClasses} inherit px-4 py-5 text-left md:text-right`;
+  const navItemClasses = `inherit px-4 py-5 text-left md:text-right`;
 
   export let items;
 

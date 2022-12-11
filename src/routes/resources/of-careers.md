@@ -25,5 +25,5 @@ we are #hiring.
 
 <div class="flex w-full justify-center py-4">
 
-<img class="w-1/2" src="/images/OF_logo.jpg">
+<img class="w-1/2" src="/images/OF_logo.jpg" />
 </div>

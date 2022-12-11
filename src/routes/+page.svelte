@@ -1,21 +1,21 @@
 <script>
-  import TrailedText from "$lib/components/TrailedText.svelte";
-  import TrailStore from "$lib/components/Trail/store";
   import Typewriter from "svelte-typewriter";
   import { onMount } from "svelte";
   import { spring } from "svelte/motion";
   import { browser } from "$app/environment";
   import LandingSection from "$lib/components/LandingSection.svelte";
   import { HEADING_CLASSES, SUBHEADING_CLASSES } from "$lib/constants";
-  import { inview } from "svelte-inview";
+  import { fade } from "svelte/transition";
+  import Button from "$lib/components/Buttons/Button.svelte";
 
   let scrollY;
-  let expandsAreInView;
-  onMount(() => {
-    TrailStore.play();
-  });
+  let firstTypewriterIsDone;
+  let secondTypewriterIsDone;
 
-  let ySpring = spring(0);
+  let ySpring = spring(0, {
+    stiffness: 0.05,
+    damping: 0.8
+  });
 
   let height, width;
 
@@ -24,163 +24,97 @@
       window.scrollTo(0, y);
     }
   });
+
+  function onDownClick() {
+    const sections = document.querySelectorAll("section");
+    const secondSection = sections[1];
+    ySpring.set(secondSection.offsetTop);
+  }
+
+  let mounted = false;
+  onMount(() => {
+    mounted = true;
+    return () => {
+      mounted = false;
+    };
+  });
 </script>
 
 <svelte:window bind:scrollY bind:innerHeight={height} bind:innerWidth={width} />
 
-<LandingSection class="justify-center">
-  <div class="align-center relative my-12 md:max-w-xl lg:max-w-3xl lg:p-5">
-    <h1
-      class="{HEADING_CLASSES} min-h-[3em] w-full text-left font-thin"
-      aria-label="the future of engineering is human."
+<LandingSection class="font-monospace justify-center">
+  <div
+    class="bg-darkest-gray lg:min-w-md relative m-auto  flex w-full max-w-sm flex-col justify-between text-left font-thin md:max-w-lg "
+  >
+    <div
+      id="framebar"
+      class="bg-dark-gray absolute -top-10 left-0 h-10 w-full rounded-tr-lg rounded-tl-lg"
     >
-      <TrailedText />
-    </h1>
+      <span class="text-gray cursor-none rounded-full px-2 py-1">x</span>
+    </div>
+    <div class="flex min-h-[200px] w-full flex-col justify-between p-5">
+      {#if mounted}
+        <p class="text-3xl">
+          <Typewriter on:done={() => (firstTypewriterIsDone = true)}>
+            the future <!-- intentional line break for typewriter timing-->
+            of <!-- intentional line break for typewriter timing-->
+            engineering <!-- intentional line break for typewriter timing-->
+            is <!-- intentional line break for typewriter timing-->
+            human. <!-- intentional line break for typewriter timing-->
+          </Typewriter>
+        </p>
+
+        <span class="mt-5 min-h-[1em] text-3xl font-thin">
+          {#if firstTypewriterIsDone}
+            <Typewriter delay={800} on:done={() => (secondTypewriterIsDone = true)}>
+              hi. <!-- intentional line break for typewriter timing-->
+              <!-- intentional line break for typewriter timing-->
+              <!-- intentional line break for typewriter timing-->
+              <!-- intentional line break for typewriter timing-->
+              i'm <!-- intentional line break for typewriter timing-->
+              diana.</Typewriter
+            >
+          {/if}
+        </span>
+      {/if}
+    </div>
+  </div>
+  <div class="flex justify-center">
+    {#key secondTypewriterIsDone}
+      <button
+        class:invisible={!secondTypewriterIsDone}
+        disabled={!secondTypewriterIsDone}
+        on:click={onDownClick}
+        in:fade
+        class="bg-darkest-gray hover:border-gray hover:bg-darkest-gray z-10 w-fit rounded-full p-5 text-white hover:border"
+      >
+        <i class="las la-angle-down" aria-hidden="true" />
+        <span class="sr-only">down</span>
+      </button>
+    {/key}
   </div>
 </LandingSection>
 <LandingSection class="mx-auto justify-around">
-  <div class="align-center relative my-12 h-full p-2 lg:p-5" use:inview>
-    <h1 class="{HEADING_CLASSES} mb-4 text-center font-thin">
-      i'm <span class="font-bold">diana.</span>
-    </h1>
-    <h2 class="{SUBHEADING_CLASSES} text-center font-thin">
-      <a href="/projects/code" class="w-inherit">coder.</a><a href="/gallery">creator.</a><a
-        href="/blog">commnuicator.</a
-      >
-    </h2>
+  <div class="align-center relative my-12 h-full p-2 lg:p-5">
+    <h1 class="{HEADING_CLASSES} mb-4 text-center font-bold">Diana M. Steakley-Freeman</h1>
+    <p class="{SUBHEADING_CLASSES} text-center font-thin">coder. creator. communicator.</p>
   </div>
-  <img
-    src="/images/diana-and-rafiki.jpg"
-    class="mx-auto max-w-xs rounded-full border-2 border-white"
-    alt="Diana and her dog "
-  />
-  <div
-    class="relative my-[100px] p-2 text-right text-lg md:text-xl lg:p-5 lg:text-2xl"
-    use:inview={{ threshold: 1, rootMargin: "100px" }}
-    on:enter={() => {
-      console.log("entering");
-      expandsAreInView = true;
-    }}
-    on:leave={() => {
-      console.log("exiting");
-      expandsAreInView = false;
-    }}
-  >
-    <div
-      class="m-auto my-5 max-w-lg flex-col overflow-hidden p-5 text-left font-monospace font-thin"
-      class:exit={!expandsAreInView}
-      class:enter={expandsAreInView}
-    >
-      <div class="relative flex h-full min-h-[200px] w-full rounded-md bg-neutral-800 p-2 shadow">
-        <div id="buttons" class="absolute top-3 left-3 flex w-full flex-row justify-start">
-          <div class="mr-2 h-3 w-3 rounded-full bg-red-500" />
-          <div class="mr-2 h-3 w-3 rounded-full bg-yellow-500" />
-          <div class="mr-2 h-3 w-3 rounded-full bg-green-500" />
-        </div>
-        <div class="w-full pb-3 pt-8 text-xl">
-          {#if expandsAreInView}
-            <p>
-              <Typewriter mode="cascade">
-                Software Engineer, <!-- intentional line break for typewriter timing-->
-                Humane Technologist. <!-- intentional line break for typewriter timing-->
-                Digital Policy Buff, <!-- intentional line break for typewriter timing-->
-                User Rights Enthusiast. <!-- intentional line break for typewriter timing-->
-                Former Scientist, <!-- intentional line break for typewriter timing-->
-                Forever Experimenting. <!-- intentional line break for typewriter timing-->
-                <!-- intentional line break for typewriter timing-->
-              </Typewriter>
-            </p>
-          {/if}
-        </div>
-      </div>
+  <div class="gap-4 md:flex">
+    <img
+      src="/images/diana-and-rafiki.jpg"
+      class="mx-auto max-w-xs rounded-full border-2 border-white"
+      alt=""
+    />
+    <div class="flex w-full flex-col justify-between p-5 md:w-1/2">
+      <p class="m-auto my-3">
+        Full Stack Software Engineer. 10+ years of website and application development in academic,
+        medical, nonprofit, and start-up environments.
+      </p>
+      <p class="m-auto my-3">
+        Digital Policy Buff, User Rights Enthusiast, Former Scientist, Forever Experimenting.
+        Enthusiastic nerd.
+      </p>
+      <Button class="bg-darkest-gray my-auto w-fit p-5">More about Diana</Button>
     </div>
   </div>
 </LandingSection>
-
-<style>
-  /* ----------------------------------------------
- * Generated by Animista on 2022-11-14 21:3:36
- * Licensed under FreeBSD License.
- * See http://animista.net/license for more info. 
- * w: http://animista.net, t: @cssanimista
- * ---------------------------------------------- */
-
-  /**
- * ----------------------------------------
- * animation fade-out-top
- * ----------------------------------------
- */
-  @-webkit-keyframes fade-out-top {
-    0% {
-      -webkit-transform: translateY(0);
-      transform: translateY(0);
-      opacity: 1;
-    }
-    100% {
-      -webkit-transform: translateY(-50px);
-      transform: translateY(-50px);
-      opacity: 0;
-    }
-  }
-  @keyframes fade-out-top {
-    0% {
-      -webkit-transform: translateY(0);
-      transform: translateY(0);
-      opacity: 1;
-    }
-    100% {
-      -webkit-transform: translateY(-50px);
-      transform: translateY(-50px);
-      opacity: 0;
-    }
-  }
-
-  /* ----------------------------------------------
- * Generated by Animista on 2022-11-14 21:4:11
- * Licensed under FreeBSD License.
- * See http://animista.net/license for more info. 
- * w: http://animista.net, t: @cssanimista
- * ---------------------------------------------- */
-
-  /**
- * ----------------------------------------
- * animation fade-in-top
- * ----------------------------------------
- */
-  @-webkit-keyframes fade-in-top {
-    0% {
-      -webkit-transform: translateY(-50px);
-      transform: translateY(-50px);
-      opacity: 0;
-    }
-    100% {
-      -webkit-transform: translateY(0);
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
-  @keyframes fade-in-top {
-    0% {
-      -webkit-transform: translateY(-50px);
-      transform: translateY(-50px);
-      opacity: 0;
-    }
-    100% {
-      -webkit-transform: translateY(0);
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
-
-  .enter {
-    /* .fade-in-top  */
-    -webkit-animation: fade-in-top 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
-    animation: fade-in-top 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
-  }
-
-  .exit {
-    /* .fade-out-top  */
-    -webkit-animation: fade-out-top 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-    animation: fade-out-top 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-  }
-</style>
