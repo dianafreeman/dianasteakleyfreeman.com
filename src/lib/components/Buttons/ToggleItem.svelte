@@ -1,7 +1,8 @@
 <script>
   import Button from "./Button.svelte";
-  import ToggleSwitch from "./Toggles/ToggleSwitch.svelte";
+  import ToggleSwitch from "./ToggleSwitch.svelte";
 
+  /** @type {boolean} */
   export let value;
 
   $: responsiveValue = value;

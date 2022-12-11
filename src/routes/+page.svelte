@@ -6,7 +6,7 @@
   import LandingSection from "$lib/components/LandingSection.svelte";
   import { HEADING_CLASSES, SUBHEADING_CLASSES } from "$lib/constants";
   import { fade } from "svelte/transition";
-  import Button from "$lib/components/Button.svelte";
+  import Button from "$lib/components/Buttons/Button.svelte";
 
   let scrollY;
   let firstTypewriterIsDone;

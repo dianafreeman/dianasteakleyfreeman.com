@@ -2,7 +2,7 @@
   import NavLink from "./NavLink.svelte";
 
   /** @type { string } */
-  let clazz;
+  let clazz = ""
   export { clazz as class };
   /** @type { string } */
   export let title;

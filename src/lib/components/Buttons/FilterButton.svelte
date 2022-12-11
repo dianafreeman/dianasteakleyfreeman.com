@@ -2,7 +2,9 @@
   import { createEventDispatcher } from "svelte";
   import { writable } from "svelte/store";
 
+  /** @type { string } */
   export let label;
+  /** @type { boolean } */
   export let isActive;
 
   const dispatch = createEventDispatcher();
@@ -38,7 +40,7 @@
   on:mouseleave={() => isHovered.set(false)}
   on:focus={() => isHovered.set(true)}
   on:blur={() => isHovered.set(false)}
-  class="w-full border-b border-neutral-800 p-3 text-white hover:bg-medium-gray"
+  class="hover:bg-medium-gray w-full border-b border-neutral-800 p-3 text-white"
 >
   <div class="flex flex-row items-center justify-between">
     <i class={icon} aria-hidden="true" />

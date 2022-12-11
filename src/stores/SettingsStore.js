@@ -45,7 +45,7 @@ export function createSettingsStore() {
 
   settings.subscribe((s) => {
     if (browser) {
-      saveSettings(s);
+      // saveSettings(s);
     }
   });
 

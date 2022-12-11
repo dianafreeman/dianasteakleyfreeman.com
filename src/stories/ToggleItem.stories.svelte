@@ -1,7 +1,7 @@
 <script>
     import { Meta, Story } from "@storybook/addon-svelte-csf";
   
-    import ToggleItem from "$lib/components/ToggleItem.svelte";
+    import ToggleItem from "$lib/components/Buttons/ToggleItem.svelte";
   </script>
   
   <Meta title="ToggleItem" component={ToggleItem} />
