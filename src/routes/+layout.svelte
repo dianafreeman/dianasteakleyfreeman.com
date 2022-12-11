@@ -14,8 +14,8 @@
     isMobileScreen,
     topNavHeight
   } from "$stores/LayoutStore";
-  import TopNav from "$lib/components/TopNav.svelte";
-  import FooterNav from "$lib/components/FooterNav.svelte";
+  import TopNav from "$lib/components/Header.svelte";
+  import FooterNav from "$lib/components/Footer.svelte";
 
   /** @type {import('./$types').LayoutData} */
   export let data;

@@ -28,7 +28,7 @@
       containerClass: "w-1/2 mb-8",
       items: [
         {
-          href: "/privacy-statement",
+          href: "/privacy",
           text: "Privacy Statement"
         },
         {

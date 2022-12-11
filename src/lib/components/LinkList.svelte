@@ -1,5 +1,5 @@
 <script>
-  import NavLink from "./NavLink.svelte";
+  import NavLink from "./Nav/NavLink.svelte";
 
   /** @type { string } */
   let clazz = ""

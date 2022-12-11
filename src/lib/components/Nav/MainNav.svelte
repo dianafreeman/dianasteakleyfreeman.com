@@ -1,6 +1,6 @@
 <script>
   import { mainMenuIsOpen, settingsMenuIsOpen, isMobileScreen } from "$stores/LayoutStore";
-  import MenuToggle from "./Buttons/MenuToggle.svelte";
+  import MenuToggle from "../Buttons/MenuToggle.svelte";
   import { page } from "$app/stores";
 
 
