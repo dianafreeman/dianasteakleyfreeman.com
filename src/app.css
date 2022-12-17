@@ -23,7 +23,7 @@
   .link {
     @apply focus:outline focus:outline-1 focus:outline-offset-8 focus:outline-white;
   }
-  
+
   .inherit {
     display: inherit;
   }

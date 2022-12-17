@@ -3,8 +3,8 @@
 
   export let title;
   export let description;
-  
-  // see @url https://ogp.me/?fbclid=IwAR0wruFpNXtH3iq47dkKyj5MtIL0d1FDdP7seAiLi-xqYGwhpR5Lxt9CpOU#types 
+
+  // see @url https://ogp.me/?fbclid=IwAR0wruFpNXtH3iq47dkKyj5MtIL0d1FDdP7seAiLi-xqYGwhpR5Lxt9CpOU#types
   /**  @type { "website" | "article" | "profile" | "video" } */
   export let type = "website";
 

@@ -1,4 +1,5 @@
 <script>
+  import { dev } from "$app/environment";
   import { page } from "$app/stores";
 </script>
 
@@ -12,5 +13,8 @@
       what a <span class="font-bold">bummer.</span>
     </p>
     <p class="mr-3 text-2xl font-thin">error {$page.status}.</p>
+    {#if dev}
+      {$page.error.message}
+    {/if}
   </div>
 </section>

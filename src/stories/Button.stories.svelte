@@ -7,5 +7,5 @@
 <Meta title="Button" component={Button} />
 
 <Story name="Primary">
-  <Button class="p-5">Hello World </Button>
+  <Button class="p-5">Hello World</Button>
 </Story>
