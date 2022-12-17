@@ -4,6 +4,7 @@ date: "2020-03-15"
 title: "Distant Together"
 image: /images/people-on-phones.jpeg
 draft: true
+category
 tags:
   - react
 ---

@@ -1,12 +1,10 @@
 ---
 slug: user-misdirection
 date: "2019-04-05"
-title: "The Art of [User] Misdirection"
+title: "The Art of [User] Misdirection."
 image: /images/laptop-in-a-box.jpeg
 tags:
-  - technology
-  - history
-  - data science
+  - Technology & Human Behavior
 ---
 
 French Philosopher Paul Vilirio wrote “The invention of the ship was the invention of the shipwreck”; this, likely, will be the allegory of our time. The Dot-Com boom of the 1990’s delivered unprecedented access to a global network of information, and with it, an unprecedented blow to the Silicon Valley start-ups that had become profitable by monetizing web-based technologies.

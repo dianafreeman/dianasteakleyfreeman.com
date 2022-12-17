@@ -14,7 +14,9 @@
 
       <div class="mx-auto flex flex-col text-left md:w-full">
         <p class="text-md mr-3">
-          Last Updated on <span class="font-bold">{new Date(entry.metadata.date).toDateString()}</span>
+          Last Updated on <span class="font-bold"
+            >{new Date(entry.metadata.date).toDateString()}</span
+          >
         </p>
       </div>
     </div>
