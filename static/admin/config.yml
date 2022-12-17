@@ -136,13 +136,8 @@ collections:
           - { label: "Featured Image", name: image, widget: "image" }
           - { label: "Navigation Display Text", name: navigationText, widget: string }
 
-<<<<<<< HEAD
       - label: "Projects Page"
         name: "projects"
-=======
-      - label: "Gallery Page"
-        name: "gallery"
->>>>>>> 04b19ae (save)
         file: "src/routes/projects/_metadata.json"
         fields:
           - { label: Title, name: title, widget: string }
