@@ -1,6 +1,10 @@
-const preprocess = require("svelte-preprocess");
 const path = require("path");
 const { loadConfigFromFile, mergeConfig } = require("vite");
+
+async function getConfig(){
+  const config = await import("../svelte.config.js")
+  return config
+}
 
 function doesNotDupeStorybookSveltePlugins(p) {
   return !p.name.startsWith("vite-plugin-svelte") || p.name === "vite-plugin-svelte-kit";
@@ -14,7 +18,7 @@ module.exports = {
     builder: "@storybook/builder-vite"
   },
   svelteOptions: {
-    preprocess: import("../svelte.config.js").preprocess
+    preprocess: getConfig().preprocess
   },
   features: {
     storyStoreV7: false
