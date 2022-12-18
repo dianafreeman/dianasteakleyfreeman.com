@@ -55,7 +55,7 @@
   {...buttonProps}
 >
   {#if iconClass}
-    <i class={iconClass} ></i>
+    <i aria-hidden="true" class={iconClass} ></i>
   {/if}
   <slot />
 </button>
