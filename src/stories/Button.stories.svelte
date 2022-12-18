@@ -15,7 +15,7 @@ import { Meta, Story } from "@storybook/addon-svelte-csf";
 
 <Story name="without animated borders">
   <MarginDecorator>
-    <Button animateBorders={false} class="p-5">Hello World</Button>
+    <Button ty animateBorders={false} class="p-5">Hello World</Button>
   </MarginDecorator>
 </Story>
 

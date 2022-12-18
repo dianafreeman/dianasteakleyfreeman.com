@@ -12,7 +12,7 @@
     <p>Filter By</p>
     <ul aria-describedby="filter" role="menu" class="flex flex-wrap mx-auto justify-center">
       <FilterButton
-        on:click={(event) => store.clearFilters()}
+        on:click={() => store.clearFilters()}
         label={"All Topics"}
         isActive={activeFilters.length === 0}
       />

@@ -1,14 +1,19 @@
 <script>
-  import { writable } from "svelte/store";
   import { createEventDispatcher } from "svelte";
 
   let clazz = "";
   let wrapper;
   export { clazz as class };
-  export let animateBorders = true;
-  export let buttonProps;
-  export let iconClass = null;
+  export let elementProps = {};
   
+  /** @type { Boolean } */
+  export let animateBorders = true;
+
+  /** @type { String } */
+  export let iconClass = null;
+
+  /** @type { 'button' | 'a' } String */
+  export let type = "button";
 
   const dispatch = createEventDispatcher();
 
@@ -29,13 +34,14 @@
   }
 
   const borderClasses = animateBorders
-      ? "animate-button-borders"
-      : "hover:border-white active:border-white focus:border-white"
+    ? "animate-button-borders"
+    : "hover:border-white active:border-white focus:border-white";
 
-  const classes = `${borderClasses} border border-gray hover:bg-dark-gray active:bg-dark-gray focus:bg-dark-gray relative cursor-pointer w-full text-white flex justify-center items-center `; 
+  const classes = `${borderClasses} hover:bg-dark-gray active:bg-dark-gray focus:bg-dark-gray relative cursor-pointer w-full text-white flex justify-center items-center `;
 </script>
 
-<button
+<svelte:element
+  this={type}
   bind:this={wrapper}
   class="{classes} {clazz}"
   on:click={handleClick}
@@ -43,10 +49,10 @@
   on:mouseleave={handleMouseLeave}
   on:focus={handleFocus}
   on:blur={handleBlur}
-  {...buttonProps}
+  {...elementProps}
 >
   {#if iconClass}
-    <i aria-hidden="true" class={iconClass} ></i>
+    <i aria-hidden="true" class={iconClass} />
   {/if}
   <slot />
-</button>
+</svelte:element>

@@ -10,7 +10,7 @@
 
 <section
   bind:this={sectionWrapper}
-  use:inview={{ threshold: 0.5 }}
+  use:inview={{ threshold: 0.25 }}
   on:change={(evt) => {
     const { inView } = evt.detail;
     isInView = inView;

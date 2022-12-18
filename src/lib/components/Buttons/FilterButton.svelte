@@ -1,6 +1,5 @@
 <script>
   import { createEventDispatcher } from "svelte";
-  import { writable } from "svelte/store";
   import Button from "./Button.svelte";
 
   /** @type { string } */
@@ -10,7 +9,6 @@
 
   const dispatch = createEventDispatcher();
 
-  const isHovered = writable(false);
   const ICON_MAP = {
     active: "las la-check",
     inactive: "las la-circle"

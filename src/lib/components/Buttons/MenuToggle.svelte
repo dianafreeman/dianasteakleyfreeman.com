@@ -27,7 +27,7 @@
 
 <Button
   class="flex w-fit items-center justify-center p-4 {clazz}"
-  buttonProps={{ "aria-expanded": expanded, "aria-controls": id }}
+  elementProps={{ "aria-expanded": expanded, "aria-controls": id }}
   on:click
 >
   <span class:sr-only={hideLabel}>{label}</span>
