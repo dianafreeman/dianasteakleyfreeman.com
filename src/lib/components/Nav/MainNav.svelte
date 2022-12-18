@@ -3,7 +3,6 @@
   import MenuToggle from "../Buttons/MenuToggle.svelte";
   import { page } from "$app/stores";
 
-
   // const navItemClasses = `${buttonClasses} inherit px-4 py-5 text-left md:text-right`;
   const navItemClasses = `inherit px-4 py-5 text-left md:text-right`;
 
