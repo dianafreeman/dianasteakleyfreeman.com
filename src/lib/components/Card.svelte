@@ -19,5 +19,5 @@
     class="absolute left-0 -z-10 h-full w-full self-start object-cover object-center"
     style="opacity: 0.3;"
   />
-  <h3 class="text-3xl font-bold lowercase md:text-4xl">{title}<span aria-hidden="true">.</span></h3>
+  <h3 class="text-3xl font-bold lowercase md:text-4xl">{title}</h3>
 </a>

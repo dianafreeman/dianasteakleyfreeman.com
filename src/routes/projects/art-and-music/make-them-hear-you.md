@@ -4,7 +4,7 @@ date: "2020-03-15"
 title: "Make Them Hear You - Cover by Diana"
 image: /images/snapshot-make-them-hear-you.jpg
 tags:
-  - music
+  - art & music
 ---
 
 ## "Make Them Hear You"
@@ -109,4 +109,3 @@ Coalhouse learns that he will have to make himself heard.
 - Andy Lopez
 - Miriam Iris Carey
 - Barrington “BJ” Williams
-

@@ -8,30 +8,30 @@
   /** @type { boolean } */
   export let isOpen = false;
 
-  $: iconClass = isOpen ? "la-angle-up" :"la-angle-down"
+  $: iconClass = isOpen ? "la-angle-up" : "la-angle-down";
 </script>
 
-<dl class="mt-6 space-y-6 divide-y divide-gray-200">
+<dl class="divide-gray-200 mt-6 space-y-6 divide-y">
   <div class="pt-6">
     <dt class="text-lg">
       <button
         type="button"
-        class="flex w-full items-start justify-between text-left text-gray-400"
+        class="text-gray-400 flex w-full items-start justify-between text-left"
         aria-controls="faq-0"
         aria-expanded={isOpen}
         on:click={() => (isOpen = !isOpen)}
       >
-        <svelte:element this={titleElement} class="font-medium text-gray-900"
+        <svelte:element this={titleElement} class="text-gray-900 font-medium"
           >{title}</svelte:element
         >
         <span class="ml-6 flex h-7 items-center">
-          <i class="las {iconClass}"></i>
+          <i class="las {iconClass}" />
         </span>
       </button>
     </dt>
     {#if isOpen}
       <dd class="mt-2 pr-12" id="faq-0">
-        <p class="text-base text-gray-500">
+        <p class="text-gray-500 text-base">
           I don&#039;t know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur
           adipisicing elit. Quas cupiditate laboriosam fugiat.
         </p>

@@ -2,7 +2,6 @@
   import { writable } from "svelte/store";
   import { createEventDispatcher } from "svelte";
 
-
   let clazz = "";
   let wrapper;
   export { clazz as class };

@@ -1,6 +1,7 @@
 <script>
   import { createEventDispatcher } from "svelte";
   import { writable } from "svelte/store";
+  import Button from "./Button.svelte";
 
   /** @type { string } */
   export let label;
@@ -11,45 +12,27 @@
 
   const isHovered = writable(false);
   const ICON_MAP = {
-    hoveredActive: "las la-minus-square text-2xl",
-    hoveredInactive: "las la-plus-square text-2xl",
-    active: "lar la-check-square text-2xl",
-    default: "las la-stop text-2xl"
+    active: "las la-check",
+    inactive: "las la-circle"
   };
-
-  function setIcon(hovered) {
-    if (isActive) {
-      if (hovered) return ICON_MAP.hoveredActive; //"las la-minus-square text-2xl";
-      return ICON_MAP.active;
-    } else {
-      if (hovered) return ICON_MAP.hoveredInactive;
-      return ICON_MAP.default;
-    }
-  }
 
   function handleClick() {
     dispatch("click", { term: label });
   }
 
-  $: icon = setIcon($isHovered);
+  $: icon = isActive ? ICON_MAP.active : ICON_MAP.inactive;
 </script>
 
-<button
+<Button
   on:click={handleClick}
   on:mouseenter={() => isHovered.set(true)}
   on:mouseleave={() => isHovered.set(false)}
   on:focus={() => isHovered.set(true)}
   on:blur={() => isHovered.set(false)}
-  class="hover:bg-medium-gray w-full border-b border-neutral-800 p-3 text-white"
->
+  class="m-2 border-b border-neutral-800 p-3 text-white hover:bg-dark-gray whitespace-pre w-full md:w-fit"
+  >
   <div class="flex flex-row items-center justify-between">
-    <i class={icon} aria-hidden="true" />
-    {#if $isHovered && isActive}
-      <i
-        class="lar la-check-square inline-flex flex-1 text-2xl text-neutral-700"
-        aria-label="currently active"
-      />
-    {/if}
+    <i class="text-2xl {icon}" aria-hidden="true" />
     <span class="mx-3">{label}</span>
   </div>
-</button>
+</Button>

@@ -1,12 +1,10 @@
 <script>
   import { createEventDispatcher } from "svelte";
 
-  
-  let clazz = ""
+  let clazz = "";
   export { clazz as class };
   export let enabled = true;
 
-  
   const buttonClasses = `text-black switch ${clazz}`;
   const dispatch = createEventDispatcher();
 
