@@ -9,31 +9,22 @@
   export let buttonProps;
   export let iconClass = null;
   
-  let activated = writable(false);
 
   const dispatch = createEventDispatcher();
-  const toggleActivated = () => {
-    activated.update((currentBool) => !currentBool);
-  };
 
   function handleClick(e) {
-    toggleActivated();
     dispatch("click", { event: e });
   }
   function handleMouseEnter(e) {
-    activated.set(true);
     dispatch("mouseenter", { event: e });
   }
   function handleMouseLeave(e) {
-    activated.set(false);
     dispatch("mouseleave", { event: e });
   }
   function handleFocus(e) {
-    activated.set(true);
     dispatch("focus", { event: e });
   }
   function handleBlur(e) {
-    activated.set(false);
     dispatch("blur", { event: e });
   }
 
