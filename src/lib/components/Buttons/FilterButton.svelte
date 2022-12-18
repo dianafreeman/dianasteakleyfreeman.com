@@ -25,10 +25,7 @@
 
 <Button
   on:click={handleClick}
-  on:mouseenter={() => isHovered.set(true)}
-  on:mouseleave={() => isHovered.set(false)}
-  on:focus={() => isHovered.set(true)}
-  on:blur={() => isHovered.set(false)}
+  animateBorders={false}
   class="m-2 border-b border-neutral-800 p-3 text-white hover:bg-dark-gray whitespace-pre w-full md:w-fit"
   >
   <div class="flex flex-row items-center justify-between">

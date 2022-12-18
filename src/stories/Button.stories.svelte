@@ -1,11 +1,20 @@
 <script>
-  import { Meta, Story } from "@storybook/addon-svelte-csf";
+  import MarginDecorator from "$storybook/decorators/MarginDecorator.svelte";
+import { Meta, Story } from "@storybook/addon-svelte-csf";
 
   import Button from "../lib/components/Buttons/Button.svelte";
-</script>
+</script> d
 
 <Meta title="Button" component={Button} />
 
-<Story name="Primary">
-  <Button class="p-5">Hello World</Button>
+<Story name="with animated borders">
+  <MarginDecorator>
+    <Button class="p-5">Hello World</Button>
+  </MarginDecorator>
+</Story>
+
+<Story name="without animated borders">
+  <MarginDecorator>
+    <Button animateBorders={false} class="p-5">Hello World</Button>
+  </MarginDecorator>
 </Story>
