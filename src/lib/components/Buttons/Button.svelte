@@ -7,11 +7,13 @@
   export { clazz as class };
   export let animateBorders = true;
   export let buttonProps;
+  export let iconClass = null;
+  
   let activated = writable(false);
 
   const dispatch = createEventDispatcher();
   const toggleActivated = () => {
-    activated.update((curr) => !curr);
+    activated.update((currentBool) => !currentBool);
   };
 
   function handleClick(e) {
@@ -35,7 +37,11 @@
     dispatch("blur", { event: e });
   }
 
-  const classes = `${animateBorders ? "animate-button-borders" :"hover:border-white"} border border-gray hover:bg-dark-gray focus:bg-dark-gray relative cursor-pointer w-full text-white z-[3]`// ${buttonHoverClasses} ${beforeClasses} ${afterClasses}`;
+  const borderClasses = animateBorders
+      ? "animate-button-borders"
+      : "hover:border-white active:border-white focus:border-white"
+
+  const classes = `${borderClasses} border border-gray hover:bg-dark-gray active:bg-dark-gray focus:bg-dark-gray relative cursor-pointer w-full text-white flex justify-center items-center `; 
 </script>
 
 <button
@@ -48,6 +54,8 @@
   on:blur={handleBlur}
   {...buttonProps}
 >
+  {#if iconClass}
+    <i class={iconClass} ></i>
+  {/if}
   <slot />
 </button>
-  

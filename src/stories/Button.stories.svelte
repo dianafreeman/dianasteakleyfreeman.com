@@ -3,7 +3,7 @@
 import { Meta, Story } from "@storybook/addon-svelte-csf";
 
   import Button from "../lib/components/Buttons/Button.svelte";
-</script> d
+</script>
 
 <Meta title="Button" component={Button} />
 
@@ -16,5 +16,11 @@ import { Meta, Story } from "@storybook/addon-svelte-csf";
 <Story name="without animated borders">
   <MarginDecorator>
     <Button animateBorders={false} class="p-5">Hello World</Button>
+  </MarginDecorator>
+</Story>
+
+<Story name="with Icon">
+  <MarginDecorator>
+    <Button iconClass="las la-external-link-alt text-2xl mx-2" class="p-5">Hello World</Button>
   </MarginDecorator>
 </Story>
