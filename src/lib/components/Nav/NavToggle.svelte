@@ -1,5 +1,5 @@
 <script>
-  import Button from "./Button.svelte";
+  import Button from "../Buttons/Button.svelte";
 
   export let expanded = false;
   export let hideLabel = false;

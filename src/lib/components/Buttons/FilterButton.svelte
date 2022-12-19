@@ -4,30 +4,33 @@
 
   /** @type { string } */
   export let label;
+  /** @type { string } */
+  export let value;
   /** @type { boolean } */
   export let isActive;
+  /** @type { boolean } */
+  export let isPending;
 
   const dispatch = createEventDispatcher();
 
-  const ICON_MAP = {
-    active: "las la-check",
-    inactive: "las la-circle"
-  };
-
   function handleClick() {
-    dispatch("click", { term: label });
+    dispatch("click", { label, value });
   }
 
-  $: icon = isActive ? ICON_MAP.active : ICON_MAP.inactive;
+  $: icon = isPending ? "las la-plus" : isActive ? "las la-check" : "";
 </script>
 
 <Button
   on:click={handleClick}
-  animateBorders={false}
-  class="m-2 border-b border-neutral-800 p-3 text-white hover:bg-dark-gray whitespace-pre w-full md:w-fit"
-  >
-  <div class="flex flex-row items-center justify-between">
-    <i class="text-2xl {icon}" aria-hidden="true" />
-    <span class="mx-3">{label}</span>
-  </div>
+  class="my-2 flex items-center justify-end p-3 text-lg {isActive
+    ? 'bg-gray'
+    : ''}"
+  iconClass="mx-5 {icon}"
+  elementProps={{
+    "aria-pressed": isPending,
+    "aria-label": `${label} ${isActive ? "(applied)" : ""}`,
+    value,
+    name: "categoryFilter"
+  }}>
+  {label.toLowerCase()}
 </Button>

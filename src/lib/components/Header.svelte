@@ -2,7 +2,7 @@
   import SettingsStore from "$stores/SettingsStore";
 
   import NavBrand from "$lib/components/Nav/NavBrand.svelte";
-  import MenuToggle from "$lib/components/Buttons/MenuToggle.svelte";
+  import MenuToggle from "$lib/components/Nav/NavToggle.svelte";
   import ToggleItem from "$lib/components/Buttons/ToggleItem.svelte";
 
   import { settingsMenuIsOpen } from "$stores/LayoutStore";

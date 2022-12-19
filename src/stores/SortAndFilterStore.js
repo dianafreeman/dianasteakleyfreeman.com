@@ -1,44 +1,65 @@
-import { writable } from "svelte/store";
+import {
+  kebabCaseToTitleCase,
+  stripAllButSpacesAndAlphaNumeric
+} from "$lib/stringHelpers";
+import { derived, writable } from "svelte/store";
 
 export function reduceEntriesTo(key, entries) {
   return Array.from(
     new Set(
       entries.reduce((accum, e) => {
-        console.log(e.metadata)
+        // console.log(e.metadata)
         if (!Object.keys(e.metadata).includes(key))
           throw new Error(
             `ERROR. Can't reduce with an invalid key. "${key}" not found in the object. `
           );
         const values = e.metadata[key];
 
-        if (values) {
+        // console.log(Array.isArray(values))
+        if (!values) return accum;
+        if (Array.isArray(values)) {
           return [...accum, ...values];
+        } else {
+          return [...accum, values];
         }
       }, [])
     )
   );
 }
 
+function hasMatchingTags(entry, allTags){
+  const matchedTags = entry.metadata.tags.map(t => allTags.includes(t))
+  return matchedTags.length !== 0
+}
+
+
 function createSortAndFilterStore(entryArray) {
   if (!entryArray) return;
 
-  const activeFilters = writable([]);
-  const filteredItems = writable([]);
+  const tagFilters = writable([]);
+  const categoryFilter = writable("");
 
-  const tags = reduceEntriesTo("tags", entryArray);
 
-  activeFilters.subscribe(($activeFilters) => {
-    if (!$activeFilters.length) return filteredItems.set(entryArray);
-    const newItems = entryArray.filter((e) => {
-      let entryTags = e.metadata.tags;
-      const results = entryTags.map((t) => $activeFilters.includes(t));
-      return results.includes(true);
-    });
-    return filteredItems.set(newItems);
-  });
+  const tags = reduceEntriesTo("tags", entryArray).map((tag) => ({
+    value: stripAllButSpacesAndAlphaNumeric(tag),
+    label: tag
+  }));
+
+  const categories = reduceEntriesTo("category", entryArray).map(
+    (categorySlug) => ({
+      value: categorySlug,
+      label: kebabCaseToTitleCase(categorySlug).replace("Usa", "USA")
+    })
+  );
+
+  const filteredItems = derived([tagFilters, categoryFilter], ([$tags, $category]) => {
+    if (!$tags.length && !$category) return entryArray
+    
+    return entryArray.filter(entry => hasMatchingTags(entry, $tags)).filter( entry => $category === entry.metadata.category)
+  })
 
   function toggleFilter(term) {
-    activeFilters.update((currentFilters) => {
+    tagFilters.update((currentFilters) => {
       // remove the term if it exists
       if (currentFilters.includes(term)) {
         return currentFilters.filter((v) => v !== term);
@@ -48,13 +69,18 @@ function createSortAndFilterStore(entryArray) {
     });
   }
 
-  function clearFilters(){
-    activeFilters.set([])
+  function clearFilters() {
+    tagFilters.set([]);
+    categoryFilter.set("")
   }
+
+  
   return {
-    subscribe: activeFilters.subscribe,
+    subscribe: filteredItems.subscribe,
     items: filteredItems,
-    filters: { tags },
+    filters: { categories, tags },
+    tagFilters,
+    categoryFilter,
     toggleFilter,
     clearFilters
   };
