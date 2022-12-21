@@ -11,23 +11,12 @@
   let firstTypewriterIsDone = false;
   let secondTypewriterIsDone = false;
 
-  $: {
-    if (scrollY > 100 && !hasScrolled) {
-      hasScrolled = true;
-    }
-  }
+  // $: {
+  //   if (scrollY > 100 && !hasScrolled) {
+  //     hasScrolled = true;
+  //   }
+  // }
 
-  let mounted = false;
-  onMount(() => {
-    mounted = true;
-    const threeSeconds = setInterval(() => (shouldShake = !shouldShake), 3000);
-
-    return () => {
-      mounted = false;
-      hasScrolled = false;
-      clearInterval(threeSeconds);
-    };
-  });
 </script>
 
 <svelte:window bind:scrollY />
@@ -42,7 +31,7 @@
     <span class="cursor-none rounded-full px-2 py-1 text-light-gray">x</span>
   </div>
   <div class="flex min-h-[250px] w-full flex-col  justify-between bg-darkest-gray p-5 ">
-    {#if mounted}
+    
       <p class="text-3xl">
         <Typewriter on:done={() => (firstTypewriterIsDone = true)}>
           the future <!-- intentional line break for typewriter timing-->
@@ -71,13 +60,13 @@
           >
         {/if}
       </span>
-    {/if}
+    
   </div>
 </div>
 <div class="absolute bottom-20 left-0 w-full flex-col justify-end text-center align-middle">
-  {#if secondTypewriterIsDone && !hasScrolled}
-    <div transition:fade class="text-dark-gray" class:shake-bottom={shouldShake}>scroll down</div>
-  {/if}
+  <!-- {#if secondTypewriterIsDone && !hasScrolled} -->
+    <button transition:fade class=" text-dark-gray" class:shake-bottom={shouldShake}>scroll down</button>
+  <!-- {/if} -->
 </div>
 
 <style>
