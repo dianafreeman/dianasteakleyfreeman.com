@@ -6,7 +6,7 @@
 </script>
 
 
-<LandingSection class="relative justify-center ">
+<LandingSection fadeInWhenVisible={false} class="relative justify-center ">
   <IntroAnimation />
 </LandingSection>
 

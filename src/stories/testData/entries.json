@@ -1,51 +1,50 @@
 [
-    {
-        "metadata": {
-            "slug": "digital-nomad-black-history-tour",
-            "date": "2022-11-06",
-            "title": "I'm living as a digital nomad within the US. Here's why.",
-            "image": "/images/therapy-with-a-chatbot.jpeg",
-            "tags": [
-                "Black Historytelling US Tour"
-            ],
-            "relativePath": "/blog/black-historytelling-US-tour/2022-11-06-why-im-on-a-black-history-tour"
-        }
-    },
-    {
-        "metadata": {
-            "slug": "digital-self-care",
-            "date": "2019-03-31",
-            "title": "Digital Self-Care in the era of #InsertCrisisHere.",
-            "image": "/images/phone-disconnected-from-chain.jpeg",
-            "tags": [
-                "Technology & Human Behavior"
-            ],
-            "relativePath": "/blog/technology-and-humanity/2019-03-31-digital-self-care"
-        }
-    },
-    {
-        "metadata": {
-            "slug": "eliza-therapeutic-ai",
-            "date": "2019-04-03",
-            "title": "What ELIZA can teach us about therapeutic AI.",
-            "image": "/images/therapy-with-a-chatbot.jpeg",
-            "tags": [
-                "Technology & Human Behavior",
-                "History of Technology"
-            ],
-            "relativePath": "/blog/technology-and-humanity/2019-04-03-eliza-therapeutic-ai"
-        }
-    },
-    {
-        "metadata": {
-            "slug": "user-misdirection",
-            "date": "2019-04-05",
-            "title": "The Art of [User] Misdirection.",
-            "image": "/images/laptop-in-a-box.jpeg",
-            "tags": [
-                "Technology & Human Behavior"
-            ],
-            "relativePath": "/blog/technology-and-humanity/2019-04-05-user-misdirection"
-        }
+  {
+    "metadata": {
+      "slug": "digital-nomad-black-history-tour",
+      "date": "2022-11-06",
+      "title": "I'm living as a digital nomad within the US. Here's why.",
+      "image": "/images/therapy-with-a-chatbot.jpeg",
+      "category": "black-historytelling-US-tour",
+      "tags": ["history"],
+      "relativePath": "/blog/black-historytelling-US-tour/2022-11-06-why-im-on-a-black-history-tour",
+      "entityType": "blog"
     }
+  },
+  {
+    "metadata": {
+      "slug": "digital-self-care",
+      "date": "2019-03-31",
+      "title": "Digital Self-Care in the era of #InsertCrisisHere.",
+      "image": "/images/phone-disconnected-from-chain.jpeg",
+      "category": "technology-and-humanity",
+      "tags": ["digital mental health"],
+      "relativePath": "/blog/technology-and-humanity/2019-03-31-digital-self-care",
+      "entityType": "blog"
+    }
+  },
+  {
+    "metadata": {
+      "slug": "eliza-therapeutic-ai",
+      "date": "2019-04-03",
+      "title": "What ELIZA can teach us about therapeutic AI.",
+      "image": "/images/therapy-with-a-chatbot.jpeg",
+      "category": "technology-and-humanity",
+      "tags": ["history", "digital mental health"],
+      "relativePath": "/blog/technology-and-humanity/2019-04-03-eliza-therapeutic-ai",
+      "entityType": "blog"
+    }
+  },
+  {
+    "metadata": {
+      "slug": "user-misdirection",
+      "date": "2019-04-05",
+      "title": "The Art of [User] Misdirection.",
+      "image": "/images/laptop-in-a-box.jpeg",
+      "category": "technology-and-humanity",
+      "tags": ["history", "attention economy"],
+      "relativePath": "/blog/technology-and-humanity/2019-04-05-user-misdirection",
+      "entityType": "blog"
+    }
+  }
 ]
