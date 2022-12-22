@@ -9,5 +9,5 @@ export function kebabCaseToTitleCase(string){
         function(txt) {
           return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
         }
-      );
+      ).replaceAll("Historytelling Us", "Historytelling US").replaceAll("the Us", "the US");
 }
