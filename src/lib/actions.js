@@ -2,7 +2,7 @@ const FOCUSABLE_ELEMENTS =
   'a, button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
 
 /**
- * 
+ * @url https://uxdesign.cc/how-to-trap-focus-inside-modal-to-make-it-ada-compliant-6a50f9a70700
  * @param {*} node 
  * @param {*} events { onEscPressed }
  * @returns 
