@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@500&display=swap");
-@import url("./styles/animations.css");
+@import url("./styles/buttons.css");
 @import url("./styles/fonts.css");
 @import url("./styles/markdown.css");
 
@@ -19,11 +19,6 @@
     @apply text-white;
   }
 
-  a:not(nav a),
-  .link {
-    @apply focus:outline focus:outline-1 focus:outline-offset-8 focus:outline-white;
-  }
-
   .inherit {
     display: inherit;
   }
@@ -32,9 +27,24 @@
   .bg-semi-transparent {
     background-color: rgba(23, 23, 23, 0.7);
   }
+}
 
+@layer components {
+  a:not(nav a),
+  .link {
+    @apply focus:outline focus:outline-1 focus:outline-offset-8 focus:outline-white;
+  }
   .responsive-container {
     @apply mx-auto max-w-md md:max-w-3xl lg:max-w-4xl xl:max-w-5xl;
+  }
+  .heading {
+    @apply text-5xl md:text-6xl lg:text-7xl;
+  }
+  .subheading {
+    @apply text-xl font-thin md:text-2xl lg:text-3xl;
+  }
+  .button {
+    @apply relative w-full cursor-pointer text-white hover:bg-gray focus:bg-gray;
   }
 }
 
