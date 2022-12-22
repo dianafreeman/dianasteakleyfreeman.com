@@ -34,7 +34,7 @@
   {#each items as item}
     <li
       role="menuitem"
-      class="m-2 w-full md:w-fit"
+      class="py-2 px-3 w-full md:w-fit"
       aria-hidden={!$mainMenuIsOpen}
       class:hidden={!$mainMenuIsOpen}
     >

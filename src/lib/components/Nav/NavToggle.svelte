@@ -26,10 +26,10 @@
 </script>
 
 <Button
-  class="flex w-fit items-center justify-center p-4 {clazz}"
+  class="m-2 flex w-fit h-fit py-4 px-5 items-center justify-center {clazz}"
   elementProps={{ "aria-expanded": expanded, "aria-controls": id }}
   on:click
 >
   <span class:sr-only={hideLabel}>{label}</span>
-  <i class="text-3xl {iconClass}" aria-hidden="true" />
+  <i class="text-2xl {iconClass}" aria-hidden="true" />
 </Button>

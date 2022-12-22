@@ -37,14 +37,13 @@
         menuType="settings"
         iconType={$settingsMenuIsOpen ? "close" : "settings"}
         hideLabel
-        class=""
         expanded={$settingsMenuIsOpen}
       />
     </div>
   </nav>
   <!-- Settings menu items -->
   {#if $settingsMenuIsOpen}
-    <ul bind:this={trapFocusWapper} aria-hidden={!settingsMenuIsOpen}>
+    <ul class="px-2 py-1" bind:this={trapFocusWapper} aria-hidden={!settingsMenuIsOpen}>
       {#each settingsItems as item}
         <ToggleItem on:click={() => item.func()} value={item.value}>
           {item.navigationText}
