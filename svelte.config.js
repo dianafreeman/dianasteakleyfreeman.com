@@ -1,5 +1,4 @@
 import { mdsvex } from "mdsvex";
-import image from "svelte-image";
 import preprocess from "svelte-preprocess";
 import mdsvexConfig from "./mdsvex.config.js";
 import path from "path";
@@ -24,11 +23,6 @@ const config = {
   preprocess: [
     preprocess({ sourceMap: true }),
     mdsvex(mdsvexConfig),
-    image({
-      sizes: [200, 400, 600, 800],
-      processFolders: ["images", "images/rafiki-to-the-rescue"],
-      outputDir: "preprocessed"
-    })
   ]
 };
 
