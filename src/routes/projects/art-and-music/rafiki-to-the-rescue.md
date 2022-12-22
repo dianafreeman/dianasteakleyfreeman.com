@@ -4,8 +4,7 @@ date: "2020-03-15"
 title: '"Rafiki To The Rescue" Cartoon Set'
 image: /images/Rafiki.png
 tags:
-  - adobe
-  - illustration
+  - graphics & illustration
 ---
 
 
