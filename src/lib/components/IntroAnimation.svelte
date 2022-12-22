@@ -1,21 +1,13 @@
 <script>
   import Typewriter from "svelte-typewriter";
-  import { onMount } from "svelte";
   import { fade } from "svelte/transition";
 
   let scrollY;
 
   let introTimeoutComplete = false;
-  let hasScrolled = false;
   let shouldShake = false;
   let firstTypewriterIsDone = false;
   let secondTypewriterIsDone = false;
-
-  // $: {
-  //   if (scrollY > 100 && !hasScrolled) {
-  //     hasScrolled = true;
-  //   }
-  // }
 
 </script>
 

@@ -39,7 +39,7 @@
       class:hidden={!$mainMenuIsOpen}
     >
       <Button
-        type="a"
+        elementType="a"
         elementProps={{ href: item.relativePath }}
         class="{navItemClasses} {isActive(item) ? 'bg-dark-gray border' : ''}"
         >{item.navigationText}</Button

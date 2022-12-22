@@ -5,13 +5,15 @@
   export let options;
   /** @type { string } */
   export let name;
+  /** @type { string } */
+  export let selectedValue;
 
   const dispatch = createEventDispatcher();
 
   function onSelectChange(evt) {
-    const value = evt.target.value;
+    const targetValue = evt.target.value;
     const label = options[evt.target.selectedIndex].label;
-    dispatch("change", { value, label });
+    dispatch("change", { value:targetValue, label });
   }
 </script>
 
@@ -20,6 +22,6 @@
   on:change={onSelectChange}
   class="button border border-gray bg-black p-3 focus:bg-gray focus:outline focus:outline-white">
   {#each options as opt}
-    <option value={opt.value}>{opt.label}</option>
+    <option selected={selectedValue === opt.value} value={opt.value}>{opt.label}</option>
   {/each}
 </select>
