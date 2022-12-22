@@ -19,7 +19,7 @@ jobs:
 
       - name: Restore NPM Deps & Modules
         id: restore-dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: |
             ~/.npm
@@ -31,7 +31,7 @@ jobs:
         run: npm ci
 
       - name: Cache Dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         if: steps.restore-dependencies.outputs.cache-hit != 'true'
         with:
           path: |
