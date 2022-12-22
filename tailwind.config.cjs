@@ -3,11 +3,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "darkest-gray": "#0e0e0e",
+        "darkest-gray": "#181818",
         "dark-gray": "#222222",
-        "medium-gray": "#272727",
-        gray: "#808080",
-        "light-gray": "#c1c1c1"
+        "gray": "#474747",
+        "light-gray": "#808080",
+        "lightest-gray": "#c1c1c1"
       },
       fontFamily: {
         montserrat: ["Monserrat"],

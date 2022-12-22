@@ -2,7 +2,7 @@
   import SettingsStore from "$stores/SettingsStore";
 
   import NavBrand from "$lib/components/Nav/NavBrand.svelte";
-  import MenuToggle from "$lib/components/Buttons/MenuToggle.svelte";
+  import MenuToggle from "$lib/components/Nav/NavToggle.svelte";
   import ToggleItem from "$lib/components/Buttons/ToggleItem.svelte";
 
   import { settingsMenuIsOpen } from "$stores/LayoutStore";
@@ -37,14 +37,13 @@
         menuType="settings"
         iconType={$settingsMenuIsOpen ? "close" : "settings"}
         hideLabel
-        class=""
         expanded={$settingsMenuIsOpen}
       />
     </div>
   </nav>
   <!-- Settings menu items -->
   {#if $settingsMenuIsOpen}
-    <ul bind:this={trapFocusWapper} aria-hidden={!settingsMenuIsOpen}>
+    <ul class="px-2 py-1" bind:this={trapFocusWapper} aria-hidden={!settingsMenuIsOpen}>
       {#each settingsItems as item}
         <ToggleItem on:click={() => item.func()} value={item.value}>
           {item.navigationText}

@@ -5,14 +5,14 @@
 
 <div class="mb-auto flex min-h-screen flex-col justify-start px-4">
   <div
-    class="before:content-[' '] relative flex min-h-[50vh] flex-col justify-center bg-contain bg-center grayscale before:absolute before:top-0 before:-z-0 before:h-full before:w-full before:bg-[rgba(0,0,0,0.5)] lg:min-h-[80vh] md:bg-right"
+    class="before:content-[' '] relative flex min-h-[50vh] flex-col justify-center bg-contain bg-center grayscale before:absolute before:top-0 before:-z-0 before:h-full before:w-full before:bg-[rgba(0,0,0,0.5)] md:bg-right lg:min-h-[80vh]"
     style="background-image: url({entry.metadata.image}); background-repeat: no-repeat;"
   >
     <div class="z-10">
       <h1
-        class="mb-12 text-left text-4xl font-bold lowercase md:text-left md:text-5xl md:w-1/2 lg:text-6xl"
+        class="mb-12 text-left text-4xl font-bold lowercase md:w-1/2 md:text-left md:text-5xl lg:text-6xl"
       >
-        {entry.metadata.title}.
+        {entry.metadata.title}
       </h1>
 
       {#if entry.metadata?.date}

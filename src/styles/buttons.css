@@ -1,0 +1,67 @@
+/* TODO: use SASS here */
+@layer utilities {
+  .borders { 
+    @apply border border-gray hover:border-white focus:border-white active:border-white
+  }
+
+  /* 
+  animations inspired by 
+  https://codepen.io/giana/pen/yYBpVY 
+*/
+/* TODO: convert to tailwind */
+  .animate-borders {
+    @apply border border-gray;
+    position: relative;
+    vertical-align: middle;
+    background: none;
+    outline: 0;
+    box-sizing: border-box;
+    position: relative;
+    vertical-align: middle;
+  }
+
+  .animate-borders:before,
+  .animate-borders:after {
+    content: "";
+    box-sizing: inherit;
+    position: absolute;
+    border: 1px solid transparent;
+    width: 0;
+    height: 0;
+    transition: opacity 200ms ease-in-out;
+  }
+
+  .animate-borders:hover::before,
+  .animate-borders:active::before,
+  .animate-borders:focus::before {
+    border-top-color: white; /*// Make borders visible*/
+    border-right-color: white;
+    top: 0;
+    left: 0;
+    transition: width 0.25s ease-out,
+      /*/ Width expands first*/ height 0.25s ease-out 0.25s; /*/ And then height*/
+  }
+
+  .animate-borders:hover::after,
+  .animate-borders:active::after,
+  .animate-borders:focus::after {
+    bottom: 0;
+    right: 0;
+    border-bottom-color: white; /* Make borders visible*/
+    border-left-color: white;
+    transition: border-color 0s ease-out 0.5s,
+      /* Wait for ::before to finish before showing border*/ width 0.25s
+        ease-out 0.5s,
+      /* And then expanding width*/ height 0.25s ease-out 0.75s; /*And finally height*/
+  }
+
+  .animate-borders:hover::after,
+  .animate-borders:active::after,
+  .animate-borders:focus::after,
+  .animate-borders:hover::before,
+  .animate-borders:active::before,
+  .animate-borders:focus::before {
+    width: 100%;
+    height: 100%;
+  }
+}

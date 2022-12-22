@@ -1,6 +1,9 @@
 name: Build and Deploy Pull Request To Netlify
 on:
   pull_request:
+    branches:
+      - "!main"
+      - "!staging"
 
 concurrency:
   group: ${{ github.head_ref }}
@@ -17,8 +20,30 @@ jobs:
         with:
           node-version: 16.15.0
 
-      - run: npm install
-      - run: npm run build
+      - name: Restore NPM Deps & Modules
+        id: restore-dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.npm
+            ./node_modules
+          key: node-cache-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Do Clean-Install
+        if: steps.restore-dependencies.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: Cache Dependencies
+        uses: actions/cache@v3
+        if: steps.restore-dependencies.outputs.cache-hit != 'true'
+        with:
+          path: |
+            ~/.npm
+            ./node_modules
+          key: node-cache-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Build Application
+        run: npm run build
 
       - name: Deploy to Netlify
         uses: netlify/actions/cli@master
