@@ -41,7 +41,7 @@
     ? "animate-borders"
     : borders && "borders";
 
-  const classesIfNotDefined = "flex justify-center items-center"
+  const classesIfNotDefined = "flex justify-center items-center p-5"
   const classes = `${borderClasses} button`;
 </script>
 
