@@ -4,6 +4,7 @@
 
   import SortAndFilter from "$lib/components/Forms/SortAndFilter.svelte";
   import createSortAndFilterStore from "$stores/SortAndFilterStore";
+  import Modal from "$lib/components/Modal.svelte";
 
   /** @type {import('./$types').PageData} */
   export let data;
@@ -14,7 +15,10 @@
 </script>
 
 <Seo title={data.title} />
-<SortAndFilter store={sortAndFilterStore} data={data.entries} />
+<Modal buttonText="Sort & Filter" buttonClasses="m-2" class="mx-2" title="Sort and filter">
+
+  <SortAndFilter store={sortAndFilterStore} data={data.entries} />
+</Modal>
 <ol
   class="grid w-full justify-center gap-4 p-3 md:grid-cols-2 lg:grid-cols-3"
   aria-live="polite">
