@@ -10,8 +10,6 @@
   /** @type { string } */
   export let value;
   /** @type { boolean } */
-  export let isActive;
-  /** @type { boolean } */
   export let isPending;
   /** @type { boolean } */
   export let useSwitch;
@@ -26,20 +24,22 @@
     dispatch("click", { label, value });
   }
 
+  $: elementProps = {
+    "aria-pressed": isPending,
+    "aria-label": label,
+    value,
+    name: "categoryFilter"
+  };
+
   $: responsiveValue = value;
 </script>
 
 <Button
+  class="my-2 flex items-center justify-end p-3 text-lg {clazz}"
   {animateBorders}
   on:click={handleClick}
-  class="my-2 flex items-center justify-end p-3 text-lg {clazz}"
   {iconClass}
-  elementProps={{
-    "aria-pressed": isPending,
-    "aria-label": `${label} ${isActive ? "(applied)" : ""}`,
-    value,
-    name: "categoryFilter"
-  }}>
+  {elementProps}>
   <slot />
   {#if useSwitch}
     <ToggleSwitch enabled={responsiveValue} />

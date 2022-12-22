@@ -48,7 +48,7 @@
 <div class="m-5 w-auto">
   <div class="border border-gray p-5 ">
     <div class="">
-      <div>
+      <div class="">
         <label for="category" class="font-bold lowercase"
           >Browse by Category</label>
         <SelectField
@@ -57,16 +57,18 @@
           selectedValue={$category.value}
           options={[ALL_CATEGORIES_OPTION, ...options.categories]} />
       </div>
-      <p class="font-bold lowercase">Filter By Tag</p>
-      <div class="flex flex-wrap">
-        {#each options.tags as tag}
-          <CheckboxField
-            class="w-full"
-            value={tag.value}
-            label={tag.label}
-            checked={$tags.map((v) => v.value).includes(tag.value)}
-            on:change={onCheckboxClick} />
-        {/each}
+      <div class="mt-5">
+        <p class="font-bold lowercase">Filter By Tag</p>
+        <div class="flex flex-wrap">
+          {#each options.tags as tag}
+            <CheckboxField
+              class="w-full"
+              value={tag.value}
+              label={tag.label}
+              checked={$tags.map((v) => v.value).includes(tag.value)}
+              on:change={onCheckboxClick} />
+          {/each}
+        </div>
       </div>
     </div>
     <div id="active-filters" class="my-5">
