@@ -1,7 +1,14 @@
 .DS_Store
 node_modules
 /build
-/public
+
+!public/images
+/public/_app/**
+/public/fonts/**
+/public/_*
+/public/*.json
+/public/admin/**
+
 /.netlify
 /.svelte-kit
 /package
