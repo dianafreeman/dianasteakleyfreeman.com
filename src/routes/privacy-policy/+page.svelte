@@ -1,4 +1,5 @@
 <script>
+  
   export let data;
   const { entry } = data;
 </script>

@@ -4,7 +4,7 @@ date: "2014-11-21"
 title: "Understanding perceived barriers to treatment from web browsing behavior"
 image: /images/people-on-phones.jpeg
 tags: 
-    - peer-reviewed
+    - peer reviewed
 ---
 
 
