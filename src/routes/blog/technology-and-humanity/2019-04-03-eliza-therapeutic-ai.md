@@ -3,9 +3,10 @@ slug: eliza-therapeutic-ai
 date: "2019-04-03"
 title: "What ELIZA can teach us about therapeutic AI."
 image: /images/therapy-with-a-chatbot.jpeg
+category: Technology & Humanity
 tags:
-  - Technology & Human Behavior
-  - History of Technology
+  - history
+  - digital mental health
 ---
 
 Chatting Robots — “chatbots” — have made their way into every industry, and now, they are making waves in healthcare. The concept of a virtual doctor seems novel — versions of the idea have [disappointed](https://www.fastcompany.com/90318752/doctors-are-using-hospital-robots-to-tell-patients-theyre-dying-sparking-an-outcry) patients and clinicians alike.
@@ -32,7 +33,7 @@ Today, ELIZA is best known for these mannerisms that mimic verbiage of a psychot
 
 Researchers have warned that the digital age has left us more prone to feelings of loneliness, isolation, and depression3; they’ve also shown that digital tools can help us feel more connected to people we love4, and can sometimes provide useful tools to improve our mental health5 .
 
-The tech leaders of Silicon Valley have become [infamous for their motto“Move Fast and Break Things”](https://www.politico.eu/article/brexit-silicon-valley-move-fast-and-break-things/) —a saying that has not aged well amidst lawsuits, privacy scandals, and other public missteps. The science on the potential harm of chat-bots is limited, but we know that feeling ‘misunderstood’ by a technology can have a direct and immediate effect on our basic needs and sense of belonging6.
+The tech leaders of Silicon Valley have become [infamous for their motto “Move Fast and Break Things”](https://www.politico.eu/article/brexit-silicon-valley-move-fast-and-break-things/) —a saying that has not aged well amidst lawsuits, privacy scandals, and other public missteps. The science on the potential harm of chat-bots is limited, but we know that feeling ‘misunderstood’ by a technology can have a direct and immediate effect on our basic needs and sense of belonging6.
 
 One fact is undeniable — technology has the potential to revolutionize healthcare. But perhaps, we should heed the advice of those who built these tools, andmove more slowly.
 

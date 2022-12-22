@@ -1,10 +1,10 @@
 <script>
   import { mainMenuIsOpen, settingsMenuIsOpen, isMobileScreen } from "$stores/LayoutStore";
-  import MenuToggle from "../Buttons/MenuToggle.svelte";
+  import MenuToggle from "./NavToggle.svelte";
+  import Button from "../Buttons/Button.svelte";
   import { page } from "$app/stores";
 
-  // const navItemClasses = `${buttonClasses} inherit px-4 py-5 text-left md:text-right`;
-  const navItemClasses = `inherit px-4 py-5 text-left md:text-right`;
+  const navItemClasses = `inherit px-8 py-5 text-left md:text-right`;
 
   export let items;
 
@@ -34,14 +34,15 @@
   {#each items as item}
     <li
       role="menuitem"
-      class="m-2 w-full md:w-fit"
+      class="py-2 px-3 w-full md:w-fit"
       aria-hidden={!$mainMenuIsOpen}
       class:hidden={!$mainMenuIsOpen}
     >
-      <a
-        href={item.relativePath}
-        class="{navItemClasses} {isActive(item) ? 'font-bold underline underline-offset-8' : ''}"
-        >{item.navigationText}</a
+      <Button
+        elementType="a"
+        elementProps={{ href: item.relativePath }}
+        class="{navItemClasses} {isActive(item) ? 'bg-dark-gray border' : ''}"
+        >{item.navigationText}</Button
       >
     </li>
   {/each}

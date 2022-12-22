@@ -1,18 +1,19 @@
-import { writable } from "svelte/store";
+import {
+  kebabCaseToTitleCase,
+  stripAllButSpacesAndAlphaNumeric
+} from "$lib/stringHelpers";
+import { derived, writable } from "svelte/store";
 
 export function reduceEntriesTo(key, entries) {
   return Array.from(
     new Set(
       entries.reduce((accum, e) => {
-        console.log(e.metadata)
-        if (!Object.keys(e.metadata).includes(key))
-          throw new Error(
-            `ERROR. Can't reduce with an invalid key. "${key}" not found in the object. `
-          );
         const values = e.metadata[key];
-
-        if (values) {
+        if (!values) return accum;
+        if (Array.isArray(values)) {
           return [...accum, ...values];
+        } else {
+          return [...accum, values];
         }
       }, [])
     )
@@ -22,23 +23,46 @@ export function reduceEntriesTo(key, entries) {
 function createSortAndFilterStore(entryArray) {
   if (!entryArray) return;
 
-  const activeFilters = writable([]);
-  const filteredItems = writable([]);
+  const tags = writable([]);
+  const category = writable({});
 
-  const tags = reduceEntriesTo("tags", entryArray);
+  const allTags = reduceEntriesTo("tags", entryArray).map((tag) => ({
+    value: stripAllButSpacesAndAlphaNumeric(tag),
+    label: tag
+  }));
 
-  activeFilters.subscribe(($activeFilters) => {
-    if (!$activeFilters.length) return filteredItems.set(entryArray);
-    const newItems = entryArray.filter((e) => {
-      let entryTags = e.metadata.tags;
-      const results = entryTags.map((t) => $activeFilters.includes(t));
-      return results.includes(true);
-    });
-    return filteredItems.set(newItems);
-  });
+  const allCategories = reduceEntriesTo("category", entryArray).map(
+    (categorySlug) => ({
+      value: categorySlug,
+      label: kebabCaseToTitleCase(categorySlug)
+    })
+  );
+
+  function entryMatchesTags(entry, tagsObject) {
+    const matchedTags = entry.metadata.tags.filter((t) => tagsObject.map(v => v.label).includes(t));
+    return matchedTags.length !== 0;
+  }
+  
+  function entryMatchesCategory(entry, categoryObject){
+    if (!categoryObject || categoryObject.value === "") return true 
+    const categoryRegex =  new RegExp(categoryObject.value, "i")
+    return entry.metadata.category.match(categoryRegex)
+  }
+  
+  const filteredItems = derived(
+    [tags, category],
+    ([$tags, $category]) => {
+      if (!$tags.length && !$category.value) return entryArray;
+
+      return entryArray.filter( e => $category.value ? entryMatchesCategory(e, $category) : true).filter(e => $tags.length ? entryMatchesTags(e, $tags) : true)
+       
+    }
+  );
+
+  filteredItems.subscribe(v => console.log("filteredItems", v))
 
   function toggleFilter(term) {
-    activeFilters.update((currentFilters) => {
+    tags.update((currentFilters) => {
       // remove the term if it exists
       if (currentFilters.includes(term)) {
         return currentFilters.filter((v) => v !== term);
@@ -48,13 +72,17 @@ function createSortAndFilterStore(entryArray) {
     });
   }
 
-  function clearFilters(){
-    activeFilters.set([])
+  function clearFilters() {
+    tags.set([]);
+    category.set();
   }
+
   return {
-    subscribe: activeFilters.subscribe,
-    items: filteredItems,
-    filters: { tags },
+    subscribe: filteredItems.subscribe,
+    results: filteredItems,
+    options: { categories: allCategories, tags:allTags },
+    tags,
+    category,
     toggleFilter,
     clearFilters
   };

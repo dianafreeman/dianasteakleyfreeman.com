@@ -69,7 +69,7 @@
 />
 <header
   bind:clientHeight={headerHeight}
-  class="fixed top-0 z-30 w-full bg-darkest-gray pb-4"
+  class="fixed top-0 z-30 w-full bg-semi-transparent pb-4"
   class:dyslexia
 >
   <TopNav navItems={data.navItems} />
