@@ -8,13 +8,16 @@
   export let elementProps = {};
   
   /** @type { Boolean } */
+  export let borders = true;
+
+  /** @type { Boolean } */
   export let animateBorders = true;
 
   /** @type { String } */
   export let iconClass = null;
 
-  /** @type { 'button' | 'a' } String */
-  export let type = "button";
+  /** @type { 'button' | 'a' | 'div' } String */
+  export let elementType = "button";
 
   const dispatch = createEventDispatcher();
 
@@ -35,17 +38,17 @@
   }
 
   const borderClasses = animateBorders
-    ? "animate-button-borders"
-    : "border border-gray hover:border-white active:border-white focus:border-white";
+    ? "animate-borders"
+    : borders && "borders";
 
-  const defaultClasses = "flex justify-center items-center"
-  const classes = `${borderClasses} bg-darkest-gray hover:bg-gray active:bg-gray relative cursor-pointer w-full text-white`;
+  const classesIfNotDefined = "flex justify-center items-center"
+  const classes = `${borderClasses} button`;
 </script>
 
 <svelte:element
-  this={type}
+  this={elementType}
   bind:this={wrapper}
-  class="{classes} {clazz || defaultClasses }"
+  class="{classes} {clazz || classesIfNotDefined}"
   on:click={handleClick}
   on:mouseenter={handleMouseEnter}
   on:mouseleave={handleMouseLeave}
@@ -54,7 +57,7 @@
   {...elementProps}
 >
   {#if iconClass}
-    <i aria-hidden="true" class={iconClass} />
+    <i aria-hidden="true" class="mx-2 {iconClass}" />
   {/if}
   <slot />
 </svelte:element>

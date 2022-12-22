@@ -1,9 +1,12 @@
 <script>
   import { createEventDispatcher } from "svelte";
   import Button from "./Button.svelte";
+  import ToggleSwitch from "./ToggleSwitch.svelte";
 
   /** @type { string } */
   export let label;
+  /** @type { string } */
+  export let iconClass;
   /** @type { string } */
   export let value;
   /** @type { boolean } */
@@ -11,28 +14,34 @@
   /** @type { boolean } */
   export let isPending;
   /** @type { boolean } */
-  // export let useSwitch;
+  export let useSwitch;
+  /** @type { Boolean } */
+  export let animateBorders = false;
+
+  let clazz = "";
+  export { clazz as class };
 
   const dispatch = createEventDispatcher();
-
   function handleClick() {
     dispatch("click", { label, value });
   }
 
-  $: icon = isPending ? "las la-plus" : isActive ? "las la-check" : "";
+  $: responsiveValue = value;
 </script>
 
 <Button
+  {animateBorders}
   on:click={handleClick}
-  class="my-2 flex items-center justify-end p-3 text-lg {isActive
-    ? 'bg-gray'
-    : ''}"
-  iconClass="mx-5 {icon}"
+  class="my-2 flex items-center justify-end p-3 text-lg {clazz}"
+  {iconClass}
   elementProps={{
     "aria-pressed": isPending,
     "aria-label": `${label} ${isActive ? "(applied)" : ""}`,
     value,
     name: "categoryFilter"
   }}>
-  {label.toLowerCase()}
+  <slot />
+  {#if useSwitch}
+    <ToggleSwitch enabled={responsiveValue} />
+  {/if}
 </Button>
