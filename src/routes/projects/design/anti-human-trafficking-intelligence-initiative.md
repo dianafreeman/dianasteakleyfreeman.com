@@ -5,7 +5,7 @@ image: /images/ATII-hero.jpeg
 date: "2020-01-01"
 link: https://followmoneyfightslavery.org/
 tags:
-  - adobe
+  - graphics & illustration
 ---
 
 <script>
