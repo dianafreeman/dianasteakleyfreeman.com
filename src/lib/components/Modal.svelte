@@ -3,8 +3,8 @@
   import Button from "./Buttons/Button.svelte";
 
   /** @type { string }*/
-  let clazz
-  export {clazz as class};
+  let clazz;
+  export { clazz as class };
   /** @type { string }*/
   export let title;
   /** @type { string }*/
@@ -28,7 +28,8 @@
   };
 </script>
 
-<Button on:click={toggleOpen} class="w-fit p-5 {buttonClasses}">{buttonText}</Button>
+<Button on:click={toggleOpen} class="w-fit p-5 {buttonClasses}"
+  >{buttonText}</Button>
 {#if isOpen}
   <div
     use:trapFocus={{ onEscPressed: toggleOpen }}
@@ -40,7 +41,7 @@
     <div class="flex w-full justify-end">
       <button on:click={toggleOpen}>close</button>
     </div>
-    <h2 id="modal_label" class="sr-only dialog_label">{title}</h2>
+    <h2 id="modal_label" class="dialog_label sr-only">{title}</h2>
 
     {#if description}
       <div id="modal_desc">{description}</div>
