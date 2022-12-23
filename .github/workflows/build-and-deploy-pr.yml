@@ -1,9 +1,6 @@
 name: Build and Deploy Pull Request To Netlify
 on:
   pull_request:
-    types:
-      - opened
-      - synchronized
     branches-ignore:
       - main
 
