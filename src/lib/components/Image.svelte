@@ -1,4 +1,5 @@
 <script>
+  import { page } from "$app/stores";
   import { lazyImage } from "$lib/actions";
 
   let imagePath;
@@ -8,10 +9,12 @@
   export let darken = false;
   export let lazyThreshold = 1;
 
-  let maybeStubbedRoute = import.meta.env.DEV
-    ? "https://dianasteakleyfreeman.com"
+  const IMAGE_HOST = "https://dianasteakleyfreeman.com"
+
+  let imageRoot = $page.url.origin !== IMAGE_HOST
+    ? IMAGE_HOST
     : "";
-  let fullSrc = `${maybeStubbedRoute}${imagePath}`;
+  let fullSrc = `${imageRoot}${imagePath}`;
 
   let placeholderImage = `${fullSrc}?nf_resize=fit&w=50`;
   let fullImage = `${fullSrc}?nf_resize=fit&w=700`;

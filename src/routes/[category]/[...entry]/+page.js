@@ -1,7 +1,7 @@
 import { getMarkdownEntries } from "$lib/content/queries";
 import { error } from "@sveltejs/kit";
 
-export const SSR = true;
+export const ssr = true;
 
 /** @type {import('./$types').PageLoad} */
 export async function load({ params }) {

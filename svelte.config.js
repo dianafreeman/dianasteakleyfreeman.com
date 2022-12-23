@@ -11,7 +11,6 @@ const config = {
   },
   extensions: [".svelte", ...mdsvexConfig.extensions],
   kit: {
-    trailingSlash: "never",
     adapter: adapter(),
     alias: {
       $routes: path.resolve("./src/routes"),
