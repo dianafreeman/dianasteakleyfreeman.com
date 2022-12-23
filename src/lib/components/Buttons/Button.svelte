@@ -1,20 +1,17 @@
 <script>
   import { createEventDispatcher } from "svelte";
-
   
   let clazz = "";
   let wrapper;
   export { clazz as class };
   export let elementProps = {};
   
-  /** @type { Boolean } */
+  /** @type { boolean } */
   export let borders = true;
-
-  /** @type { Boolean } */
+  /** @type { boolean } */
   export let animateBorders = true;
-
-  /** @type { String } */
-  export let iconClass = null;
+  /** @type { string } */
+  export let iconClasses = null;
 
   /** @type { 'button' | 'a' | 'div' } String */
   export let elementType = "button";
@@ -56,8 +53,8 @@
   on:blur={handleBlur}
   {...elementProps}
 >
-  {#if iconClass}
-    <i aria-hidden="true" class="mx-2 {iconClass}" />
+  {#if iconClasses}
+    <i aria-hidden="true" class="mx-2 {iconClasses}" />
   {/if}
   <slot />
 </svelte:element>

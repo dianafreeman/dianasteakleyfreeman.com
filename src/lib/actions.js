@@ -59,7 +59,7 @@ export function trapFocus(node, events = {}) {
 
 export function lazyImage(
 	node,
-	{ root = null, rootMargin = '0px 0px 0px 0px', threshold = 0.0, classBeforeLoad = "blur-in"} = {},
+	{ root = null, rootMargin = '0px 0px 0px 0px', threshold = 0.0} = {},
 ) {
 	node.classList.add("blur")
 	if (window && 'IntersectionObserver' in window) {

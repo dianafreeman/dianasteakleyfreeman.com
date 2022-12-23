@@ -1,6 +1,6 @@
 <script>
-  import { trapFocus } from "$lib/actions";
-  import Button from "./Buttons/Button.svelte";
+  import Button from "../Buttons/Button.svelte";
+  import Dialog from "./Dialog.svelte";
 
   /** @type { string }*/
   let clazz;
@@ -13,10 +13,15 @@
   export let buttonText;
   /** @type { string }*/
   export let buttonClasses;
+  /** @type { string }*/
+  export let buttonIconClasses;
+  /** @type { boolean }*/
+  export let useCustomToggle;
 
   let isOpen = false;
 
   function toggleOpen() {
+    console.log("toggling");
     isOpen = !isOpen;
   }
 
@@ -28,24 +33,26 @@
   };
 </script>
 
-<Button on:click={toggleOpen} class="w-fit p-5 {buttonClasses}"
-  >{buttonText}</Button>
+{#if useCustomToggle}
+  <button on:click={toggleOpen}>
+    <slot name="toggle" />
+  </button>
+{:else}
+  <Button on:click={toggleOpen} iconClasses={buttonIconClasses}  class="w-fit p-5 {buttonClasses}"
+    >{buttonText}</Button>
+{/if}
 {#if isOpen}
-  <div
-    use:trapFocus={{ onEscPressed: toggleOpen }}
-    id="modal"
-    role="dialog"
-    class="border border-gray {clazz}"
-    class:hidden={!isOpen}
-    {...ariaProps}>
-    <div class="flex w-full justify-end">
-      <button on:click={toggleOpen}>close</button>
-    </div>
-    <h2 id="modal_label" class="dialog_label sr-only">{title}</h2>
+  <Dialog
+    {ariaProps}
+    {isOpen}
+    {title}
+    class={clazz}
+    on:escPressed={() => (isOpen = false)}
+    on:closeClicked={() => toggleOpen()}>
 
+    <slot />
     {#if description}
       <div id="modal_desc">{description}</div>
     {/if}
-    <slot />
-  </div>
+  </Dialog>
 {/if}

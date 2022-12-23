@@ -8,7 +8,7 @@
   /** @type { boolean } */
   export let isOpen = false;
 
-  $: iconClass = isOpen ? "la-angle-up" : "la-angle-down";
+  $: iconClasses = isOpen ? "la-angle-up" : "la-angle-down";
 </script>
 
 <dl class="divide-gray-200 mt-6 space-y-6 divide-y">
@@ -25,7 +25,7 @@
           >{title}</svelte:element
         >
         <span class="ml-6 flex h-7 items-center">
-          <i class="las {iconClass}" />
+          <i class="las {iconClasses}" />
         </span>
       </button>
     </dt>

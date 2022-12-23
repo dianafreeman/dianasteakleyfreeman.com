@@ -13,7 +13,7 @@
 </script>
 
 <span
-  class="inline-flex items-center rounded-full bg-white py-0.5 pl-2 pr-0.5 text-xs font-medium text-dark-gray">
+  class="inline-flex items-center rounded-full bg-white py-0.5 pl-2 pr-0.5 text-sm font-medium text-dark-gray mx-1">
   {label}
   <button
     type="button"

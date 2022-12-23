@@ -22,7 +22,7 @@
     close: "las la-angle-up"
   };
 
-  $: iconClass = iconType ? ICON_CLASS_MAP[iconType] : ICON_CLASS_MAP[menuType];
+  $: iconClasses = iconType ? ICON_CLASS_MAP[iconType] : ICON_CLASS_MAP[menuType];
 </script>
 
 <Button
@@ -31,5 +31,5 @@
   on:click
 >
   <span class:sr-only={hideLabel}>{label}</span>
-  <i class="text-2xl {iconClass}" aria-hidden="true" />
+  <i class="text-2xl {iconClasses}" aria-hidden="true" />
 </Button>
