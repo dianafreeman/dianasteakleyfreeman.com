@@ -65,15 +65,16 @@
 
 <Seo
   title={data.seoMeta?.title}
-  description={data.seoMeta?.description || data.seoMeta?.excerpt || null}
-/>
+  description={data.seoMeta?.description || data.seoMeta?.excerpt || null} />
 <header
   bind:clientHeight={headerHeight}
-  class="fixed top-0 z-30 w-full bg-semi-transparent pb-4"
-  class:dyslexia
->
+  class="bg-semi-transparent fixed top-0 z-30 w-full pb-4"
+  class:dyslexia>
   <TopNav navItems={data.navItems} />
-  <Breadcrumbs slot="breadcrumbs" class="z-40 m-auto w-full" items={data.breadcrumbs} />
+  <Breadcrumbs
+    slot="breadcrumbs"
+    class="z-40 m-auto w-full"
+    items={data.breadcrumbs} />
 </header>
 <div id="spacer" style="height: {$topNavHeight}px;" />
 {#key $page.url.pathname}

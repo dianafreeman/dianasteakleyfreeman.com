@@ -1,20 +1,17 @@
 <script>
   import { createEventDispatcher } from "svelte";
 
-  
   let clazz = "";
   let wrapper;
   export { clazz as class };
   export let elementProps = {};
-  
-  /** @type { Boolean } */
+
+  /** @type { boolean } */
   export let borders = true;
-
-  /** @type { Boolean } */
+  /** @type { boolean } */
   export let animateBorders = true;
-
-  /** @type { String } */
-  export let iconClass = null;
+  /** @type { string } */
+  export let iconClasses = null;
 
   /** @type { 'button' | 'a' | 'div' } String */
   export let elementType = "button";
@@ -41,7 +38,7 @@
     ? "animate-borders"
     : borders && "borders";
 
-  const classesIfNotDefined = "flex justify-center items-center p-5"
+  const classesIfNotDefined = "flex justify-center items-center p-5";
   const classes = `${borderClasses} button`;
 </script>
 
@@ -54,10 +51,9 @@
   on:mouseleave={handleMouseLeave}
   on:focus={handleFocus}
   on:blur={handleBlur}
-  {...elementProps}
->
-  {#if iconClass}
-    <i aria-hidden="true" class="mx-2 {iconClass}" />
+  {...elementProps}>
+  {#if iconClasses}
+    <i aria-hidden="true" class="mx-2 {iconClasses}" />
   {/if}
   <slot />
 </svelte:element>

@@ -22,14 +22,15 @@
     close: "las la-angle-up"
   };
 
-  $: iconClass = iconType ? ICON_CLASS_MAP[iconType] : ICON_CLASS_MAP[menuType];
+  $: iconClasses = iconType
+    ? ICON_CLASS_MAP[iconType]
+    : ICON_CLASS_MAP[menuType];
 </script>
 
 <Button
-  class="m-2 flex w-fit h-fit py-4 px-5 items-center justify-center {clazz}"
+  class="m-2 flex h-fit w-fit items-center justify-center py-4 px-5 {clazz}"
   elementProps={{ "aria-expanded": expanded, "aria-controls": id }}
-  on:click
->
+  on:click>
   <span class:sr-only={hideLabel}>{label}</span>
-  <i class="text-2xl {iconClass}" aria-hidden="true" />
+  <i class="text-2xl {iconClasses}" aria-hidden="true" />
 </Button>

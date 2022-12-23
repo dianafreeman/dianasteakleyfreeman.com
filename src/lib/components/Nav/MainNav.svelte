@@ -1,5 +1,9 @@
 <script>
-  import { mainMenuIsOpen, settingsMenuIsOpen, isMobileScreen } from "$stores/LayoutStore";
+  import {
+    mainMenuIsOpen,
+    settingsMenuIsOpen,
+    isMobileScreen
+  } from "$stores/LayoutStore";
   import MenuToggle from "./NavToggle.svelte";
   import Button from "../Buttons/Button.svelte";
   import { page } from "$app/stores";
@@ -23,27 +27,23 @@
       iconType={$mainMenuIsOpen ? "times" : "hamburger"}
       id="mainMenu"
       hideLabel
-      expanded={$mainMenuIsOpen}
-    />
+      expanded={$mainMenuIsOpen} />
   {/if}
 </div>
 <ul
   aria-expanded={$mainMenuIsOpen}
-  class="order-4 flex w-full flex-grow list-none flex-col items-center justify-center md:order-2 md:w-fit md:flex-row md:justify-end"
->
+  class="order-4 flex w-full flex-grow list-none flex-col items-center justify-center md:order-2 md:w-fit md:flex-row md:justify-end">
   {#each items as item}
     <li
       role="menuitem"
-      class="py-2 px-3 w-full md:w-fit"
+      class="w-full py-2 px-3 md:w-fit"
       aria-hidden={!$mainMenuIsOpen}
-      class:hidden={!$mainMenuIsOpen}
-    >
+      class:hidden={!$mainMenuIsOpen}>
       <Button
         elementType="a"
         elementProps={{ href: item.relativePath }}
         class="{navItemClasses} {isActive(item) ? 'bg-dark-gray border' : ''}"
-        >{item.navigationText}</Button
-      >
+        >{item.navigationText}</Button>
     </li>
   {/each}
 </ul>

@@ -1,4 +1,7 @@
-import { filterModuleMapByPathString, markdownPathToRelativePath } from "./helpers";
+import {
+  filterModuleMapByPathString,
+  markdownPathToRelativePath
+} from "./helpers";
 
 function useRelativePathKeys(map) {
   const entries = Object.entries(map).map(([mdPath, data]) => {
@@ -18,7 +21,10 @@ export function getMarkdownModuleMap() {
 
 export async function getModuleContentMap(moduleMap) {
   const entries = Object.entries(moduleMap);
-  const promises = entries.map(async ([markdownPath, getter]) => [markdownPath, await getter()]);
+  const promises = entries.map(async ([markdownPath, getter]) => [
+    markdownPath,
+    await getter()
+  ]);
   const resolved = await Promise.all(promises);
   return Object.fromEntries(resolved);
 }
@@ -32,10 +38,12 @@ export async function getStaticPageEntriesMap() {
 
 export async function getStaticPageEntries() {
   const pageEntries = await getStaticPageEntriesMap();
-  const valuesWithRelativePaths = Object.entries(pageEntries).map(([path, content]) => ({
-    ...content,
-    relativePath: `${path.charAt(0) === "/" ? "" : "/"}${path}`
-  }));
+  const valuesWithRelativePaths = Object.entries(pageEntries).map(
+    ([path, content]) => ({
+      ...content,
+      relativePath: `${path.charAt(0) === "/" ? "" : "/"}${path}`
+    })
+  );
   return valuesWithRelativePaths;
 }
 
@@ -49,19 +57,29 @@ export function getMarkdownModules(stringMatcher) {
   return results;
 }
 
-const STRINGS_THAT_ARE_NEVER_CATEGORIES = ["", "privacy", "privacy-policy", "about"]
-function getEntryDataFromRelativePath(obj){
-  const folders = obj.relativePath.split('/')
-  const fileName = folders[folders.length - 1]
-  const categoryDetails = folders.filter(folderName => ![obj.metadata.title, fileName,...STRINGS_THAT_ARE_NEVER_CATEGORIES].includes(folderName))
-  const [entityType, category] = categoryDetails
-
+const STRINGS_THAT_ARE_NEVER_CATEGORIES = [
+  "",
+  "privacy",
+  "privacy-policy",
+  "about"
+];
+function getEntryDataFromRelativePath(obj) {
+  const folders = obj.relativePath.split("/");
+  const fileName = folders[folders.length - 1];
+  const categoryDetails = folders.filter(
+    (folderName) =>
+      ![
+        obj.metadata.title,
+        fileName,
+        ...STRINGS_THAT_ARE_NEVER_CATEGORIES
+      ].includes(folderName)
+  );
+  const [entityType, category] = categoryDetails;
 
   return {
     entityType,
     category
-  }
-  
+  };
 }
 export async function getMarkdownEntries(stringMatcher) {
   const modules = await getMarkdownModules(stringMatcher);
@@ -69,10 +87,16 @@ export async function getMarkdownEntries(stringMatcher) {
 
   const renderable = await getModuleContentMap(modules);
   const withPathsAsKeys = useRelativePathKeys(renderable);
-  const entries = Object.entries(withPathsAsKeys).map(([relativePath, data]) => ({
-    ...data,
-    metadata: { ...data.metadata, relativePath, ...getEntryDataFromRelativePath({relativePath,...data}) }
-  }));
+  const entries = Object.entries(withPathsAsKeys).map(
+    ([relativePath, data]) => ({
+      ...data,
+      metadata: {
+        ...data.metadata,
+        relativePath,
+        ...getEntryDataFromRelativePath({ relativePath, ...data })
+      }
+    })
+  );
   // console.log(entries)
   return entries.filter((e) => e.metadata.draft !== true);
 }

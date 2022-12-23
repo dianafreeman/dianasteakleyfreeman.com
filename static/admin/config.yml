@@ -112,7 +112,11 @@ collections:
           - { label: "Relative Path", name: relativePath, widget: string }
           - { label: "Featured Image", name: image, widget: "image" }
           - { label: "Draft", name: "draft", widget: "boolean" }
-          - { label: "Navigation Display Text", name: navigationText, widget: string }
+          - {
+              label: "Navigation Display Text",
+              name: navigationText,
+              widget: string
+            }
 
       - label: "Blog Page"
         name: "blog"
@@ -123,7 +127,11 @@ collections:
           - { label: Slug, name: slug, widget: string }
           - { label: "Relative Path", name: relativePath, widget: string }
           - { label: "Featured Image", name: image, widget: "image" }
-          - { label: "Navigation Display Text", name: navigationText, widget: string }
+          - {
+              label: "Navigation Display Text",
+              name: navigationText,
+              widget: string
+            }
 
       - label: "Resources Page"
         name: "resources"
@@ -134,7 +142,11 @@ collections:
           - { label: Slug, name: slug, widget: string }
           - { label: "Relative Path", name: relativePath, widget: string }
           - { label: "Featured Image", name: image, widget: "image" }
-          - { label: "Navigation Display Text", name: navigationText, widget: string }
+          - {
+              label: "Navigation Display Text",
+              name: navigationText,
+              widget: string
+            }
 
       - label: "Projects Page"
         name: "projects"
@@ -146,7 +158,11 @@ collections:
           - { label: "Relative Path", name: relativePath, widget: string }
           - { label: "Featured Image", name: image, widget: "image" }
           - { label: "Draft", name: "draft", widget: "boolean" }
-          - { label: "Navigation Display Text", name: navigationText, widget: string }
+          - {
+              label: "Navigation Display Text",
+              name: navigationText,
+              widget: string
+            }
 
       - label: "Art Projects Page"
         name: "art"
@@ -157,7 +173,11 @@ collections:
           - { label: Slug, name: slug, widget: string }
           - { label: "Relative Path", name: relativePath, widget: string }
           - { label: "Featured Image", name: image, widget: "image" }
-          - { label: "Navigation Display Text", name: navigationText, widget: string }
+          - {
+              label: "Navigation Display Text",
+              name: navigationText,
+              widget: string
+            }
 
       - label: "Code Projects Page"
         name: "code"
@@ -168,7 +188,11 @@ collections:
           - { label: Slug, name: slug, widget: string }
           - { label: "Relative Path", name: relativePath, widget: string }
           - { label: "Featured Image", name: image, widget: "image" }
-          - { label: "Navigation Display Text", name: navigationText, widget: string }
+          - {
+              label: "Navigation Display Text",
+              name: navigationText,
+              widget: string
+            }
 
       - label: "Design Projects Page"
         name: "design"
@@ -179,4 +203,8 @@ collections:
           - { label: Slug, name: slug, widget: string }
           - { label: "Relative Path", name: relativePath, widget: string }
           - { label: "Featured Image", name: image, widget: "image" }
-          - { label: "Navigation Display Text", name: navigationText, widget: string }
+          - {
+              label: "Navigation Display Text",
+              name: navigationText,
+              widget: string
+            }

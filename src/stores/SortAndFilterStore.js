@@ -4,6 +4,8 @@ import {
 } from "$lib/stringHelpers";
 import { derived, writable } from "svelte/store";
 
+export const ALL_CATEGORIES_OPTION = { value: "", label: "All Categories" };
+
 export function reduceEntriesTo(key, entries) {
   return Array.from(
     new Set(
@@ -31,6 +33,8 @@ function createSortAndFilterStore(entryArray) {
     label: tag
   }));
 
+  const allTagValues = allTags.map((v) => v.value);
+
   const allCategories = reduceEntriesTo("category", entryArray).map(
     (categorySlug) => ({
       value: categorySlug,
@@ -38,28 +42,32 @@ function createSortAndFilterStore(entryArray) {
     })
   );
 
+  const allCategoryValues = allCategories.map((v) => v.value);
+
   function entryMatchesTags(entry, tagsObject) {
-    const matchedTags = entry.metadata.tags.filter((t) => tagsObject.map(v => v.label).includes(t));
+    const matchedTags = entry.metadata.tags.filter((t) =>
+      tagsObject.map((v) => v.label).includes(t)
+    );
     return matchedTags.length !== 0;
   }
-  
-  function entryMatchesCategory(entry, categoryObject){
-    if (!categoryObject || categoryObject.value === "") return true 
-    const categoryRegex =  new RegExp(categoryObject.value, "i")
-    return entry.metadata.category.match(categoryRegex)
+
+  function entryMatchesCategory(entry, categoryObject) {
+    if (!categoryObject || categoryObject.value === "") return true;
+    const categoryRegex = new RegExp(categoryObject.value, "i");
+    return entry.metadata.category.match(categoryRegex);
   }
-  
-  const filteredItems = derived(
-    [tags, category],
-    ([$tags, $category]) => {
-      if (!$tags.length && !$category.value) return entryArray;
 
-      return entryArray.filter( e => $category.value ? entryMatchesCategory(e, $category) : true).filter(e => $tags.length ? entryMatchesTags(e, $tags) : true)
-       
-    }
-  );
+  const filteredItems = derived([tags, category], ([$tags, $category]) => {
+    if (!$tags.length && !$category.value) return entryArray;
 
-  filteredItems.subscribe(v => console.log("filteredItems", v))
+    return entryArray
+      .filter((e) =>
+        $category.value ? entryMatchesCategory(e, $category) : true
+      )
+      .filter((e) => ($tags.length ? entryMatchesTags(e, $tags) : true));
+  });
+
+  filteredItems.subscribe((v) => console.log("filteredItems", v));
 
   function toggleFilter(term) {
     tags.update((currentFilters) => {
@@ -72,17 +80,35 @@ function createSortAndFilterStore(entryArray) {
     });
   }
 
+  const allFilters = derived([category, tags], ([$cat, $tags]) => {
+    return $cat.value ? [$cat, ...$tags] : $tags;
+  });
+
   function clearFilters() {
     tags.set([]);
     category.set();
   }
 
+  const isTagValue = (value) => allTagValues.includes(value);
+  const isCategoryValue = (value) => allCategoryValues.includes(value);
+
+  function removeCategoryOrTag(ev) {
+    const { value } = ev.detail;
+    if (isCategoryValue(value)) {
+      category.set(ALL_CATEGORIES_OPTION);
+    } else if (isTagValue(value)) {
+      tags.update((current) => current.filter((t) => t.value !== value));
+    }
+  }
+
   return {
     subscribe: filteredItems.subscribe,
     results: filteredItems,
-    options: { categories: allCategories, tags:allTags },
+    options: { categories: allCategories, tags: allTags },
     tags,
     category,
+    allFilters,
+    removeCategoryOrTag,
     toggleFilter,
     clearFilters
   };

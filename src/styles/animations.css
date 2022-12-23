@@ -1,0 +1,31 @@
+:root {
+  --animation-blur-amt: 12px;
+}
+.blur {
+  -webkit-filter: blur(var(--animation-blur-amt));
+  filter: blur(var(--animation-blur-amt));
+}
+.blur-out {
+  -webkit-animation: blur-out 0.25s ease-in both;
+  animation: blur-out 0.25s ease-in both;
+}
+@-webkit-keyframes blur-out {
+  0% {
+    -webkit-filter: blur(var(--animation-blur-amt));
+    filter: blur(var(--animation-blur-amt));
+  }
+  100% {
+    -webkit-filter: blur(0);
+    filter: blur(0);
+  }
+}
+@keyframes blur-out {
+  0% {
+    -webkit-filter: blur(var(--animation-blur-amt));
+    filter: blur(var(--animation-blur-amt));
+  }
+  100% {
+    -webkit-filter: blur(0);
+    filter: blur(0);
+  }
+}

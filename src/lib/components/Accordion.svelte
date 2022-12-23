@@ -1,5 +1,5 @@
 <script>
-  // import Button from "./Buttons/Button.svelte";
+  import Button from "./Buttons/Button.svelte";
 
   /** @type { string } */
   export let title;
@@ -8,32 +8,33 @@
   /** @type { boolean } */
   export let isOpen = false;
 
-  $: iconClass = isOpen ? "la-angle-up" : "la-angle-down";
+  $: iconClasses = isOpen ? "la-angle-up" : "la-angle-down";
 </script>
 
 <dl class="divide-gray-200 mt-6 space-y-6 divide-y">
   <div class="pt-6">
     <dt class="text-lg">
-      <button
+      <Button
         type="button"
-        class="text-gray-400 flex w-full items-start justify-between text-left"
+        animateBorders={false}
+        class="text-gray-400 flex w-full items-start justify-between border-b-0 p-5 text-left {isOpen
+          ? 'bg-darkest-gray'
+          : ''}"
         aria-controls="faq-0"
         aria-expanded={isOpen}
-        on:click={() => (isOpen = !isOpen)}
-      >
+        on:click={() => (isOpen = !isOpen)}>
         <svelte:element this={titleElement} class="text-gray-900 font-medium"
-          >{title}</svelte:element
-        >
+          >{title}</svelte:element>
         <span class="ml-6 flex h-7 items-center">
-          <i class="las {iconClass}" />
+          <i class="las {iconClasses}" />
         </span>
-      </button>
+      </Button>
     </dt>
     {#if isOpen}
-      <dd class="mt-2 pr-12" id="faq-0">
+      <dd class="mb-2 border border-t-0 border-gray p-5" id="faq-0">
         <p class="text-gray-500 text-base">
-          I don&#039;t know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Quas cupiditate laboriosam fugiat.
+          I don&#039;t know, but the flag is a big plus. Lorem ipsum dolor sit
+          amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.
         </p>
       </dd>
     {/if}

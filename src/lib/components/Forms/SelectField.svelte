@@ -13,7 +13,7 @@
   function onSelectChange(evt) {
     const targetValue = evt.target.value;
     const label = options[evt.target.selectedIndex].label;
-    dispatch("change", { value:targetValue, label });
+    dispatch("change", { value: targetValue, label });
   }
 </script>
 
@@ -22,6 +22,7 @@
   on:change={onSelectChange}
   class="button border border-gray bg-black p-3 focus:bg-gray focus:outline focus:outline-white">
   {#each options as opt}
-    <option selected={selectedValue === opt.value} value={opt.value}>{opt.label}</option>
+    <option selected={selectedValue === opt.value} value={opt.value}
+      >{opt.label}</option>
   {/each}
 </select>

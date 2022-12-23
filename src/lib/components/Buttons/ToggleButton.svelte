@@ -6,14 +6,14 @@
   /** @type { string } */
   export let label;
   /** @type { string } */
-  export let iconClass;
+  export let iconClasses;
   /** @type { string } */
   export let value;
   /** @type { boolean } */
   export let isPending;
   /** @type { boolean } */
   export let useSwitch;
-  /** @type { Boolean } */
+  /** @type { boolean } */
   export let animateBorders = false;
 
   let clazz = "";
@@ -38,7 +38,7 @@
   class="my-2 flex items-center justify-end p-3 text-lg {clazz}"
   {animateBorders}
   on:click={handleClick}
-  {iconClass}
+  {iconClasses}
   {elementProps}>
   <slot />
   {#if useSwitch}

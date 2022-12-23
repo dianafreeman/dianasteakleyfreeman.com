@@ -16,8 +16,10 @@ const DEFAULT_SETTINGS = {
 export function createSettingsStore() {
   const settings = writable(DEFAULT_SETTINGS);
 
-  const setMode = (modeEnum) => settings.update((curr) => ({ ...curr, mode: modeEnum }));
-  const toggleDyslexia = () => settings.update((curr) => ({ ...curr, dyslexia: !curr.dyslexia }));
+  const setMode = (modeEnum) =>
+    settings.update((curr) => ({ ...curr, mode: modeEnum }));
+  const toggleDyslexia = () =>
+    settings.update((curr) => ({ ...curr, dyslexia: !curr.dyslexia }));
 
   const toggleMode = () =>
     settings.update((curr) => {

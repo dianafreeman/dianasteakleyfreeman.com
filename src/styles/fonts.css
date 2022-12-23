@@ -21,7 +21,8 @@
     font-family: "OpenDyslexic";
     font-weight: 700;
     font-style: italic;
-    src: url("/fonts/open-dyslexic/OpenDyslexic-BoldItalic.otf") format("opentype");
+    src: url("/fonts/open-dyslexic/OpenDyslexic-BoldItalic.otf")
+      format("opentype");
   }
 
   .dyslexia {

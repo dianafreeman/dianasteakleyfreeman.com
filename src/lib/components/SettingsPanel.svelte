@@ -26,9 +26,10 @@
     </li>
     <li
       class="block px-3 py-5 text-right text-base font-medium text-neutral-300 hover:text-white"
-      role="menuitem"
-    >
-      <Button class="inline w-fit p-3 text-right" on:click={() => SettingsStore.clearSettings()}>
+      role="menuitem">
+      <Button
+        class="inline w-fit p-3 text-right"
+        on:click={() => SettingsStore.clearSettings()}>
         Clear Settings
       </Button>
     </li>

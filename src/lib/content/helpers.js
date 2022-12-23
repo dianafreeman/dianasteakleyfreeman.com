@@ -28,9 +28,15 @@ export function removeTrailingSlash(path) {
 }
 export function markdownPathToRelativePath(markdownPath) {
   const withoutRoot = removePatternFromString(markdownPath, CONTENT_ROOT);
-  const withoutMetadataName = removePatternFromString(withoutRoot, METADATA_NAME);
+  const withoutMetadataName = removePatternFromString(
+    withoutRoot,
+    METADATA_NAME
+  );
   const fileExtensionRegex = new RegExp(/\.(md|png|jpg|js|json)/, "g");
-  const withoutFileExtension = withoutMetadataName.replace(fileExtensionRegex, "");
+  const withoutFileExtension = withoutMetadataName.replace(
+    fileExtensionRegex,
+    ""
+  );
   return withoutFileExtension;
 }
 
@@ -52,5 +58,7 @@ export function filterModuleMap(modules, filterFn) {
 export function filterModuleMapByPathString(moduleMap, stringToMatch) {
   const queryString = removeTrailingSlash(stringToMatch);
   // eslint-disable-next-line no-unused-vars
-  return filterModuleMap(moduleMap, ([path, _getter]) => path.toString().includes(queryString));
+  return filterModuleMap(moduleMap, ([path, _getter]) =>
+    path.toString().includes(queryString)
+  );
 }

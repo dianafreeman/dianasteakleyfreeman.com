@@ -3,9 +3,9 @@ const FOCUSABLE_ELEMENTS =
 
 /**
  * @url https://uxdesign.cc/how-to-trap-focus-inside-modal-to-make-it-ada-compliant-6a50f9a70700
- * @param {*} node 
+ * @param {*} node
  * @param {*} events { onEscPressed }
- * @returns 
+ * @returns
  */
 export function trapFocus(node, events = {}) {
   let focusableContent = node.querySelectorAll(FOCUSABLE_ELEMENTS);
@@ -22,7 +22,7 @@ export function trapFocus(node, events = {}) {
     let isEscPressed = e.key === "Escape" || e.keyCode === 27;
 
     if (isEscPressed) {
-      if (events.onEscPressed) return events.onEscPressed()
+      if (events.onEscPressed) return events.onEscPressed();
       return;
     }
     if (!isTabPressed) {
@@ -46,12 +46,56 @@ export function trapFocus(node, events = {}) {
 
   node.addEventListener("keydown", onKeyDown, true);
 
-	return {
-    update(newEvents){
-      events = newEvents
+  return {
+    update(newEvents) {
+      events = newEvents;
     },
-		destroy() {
-			node.removeEventListener("keydown", onKeyDown, true);
-		},
-	};
+    destroy() {
+      node.removeEventListener("keydown", onKeyDown, true);
+    }
+  };
+}
+
+export function lazyImage(
+  node,
+  { root = null, rootMargin = "0px 0px 0px 0px", threshold = 0.0 } = {}
+) {
+  node.classList.add("blur");
+  if (window && "IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            node.classList.add("blur-out");
+            node.classList.remove("blur");
+            const image = entry.target;
+
+            if (image.dataset.src) {
+              image.src = image.dataset.src;
+            }
+
+            if (image.dataset.srcset) {
+              image.srcset = image.dataset.srcset;
+            }
+
+            observer.unobserve(image);
+          }
+        });
+      },
+      {
+        root,
+        rootMargin,
+        threshold
+      }
+    );
+    observer.observe(node);
+
+    return {
+      destroy() {
+        if (observer) {
+          observer.unobserve(node);
+        }
+      }
+    };
+  }
 }
