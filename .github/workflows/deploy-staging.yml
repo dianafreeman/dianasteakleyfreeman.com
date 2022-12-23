@@ -2,7 +2,6 @@ name: Build and Deploy Pull Request To Netlify
 on:
   push:
     branches:
-      - "main"
       - "staging"
 
 concurrency:
