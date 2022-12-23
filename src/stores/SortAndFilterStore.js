@@ -4,6 +4,8 @@ import {
 } from "$lib/stringHelpers";
 import { derived, writable } from "svelte/store";
 
+export const ALL_CATEGORIES_OPTION = { value: "", label: "All Categories" };
+
 export function reduceEntriesTo(key, entries) {
   return Array.from(
     new Set(
@@ -31,12 +33,17 @@ function createSortAndFilterStore(entryArray) {
     label: tag
   }));
 
+  const allTagValues = allTags.map(v => v.value)
+
   const allCategories = reduceEntriesTo("category", entryArray).map(
     (categorySlug) => ({
       value: categorySlug,
       label: kebabCaseToTitleCase(categorySlug)
     })
   );
+
+  const allCategoryValues = allCategories.map(v => v.value)
+
 
   function entryMatchesTags(entry, tagsObject) {
     const matchedTags = entry.metadata.tags.filter((t) => tagsObject.map(v => v.label).includes(t));
@@ -72,10 +79,27 @@ function createSortAndFilterStore(entryArray) {
     });
   }
 
+  const allFilters = derived([category, tags], ([$cat, $tags]) => {
+    return $cat.value ? [$cat, ...$tags] : $tags;
+  });
+
   function clearFilters() {
     tags.set([]);
     category.set();
   }
+
+  const isTagValue = (value) => allTagValues.includes(value)
+  const isCategoryValue = (value) => allCategoryValues.includes(value)
+  
+  function removeCategoryOrTag(ev) {
+    const { value } = ev.detail;
+    if (isCategoryValue(value)) {
+      category.set(ALL_CATEGORIES_OPTION);
+    } else if (isTagValue(value)) {
+      tags.update((current) => current.filter((t) => t.value !== value));
+    }
+  }
+
 
   return {
     subscribe: filteredItems.subscribe,
@@ -83,6 +107,8 @@ function createSortAndFilterStore(entryArray) {
     options: { categories: allCategories, tags:allTags },
     tags,
     category,
+    allFilters,
+    removeCategoryOrTag,
     toggleFilter,
     clearFilters
   };
