@@ -29,11 +29,10 @@ module.exports = {
     const { config: svelteKitConfig } = await loadConfigFromFile(
       path.resolve(__dirname, "../vite.config.js")
     );
-
-    // Remove Svelte plugins that would duplicate those added by the Storybook plugin
+    
     const plugins = svelteKitConfig.plugins
-      .flat(1)
-      .filter(doesNotDupeStorybookSveltePlugins);
+    .flat(1)
+    .filter(doesNotDupeStorybookSveltePlugins);
 
     const resolve = {
       alias: [
@@ -52,7 +51,10 @@ module.exports = {
     return mergeConfig(config, {
       ...svelteKitConfig,
       plugins,
-      resolve
+      resolve: { 
+        ...svelteKitConfig.resolve,
+        ...resolve
+      }
     });
   }
 };
