@@ -14,7 +14,7 @@
   let imageRoot = $page.url.origin !== IMAGE_HOST
     ? IMAGE_HOST
     : "";
-  let fullSrc = `${imageRoot}${imagePath}`;
+  let fullSrc = `${imageRoot}${imagePath || ""}`;
 
   let placeholderImage = `${fullSrc}?nf_resize=fit&w=50`;
   let fullImage = `${fullSrc}?nf_resize=fit&w=700`;
