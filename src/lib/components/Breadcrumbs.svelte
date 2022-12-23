@@ -13,7 +13,9 @@
   <nav class="relative px-4 py-2 {clazz}" aria-label="Breadcrumb">
     <ol class="mx-1 flex list-none gap-2">
       {#each items as item}
-        <BreadcrumbItem current={item.relativePath === $page.url.pathname} {item} />
+        <BreadcrumbItem
+          current={item.relativePath === $page.url.pathname}
+          {item} />
       {/each}
     </ol>
   </nav>

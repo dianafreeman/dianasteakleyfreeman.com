@@ -6,13 +6,9 @@
 <Meta title="Modal" component={Modal} />
 
 <Story name="Primary">
-  <Modal buttonText="Open Modal" title="My Modal">
-    hi there from a slot
-  </Modal>
+  <Modal buttonText="Open Modal" title="My Modal">hi there from a slot</Modal>
 </Story>
 
 <Story name="withImage">
-  <Modal buttonText="Open Modal" title="My Modal">
-    hi there from a slot
-  </Modal>
+  <Modal buttonText="Open Modal" title="My Modal">hi there from a slot</Modal>
 </Story>

@@ -28,10 +28,10 @@
   use:trapFocus={{ onEscPressed }}
   id="modal"
   role="dialog"
-  class="bg-semi-transparent fixed top-0 left-0 z-[99] h-screen w-screen overflow-y-scroll p-16 shadow-lg {clazz} "
+  class="bg-semi-transparent fixed top-0 left-0 z-[99] h-screen w-screen overflow-y-scroll p-16 shadow-lg "
   class:hidden={!isOpen}
   {...ariaProps}>
-  <div class="m-auto w-full bg-black pb-2">
+  <div class="m-auto w-full bg-black pb-2 {clazz}">
     <div class="flex w-full justify-between rounded-t-md bg-gray">
       {#if title}
         <h2 id="modal_label" class="m-5 text-xl font-bold lowercase">

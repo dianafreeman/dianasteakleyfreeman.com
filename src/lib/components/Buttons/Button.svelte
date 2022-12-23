@@ -1,11 +1,11 @@
 <script>
   import { createEventDispatcher } from "svelte";
-  
+
   let clazz = "";
   let wrapper;
   export { clazz as class };
   export let elementProps = {};
-  
+
   /** @type { boolean } */
   export let borders = true;
   /** @type { boolean } */
@@ -38,7 +38,7 @@
     ? "animate-borders"
     : borders && "borders";
 
-  const classesIfNotDefined = "flex justify-center items-center p-5"
+  const classesIfNotDefined = "flex justify-center items-center p-5";
   const classes = `${borderClasses} button`;
 </script>
 
@@ -51,8 +51,7 @@
   on:mouseleave={handleMouseLeave}
   on:focus={handleFocus}
   on:blur={handleBlur}
-  {...elementProps}
->
+  {...elementProps}>
   {#if iconClasses}
     <i aria-hidden="true" class="mx-2 {iconClasses}" />
   {/if}

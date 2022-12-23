@@ -8,62 +8,61 @@
   let shouldShake = false;
   let firstTypewriterIsDone = false;
   let secondTypewriterIsDone = false;
-
 </script>
 
 <svelte:window bind:scrollY />
 
 <div
-  class="lg:min-w-md relative m-auto flex w-full  max-w-sm flex-col justify-between text-left font-monospace font-thin md:max-w-lg "
->
+  class="lg:min-w-md relative m-auto flex w-full  max-w-sm flex-col justify-between text-left font-monospace font-thin md:max-w-lg ">
   <div
     id="framebar"
-    class="absolute -top-10 left-0 h-10 w-full rounded-tr-lg rounded-tl-lg bg-dark-gray"
-  >
+    class="absolute -top-10 left-0 h-10 w-full rounded-tr-lg rounded-tl-lg bg-dark-gray">
     <span class="cursor-none rounded-full px-2 py-1 text-light-gray">x</span>
   </div>
-  <div class="flex min-h-[250px] w-full flex-col  justify-between bg-darkest-gray p-5 ">
-    
-      <p class="text-3xl">
-        <Typewriter on:done={() => (firstTypewriterIsDone = true)}>
-          the future <!-- intentional line break for typewriter timing-->
-          of <!-- intentional line break for typewriter timing-->
-          engineering <!-- intentional line break for typewriter timing-->
-          is <!-- intentional line break for typewriter timing-->
-          human. <!-- intentional line break for typewriter timing-->
-        </Typewriter>
-      </p>
+  <div
+    class="flex min-h-[250px] w-full flex-col  justify-between bg-darkest-gray p-5 ">
+    <p class="text-3xl">
+      <Typewriter on:done={() => (firstTypewriterIsDone = true)}>
+        the future <!-- intentional line break for typewriter timing-->
+        of <!-- intentional line break for typewriter timing-->
+        engineering <!-- intentional line break for typewriter timing-->
+        is <!-- intentional line break for typewriter timing-->
+        human. <!-- intentional line break for typewriter timing-->
+      </Typewriter>
+    </p>
 
-      <span class="mt-5 min-h-[1em] text-3xl font-thin">
-        {#if firstTypewriterIsDone}
-          <Typewriter
-            delay={800}
-            on:done={() => {
-              secondTypewriterIsDone = true;
-              setTimeout(() => {
-                introTimeoutComplete = true;
-              }, 1000);
-            }}
-          >
-            hi. <!-- intentional line break for typewriter timing-->
-            <!-- intentional line break for typewriter timing-->
-            i'm <!-- intentional line break for typewriter timing-->
-            diana.</Typewriter
-          >
-        {/if}
-      </span>
-    
+    <span class="mt-5 min-h-[1em] text-3xl font-thin">
+      {#if firstTypewriterIsDone}
+        <Typewriter
+          delay={800}
+          on:done={() => {
+            secondTypewriterIsDone = true;
+            setTimeout(() => {
+              introTimeoutComplete = true;
+            }, 1000);
+          }}>
+          hi. <!-- intentional line break for typewriter timing-->
+          <!-- intentional line break for typewriter timing-->
+          i'm <!-- intentional line break for typewriter timing-->
+          diana.</Typewriter>
+      {/if}
+    </span>
   </div>
 </div>
-<div class="absolute bottom-20 left-0 w-full flex-col justify-end text-center align-middle">
+<div
+  class="absolute bottom-20 left-0 w-full flex-col justify-end text-center align-middle">
   <!-- {#if secondTypewriterIsDone && !hasScrolled} -->
-    <button transition:fade class=" text-dark-gray" class:shake-bottom={shouldShake}>scroll down</button>
+  <button
+    transition:fade
+    class=" text-dark-gray"
+    class:shake-bottom={shouldShake}>scroll down</button>
   <!-- {/if} -->
 </div>
 
 <style>
   .shake-bottom {
-    -webkit-animation: shake-bottom 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+    -webkit-animation: shake-bottom 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955)
+      both;
     animation: shake-bottom 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
   }
   /* ----------------------------------------------

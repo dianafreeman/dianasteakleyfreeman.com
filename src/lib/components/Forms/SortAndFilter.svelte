@@ -7,7 +7,6 @@
 
   const { options, category, tags } = store;
 
- 
   function onCategoryChange(evt) {
     category.set(evt.detail);
   }
@@ -51,6 +50,5 @@
         {/each}
       </div>
     </div>
-
   </div>
 </div>

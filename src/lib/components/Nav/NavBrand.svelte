@@ -40,8 +40,7 @@
       e.preventDefault();
       toggleHovered();
     }
-  }}
->
+  }}>
   <span aria-hidden="true">d</span><span
     bind:this={animatedSpan}
     aria-hidden="true"

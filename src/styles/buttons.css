@@ -1,14 +1,14 @@
 /* TODO: use SASS here */
 @layer utilities {
-  .borders { 
-    @apply border border-gray hover:border-white focus:border-white active:border-white
+  .borders {
+    @apply border border-gray hover:border-white focus:border-white active:border-white;
   }
 
   /* 
   animations inspired by 
   https://codepen.io/giana/pen/yYBpVY 
 */
-/* TODO: convert to tailwind */
+  /* TODO: convert to tailwind */
   .animate-borders {
     @apply border border-gray;
     position: relative;

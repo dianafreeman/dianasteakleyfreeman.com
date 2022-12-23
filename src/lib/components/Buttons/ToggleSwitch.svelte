@@ -19,7 +19,11 @@
   $: enabled && handleOnSwitch(enabled);
 </script>
 
-<button on:click={handleClick} aria-pressed={enabled} class:enabled class={buttonClasses}>
+<button
+  on:click={handleClick}
+  aria-pressed={enabled}
+  class:enabled
+  class={buttonClasses}>
   <slot />
   <span class="slider text-xs" />
 </button>

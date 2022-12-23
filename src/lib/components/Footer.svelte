@@ -66,5 +66,7 @@
     </div>
   {/each}
 
-  <p class="flex-grow text-left font-bold lowercase ">Diana M Steakley-Freeman. &copy; 2023</p>
+  <p class="flex-grow text-left font-bold lowercase ">
+    Diana M Steakley-Freeman. &copy; 2023
+  </p>
 </div>

@@ -7,7 +7,6 @@ tags:
   - graphics & illustration
 ---
 
-
 A whimsical set of self-care related illustrations based on my dog, Rafiki used as part of a mental wellness social media campaign for [One Mind PsyberGuide, the Mental Health App Guide](https://onemindpsyberguide.org/), in 2019.
 
 <div class="grid grid-cols-2 gap-2">

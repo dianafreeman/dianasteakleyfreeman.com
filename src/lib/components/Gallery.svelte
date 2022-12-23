@@ -1,17 +1,6 @@
 <script>
-  import Image from "./Image.svelte";
-  import Modal from "./Modal/Modal.svelte";
-
-  let activeIndex = 0;
-  
-  function increment(){
-    activeIndex = activeIndex + 1
-  }
-
-  function decrement(){
-    activeIndex = activeIndex - 1
-  }
-  const images = [
+  import LightboxImage from "./LightboxImage.svelte";
+  const testImages = [
     {
       src: "/images/rafiki-to-the-rescue/benice.jpeg",
       alt: "A cartoon-style Yorkshire Terrier sits on the bottom-left quarter of the image. He has a red collar with a yellow charm,  his tongue is hanging out and his head is cocked slightly to the left. The rest of the image is covered in messily-written text that says 'Will you be nice to yourself today? I would come snuggle with you on the couch and listen to everything you are feeling, but I have little paws, and it would take me too long to walk there. So be nice to yourself for me, okay?' Rafiki (a paw print is next to his name) ",
@@ -23,22 +12,12 @@
       caption: ""
     }
   ];
+
+  export let images;
 </script>
 
-<div class="grid grid-cols-2">
-  {#each images as item}
-    <Modal useCustomToggle>
-      <div slot="toggle"><Image src={item.src} alt={item.alt} /></div>
-      <figure class="flex flex-col justify-center m-auto">
-        <Image src={item.src} alt={item.alt} />
-        <figcaption>
-          Exercitation adipisicing sit sunt aliquip consequat aute fugiat irure.
-          Irure labore exercitation duis amet et ut enim eu deserunt dolore
-          dolor.
-        </figcaption>
-      </figure>
-      <button>previous</button>
-      <button>next</button>
-    </Modal>
+<div class="grid grid-cols-2 md:grid-cols-3">
+  {#each images as image}
+    <LightboxImage {image} />
   {/each}
 </div>

@@ -38,21 +38,20 @@
     <slot name="toggle" />
   </button>
 {:else}
-  <Button on:click={toggleOpen} iconClasses={buttonIconClasses}  class="w-fit p-5 {buttonClasses}"
-    >{buttonText}</Button>
+  <Button
+    on:click={toggleOpen}
+    iconClasses={buttonIconClasses}
+    class="w-fit p-5 {buttonClasses}">{buttonText}</Button>
 {/if}
-{#if isOpen}
-  <Dialog
-    {ariaProps}
-    {isOpen}
-    {title}
-    class={clazz}
-    on:escPressed={() => (isOpen = false)}
-    on:closeClicked={() => toggleOpen()}>
-
-    <slot />
-    {#if description}
-      <div id="modal_desc">{description}</div>
-    {/if}
-  </Dialog>
-{/if}
+<Dialog
+  {ariaProps}
+  {isOpen}
+  {title}
+  class="{isOpen ? '' : 'hidden'} {clazz}"
+  on:escPressed={() => (isOpen = false)}
+  on:closeClicked={() => toggleOpen()}>
+  <slot />
+  {#if description}
+    <div id="modal_desc">{description}</div>
+  {/if}
+</Dialog>

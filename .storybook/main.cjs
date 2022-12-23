@@ -2,12 +2,19 @@ const path = require("path");
 const { loadConfigFromFile, mergeConfig } = require("vite");
 
 function doesNotDupeStorybookSveltePlugins(p) {
-  return !p.name.startsWith("vite-plugin-svelte") || p.name === "vite-plugin-svelte-kit";
+  return (
+    !p.name.startsWith("vite-plugin-svelte") ||
+    p.name === "vite-plugin-svelte-kit"
+  );
 }
 
 module.exports = {
   stories: ["../src/**/*.stories.svelte"],
-  addons: ["@storybook/addon-links", "@storybook/addon-essentials", "@storybook/addon-svelte-csf"],
+  addons: [
+    "@storybook/addon-links",
+    "@storybook/addon-essentials",
+    "@storybook/addon-svelte-csf"
+  ],
   framework: "@storybook/svelte",
   core: {
     builder: "@storybook/builder-vite"
@@ -24,7 +31,9 @@ module.exports = {
     );
 
     // Remove Svelte plugins that would duplicate those added by the Storybook plugin
-    const plugins = svelteKitConfig.plugins.flat(1).filter(doesNotDupeStorybookSveltePlugins);
+    const plugins = svelteKitConfig.plugins
+      .flat(1)
+      .filter(doesNotDupeStorybookSveltePlugins);
 
     const resolve = {
       alias: [
