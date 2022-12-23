@@ -9,11 +9,9 @@
   export let darken = false;
   export let lazyThreshold = 1;
 
-  const IMAGE_HOST = "https://dianasteakleyfreeman.com"
+  const IMAGE_HOST = "https://dianasteakleyfreeman.com";
 
-  let imageRoot = $page.url.origin !== IMAGE_HOST
-    ? IMAGE_HOST
-    : "";
+  let imageRoot = $page.url.origin !== IMAGE_HOST ? IMAGE_HOST : "";
   let fullSrc = `${imageRoot}${imagePath || ""}`;
 
   let placeholderImage = `${fullSrc}?nf_resize=fit&w=50`;

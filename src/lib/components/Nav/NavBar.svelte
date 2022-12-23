@@ -6,7 +6,7 @@
   import ToggleItem from "$lib/components/Buttons/ToggleItem.svelte";
 
   import { settingsMenuIsOpen } from "$stores/LayoutStore";
-  import MainMenu from "./Nav/MainNav.svelte";
+  import MainMenu from "./MainNav.svelte";
 
   export let navItems;
 
