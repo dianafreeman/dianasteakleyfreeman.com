@@ -1,5 +1,5 @@
 <script>
-  import NavList from "./LinkList.svelte";
+  import NavList from "./Nav/NavList.svelte";
   const navMenus = [
     {
       title: "navigation",
