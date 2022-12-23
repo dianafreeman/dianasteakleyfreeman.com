@@ -1,8 +1,8 @@
-name: Build and Deploy Pull Request To Netlify
+name: Build and Deploy Staging to Netlify
 on:
   push:
     branches:
-      - "staging"
+      - staging
 
 concurrency:
   group: ${{ github.head_ref }}
