@@ -1,7 +1,7 @@
 <script>
   import LightboxImage from "$lib/components/LightboxImage.svelte";
   import { Meta, Story } from "@storybook/addon-svelte-csf";
-  import testImages from "./testData/images.json";
+  import testImages from "$test/stub/images.json";
 </script>
 
 <Meta title="LightboxImage" component={LightboxImage} />

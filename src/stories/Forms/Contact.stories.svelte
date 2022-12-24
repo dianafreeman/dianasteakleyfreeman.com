@@ -1,7 +1,7 @@
 <script>
   import Contact from "$lib/components/Forms/ContactForm.svelte";
   import { Meta, Template, Story } from "@storybook/addon-svelte-csf";
-  // import testData from "./testData/entries.json";
+  // import testData from "$test/stub/entries.json";
 </script>
 
 <Meta title="Forms/Contact" component={Contact} />

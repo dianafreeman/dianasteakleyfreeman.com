@@ -1,16 +1,14 @@
-<!-- BREAK HERE -->
 <script>
   import { Meta, Template, Story } from "@storybook/addon-svelte-csf";
-  import { userEvent, waitFor, within } from "@storybook/testing-library";
-  import { expect } from "@storybook/jest";
+  import { userEvent, within } from "@storybook/testing-library";
   import SortAndFilter from "$lib/components/Forms/SortAndFilter.svelte";
   import createSortAndFilterStore from "$stores/SortAndFilterStore";
 
-  import testData from "../testData/entries.json";
+  import testData from "$test/stub/entries.json";
 
   const store = createSortAndFilterStore(testData);
 
-  async function play({ canvasElement, args }) {
+  async function play({ canvasElement }) {
     const canvas = within(canvasElement);
     const select = await within(canvasElement).getByLabelText(
       "browse by category",
@@ -18,7 +16,6 @@
     );
     await userEvent.selectOptions(select, ["Technology And Humanity"]);
     await userEvent.click(canvas.getByText("history"));
-
   }
 </script>
 
