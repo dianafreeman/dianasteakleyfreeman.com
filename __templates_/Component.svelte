@@ -1,3 +1,4 @@
+<!-- eslint-disable -->
 <script>
   let clazz;
   export { clazz as class };
