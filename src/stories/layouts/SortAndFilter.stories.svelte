@@ -1,10 +1,10 @@
 <script>
   import { Meta, Template, Story } from "@storybook/addon-svelte-csf";
   import { userEvent, within } from "@storybook/testing-library";
-  import SortAndFilter from "$lib/components/Forms/SortAndFilter.svelte";
+  import SortAndFilter from "$lib/layouts/SortAndFilterForm.svelte";
   import createSortAndFilterStore from "$stores/SortAndFilterStore";
 
-  import testData from "$test/stub/entries.json";
+  import testData from "$tests/stub/entries.json";
 
   const store = createSortAndFilterStore(testData);
 

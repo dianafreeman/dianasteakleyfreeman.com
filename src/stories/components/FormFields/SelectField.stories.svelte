@@ -1,7 +1,7 @@
 <script>
   import { Meta, Story } from "@storybook/addon-svelte-csf";
 
-  import SelectField from "../lib/components/Forms/SelectField.svelte";
+  import SelectField from "$lib/components/FormFields/SelectField.svelte";
 
   const optionsStub = [
     { label: "thing 1", value: "thing-1" },
