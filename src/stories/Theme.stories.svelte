@@ -10,7 +10,6 @@
   //  -->
 
   import { Meta, Story } from "@storybook/addon-svelte-csf";
-
 </script>
 
 <Meta title="Theme/Colors" />
