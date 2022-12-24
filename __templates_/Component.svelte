@@ -1,5 +1,5 @@
-<!-- eslint-disable -->
 <script>
+  /* eslint-disable */
   let clazz;
   export { clazz as class };
 </script>
