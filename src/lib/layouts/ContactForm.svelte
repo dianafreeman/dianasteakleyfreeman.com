@@ -1,9 +1,9 @@
 <script>
   import { createEventDispatcher } from "svelte";
   import { writable } from "svelte/store";
-  import Button from "../Buttons/Button.svelte";
-  import TextAreaField from "./TextAreaField.svelte";
-  import TextField from "./TextField.svelte";
+  import Button from "../components/Buttons/Button.svelte";
+  import TextAreaField from "../components/FormFields/TextAreaField.svelte";
+  import TextField from "../components/FormFields/TextField.svelte";
 
   const dispatch = createEventDispatcher();
 
@@ -20,6 +20,10 @@
     formState.update((current) => ({ ...current, [name]: value }));
   }
 </script>
+
+<h1 class="heading mx-auto mb-10 mt-5 w-2/3 text-center lowercase">
+  let's connect.
+</h1>
 
 <form class="mx-auto w-full max-w-lg" netlify>
   <div class="flex gap-3">

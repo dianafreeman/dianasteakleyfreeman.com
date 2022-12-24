@@ -2,15 +2,13 @@
   import SettingsStore from "$stores/SettingsStore";
 
   import NavBrand from "$lib/components/Nav/NavBrand.svelte";
-  import MenuToggle from "$lib/components/Nav/NavToggle.svelte";
+  import NavToggle from "$lib/components/Nav/NavToggle.svelte";
   import ToggleItem from "$lib/components/Buttons/ToggleItem.svelte";
 
   import { settingsMenuIsOpen } from "$stores/LayoutStore";
-  import MainMenu from "./MainNav.svelte";
+  import MainNav from "./MainNav.svelte";
 
   export let navItems;
-
-  let trapFocusWapper;
 
   $: settingsItems = [
     {
@@ -25,11 +23,11 @@
   <nav class="m-auto flex h-fit flex-row flex-wrap justify-between ">
     <NavBrand class="" />
 
-    <MainMenu items={navItems} />
+    <MainNav items={navItems} />
 
     <!-- Settings Menu Toggle, as part of the top nav -->
     <div class="flex flex-grow justify-end md:order-2">
-      <MenuToggle
+      <NavToggle
         on:click={() => {
           settingsMenuIsOpen.update((v) => !v);
         }}
@@ -40,12 +38,8 @@
         expanded={$settingsMenuIsOpen} />
     </div>
   </nav>
-  <!-- Settings menu items -->
   {#if $settingsMenuIsOpen}
-    <ul
-      class="px-2 py-1"
-      bind:this={trapFocusWapper}
-      aria-hidden={!settingsMenuIsOpen}>
+    <ul class="px-2 py-1" aria-hidden={!settingsMenuIsOpen}>
       {#each settingsItems as item}
         <ToggleItem on:click={() => item.func()} value={item.value}>
           {item.navigationText}

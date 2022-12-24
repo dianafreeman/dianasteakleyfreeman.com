@@ -16,12 +16,11 @@
   /** @type { string }*/
   export let buttonIconClasses;
   /** @type { boolean }*/
-  export let useCustomToggle;
+  export let hideDefaultToggle;
 
   let isOpen = false;
 
   function toggleOpen() {
-    console.log("toggling");
     isOpen = !isOpen;
   }
 
@@ -33,7 +32,7 @@
   };
 </script>
 
-{#if useCustomToggle}
+{#if hideDefaultToggle}
   <button on:click={toggleOpen}>
     <slot name="toggle" />
   </button>

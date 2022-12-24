@@ -4,7 +4,7 @@
   import SortAndFilter from "$lib/components/Forms/SortAndFilter.svelte";
   import createSortAndFilterStore from "$stores/SortAndFilterStore";
   import Modal from "$lib/components/Modal/Modal.svelte";
-  import ToggleableBadge from "$lib/components/Forms/ToggleableBadge.svelte";
+  import ToggleableBadge from "$lib/components/FormFields/ToggleableBadge.svelte";
 
   /** @type {import('./$types').PageData} */
   export let data;
@@ -42,13 +42,13 @@
       aria-live="polite">
       Showing {$results.length} result{$results.length > 1 ? "s" : ""}.
     </h2>
-    <!-- <div class="w-full"> -->
+
     {#if $allFilters.length}
       <div id="active-filters" class="my-2">
         {#each $allFilters as entity}
           {#if entity.value}
             <ToggleableBadge
-              on:toggleClick={removeCategoryOrTag}
+              on:badgeButtonClick={removeCategoryOrTag}
               value={entity.value}
               label={entity.label} />
           {/if}
@@ -57,7 +57,6 @@
     {/if}
   </div>
 </div>
-<!-- </div> -->
 
 <ol class="grid w-full justify-center gap-4 p-3 md:grid-cols-2 lg:grid-cols-3">
   {#each $results as entry}

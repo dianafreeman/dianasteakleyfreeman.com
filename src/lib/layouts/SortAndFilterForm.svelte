@@ -1,7 +1,7 @@
 <script>
   import { ALL_CATEGORIES_OPTION } from "$stores/SortAndFilterStore";
-  import CheckboxField from "./CheckboxField.svelte";
-  import SelectField from "./SelectField.svelte";
+  import CheckboxField from "../components/FormFields/CheckboxField.svelte";
+  import SelectField from "../components/FormFields/SelectField.svelte";
 
   export let store;
 

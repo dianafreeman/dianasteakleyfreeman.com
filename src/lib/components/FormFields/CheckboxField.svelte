@@ -14,6 +14,7 @@
 
   const dispatch = createEventDispatcher();
 
+  const setFocused = (bool) => (isFocused = bool);
   function handleChange(ev) {
     dispatch("change", { label, value, checked: ev.target.checked });
   }
@@ -33,7 +34,7 @@
     class="peer sr-only"
     id={name}
     on:change={handleChange}
-    on:focus={() => (isFocused = true)}
-    on:blur={() => (isFocused = false)}
-    {checked} />
+    on:focus={() => setFocused(true)}
+    on:blur={() => setFocused(false)}
+    bind:checked />
 </label>

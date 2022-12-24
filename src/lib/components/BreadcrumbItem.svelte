@@ -19,7 +19,6 @@
     </a>
   {:else}
     <i aria-hidden="true" class="las la-angle-right mr-2 text-white " />
-
     <a
       aria-current={current}
       href={item.relativePath}
