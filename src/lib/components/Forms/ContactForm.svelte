@@ -1,27 +1,36 @@
 <script>
   import { createEventDispatcher } from "svelte";
+  import { writable } from "svelte/store";
   import Button from "../Buttons/Button.svelte";
   import TextAreaField from "./TextAreaField.svelte";
   import TextField from "./TextField.svelte";
 
   const dispatch = createEventDispatcher();
-  const invalidClasses = "";
+  
+  // TODO: invalid states like `const invalidClasses = ""`;
+
+  const formState = writable({})
 
   function handleSubmit() {
-    dispatch(submit);
+    dispatch('submit', $formState);
+  }
+
+  function handleChange(ev){
+    const { value, name } = ev.detail
+    formState.update( current => ({ ...current, [name]: value }))
   }
 </script>
 
 <form class="mx-auto w-full max-w-lg" netlify >
   <div class="flex gap-3">
-    <TextField label="First Name" class="relative w-full md:mb-0 md:w-1/2" />
-    <TextField label="Last Name" class="relative w-full md:mb-0 md:w-1/2" />
+    <TextField id="firstName" label="First Name" on:change={handleChange} class="relative w-full md:mb-0 md:w-1/2" />
+    <TextField id="lastName" label="Last Name" on:change={handleChange} class="relative w-full md:mb-0 md:w-1/2" />
   </div>
 
-  <TextField class="w-full" id="email" label="E-mail Address" />
-  <TextAreaField label="Message" footerText="" />
+  <TextField id="emailAddress" class="w-full" label="E-mail Address" required />
+  <TextAreaField id="message" label="Message" footerText="" />
 
   <div class="flex w-full justify-end">
-    <Button type="submit" animateBorders class="w-fit p-5">Send</Button>
+    <Button type="submit" animateBorders class="w-fit p-5" on:click={handleSubmit}>Send</Button>
   </div>
 </form>

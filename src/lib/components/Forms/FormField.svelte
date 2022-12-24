@@ -16,7 +16,7 @@
 
 <div class={clazz}>
   <label
-    class="text-gray-700 mb-2 block text-xs font-bold lowercase tracking-wide"
+    class="text-gray-700 mb-2 block text-md font-bold lowercase tracking-wide"
     for={id}>
     {label}.
   </label>

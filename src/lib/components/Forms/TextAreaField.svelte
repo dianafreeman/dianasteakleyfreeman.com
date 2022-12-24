@@ -12,7 +12,7 @@
 
   const dispatch = createEventDispatcher();
   function handleChange() {
-    dispatch("change", { value, label });
+    dispatch("change", { value, label, name: id });
   }
 </script>
 
