@@ -13,7 +13,8 @@ module.exports = {
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
-    "@storybook/addon-svelte-csf"
+    "@storybook/addon-svelte-csf",
+    '@storybook/addon-interactions',
   ],
   framework: "@storybook/svelte",
   core: {

@@ -4,6 +4,8 @@
   /** @type { array } */
   export let options;
   /** @type { string } */
+  export let id;
+  /** @type { string } */
   export let name;
   /** @type { string } */
   export let selectedValue;
@@ -19,6 +21,7 @@
 
 <select
   {name}
+  {id}
   on:change={onSelectChange}
   class="button border border-gray bg-black p-3 focus:bg-gray focus:outline focus:outline-white">
   {#each options as opt}

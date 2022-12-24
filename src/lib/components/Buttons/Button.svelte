@@ -11,9 +11,10 @@
   /** @type { boolean } */
   export let animateBorders = true;
   /** @type { string } */
-  export let iconClasses = null;
-
-  /** @type { 'button' | 'a' | 'div' } String */
+  export let iconClasses = null;  
+  /** @type { "button" | "submit" } */
+  export let type = "button";
+  /** @type { 'button' | 'a' | 'div' } */
   export let elementType = "button";
 
   const dispatch = createEventDispatcher();
@@ -45,6 +46,7 @@
 <svelte:element
   this={elementType}
   bind:this={wrapper}
+  {type}
   class="{classes} {clazz || classesIfNotDefined}"
   on:click={handleClick}
   on:mouseenter={handleMouseEnter}

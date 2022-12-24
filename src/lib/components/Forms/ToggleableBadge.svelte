@@ -6,8 +6,8 @@
 
   const dispatch = createEventDispatcher();
 
-  function handleToggleClick() {
-    dispatch("toggleClick", { value, label });
+  function handleBadgeButtonClick() {
+    dispatch("badgeButtonClick", { value, label });
   }
 </script>
 
@@ -17,7 +17,7 @@
   <button
     type="button"
     {value}
-    on:click={handleToggleClick}
+    on:click={handleBadgeButtonClick}
     class="ml-0.5 inline-flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full text-dark-gray hover:bg-dark-gray hover:text-white focus:bg-dark-gray focus:text-white focus:outline-none">
     <span class="sr-only">Remove {label} option</span>
     <i class="las la-times" />
