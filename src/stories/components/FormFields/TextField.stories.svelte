@@ -4,7 +4,7 @@
   import { Meta, Template, Story } from "@storybook/addon-svelte-csf";
 </script>
 
-<Meta title="Forms/Form Fields" component={FormField} />
+<Meta title="Forms/Form Fields/TextInput" component={FormField} />
 <Template let:args>
   <TextField {...args} />
 </Template>

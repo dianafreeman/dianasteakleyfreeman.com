@@ -1,12 +1,15 @@
 <script>
   import { createEventDispatcher } from "svelte";
+  import FormField from "./FormField.svelte";
 
   /** @type { array } */
   export let options;
-  /** @type { string } */
+  /** @req @type { string } */
   export let id;
   /** @type { string } */
   export let name;
+  /** @type { string } */
+  export let label;
   /** @type { string } */
   export let selectedValue;
 
@@ -19,6 +22,7 @@
   }
 </script>
 
+<FormField {label} {id}>
 <select
   {name}
   {id}
@@ -29,3 +33,4 @@
       >{opt.label}</option>
   {/each}
 </select>
+</FormField>

@@ -29,11 +29,10 @@
 <div class="m-2 w-auto p-3">
   <div>
     <div class="">
-      <label for="category" class="font-bold lowercase"
-        >Browse by Category</label>
       <SelectField
         on:change={onCategoryChange}
         id="category"
+        label="Browse By Category"
         selectedValue={$category.value}
         options={[ALL_CATEGORIES_OPTION, ...options.categories]} />
     </div>
