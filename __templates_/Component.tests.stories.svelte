@@ -5,6 +5,11 @@
   import { expect } from "@storybook/jest";
   import { userEvent, waitFor, within } from "@storybook/testing-library";
   import testData from "$tests/stub/entries.json";
+
+  async function play({ canvasElement }) {
+    const canvas = within(canvasElement);
+    await userEvent.click(canvas.getByText("some text to click"));
+  }
 </script>
 
 <Meta title="Component" component={Component} />
