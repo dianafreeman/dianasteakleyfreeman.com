@@ -11,7 +11,7 @@
   /** @type { boolean } */
   export let animateBorders = true;
   /** @type { string } */
-  export let iconClasses = null;  
+  export let iconClasses = null;
   /** @type { "button" | "submit" } */
   export let type = "button";
   /** @type { 'button' | 'a' | 'div' } */

@@ -16,7 +16,7 @@
   }
 </script>
 
-<FormField {label} class={clazz} >
+<FormField {label} class={clazz}>
   <textarea
     class="borders text-gray-700 mb-3 w-full bg-black py-3 px-4 leading-tight focus:outline focus:outline-gray active:outline"
     {id}

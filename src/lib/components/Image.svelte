@@ -9,6 +9,8 @@
   export let darken = false;
   export let lazyThreshold = 1;
 
+  page.subscribe(p => console.log('page from img', p))
+
   const IMAGE_HOST = "https://dianasteakleyfreeman.com";
 
   let imageRoot = $page.url.origin !== IMAGE_HOST ? IMAGE_HOST : "";

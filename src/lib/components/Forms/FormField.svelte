@@ -1,9 +1,5 @@
 <script>
-  
-  /**
-   *  string to associate label and input 
-   *  @type { string }
-   * */
+  /** @type { string } string to associate label and input */
   export let id;
   /** @type { string } */
   export let label;
@@ -16,12 +12,12 @@
 
 <div class={clazz}>
   <label
-    class="text-gray-700 mb-2 block text-md font-bold lowercase tracking-wide"
+    class="text-gray-700 text-md mb-2 block font-bold lowercase tracking-wide"
     for={id}>
     {label}.
   </label>
-  <slot />
+  <slot {error} />
   {#if error}
-    <p class="text-xs italic text-red-500">{error}.</p>
+    <p class="text-sm font-bold text-red-400">{error}.</p>
   {/if}
 </div>
