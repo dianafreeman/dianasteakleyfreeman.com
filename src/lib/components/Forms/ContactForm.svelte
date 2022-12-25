@@ -1,9 +1,10 @@
 <script>
   import { createEventDispatcher } from "svelte";
   import { writable } from "svelte/store";
-  import Button from "../components/Buttons/Button.svelte";
-  import TextAreaField from "../components/FormFields/TextAreaField.svelte";
-  import TextField from "../components/FormFields/TextField.svelte";
+  import Button from "../Buttons/Button.svelte";
+  import FormField from "../FormFields/FormField.svelte";
+  import TextAreaField from "../FormFields/types/TextAreaField.svelte";
+  import TextField from "../FormFields/types/TextField.svelte";
 
   const dispatch = createEventDispatcher();
 
@@ -27,20 +28,30 @@
 
 <form class="mx-auto w-full max-w-lg" netlify>
   <div class="flex gap-3">
-    <TextField
+    <FormField
+      containerClasses="w-1/2"
+      type="text"
       id="firstName"
       label="First Name"
       on:change={handleChange}
       class="relative w-full md:mb-0 md:w-1/2" />
-    <TextField
+
+    <FormField
+      containerClasses="w-1/2"
+      type="text"
       id="lastName"
       label="Last Name"
       on:change={handleChange}
       class="relative w-full md:mb-0 md:w-1/2" />
   </div>
 
-  <TextField id="emailAddress" class="w-full" label="E-mail Address" required />
-  <TextAreaField id="message" label="Message" footerText="" />
+  <FormField
+    type="text"
+    id="emailAddress"
+    class="w-full"
+    label="E-mail Address"
+    required />
+  <FormField type="textArea" id="message" label="Message" footerText="" />
 
   <div class="flex w-full justify-end">
     <Button

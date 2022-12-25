@@ -1,6 +1,5 @@
 <script>
   import { createEventDispatcher } from "svelte";
-  import FormField from "./FormField.svelte";
 
   /** @type { array } */
   export let options;
@@ -9,9 +8,7 @@
   /** @type { string } */
   export let name;
   /** @type { string } */
-  export let label;
-  /** @type { string } */
-  export let selectedValue;
+  export let value;
 
   const dispatch = createEventDispatcher();
 
@@ -22,15 +19,13 @@
   }
 </script>
 
-<FormField {label} {id}>
 <select
-  {name}
   {id}
+  {name}
   on:change={onSelectChange}
   class="button border border-gray bg-black p-3 focus:bg-gray focus:outline focus:outline-white">
   {#each options as opt}
-    <option selected={selectedValue === opt.value} value={opt.value}
+    <option selected={value === opt.value} value={opt.value}
       >{opt.label}</option>
   {/each}
 </select>
-</FormField>

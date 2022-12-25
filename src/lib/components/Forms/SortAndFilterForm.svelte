@@ -1,7 +1,8 @@
 <script>
   import { ALL_CATEGORIES_OPTION } from "$stores/SortAndFilterStore";
-  import CheckboxField from "../components/FormFields/CheckboxField.svelte";
-  import SelectField from "../components/FormFields/SelectField.svelte";
+  import CheckboxField from "$lib/components/FormFields/types/CheckboxField.svelte";
+  import SelectField from "$lib/components/FormFields/types/SelectField.svelte";
+  import FormField from "../FormFields/FormField.svelte";
 
   export let store;
 
@@ -29,7 +30,8 @@
 <div class="m-2 w-auto p-3">
   <div>
     <div class="">
-      <SelectField
+      <FormField
+      type="select"
         on:change={onCategoryChange}
         id="category"
         label="Browse By Category"
@@ -38,12 +40,14 @@
     </div>
     <div class="mt-5">
       <p class="font-bold lowercase">Filter By Tag</p>
-      <div class="flex flex-wrap">
+      <div class="flex flex-wrap gap-4 ">
         {#each options.tags as tag}
-          <CheckboxField
-            class="w-full"
+          <FormField
+            type="checkbox"
+            class="p-3 border flex items-center "
             value={tag.value}
             label={tag.label}
+            hideLabel
             checked={$tags.map((v) => v.value).includes(tag.value)}
             on:change={onCheckboxClick} />
         {/each}
