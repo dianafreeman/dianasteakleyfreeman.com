@@ -1,11 +1,15 @@
 import { faker } from "@faker-js/faker";
 
-export const createFormOptions = (length = 5) => {
-  return Array(length).map(() => {
-    const words = faker.lorem.words(2);
+/**
+ * 
+ * @param { Array<String>} itemLabels 
+ * @returns 
+ */
+export const createFormOptions = (itemLabels) => {
+  return itemLabels.map((v) => {
     return {
-      value: faker.helpers.slugify(words),
-      label: words
+      value: faker.helpers.slugify(v).toLowerCase(),
+      label: v
     };
   });
 };
