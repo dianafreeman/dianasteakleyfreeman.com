@@ -1,10 +1,10 @@
 <script>
   import Card from "$lib/components/Card.svelte";
   import Seo from "$lib/components/Seo.svelte";
-  import SortAndFilter from "$lib/components/Forms/SortAndFilter.svelte";
+  import SortAndFilter from "$lib/components/Forms/SortAndFilterForm.svelte";
   import createSortAndFilterStore from "$stores/SortAndFilterStore";
   import Modal from "$lib/components/Modal/Modal.svelte";
-  import ToggleableBadge from "$lib/components/FormFields/ToggleableBadge.svelte";
+  import ToggleableBadge from "$lib/components/ToggleableBadge.svelte";
 
   /** @type {import('./$types').PageData} */
   export let data;
