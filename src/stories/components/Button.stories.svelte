@@ -1,27 +1,26 @@
 <script>
   import MarginDecorator from "$storybook/decorators/MarginDecorator.svelte";
-  import { Meta, Story } from "@storybook/addon-svelte-csf";
+  import { Meta, Template, Story } from "@storybook/addon-svelte-csf";
 
   import Button from "$lib/components/Buttons/Button.svelte";
+  import ToggleButton from "$lib/components/Buttons/ToggleButton.svelte";
+
 </script>
 
-<Meta component={Button} />
+<Meta
+  title="Buttons/Main"
+  component={Button}
+  parameters={{ actions: { handles: ["click"] } }}
+  subcomponents={{ ToggleButton }}
+  decorators={[() => MarginDecorator]} />
 
-<Story name="with animated borders">
-  <MarginDecorator>
-    <Button class="p-5">Hello World</Button>
-  </MarginDecorator>
-</Story>
+<Template let:args>
+  <Button {...args}>Hello World</Button>
+</Template>
 
-<Story name="without animated borders">
-  <MarginDecorator>
-    <Button ty animateBorders={false} class="p-5">Hello World</Button>
-  </MarginDecorator>
-</Story>
-
-<Story name="with Icon">
-  <MarginDecorator>
-    <Button iconClass="las la-external-link-alt text-2xl mx-2" class="p-5"
-      >Hello World</Button>
-  </MarginDecorator>
-</Story>
+<Story name="primary" />
+<Story name="primary/static borders" args={{ animateBorders: false }} />
+<Story
+name="primary/with icon"
+args={{ iconClasses: "las la-external-link-alt text-2xl mx-2" }} />
+<Story name="primary/with icon/static borders" args={{ animateBorders: false }} />

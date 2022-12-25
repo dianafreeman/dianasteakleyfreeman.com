@@ -4,8 +4,8 @@
   let clazz = "";
   let wrapper;
   export { clazz as class };
+  
   export let elementProps = {};
-
   /** @type { boolean } */
   export let borders = true;
   /** @type { boolean } */
@@ -14,7 +14,7 @@
   export let iconClasses = null;
   /** @type { "button" | "submit" } */
   export let type = "button";
-  /** @type { 'button' | 'a' | 'div' } */
+  /** @type { 'button' | 'a' } */
   export let elementType = "button";
 
   const dispatch = createEventDispatcher();
