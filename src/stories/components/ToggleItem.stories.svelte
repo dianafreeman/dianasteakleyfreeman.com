@@ -4,7 +4,7 @@
   import ToggleItem from "$lib/components/Buttons/ToggleItem.svelte";
 </script>
 
-<Meta title="ToggleItem" component={ToggleItem} />
+<Meta component={ToggleItem} />
 
 <Story name="Primary">
   <ToggleItem class="p-5">Hello World</ToggleItem>

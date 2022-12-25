@@ -5,7 +5,7 @@
   import Button from "$lib/components/Buttons/Button.svelte";
 </script>
 
-<Meta title="Button" component={Button} />
+<Meta component={Button} />
 
 <Story name="with animated borders">
   <MarginDecorator>
