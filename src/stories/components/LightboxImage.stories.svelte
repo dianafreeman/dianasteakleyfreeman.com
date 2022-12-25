@@ -1,5 +1,5 @@
 <script>
-  import LightboxImage from "$lib/components/LightboxImage.svelte";
+  import LightboxImage from "$lib/components/Image/LightboxImage.svelte";
   import { Meta, Story } from "@storybook/addon-svelte-csf";
   import testImages from "$tests/stub/images.json";
 </script>

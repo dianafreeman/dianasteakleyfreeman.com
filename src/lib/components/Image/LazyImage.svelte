@@ -1,7 +1,7 @@
 <script>
   import { page } from "$app/stores";
   import { lazyImage } from "$lib/actions";
-  import lazyImageSource from "../lazyImageSource";
+  import lazyImageSource from "../../lazyImageSource";
 
   let clazz;
   export let src;

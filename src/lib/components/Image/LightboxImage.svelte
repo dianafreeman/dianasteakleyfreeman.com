@@ -1,14 +1,14 @@
 <script>
-  import Modal from "./Modal/Modal.svelte";
-  import Image from "./LazyImage.svelte";
+  import Modal from "../Modal/Modal.svelte";
+  import LazyImage from "./LazyImage.svelte";
 
   export let image;
 </script>
 
 <Modal hideDefaultToggle class="w-full md:w-2/3 lg:w-1/2">
-  <Image slot="toggle" src={image.src} alt={image.alt} />
+  <LazyImage slot="toggle" src={image.src} alt={image.alt} />
   <figure class="m-auto flex flex-col justify-center">
-    <Image lazyThreshold={0.25} src={image.src} alt={image.alt} />
+    <LazyImage lazyThreshold={0.25} src={image.src} alt={image.alt} />
     {#if image.caption}
       <figcaption>
         {image.caption}
