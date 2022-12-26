@@ -7,7 +7,7 @@
 </script>
 
 <figure class="m-2">
-  <LazyImage lazyThreshold={0.25} src={src} alt={alt} />
+  <LazyImage lazyThreshold={0.25} {src} {alt} />
   {#if caption}
     <figcaption>
       {caption}
