@@ -1,7 +1,6 @@
 <script>
   import { Meta, Story } from "@storybook/addon-svelte-csf";
   import Accordion from "$lib/components/Accordion.svelte";
-
 </script>
 
 <Meta title="Accordion" component={Accordion} />
