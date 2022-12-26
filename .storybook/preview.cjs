@@ -1,6 +1,5 @@
-import ErrorBoundary from "./decorators/ErrorBoundary.svelte"
+import ErrorBoundary from "./decorators/ErrorBoundary.svelte";
 import "../src/app.css";
-
 
 export const parameters = {
   backgrounds: {
@@ -21,4 +20,4 @@ export const parameters = {
   }
 };
 
-export const decorators = [() => ErrorBoundary]
+export const decorators = [() => ErrorBoundary];

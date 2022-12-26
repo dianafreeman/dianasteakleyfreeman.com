@@ -1,9 +1,9 @@
 <script>
-  import { Boundary } from '@crownframework/svelte-error-boundary';
+  import { Boundary } from "@crownframework/svelte-error-boundary";
 
-  let error
+  let error;
 
-  $: console.log(error)
+  $: console.log(error);
 </script>
 
 <Boundary onError={(thing) => console.error(thing)}>
