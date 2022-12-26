@@ -11,7 +11,7 @@
   async function play({ canvasElement }) {
     const canvas = within(canvasElement);
     const select = await within(canvasElement).getByLabelText(
-      "browse by category",
+      "browse by category.",
       { normalizer: (s) => s.toLowerCase() }
     );
     await userEvent.selectOptions(select, ["Technology And Humanity"]);

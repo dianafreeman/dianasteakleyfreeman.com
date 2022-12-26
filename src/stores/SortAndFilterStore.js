@@ -67,8 +67,6 @@ function createSortAndFilterStore(entryArray) {
       .filter((e) => ($tags.length ? entryMatchesTags(e, $tags) : true));
   });
 
-  filteredItems.subscribe((v) => console.log("filteredItems", v));
-
   function toggleFilter(term) {
     tags.update((currentFilters) => {
       // remove the term if it exists

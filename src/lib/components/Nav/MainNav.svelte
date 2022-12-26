@@ -4,7 +4,7 @@
     settingsMenuIsOpen,
     isMobileScreen
   } from "$stores/LayoutStore";
-  import MenuToggle from "./NavToggle.svelte";
+  import NavToggle from "./NavToggle.svelte";
   import Button from "../Buttons/Button.svelte";
   import { page } from "$app/stores";
 
@@ -17,7 +17,7 @@
 
 <div class="order-3 flex ">
   {#if $isMobileScreen}
-    <MenuToggle
+    <NavToggle
       on:click={() => {
         settingsMenuIsOpen.set(false);
         mainMenuIsOpen.update((v) => !v);
