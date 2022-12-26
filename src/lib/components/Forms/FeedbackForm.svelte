@@ -7,12 +7,18 @@
 
   const dispatch = createEventDispatcher();
 
+  let emailError = null;
   // TODO: invalid states like `const invalidClasses = ""`;
 
   const formState = writable({});
 
-  function handleSubmit() {
-    dispatch("submit", $formState);
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (!$formState["emailAddress"].value) {
+      emailError = "Email Address is required";
+    } else {
+      dispatch("submit", $formState);
+    }
   }
 
   function handleChange(ev) {
@@ -22,24 +28,45 @@
 </script>
 
 <form class="mx-auto w-full max-w-lg" netlify>
+  <div>
+    <h1 class="heading mx-auto mb-10 mt-5 text-center text-3xl lowercase">
+      Got feedback? <span class="font-thin">I'm listening. </span>
+    </h1>
+  </div>
   <div class="flex gap-3">
     <FormField
-    type="text"
+      type="text"
       id="firstName"
       label="First Name"
       on:change={handleChange}
-      class="relative w-full md:mb-0 md:w-1/2" />
+      containerClasses="relative w-full md:mb-0" />
     <FormField
-    type="text"
+      type="text"
       id="lastName"
       label="Last Name"
       on:change={handleChange}
-      class="relative w-full md:mb-0 md:w-1/2" />
+      containerClasses="relative w-full md:mb-0" />
   </div>
 
   <FormField
-  type="text" id="emailAddress" class="w-full" label="E-mail Address" required />
-  <TextAreaField id="message" label="Message" footerText="" />
+    type="text"
+    id="emailAddress"
+    class="w-full"
+    label="E-mail Address (required)"
+    on:change={(c) => console.log(c)}
+    error={emailError}
+    required />
+  <FormField
+    type="select"
+    id="feedbackArea"
+    label="type of feedback (optional)"
+    options={[
+      { value: "", label: "choose a type" },
+      { value: "somethings-not-working", label: "Something's not working" },
+      { value: "suggestion-or-idea", label: "Suggestion or idea" },
+      { value: "accessibility-issue", label: "Accessibility Issue" }
+    ]} />
+  <FormField type="textArea" id="message" label="Message" footerText="" />
 
   <div class="flex w-full justify-end">
     <Button

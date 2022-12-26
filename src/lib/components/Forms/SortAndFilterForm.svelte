@@ -31,7 +31,7 @@
   <div>
     <div class="">
       <FormField
-      type="select"
+        type="select"
         on:change={onCategoryChange}
         id="category"
         label="Browse By Category"
@@ -44,7 +44,7 @@
         {#each options.tags as tag}
           <FormField
             type="checkbox"
-            class="p-3 border flex items-center "
+            class="flex items-center border p-3 "
             value={tag.value}
             label={tag.label}
             hideLabel

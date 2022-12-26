@@ -15,7 +15,7 @@
 
   /** @type { string } */
   export let label;
-  
+
   /** @type { string } */
   export let value;
 
@@ -26,41 +26,42 @@
   export let hideLabel = false;
 
   /** @type { string } string to associate label and input */
-  export let id
+  export let id;
 
   let clazz = "";
   export { clazz as class };
 
-  const COMPONENT_MAP = { 
+  const COMPONENT_MAP = {
     select: SelectField,
     textArea: TextAreaField,
     text: TextField,
-    checkbox: CheckboxField,
-  }
+    checkbox: CheckboxField
+  };
 
-  const DEFAULT_PROPS = { label, name: id, value, id }
+  const DEFAULT_PROPS = { label, name: id, value, id };
 
   const PROPS_MAP = {
-    select: {...DEFAULT_PROPS, options },
+    select: { ...DEFAULT_PROPS, options },
     textArea: DEFAULT_PROPS,
     text: DEFAULT_PROPS,
-    checkbox: {...DEFAULT_PROPS, checked: false},
-  }
+    checkbox: { ...DEFAULT_PROPS, checked: false }
+  };
 
-
-  const isCheckbox = type === "checkbox"
-
+  const isCheckbox = type === "checkbox";
 </script>
 
 <div class={containerClasses}>
   {#if !hideLabel && !isCheckbox}
-  <label
-    class="text-gray-700 text-md mb-2 block font-bold lowercase tracking-wide"
-    for={id}>
-    {label}.
-  </label>
+    <label
+      class="text-gray-700 text-md mb-2 block font-bold lowercase tracking-wide"
+      for={id}>
+      {label}.
+    </label>
   {/if}
-   <svelte:component this={COMPONENT_MAP[type]} {...PROPS_MAP[type]} class={clazz}/>
+  <svelte:component
+    this={COMPONENT_MAP[type]}
+    {...PROPS_MAP[type]}
+    class={clazz} />
   {#if error}
     <p class="text-sm font-bold text-red-400">{error}.</p>
   {/if}

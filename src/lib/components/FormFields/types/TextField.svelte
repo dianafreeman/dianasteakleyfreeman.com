@@ -25,7 +25,7 @@
 <input
   class="{error
     ? 'border border-red-400'
-    : 'borders'} focus:outline-gray mb-3 w-full bg-black py-3 px-4 leading-tight text-gray-700 focus:outline active:outline"
+    : 'borders'} text-gray-700 mb-3 w-full bg-black py-3 px-4 leading-tight focus:outline focus:outline-gray active:outline"
   {id}
   {required}
   type="text"
