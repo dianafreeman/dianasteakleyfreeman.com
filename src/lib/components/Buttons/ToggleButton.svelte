@@ -4,7 +4,7 @@
   import ToggleSwitch from "./ToggleSwitch.svelte";
 
   /** @type { string } */
-  export let id = null
+  export let id = null;
   /** @type { string } */
   export let label;
   /** @type { string } */
@@ -12,9 +12,9 @@
   /** @type { boolean } */
   export let useSwitch;
 
-  let pressed = false
+  let pressed = false;
   let clazz;
-  
+
   export { clazz as class };
 
   const dispatch = createEventDispatcher();
@@ -27,16 +27,13 @@
     // pressed = !pressed;
     dispatch("switch", { label, value });
   }
- 
 
   $: elementProps = {
     "aria-pressed": pressed,
     value: pressed,
     name: id,
-    id,
+    id
   };
-
-  
 </script>
 
 <Button

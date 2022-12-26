@@ -4,7 +4,7 @@
   let clazz = "";
   let wrapper;
   export { clazz as class };
-  
+
   export let elementProps = {};
   /** @type { boolean } */
   export let borders = true;

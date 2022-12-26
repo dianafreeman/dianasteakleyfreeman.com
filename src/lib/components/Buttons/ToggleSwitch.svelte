@@ -3,11 +3,10 @@
 
   let clazz = "";
   export { clazz as class };
-  export let enabled
+  export let enabled;
 
   const buttonClasses = `text-black switch ${clazz}`;
   const dispatch = createEventDispatcher();
-
 
   function handleOnSwitch() {
     dispatch("switch", { enabled });
@@ -16,12 +15,10 @@
   $: handleOnSwitch(enabled);
 </script>
 
-<span
-  class:enabled
-  class={buttonClasses}>
+<span class:enabled class={buttonClasses}>
   <slot />
   <span class="sr-only">{enabled ? "ON" : "OFF"}</span>
-  <span class="slider text-xs" ></span>
+  <span class="slider text-xs" />
 </span>
 
 <style>
