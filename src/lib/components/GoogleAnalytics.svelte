@@ -1,8 +1,7 @@
 <script>
   import { browser } from "$app/environment";
   import { page } from "$app/stores";
-  import { stringify } from "postcss";
-  import { writable } from "svelte/store";
+  import { readable } from "svelte/store";
 
   const CONSENT_TYPES = {
     GRANTED: "granted",
@@ -30,7 +29,7 @@
       page_path: $page.url
     });
   }
-  const consent = writable(DEFAULT_CONSENT);
+  const consent = readable(DEFAULT_CONSENT);
 
   const GTAG_EXISTS = typeof gtag !== "undefined";
   $: {
