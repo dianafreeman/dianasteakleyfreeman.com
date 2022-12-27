@@ -12,7 +12,9 @@
     "clean": "rm -rf public .svelte-kit .netlify",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "test-storybook": "test-storybook"
+    "test-storybook": "test-storybook",
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
   },
   "devDependencies": {
     "@crownframework/svelte-error-boundary": "^1.0.3",
@@ -32,12 +34,15 @@
     "@sveltejs/adapter-netlify": "^1.0.0-next.81",
     "@sveltejs/adapter-static": "^1.0.0-next.46",
     "@sveltejs/kit": "^1.0.0-next.522",
+    "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/svelte": "^3.2.2",
+    "@testing-library/user-event": "^14.4.3",
     "autoprefixer": "^10.4.2",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-storybook": "^0.5.11",
     "eslint-plugin-svelte3": "^3.2.1",
+    "jsdom": "^20.0.3",
     "mdsvex": "^0.10.6",
     "netlify-cli": "^2.12.0",
     "postcss": "^8.4.5",
@@ -49,7 +54,8 @@
     "svelte-markdown": "^0.2.2",
     "svelte-preprocess": "^4.10.7",
     "tailwindcss": "^3.0.18",
-    "vite": "^3.2.4"
+    "vite": "^3.2.4",
+    "vitest": "^0.26.2"
   },
   "type": "module",
   "dependencies": {
