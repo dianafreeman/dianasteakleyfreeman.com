@@ -31,7 +31,7 @@
   <div>
     <div class="">
       <FormField
-        type="select"
+        fieldType="select"
         on:change={onCategoryChange}
         id="category"
         label="Browse By Category"
@@ -43,7 +43,7 @@
       <div class="flex flex-wrap gap-4 ">
         {#each options.tags as tag}
           <FormField
-            type="checkbox"
+            fieldType="checkbox"
             class="flex items-center border p-3 "
             value={tag.value}
             label={tag.label}
