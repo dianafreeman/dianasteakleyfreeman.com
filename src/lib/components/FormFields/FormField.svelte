@@ -1,5 +1,6 @@
 <script>
   import { createEventDispatcher } from "svelte";
+  import LandingSection from "../LandingSection.svelte";
   import CheckboxField from "./types/CheckboxField.svelte";
   import SelectField from "./types/SelectField.svelte";
   import TextAreaField from "./types/TextAreaField.svelte";
@@ -48,10 +49,10 @@
   const DEFAULT_PROPS = { name: id, value, id };
 
   const PROPS_MAP = {
-    select: { ...DEFAULT_PROPS, options },
+    select: { ...DEFAULT_PROPS, options, value, label },
     textArea: { ...DEFAULT_PROPS },
     text: { ...DEFAULT_PROPS, validate: true },
-    checkbox: { ...DEFAULT_PROPS, checked: false }
+    checkbox: { ...DEFAULT_PROPS, label, checked: false }
   };
 
   const isCheckbox = fieldType === "checkbox";
@@ -59,7 +60,12 @@
   const dispatch = createEventDispatcher();
 
   function handleChange(v) {
-    dispatch("change", { value: v, label, name: id, id });
+    dispatch("change", {
+      value: v,
+      label: options ? options.find((o) => o.value === v).label : label,
+      name: id,
+      id
+    });
   }
   $: {
     value !== undefined && handleChange(value);

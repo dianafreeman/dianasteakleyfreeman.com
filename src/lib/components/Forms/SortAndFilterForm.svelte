@@ -9,12 +9,16 @@
   const { options, category, tags } = store;
 
   function onCategoryChange(evt) {
+    // console.log(evt.detail.value)
     category.set(evt.detail);
   }
 
-  function onCheckboxClick(evt) {
+  function onCheckboxClick(evt, value) {
+    // console.log('evt.detail',evt.detail)
+    // console.log('value',value)
     tags.update((curr) => {
       const currValues = curr.map((v) => v.value);
+      console.log(currValues);
       const exists = currValues.includes(evt.detail.value);
 
       if (exists) {
@@ -25,6 +29,10 @@
       return [...curr, { value, label }];
     });
   }
+
+  // $: console.log(categoryValue)
+  category.subscribe((c) => console.log("category", c));
+  tags.subscribe((t) => console.log("tags", t));
 </script>
 
 <div class="m-2 w-auto p-3">
@@ -35,21 +43,16 @@
         on:change={onCategoryChange}
         id="category"
         label="Browse By Category"
-        selectedValue={$category.value}
-        options={[ALL_CATEGORIES_OPTION, ...options.categories]} />
+        options={options.categories} />
     </div>
     <div class="mt-5">
       <p class="font-bold lowercase">Filter By Tag</p>
       <div class="flex flex-wrap gap-4 ">
         {#each options.tags as tag}
-          <FormField
-            fieldType="checkbox"
-            class="flex items-center border p-3 "
+          <CheckboxField
             value={tag.value}
             label={tag.label}
-            hideLabel
-            checked={$tags.map((v) => v.value).includes(tag.value)}
-            on:change={onCheckboxClick} />
+            on:click={onCheckboxClick} />
         {/each}
       </div>
     </div>

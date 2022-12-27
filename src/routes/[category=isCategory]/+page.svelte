@@ -11,7 +11,8 @@
 
   const sortAndFilterStore = createSortAndFilterStore(data.entries);
 
-  const { results, allFilters, removeCategoryOrTag } = sortAndFilterStore;
+  const { results, allFilters, removeCategoryOrTag, options } =
+    sortAndFilterStore;
 
   $: resultsString = `Showing ${$results.length} result${
     $results.length > 1 ? "s" : ""

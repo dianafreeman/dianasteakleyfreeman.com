@@ -1,4 +1,6 @@
 <script>
+  import { createEventDispatcher } from "svelte";
+
   /** @type { string } */
   export let id;
   /** @type { string } */
@@ -7,13 +9,19 @@
   export let label;
   /** @type { string } */
   export let value;
+  /** @type { bool } */
+  export let checked;
 
-  let checked = false;
-  let focused;
+  let focused = false;
 
   function handleFocusAndBlur(ev) {
     focused = !focused;
-    console.log(ev.target.checked);
+  }
+
+  const dispatch = createEventDispatcher();
+  function handleClick() {
+    checked = !checked;
+    dispatch("click", { value, label, checked });
   }
 
   $: labelClasses = `m-1 flex h-fit w-full items-center p-2 md:w-fit ${
@@ -33,5 +41,6 @@
     {name}
     on:focus={handleFocusAndBlur}
     on:blur={handleFocusAndBlur}
-    bind:checked={value} />
+    on:click={handleClick}
+    bind:checked />
 </label>

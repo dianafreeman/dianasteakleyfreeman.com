@@ -7,10 +7,12 @@
   export let name;
   /** @type { string } */
   export let value;
+
   export let required;
 
+  // debugger;
   function onSelectChange(evt) {
-    value = evt.target.value;
+    value = options[evt.target.selectedIndex].value; //evt.target.value;
   }
 </script>
 

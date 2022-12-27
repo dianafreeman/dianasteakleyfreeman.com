@@ -128,6 +128,7 @@
       { value: "accessibility-issue", label: "Accessibility Issue" }
     ]} />
   <FormField
+    containerClasses="my-3"
     fieldType="textArea"
     id="message"
     label="Message"

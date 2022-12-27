@@ -35,12 +35,13 @@ function createSortAndFilterStore(entryArray) {
 
   const allTagValues = allTags.map((v) => v.value);
 
-  const allCategories = reduceEntriesTo("category", entryArray).map(
-    (categorySlug) => ({
+  const allCategories = [
+    ALL_CATEGORIES_OPTION,
+    ...reduceEntriesTo("category", entryArray).map((categorySlug) => ({
       value: categorySlug,
       label: kebabCaseToTitleCase(categorySlug)
-    })
-  );
+    }))
+  ];
 
   const allCategoryValues = allCategories.map((v) => v.value);
 
