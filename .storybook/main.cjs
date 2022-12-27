@@ -13,7 +13,9 @@ module.exports = {
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
-    "@storybook/addon-svelte-csf"
+    "@storybook/addon-svelte-csf",
+    "@storybook/addon-interactions",
+    "@storybook/addon-a11y"
   ],
   framework: "@storybook/svelte",
   core: {
@@ -30,7 +32,6 @@ module.exports = {
       path.resolve(__dirname, "../vite.config.js")
     );
 
-    // Remove Svelte plugins that would duplicate those added by the Storybook plugin
     const plugins = svelteKitConfig.plugins
       .flat(1)
       .filter(doesNotDupeStorybookSveltePlugins);
@@ -52,7 +53,10 @@ module.exports = {
     return mergeConfig(config, {
       ...svelteKitConfig,
       plugins,
-      resolve
+      resolve: {
+        ...svelteKitConfig.resolve,
+        ...resolve
+      }
     });
   }
 };

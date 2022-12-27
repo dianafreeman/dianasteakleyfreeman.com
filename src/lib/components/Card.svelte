@@ -1,5 +1,5 @@
 <script>
-  import Image from "./Image.svelte";
+  import Image from "$lib/components/Image/LazyImage.svelte";
   export let title;
   export let target;
   export let imgSrc;

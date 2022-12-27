@@ -16,7 +16,8 @@ const config = {
       $routes: path.resolve("./src/routes"),
       $stores: path.resolve("./src/stores"),
       $content: path.resolve("./src/content"),
-      $fonts: path.resolve("./src/fonts")
+      $fonts: path.resolve("./src/fonts"),
+      $tests: path.resolve("./src/tests")
     }
   },
   preprocess: [preprocess({ sourceMap: true }), mdsvex(mdsvexConfig)]

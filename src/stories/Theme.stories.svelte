@@ -10,13 +10,11 @@
   //  -->
 
   import { Meta, Story } from "@storybook/addon-svelte-csf";
-
-  // import ToggleItem from "$lib/components/Buttons/ToggleItem.svelte";
 </script>
 
-<Meta title="Theme" />
+<Meta title="Theme/Colors" />
 
-<Story name="Main">
+<Story name="Dark">
   <div class="bg-black p-5">black</div>
   <div class="bg-darkest-gray p-5">darkest-gray</div>
   <div class="bg-dark-gray p-5">dark-gray</div>

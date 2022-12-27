@@ -4,16 +4,17 @@
   let clazz = "";
   let wrapper;
   export { clazz as class };
-  export let elementProps = {};
 
+  export let elementProps = {};
   /** @type { boolean } */
   export let borders = true;
   /** @type { boolean } */
   export let animateBorders = true;
   /** @type { string } */
   export let iconClasses = null;
-
-  /** @type { 'button' | 'a' | 'div' } String */
+  /** @type { "button" | "submit" } */
+  export let type = "button";
+  /** @type { 'button' | 'a' } */
   export let elementType = "button";
 
   const dispatch = createEventDispatcher();
@@ -45,6 +46,7 @@
 <svelte:element
   this={elementType}
   bind:this={wrapper}
+  {type}
   class="{classes} {clazz || classesIfNotDefined}"
   on:click={handleClick}
   on:mouseenter={handleMouseEnter}

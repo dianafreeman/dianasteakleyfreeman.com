@@ -3,30 +3,23 @@
 
   let clazz = "";
   export { clazz as class };
-  export let enabled = true;
+  export let enabled;
 
   const buttonClasses = `text-black switch ${clazz}`;
   const dispatch = createEventDispatcher();
-
-  function handleClick() {
-    dispatch("click", { enabled });
-  }
 
   function handleOnSwitch() {
     dispatch("switch", { enabled });
   }
 
-  $: enabled && handleOnSwitch(enabled);
+  $: handleOnSwitch(enabled);
 </script>
 
-<button
-  on:click={handleClick}
-  aria-pressed={enabled}
-  class:enabled
-  class={buttonClasses}>
+<span class:enabled class={buttonClasses}>
   <slot />
+  <span class="sr-only">{enabled ? "ON" : "OFF"}</span>
   <span class="slider text-xs" />
-</button>
+</span>
 
 <style>
   .switch {

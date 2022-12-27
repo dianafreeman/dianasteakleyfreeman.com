@@ -1,5 +1,5 @@
 <script>
-  import Home from "$lib/icons/home.svelte";
+  // import Home from "$lib/icons/home.svelte";
 
   export let item;
   export let current = false;
@@ -14,12 +14,11 @@
     <a
       href="/"
       class="focus:outline-white; rounded-sm text-white hover:text-white focus:outline focus:outline-1 focus:outline-offset-8 focus:outline-white">
-      <Home />
+      <!-- <Home /> -->
       <span class="sr-only">Home Page</span>
     </a>
   {:else}
     <i aria-hidden="true" class="las la-angle-right mr-2 text-white " />
-
     <a
       aria-current={current}
       href={item.relativePath}

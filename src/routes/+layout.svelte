@@ -2,6 +2,8 @@
   import "../app.css";
   import { browser } from "$app/environment";
   import { page } from "$app/stores";
+  import * as Sentry from "@sentry/svelte";
+  import { BrowserTracing } from "@sentry/tracing";
   import { fade } from "svelte/transition";
   import Breadcrumbs from "$lib/components/Breadcrumbs.svelte";
   import { onMount } from "svelte";
@@ -14,8 +16,9 @@
     isMobileScreen,
     topNavHeight
   } from "$stores/LayoutStore";
-  import TopNav from "$lib/components/Header.svelte";
+  import TopNav from "$lib/components/Nav/NavBar.svelte";
   import FooterNav from "$lib/components/Footer.svelte";
+  import GoogleAnalytics from "$lib/components/GoogleAnalytics.svelte";
 
   /** @type {import('./$types').LayoutData} */
   export let data;
@@ -59,6 +62,17 @@
   });
 
   $: headerHeight && topNavHeight.set(headerHeight);
+
+  // Initialize the Sentry SDK here
+  Sentry.init({
+    dsn: import.meta.env.VITE_SENTRY_DSN,
+    integrations: [new BrowserTracing()],
+
+    // Set tracesSampleRate to 1.0 to capture 100%
+    // of transactions for performance monitoring.
+    // We recommend adjusting this value in production
+    tracesSampleRate: 1.0
+  });
 </script>
 
 <svelte:window bind:scrollY bind:innerWidth />
@@ -66,15 +80,16 @@
 <Seo
   title={data.seoMeta?.title}
   description={data.seoMeta?.description || data.seoMeta?.excerpt || null} />
+<GoogleAnalytics />
 <header
   bind:clientHeight={headerHeight}
   class="bg-semi-transparent fixed top-0 z-30 w-full pb-4"
   class:dyslexia>
   <TopNav navItems={data.navItems} />
-  <Breadcrumbs
+  <!-- <Breadcrumbs
     slot="breadcrumbs"
     class="z-40 m-auto w-full"
-    items={data.breadcrumbs} />
+    items={data.breadcrumbs} /> -->
 </header>
 <div id="spacer" style="height: {$topNavHeight}px;" />
 {#key $page.url.pathname}
