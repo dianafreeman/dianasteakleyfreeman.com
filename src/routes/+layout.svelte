@@ -86,10 +86,10 @@
   class="bg-semi-transparent fixed top-0 z-30 w-full pb-4"
   class:dyslexia>
   <TopNav navItems={data.navItems} />
-  <Breadcrumbs
+  <!-- <Breadcrumbs
     slot="breadcrumbs"
     class="z-40 m-auto w-full"
-    items={data.breadcrumbs} />
+    items={data.breadcrumbs} /> -->
 </header>
 <div id="spacer" style="height: {$topNavHeight}px;" />
 {#key $page.url.pathname}
