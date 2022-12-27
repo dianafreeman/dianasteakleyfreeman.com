@@ -3,7 +3,7 @@
 
   import NavBrand from "$lib/components/Nav/NavBrand.svelte";
   import NavToggle from "$lib/components/Nav/NavToggle.svelte";
-  import ToggleItem from "$lib/components/Buttons/ToggleItem.svelte";
+  import ToggleButton from "$lib/components/Buttons/ToggleButton.svelte";
 
   import { settingsMenuIsOpen } from "$stores/LayoutStore";
   import MainNav from "./MainNav.svelte";
@@ -41,9 +41,9 @@
   {#if $settingsMenuIsOpen}
     <ul class="px-2 py-1" aria-hidden={!settingsMenuIsOpen}>
       {#each settingsItems as item}
-        <ToggleItem on:click={() => item.func()} value={item.value}>
+        <ToggleButton useSwitch on:click={() => item.func()} value={item.value}>
           {item.navigationText}
-        </ToggleItem>
+        </ToggleButton>
       {/each}
     </ul>
   {/if}

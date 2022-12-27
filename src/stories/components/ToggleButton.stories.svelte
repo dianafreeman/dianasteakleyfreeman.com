@@ -4,7 +4,7 @@
 
   import ToggleButton from "$lib/components/Buttons/ToggleButton.svelte";
   import { expect } from "@storybook/jest";
-  import { userEvent, waitFor, within } from "@storybook/testing-library";
+  import { userEvent, within } from "@storybook/testing-library";
 
   async function playClick({ canvasElement }) {
     const canvas = within(canvasElement);
