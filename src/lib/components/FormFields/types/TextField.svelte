@@ -1,25 +1,15 @@
 <script>
-  import { createEventDispatcher } from "svelte";
-
-  /**
-   *  string to associate label and input
-   *  @type { string }
-   * */
+  /** @type { string } string to associate label and input */
   export let id;
   /** @type { string } */
-  export let label;
+  export let value;
   /** @type { bool } */
   export let required = false;
   /** @type { string } */
   export let error;
+  
 
-  let value;
-  let isFocused;
-
-  const dispatch = createEventDispatcher();
-  function handleChange() {
-    dispatch("change", { value, label, name: id });
-  }
+  let focused;
 </script>
 
 <input
@@ -29,7 +19,6 @@
   {id}
   {required}
   type="text"
-  on:focus={() => (isFocused = true)}
-  on:blur={() => (isFocused = false)}
-  on:change={handleChange}
+  on:focus={() => (focused = true)}
+  on:blur={() => (focused = false)}
   bind:value />

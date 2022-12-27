@@ -17,7 +17,7 @@
 
   function handleFocusAndBlur(ev) {
     isFocused = !isFocused;
-    console.log(ev.target);
+    console.log(ev.target.checked);
   }
   function handleChange(ev) {
     dispatch("change", { label, value, checked: ev.target.checked });

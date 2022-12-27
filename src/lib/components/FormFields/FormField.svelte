@@ -1,4 +1,5 @@
 <script>
+  import { createEventDispatcher } from "svelte";
   import CheckboxField from "./types/CheckboxField.svelte";
   import SelectField from "./types/SelectField.svelte";
   import TextAreaField from "./types/TextAreaField.svelte";
@@ -16,9 +17,6 @@
   /** @type { string } */
   export let label;
 
-  /** @type { string } */
-  export let value;
-
   /** @type { string | Object | null } */
   export let error = null;
 
@@ -27,6 +25,9 @@
 
   /** @type { string } string to associate label and input */
   export let id;
+
+  /** @type { string } */
+  let value;
 
   let clazz = "";
   export { clazz as class };
@@ -38,6 +39,8 @@
     checkbox: CheckboxField
   };
 
+  if (!Object.keys(COMPONENT_MAP).includes(type))
+    throw new Error("ERROR: invalid type argument supplied to FormField");
   const DEFAULT_PROPS = { label, name: id, value, id };
 
   const PROPS_MAP = {
@@ -48,12 +51,19 @@
   };
 
   const isCheckbox = type === "checkbox";
+
+  const dispatch = createEventDispatcher();
+  function handleChange(v) {
+    dispatch("change", { value: v, label, name: id, id });
+  }
+
+  $: value !== undefined && handleChange(value);
 </script>
 
 <div class={containerClasses}>
   {#if !hideLabel && !isCheckbox}
     <label
-      class="text-gray-700 text-md mb-2 block font-bold lowercase tracking-wide"
+      class="text-md mb-2 block font-bold lowercase tracking-wide text-gray-700"
       for={id}>
       {label}.
     </label>
@@ -61,7 +71,8 @@
   <svelte:component
     this={COMPONENT_MAP[type]}
     {...PROPS_MAP[type]}
-    class={clazz} />
+    class={clazz}
+    bind:value />
   {#if error}
     <p class="text-sm font-bold text-red-400">{error}.</p>
   {/if}

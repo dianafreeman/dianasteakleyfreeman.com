@@ -13,10 +13,12 @@
   const dispatch = createEventDispatcher();
 
   function onSelectChange(evt) {
+    value = evt.target.value
     const targetValue = evt.target.value;
     const label = options[evt.target.selectedIndex].label;
     dispatch("change", { value: targetValue, label });
   }
+
 </script>
 
 <select
