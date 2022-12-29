@@ -21,7 +21,7 @@
 
 <Seo title={data.title} />
 <div
-  class="mx-2 flex w-auto flex-row-reverse {$allFilters.length > 0
+  class="mx-2 flex w-auto flex-row after:{$allFilters.length > 0
     ? 'items-top'
     : 'items-center'} justify-between">
   <div class="mb-auto">
@@ -38,7 +38,7 @@
     <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
     <h2
       id="results content-start"
-      class="flex-grow p-2 lowercase"
+      class="flex-grow p-2 lowercase text-right"
       tabindex={0}
       aria-live="polite">
       Showing {$results.length} result{$results.length > 1 ? "s" : ""}.
