@@ -16,11 +16,12 @@ async function getEntry(uniqueFilter) {
   const entries = await getPageEntries();
   return uniqueFilter ? entries.find(uniqueFilter) : entries[0];
 }
+export const prerender = true;
 
-/** @type {import('../../.svelte-kit/types/src/routes/$types').LayoutServerLoad} */
+/** @type {import('./$types').LayoutServerLoad} */
 export async function load({ url }) {
   const topLevelNavTargets = await getEntries(isTopLevelRoute);
-  let activeEntry = getEntry((e) => e.relativePath === url.pathname);
+  let activeEntry = await getEntry((e) => e.relativePath === url.pathname);
   let breadcrumbs = [];
 
   if (browser) {
@@ -32,7 +33,6 @@ export async function load({ url }) {
     const updated = await Promise.all(breadcrumbPromises);
     breadcrumbs = updated;
   }
-
   return {
     breadcrumbs,
     navItems: topLevelNavTargets,

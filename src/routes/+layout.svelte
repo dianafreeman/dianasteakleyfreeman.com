@@ -8,6 +8,7 @@
   import Breadcrumbs from "$lib/components/Breadcrumbs.svelte";
   import { onMount } from "svelte";
   import SettingsStore from "$stores/SettingsStore";
+  import { getPageEntries } from "$lib/content/queries";
   import Seo from "$lib/components/Seo.svelte";
 
   import {
@@ -19,6 +20,7 @@
   import TopNav from "$lib/components/Nav/NavBar.svelte";
   import FooterNav from "$lib/components/Footer.svelte";
   import GoogleAnalytics from "$lib/components/GoogleAnalytics.svelte";
+  import Error from "./+error.svelte";
 
   /** @type {import('./$types').LayoutData} */
   export let data;
@@ -73,13 +75,16 @@
     // We recommend adjusting this value in production
     tracesSampleRate: 1.0
   });
+
+  async function getEntry(uniqueFilter) {
+    const entries = await getPageEntries();
+    return uniqueFilter ? entries.find(uniqueFilter) : entries[0];
+  }
 </script>
 
 <svelte:window bind:scrollY bind:innerWidth />
 
-<Seo
-  title={data.seoMeta?.title}
-  description={data.seoMeta?.description || data.seoMeta?.excerpt || null} />
+<Seo />
 <GoogleAnalytics />
 <header
   bind:clientHeight={headerHeight}
