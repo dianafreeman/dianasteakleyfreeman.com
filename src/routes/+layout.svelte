@@ -91,10 +91,7 @@
       href="#content-start">Skip to content</a>
   </div>
   <TopNav navItems={data.navItems} />
-  <!-- <Breadcrumbs
-    slot="breadcrumbs"
-    class="z-40 m-auto w-full"
-    items={data.breadcrumbs} /> -->
+
 </header>
 <div id="spacer" style="height: {$topNavHeight}px;" />
 {#key $page.url.pathname}
