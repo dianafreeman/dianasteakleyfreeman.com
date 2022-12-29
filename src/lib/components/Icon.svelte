@@ -9,19 +9,20 @@
   export let dontHide = false;
 
   const ICON_CLASS_MAP = {
-    settings: "la-ellipsis-v",
-    expand: "la-angle-down",
-    collapse: "la-angle-up",
-    next: "la-angle-right",
-    externalLink: "la-external-link-alt",
-    menu: "la-bars",
-    close: "la-times",
     check: "la-check",
-    square: "la-stop",
+    close: "la-times",
+    collapse: "la-angle-up",
+    cookie: "la-cookie",
     copyLink: "la-clipboard",
+    expand: "la-angle-down",
+    externalLink: "la-external-link-alt",
     filter: "la-filter",
     important: "la-exclamation-circle",
-    question: "la-question-circle"
+    menu: "la-bars",
+    next: "la-angle-right",
+    question: "la-question-circle",
+    settings: "la-ellipsis-v",
+    square: "la-stop",
   };
 
   $: iconType = type;
