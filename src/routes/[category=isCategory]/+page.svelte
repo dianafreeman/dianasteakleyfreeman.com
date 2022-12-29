@@ -10,9 +10,7 @@
 
   const sortAndFilterStore = createSortAndFilterStore(data.entries);
 
-  const { results, allFilters, options, category } =
-    sortAndFilterStore;
-
+  const { results, allFilters, options, category } = sortAndFilterStore;
 </script>
 
 <Seo title={data.title} />

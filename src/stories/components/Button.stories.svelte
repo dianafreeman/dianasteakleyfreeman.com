@@ -21,7 +21,7 @@
 <Story name="primary/static borders" args={{ animateBorders: false }} />
 <Story
   name="primary/with icon"
-  args={{ iconClasses: "las la-external-link-alt text-2xl mx-2" }} />
+  args={{ iconProps: { type: "external", large: true } }} />
 <Story
   name="primary/with icon/static borders"
   args={{ animateBorders: false }} />

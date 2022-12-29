@@ -91,7 +91,6 @@
       href="#content-start">Skip to content</a>
   </div>
   <TopNav navItems={data.navItems} />
-
 </header>
 <div id="spacer" style="height: {$topNavHeight}px;" />
 {#key $page.url.pathname}

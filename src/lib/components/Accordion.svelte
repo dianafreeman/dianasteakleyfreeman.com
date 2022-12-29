@@ -1,5 +1,6 @@
 <script>
   import Button from "./Buttons/Button.svelte";
+  import Icon from "./Icon.svelte";
 
   /** @type { string } */
   export let title;
@@ -7,8 +8,6 @@
   export let titleElement = "p";
   /** @type { boolean } */
   export let isOpen = false;
-
-  $: iconClasses = isOpen ? "la-angle-up" : "la-angle-down";
 </script>
 
 <dl class="divide-gray-200 mt-6 space-y-6 divide-y">
@@ -26,7 +25,7 @@
         <svelte:element this={titleElement} class="text-gray-900 font-medium"
           >{title}</svelte:element>
         <span class="ml-6 flex h-7 items-center">
-          <i class="las {iconClasses}" />
+          <Icon type={isOpen ? "collapse" : "expand"} />
         </span>
       </Button>
     </dt>

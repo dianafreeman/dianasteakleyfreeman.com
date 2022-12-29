@@ -32,7 +32,7 @@
         Digital Policy Buff, User Rights Enthusiast, Former Scientist, Forever
         Experimenting. Enthusiastic nerd.
       </p>
-      <Button class="bg-darkest-gray my-auto w-fit p-5"
+      <Button class="my-auto w-fit bg-darkest-gray p-5"
         >More about Diana</Button>
     </div>
   </div>

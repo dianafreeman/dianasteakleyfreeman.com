@@ -1,5 +1,6 @@
 <script>
   import Button from "../Buttons/Button.svelte";
+  import Icon from "$lib/components/Icon.svelte";
 
   export let expanded = false;
   export let hideLabel = false;
@@ -12,19 +13,8 @@
   export let id;
   /** @type { "hamburger" | "settings "} */
   export let menuType;
-  /** @type { "hamburger" | "times" | "settings"} */
+  /** @type { "menu" | "close" | "settings"} */
   export let iconType = "";
-
-  const ICON_CLASS_MAP = {
-    hamburger: "las la-bars",
-    times: "las la-times",
-    settings: "las la-ellipsis-v",
-    close: "las la-angle-up"
-  };
-
-  $: iconClasses = iconType
-    ? ICON_CLASS_MAP[iconType]
-    : ICON_CLASS_MAP[menuType];
 </script>
 
 <Button
@@ -32,5 +22,5 @@
   elementProps={{ "aria-expanded": expanded, "aria-controls": id }}
   on:click>
   <span class:sr-only={hideLabel}>{label}</span>
-  <i class="text-2xl {iconClasses}" aria-hidden="true" />
+  <Icon type={iconType} large />
 </Button>

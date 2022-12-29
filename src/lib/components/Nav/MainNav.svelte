@@ -24,7 +24,7 @@
       }}
       label="menu"
       menuType="hamburger"
-      iconType={$mainMenuIsOpen ? "times" : "hamburger"}
+      iconType={$mainMenuIsOpen ? "close" : "menu"}
       id="mainMenu"
       hideLabel
       expanded={$mainMenuIsOpen} />

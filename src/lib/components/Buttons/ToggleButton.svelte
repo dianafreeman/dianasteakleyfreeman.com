@@ -3,6 +3,8 @@
   import Button from "./Button.svelte";
   import ToggleSwitch from "./ToggleSwitch.svelte";
 
+  /** @type { Object } icon properties*/
+  export let iconProps = {};
   /** @type { string } */
   export let id = null;
   /** @type { string } */
@@ -39,7 +41,8 @@
 <Button
   class="my-2 flex items-center justify-between p-3 text-lg {clazz}"
   on:click={handleClick}
-  {elementProps}>
+  {elementProps}
+  {iconProps}>
   <slot />
   {#if useSwitch}
     <ToggleSwitch enabled={pressed} />

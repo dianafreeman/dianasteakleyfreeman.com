@@ -25,7 +25,9 @@
     </div>
   </div>
 
-  <div id="content-start" class="markdown mx-sauto responsive-container mt-6 w-full">
+  <div
+    id="content-start"
+    class="markdown mx-sauto responsive-container mt-6 w-full">
     <svelte:component this={entry.default} />
   </div>
 </div>
