@@ -8,7 +8,6 @@
   import Breadcrumbs from "$lib/components/Breadcrumbs.svelte";
   import { onMount } from "svelte";
   import SettingsStore from "$stores/SettingsStore";
-  import { getPageEntries } from "$lib/content/queries";
   import Seo from "$lib/components/Seo.svelte";
 
   import {
@@ -76,10 +75,6 @@
     tracesSampleRate: 1.0
   });
 
-  async function getEntry(uniqueFilter) {
-    const entries = await getPageEntries();
-    return uniqueFilter ? entries.find(uniqueFilter) : entries[0];
-  }
 </script>
 
 <svelte:window bind:scrollY bind:innerWidth />

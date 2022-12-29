@@ -5,6 +5,7 @@ function isTopLevelRoute(entry) {
   if (entry.relativePath === "/") return false;
   const pathArray = entry.relativePath.split("/").filter((v) => v.length !== 0);
   if (pathArray.length > 1) return false;
+  if (['/contact',' /feedback'].includes(entry.relativePath)) return false
   return true;
 }
 
@@ -16,7 +17,6 @@ async function getEntry(uniqueFilter) {
   const entries = await getPageEntries();
   return uniqueFilter ? entries.find(uniqueFilter) : entries[0];
 }
-export const prerender = true;
 
 /** @type {import('./$types').LayoutServerLoad} */
 export async function load({ url }) {
