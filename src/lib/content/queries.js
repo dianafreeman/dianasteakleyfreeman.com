@@ -61,7 +61,9 @@ const STRINGS_THAT_ARE_NEVER_CATEGORIES = [
   "",
   "privacy",
   "privacy-policy",
-  "about"
+  "about",
+  "contact",
+  "feedback"
 ];
 function getEntryDataFromRelativePath(obj) {
   const folders = obj.relativePath.split("/");

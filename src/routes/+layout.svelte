@@ -74,7 +74,6 @@
     // We recommend adjusting this value in production
     tracesSampleRate: 1.0
   });
-
 </script>
 
 <svelte:window bind:scrollY bind:innerWidth />

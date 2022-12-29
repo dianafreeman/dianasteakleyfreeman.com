@@ -5,7 +5,7 @@ function isTopLevelRoute(entry) {
   if (entry.relativePath === "/") return false;
   const pathArray = entry.relativePath.split("/").filter((v) => v.length !== 0);
   if (pathArray.length > 1) return false;
-  if (['/contact',' /feedback'].includes(entry.relativePath)) return false
+  if (["/contact", " /feedback"].includes(entry.relativePath)) return false;
   return true;
 }
 

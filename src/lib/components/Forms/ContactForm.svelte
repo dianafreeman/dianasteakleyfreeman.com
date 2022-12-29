@@ -85,7 +85,13 @@
   let's connect.
 </h1>
 
-<form bind:this={form} class="mx-auto w-full max-w-lg" on:submit={handleSubmit}>
+<form
+  method="POST"
+  name="contact"
+  data-netlify={true}
+  bind:this={form}
+  class="mx-auto w-full max-w-lg"
+  on:submit={handleSubmit}>
   <div class="flex gap-3">
     <FormField
       containerClasses="w-1/2"

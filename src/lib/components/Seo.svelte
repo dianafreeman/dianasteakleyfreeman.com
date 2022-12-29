@@ -6,6 +6,9 @@
   export let type = "website";
 
   export let imageSrc = "/static/screenshot.png";
+  if (!$page.data.seoMeta) {
+    throw new Error(`No seo data found for page ${$page.url.href} `);
+  }
 </script>
 
 <svelte:head>
