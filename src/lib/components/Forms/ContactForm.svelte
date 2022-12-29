@@ -23,7 +23,7 @@
     // TODO: separate validation from error messaging
     const exists = str && str.length > 0;
     if (!exists) return "e-mail address is a required field";
-    const valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(str);
+    const valid = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(str);
     if (!valid) return "That doesn't look like an email address.";
   }
 

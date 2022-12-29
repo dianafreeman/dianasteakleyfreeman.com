@@ -1,4 +1,5 @@
 <script>
+  /* eslint-disable */
   import { browser } from "$app/environment";
   import { page } from "$app/stores";
   import { readable } from "svelte/store";

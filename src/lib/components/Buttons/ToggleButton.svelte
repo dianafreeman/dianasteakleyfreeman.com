@@ -25,10 +25,6 @@
     pressed = !pressed;
     dispatch("click", { label, value });
   }
-  function handleSwitch() {
-    // pressed = !pressed;
-    dispatch("switch", { label, value });
-  }
 
   $: elementProps = {
     "aria-pressed": pressed,

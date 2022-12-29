@@ -5,8 +5,6 @@
   import * as Sentry from "@sentry/svelte";
   import { BrowserTracing } from "@sentry/tracing";
   import { fade } from "svelte/transition";
-  import Breadcrumbs from "$lib/components/Breadcrumbs.svelte";
-  import Button from "$lib/components/Buttons/Button.svelte";
   import { onMount } from "svelte";
   import SettingsStore from "$stores/SettingsStore";
   import Seo from "$lib/components/Seo.svelte";
@@ -20,7 +18,6 @@
   import TopNav from "$lib/components/Nav/NavBar.svelte";
   import FooterNav from "$lib/components/Footer.svelte";
   import GoogleAnalytics from "$lib/components/GoogleAnalytics.svelte";
-  import Error from "./+error.svelte";
 
   /** @type {import('./$types').LayoutData} */
   export let data;

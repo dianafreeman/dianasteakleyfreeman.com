@@ -22,7 +22,7 @@
     next: "la-angle-right",
     question: "la-question-circle",
     settings: "la-ellipsis-v",
-    square: "la-stop",
+    square: "la-stop"
   };
 
   $: iconType = type;

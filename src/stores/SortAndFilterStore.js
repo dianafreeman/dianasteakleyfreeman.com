@@ -95,8 +95,10 @@ function createSortAndFilterStore(entryArray) {
     const filterToRemove = ev.detail;
     if (isCategoryValue(filterToRemove.value)) {
       category.set(allCategories[0]);
-    } else if (isTagValue(value)) {
-      tags.update((current) => current.filter((t) => t.value !== value));
+    } else if (isTagValue(filterToRemove.value)) {
+      tags.update((current) =>
+        current.filter((t) => t.value !== filterToRemove.value)
+      );
     }
   }
 

@@ -35,5 +35,10 @@
 
 <Story name="unclicked" args={{ useSwitch: true }} play={playBeforeClick} />
 <Story name="clicked" args={{ useSwitch: true }} play={playClick} />
-<Story name="unclicked/with icon" args={{ useSwitch: true, iconProps: { type: "cookie", large: true} }} />
-<Story name="clicked/with icon" args={{ useSwitch: true, iconProps: { type: "cookie", large: true} }} play={playClick} />
+<Story
+  name="unclicked/with icon"
+  args={{ useSwitch: true, iconProps: { type: "cookie", large: true } }} />
+<Story
+  name="clicked/with icon"
+  args={{ useSwitch: true, iconProps: { type: "cookie", large: true } }}
+  play={playClick} />

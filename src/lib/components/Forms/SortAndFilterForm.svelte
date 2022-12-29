@@ -2,18 +2,18 @@
   import CheckboxField from "$lib/components/FormFields/types/CheckboxField.svelte";
   import FormField from "../FormFields/FormField.svelte";
 
+  // THIS FILE IS NOT CURRENTLY IN USE
+  // Delete???
+
   export let store;
 
   const { options, category, tags } = store;
 
   function onCategoryChange(evt) {
-    // console.log(evt.detail.value)
     category.set(evt.detail);
   }
 
-  function onCheckboxClick(evt, value) {
-    // console.log('evt.detail',evt.detail)
-    // console.log('value',value)
+  function onCheckboxClick(evt) {
     tags.update((curr) => {
       const currValues = curr.map((v) => v.value);
       console.log(currValues);
