@@ -22,5 +22,5 @@
   elementProps={{ "aria-expanded": expanded, "aria-controls": id }}
   on:click>
   <span class:sr-only={hideLabel}>{label}</span>
-  <Icon type={iconType} large />
+  <Icon type={menuType || iconType} large />
 </Button>
