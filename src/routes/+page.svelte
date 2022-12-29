@@ -10,7 +10,7 @@
 
 <LandingSection class="mx-auto mb-20 min-h-screen justify-around">
   <div class="align-center relative my-12 h-full p-2 lg:p-5">
-    <h1 class="heading mb-4 text-center font-bold">
+    <h1 class="heading mb-4 text-center font-bold" id="content-start">
       Diana M. Steakley-Freeman
     </h1>
     <p class="subheading text-center font-thin">

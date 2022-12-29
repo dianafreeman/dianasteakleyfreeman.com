@@ -37,7 +37,7 @@
   <div class="m-2 flex w-full flex-col">
     <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
     <h2
-      id="results"
+      id="results content-start"
       class="flex-grow p-2 lowercase"
       tabindex={0}
       aria-live="polite">

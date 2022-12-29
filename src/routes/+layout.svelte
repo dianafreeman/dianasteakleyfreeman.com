@@ -6,6 +6,7 @@
   import { BrowserTracing } from "@sentry/tracing";
   import { fade } from "svelte/transition";
   import Breadcrumbs from "$lib/components/Breadcrumbs.svelte";
+  import Button from "$lib/components/Buttons/Button.svelte";
   import { onMount } from "svelte";
   import SettingsStore from "$stores/SettingsStore";
   import Seo from "$lib/components/Seo.svelte";
@@ -84,6 +85,9 @@
   bind:clientHeight={headerHeight}
   class="bg-semi-transparent fixed top-0 z-30 w-full pb-4"
   class:dyslexia>
+  <div>
+    <a class="sr-only focus:not-sr-only focus:p-5 focus:absolute focus:top-5 focus:left-5 focus:bg-semi-transparent focus:z-[99]" href='#content-start'>Skip to content</a>
+  </div>
   <TopNav navItems={data.navItems} />
   <!-- <Breadcrumbs
     slot="breadcrumbs"
