@@ -6,7 +6,7 @@
   let wrapper;
   export { clazz as class };
 
-  export let iconProps = {};
+  export let iconProps;
   export let elementProps = {};
   /** @type { boolean } */
   export let borders = true;
@@ -57,7 +57,6 @@
   on:blur={handleBlur}
   {...elementProps}>
   {#if iconProps}
-    <!-- <<i aria-hidden="true" class="mx-2 {iconClasses}" />> -->
     <Icon type={iconProps.type} large={iconProps.large} />
   {/if}
   <slot />
