@@ -65,8 +65,8 @@
   }
 }
 
-@layer components { 
+@layer components {
   .button {
-    @apply relative w-full cursor-pointer text-white bg-darkest-gray hover:bg-gray focus:bg-gray;
+    @apply relative w-full cursor-pointer bg-darkest-gray text-white hover:bg-gray focus:bg-gray;
   }
 }

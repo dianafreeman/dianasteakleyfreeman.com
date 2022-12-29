@@ -44,7 +44,6 @@
   .subheading {
     @apply text-xl font-thin md:text-2xl lg:text-3xl;
   }
-
 }
 
 :root {
