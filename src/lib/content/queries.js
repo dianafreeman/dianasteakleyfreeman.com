@@ -116,6 +116,5 @@ export async function getPageEntries() {
     // we use the default here because static entries are JSON fikes
     return obj.default;
   });
-
   return [...staticEntries, ...markdownEntries];
 }

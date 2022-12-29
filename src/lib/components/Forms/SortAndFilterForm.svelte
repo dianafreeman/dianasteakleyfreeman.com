@@ -29,10 +29,6 @@
       return [...curr, { value, label }];
     });
   }
-
-  // $: console.log(categoryValue)
-  category.subscribe((c) => console.log("category", c));
-  tags.subscribe((t) => console.log("tags", t));
 </script>
 
 <div class="m-2 w-auto p-3">

@@ -12,7 +12,6 @@
 
   export let items;
 
-  console.log($page.url.pathname)
   $: isActive = (item) => $page.url.pathname === item.relativePath;
 </script>
 
