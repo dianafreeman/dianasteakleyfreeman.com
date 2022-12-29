@@ -46,7 +46,7 @@
 <svelte:element
   this={elementType}
   bind:this={wrapper}
-  {type}
+  type={elementType === "button" ? type : null}
   class="{classes} {clazz || classesIfNotDefined}"
   on:click={handleClick}
   on:mouseenter={handleMouseEnter}

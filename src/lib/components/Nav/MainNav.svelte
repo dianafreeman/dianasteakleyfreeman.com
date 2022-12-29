@@ -12,6 +12,7 @@
 
   export let items;
 
+  console.log($page.url.pathname)
   $: isActive = (item) => $page.url.pathname === item.relativePath;
 </script>
 
@@ -42,7 +43,7 @@
       <Button
         elementType="a"
         elementProps={{ href: item.relativePath }}
-        class="{navItemClasses} {isActive(item) ? 'bg-dark-gray border' : ''}"
+        class="{navItemClasses} {isActive(item) ? 'bg-gray' : ''}"
         >{item.navigationText}</Button>
     </li>
   {/each}

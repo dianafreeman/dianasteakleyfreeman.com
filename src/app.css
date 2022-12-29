@@ -26,7 +26,7 @@
 
   /* TODO: add this to tailwind */
   .bg-semi-transparent {
-    background-color: rgba(23, 23, 23, 0.7);
+    background-color: rgba(23, 23, 23, 0.9);
   }
 }
 
@@ -44,9 +44,7 @@
   .subheading {
     @apply text-xl font-thin md:text-2xl lg:text-3xl;
   }
-  .button {
-    @apply relative w-full cursor-pointer text-white hover:bg-gray focus:bg-gray;
-  }
+
 }
 
 :root {
