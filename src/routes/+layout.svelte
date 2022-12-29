@@ -86,7 +86,9 @@
   class="bg-semi-transparent fixed top-0 z-30 w-full pb-4"
   class:dyslexia>
   <div>
-    <a class="sr-only focus:not-sr-only focus:p-5 focus:absolute focus:top-5 focus:left-5 focus:bg-semi-transparent focus:z-[99]" href='#content-start'>Skip to content</a>
+    <a
+      class="focus:bg-semi-transparent sr-only focus:not-sr-only focus:absolute focus:top-5 focus:left-5 focus:z-[99] focus:p-5"
+      href="#content-start">Skip to content</a>
   </div>
   <TopNav navItems={data.navItems} />
   <!-- <Breadcrumbs
@@ -96,7 +98,7 @@
 </header>
 <div id="spacer" style="height: {$topNavHeight}px;" />
 {#key $page.url.pathname}
-  <main class:dyslexia bind:this={main} in:fade>
+  <main class:dyslexia bind:this={main} in:fade class="flex flex-grow flex-col">
     <slot />
   </main>
 {/key}

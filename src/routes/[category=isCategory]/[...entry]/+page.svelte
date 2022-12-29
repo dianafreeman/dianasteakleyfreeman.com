@@ -3,7 +3,7 @@
   const { entry } = data;
 </script>
 
-<div class="mb-auto flex min-h-screen flex-col justify-start px-4">
+<div class="mb-auto flex min-h-screen flex-grow flex-col justify-start px-4">
   <div
     class="before:content-[' '] relative flex min-h-[50vh] flex-col justify-center bg-contain bg-center grayscale before:absolute before:top-0 before:-z-0 before:h-full before:w-full before:bg-[rgba(0,0,0,0.5)] md:bg-right lg:min-h-[80vh]"
     style="background-image: url({entry.metadata
@@ -25,7 +25,9 @@
     </div>
   </div>
 
-  <div id="content-start" class="markdown mx-sauto responsive-container mt-6 w-full">
+  <div
+    id="content-start"
+    class="markdown mx-sauto responsive-container mt-6 w-full">
     <svelte:component this={entry.default} />
   </div>
 </div>

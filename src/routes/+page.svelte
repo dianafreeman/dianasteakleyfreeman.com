@@ -2,6 +2,7 @@
   import LandingSection from "$lib/components/LandingSection.svelte";
   import Button from "$lib/components/Buttons/Button.svelte";
   import IntroAnimation from "$lib/components/IntroAnimation.svelte";
+  import LazyImage from "$lib/components/Image/LazyImage.svelte";
 </script>
 
 <LandingSection fadeInWhenVisible={false} class="relative justify-center ">
@@ -18,10 +19,10 @@
     </p>
   </div>
   <div class="gap-4 px-16 md:flex">
-    <img
-      src="/images/diana-and-rafiki.jpg"
+    <LazyImage
       class="mx-auto max-w-xs rounded-full border-2 border-white"
-      alt="" />
+      src="/images/diana-and-rafiki.jpg" />
+
     <div class="flex w-full flex-col justify-between p-5 md:w-1/2">
       <p class="m-auto my-3">
         Full Stack Software Engineer. 10+ years of website and application
@@ -31,7 +32,7 @@
         Digital Policy Buff, User Rights Enthusiast, Former Scientist, Forever
         Experimenting. Enthusiastic nerd.
       </p>
-      <Button class="my-auto w-fit bg-darkest-gray p-5"
+      <Button class="bg-darkest-gray my-auto w-fit p-5"
         >More about Diana</Button>
     </div>
   </div>
