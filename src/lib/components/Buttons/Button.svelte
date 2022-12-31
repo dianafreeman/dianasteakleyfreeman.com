@@ -57,7 +57,10 @@
   on:blur={handleBlur}
   {...elementProps}>
   {#if iconProps}
-    <Icon type={iconProps.type} large={iconProps.large} />
+    <Icon
+      type={iconProps.type}
+      large={iconProps.large}
+      class={iconProps.class} />
   {/if}
   <slot />
 </svelte:element>

@@ -31,7 +31,7 @@
 }
 
 @layer components {
-  a:not(nav a),
+  a:not(nav a):not(.button),
   .link {
     @apply focus:outline focus:outline-1 focus:outline-offset-8 focus:outline-white;
   }

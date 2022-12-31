@@ -4,6 +4,7 @@
   import createSortAndFilterStore from "$stores/SortAndFilterStore";
   import ToggleableBadge from "$lib/components/ToggleableBadge.svelte";
   import SelectField from "$lib/components/FormFields/types/SelectField.svelte";
+  import BackButton from "$lib/components/BackButton.svelte";
 
   /** @type {import('./$types').PageData} */
   export let data;
@@ -18,6 +19,7 @@
   class="mx-2 flex w-auto flex-row after:{$allFilters.length > 0
     ? 'items-top'
     : 'items-center'} justify-between">
+  <BackButton />
   <div class="m-2 flex w-full flex-col">
     <label
       class="text-md text-gray-700 mb-2 block font-bold lowercase tracking-wide"

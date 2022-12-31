@@ -10,6 +10,7 @@
 
   const ICON_CLASS_MAP = {
     check: "la-check",
+    back: "lar la-hand-point-left",
     close: "la-times",
     collapse: "la-angle-up",
     cookie: "la-cookie",
