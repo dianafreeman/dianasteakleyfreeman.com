@@ -6,6 +6,8 @@
   const paths = $page.url.pathname.split("/");
   const previous = paths[paths.length - 2];
 
+  // TODO
+  // ew. clean this up
   if (paths.includes("projects")) {
     pageToShow = "projects";
   } else if (paths.includes("blog")) {
