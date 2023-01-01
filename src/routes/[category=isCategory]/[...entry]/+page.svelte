@@ -1,4 +1,6 @@
 <script>
+  import BackButton from "$lib/components/BackButton.svelte";
+
   export let data;
   const { entry } = data;
 </script>
@@ -9,6 +11,9 @@
     style="background-image: url({entry.metadata
       .image}); background-repeat: no-repeat;">
     <div class="z-10">
+      <div class="mb-5">
+        <BackButton />
+      </div>
       <h1
         class="mb-12 text-left text-4xl font-bold lowercase md:w-1/2 md:text-left md:text-5xl lg:text-6xl">
         {entry.metadata.title}
@@ -25,7 +30,9 @@
     </div>
   </div>
 
-  <div class="markdown mx-sauto responsive-container mt-6 w-full">
+  <div
+    id="content-start"
+    class="markdown mx-sauto responsive-container mt-6 w-full">
     <svelte:component this={entry.default} />
   </div>
 </div>

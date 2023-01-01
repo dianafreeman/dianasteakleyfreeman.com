@@ -2,7 +2,7 @@
   import NavList from "./Nav/NavList.svelte";
   const navMenus = [
     {
-      title: "navigation",
+      title: "main navigation",
       containerClass: "w-1/2 mb-8",
       items: [
         {
@@ -10,8 +10,8 @@
           text: "Home"
         },
         {
-          href: "/gallery",
-          text: "Gallery"
+          href: "/projects",
+          text: "Projects"
         },
         {
           href: "/blog",
@@ -20,26 +20,30 @@
         {
           href: "/resources",
           text: "Resources"
+        },
+        {
+          href: "/contact",
+          text: "Contact"
         }
       ]
     },
     {
-      title: "Terms",
+      title: "Trust",
       containerClass: "w-1/2 mb-8",
       items: [
         {
           href: "/privacy",
-          text: "Privacy Statement"
+          text: "Privacy"
         },
         {
           href: "/feedback",
-          text: "Report A Problem"
+          text: "Feedback"
         }
       ]
     },
     {
       title: "Links",
-      containerClass: "w-1/2 mb-8",
+      containerClass: "w-1/2 ",
       class: "flex flex-row gap-2",
       items: [
         {
@@ -65,8 +69,12 @@
       <NavList title={menu.title} items={menu.items} class={menu.class} />
     </div>
   {/each}
-
-  <p class="flex-grow text-left font-bold lowercase ">
-    Diana M Steakley-Freeman. &copy; 2023
-  </p>
+  <div class="flex-grow text-left lowercase">
+    <p class="font-bold">Diana M Steakley-Freeman. &copy; 2023</p>
+    <a
+      href="https://github.com/dianafreeman/dianasteakleyfreeman.com"
+      class="font-thin">
+      View this site on github.
+    </a>
+  </div>
 </div>

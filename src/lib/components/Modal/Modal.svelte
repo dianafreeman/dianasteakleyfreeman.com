@@ -15,6 +15,7 @@
   export let buttonClasses;
   /** @type { string }*/
   export let buttonIconClasses;
+  export let buttonIconType;
   /** @type { boolean }*/
   export let hideDefaultToggle;
 
@@ -39,6 +40,7 @@
 {:else}
   <Button
     on:click={toggleOpen}
+    iconProps={{ type: buttonIconType }}
     iconClasses={buttonIconClasses}
     class="w-fit p-5 {buttonClasses}">{buttonText}</Button>
 {/if}

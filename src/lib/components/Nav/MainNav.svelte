@@ -24,7 +24,7 @@
       }}
       label="menu"
       menuType="hamburger"
-      iconType={$mainMenuIsOpen ? "times" : "hamburger"}
+      iconType={$mainMenuIsOpen ? "close" : "menu"}
       id="mainMenu"
       hideLabel
       expanded={$mainMenuIsOpen} />
@@ -42,7 +42,7 @@
       <Button
         elementType="a"
         elementProps={{ href: item.relativePath }}
-        class="{navItemClasses} {isActive(item) ? 'bg-dark-gray border' : ''}"
+        class="{navItemClasses} {isActive(item) ? 'bg-gray' : ''}"
         >{item.navigationText}</Button>
     </li>
   {/each}

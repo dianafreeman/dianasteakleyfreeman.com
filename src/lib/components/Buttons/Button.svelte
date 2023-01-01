@@ -1,17 +1,19 @@
 <script>
   import { createEventDispatcher } from "svelte";
+  import Icon from "../Icon.svelte";
 
   let clazz = "";
   let wrapper;
   export { clazz as class };
 
+  export let iconProps;
   export let elementProps = {};
   /** @type { boolean } */
   export let borders = true;
   /** @type { boolean } */
   export let animateBorders = true;
   /** @type { string } */
-  export let iconClasses = null;
+  // export let iconClasses = null;
   /** @type { "button" | "submit" } */
   export let type = "button";
   /** @type { 'button' | 'a' } */
@@ -46,7 +48,7 @@
 <svelte:element
   this={elementType}
   bind:this={wrapper}
-  {type}
+  type={elementType === "button" ? type : null}
   class="{classes} {clazz || classesIfNotDefined}"
   on:click={handleClick}
   on:mouseenter={handleMouseEnter}
@@ -54,8 +56,11 @@
   on:focus={handleFocus}
   on:blur={handleBlur}
   {...elementProps}>
-  {#if iconClasses}
-    <i aria-hidden="true" class="mx-2 {iconClasses}" />
+  {#if iconProps}
+    <Icon
+      type={iconProps.type}
+      large={iconProps.large}
+      class={iconProps.class} />
   {/if}
   <slot />
 </svelte:element>

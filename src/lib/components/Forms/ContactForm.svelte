@@ -23,7 +23,7 @@
     // TODO: separate validation from error messaging
     const exists = str && str.length > 0;
     if (!exists) return "e-mail address is a required field";
-    const valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(str);
+    const valid = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(str);
     if (!valid) return "That doesn't look like an email address.";
   }
 
@@ -85,7 +85,13 @@
   let's connect.
 </h1>
 
-<form bind:this={form} class="mx-auto w-full max-w-lg" on:submit={handleSubmit}>
+<form
+  method="POST"
+  name="contact"
+  data-netlify={true}
+  bind:this={form}
+  class="mx-auto w-full max-w-lg"
+  on:submit={handleSubmit}>
   <div class="flex gap-3">
     <FormField
       containerClasses="w-1/2"

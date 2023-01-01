@@ -14,7 +14,7 @@
 
   let focused = false;
 
-  function handleFocusAndBlur(ev) {
+  function handleFocusAndBlur() {
     focused = !focused;
   }
 

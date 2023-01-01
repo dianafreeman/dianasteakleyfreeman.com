@@ -5,7 +5,6 @@
   import * as Sentry from "@sentry/svelte";
   import { BrowserTracing } from "@sentry/tracing";
   import { fade } from "svelte/transition";
-  import Breadcrumbs from "$lib/components/Breadcrumbs.svelte";
   import { onMount } from "svelte";
   import SettingsStore from "$stores/SettingsStore";
   import Seo from "$lib/components/Seo.svelte";
@@ -77,23 +76,22 @@
 
 <svelte:window bind:scrollY bind:innerWidth />
 
-<Seo
-  title={data.seoMeta?.title}
-  description={data.seoMeta?.description || data.seoMeta?.excerpt || null} />
+<Seo />
 <GoogleAnalytics />
 <header
   bind:clientHeight={headerHeight}
   class="bg-semi-transparent fixed top-0 z-30 w-full pb-4"
   class:dyslexia>
+  <div>
+    <a
+      class="focus:bg-semi-transparent sr-only focus:not-sr-only focus:absolute focus:top-5 focus:left-5 focus:z-[99] focus:p-5"
+      href="#content-start">Skip to content</a>
+  </div>
   <TopNav navItems={data.navItems} />
-  <!-- <Breadcrumbs
-    slot="breadcrumbs"
-    class="z-40 m-auto w-full"
-    items={data.breadcrumbs} /> -->
 </header>
 <div id="spacer" style="height: {$topNavHeight}px;" />
 {#key $page.url.pathname}
-  <main class:dyslexia bind:this={main} in:fade>
+  <main class:dyslexia bind:this={main} in:fade class="flex flex-grow flex-col">
     <slot />
   </main>
 {/key}

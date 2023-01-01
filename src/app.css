@@ -26,12 +26,12 @@
 
   /* TODO: add this to tailwind */
   .bg-semi-transparent {
-    background-color: rgba(23, 23, 23, 0.7);
+    background-color: rgba(23, 23, 23, 0.9);
   }
 }
 
 @layer components {
-  a:not(nav a),
+  a:not(nav a):not(.button),
   .link {
     @apply focus:outline focus:outline-1 focus:outline-offset-8 focus:outline-white;
   }
@@ -43,9 +43,6 @@
   }
   .subheading {
     @apply text-xl font-thin md:text-2xl lg:text-3xl;
-  }
-  .button {
-    @apply relative w-full cursor-pointer text-white hover:bg-gray focus:bg-gray;
   }
 }
 

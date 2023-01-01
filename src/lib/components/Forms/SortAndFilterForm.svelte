@@ -1,21 +1,19 @@
 <script>
-  import { ALL_CATEGORIES_OPTION } from "$stores/SortAndFilterStore";
   import CheckboxField from "$lib/components/FormFields/types/CheckboxField.svelte";
-  import SelectField from "$lib/components/FormFields/types/SelectField.svelte";
   import FormField from "../FormFields/FormField.svelte";
+
+  // THIS FILE IS NOT CURRENTLY IN USE
+  // Delete???
 
   export let store;
 
   const { options, category, tags } = store;
 
   function onCategoryChange(evt) {
-    // console.log(evt.detail.value)
     category.set(evt.detail);
   }
 
-  function onCheckboxClick(evt, value) {
-    // console.log('evt.detail',evt.detail)
-    // console.log('value',value)
+  function onCheckboxClick(evt) {
     tags.update((curr) => {
       const currValues = curr.map((v) => v.value);
       console.log(currValues);
@@ -29,10 +27,6 @@
       return [...curr, { value, label }];
     });
   }
-
-  // $: console.log(categoryValue)
-  category.subscribe((c) => console.log("category", c));
-  tags.subscribe((t) => console.log("tags", t));
 </script>
 
 <div class="m-2 w-auto p-3">

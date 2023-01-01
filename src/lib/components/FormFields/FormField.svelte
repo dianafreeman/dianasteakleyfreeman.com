@@ -1,6 +1,5 @@
 <script>
   import { createEventDispatcher } from "svelte";
-  import LandingSection from "../LandingSection.svelte";
   import CheckboxField from "./types/CheckboxField.svelte";
   import SelectField from "./types/SelectField.svelte";
   import TextAreaField from "./types/TextAreaField.svelte";

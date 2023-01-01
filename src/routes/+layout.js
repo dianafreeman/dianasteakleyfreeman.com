@@ -5,6 +5,8 @@ function isTopLevelRoute(entry) {
   if (entry.relativePath === "/") return false;
   const pathArray = entry.relativePath.split("/").filter((v) => v.length !== 0);
   if (pathArray.length > 1) return false;
+
+  if (["/contact", "/feedback"].includes(entry.relativePath)) return false;
   return true;
 }
 
@@ -17,10 +19,10 @@ async function getEntry(uniqueFilter) {
   return uniqueFilter ? entries.find(uniqueFilter) : entries[0];
 }
 
-/** @type {import('../../.svelte-kit/types/src/routes/$types').LayoutServerLoad} */
+/** @type {import('./$types').LayoutServerLoad} */
 export async function load({ url }) {
   const topLevelNavTargets = await getEntries(isTopLevelRoute);
-  let activeEntry = getEntry((e) => e.relativePath === url.pathname);
+  let activeEntry = await getEntry((e) => e.relativePath === url.pathname);
   let breadcrumbs = [];
 
   if (browser) {
@@ -32,7 +34,6 @@ export async function load({ url }) {
     const updated = await Promise.all(breadcrumbPromises);
     breadcrumbs = updated;
   }
-
   return {
     breadcrumbs,
     navItems: topLevelNavTargets,

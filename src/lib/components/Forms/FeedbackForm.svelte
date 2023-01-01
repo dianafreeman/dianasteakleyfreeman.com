@@ -23,7 +23,7 @@
     // TODO: separate validation from error messaging
     const exists = str && str.length > 0;
     if (!exists) return "e-mail address is a required field";
-    const valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(str);
+    const valid = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(str);
     if (!valid) return "That doesn't look like an email address.";
   }
 
@@ -82,10 +82,12 @@
 </script>
 
 <form
+  method="POST"
+  name="feedback"
+  data-netlify={true}
   bind:this={form}
   on:submit={handleSubmit}
-  class="mx-auto w-full max-w-lg"
-  netlify>
+  class="mx-auto w-full max-w-lg">
   <h1 class="heading mx-auto mb-10 mt-5 text-center text-4xl lowercase">
     Got feedback? <span class="font-thin">I'm listening. </span>
   </h1>

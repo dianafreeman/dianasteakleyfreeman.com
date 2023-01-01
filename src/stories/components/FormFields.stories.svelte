@@ -1,6 +1,4 @@
 <script>
-  import { expect } from "@storybook/jest";
-  import { userEvent, waitFor, within } from "@storybook/testing-library";
   import { Meta, Template, Story } from "@storybook/addon-svelte-csf";
   import FormField from "$lib/components/FormFields/FormField.svelte";
   import CheckboxField from "$lib/components/FormFields/types/CheckboxField.svelte";
@@ -11,6 +9,10 @@
 
   const testStrings = ["Thing One", "Thing Two", "Thing Three", "Thing Four"];
   const optionsStub = createFormOptions(testStrings);
+
+  // TODO: additional testing
+  // import { expect } from "@storybook/jest";
+  // import { userEvent, waitFor, within } from "@storybook/testing-library";
 </script>
 
 <Template let:args>

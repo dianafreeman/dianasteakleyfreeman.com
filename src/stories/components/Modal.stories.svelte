@@ -9,6 +9,7 @@
   <Modal buttonText="Open Modal" title="My Modal">hi there from a slot</Modal>
 </Story>
 
-<Story name="withImage">
-  <Modal buttonText="Open Modal" title="My Modal">hi there from a slot</Modal>
+<Story name="with Icon">
+  <Modal buttonText="Open Modal" title="My Modal" buttonIconType="externalLink"
+    >hi there from a slot</Modal>
 </Story>

@@ -1,4 +1,6 @@
 <script>
+  import Icon from "./Icon.svelte";
+
   // import Home from "$lib/icons/home.svelte";
 
   export let item;
@@ -18,7 +20,7 @@
       <span class="sr-only">Home Page</span>
     </a>
   {:else}
-    <i aria-hidden="true" class="las la-angle-right mr-2 text-white " />
+    <Icon type="next" />
     <a
       aria-current={current}
       href={item.relativePath}

@@ -1,8 +1,11 @@
 <script>
   import { createEventDispatcher } from "svelte";
   import Button from "./Button.svelte";
+  import Icon from "../Icon.svelte";
   import ToggleSwitch from "./ToggleSwitch.svelte";
 
+  /** @type { Object } icon properties*/
+  export let iconProps;
   /** @type { string } */
   export let id = null;
   /** @type { string } */
@@ -23,10 +26,6 @@
     pressed = !pressed;
     dispatch("click", { label, value });
   }
-  function handleSwitch() {
-    // pressed = !pressed;
-    dispatch("switch", { label, value });
-  }
 
   $: elementProps = {
     "aria-pressed": pressed,
@@ -40,7 +39,12 @@
   class="my-2 flex items-center justify-between p-3 text-lg {clazz}"
   on:click={handleClick}
   {elementProps}>
-  <slot />
+  <div class={iconProps ? "flex justify-end items-center gap-2" : null}>
+    {#if iconProps}
+      <Icon type={iconProps.type} large={iconProps.large} />
+    {/if}
+    <slot />
+  </div>
   {#if useSwitch}
     <ToggleSwitch enabled={pressed} />
   {/if}

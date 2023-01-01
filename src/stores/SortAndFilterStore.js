@@ -92,11 +92,13 @@ function createSortAndFilterStore(entryArray) {
   const isCategoryValue = (value) => allCategoryValues.includes(value);
 
   function removeCategoryOrTag(ev) {
-    const { value } = ev.detail;
-    if (isCategoryValue(value)) {
-      category.set(ALL_CATEGORIES_OPTION);
-    } else if (isTagValue(value)) {
-      tags.update((current) => current.filter((t) => t.value !== value));
+    const filterToRemove = ev.detail;
+    if (isCategoryValue(filterToRemove.value)) {
+      category.set(allCategories[0]);
+    } else if (isTagValue(filterToRemove.value)) {
+      tags.update((current) =>
+        current.filter((t) => t.value !== filterToRemove.value)
+      );
     }
   }
 
