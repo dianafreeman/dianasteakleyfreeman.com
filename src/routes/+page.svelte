@@ -37,7 +37,7 @@
         Digital Policy Buff, User Rights Enthusiast, Former Scientist, Forever
         Experimenting. Enthusiastic nerd.
       </p>
-      <Button class="my-auto w-fit bg-darkest-gray p-5"
+      <Button elementType="a" elementProps={{ href: "https://www.linkedin.com/in/dianasteakleyfreeman/"}} class="my-auto w-fit bg-darkest-gray p-5"
         >More about Diana</Button>
     </div>
   </div>
