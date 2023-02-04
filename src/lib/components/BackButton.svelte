@@ -15,7 +15,7 @@
   } else if (paths.includes("resources")) pageToShow = "resources";
 
   if (previous.length === 0) {
-    pageToShow = "home";
+    pageToShow = "";
   }
 </script>
 
@@ -24,5 +24,5 @@
   elementProps={{ href: `/${pageToShow}` }}
   iconProps={{ type: "back", large: true, class: "mr-4" }}
   class="mt-10 mb-auto flex h-fit w-fit items-center justify-center py-1 px-2 text-sm">
-  back to {pageToShow}
+  back to {pageToShow.length ? pageToShow : "home"}
 </Button>
