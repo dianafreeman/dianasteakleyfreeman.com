@@ -1,0 +1,33 @@
+[
+  {
+    "title": "Run your github actions locally",
+    "target": "https://github.com/nektos/act",
+    "tags": ["developer tools"]
+  },
+  { 
+    "title": "The Center for Humane Technology",
+    "target": "hhttps://www.humanetech.com/",
+    "tags": ["organizations"]
+  },
+  { 
+    "title": "Vote Save America",
+    "tags": []
+  },
+  { 
+    "title": "The Algorithmic Justice League",
+    "tags": []
+  },
+  {
+    "title": "Anti-Racist Practice in Engineering  - Inclusive Engineering Consortium Panel",
+    "tags": []
+  },
+  { 
+    "title": "Accessibility Testing with Axe Core",
+    "tags": []
+  },
+  { 
+     "title": "Design Justice",
+     "tags": ["books"]
+  }
+  
+]

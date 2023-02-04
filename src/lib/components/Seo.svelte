@@ -14,12 +14,12 @@
 
 <svelte:head>
   <title>{$page.data.seoMeta?.title || "Diana M Steakley-Freeman"}</title>
-  {#if ($page.data.seoMeta)}
-  <meta name="description" content={$page.data.seoMeta.description} />
-  <meta property="og:url" content={$page.url.href} />
-  <meta property="og:type" content={type} />
-  <meta property="og:title" content={$page.data.seoMeta.title} />
-  <meta property="og:description" content={$page.data.seoMeta.description} />
-  <meta property="og:image" content={imageSrc} />
+  {#if $page.data.seoMeta}
+    <meta name="description" content={$page.data.seoMeta.description} />
+    <meta property="og:url" content={$page.url.href} />
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={$page.data.seoMeta.title} />
+    <meta property="og:description" content={$page.data.seoMeta.description} />
+    <meta property="og:image" content={imageSrc} />
   {/if}
 </svelte:head>

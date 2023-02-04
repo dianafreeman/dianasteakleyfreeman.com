@@ -37,8 +37,8 @@
     border-right-color: white;
     top: 0;
     left: 0;
-    transition: width 0.15s ease-out,/* Width expands first */
-    height 0.15s ease-out 0.15s; /* And then height */
+    transition: width 0.15s ease-out,
+      /* Width expands first */ height 0.15s ease-out 0.15s; /* And then height */
   }
 
   .animate-borders:hover::after,
@@ -48,9 +48,10 @@
     right: 0;
     border-bottom-color: white; /* Make borders visible*/
     border-left-color: white;
-    transition: border-color 0s ease-out 0.3s, /* Wait for ::before to finish before showing border*/
-     width 0.15s ease-out 0.3s, /* And then expanding width*/ 
-     height 0.15s ease-out 0.45s; /* And finally height */
+    transition: border-color 0s ease-out 0.3s,
+      /* Wait for ::before to finish before showing border*/ width 0.15s
+        ease-out 0.3s,
+      /* And then expanding width*/ height 0.15s ease-out 0.45s; /* And finally height */
   }
 
   .animate-borders:hover::after,

@@ -1,24 +1,33 @@
 <script>
-  import Card from "$lib/components/Card.svelte";
   import Seo from "$lib/components/Seo.svelte";
-  import createSortAndFilterStore from "$stores/SortAndFilterStore";
-  import ToggleableBadge from "$lib/components/ToggleableBadge.svelte";
   import SelectField from "$lib/components/FormFields/types/SelectField.svelte";
   import BackButton from "$lib/components/BackButton.svelte";
   import List from "$lib/components/List.svelte";
   import { page } from "$app/stores";
+  import { writable, derived} from "svelte/store";
 
   /** @type {import('./$types').PageData} */
   export let data;
 
-  const sortAndFilterStore = createSortAndFilterStore(data.entries);
 
-  const { results, allFilters, options, category } = sortAndFilterStore;
+  const category = writable({value: "all-categories", label: "all categories"})
+  const results = writable([...data.entries])
+
+
+  category.subscribe( cat => {
+    if (cat.label === "all categories") return results.set(data.entries)
+    results.set( data.entries.filter(d => d.tags.includes(cat.label)))
+  })
+
+  $: console.log('results',$results) 
+
+
+  // const { results, allFilters, options, category } = sortAndFilterStore;
 </script>
 
 <Seo title={data.title} />
 <div
-  class="mx-2 flex w-auto flex-row after:{$allFilters.length > 0
+  class="mx-2 flex w-auto flex-row after:{data.filters.tags > 0
     ? 'items-top'
     : 'items-center'} justify-between">
   <BackButton />
@@ -30,29 +39,18 @@
     </label>
 
     <SelectField
-      on:change={(d) => category.set(d.detail)}
-      value={$category.value || ""}
+      on:change={(d) => {
+       console.log("event detail", d.detail)
+       category.set(d.detail)
+      }}
+      value={$category.value}
       id="browse-by-category"
-      options={options.categories}
-      selected={options} />
-
+      options={[{value: "all-categories", label: "all categories"}, ...data.filters.tags]}
+       />
     <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
     <h2 id="content-start" class="sr-only" tabindex={0}>Results</h2>
-
-    {#if $allFilters.length}
-      <div id="active-filters" class="my-2 py-4">
-        {#each $allFilters as entity}
-          {#if entity.value}
-            <ToggleableBadge
-              on:badgeButtonClick={() => category.set({})}
-              value={entity.value}
-              label={entity.label} />
-          {/if}
-        {/each}
-      </div>
-    {/if}
   </div>
-</div>
+</div> 
 
 <List
   items={$results}

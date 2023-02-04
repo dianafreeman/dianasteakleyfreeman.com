@@ -69,7 +69,7 @@
       <NavList title={menu.title} items={menu.items} class={menu.class} />
     </div>
   {/each}
-  <div class="flex-grow text-left lowercase mt-5 md:mt-0">
+  <div class="mt-5 flex-grow text-left lowercase md:mt-0">
     <p class="font-bold">Diana M Steakley-Freeman. &copy; 2023</p>
     <a
       href="https://github.com/dianafreeman/dianasteakleyfreeman.com"
