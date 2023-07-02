@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
   import { dev } from "$app/environment";
   import { page } from "$app/stores";
 </script>
@@ -17,4 +17,4 @@
       {$page.error.message}
     {/if}
   </div>
-</section>
+</section> -->

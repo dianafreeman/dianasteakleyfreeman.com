@@ -31,7 +31,6 @@
     "eslint-plugin-svelte3": "^3.2.1",
     "jsdom": "^20.0.3",
     "mdsvex": "^0.11.0",
-    "netlify-cli": "^15.8.0",
     "postcss": "^8.4.5",
     "prettier": "^2.4.1",
     "prettier-plugin-svelte": "^2.4.0",
