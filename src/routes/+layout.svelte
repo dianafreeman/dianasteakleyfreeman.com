@@ -2,8 +2,6 @@
   import "../app.css";
   import { browser } from "$app/environment";
   import { page } from "$app/stores";
-  import * as Sentry from "@sentry/svelte";
-  import { BrowserTracing } from "@sentry/tracing";
   import { fade } from "svelte/transition";
   import { onMount } from "svelte";
   import SettingsStore from "$stores/SettingsStore";
@@ -62,16 +60,7 @@
 
   $: headerHeight && topNavHeight.set(headerHeight);
 
-  // Initialize the Sentry SDK here
-  Sentry.init({
-    dsn: import.meta.env.VITE_SENTRY_DSN,
-    integrations: [new BrowserTracing()],
 
-    // Set tracesSampleRate to 1.0 to capture 100%
-    // of transactions for performance monitoring.
-    // We recommend adjusting this value in production
-    tracesSampleRate: 1.0
-  });
 </script>
 
 <svelte:window bind:scrollY bind:innerWidth />
