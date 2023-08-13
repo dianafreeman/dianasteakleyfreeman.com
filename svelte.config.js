@@ -1,6 +1,4 @@
-import { mdsvex } from "mdsvex";
 import preprocess from "svelte-preprocess";
-import mdsvexConfig from "./mdsvex.config.js";
 import path from "path";
 import adapter from "@sveltejs/adapter-netlify";
 
@@ -9,7 +7,7 @@ const config = {
   compilerOptions: {
     enableSourcemap: true
   },
-  extensions: [".svelte", ...mdsvexConfig.extensions],
+  extensions: [".svelte"],
   kit: {
     adapter: adapter(),
     alias: {
@@ -20,7 +18,7 @@ const config = {
       $tests: path.resolve("./src/tests")
     }
   },
-  preprocess: [preprocess({ sourceMap: true }), mdsvex(mdsvexConfig)]
+  preprocess: [preprocess({ sourceMap: true }),]
 };
 
 export default config;
