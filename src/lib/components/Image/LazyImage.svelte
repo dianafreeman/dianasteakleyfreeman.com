@@ -6,7 +6,7 @@
   let clazz;
   export let src;
   export let darken = false;
-  export let lazyThreshold = 1;
+  export let lazyThreshold = 0.8;
   export { clazz as class };
 
   const { image, placeholderImage } = lazyImageSource(src, $page);
