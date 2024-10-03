@@ -22,7 +22,7 @@ async function getEntry(uniqueFilter) {
 /** @type {import('./$types').LayoutServerLoad} */
 export async function load({ url }) {
   const topLevelNavTargets = await getEntries(isTopLevelRoute);
-  let activeEntry = await getEntry((e) => e.relativePath === url.pathname);
+  let activeEntry =  await getEntry((e) => e.relativePath === url.pathname);
   let breadcrumbs = [];
 
   if (browser) {

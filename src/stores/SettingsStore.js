@@ -1,7 +1,7 @@
 import { browser } from "$app/environment";
 import { writable } from "svelte/store";
 
-const MODES = {
+export const MODES = {
   DARK: "dark",
   LIGHT: "light"
 };
@@ -16,17 +16,18 @@ const DEFAULT_SETTINGS = {
 export function createSettingsStore() {
   const settings = writable(DEFAULT_SETTINGS);
 
-  const setMode = (modeEnum) =>
-    settings.update((curr) => ({ ...curr, mode: modeEnum }));
   const toggleDyslexia = () =>
     settings.update((curr) => ({ ...curr, dyslexia: !curr.dyslexia }));
 
-  const toggleMode = () =>
+  const toggleMode = () => {
     settings.update((curr) => {
-      if (curr.mode === MODES.dark) return setMode(MODES.LIGHT);
-      return setMode(MODES.DARK);
+      if (curr.mode === MODES.DARK) {
+        return { ...curr, mode: MODES.LIGHT };
+      } else if (curr.mode === MODES.LIGHT) {
+        return { ...curr, mode: MODES.DARK };
+      }
     });
-
+  };
   function restoreSettings() {
     let savedSettings = localStorage.getItem(LOCAL_STORAGE_KEY);
     if (!savedSettings) return settings.set(DEFAULT_SETTINGS);

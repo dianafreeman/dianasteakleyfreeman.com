@@ -7,17 +7,14 @@
   export { clazz as class };
 
   export let iconProps;
+  
   export let elementProps = {};
   /** @type { boolean } */
   export let borders = true;
   /** @type { boolean } */
   export let animateBorders = true;
-  /** @type { string } */
-  // export let iconClasses = null;
-  /** @type { "button" | "submit" } */
+ /** @type { "button" | "submit" | "a" } */
   export let type = "button";
-  /** @type { 'button' | 'a' } */
-  export let elementType = "button";
 
   const dispatch = createEventDispatcher();
 
@@ -41,21 +38,22 @@
     ? "animate-borders"
     : borders && "borders";
 
-  const classesIfNotDefined = "flex justify-center items-center p-5";
+  const defaultClasses = "flex justify-center items-center p-5";
   const classes = `${borderClasses} button`;
 </script>
 
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 <svelte:element
-  this={elementType}
+  this={type}
   bind:this={wrapper}
-  type={elementType === "button" ? type : null}
-  class="{classes} {clazz || classesIfNotDefined}"
+  type={type === "button" ? type : null}
+  class="{classes} {clazz || defaultClasses}"
   on:click={handleClick}
   on:mouseenter={handleMouseEnter}
   on:mouseleave={handleMouseLeave}
   on:focus={handleFocus}
   on:blur={handleBlur}
-  {...elementProps}>
+  {...elementProps || {}}>
   {#if iconProps}
     <Icon
       type={iconProps.type}

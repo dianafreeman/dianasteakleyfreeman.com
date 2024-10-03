@@ -120,3 +120,28 @@ export async function getPageEntries() {
   });
   return [...staticEntries, ...markdownEntries];
 }
+import client from "./client";
+
+export function getEntries(query) {
+  return client.getEntries(query).then((response) => {
+    return response.items;
+  });
+}
+
+function getEntry(query) {
+  return client.getEntry(query).then((response) => {
+    return response.fields;
+  });
+}
+
+export async function getCategories(){
+  return await getEntries({ content_type: "article", "fields.category.fields.slug[any]": 'blog'});
+}
+export async function getArticles(){
+return await getEntries({content_type: "article", order: "-sys.createdAt"})
+}
+
+export async function getResources(){
+return await getEntries({content_type: "resource", order: "-sys.createdAt"})
+}
+

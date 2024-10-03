@@ -1,5 +1,4 @@
 <script>
-  import MarginDecorator from "$storybook/decorators/MarginDecorator.svelte";
   import { Meta, Template, Story } from "@storybook/addon-svelte-csf";
 
   import Button from "$lib/components/Buttons/Button.svelte";
@@ -11,7 +10,7 @@
   component={Button}
   parameters={{ actions: { handles: ["click"] } }}
   subcomponents={{ ToggleButton }}
-  decorators={[() => MarginDecorator]} />
+   />
 
 <Template let:args>
   <Button {...args}>Hello World</Button>

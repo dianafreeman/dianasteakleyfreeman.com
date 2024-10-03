@@ -2,18 +2,18 @@
   import LandingSection from "$lib/components/LandingSection.svelte";
   import Button from "$lib/components/Buttons/Button.svelte";
   import IntroAnimation from "$lib/components/IntroAnimation.svelte";
-  import { createImageSource } from "$lib/lazyImageSource";
+  // import { createImageSource } from "$lib/lazyImageSource";
   import { page } from "$app/stores";
 
   const src = "/images/diana-and-rafiki.jpg";
-  const mainImage = createImageSource(src, $page);
+  // const mainImage = createImageSource(src, $page);
 </script>
 
-<LandingSection fadeInWhenVisible={false} class="relative justify-center ">
+<LandingSection fadeInWhenVisible={false} class="relative justify-center bg-black">
   <IntroAnimation />
 </LandingSection>
 
-<LandingSection class="mx-auto mb-20 min-h-screen justify-around">
+<!-- <LandingSection class="mx-auto mb-20 min-h-screen justify-around">
   <div class="align-center relative my-12 h-full p-2 lg:p-5">
     <h1 class="heading mb-4 text-center font-bold" id="content-start">
       Diana M. Steakley-Freeman
@@ -41,4 +41,4 @@
         >More about Diana</Button>
     </div>
   </div>
-</LandingSection>
+</LandingSection> -->

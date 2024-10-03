@@ -64,12 +64,12 @@
 </script>
 
 <svelte:window bind:scrollY bind:innerWidth />
-
+<!-- 
 <Seo />
-<GoogleAnalytics />
+<GoogleAnalytics /> -->
 <header
   bind:clientHeight={headerHeight}
-  class="bg-semi-transparent fixed top-0 z-30 w-full pb-4"
+  class="bg-semi-transparent fixed top-0 z-30 w-full pb-4 bg-black"
   class:dyslexia>
   <div>
     <a
@@ -78,7 +78,7 @@
   </div>
   <TopNav navItems={data.navItems} />
 </header>
-<div id="spacer" style="height: {$topNavHeight}px;" />
+<div id="spacer" style="height: {$topNavHeight}px;" class="bg-black" />
 {#key $page.url.pathname}
   <main class:dyslexia bind:this={main} in:fade class="flex flex-grow flex-col">
     <slot />

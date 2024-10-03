@@ -21,7 +21,7 @@
 
   onMount(() => {
     if (animatedSpan) {
-      initialNameWidth = animatedSpan.clientWidth;
+      initialNameWidth = animatedSpan.clientWidth + 1;
       widthSpring.set(0);
     }
   });

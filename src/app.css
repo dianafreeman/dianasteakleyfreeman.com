@@ -16,7 +16,7 @@
 
   body {
     font-size: 16px;
-    font-family: "Montserrat", sans-serif;
+    /* font-family: "Montserrat", sans-serif; */
     @apply text-white;
   }
 
@@ -31,10 +31,10 @@
 }
 
 @layer components {
-  a:not(nav a):not(.button),
+  /* a:not(nav a):not(.button),
   .link {
     @apply focus:outline focus:outline-1 focus:outline-offset-8 focus:outline-white;
-  }
+  } */
   .responsive-container {
     @apply mx-auto max-w-md md:max-w-3xl lg:max-w-4xl xl:max-w-5xl;
   }

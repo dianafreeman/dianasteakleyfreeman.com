@@ -20,9 +20,10 @@
     filter: "la-filter",
     important: "la-exclamation-circle",
     menu: "la-bars",
+    hamburger: "la-bars",
     next: "la-angle-right",
     question: "la-question-circle",
-    settings: "la-ellipsis-v",
+    settings: "la-cog",
     square: "la-stop"
   };
 
