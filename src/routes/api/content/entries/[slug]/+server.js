@@ -1,16 +1,6 @@
 import { marked } from "marked";
-import matter from "gray-matter";
 import { findMarkdownFile, readMarkdownFile } from "$lib/markdown/utils";
-
-function createResponse(obj, status) {
-    return new Response(JSON.stringify(obj), {
-      status,
-      headers: {
-        "Content-Type": "application/json"
-      }
-    });
-  }
-
+import { createResponse } from "$lib/response";
 
 /** @type {import('@sveltejs/kit').RequestHandler} */
 export async function GET({ params }) {

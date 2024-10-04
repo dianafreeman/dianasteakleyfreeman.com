@@ -1,6 +1,6 @@
 import { getMetadataByAttribute, filterMarkdownFilesByMetadataField } from "$lib/markdown/utils";
 import { BASE_DIR } from "$lib/markdown/constants";
-
+import { createResponse } from "$lib/response";
 
 /**
  * GET /content/tags/[tag]
@@ -17,22 +17,13 @@ export async function GET({ params }) {
     });
 
     if (!tagMetadata) {
-      return new Response(JSON.stringify({ error: "Tag not found" }), {
-        status: 404,
-        headers: { "Content-Type": "application/json" },
-      });
+      return createResponse({ error: "Tag not found" }, 404)
     }
-
-    // Use the helper function to filter markdown files by tags
+    
     const matchingFiles = filterMarkdownFilesByMetadataField(BASE_DIR, "tags", tagMetadata);
 
-    return new Response(JSON.stringify(matchingFiles), {
-      headers: { "Content-Type": "application/json" },
-    });
+    return createResponse(matchingFiles)
   } catch (err) {
-    return new Response(JSON.stringify({ error: err.message }), {
-      status: 500,
-      headers: { "Content-Type": "application/json" },
-    });
+    return createResponse({ error: err.message }, 500)
   }
 }

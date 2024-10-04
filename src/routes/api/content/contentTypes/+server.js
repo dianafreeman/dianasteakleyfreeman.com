@@ -1,5 +1,6 @@
 import { BASE_DIR } from "$lib/markdown/constants";
 import { collectContentTypes } from "$lib/markdown/contentTypes";
+import { createResponse } from "$lib/response";
 
 /** @type {import('@sveltejs/kit').RequestHandler} */
 export async function GET() {
@@ -8,18 +9,8 @@ export async function GET() {
     // Collect types (subdirectory names)
     const types = collectContentTypes(BASE_DIR);
 
-    // Return the types as a JSON response
-    return new Response(JSON.stringify({ types }), {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
+    return new createResponse({types})
   } catch (err) {
-    return new Response(JSON.stringify({ error: err.message }), {
-      status: 500,
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
+    return createResponse({ error: err.message }, 500)
   }
 }

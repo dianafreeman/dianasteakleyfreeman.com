@@ -1,22 +1,14 @@
 import { BASE_DIR } from "$lib/markdown/constants";
 import { collectAllContentAndMetadata } from "$lib/markdown/entries";
+import { createResponse } from "$lib/response";
 
 /** @type {import('@sveltejs/kit').RequestHandler} */
 export async function GET() {
   try {
     const content = collectAllContentAndMetadata(BASE_DIR);
 
-    return new Response(JSON.stringify({ content }), {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
+    return new createResponse(content);
   } catch (err) {
-    return new Response(JSON.stringify({ error: err.message }), {
-      status: 500,
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
+    return createResponse({ error: err.message }, 500);
   }
 }

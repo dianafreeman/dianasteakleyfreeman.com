@@ -1,5 +1,7 @@
 import { getMetadataByAttribute, filterMarkdownFilesByMetadataField } from "$lib/markdown/utils";
 import { BASE_DIR } from "$lib/markdown/constants";
+import { createResponse } from "$lib/response";
+
 /**
  * GET /content/categories/[category]
  * Retrieves all front matter (metadata) for markdown files whose category matches the provided category.
@@ -17,22 +19,14 @@ export async function GET({ params }) {
     });
 
     if (!categoryMetadata) {
-      return new Response(JSON.stringify({ error: "Category not found" }), {
-        status: 404,
-        headers: { "Content-Type": "application/json" },
-      });
+        return createResponse({ error: "Category not found" }, 404)
     }
 
     // Use the helper function to filter markdown files by category
     const matchingFiles = filterMarkdownFilesByMetadataField(BASE_DIR, "category", categoryMetadata);
 
-    return new Response(JSON.stringify(matchingFiles), {
-      headers: { "Content-Type": "application/json" },
-    });
+    return new createResponse(matchingFiles)
   } catch (err) {
-    return new Response(JSON.stringify({ error: err.message }), {
-      status: 500,
-      headers: { "Content-Type": "application/json" },
-    });
+    return createResponse({ error: err.message }, 500)
   }
 }
