@@ -1,5 +1,4 @@
 ---
-slug: eliza-therapeutic-ai
 date: "2019-04-03"
 title: "What ELIZA can teach us about therapeutic AI."
 image: /images/therapy-with-a-chatbot.jpeg

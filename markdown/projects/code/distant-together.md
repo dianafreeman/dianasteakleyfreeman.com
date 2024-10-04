@@ -1,8 +1,8 @@
 ---
-slug: distant-together
 date: "2020-03-15"
 title: "Distant Together"
 image: /images/people-on-phones.jpeg
+category: Code
 draft: true
 tags:
   - react

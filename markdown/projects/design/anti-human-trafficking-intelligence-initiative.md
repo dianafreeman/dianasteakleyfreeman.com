@@ -1,9 +1,9 @@
 ---
-slug: anti-human-trafficking-intelligence-initiative
 title: "Anti-Human Trafficking Intelligence Initiative"
 image: /images/ATII-hero.jpeg
 date: "2020-01-01"
 link: https://followmoneyfightslavery.org/
+category: Design
 tags:
   - graphics & illustration
 ---

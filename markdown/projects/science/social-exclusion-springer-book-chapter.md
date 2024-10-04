@@ -3,6 +3,7 @@ slug: social-exclusion-book-chapter-springer
 date: "2016-07-27"
 title: "Social Exclusion in Everyday Life"
 image: /images/people-on-phones.jpeg
+category: Science
 tags:
   - peer reviewed
 ---

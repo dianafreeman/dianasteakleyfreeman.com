@@ -1,8 +1,8 @@
 ---
-slug: rafiki-to-the-rescue
 date: "2020-03-15"
 title: '"Rafiki To The Rescue" Cartoon Set'
 image: /images/Rafiki.png
+category: Art & Music
 tags:
   - graphics & illustration
 ---

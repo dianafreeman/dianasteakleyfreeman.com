@@ -1,10 +1,8 @@
 ---
-slug: make-them-hear-you
 date: "2020-03-15"
 title: "Make Them Hear You - Cover by Diana"
 image: /images/snapshot-make-them-hear-you.jpg
-tags:
-  - art & music
+category: Art & Music
 ---
 
 ## "Make Them Hear You"

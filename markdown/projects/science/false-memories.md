@@ -3,6 +3,7 @@ slug: mood-and-false-memory
 date: "2014-11-21"
 title: "Mood and False Memory Creation of Negative Stimuli"
 image: /images/people-on-phones.jpeg
+category: Science
 tags:
   - peer reviewed
 ---
