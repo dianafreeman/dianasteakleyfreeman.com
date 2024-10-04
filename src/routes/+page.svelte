@@ -1,44 +1,35 @@
 <script>
-  import LandingSection from "$lib/components/LandingSection.svelte";
-  import Button from "$lib/components/Buttons/Button.svelte";
-  import IntroAnimation from "$lib/components/IntroAnimation.svelte";
-  // import { createImageSource } from "$lib/lazyImageSource";
+
+  import Typewriter from "$lib/components/Typewriter.svelte";
+  import { createImageSource } from "$lib/lazyImageSource";
   import { page } from "$app/stores";
+  import ComputerScreen from "$lib/components/ComputerScreen.svelte";
 
   const src = "/images/diana-and-rafiki.jpg";
   // const mainImage = createImageSource(src, $page);
 </script>
 
-<LandingSection fadeInWhenVisible={false} class="relative justify-center bg-black">
-  <IntroAnimation />
-</LandingSection>
-
-<!-- <LandingSection class="mx-auto mb-20 min-h-screen justify-around">
-  <div class="align-center relative my-12 h-full p-2 lg:p-5">
-    <h1 class="heading mb-4 text-center font-bold" id="content-start">
-      Diana M. Steakley-Freeman
-    </h1>
-    <p class="subheading text-center font-thin">
-      coder. creator. communicator.
-    </p>
-  </div>
-  <div class="gap-4 px-16 md:flex">
-    <img
-      alt=""
-      class="mx-auto max-w-xs rounded-full border-2 border-white"
-      src={mainImage} />
-
-    <div class="flex w-full flex-col justify-between p-5 md:w-1/2">
-      <p class="m-auto my-3">
-        Full Stack Software Engineer. 10+ years of website and application
-        development in academic, medical, nonprofit, and start-up environments.
-      </p>
-      <p class="m-auto my-3">
-        Digital Policy Buff, User Rights Enthusiast, Former Scientist, Forever
-        Experimenting. Enthusiastic nerd.
-      </p>
-      <Button class="my-auto w-fit bg-darkest-gray p-5"
-        >More about Diana</Button>
-    </div>
-  </div>
-</LandingSection> -->
+<div class="m-auto flex-col relative justify-center w-4/5 md:w-3/4">
+  <ComputerScreen>
+    <Typewriter>
+      <div class="align-center relative my-12 h-full p-5 lg:p-10 lg:p-5">
+        <h1 class="heading mb-4 font-mono font-bold pt-7" data-static>
+          Hi. I'm Diana.
+          <span
+            class="heading p-0"
+            role="img"
+            aria-label="waving hand"
+            data-static>
+            👋
+          </span>
+        </h1>
+        <p class="subheading font-mono font-thin pb-7">
+          <a class="text-sky-500 underline" href="/coder">coder</a><span>.</span>
+          <a class="text-sky-500 underline" href="/creator">creator</a><span>.</span>
+          <a class="text-sky-500 underline" href="/communicataor">communicator</a><span>.</span>
+          
+        </p>
+      </div>
+    </Typewriter>
+  </ComputerScreen>
+</div>

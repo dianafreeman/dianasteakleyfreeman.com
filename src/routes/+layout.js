@@ -1,4 +1,4 @@
-import { getPageEntries } from "$lib/content/queries";
+// import { getPageEntries } from "$lib/content/queries";
 import { browser } from "$app/environment";
 
 function isTopLevelRoute(entry) {
@@ -10,18 +10,19 @@ function isTopLevelRoute(entry) {
   return true;
 }
 
-async function getEntries(filter) {
-  const entries = await getPageEntries();
-  return filter ? entries.filter(filter) : entries;
-}
+// COMMENTED OUT, NEEDS FIXING
+// async function getEntries(filter) {
+//   const entries = [] //await getPageEntries();
+//   return filter ? entries.filter(filter) : entries;
+// }
 async function getEntry(uniqueFilter) {
-  const entries = await getPageEntries();
+  const entries = [] //await getPageEntries();
   return uniqueFilter ? entries.find(uniqueFilter) : entries[0];
 }
 
 /** @type {import('./$types').LayoutServerLoad} */
 export async function load({ url }) {
-  const topLevelNavTargets = await getEntries(isTopLevelRoute);
+  // const topLevelNavTargets = await getEntries(isTopLevelRoute);
   let activeEntry =  await getEntry((e) => e.relativePath === url.pathname);
   let breadcrumbs = [];
 
@@ -36,7 +37,7 @@ export async function load({ url }) {
   }
   return {
     breadcrumbs,
-    navItems: topLevelNavTargets,
+    // navItems: topLevelNavTargets,
     seoMeta: activeEntry
   };
 }
