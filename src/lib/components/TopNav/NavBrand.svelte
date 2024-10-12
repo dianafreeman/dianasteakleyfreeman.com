@@ -29,7 +29,7 @@
 
 <a
   href="/"
-  aria-label="Diana"
+  aria-label="DianaSteakleyFreeman.com"
   class="m-2 my-3 inline-flex px-3 pt-2 pb-4 text-2xl font-bold focus:outline focus:outline-1 focus:outline-white lg:text-3xl xl:text-4xl"
   on:focus={toggleHovered}
   on:blur={toggleHovered}

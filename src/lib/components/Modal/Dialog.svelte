@@ -1,5 +1,5 @@
 <script>
-  import { trapFocus } from "$lib/actions";
+  import { trapFocus } from "$lib/actions/focusTrap";
   import { createEventDispatcher, onMount } from "svelte";
 
   let clazz;
@@ -25,7 +25,7 @@
 </script>
 
 <div
-  use:trapFocus={{ onEscPressed }}
+  use:trapFocus={isOpen}
   id="modal"
   role="dialog"
   class="bg-semi-transparent fixed top-0 left-0 z-[99] h-screen w-screen overflow-y-scroll p-16 shadow-lg "

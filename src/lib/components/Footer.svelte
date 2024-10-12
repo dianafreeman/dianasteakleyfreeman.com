@@ -1,5 +1,5 @@
 <script>
-  import NavList from "./Nav/NavList.svelte";
+  import NavList from "./FooterNav/NavList.svelte";
   const navMenus = [
     {
       title: "main navigation",
@@ -63,18 +63,16 @@
   ];
 </script>
 
-<div class="flex flex-row flex-wrap justify-between ">
-  {#each navMenus as menu}
-    <div class={menu.containerClass}>
-      <NavList title={menu.title} items={menu.items} class={menu.class} />
-    </div>
-  {/each}
-  <div class="flex-grow text-left lowercase">
-    <p class="font-bold">Diana M Steakley-Freeman. &copy; 2023</p>
-    <a
-      href="https://github.com/dianafreeman/dianasteakleyfreeman.com"
-      class="font-thin">
-      View this site on github.
-    </a>
+{#each navMenus as menu}
+  <div class={menu.containerClass}>
+    <NavList title={menu.title} items={menu.items} class={menu.class} />
   </div>
+{/each}
+<div class="flex-grow text-left lowercase">
+  <p class="font-bold">Diana M Steakley-Freeman. &copy; 2023</p>
+  <a
+    href="https://github.com/dianafreeman/dianasteakleyfreeman.com"
+    class="font-thin">
+    View this site on github.
+  </a>
 </div>

@@ -38,8 +38,8 @@
     ? "animate-borders"
     : borders && "borders";
 
-  const defaultClasses = "flex justify-center items-center p-5";
-  const classes = `${borderClasses} button`;
+  // const defaultClasses = ;
+  const classes = `${borderClasses} cursor-pointer`;
 </script>
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
@@ -47,7 +47,7 @@
   this={type}
   bind:this={wrapper}
   type={type === "button" ? type : null}
-  class="{classes} {clazz || defaultClasses}"
+  class="{classes} {clazz}"
   on:click={handleClick}
   on:mouseenter={handleMouseEnter}
   on:mouseleave={handleMouseLeave}
@@ -62,3 +62,5 @@
   {/if}
   <slot />
 </svelte:element>
+
+
