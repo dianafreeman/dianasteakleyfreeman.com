@@ -20,13 +20,13 @@
             role="img"
             aria-label="waving hand"
             data-static>
-            👋
+            👋🏾
           </span>
         </h1>
         <p class="subheading font-mono font-thin pb-7">
-          <a class="text-sky-500 underline" href="/coder">coder</a><span>.</span>
-          <a class="text-sky-500 underline" href="/creator">creator</a><span>.</span>
-          <a class="text-sky-500 underline" href="/communicataor">communicator</a><span>.</span>
+          <a class="text-blue-500 underline font-bold" href="/coder">coder</a><span>.</span>
+          <a class="text-blue-500 underline font-bold" href="/creator">creator</a><span>.</span>
+          <a class="text-blue-500 underline font-bold" href="/communicataor">communicator</a><span>.</span>
           
         </p>
       </div>
