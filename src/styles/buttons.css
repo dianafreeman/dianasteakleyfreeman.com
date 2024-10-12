@@ -1,7 +1,7 @@
 /* TODO: use SASS here */
 @layer utilities {
   .borders {
-    @apply border border-gray hover:border-white focus:border-white active:border-white;
+    @apply border border-blue-500 hover:border-yellow-400 focus:border-yellow-400 active:border-yellow-400;
   }
 
   /* 
@@ -10,7 +10,7 @@
 */
   /* TODO: convert to tailwind */
   .animate-borders {
-    @apply border border-gray;
+    @apply border border-darkest-gray;
     position: relative;
     vertical-align: middle;
     outline: 0;
@@ -24,7 +24,7 @@
     content: "";
     box-sizing: inherit;
     position: absolute;
-    border: 1px solid transparent;
+    border: 3px solid transparent;
     width: 0;
     height: 0;
     transition: opacity 200ms ease-in-out;
@@ -33,8 +33,7 @@
   .animate-borders:hover::before,
   .animate-borders:active::before,
   .animate-borders:focus::before {
-    border-top-color: white; /*// Make borders visible*/
-    border-right-color: white;
+    @apply border-t-blue-500 border-r-blue-500;
     top: 0;
     left: 0;
     transition: width 0.25s ease-out,
@@ -44,10 +43,9 @@
   .animate-borders:hover::after,
   .animate-borders:active::after,
   .animate-borders:focus::after {
+    @apply border-b-blue-500 border-l-blue-500;
     bottom: 0;
     right: 0;
-    border-bottom-color: white; /* Make borders visible*/
-    border-left-color: white;
     transition: border-color 0s ease-out 0.5s,
       /* Wait for ::before to finish before showing border*/ width 0.25s
         ease-out 0.5s,
@@ -62,11 +60,5 @@
   .animate-borders:focus::before {
     width: 100%;
     height: 100%;
-  }
-}
-
-@layer components {
-  .button {
-    @apply relative w-full cursor-pointer bg-darkest-gray text-left text-white hover:bg-gray focus:bg-gray;
   }
 }

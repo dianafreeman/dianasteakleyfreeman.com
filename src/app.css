@@ -31,10 +31,6 @@
 }
 
 @layer components {
-  /* a:not(nav a):not(.button),
-  .link {
-    @apply focus:outline focus:outline-1 focus:outline-offset-8 focus:outline-white;
-  } */
   .responsive-container {
     @apply mx-auto max-w-md md:max-w-3xl lg:max-w-4xl xl:max-w-5xl;
   }
@@ -57,4 +53,5 @@
   --background-without-opacity: rgba(255, 255, 255, 0.7);
   --column-width: 42rem;
   --column-margin-top: 4rem;
+  
 }
