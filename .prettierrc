@@ -4,5 +4,5 @@
   "singleQuote": false,
   "trailingComma": "none",
   "bracketSameLine": true,
-  "tailwindConfig": "./tailwind.config.cjs"
+  "tailwindConfig": "./src/tailwind.config.js"
 }
