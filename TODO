@@ -1,1 +1,6 @@
-[] update form field stories
+[] update sveltekit
+[] remove netlify cms app, use markdown
+[] Updating styling on home page
+
+
+// settings should be a modal dialog that traps focus

@@ -1,59 +1,35 @@
 <script>
   import { createEventDispatcher } from "svelte";
+
   import Icon from "../Icon.svelte";
 
   let clazz = "";
-  let wrapper;
   export { clazz as class };
 
+  export let buttonRef;
   export let iconProps;
-  
-  export let elementProps = {};
-  /** @type { boolean } */
   export let borders = true;
-  /** @type { boolean } */
   export let animateBorders = true;
- /** @type { "button" | "submit" | "a" } */
   export let type = "button";
-
-  const dispatch = createEventDispatcher();
-
-  function handleClick(e) {
-    dispatch("click", { value: e.target.value, label: e.target.name });
-  }
-  function handleMouseEnter(e) {
-    dispatch("mouseenter", { value: e.target.value, label: e.target.name });
-  }
-  function handleMouseLeave(e) {
-    dispatch("mouseleave", { value: e.target.value, label: e.target.name });
-  }
-  function handleFocus(e) {
-    dispatch("focus", { value: e.target.value, label: e.target.name });
-  }
-  function handleBlur(e) {
-    dispatch("blur", { value: e.target.value, label: e.target.name });
-  }
 
   const borderClasses = animateBorders
     ? "animate-borders"
     : borders && "borders";
 
-  // const defaultClasses = ;
   const classes = `${borderClasses} cursor-pointer`;
+  const dispatch = createEventDispatcher();
+
+  function handleClick(e) {
+    dispatch("click", { value: e.target.value, label: e.target.name });
+  }
 </script>
 
-<!-- svelte-ignore a11y-no-static-element-interactions -->
-<svelte:element
-  this={type}
-  bind:this={wrapper}
-  type={type === "button" ? type : null}
+<button
+  bind:this={buttonRef}
+  {type}
   class="{classes} {clazz}"
   on:click={handleClick}
-  on:mouseenter={handleMouseEnter}
-  on:mouseleave={handleMouseLeave}
-  on:focus={handleFocus}
-  on:blur={handleBlur}
-  {...elementProps || {}}>
+  {...$$restProps}>
   {#if iconProps}
     <Icon
       type={iconProps.type}
@@ -61,6 +37,4 @@
       class={iconProps.class} />
   {/if}
   <slot />
-</svelte:element>
-
-
+</button>

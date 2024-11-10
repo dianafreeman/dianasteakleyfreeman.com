@@ -11,6 +11,7 @@ export function focusTrap(node, isOpen) {
       )
     ).filter(el => !el.hasAttribute('disabled') && !el.getAttribute('aria-hidden'));
 
+    console.log({focusableElements})
     firstFocusableElement = focusableElements[0];
     lastFocusableElement = focusableElements[focusableElements.length - 1];
   }

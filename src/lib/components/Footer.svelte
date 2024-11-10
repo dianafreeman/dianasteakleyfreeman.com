@@ -72,7 +72,7 @@
   <p class="font-bold">Diana M Steakley-Freeman. &copy; 2023</p>
   <a
     href="https://github.com/dianafreeman/dianasteakleyfreeman.com"
-    class="font-thin">
+    class="font-thin text-lightest-gray">
     View this site on github.
   </a>
 </div>

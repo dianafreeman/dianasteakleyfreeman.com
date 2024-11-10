@@ -13,7 +13,7 @@
 <svelte:window bind:scrollY />
 
 <div
-  class="lg:min-w-md relative m-auto flex w-full  flex-col justify-between text-left font-monospace font-thin md:max-w-lg ">
+  class="lg:min-w-md relative m-auto flex w-full  flex-col justify-between text-left  font-thin md:max-w-lg ">
   <div
     id="framebar"
     class="absolute -top-10 left-0 h-10 w-full rounded-tr-lg rounded-tl-lg bg-dark-gray">

@@ -10,9 +10,9 @@
   export let items;
 </script>
 
-<p class="font-bold lowercase">{title}.</p>
+<p class="font-black lowercase">{title}.</p>
 <ul class={clazz}>
   {#each items as item}
-    <li class="lowercase"><NavLink href={item.href}>{item.text}</NavLink></li>
+    <li class="lowercase font-extralight text-lightest-gray"><NavLink href={item.href}>{item.text}</NavLink></li>
   {/each}
 </ul>

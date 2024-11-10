@@ -13,17 +13,17 @@
   <ComputerScreen>
     <Typewriter>
       <div class="align-center relative my-12 h-full p-5 lg:p-10 lg:p-5">
-        <h1 class="heading mb-4 font-mono font-bold pt-7" data-static>
+        <h1 class="heading mb-4 text-center font-bold pt-7" data-static>
           Hi. I'm Diana.
           <span
-            class="heading p-0"
+            class="heading m-0 p-0"
             role="img"
             aria-label="waving hand"
             data-static>
             👋🏾
           </span>
         </h1>
-        <p class="subheading font-mono font-thin pb-7">
+        <p class="subheading font-thin pb-7 text-center mt-10">
           <a class="text-blue-500 underline font-bold" href="/coder">coder</a><span>.</span>
           <a class="text-blue-500 underline font-bold" href="/creator">creator</a><span>.</span>
           <a class="text-blue-500 underline font-bold" href="/communicataor">communicator</a><span>.</span>

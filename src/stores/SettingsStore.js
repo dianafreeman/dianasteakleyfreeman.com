@@ -5,6 +5,7 @@ export const MODES = {
   DARK: "dark",
   LIGHT: "light"
 };
+export const settingsMenuIsOpen = writable(false);
 
 const LOCAL_STORAGE_KEY = "dianasteakleyfreeman.com-settings";
 

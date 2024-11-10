@@ -6,7 +6,6 @@
   export let borders = true;
   export let animateBorders = true;
   export let hideLabel = false;
-  export let elementProps = {}
   export { clazz as class };
 
   
@@ -19,7 +18,7 @@
   {borders}
   {animateBorders}
   class={clazz || ""}
-  {elementProps}
+  {...$$restProps}
   on:click>
   {#if label}
     <span class:sr-only={hideLabel}>{label}</span>
