@@ -1,7 +1,8 @@
 /* TODO: use SASS here */
 @layer utilities {
   .borders {
-    @apply border border-blue-500 hover:border-yellow-400 focus:border-yellow-400 active:border-yellow-400;
+    outline: none;
+    @apply border border-black hover:border-yellow focus:border-yellow active:border-yellow;
   }
 
   /* 
@@ -10,7 +11,6 @@
 */
   /* TODO: convert to tailwind */
   .animate-borders {
-    @apply border border-darkest-gray;
     position: relative;
     vertical-align: middle;
     outline: 0;
@@ -33,7 +33,7 @@
   .animate-borders:hover::before,
   .animate-borders:active::before,
   .animate-borders:focus::before {
-    @apply border-t-blue-500 border-r-blue-500;
+    @apply border-t-sky-blue border-r-sky-blue;
     top: 0;
     left: 0;
     transition: width 0.25s ease-out,
@@ -43,7 +43,7 @@
   .animate-borders:hover::after,
   .animate-borders:active::after,
   .animate-borders:focus::after {
-    @apply border-b-blue-500 border-l-blue-500;
+    @apply border-b-sky-blue border-l-sky-blue;
     bottom: 0;
     right: 0;
     transition: border-color 0s ease-out 0.5s,
