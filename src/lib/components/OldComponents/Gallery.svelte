@@ -1,6 +1,6 @@
 <script>
-  import ImageWithCaption from "./Image/ImageWithCaption.svelte";
-  import LightboxImage from "./Image/LightboxImage.svelte";
+  import ImageWithCaption from "../Image/ImageWithCaption.svelte";
+  import LightboxImage from "../Image/LightboxImage.svelte";
 
   export let images;
   export let lightbox = false;

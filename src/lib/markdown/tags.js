@@ -12,7 +12,7 @@ export function collectAllTags(dir = BASE_DIR) {
     if (isMarkdownFile(filePath)) {
       const { metadata } = readMarkdownFile(filePath);
 
-      if (metadata.tags && Array.isArray(metadata.tags)) {
+      if (!metadata.draft && metadata.tags && Array.isArray(metadata.tags)) {
         metadata.tags.forEach((tag) => tags.add(tag));
       }
     }

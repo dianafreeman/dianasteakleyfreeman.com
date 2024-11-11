@@ -1,5 +1,5 @@
 import path from 'path'
-import { walkDirectory, isMarkdownFile, readMarkdownFile } from "./utils";
+import { walkDirectory, isMarkdownFile, readMarkdownFile, getFrontmatterMeta } from "./utils";
 
 /**
  * Collect all content and metadata from markdown files across all subdirectories.
@@ -12,7 +12,6 @@ export function collectAllContentAndMetadata(dir) {
   walkDirectory(dir, (filePath) => {
     if (isMarkdownFile(filePath)) {
       const { metadata, content } = readMarkdownFile(filePath);
-
       // Extract the directory name as the type
       const contentType = path.basename(path.dirname(filePath));
 
@@ -21,7 +20,7 @@ export function collectAllContentAndMetadata(dir) {
         allEntries.push({
           fileName: path.basename(filePath),
           contentType, // The directory name is treated as the "type"
-          metadata,
+          metadata: getFrontmatterMeta(metadata),
           content,
         });
       }

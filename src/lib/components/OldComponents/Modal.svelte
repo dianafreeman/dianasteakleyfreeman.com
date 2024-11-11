@@ -1,7 +1,7 @@
 <script>
   import { focusTrap } from "$lib/actions/focusTrap";
   import { settingsMenuIsOpen } from "$stores/LayoutStore";
-  import Button from "./Buttons/Button.svelte";
+  import Button from "../Buttons/Button.svelte";
   import { afterUpdate, createEventDispatcher, onMount } from "svelte";
 
   export let isOpen = false;

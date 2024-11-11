@@ -1,6 +1,6 @@
 <script>
-  import Button from "./Buttons/Button.svelte";
-  import Icon from "./Icon.svelte";
+  import Button from "../Buttons/Button.svelte";
+  import Icon from "../Icon.svelte";
 
   /** @type { string } */
   export let title;

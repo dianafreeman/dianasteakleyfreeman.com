@@ -1,5 +1,5 @@
 .markdown p {
-  margin-bottom: 1em;
+  @apply my-4
 }
 
 .markdown h1 {
@@ -16,11 +16,12 @@
 }
 
 .markdown a {
-  text-decoration: underline;
+  @apply outline-none underline text-sky-blue active:text-yellow hover:text-yellow focus:text-yellow;
 }
 
 .markdown ul {
   list-style-type: disc;
+  margin-left: 2em;
 }
 .markdown ol {
   list-style-type: decimal;

@@ -3,7 +3,7 @@
 
   import Icon from "../Icon.svelte";
 
-  let clazz = "animate-borders bg-yellow text-black p-5 my-10 font-bold"
+  let clazz = "bg-yellow text-black p-5 my-10 font-bold"
   export { clazz as class };
 
   export let href;

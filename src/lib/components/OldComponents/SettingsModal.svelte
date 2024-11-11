@@ -1,5 +1,5 @@
 <script>
-  import Modal from "../Modal.svelte";
+  import Modal from "./Modal.svelte";
   import settingsStore, { MODES } from "$stores/SettingsStore";
 
   import Button from "../Buttons/Button.svelte";

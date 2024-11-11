@@ -2,6 +2,7 @@
   import NavToggle from "./NavToggle.svelte";
   import NavBrand from "./NavBrand.svelte";
   import { menuIsOpen, _menuIsOpen } from "$stores/LayoutStore";
+  import { page } from "$app/stores";
 
   const navItemClasses = `outline-none hover:text-sky-blue focus:text-sky-blue active:text-sky-blue  hover:underline active:underline focus:underline font-bold text-xl flex items-center p-5 w-full `;
 
@@ -13,14 +14,17 @@
       return !currentValue; // Simply toggle the internal state
     });
   }
+
+  
+  $: activePath = $page.url.pathname
 </script>
 
 <nav class="" aria-label="Main Navigation">
-  <div class="flex flex-row justify-between md:flex border-dark-gray border-b">
-    <div>
+  <div class="fixed bg-black z-50 w-screen flex flex-row justify-center md:flex border-dark-gray border-b">
+    <!-- <div> -->
       <!-- nav brand wrapper for flex-->
-      <NavBrand class="outline-none" />
-    </div>
+      <!-- <NavBrand class="outline-none" /> -->
+    <!-- </div> -->
     <div class="w-full md:w-fit md:flex md:flew-row">
       <!-- menu grouping wrapper -->
       <div class="w-full md:flex md:w-fit md:flex-row">
@@ -42,7 +46,7 @@
               class="w-full text-white list-none"
               aria-hidden={!$menuIsOpen}
               class:hidden={!$menuIsOpen}>
-              <a href={item.url} class={`animate-borders ${navItemClasses}`}>{item.label}</a>
+              <a href={item.url} class={`${activePath === item.url ? "underline text-yellow" : ""} animate-borders ${navItemClasses}`}>{item.label}</a>
             </li>
           {/each}
         </ul>

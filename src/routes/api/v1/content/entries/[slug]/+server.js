@@ -1,5 +1,5 @@
 import { marked } from "marked";
-import { findMarkdownFile, findMarkdownFileBy, readMarkdownFile } from "$lib/markdown/utils";
+import { findMarkdownFile, findMarkdownFileBy, getFrontmatterMeta, readMarkdownFile } from "$lib/markdown/utils";
 import { createResponse } from "$lib/response";
 
 /** @type {import('@sveltejs/kit').RequestHandler} */
@@ -18,7 +18,7 @@ export async function GET({ params }) {
     // Parse the Markdown content to HTML
     const html = marked(content);
 
-    const response = { metadata, html };
+    const response = { metadata: getFrontmatterMeta(metadata), html };
 
     // Return the response as a JSON string with the appropriate headers
     return createResponse(response);

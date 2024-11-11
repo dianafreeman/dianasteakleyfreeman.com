@@ -1,6 +1,6 @@
 <script>
   import { page } from "$app/stores";
-  import { lazyImage } from "$lib/actions";
+  import { lazyImage } from "$lib/actions/focusTrap";
   import lazyImageSource from "../../lazyImageSource";
 
   let clazz;

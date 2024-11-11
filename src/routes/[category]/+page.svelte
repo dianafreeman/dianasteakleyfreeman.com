@@ -6,7 +6,8 @@
 </script>
 
 <div class="pb-10">
-  <h1 class="text-3xl md:text-5xl mt-10 font-bold text-center">{data.meta.title}.</h1>
+  <h1 class="mx-auto tracking-tight text-5xl md:text-6xl lg:text-7xl text-yellow mb-4 text-center font-black pt-7">
+    {data.meta.title}.</h1>
   <p class="text-center my-10">{data.meta.description}</p>
 </div>
 <Masonry items={data.entries} />

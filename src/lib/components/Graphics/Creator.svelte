@@ -1,5 +1,5 @@
 <script>
-  import { onMount } from "svelte";
+  import { afterUpdate, onMount } from "svelte";
   let clazz;
   export { clazz as class };
   export let strokeWidth = "8px";
@@ -7,6 +7,7 @@
 
   let ref1, ref2, ref3;
 
+  export let isDrawing = false;
   let duration = 1500;
   // Helper function to animate a single path
   const animatePath = (path, delayNext) => {
@@ -17,12 +18,33 @@
     });
   };
 
-  onMount(async () => {
+  const hidePaths = () => {
+    ref1.style.strokeDashoffset = "1000";
+    ref2.style.strokeDashoffset = "1000";
+    ref3.style.strokeDashoffset = "1000";
+  };
+
+  async function draw() {
     // Apply stroke offset to each path sequentially
     await animatePath(ref1, duration / 3);
     await animatePath(ref2, duration / 2);
     await animatePath(ref3, duration);
+  }
+
+  afterUpdate(() => {
+    if (isDrawing) {
+      draw();
+    } else {
+      hidePaths()
+    }
   });
+
+  // onMount(async () => {
+  //   // Apply stroke offset to each path sequentially
+  //   await animatePath(ref1, duration / 3);
+  //   await animatePath(ref2, duration / 2);
+  //   await animatePath(ref3, duration);
+  // });
 </script>
 
 <svg

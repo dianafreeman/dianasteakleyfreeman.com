@@ -169,7 +169,7 @@ export function collectFrontMatterByType(dir) {
   return frontMatterByType;
 }
 
-function getFrontmatterMeta(data) {
+export function getFrontmatterMeta(data) {
   const entries = Object.entries(data).map((entry) => {
     const [key, value] = entry;
     const m = getMetadataByAttribute({

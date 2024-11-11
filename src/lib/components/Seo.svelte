@@ -5,18 +5,21 @@
   /**  @type { "website" | "article" | "profile" | "video" } */
   export let type = "website";
 
-  export let imageSrc = "/static/screenshot.png";
-  if (!$page.data.seoMeta) {
-    console.warn(`No seo data found for page ${$page.url.href} `);
-  }
+  // export let imageSrc = "/static/screenshot.png";
+
+  const defaults = {
+    title: "Diana M. Steakley-Freeman",
+    url: "dianasteakleyfreeman.com",
+    description: "Portfolio, blog, and website for Diana M. Steakley-Freeman"
+  };
 </script>
 
 <svelte:head>
-  <title>{$page.data.seoMeta.title}</title>
-  <meta name="description" content={$page.data.seoMeta.description} />
-  <meta property="og:url" content={$page.url.href} />
+  <title>{$page.data?.meta?.title || `Home`} | Diana M Steakley-Freeman</title>
+  <meta name="description" content={$page.data?.meta?.description || defaults.description} />
+  <meta property="og:url" content={$page.url.href || defaults.url} />
   <meta property="og:type" content={type} />
-  <meta property="og:title" content={$page.data.seoMeta.title} />
-  <meta property="og:description" content={$page.data.seoMeta.description} />
-  <meta property="og:image" content={imageSrc} />
+  <meta property="og:title" content={$page.data?.meta?.title || defaults.title} />
+  <meta property="og:description" content={$page.data?.meta?.description || defaults.description} />
+  <!-- <meta property="og:image" content={imageSrc} /> -->
 </svelte:head>

@@ -1,5 +1,5 @@
 <script>
-  import Gallery from "$lib/components/Gallery.svelte";
+  import Gallery from "$lib/components/OldComponents/Gallery.svelte";
   import { Meta, Story } from "@storybook/addon-svelte-csf";
   import testImages from "$tests/stub/images.json";
 </script>

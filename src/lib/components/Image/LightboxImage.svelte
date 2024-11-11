@@ -1,5 +1,5 @@
 <script>
-  import Modal from "../Modal/Modal.svelte";
+  import Modal from "../OldComponents/Modal.svelte";
   import LazyImage from "./LazyImage.svelte";
 
   export let image;
