@@ -3,7 +3,6 @@ import path from "path";
 import matter from "gray-matter";
 import { BASE_DIR, METADATA } from "./constants";
 
-
 /**
  * Retrieve metadata by slug, title, or a matching alias.
  * @param {string} type The type of metadata ('tags', 'categories', 'contentTypes').
@@ -15,11 +14,15 @@ export function getMetadataByAttribute(type, { slug, title, alias }) {
     return null;
   }
 
-  return METADATA[type].find(item => {
-    return (slug && item.slug === slug) ||
-           (title && item.title === title) ||
-           (alias && item.aliases && item.aliases.includes(alias));
-  }) || null;
+  return (
+    METADATA[type].find((item) => {
+      return (
+        (slug && item.slug === slug) ||
+        (title && item.title === title) ||
+        (alias && item.aliases && item.aliases.includes(alias))
+      );
+    }) || null
+  );
 }
 /**
  * Recursively walks through a directory and applies a callback for each file.
@@ -67,12 +70,34 @@ export function readMarkdownFile(filePath) {
  * @param {string} dir The directory to search in.
  * @returns {string | null} The path to the file if found, null otherwise.
  */
-export function findMarkdownFile(slug, dir = BASE_DIR) {
+export function findMarkdownFile(name, dir = BASE_DIR) {
   let result = null;
 
   walkDirectory(dir, (filePath) => {
-    if (isMarkdownFile(filePath) && path.basename(filePath) === `${slug}.md`) {
+    if (isMarkdownFile(filePath) && path.basename(filePath) === `${name}.md`) {
       result = filePath;
+    }
+  });
+
+  return result;
+}
+
+/**
+ * Recursively search for a markdown file matching the slug in a given directory.
+ * @param {string} slug The slug to find.
+ * @param {string} dir The directory to search in.
+ * @returns {string | null} The path to the file if found, null otherwise.
+ */
+export function findMarkdownFileBy(key, value, dir = BASE_DIR) {
+  let result = null;
+
+  walkDirectory(dir, (filePath) => {
+    if (isMarkdownFile(filePath)) {
+      const data = readMarkdownFile(filePath);
+      const { metadata } = data;
+      if (metadata[key] == value) {
+        result = filePath;
+      }
     }
   });
 
@@ -143,9 +168,6 @@ export function collectFrontMatterByType(dir) {
   return frontMatterByType;
 }
 
-
-
-
 /**
  * Filter markdown files by a specified front matter field.
  * @param {string} dir The base directory to start from.
@@ -153,13 +175,16 @@ export function collectFrontMatterByType(dir) {
  * @param {Object} metadata The metadata object containing slug, title, and aliases.
  * @returns {Array<Object>} A list of matching files with their front matter (metadata).
  */
-export function filterMarkdownFilesByMetadataField(dir, field, data) {
+export function filterMarkdownFilesByMetadataField(
+  field,
+  data,
+  dir = BASE_DIR
+) {
   const matchingFiles = [];
 
   walkDirectory(dir, (filePath) => {
     if (isMarkdownFile(filePath)) {
       const { metadata: frontMatter } = readMarkdownFile(filePath);
-
       // Check if the field exists in the front matter and if it matches the metadata
       if (frontMatter[field]) {
         if (Array.isArray(frontMatter[field])) {
@@ -169,12 +194,13 @@ export function filterMarkdownFilesByMetadataField(dir, field, data) {
               (value) =>
                 value === data.slug ||
                 value === data.title ||
+                value === data ||
                 (data.aliases && data.aliases.includes(value))
             )
           ) {
             matchingFiles.push({
               fileName: path.basename(filePath),
-              metadata: frontMatter,
+              metadata: frontMatter
             });
           }
         } else {
@@ -182,11 +208,12 @@ export function filterMarkdownFilesByMetadataField(dir, field, data) {
           if (
             frontMatter[field] === data.slug ||
             frontMatter[field] === data.title ||
+            frontMatter[field] === data ||
             (data.aliases && data.aliases.includes(frontMatter[field]))
           ) {
             matchingFiles.push({
               fileName: path.basename(filePath),
-              metadata: frontMatter,
+              metadata: frontMatter
             });
           }
         }
@@ -197,29 +224,28 @@ export function filterMarkdownFilesByMetadataField(dir, field, data) {
   return matchingFiles;
 }
 
-
-export function filterMarkdownFilesByContentType(typeMetadata){
+export function getMarkdownFilesByContentType(typeMetadata) {
   const typeDir = path.join(BASE_DIR, typeMetadata.slug); // Directory for the content type
-    console.log(`Searching in directory: ${typeDir}`);
+  console.log(`Searching in directory: ${typeDir}`);
 
-    // Check if the directory exists
-    if (!fs.existsSync(typeDir)) {
-      return new Response(JSON.stringify([]), {
-        headers: { "Content-Type": "application/json" },
+  // Check if the directory exists
+  if (!fs.existsSync(typeDir)) {
+    return new Response(JSON.stringify([]), {
+      headers: { "Content-Type": "application/json" }
+    });
+  }
+
+  // Collect all the front matter (metadata) for markdown files in the content type directory
+  const matchingFiles = [];
+  walkDirectory(typeDir, (filePath) => {
+    if (isMarkdownFile(filePath)) {
+      const { metadata } = readMarkdownFile(filePath);
+      matchingFiles.push({
+        fileName: path.basename(filePath),
+        metadata
       });
     }
+  });
 
-    // Collect all the front matter (metadata) for markdown files in the content type directory
-    const matchingFiles = [];
-    walkDirectory(typeDir, (filePath) => {
-      if (isMarkdownFile(filePath)) {
-        const { metadata } = readMarkdownFile(filePath);
-        matchingFiles.push({
-          fileName: path.basename(filePath),
-          metadata,
-        });
-      }
-    });
-
-    return matchingFiles
+  return matchingFiles;
 }
