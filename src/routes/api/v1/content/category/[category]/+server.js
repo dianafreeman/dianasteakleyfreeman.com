@@ -3,7 +3,7 @@ import { BASE_DIR } from "$lib/markdown/constants";
 import { createResponse } from "$lib/response";
 
 /**
- * GET /content/categories/[category]
+ * GET /content/category/[category]
  * Retrieves all front matter (metadata) for markdown files whose category matches the provided category.
  * @param {import('@sveltejs/kit').RequestEvent} event The request event object.
  * @returns {Response} JSON response with the front matter for the matching files.
@@ -23,7 +23,7 @@ export async function GET({ params }) {
     }
 
     // Use the helper function to filter markdown files by category
-    const matchingFiles = filterMarkdownFilesByMetadataField(BASE_DIR, "category", categoryMetadata);
+    const matchingFiles = filterMarkdownFilesByMetadataField("category", categoryMetadata);
 
     return new createResponse(matchingFiles)
   } catch (err) {

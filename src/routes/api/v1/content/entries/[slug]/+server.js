@@ -1,14 +1,13 @@
 import { marked } from "marked";
-import { findMarkdownFile, readMarkdownFile } from "$lib/markdown/utils";
+import { findMarkdownFile, findMarkdownFileBy, readMarkdownFile } from "$lib/markdown/utils";
 import { createResponse } from "$lib/response";
 
 /** @type {import('@sveltejs/kit').RequestHandler} */
 export async function GET({ params }) {
   const { slug } = params;
 
-  try {
-    // Find the Markdown file in the folder structure
-    const filePath = findMarkdownFile(slug);
+  try { 
+    const filePath = findMarkdownFileBy('slug', slug);
     if (!filePath) {
       return createResponse({ error: `Not Found` }, 404);
     }
@@ -18,6 +17,7 @@ export async function GET({ params }) {
 
     // Parse the Markdown content to HTML
     const html = marked(content);
+
     const response = { metadata, html };
 
     // Return the response as a JSON string with the appropriate headers

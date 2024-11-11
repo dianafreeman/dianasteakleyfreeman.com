@@ -20,7 +20,7 @@ export async function GET({ params }) {
       return createResponse({ error: "Tag not found" }, 404)
     }
     
-    const matchingFiles = filterMarkdownFilesByMetadataField(BASE_DIR, "tags", tagMetadata);
+    const matchingFiles = filterMarkdownFilesByMetadataField("tags", tagMetadata);
 
     return createResponse(matchingFiles)
   } catch (err) {
