@@ -4,6 +4,7 @@
   export let imageSrc;
   export let tags;
   export let target;
+  
 </script>
 
 <div class="min-w-sm max-w-sm overflow-hidden  m-auto">
