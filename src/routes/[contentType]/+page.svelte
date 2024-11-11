@@ -5,8 +5,6 @@
 </script>
 
 <div class="pb-10">
-  <h1 class="text-3xl md:text-5xl font-bold text-center">Projects</h1>
+  <h1 class="text-3xl md:text-5xl font-bold text-center">{data.title}.</h1>
 </div>
-<div>
-  <Masonry items={data.entries} />
-</div>
+<Masonry items={data.entries} />
