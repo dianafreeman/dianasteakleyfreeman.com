@@ -2,9 +2,9 @@
 date: "2020-03-15"
 title: '"Rafiki To The Rescue" Cartoon Set'
 image: /images/Rafiki.png
-category: Art & Music
+category: Art & Design
 tags:
-  - graphics & illustration
+  - graphic design
 ---
 
 A whimsical set of self-care related illustrations based on my dog, Rafiki used as part of a mental wellness social media campaign for [One Mind PsyberGuide, the Mental Health App Guide](https://onemindpsyberguide.org/), in 2019.
