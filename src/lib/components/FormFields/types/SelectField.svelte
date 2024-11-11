@@ -26,7 +26,7 @@
   {required}
   on:change={onSelectChange}
   bind:value
-  class="button border border-gray bg-darkest-gray p-3 focus:bg-gray focus:outline focus:outline-white">
+  class="button border border-gray bg-dark-gray p-3 focus:bg-gray focus:outline focus:outline-white">
   {#each options as opt}
     <option selected={value === opt.value} value={opt.value}
       >{opt.label}</option>

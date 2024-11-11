@@ -30,7 +30,7 @@
 <a
   href="/"
   aria-label="DianaSteakleyFreeman.com"
-  class="m-2 my-3 inline-flex px-3 pt-2 pb-4 text-2xl font-bold focus:outline focus:outline-1 focus:outline-white lg:text-3xl xl:text-4xl"
+  class="outline-none m-2 my-3 inline-flex px-3 pt-2 pb-4 text-2xl font-bold focus:underline active:underline focus:text-sky-blue active:text-sky-blue hover:text-sky-blue lg:text-3xl xl:text-4xl"
   on:focus={toggleHovered}
   on:blur={toggleHovered}
   on:mouseenter={toggleHovered}
@@ -41,10 +41,10 @@
       toggleHovered();
     }
   }}>
-  <span aria-hidden="true">d</span><span
+  <span aria-hidden="true">D</span><span
     bind:this={animatedSpan}
     aria-hidden="true"
     style="width: {$widthSpring}px"
-    class="text-gray-400 overflow-hidden">iana</span
+    class="text-white overflow-hidden">iana</span
   >.
 </a>

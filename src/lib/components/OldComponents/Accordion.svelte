@@ -17,7 +17,7 @@
         type="button"
         animateBorders={false}
         class="text-gray-400 flex w-full items-start justify-between border-b-0 p-5 text-left {isOpen
-          ? 'bg-darkest-gray'
+          ? 'bg-dark-gray'
           : ''}"
         aria-controls="faq-0"
         aria-expanded={isOpen}

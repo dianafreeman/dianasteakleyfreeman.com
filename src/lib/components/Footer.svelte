@@ -1,5 +1,4 @@
 <script>
-  import NavList from "./FooterNav/NavList.svelte";
   const navMenus = [
     {
       title: "main navigation",
@@ -65,14 +64,25 @@
 
 {#each navMenus as menu}
   <div class={menu.containerClass}>
-    <NavList title={menu.title} items={menu.items} class={menu.class} />
+    <p class="font-black lowercase">{menu.title}.</p>
+    <ul class={menu.class}>
+      {#each menu.items as item}
+        <li class="lowercase font-extralight text-lightest-gray">
+          <a href={item.href} class="hover:underline focus:underline active:underline hover:text-sky-blue active:text-sky-blue focus:text-sky-blue outline-none">
+            {item.text}
+          </a>
+        </li>
+      {/each}
+    </ul>
   </div>
 {/each}
+
 <div class="flex-grow text-left lowercase">
-  <p class="font-bold">Diana M Steakley-Freeman. &copy; 2023</p>
+  <p class="font-bold">Diana M Steakley-Freeman. &copy; 2024</p>
+
   <a
     href="https://github.com/dianafreeman/dianasteakleyfreeman.com"
-    class="font-thin text-lightest-gray">
+    class="font-thin text-lightest-gray hover:underline focus:underline active:underline hover:text-sky-blue active:text-sky-blue focus:text-sky-blue outline-none">
     View this site on github.
   </a>
 </div>

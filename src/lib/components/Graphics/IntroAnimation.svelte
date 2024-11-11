@@ -20,7 +20,7 @@
     <span class="cursor-none rounded-full px-2 py-1 text-light-gray">x</span>
   </div>
   <div
-    class="flex min-h-[250px] w-full flex-col  justify-between bg-darkest-gray p-5 ">
+    class="flex min-h-[250px] w-full flex-col  justify-between bg-dark-gray p-5 ">
     <p class="text-3xl">
       <Typewriter on:done={() => (firstTypewriterIsDone = true)}>
         the future <!-- intentional line break for typewriter timing-->
@@ -73,7 +73,7 @@
    * ---------------------------------------------- */
 
   /**
-          "darkest-gray": "#181818",
+          "dark-gray": "#181818",
           "dark-gray": "#222222",
           "gray": "#474747",
           "light-gray": "#808080",

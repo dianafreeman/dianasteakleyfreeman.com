@@ -3,7 +3,7 @@
   import NavBrand from "./NavBrand.svelte";
   import { menuIsOpen, _menuIsOpen } from "$stores/LayoutStore";
 
-  const navItemClasses = `hover:text-blue-500 focus:text-blue-500 active:text-blue-500  hover:underline active:underline focus:underline font-bold text-xl flex items-center p-5 w-full `;
+  const navItemClasses = `outline-none hover:text-sky-blue focus:text-sky-blue active:text-sky-blue  hover:underline active:underline focus:underline font-bold text-xl flex items-center p-5 w-full `;
 
   export let items;
 
@@ -16,16 +16,17 @@
 </script>
 
 <nav class="" aria-label="Main Navigation">
-  <div class="flex flex-row justify-between md:flex bg-darkest-gray">
+  <div class="flex flex-row justify-between md:flex border-dark-gray border-b">
     <div>
       <!-- nav brand wrapper for flex-->
-      <NavBrand class="" />
+      <NavBrand class="outline-none" />
     </div>
     <div class="w-full md:w-fit md:flex md:flew-row">
       <!-- menu grouping wrapper -->
       <div class="w-full md:flex md:w-fit md:flex-row">
         <NavToggle
           class={`${navItemClasses} md:hidden`}
+          borders={!$menuIsOpen}
           on:click={toggleMenu}
           label="menu"
           iconType="hamburger"
@@ -41,7 +42,7 @@
               class="w-full text-white list-none"
               aria-hidden={!$menuIsOpen}
               class:hidden={!$menuIsOpen}>
-              <a href={item.url} class={navItemClasses}>{item.label}</a>
+              <a href={item.url} class={`animate-borders ${navItemClasses}`}>{item.label}</a>
             </li>
           {/each}
         </ul>
