@@ -16,13 +16,15 @@ export function collectAllContentAndMetadata(dir) {
       // Extract the directory name as the type
       const contentType = path.basename(path.dirname(filePath));
 
-      // Add the content, metadata (front matter), and type for each file
-      allEntries.push({
-        fileName: path.basename(filePath),
-        contentType, // The directory name is treated as the "type"
-        metadata,
-        content,
-      });
+      if (!metadata.draft){
+        // Add the content, metadata (front matter), and type for each file
+        allEntries.push({
+          fileName: path.basename(filePath),
+          contentType, // The directory name is treated as the "type"
+          metadata,
+          content,
+        });
+      }
     }
   });
 

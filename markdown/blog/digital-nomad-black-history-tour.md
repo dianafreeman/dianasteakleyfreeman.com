@@ -4,6 +4,7 @@ title: "I'm living as a digital nomad within the U.S. Here's why."
 image: /images/therapy-with-a-chatbot.jpeg
 slug: black-history-tour
 category: Blog
+draft: true
 tags:
   - history
   - Black Historytelling U.S. Tour

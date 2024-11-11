@@ -4,18 +4,19 @@
   export let imageSrc;
   export let tags;
   export let target;
-  
 </script>
 
-<div class="min-w-sm max-w-sm overflow-hidden  m-auto">
+<div class="min-w-sm max-w-sm overflow-hidden m-auto">
   {#if imageSrc}
-  <img class="w-full " src={imageSrc} alt="alt text for image">
+    <img class="w-full" src={imageSrc} />
   {/if}
   <div class="px-6 py-4">
     <div class="font-bold text-xl mb-2">
       <a href={`/${target}`}>{title}</a>
     </div>
-    <p class="text-gray-700 text-base">{description}</p>
+    {#if description}
+      <p class="text-gray-700 text-base">{description}</p>
+    {/if}
   </div>
   <!-- TODO: after sorting out a view for tags and the tag endpoint -->
   <!-- <div class="px-6 pt-4 pb-2">

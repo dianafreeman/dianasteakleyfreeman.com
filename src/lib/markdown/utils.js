@@ -50,7 +50,6 @@ export function isMarkdownFile(file) {
   return file.endsWith(".md");
 }
 
-
 /**
  * Reads the content of a file and extracts its front matter.
  * @param {string} filePath The path of the file to read.
@@ -116,22 +115,24 @@ export function collectFrontMatterByKey(key, value, dir = BASE_DIR) {
   walkDirectory(dir, (filePath) => {
     if (isMarkdownFile(filePath)) {
       const { metadata } = readMarkdownFile(filePath);
-      // Check if the front matter contains the specified key
-      if (metadata[key]) {
-        if (Array.isArray(metadata[key])) {
-          // If the value is an array, check if it includes the specified value
-          if (metadata[key].includes(value)) {
+      if (!metadata.draft) {
+        // Check if the front matter contains the specified key
+        if (metadata[key]) {
+          if (Array.isArray(metadata[key])) {
+            // If the value is an array, check if it includes the specified value
+            if (metadata[key].includes(value)) {
+              list.push({
+                fileName: path.basename(filePath),
+                metadata: getFrontmatterMeta(metadata)
+              });
+            }
+          } else if (metadata[key] === value) {
+            // If the value is scalar, check for equality
             list.push({
               fileName: path.basename(filePath),
               metadata: getFrontmatterMeta(metadata)
             });
           }
-        } else if (metadata[key] === value) {
-          // If the value is scalar, check for equality
-          list.push({
-            fileName: path.basename(filePath),
-            metadata: getFrontmatterMeta(metadata)
-          });
         }
       }
     }
@@ -151,30 +152,35 @@ export function collectFrontMatterByType(dir) {
   walkDirectory(dir, (filePath) => {
     if (isMarkdownFile(filePath)) {
       const { frontMatter } = readMarkdownFile(filePath);
+      if (!frontMatter.draft) {
+        // Extract the directory name as the type
+        const type = path.basename(path.dirname(filePath));
 
-      // Extract the directory name as the type
-      const type = path.basename(path.dirname(filePath));
-
-      // Add the front matter along with the file name and type
-      frontMatterByType.push({
-        fileName: path.basename(filePath),
-        type, // Directory name is treated as "type"
-        frontMatter
-      });
+        // Add the front matter along with the file name and type
+        frontMatterByType.push({
+          fileName: path.basename(filePath),
+          type, // Directory name is treated as "type"
+          frontMatter
+        });
+      }
     }
   });
 
   return frontMatterByType;
 }
 
-function getFrontmatterMeta(data){
-  const entries = Object.entries(data).map(entry => {
-    const [key, value] = entry
-    const m = getMetadataByAttribute({title: value, slug: value, alias: value})
-    if (m) return [key, m]
-    return entry
-  })
-  return Object.fromEntries(entries)
+function getFrontmatterMeta(data) {
+  const entries = Object.entries(data).map((entry) => {
+    const [key, value] = entry;
+    const m = getMetadataByAttribute({
+      title: value,
+      slug: value,
+      alias: value
+    });
+    if (m) return [key, m];
+    return entry;
+  });
+  return Object.fromEntries(entries);
 }
 
 /**
@@ -195,7 +201,7 @@ export function filterMarkdownFilesByMetadataField(
     if (isMarkdownFile(filePath)) {
       const { metadata: frontMatter } = readMarkdownFile(filePath);
       // Check if the field exists in the front matter and if it matches the metadata
-      if (frontMatter[field]) {
+      if (frontMatter[field] && !frontMatter.draft) {
         if (Array.isArray(frontMatter[field])) {
           // Handle array fields (e.g., tags)
           if (
@@ -220,7 +226,6 @@ export function filterMarkdownFilesByMetadataField(
             frontMatter[field] === data ||
             (data.aliases && data.aliases.includes(frontMatter[field]))
           ) {
-            
             matchingFiles.push({
               fileName: path.basename(filePath),
               metadata: getFrontmatterMeta(frontMatter)
@@ -250,10 +255,13 @@ export function getMarkdownFilesByContentType(typeMetadata) {
   walkDirectory(typeDir, (filePath) => {
     if (isMarkdownFile(filePath)) {
       const { metadata } = readMarkdownFile(filePath);
-      matchingFiles.push({
-        fileName: path.basename(filePath),
-        metadata: getFrontmatterMeta(metadata)
-      });
+      if (!metadata.draft){
+
+        matchingFiles.push({
+          fileName: path.basename(filePath),
+          metadata: getFrontmatterMeta(metadata)
+        });
+      }
     }
   });
 

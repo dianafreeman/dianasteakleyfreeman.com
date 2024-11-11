@@ -2,7 +2,6 @@
   import MasonryCard from "./Cards/MasonryCard.svelte";
 
   export let items = [];
-  console.log(items)
 </script>
 
 <div class="columns-1 md:columns-2 lg:columns-3">

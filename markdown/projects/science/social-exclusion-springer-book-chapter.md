@@ -6,6 +6,7 @@ image: /images/social-exclusion-cover.webp
 category: Projects
 subcategory: Science
 link: https://link.springer.com/book/10.1007/978-3-319-33033-4
+draft: true
 ---
 
 https://link.springer.com/chapter/10.1007/978-3-319-33033-4_1
