@@ -40,15 +40,6 @@ const categoryMeta = [
     aliases: ["research", "academic-work"],
   },
   {
-    title: "Design",
-    description:
-      "Graphic Design Archive - Diana M Steakley-Freeman | I haven't worked as a designer in years, but I still enjoy the craft. ",
-    slug: "design",
-    image: null,
-    navigationText: "Design",
-    aliases: ["graphic-design", "visual-art"],
-  },
-  {
     title: "Code",
     description:
       "Code Projects by Diana M Steakley-Freeman | Most of my professional work is owned by the organizations for which I have worked....but not all of them! Check out my open source work here. ",
@@ -57,13 +48,13 @@ const categoryMeta = [
     navigationText: "code"
   },
   {
-    title: "Art & Music",
+    title: "Art & Design",
     description:
-      "Art and Music by Diana | I'm not a professional artist, but I sure do enjoy the craft. View the gallery.",
-    slug: "art-and-music",
+      "Art, and Design by Diana | I'm not a professional artist, but I sure do enjoy the craft. View the gallery.",
+    slug: "art-and-design",
     image: null,
     navigationText: "art",
-    aliases: ["art-music, art-&-music"],
+    aliases: ["art-design, art-&-music"],
 
   }
 ];
@@ -90,10 +81,6 @@ const tagsMeta = [
     title: "Graphics & Illustration",
     slug: "graphics-and-illustration"
   },
-  {
-    title: "Peer Reviewed Publications",
-    slug: "peer-reviewed"
-  }
 ];
 
 export const METADATA = {tags: tagsMeta, categories: categoryMeta, contentTypes: contentTypesMeta}
