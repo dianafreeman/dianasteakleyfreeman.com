@@ -3,7 +3,9 @@ title: "Anti-Human Trafficking Intelligence Initiative"
 image: /images/ATII-hero.jpeg
 date: "2020-01-01"
 link: https://followmoneyfightslavery.org/
-category: Art & Design
+category: Projects
+subcategory: Art & Design
+slug: ahtii
 tags:
   - graphic design
 ---

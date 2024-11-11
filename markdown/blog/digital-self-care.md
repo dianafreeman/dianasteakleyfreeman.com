@@ -1,9 +1,9 @@
 ---
-slug: digital-self-care
 date: "2019-03-31"
 title: "Digital Self-Care in the era of #InsertCrisisHere."
 image: /images/phone-disconnected-from-chain.jpeg
-category: Technology & Humanity
+category: Blog
+slug: digital-self-care
 tags:
   - digital mental health
 ---

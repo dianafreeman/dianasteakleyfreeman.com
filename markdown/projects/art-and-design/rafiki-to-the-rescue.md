@@ -2,7 +2,9 @@
 date: "2020-03-15"
 title: '"Rafiki To The Rescue" Cartoon Set'
 image: /images/Rafiki.png
-category: Art & Design
+category: Projects
+subcategory: Art & Design
+slug: rafiki-to-the-rescue
 tags:
   - graphic design
 ---
