@@ -19,7 +19,7 @@ export function collectAllTags(dir = BASE_DIR) {
   });
 
   return Array.from(tags).map(tag => {
-    const metadata = getMetadataByAttribute('tags', { slug: tag, title: tag, alias: tag }) || {};
+    const metadata = getMetadataByAttribute({ slug: tag, title: tag, alias: tag }) || {};
     return {
       tag,
       metadata

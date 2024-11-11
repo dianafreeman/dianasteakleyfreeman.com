@@ -83,4 +83,4 @@ const tagsMeta = [
   },
 ];
 
-export const METADATA = {tags: tagsMeta, categories: categoryMeta, contentTypes: contentTypesMeta}
+export const METADATA = [...tagsMeta, ...categoryMeta, ...contentTypesMeta]

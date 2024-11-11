@@ -9,17 +9,14 @@ import { BASE_DIR, METADATA } from "./constants";
  * @param {Object} params An object containing either the slug, title, or alias to search by.
  * @returns {Object|null} The metadata object, or null if not found.
  */
-export function getMetadataByAttribute(type, { slug, title, alias }) {
-  if (!METADATA[type]) {
-    return null;
-  }
-
+export function getMetadataByAttribute({ slug, title, alias }) {
+  // console.log(METADATA)
   return (
-    METADATA[type].find((item) => {
+    METADATA.find((item) => {
       return (
-        (slug && item.slug === slug) ||
-        (title && item.title === title) ||
-        (alias && item.aliases && item.aliases.includes(alias))
+        (slug && item?.slug === slug) ||
+        (title && item?.title === title) ||
+        (alias && item?.aliases && item.aliases.includes(alias))
       );
     }) || null
   );
@@ -53,6 +50,7 @@ export function isMarkdownFile(file) {
   return file.endsWith(".md");
 }
 
+
 /**
  * Reads the content of a file and extracts its front matter.
  * @param {string} filePath The path of the file to read.
@@ -61,6 +59,7 @@ export function isMarkdownFile(file) {
 export function readMarkdownFile(filePath) {
   const fileContent = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(fileContent);
+
   return { metadata: data, content };
 }
 
@@ -124,14 +123,14 @@ export function collectFrontMatterByKey(key, value, dir = BASE_DIR) {
           if (metadata[key].includes(value)) {
             list.push({
               fileName: path.basename(filePath),
-              metadata
+              metadata: getFrontmatterMeta(metadata)
             });
           }
         } else if (metadata[key] === value) {
           // If the value is scalar, check for equality
           list.push({
             fileName: path.basename(filePath),
-            metadata
+            metadata: getFrontmatterMeta(metadata)
           });
         }
       }
@@ -168,6 +167,16 @@ export function collectFrontMatterByType(dir) {
   return frontMatterByType;
 }
 
+function getFrontmatterMeta(data){
+  const entries = Object.entries(data).map(entry => {
+    const [key, value] = entry
+    const m = getMetadataByAttribute({title: value, slug: value, alias: value})
+    if (m) return [key, m]
+    return entry
+  })
+  return Object.fromEntries(entries)
+}
+
 /**
  * Filter markdown files by a specified front matter field.
  * @param {string} dir The base directory to start from.
@@ -200,7 +209,7 @@ export function filterMarkdownFilesByMetadataField(
           ) {
             matchingFiles.push({
               fileName: path.basename(filePath),
-              metadata: frontMatter
+              metadata: getFrontmatterMeta(frontMatter)
             });
           }
         } else {
@@ -211,9 +220,10 @@ export function filterMarkdownFilesByMetadataField(
             frontMatter[field] === data ||
             (data.aliases && data.aliases.includes(frontMatter[field]))
           ) {
+            
             matchingFiles.push({
               fileName: path.basename(filePath),
-              metadata: frontMatter
+              metadata: getFrontmatterMeta(frontMatter)
             });
           }
         }
@@ -242,7 +252,7 @@ export function getMarkdownFilesByContentType(typeMetadata) {
       const { metadata } = readMarkdownFile(filePath);
       matchingFiles.push({
         fileName: path.basename(filePath),
-        metadata
+        metadata: getFrontmatterMeta(metadata)
       });
     }
   });

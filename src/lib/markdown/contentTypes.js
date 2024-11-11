@@ -20,7 +20,7 @@ export function collectContentTypes(dir = BASE_DIR) {
 
     // If it's a directory, treat it as a "type" and retrieve its metadata
     if (stat.isDirectory()) {
-      const metadata = getMetadataByAttribute('contentTypes', { slug: file, title: file, alias: file }) || {};
+      const metadata = getMetadataByAttribute({ slug: file, title: file, alias: file }) || {};
       types.push({
         ...metadata,
       });

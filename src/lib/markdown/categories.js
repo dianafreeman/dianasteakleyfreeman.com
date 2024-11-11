@@ -26,7 +26,7 @@ export function collectAllCategories(dir = BASE_DIR) {
 
   return Array.from(categories).map((category) => {
     const metadata =
-      getMetadataByAttribute("categories", {
+      getMetadataByAttribute({
         title: category,
         slug: category,
         alias: category
