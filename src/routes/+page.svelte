@@ -10,7 +10,7 @@
   <div class="">
     <Section class="py-10 flex px-5 md:px-0">
       <div
-        class="md:w-2/3 min-h-[80vh] flex flex-col justify-center items-start md:px-10">
+        class="md:w-2/3 min-h-[60vh] flex flex-col justify-center items-start md:px-10">
         <Typewriter>
           <p
            aria-label="Coder"
@@ -31,13 +31,13 @@
   <div class="">
     <Section class="py-10 flex px-5 md:px-0 flex-row-reverse">
       <div
-        class="md:w-2/3 min-h-[80vh] flex flex-col justify-center items-end md:px-10">
+        class="md:w-2/3 min-h-[60vh] flex flex-col justify-center items-end md:px-10">
         <Creator class="stroke-sky-blue md:w-3/4" />
           <p class="ml-auto text-right">
             Culpa qui laboris nisi ut aute amet proident amet reprehenderit enim
             laborum.
           </p>
-          <ButtonLink href="/projects?category=art-and-design" borders animateBorders class="bg-yellow text-black p-5 my-10 font-bold" iconProps={{ type: "next"}}> View Creative Projects </ButtonLink>
+          <ButtonLink href="/projects?subcategory=art-and-design" borders animateBorders class="bg-yellow text-black p-5 my-10 font-bold" iconProps={{ type: "next"}}> View Creative Projects </ButtonLink>
 
       </div>
       <div class="md:w-1/3">
@@ -48,7 +48,7 @@
   <div class="">
     <Section class="py-10 flex px-5 md:px-0">
       <div
-        class="md:w-2/3 min-h-[80vh] flex flex-col justify-center items-start md:px-10">
+        class="md:w-2/3 min-h-[60vh] flex flex-col justify-center items-start md:px-10">
         <p class="text-left text-6xl lg:text-8xl font-black text-sky-blue tracking-tighter">
           Communicator
         </p>
@@ -57,7 +57,7 @@
             Culpa qui laboris nisi ut aute amet proident amet reprehenderit enim
             laborum.
           </p>
-          <ButtonLink href="/projects?category=science" class="animate-borders bg-yellow text-black p-5 my-10 font-bold" iconProps={{ type: "next"}}> View Publications </ButtonLink>
+          <ButtonLink href="/projects?subcategory=science" iconProps={{ type: "next"}}> View Publications </ButtonLink>
         </div>
       <!-- </div> -->
       <div class="md:w-1/3">

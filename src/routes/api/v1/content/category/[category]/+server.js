@@ -1,4 +1,7 @@
-import { getMetadataByAttribute, filterMarkdownFilesByMetadataField } from "$lib/markdown/utils";
+import {
+  getMetadataByAttribute,
+  filterMarkdownFilesByMetadataField
+} from "$lib/markdown/utils";
 import { BASE_DIR } from "$lib/markdown/constants";
 import { createResponse } from "$lib/response";
 
@@ -8,25 +11,41 @@ import { createResponse } from "$lib/response";
  * @param {import('@sveltejs/kit').RequestEvent} event The request event object.
  * @returns {Response} JSON response with the front matter for the matching files.
  */
-export async function GET({ params }) {
+export async function GET({ params, url }) {
   const { category } = params;
-
+  const searchParams = Object.fromEntries(url.searchParams);
   try {
-    const categoryMetadata = getMetadataByAttribute("categories", {
-      slug: category,
-      title: category,
-      alias: category,
-    });
-
-    if (!categoryMetadata) {
-        return createResponse({ error: "Category not found" }, 404)
+    if (Object.values(searchParams).length) {
+      //if search params provided
+      const [[key, value]] = Object.entries(searchParams);
+      const meta = getMetadataByAttribute({
+        slug: value,
+        title: value,
+        alias: value
+      });
+      const matchingFiles = filterMarkdownFilesByMetadataField(key, meta);
+      return new createResponse({ entries: matchingFiles, metadata: meta });
+    } else {
+      // if no search params provided
+      const categoryMetadata = getMetadataByAttribute({
+        slug: category,
+        title: category,
+        alias: category
+      });
+      
+      if (!categoryMetadata) {
+        return createResponse({ error: "Category not found" }, 404);
+      }
+      const matchingFiles = filterMarkdownFilesByMetadataField(
+        "category",
+        categoryMetadata
+      );
+      return new createResponse({
+        entries: matchingFiles,
+        metadata: categoryMetadata
+      });
     }
-
-    // Use the helper function to filter markdown files by category
-    const matchingFiles = filterMarkdownFilesByMetadataField("category", categoryMetadata);
-
-    return new createResponse(matchingFiles)
   } catch (err) {
-    return createResponse({ error: err.message }, 500)
+    return createResponse({ error: err.message }, 500);
   }
 }

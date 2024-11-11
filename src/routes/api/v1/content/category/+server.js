@@ -8,7 +8,7 @@ export async function GET() {
   try {
       // Collect the nested category and subcategory structure
       const categories = collectAllCategories(BASE_DIR);
-
+    
       // Return the category structure as a JSON response
       return createResponse({categories})
   } catch (err) {

@@ -13,7 +13,7 @@ export async function GET({ params, url }) {
   const searchParams = Object.fromEntries(url.searchParams);
 
   try {
-    const typeMetadata = getMetadataByAttribute("contentTypes", {
+    const typeMetadata = getMetadataByAttribute({
       slug: type,
       title: type,
       alias: type

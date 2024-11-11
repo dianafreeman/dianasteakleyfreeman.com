@@ -10,7 +10,7 @@ export async function GET({ params }) {
   const { tag } = params;
 
   try {
-    const tagMetadata = getMetadataByAttribute("tags", {
+    const tagMetadata = getMetadataByAttribute({
       slug: tag,
       title: tag,
       alias: tag,
