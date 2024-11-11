@@ -3,16 +3,19 @@ export default {
   theme: {
     extend: {
       colors: {
-        "darkest-gray": "#181818",
         "dark-gray": "#222222",
-        gray: "#474747",
-        "light-gray": "#808080",
-        "lightest-gray": "#c1c1c1"
+        black: "#090A0B",
+        navy: "#3C6997",
+        "sky-blue":"#5ADBFF",
+        "yellow": "#FFDD4A",
+        "orange": "#FE9000"
       },
       fontFamily: {
+        code: ["VT323"], 
         montserrat: ["Monserrat"],
         dyslexic: ["OpenDyslexic"],
-        monospace: ["Inconsolata"]
+        monospace: ["Inconsolata"],
+        base: ["Karla"]
       }
     }
   },
