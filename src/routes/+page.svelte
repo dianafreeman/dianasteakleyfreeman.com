@@ -60,10 +60,10 @@
             Coder_
           </h2>
         </Typewriter>
-        <p class="">
+        <!-- <p class="">
           Culpa qui laboris nisi ut aute amet proident amet reprehenderit enim
           laborum.
-        </p>
+        </p> -->
         <!-- <ButtonLink href="/projects?category=code" borders animateBorders class="bg-yellow text-black p-5 my-10 font-bold" iconProps={{ type: "next"}}> View Code Projects </ButtonLink> -->
         <ButtonLink
           target="_blank"
@@ -88,10 +88,10 @@
         class="md:w-2/3 min-h-[70vh] flex flex-col justify-center items-end md:px-10">
         <h2 class="sr-only">Creator</h2>
         <Creator isDrawing={creatorInView} class="stroke-sky-blue md:w-3/4" />
-        <p class="ml-auto text-right">
+        <!-- <p class="ml-auto text-right">
           Culpa qui laboris nisi ut aute amet proident amet reprehenderit enim
           laborum.
-        </p>
+        </p> -->
         <ButtonLink
           href="/projects?subcategory=art-and-design"
           borders
@@ -113,10 +113,10 @@
           Communicator
         </h2>
         <!-- <div class="w-full"> -->
-        <p class="md:text-left my-6">
+        <!-- <p class="md:text-left my-6">
           Culpa qui laboris nisi ut aute amet proident amet reprehenderit enim
           laborum.
-        </p>
+        </p> -->
         <ButtonLink
           href="/projects?subcategory=science"
           iconProps={{ type: "next" }}>

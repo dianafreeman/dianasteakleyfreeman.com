@@ -1,6 +1,7 @@
 import { marked } from "marked";
 import { findMarkdownFile, findMarkdownFileBy, getFrontmatterMeta, readMarkdownFile } from "$lib/markdown/utils";
 import { createResponse } from "$lib/response";
+export const prerender = true;
 
 /** @type {import('@sveltejs/kit').RequestHandler} */
 export async function GET({ params }) {

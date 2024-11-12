@@ -1,6 +1,7 @@
 import { getMetadataByAttribute, filterMarkdownFilesByMetadataField } from "$lib/markdown/utils";
 import { BASE_DIR } from "$lib/markdown/constants";
 import { createResponse } from "$lib/response";
+export const prerender = true;
 
 /**
  * GET /content/tags/[tag]
