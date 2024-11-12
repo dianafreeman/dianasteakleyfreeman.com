@@ -3,8 +3,8 @@
 # deploy contexts will inherit these settings.
 [build]
   command = "npm run build"
-  publish = "public"
-  environment = { NODE_VERSION = "16.15.0" }
+  publish = "build"
+  environment = { NODE_VERSION = "20.0" }
 
 # # Specific branch context: all deploys from this specific branch will inherit
 # # these settings.
