@@ -1,7 +1,6 @@
 import { BASE_DIR } from "$lib/markdown/constants";
 import { collectAllContentAndMetadata } from "$lib/markdown/entries";
 import { createResponse } from "$lib/response";
-export const prerender = true;
 
 /** @type {import('@sveltejs/kit').RequestHandler} */
 export async function GET() {

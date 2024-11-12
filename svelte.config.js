@@ -9,7 +9,29 @@ const config = {
   },
   extensions: [".svelte"],
   kit: {
-    adapter: adapter(),
+    adapter: adapter({ strict: false}),
+    prerender: {
+      entries: [
+        "/",
+        "/blog",
+        "/resources",
+        "/contact",
+        "/feedback",
+        "/privacy-policy",
+        "/projects",
+        "/projects/ahtii",
+        "/projects/rafiki-to-the-rescue",
+        "/projects/steakleyfreeman-et-al-agression-self-awareness-deception",
+        "/projects?subcategory=art-and-design",
+        "/projects?subcategory=science",
+        "/projects/make-them-hear-you",
+        "/projects/mood-and-false-memory",
+        "/projects/mood-and-false-memory",
+        "/blog/digital-self-care",
+        "/blog/eliza-therapeutic-ai",
+        "/blog/user-misdirection"
+      ]
+    },
     alias: {
       $routes: path.resolve("./src/routes"),
       $stores: path.resolve("./src/stores"),
@@ -18,7 +40,7 @@ const config = {
       $tests: path.resolve("./src/tests")
     }
   },
-  preprocess: [preprocess({ sourceMap: true }),]
+  preprocess: [preprocess({ sourceMap: true })]
 };
 
 export default config;

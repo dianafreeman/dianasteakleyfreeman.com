@@ -4,7 +4,6 @@ import {
   filterMarkdownFilesByMetadataField
 } from "$lib/markdown/utils";
 import { createResponse } from "$lib/response";
-export const prerender = true;
 
 /**
  * GET /content/contentTypes/[typeName]
