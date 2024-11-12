@@ -16,6 +16,9 @@
     "test": "vitest",
     "coverage": "vitest run --coverage"
   },
+  "engines": {
+    "node": ">=18"
+  },
   "devDependencies": {
     "@storybook/addon-essentials": "^7.2.3",
     "@storybook/addon-interactions": "^7.2.3",
