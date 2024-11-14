@@ -66,21 +66,33 @@ const tagsMeta = [
   },
   {
     title: "The Attention Economy",
-    slug: "attention-economy"
+    slug: "attention-economy",
+    aliases: ["attention economy"]
+  },
+  {
+    title: "Black Historytelling U.S. tour",
+    slug: "black-history-tour",
+    aliases: ["black historytelling us tour"]
+
   },
   {
     title: "Digital Mental Health",
     slug: "digital-mental-health",
-    aliases: ["mental-health", "digital-health"]
+    aliases: ["mental-health", "digital-health", "digital mental health"]
   },
   { 
     title: "ReactJS",
     slug: "react"
   },
   { 
-    title: "Graphics & Illustration",
-    slug: "graphics-and-illustration"
+    title: "Music",
+    slug: "music"
+  },
+  { 
+    title: "Graphic Design",
+    slug: "graphic-design",
+    aliases: ["graphic design"]
   },
 ];
 
-export const METADATA = [...tagsMeta, ...categoryMeta, ...contentTypesMeta]
+export const META_DETAILS = [...tagsMeta, ...categoryMeta, ...contentTypesMeta]

@@ -65,6 +65,7 @@
     "marked": "^14.1.2",
     "reading-time": "^1.5.0",
     "svelte-inview": "^4.0.1",
-    "svelte-typewriter": "^3.1.6"
+    "svelte-typewriter": "^3.1.6",
+    "vite-plugin-md": "^0.22.5"
   }
 }

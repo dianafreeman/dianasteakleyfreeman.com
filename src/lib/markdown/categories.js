@@ -6,6 +6,13 @@ import {
   getMetadataByAttribute
 } from "./utils";
 import path from "path";
+import matter from "gray-matter";
+
+const markdownFiles = import.meta.glob("$content/**/*.md", {
+  eager: true,
+  as: "raw"
+});
+
 /**
  * Collect all unique categories from markdown files.
  * @param {string} dir The base directory to search in.
@@ -38,6 +45,8 @@ export function collectAllCategories(dir = BASE_DIR) {
   });
 }
 
+
+
 export function collectFrontmatterByCategory(categoryMetadata) {
   // Collect all the front matter (metadata) for markdown files that match the category
   const matchingFiles = [];
@@ -60,5 +69,5 @@ export function collectFrontmatterByCategory(categoryMetadata) {
       }
     }
   });
-  return matchingFiles
+  return matchingFiles;
 }

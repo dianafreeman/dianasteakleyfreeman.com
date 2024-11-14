@@ -10,7 +10,6 @@ import { BASE_DIR, METADATA } from "./constants";
  * @returns {Object|null} The metadata object, or null if not found.
  */
 export function getMetadataByAttribute({ slug, title, alias }) {
-  // console.log(METADATA)
   return (
     METADATA.find((item) => {
       return (
