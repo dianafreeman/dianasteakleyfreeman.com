@@ -6,11 +6,12 @@
 
 <div class="columns-1 md:columns-2 lg:columns-3">
   {#each items as item}
+  <!-- {item.category} -->
     <MasonryCard
-      target={`${item.metadata.category.slug}/${item.metadata.slug}`}
-      title={item.metadata.title}
-      imageSrc={item.metadata.image}
-      date={new Date(item.metadata.date).toDateString()}
+      target={`/posts/${item.slug}`}
+      title={item.title}
+      imageSrc={item.image}
+      date={new Date(item.date).toDateString()}
        />
             <!-- 
        TODO: after sorting out a view for tags and the tag endpoint 

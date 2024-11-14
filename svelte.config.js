@@ -40,6 +40,7 @@ const config = {
       $tests: path.resolve("./src/tests")
     }
   },
+  
   preprocess: [preprocess({ sourceMap: true })]
 };
 
