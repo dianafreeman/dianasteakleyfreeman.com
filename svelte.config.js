@@ -1,6 +1,6 @@
 import preprocess from "svelte-preprocess";
 import path from "path";
-import adapter from "@sveltejs/adapter-static";
+import adapter from "@sveltejs/adapter-netlify";
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -9,7 +9,7 @@ const config = {
   },
   extensions: [".svelte"],
   kit: {
-    adapter: adapter({ strict: false}),
+    adapter: adapter({ edge: false, split: true}),
     prerender: {
       entries: [
         "/",

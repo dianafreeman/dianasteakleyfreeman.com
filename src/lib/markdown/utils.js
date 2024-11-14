@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import { BASE_DIR, METADATA } from "./constants";
+import { BASE_DIR, META_DETAILS } from "./constants";
 
 /**
  * Retrieve metadata by slug, title, or a matching alias.
@@ -11,7 +11,7 @@ import { BASE_DIR, METADATA } from "./constants";
  */
 export function getMetadataByAttribute({ slug, title, alias }) {
   return (
-    METADATA.find((item) => {
+    META_DETAILS.find((item) => {
       return (
         (slug && item?.slug === slug) ||
         (title && item?.title === title) ||
