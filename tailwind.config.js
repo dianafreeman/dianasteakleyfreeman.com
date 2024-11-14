@@ -1,7 +1,12 @@
+import aspectRatio from '@tailwindcss/aspect-ratio';
+import forms from '@tailwindcss/forms';
+
+/** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./src/**/*.{html,js,svelte,md}"],
-  theme: {
-    extend: {
+	content: ['./src/**/*.{html,js,svelte,ts}'],
+
+	theme: {
+		extend: {
       colors: {
         "dark-gray": "#222222",
         black: "#090A0B",
@@ -18,6 +23,7 @@ export default {
         base: ["Karla"]
       }
     }
-  },
-  plugins: []
+	},
+
+	plugins: [forms, aspectRatio]
 };

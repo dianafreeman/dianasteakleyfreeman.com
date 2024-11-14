@@ -1,18 +1,21 @@
+
+
 /** @type { import('@storybook/sveltekit').StorybookConfig } */
 const config = {
-  stories: ["../src/**/*.stories.@(js|jsx|mjs|svelte|ts|tsx)", '!../node_modules/**'],
-  addons: [
+  "stories": [
+    "../src/**/*.mdx",
+    "../src/**/*.stories.@(js|ts|svelte)"
+  ],
+  "addons": [
+    "@storybook/addon-svelte-csf",
     "@storybook/addon-links",
     "@storybook/addon-essentials",
-    "@storybook/addon-interactions",
-    "@storybook/addon-svelte-csf" 
+    "@chromatic-com/storybook",
+    "@storybook/addon-interactions"
   ],
-  framework: {
-    name: "@storybook/sveltekit",
-    options: {}
-  },
-  docs: {
-    autodocs: "tag"
+  "framework": {
+    "name": "@storybook/sveltekit",
+    "options": {}
   }
 };
 export default config;

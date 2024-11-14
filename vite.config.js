@@ -1,15 +1,26 @@
-import { sveltekit } from "@sveltejs/kit/vite";
-import VitePluginMarkdown from "vite-plugin-md";
+import { defineConfig } from 'vitest/config';
 
-/** @type {import('vite').UserConfig} */
-const config = {
-  plugins: [sveltekit(), VitePluginMarkdown()],
+import { sveltekit } from "@sveltejs/kit/vite";
+
+
+export default defineConfig({
+  plugins: [ sveltekit()],
   assetsInclude: ['**/*.md'],
   css: {
     preprocessorOptions: {
       tailwindcss: { config: './src/tailwind.config.js' }, // New path for Tailwind config
     },
   },
-};
+});
 
-export default config;
+// export default config;
+// import { defineConfig } from 'vitest/config';
+// import { sveltekit } from '@sveltejs/kit/vite';
+
+// export default defineConfig({
+// 	plugins: [sveltekit()],
+
+// 	test: {
+// 		include: ['src/**/*.{test,spec}.{js,ts}']
+// 	}
+// });
