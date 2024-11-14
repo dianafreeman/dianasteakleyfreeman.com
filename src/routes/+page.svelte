@@ -93,7 +93,7 @@
           laborum.
         </p> -->
         <ButtonLink
-          href="/projects?subcategory=art-and-design"
+          href="/projects/art-and-design"
           borders
           animateBorders
           class="bg-yellow text-black p-5 my-10 font-bold"
@@ -118,7 +118,7 @@
           laborum.
         </p> -->
         <ButtonLink
-          href="/projects?subcategory=science"
+          href="/projects/science"
           iconProps={{ type: "next" }}>
           View Publications
         </ButtonLink>

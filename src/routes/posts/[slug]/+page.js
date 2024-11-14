@@ -1,7 +1,7 @@
 import { error } from "@sveltejs/kit";
 
 export async function load({ fetch, params }) {
-  let targetUrl = `/api/v2/category/${params.category}`;
+  let targetUrl = `/api/v2/entries/${params.slug}`;
 
   const res = await fetch(targetUrl);
   const resp = await res.json();
@@ -9,10 +9,5 @@ export async function load({ fetch, params }) {
     throw error(res.status, { message: resp.error });
   }
 
-  const { entries, metadata } = resp;
-
-  if (entries.length == 0) {
-    throw error(404, "No entries found");
-  }
-  return { entries, metadata };
+  return resp;
 }

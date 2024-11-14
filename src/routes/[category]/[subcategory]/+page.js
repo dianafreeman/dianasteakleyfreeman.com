@@ -1,7 +1,7 @@
 import { error } from "@sveltejs/kit";
 
 export async function load({ fetch, params }) {
-  let targetUrl = `/api/v2/category/${params.category}`;
+  let targetUrl = `/api/v2/subcategory/${params.subcategory}`;
 
   const res = await fetch(targetUrl);
   const resp = await res.json();
