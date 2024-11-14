@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store';
 import resolveConfig from 'tailwindcss/resolveConfig'
-import tailwindConfig from '../tailwind.config.js'
+import tailwindConfig from '../../tailwind.config.js'
 import { onMount } from 'svelte';
 // Resolve the full configuration, merging the default Tailwind config with your custom config
 const fullConfig = resolveConfig(tailwindConfig);
