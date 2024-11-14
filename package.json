@@ -17,39 +17,25 @@
     "coverage": "vitest run --coverage"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=20"
   },
   "devDependencies": {
-    "@storybook/addon-essentials": "^7.2.3",
-    "@storybook/addon-interactions": "^7.2.3",
-    "@storybook/addon-links": "^7.2.3",
-    "@storybook/blocks": "^7.2.3",
-    "@storybook/jest": "^0.1.0",
-    "@storybook/svelte": "^7.2.3",
-    "@storybook/sveltekit": "^7.2.3",
     "@storybook/testing-library": "^0.2.0",
-    "@sveltejs/adapter-auto": "^2.1.0",
     "@sveltejs/adapter-netlify": "^2.0.8",
-    "@sveltejs/adapter-static": "^2.0.3",
-    "@sveltejs/kit": "^1.22.5",
+    "@sveltejs/enhanced-img": "^0.4.1",
+    "@sveltejs/kit": "^0.0.30",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/svelte": "^4.0.3",
     "@testing-library/user-event": "^14.4.3",
     "autoprefixer": "^10.4.14",
     "eslint": "^8.47.0",
     "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-storybook": "^0.6.13",
     "eslint-plugin-svelte3": "^4.0.0",
-    "jsdom": "^22.1.0",
-    "netlify-cli": "^16.0.2",
     "postcss": "^8.4.27",
     "prettier": "^3.0.1",
     "prettier-plugin-svelte": "^3.0.3",
     "prettier-plugin-tailwindcss": "^0.5.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "sass": "^1.65.1",
-    "storybook": "^7.2.3",
     "svelte": "^4.2.0",
     "svelte-preprocess": "^5.0.4",
     "tailwindcss": "^3.3.3",
@@ -59,13 +45,12 @@
   "type": "module",
   "dependencies": {
     "@lukeed/uuid": "^2.0.1",
-    "@storybook/addon-svelte-csf": "^3.0.7",
-    "cookie": "^0.5.0",
+    "cookie": "^1.0.1",
     "gray-matter": "^4.0.3",
     "marked": "^14.1.2",
     "reading-time": "^1.5.0",
     "svelte-inview": "^4.0.1",
     "svelte-typewriter": "^3.1.6",
-    "vite-plugin-md": "^0.22.5"
+    "vite-plugin-md": "^0.20.6"
   }
 }
