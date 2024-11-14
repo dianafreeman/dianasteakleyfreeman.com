@@ -1,7 +1,3 @@
-import path from "path"
-
-export const BASE_DIR = path.join("markdown"); // Base directory for Markdown content
-
 const contentTypesMeta = [
   {
     title: "Projects",

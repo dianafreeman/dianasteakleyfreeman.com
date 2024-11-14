@@ -1,11 +1,6 @@
-import {
-  getMetadataByAttribute,
-  filterMarkdownFilesByMetadataField
-} from "$lib/markdown/utils";
-import { BASE_DIR } from "$lib/markdown/constants";
 import { createResponse } from "$lib/response";
 import { getEntriesBy } from "$lib/markdown/entries";
-import { getMetaDetails, getMetaDetailsFor } from "$lib/markdown/metadata";
+import { getMetaDetailsFor } from "$lib/markdown/metadata";
 
 /**
  * GET /content/category/[category]
