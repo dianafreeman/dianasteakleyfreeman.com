@@ -1,8 +1,9 @@
 import { sveltekit } from "@sveltejs/kit/vite";
+import VitePluginMarkdown from "vite-plugin-md";
 
 /** @type {import('vite').UserConfig} */
 const config = {
-  plugins: [sveltekit()],
+  plugins: [sveltekit(), VitePluginMarkdown()],
   assetsInclude: ['**/*.md'],
   css: {
     preprocessorOptions: {

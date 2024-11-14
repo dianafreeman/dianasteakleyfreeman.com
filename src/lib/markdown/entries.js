@@ -1,9 +1,10 @@
 import { getAllEntryMeta, readEntry } from "./metadata";
-
+import { marked } from 'marked';
 export function getEntryBy(key, value) {
   const { filePath } = getEntriesBy(key, value)[0]; // asume first entry is the target one
   const data = readEntry(filePath, true);
-  return data;
+  const html = marked.parse(data.content)
+  return {...data, content: html};
 }
 
 export function getEntriesBy(key, value) {

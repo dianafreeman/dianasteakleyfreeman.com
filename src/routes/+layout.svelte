@@ -19,7 +19,6 @@
     { label: "resources", url: "/resources" },
     { label: "about", url: "/about" }
   ];
-  
 
   afterNavigate(() => {
     _menuIsOpen.set(false);
