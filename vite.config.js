@@ -11,16 +11,9 @@ export default defineConfig({
       tailwindcss: { config: './src/tailwind.config.js' }, // New path for Tailwind config
     },
   },
+  server: {
+    fs: {
+      allow: ["."]
+    }
+  }
 });
-
-// export default config;
-// import { defineConfig } from 'vitest/config';
-// import { sveltekit } from '@sveltejs/kit/vite';
-
-// export default defineConfig({
-// 	plugins: [sveltekit()],
-
-// 	test: {
-// 		include: ['src/**/*.{test,spec}.{js,ts}']
-// 	}
-// });
