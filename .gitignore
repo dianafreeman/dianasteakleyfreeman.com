@@ -1,5 +1,6 @@
 node_modules
 .netlify
+.firebase
 
 # Output
 .output
