@@ -1,7 +1,6 @@
 import { createResponse } from "$lib/response";
 import { getEntriesBy } from "$lib/markdown/entries";
 import { getMetaDetailsFor } from "$lib/markdown/metadata";
-
 /**
  * GET /content/category/[category]
  * Retrieves all front matter (metadata) for markdown files whose category matches the provided category.

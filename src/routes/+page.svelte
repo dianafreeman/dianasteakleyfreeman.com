@@ -3,10 +3,12 @@
   import Creator from "$lib/components/Graphics/Creator.svelte";
   import Section from "$lib/components/Section.svelte";
   import ButtonLink from "$lib/components/Buttons/ButtonLink.svelte";
-  const src = "/images/diana-and-rafiki.jpg";
-
+  
+  export const prerender = true
+  
   let coderInView = false;
   let creatorInView = false;
+  
   function handleAnchorClick(event) {
     event.preventDefault();
     const link = event.currentTarget;
@@ -37,7 +39,7 @@
         <a
           href="#creator"
           class="mx-1 hover:text-sky-blue active:text-sky-blue focus:text-sky-blue outline-none"
-          on:click={handleAnchorClick}>Creator. </a>
+          on:click={handleAnchorClick}>Creator.</a>
         <a
           href="#communicator"
           class="mx-1 hover:text-sky-blue active:text-sky-blue focus:text-sky-blue outline-none"

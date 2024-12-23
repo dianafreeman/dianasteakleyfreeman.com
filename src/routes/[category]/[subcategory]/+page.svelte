@@ -2,6 +2,7 @@
   import Masonry from "$lib/components/Masonry.svelte";
 
   export let data;
+
 </script>
 
 <div class="pb-10">

@@ -43,7 +43,6 @@ function decorateMetadata(obj){
 export function readEntry(filePath, includeContent = false) {
   const file = markdownFiles[filePath];
   const { data, content } = matter(file);
-  console.log(content)
   const metadata = decorateMetadata(data)
   const pathOrContent = includeContent ? { content } : { filePath }
   return { ...metadata, ...pathOrContent};

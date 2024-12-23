@@ -12,8 +12,6 @@ export async function GET({params}) {
   }
 }
 /*
-
 localhost:5173/api/v2/tags
 localhost:5173/api/v2/category
-
 */

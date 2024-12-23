@@ -11,3 +11,12 @@ export async function load({ fetch, params }) {
 
   return resp;
 }
+export const entries = () => {
+	return [
+		{ slug: 'digital-nomad-black-history-tour' },
+		{ slug: 'digital-self-care' },
+		{ slug: 'eliza-therapeutic-ai' },
+		{ slug: 'user-misdirection' },
+		{ slug: 'make-them-hear-you' }
+	];
+};

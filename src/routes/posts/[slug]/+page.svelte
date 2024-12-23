@@ -2,6 +2,7 @@
   import ButtonLink from "$lib/components/Buttons/ButtonLink.svelte";
 
   export let data;
+
 </script>
 
 <div class="text-white px-6 py-10 lg:px-8">

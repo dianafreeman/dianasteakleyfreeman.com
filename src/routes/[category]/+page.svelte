@@ -3,6 +3,13 @@
   import Masonry from "$lib/components/Masonry.svelte";
 
   export let data;
+  export const entries = () => {
+    return [
+		{ category: "blog" },
+		{ category: "resources" },
+		{ category: "projects" },
+	];
+  }
 </script>
 
 <div class="pb-10">
