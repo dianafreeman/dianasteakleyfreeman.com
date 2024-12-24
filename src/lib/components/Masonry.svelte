@@ -8,7 +8,7 @@
   {#each items as item}
   <!-- {item.category} -->
     <MasonryCard
-      target={`/posts/${item.slug}`}
+      target={`posts/${item.slug}`}
       title={item.title}
       imageSrc={item.image}
       date={new Date(item.date).toDateString()}
