@@ -3,7 +3,7 @@
 
   import Icon from "../Icon.svelte";
 
-  let clazz = "bg-yellow text-black p-5 my-10 font-bold"
+  let clazz = "bg-yellow text-black p-5 m-5 my-10 font-bold"
   export { clazz as class };
 
   export let href;
@@ -15,7 +15,7 @@
     ? "animate-borders"
     : borders && "borders";
 
-  const classes = `${borderClasses} cursor-pointer`;
+  const classes = `block ${borderClasses} cursor-pointer`;
   const dispatch = createEventDispatcher();
 
   function handleClick(e) {

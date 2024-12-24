@@ -32,7 +32,6 @@
   <MainNav items={navItems} />
 </header>
 <main>
-  <div id="spacer" class="h-[80px]"></div>
   <slot />
 </main>
 <footer
