@@ -1,6 +1,6 @@
 <script>
-  import { dev } from "$app/environment";
   import { page } from "$app/stores";
+	import ErrorView from "$lib/components/ErrorView.svelte";
 </script>
 
 <svelte:head>
@@ -8,13 +8,5 @@
 </svelte:head>
 
 <section class="h-full">
-  <div class="align-center relative my-12 lg:max-w-3xl lg:p-5">
-    <p class="text-6xl font-thin">
-      what a <span class="font-bold">bummer.</span>
-    </p>
-    <p class="mr-3 text-2xl font-thin">error {$page.status}.</p>
-    {#if dev}
-      {$page.error.message}
-    {/if}
-  </div>
+  <ErrorView code={$page.status} message={$page.error.message}></ErrorView>
 </section>
