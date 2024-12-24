@@ -13,7 +13,6 @@ export async function load({ fetch, params }) {
 }
 export const entries = () => {
 	return [
-		{ slug: 'digital-nomad-black-history-tour' },
 		{ slug: 'digital-self-care' },
 		{ slug: 'eliza-therapeutic-ai' },
 		{ slug: 'user-misdirection' },

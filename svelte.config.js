@@ -12,6 +12,7 @@ const config = {
     adapter: adapter({fallback: "404.html"}),
     prerender: {
       entries: [
+        "/404"
       ],
       handleHttpError: ({ path, referrer, message }) => {
         // throw new Error(message); // fail the build
