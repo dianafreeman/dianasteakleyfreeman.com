@@ -31,14 +31,14 @@
 </script>
 
 <Section class="flex h-screen">
-	<div class="m-auto relative flex flex-col items-center">
+	<div class="relative m-auto flex flex-col items-center">
 		<Intro
 			on:animationEnd={onIntroEnd}
 			on:skip={() => (introComplete = true)}
 			class="w-full text-3xl md:mt-0 md:text-4xl lg:text-5xl"
 		/>
 
-		<div class="md:m-h-[5em] min-h-[3em] my-10 w-full text-right md:text-left">
+		<div class="md:m-h-[5em] my-10 min-h-[3.25em] w-full text-right md:text-left">
 			{#if introComplete}
 				<h1
 					transition:fade
@@ -53,7 +53,6 @@
 </Section>
 <LandingSection
 	id="coder"
-	description="Culpa qui laboris nisi ut aute amet proident amet reprehenderit enim laborum."
 	buttonLabel="View Code Projects"
 	buttonTarget="https://github.com/dianafreeman"
 	on:sectionEnteredView={() => (coderInView = true)}
@@ -69,10 +68,14 @@
 			</h2>
 		</Typewriter>
 	</div>
+	<div slot="description">
+		<p>
+		The playful, the practical, and everything in between. There's always a story in the syntax.
+		</p>
+	</div>
 </LandingSection>
 <LandingSection
 	id="creator"
-	description="Culpa qui laboris nisi ut aute amet proident amet reprehenderit enim laborum."
 	buttonLabel="View Creative Projects"
 	buttonTarget="/projects/art-and-design"
 	on:sectionEnteredView={() => (creatorInView = true)}
@@ -82,11 +85,16 @@
 		<h2 class="sr-only">Creator</h2>
 		<Creator isDrawing={creatorInView} class="mx-auto stroke-sky-blue md:w-3/4 md:max-w-[30vw]" />
 	</div>
+	<div slot="description">
+		<p>
+			Some pieces are deliberate, others purely impulsive & expressive. Step into the
+			gallery of art, music, and poetry.
+		</p>
+	</div>
 </LandingSection>
 
 <LandingSection
 	id="communicator"
-	description="Culpa qui laboris nisi ut aute amet proident amet reprehenderit enim laborum."
 	buttonLabel="View Publications & Posters"
 	buttonTarget="/projects/science"
 >
@@ -94,5 +102,8 @@
 		<h2 class="text-center text-6xl font-black tracking-tighter text-sky-blue lg:text-8xl">
 			Communicator
 		</h2>
+	</div>
+	<div slot="description">
+		<em>Where data meets dialogue</em>. Part science, part conversation, and part elaborate procrastination tactic.
 	</div>
 </LandingSection>

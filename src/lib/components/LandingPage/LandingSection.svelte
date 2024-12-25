@@ -27,8 +27,10 @@
 	<slot name="content"></slot>
 
 	<div class="mx-auto h-fit md:w-2/3 px-10 text-center">
+		<slot name="description"></slot>
+	 {#if description}
 		<p class="">{description}</p>
-
+{/if}
 	<ButtonLink
 		href={buttonTarget}
 		borders

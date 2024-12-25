@@ -55,7 +55,7 @@
 	});
 </script>
 
-<div class="md:flex min-h-[250px] w-full md:items-end md:min-h-[480px] justify-center {clazz}">
+<div class="md:flex min-h-[280px] w-full md:items-end justify-center {clazz}">
 	<p class="text-left font-thin">The future of engineering is</p>
 	<ul class="md:mr-4 list-none md:min-w-[260px]">
 		{#each $activeWords as word, idx (idx)}
