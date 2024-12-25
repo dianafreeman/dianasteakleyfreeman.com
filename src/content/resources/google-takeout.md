@@ -1,6 +1,7 @@
 ---
 date: "2022-06-17"
 title: "Did you know that Google has Takeout?"
+draft: true
 tags:
   - react
 ---

@@ -1,7 +1,7 @@
 ---
 date: "2019-04-03"
 title: "What ELIZA can teach us about therapeutic AI."
-image: /images/therapy-with-a-chatbot.jpeg
+image: therapy-with-a-chatbot.jpeg
 category: Blog
 slug: eliza-therapeutic-ai
 tags:

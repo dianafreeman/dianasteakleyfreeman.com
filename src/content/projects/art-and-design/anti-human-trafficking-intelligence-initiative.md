@@ -1,6 +1,6 @@
 ---
 title: "Anti-Human Trafficking Intelligence Initiative"
-image: /images/ATII-hero.jpeg
+image: ATII-hero.jpeg
 date: "2020-01-01"
 link: https://followmoneyfightslavery.org/
 category: Projects
