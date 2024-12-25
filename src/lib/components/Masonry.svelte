@@ -10,7 +10,7 @@
     <MasonryCard
       target={`posts/${item.slug}`}
       title={item.title}
-      imageSrc={item.image}
+      imageName={item.image}
       date={new Date(item.date).toDateString()}
        />
             <!-- 
