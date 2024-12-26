@@ -1,136 +1,109 @@
 <script>
-  import Typewriter from "$lib/components/Typewriter.svelte";
-  import Creator from "$lib/components/Graphics/Creator.svelte";
-  import Section from "$lib/components/Section.svelte";
-  import ButtonLink from "$lib/components/Buttons/ButtonLink.svelte";
-  
-  export const prerender = true
-  
-  let coderInView = false;
-  let creatorInView = false;
-  
-  function handleAnchorClick(event) {
-    event.preventDefault();
-    const link = event.currentTarget;
-    const anchorId = new URL(link.href).hash.replace("#", "");
-    const anchor = document.getElementById(anchorId);
-    window.scrollTo({
-      top: anchor.offsetTop,
-      behavior: "smooth"
-    });
-  }
+	import Typewriter from '$lib/components/Typewriter.svelte';
+	import Creator from '$lib/components/Graphics/Creator.svelte';
+	import Section from '$lib/components/Section.svelte';
+	import ButtonLink from '$lib/components/Buttons/ButtonLink.svelte';
+	import Intro from '$lib/components/LandingPage/Intro.svelte';
+	import { fade } from 'svelte/transition';
+	import { onDestroy } from 'svelte';
+	import LandingSection from '$lib/components/LandingPage/LandingSection.svelte';
+
+	let coderInView = false;
+	let creatorInView = false;
+	let introComplete = false;
+
+	function handleAnchorClick(event) {
+		event.preventDefault();
+		const link = event.currentTarget;
+		const anchorId = new URL(link.href).hash.replace('#', '');
+		const anchor = document.getElementById(anchorId);
+		window.scrollTo({
+			top: anchor.offsetTop,
+			behavior: 'smooth'
+		});
+	}
+
+	function onIntroEnd() {
+		let timeout = setTimeout(() => {
+			introComplete = true;
+		}, 400);
+	}
 </script>
 
-<div class="m-auto flex-col relative">
-  <div class="">
-    <Section
-      class="py-10 h-[80vh] items-center justify-center flex flex-col px-5 md:px-0">
-      <h1
-        class="mx-auto tracking-tight text-5xl md:text-6xl lg:text-7xl text-yellow mb-4 text-center font-black pt-7">
-        Diana M. Steakley-Freeman
-      </h1>
-      <p class="my-8 text-xl md:text-2xl lg:text-3xl font-extralight">
-        <a
-          href="#coder"
-          class="mx-1 hover:text-sky-blue active:text-yellow focus:text-sky-blue outline-none"
-          on:click={handleAnchorClick}
-          >Coder. 
-        </a>
-        <a
-          href="#creator"
-          class="mx-1 hover:text-sky-blue active:text-sky-blue focus:text-sky-blue outline-none"
-          on:click={handleAnchorClick}>Creator.</a>
-        <a
-          href="#communicator"
-          class="mx-1 hover:text-sky-blue active:text-sky-blue focus:text-sky-blue outline-none"
-          on:click={handleAnchorClick}
-          >Communicator. 
-        </a>
-      </p>
-    </Section>
-    <Section
-      id="coder"
-      class="py-10 flex px-5 md:px-0"
-      onInView={() => (coderInView = true)}
-      onOutOfView={() => (coderInView = false)}>
-      <div
-        class="md:w-2/3 min-h-[70vh] flex flex-col justify-center items-start md:px-10">
-        <Typewriter inView={coderInView}>
-          <h2
-            aria-label="Coder"
-            class="mx-auto text-9xl text-sky-blue font-code mb-4 text-center font-bold pt-7">
-            Coder_
-          </h2>
-        </Typewriter>
-        <!-- <p class="">
-          Culpa qui laboris nisi ut aute amet proident amet reprehenderit enim
-          laborum.
-        </p> -->
-        <!-- <ButtonLink href="/projects?category=code" borders animateBorders class="bg-yellow text-black p-5 my-10 font-bold" iconProps={{ type: "next"}}> View Code Projects </ButtonLink> -->
-        <ButtonLink
-          target="_blank"
-          href="https://github.com/dianafreeman"
-          borders
-          animateBorders
-          class="bg-yellow text-black p-5 my-10 font-bold"
-          iconProps={{ type: "next" }}>
-          View Code Projects
-        </ButtonLink>
-      </div>
-      <div class="md:w-1/3 flex justify-center items-center"></div>
-    </Section>
-  </div>
-  <div class="">
-    <Section
-      id="creator"
-      onInView={() => (creatorInView = true)}
-      onOutOfView={() => (creatorInView = false)}
-      class="py-10 flex px-5 md:px-0 flex-row-reverse">
-      <div
-        class="md:w-2/3 min-h-[70vh] flex flex-col justify-center items-end md:px-10">
-        <h2 class="sr-only">Creator</h2>
-        <Creator isDrawing={creatorInView} class="stroke-sky-blue md:w-3/4" />
-        <!-- <p class="ml-auto text-right">
-          Culpa qui laboris nisi ut aute amet proident amet reprehenderit enim
-          laborum.
-        </p> -->
-        <ButtonLink
-          href="/projects/art-and-design"
-          borders
-          animateBorders
-          class="bg-yellow text-black p-5 my-10 font-bold"
-          iconProps={{ type: "next" }}>
-          View Creative Projects
-        </ButtonLink>
-      </div>
-      <div class="md:w-1/3"></div>
-    </Section>
-  </div>
-  <div class="">
-    <Section id="communicator" class="py-10 flex px-5 md:px-0">
-      <div
-        class="md:w-2/3 min-h-[70vh] flex flex-col justify-center items-start md:px-10">
-        <h2
-          class="text-left text-6xl lg:text-8xl font-black text-sky-blue tracking-tighter">
-          Communicator
-        </h2>
-        <!-- <div class="w-full"> -->
-        <!-- <p class="md:text-left my-6">
-          Culpa qui laboris nisi ut aute amet proident amet reprehenderit enim
-          laborum.
-        </p> -->
-        <ButtonLink
-          href="/projects/science"
-          iconProps={{ type: "next" }}>
-          View Publications
-        </ButtonLink>
-      </div>
-      <!-- </div> -->
-      <div class="md:w-1/3"></div>
-    </Section>
+<Section class="flex h-screen">
+	<div class="relative m-auto flex flex-col items-center">
+		<Intro
+			on:animationEnd={onIntroEnd}
+			on:skip={() => (introComplete = true)}
+			class="w-full text-3xl md:mt-0 md:text-4xl lg:text-5xl"
+		/>
 
-    <!-- <Section>
-      <p class="text-8xl">About</p>
-    </Section> -->
-  </div>
-</div>
+		<div class="md:m-h-[5em] my-10 min-h-[3.25em] w-full text-right md:text-left">
+			{#if introComplete}
+				<h1
+					transition:fade
+					style="letter-spacing: -2px"
+					class="tracking-tightest w-full text-4xl font-black text-yellow md:text-5xl lg:text-6xl"
+				>
+					Hi. I'm Diana.
+				</h1>
+			{/if}
+		</div>
+	</div>
+</Section>
+<LandingSection
+	id="coder"
+	buttonLabel="View Code Projects"
+	buttonTarget="https://github.com/dianafreeman"
+	on:sectionEnteredView={() => (coderInView = true)}
+	on:sectionExitedView={() => (coderInView = false)}
+>
+	<div slot="content" class="mx-auto md:w-2/3 md:px-10">
+		<Typewriter inView={coderInView}>
+			<h2
+				aria-label="Coder"
+				class="mx-auto mb-4 pt-7 text-center font-code text-9xl font-bold text-sky-blue"
+			>
+				Coder_
+			</h2>
+		</Typewriter>
+	</div>
+	<div slot="description">
+		<p>
+		The playful, the practical, and everything in between. There's always a story in the syntax.
+		</p>
+	</div>
+</LandingSection>
+<LandingSection
+	id="creator"
+	buttonLabel="View Creative Projects"
+	buttonTarget="/projects/art-and-design"
+	on:sectionEnteredView={() => (creatorInView = true)}
+	on:sectionExitedView={() => (creatorInView = false)}
+>
+	<div slot="content" class="mx-auto mb-10 w-3/4 md:w-2/3 md:px-10">
+		<h2 class="sr-only">Creator</h2>
+		<Creator isDrawing={creatorInView} class="mx-auto stroke-sky-blue md:w-3/4 md:max-w-[30vw]" />
+	</div>
+	<div slot="description">
+		<p>
+			Some pieces are deliberate, others purely impulsive & expressive. Step into the
+			gallery of art, music, and poetry.
+		</p>
+	</div>
+</LandingSection>
+
+<LandingSection
+	id="communicator"
+	buttonLabel="View Publications & Posters"
+	buttonTarget="/projects/science"
+>
+	<div slot="content">
+		<h2 class="text-center text-6xl mb-10 font-black tracking-tighter text-sky-blue lg:text-8xl">
+			Communicator
+		</h2>
+	</div>
+	<div slot="description">
+		View my conference presentations, read my peer-reviewed articles and chapters, or browse my <s>elaborate procrastination tactics</s> blog posts.
+	</div>
+</LandingSection>

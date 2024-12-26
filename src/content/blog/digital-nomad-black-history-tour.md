@@ -1,7 +1,7 @@
 ---
 date: "2022-11-06"
 title: "I'm living as a digital nomad within the U.S. Here's why."
-image: /images/therapy-with-a-chatbot.jpeg
+image: therapy-with-a-chatbot.jpeg
 slug: black-history-tour
 category: Blog
 draft: true

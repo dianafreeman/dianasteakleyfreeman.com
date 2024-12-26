@@ -16,8 +16,6 @@
 
   body {
     @apply bg-black;
-    font-size: 16px;
-    /* font-family: "Montserrat", sans-serif; */
     @apply text-white;
     @apply font-base
   }
@@ -32,17 +30,6 @@
   }
 }
 
-@layer components {
-  .responsive-container {
-    @apply mx-auto max-w-md md:max-w-3xl lg:max-w-4xl xl:max-w-5xl;
-  }
-  .heading {
-    @apply text-5xl md:text-6xl lg:text-7xl;
-  }
-  .subheading {
-    @apply text-xl font-thin md:text-2xl lg:text-3xl;
-  }
-}
 
 :root {
   --pure-white: #ffffff;

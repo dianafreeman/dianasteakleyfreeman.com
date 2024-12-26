@@ -24,15 +24,15 @@
     _menuIsOpen.set(false);
   });
 </script>
-
+<GoogleAnalytics />
 <Seo />
-<!-- <GoogleAnalytics /> -->
 
 <header>
   <MainNav items={navItems} />
 </header>
+<div id="spacer" class="h-[50px]"></div>
+
 <main>
-  <div id="spacer" class="h-[80px]"></div>
   <slot />
 </main>
 <footer

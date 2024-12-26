@@ -1,7 +1,7 @@
 ---
 date: "2019-03-31"
 title: "Digital Self-Care in the era of #InsertCrisisHere."
-image: /images/phone-disconnected-from-chain.jpeg
+image: phone-disconnected-from-chain.jpeg
 category: Blog
 slug: digital-self-care
 tags:

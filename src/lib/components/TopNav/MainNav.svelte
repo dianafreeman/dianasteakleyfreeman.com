@@ -19,8 +19,9 @@
   $: activePath = $page.url.pathname
 </script>
 
-<nav class="" aria-label="Main Navigation">
+<nav aria-label="Main Navigation">
   <div class="fixed bg-black z-50 w-screen flex flex-row justify-center md:flex border-dark-gray border-b">
+    
     <!-- <div> -->
       <!-- nav brand wrapper for flex-->
       <!-- <NavBrand class="outline-none" /> -->
@@ -69,3 +70,4 @@
     <!-- end menu grouping wrapper -->
   </div>
 </nav>
+
