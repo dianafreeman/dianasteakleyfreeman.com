@@ -15,29 +15,14 @@
     security_storage: CONSENT_TYPES.GRANTED
   };
 
-  const measurementId = import.meta.env.GA_MEASUREMENT_ID;
+  const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID;
 
-  if (browser) {
-    window.dataLayer = window.dataLayer || [];
+  // TODO - setup consent
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-
-    gtag("js", new Date());
-    gtag("config", measurementId, {
-      page_title: document.title,
-      page_path: $page.url
-    });
-  }
-  const consent = readable(DEFAULT_CONSENT);
-
-  const GTAG_EXISTS = typeof gtag !== "undefined";
-  $: {
-    if (GTAG_EXISTS) {
-      gtag("consent", "update", $consent);
-    }
-  }
+  gtag('config', measurementId);
 </script>
 
 <svelte:head>
