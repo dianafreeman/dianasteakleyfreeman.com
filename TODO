@@ -1,11 +1,17 @@
 
 ## Now
+[] Make mobile nav accessible with expand props
+[] add about page content
+[] add resources
+[] setup storybook 
+[] deploy storyboook to static hosting
+[] update coder link to use storybook as content
+
 
 ## Soon
-[] update storybook
-
+[] setup blurred lazy loading of images
+[] configure item-specific consent for google analytics
 
 ## Later
-[] update sveltekit
 [] Turn settings into a modal dialog
 [] Create swagger docs for API
