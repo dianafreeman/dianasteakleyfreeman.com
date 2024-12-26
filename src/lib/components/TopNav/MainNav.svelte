@@ -70,5 +70,4 @@
     <!-- end menu grouping wrapper -->
   </div>
 </nav>
-<div id="spacer" class="h-[30px]"></div>
 

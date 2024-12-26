@@ -30,6 +30,8 @@
 <header>
   <MainNav items={navItems} />
 </header>
+<div id="spacer" class="h-[50px]"></div>
+
 <main>
   <slot />
 </main>

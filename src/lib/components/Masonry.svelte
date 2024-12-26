@@ -4,7 +4,7 @@
   export let items = [];
 </script>
 
-<div class="columns-1 md:columns-2 lg:columns-3">
+<div class="columns-1 w-fit m-auto md:columns-2 lg:columns-3">
   {#each items as item}
   <!-- {item.category} -->
     <MasonryCard

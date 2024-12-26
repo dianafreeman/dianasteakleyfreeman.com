@@ -43,7 +43,7 @@
 				<h1
 					transition:fade
 					style="letter-spacing: -2px"
-					class="tracking-tightest w-full text-4xl font-bold text-yellow md:text-5xl lg:text-6xl"
+					class="tracking-tightest w-full text-4xl font-black text-yellow md:text-5xl lg:text-6xl"
 				>
 					Hi. I'm Diana.
 				</h1>
@@ -81,7 +81,7 @@
 	on:sectionEnteredView={() => (creatorInView = true)}
 	on:sectionExitedView={() => (creatorInView = false)}
 >
-	<div slot="content" class="mx-auto w-3/4 md:w-2/3 md:px-10">
+	<div slot="content" class="mx-auto mb-10 w-3/4 md:w-2/3 md:px-10">
 		<h2 class="sr-only">Creator</h2>
 		<Creator isDrawing={creatorInView} class="mx-auto stroke-sky-blue md:w-3/4 md:max-w-[30vw]" />
 	</div>
@@ -99,7 +99,7 @@
 	buttonTarget="/projects/science"
 >
 	<div slot="content">
-		<h2 class="text-center text-6xl font-black tracking-tighter text-sky-blue lg:text-8xl">
+		<h2 class="text-center text-6xl mb-10 font-black tracking-tighter text-sky-blue lg:text-8xl">
 			Communicator
 		</h2>
 	</div>
