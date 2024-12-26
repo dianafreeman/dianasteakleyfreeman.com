@@ -1,4 +1,5 @@
 import { error } from "@sveltejs/kit";
+export const prerender = true
 
 export async function load({ fetch, params }) {
   let targetUrl = `/api/v2/category/${params.category}`;

@@ -104,6 +104,6 @@
 		</h2>
 	</div>
 	<div slot="description">
-		<em>Where data meets dialogue</em>. Part science, part conversation, and part elaborate procrastination tactic.
+		View my conference presentations, read my peer-reviewed articles and chapters, or browse my <s>elaborate procrastination tactics</s> blog posts.
 	</div>
 </LandingSection>

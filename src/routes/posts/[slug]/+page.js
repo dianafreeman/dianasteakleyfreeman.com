@@ -9,7 +9,8 @@ export async function load({ fetch, params }) {
     throw error(res.status, { message: resp.error });
   }
 
-  return resp;
+  const { content, ...rest } = resp
+  return {content, metadata: rest};
 }
 export const entries = () => {
 	return [
