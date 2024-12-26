@@ -24,9 +24,8 @@
     _menuIsOpen.set(false);
   });
 </script>
-
+<GoogleAnalytics />
 <Seo />
-<!-- <GoogleAnalytics /> -->
 
 <header>
   <MainNav items={navItems} />
